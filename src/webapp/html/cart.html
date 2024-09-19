@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart - FunnyCode</title>
+    <link rel="shortcut icon" type="x-icon" href="/src/webapp/img/Logo.png">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-ODn27RD6nA2R1Gz5glBa6kLtvCxFfUMaNf1oZVVobKq6yEJNXI9py/tFyR3/f+W" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <!-- Font Awesome for Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/src/webapp/css/style.css">
+
+</head>
+<body>
+
+<div id="header"></div>
+
+<div class="cart-container">
+    <div class="cart-items">
+        <h1>CART</h1>
+        <p>Shopping cart<br>You have <span class="highlight">1</span> items in your cart</p>
+
+        <div class="item">
+            <img src="/src/webapp/img/Course-IMG.png" alt="Course Image">
+            <div class="item-details">
+                <h4><strong>MAE101</strong> - Mathematics for Engineering</h4>
+            </div>
+            <div class="price">
+                <span>400,000</span><br>
+                VND
+            </div>
+            
+            <div class="actions">
+                <button>
+                    <i class="fas fa-trash-alt"></i>
+                    <i class="fas fa-square checkbox-icon" onclick="toggleCheckbox(this)"></i>
+                </button>
+            </div>
+        </div>
+        
+
+        <!-- Add more items here -->
+
+    </div>
+
+    <div class="cart-summary">
+        <div class="card-details">
+            <h2>Card Details</h2>
+            <div class="payment-icons">
+                <a href="#"><img src="/src/webapp/img/payment1.png" alt="ZaloPay"></a>
+                <a href="#"><img src="/src/webapp/img/payment2.png" alt="ZaloPay"></a>
+                <a href="#"><img src="/src/webapp/img/payment3.png" alt="ZaloPay"></a>
+                <a href="#"><img src="/src/webapp/img/payment4.png" alt="ZaloPay"></a>
+            </div>
+            <form>
+                <div class="form-group">
+                    <label>Name on card</label>
+                    <input type="text" placeholder="Name">
+                </div>
+                <div class="form-group">
+                    <label>Card Number</label>
+                    <input type="text" placeholder="1111 2222 3333 4444">
+                </div>
+                <div class="form-group">
+                    <label>Expiration date</label>
+                    <input type="text" placeholder="mm/yy">
+                    <label>CVV</label>
+                    <input type="text" placeholder="123">
+                </div>
+            </form>
+            <div class="total">
+                Total <span>400,000 VND</span>
+            </div>
+            <button class="btn checkout-btn">Check Out Now</button>
+        </div>
+    </div>
+</div>
+
+
+<div id="footer"></div>
+
+<script>
+    function toggleCheckbox(element) {
+    // Toggle between checked and unchecked
+    if (element.classList.contains('fa-square')) {
+        element.classList.remove('fa-square');
+        element.classList.add('fa-check-square');
+    } else {
+        element.classList.remove('fa-check-square');
+        element.classList.add('fa-square');
+    }
+}
+</script>
+<script>
+    // Chèn Header và Footer
+    document.addEventListener('DOMContentLoaded', () => {
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header').innerHTML = data;
+                // Thực hiện các thao tác JavaScript sau khi header đã được chèn
+                const searchInput = document.getElementById('searchInput');
+                const exploreBtn = document.getElementById('exploreBtn');
+
+                if (searchInput && exploreBtn) {
+                    searchInput.addEventListener('focus', () => {
+                        exploreBtn.textContent = 'Search';
+                    });
+
+                    searchInput.addEventListener('blur', () => {
+                        exploreBtn.textContent = 'Explore';
+                    });
+                }
+            });
+
+            fetch('footer.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('footer').innerHTML = data;
+
+            // Thêm sự kiện cuộn trang
+            const backToTopBtn = document.querySelector('.back-to-top');
+            
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 200) { // Hiển thị nút khi cuộn xuống 200px
+                    backToTopBtn.style.display = 'block';
+                } else {
+                    backToTopBtn.style.display = 'none';
+                }
+            });
+
+            // Cuộn lên khi nhấn nút
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    });
+</script>
+</body>
+</html>

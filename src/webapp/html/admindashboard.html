@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - FunnyCode</title>
+    <link rel="shortcut icon" type="x-icon" href="/src/webapp/img/Logo.png">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-ODn27RD6nA2R1Gz5glBa6kLtvCxFfUMaNf1oZVVobKq6yEJNXI9py/tFyR3/f+W" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <!-- Font Awesome for Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/src/webapp/css/style.css">
+</head>
+
+<body>
+
+    <div class="container-fluid admin view-dashboard">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-2 sidebar">
+                <div class="d-flex flex-column align-items-center">
+                    <img src="/src/webapp/img/Logo.png" alt="Logo" class="rounded-circle mb-3" width="200">
+                    <div class="d-flex align-items-center mb-4">
+                        <img src="/src/webapp/img/Logo_FunnyCode.jpg" alt="Maria"
+                            class="rounded-circle me-2 avatar-img">
+                        <div class="d-flex align-items-center">
+                            <div class="me-2">
+                                <h5 class="mb-0">Maria</h5>
+                                <p class="text-muted mb-0">HR Manager</p>
+                            </div>
+                            <a href="#"><i class="fas fa-info-circle"></i></a>
+                        </div>
+                    </div>
+
+                </div>
+                <hr>
+                <div class="nav flex-column">
+                    <a href="#" class="btn-nav mb-2">
+                        <i class="fas fa-home me-2"></i>Dashboard
+                    </a>
+                    <a href="#" class="btn-nav mb-2">
+                        <i class="fas fa-user-graduate me-2"></i>Students
+                    </a>
+                    <a href="#" class="btn-nav mb-2">
+                        <i class="fas fa-book me-2"></i>Courses
+                    </a>
+                    <a href="#" class="btn-nav mb-2 dropdown-toggle" id="forumDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-comments me-2"></i>Forum
+                    </a>
+                    <div class="menu-forum">
+                        <ul class="dropdown-menu" aria-labelledby="forumDropdown">
+                            <li><a class="dropdown-item" href="#">User</a></li>
+                            <li><a class="dropdown-item" href="#">Post</a></li>
+                            <li><a class="dropdown-item" href="#">Group</a></li>
+                        </ul>
+                    </div>
+                    <a href="#" class="btn-nav mb-2">
+                        <i class="fas fa-user me-2"></i>User
+                    </a>
+                    <a href="#" class="btn-nav mb-2">
+                        <i class="fas fa-wallet me-2"></i>Payments
+                    </a>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-md-10 content">
+                <div class="d-flex flex-column">
+                    <!-- Tìm kiếm -->
+                    <div class="input-group mb-3" style="max-width: 300px;">
+                        <input type="text" class="form-control" placeholder="Search">
+                        <span class="input-group-text"><i class="fas fa-search"></i></span>
+                    </div>
+
+                    <!-- Tiêu đề Dashboard và các nút -->
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h2 class="dashboard-header mb-0">Dashboard</h2>
+                    </div>
+                </div>
+
+
+                <!-- Cards Row -->
+                <div class="row text-center g-4">
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <p class="text-muted">Total Users <span class="custom-badge growth">+10.0%</span></p>
+                                <h2 class="card-header-value">856</h2>
+                                <p class="text-muted">Users</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <p class="text-muted">Total Courses <span class="custom-badge decline">-5.0%</span></p>
+                                <h2 class="card-header-value">1000</h2>
+                                <p class="text-muted">Courses</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <p class="text-muted">Total Posts <span class="custom-badge growth">+10.0%</span></p>
+                                <h2 class="card-header-value">1000</h2>
+                                <p class="text-muted">Posts</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <p class="text-muted">Total Amount <span class="custom-badge growth">+10.0%</span></p>
+                                <h2 class="card-header-value">1,000,000</h2>
+                                <p class="text-muted">VND</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Statistics Section -->
+                <div class="revenue-chart">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h4>Statistics of revenue</h4>
+                        <div class="revenue-switches">
+                            <div class="form-check form-switch me-3">
+                                <input class="form-check-input" type="checkbox" id="totalSwitch" checked>
+                                <label class="form-check-label" for="totalSwitch">Total</label>
+                            </div>
+                            <div class="form-check form-switch me-3">
+                                <input class="form-check-input" type="checkbox" id="incomeSwitch">
+                                <label class="form-check-label" for="incomeSwitch">Income</label>
+                            </div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="outcomeSwitch">
+                                <label class="form-check-label" for="outcomeSwitch">Outcome</label>
+                            </div>
+                            <select class="form-select" style="width: auto; margin-left: 10px;">
+                                <option selected>July</option>
+                                <option value="1">January</option>
+                                <option value="2">February</option>
+                                <!-- Add other months -->
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Placeholder for Chart -->
+                    <canvas id="revenueChart" width="400" height="150"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const ctx = document.getElementById('revenueChart').getContext('2d');
+        const revenueChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                datasets: [
+                    {
+                        label: 'Total',
+                        data: [30, 50, 60, 80, 90, 40, 60, 70, 50, 80, 60, 90],
+                        backgroundColor: 'rgba(0, 123, 255, 0.5)'
+                    },
+                    {
+                        label: 'Income',
+                        data: [10, 20, 30, 50, 60, 20, 30, 40, 20, 50, 30, 60],
+                        backgroundColor: 'rgba(255, 193, 7, 0.5)'
+                    },
+                    {
+                        label: 'Outcome',
+                        data: [20, 30, 40, 60, 70, 30, 50, 30, 30, 60, 50, 80],
+                        backgroundColor: 'rgba(255, 87, 34, 0.5)'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

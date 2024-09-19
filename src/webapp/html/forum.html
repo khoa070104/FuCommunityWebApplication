@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forum - FunnyCode</title>
+    <link rel="shortcut icon" type="x-icon" href="/src/webapp/img/Logo.png">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-ODn27RD6nA2R1Gz5glBa6kLtvCxFfUMaNf1oZVVobKq6yEJNXI9py/tFyR3/f+W" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <!-- Font Awesome for Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/src/webapp/css/style.css">
+</head>
+
+<body>
+
+    <div id="header"></div>
+
+    <div class="container forum">
+        <h1 class="forum-title">FORUM</h1>
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        General
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center">
+                                <div class="forum-icon me-3"></div>
+                                <div>
+                                    <div>Announcements</div>
+                                    <div class="text-muted">Threads <span>7.4k</span> & Posts <span>7.4k</span></div>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <div class="text-end me-3">
+                                    Nguyen Van A<br>
+                                    07/09/2024
+                                </div>
+                                <div class="user-avatar"></div>
+                            </div>
+                        </li>
+                        <!-- Repeat list item for more entries -->
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="news-card-header p-2">
+                        News
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex align-items-center card-ul">
+                            <img src="https://via.placeholder.com/50" class="news-img me-3" alt="News">
+                            <div>
+                                <div>Famous Courses</div>
+                                <div class="text-muted">Nguyen Thi B<br>20:13 12/08/2024</div>
+                            </div>
+                        </li>
+                        <!-- Repeat list item for more news -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="footer"></div>
+    <script>
+        // Chèn Header và Footer
+        document.addEventListener('DOMContentLoaded', () => {
+            fetch('header.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('header').innerHTML = data;
+                    // Thực hiện các thao tác JavaScript sau khi header đã được chèn
+                    const searchInput = document.getElementById('searchInput');
+                    const exploreBtn = document.getElementById('exploreBtn');
+
+                    if (searchInput && exploreBtn) {
+                        searchInput.addEventListener('focus', () => {
+                            exploreBtn.textContent = 'Search';
+                        });
+
+                        searchInput.addEventListener('blur', () => {
+                            exploreBtn.textContent = 'Explore';
+                        });
+                    }
+                });
+
+            fetch('footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('footer').innerHTML = data;
+
+                    // Thêm sự kiện cuộn trang
+                    const backToTopBtn = document.querySelector('.back-to-top');
+
+                    window.addEventListener('scroll', () => {
+                        if (window.scrollY > 200) { // Hiển thị nút khi cuộn xuống 200px
+                            backToTopBtn.style.display = 'block';
+                        } else {
+                            backToTopBtn.style.display = 'none';
+                        }
+                    });
+
+                    // Cuộn lên khi nhấn nút
+                    backToTopBtn.addEventListener('click', () => {
+                        window.scrollTo({
+                            top: 0,
+                            behavior: 'smooth'
+                        });
+                    });
+                });
+        });
+    </script>
+</body>
+
+</html>

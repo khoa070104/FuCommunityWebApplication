@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AboutUs - FunnyCode</title>
+    <link rel="shortcut icon" type="x-icon" href="/src/webapp/img/Logo.png">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-ODn27RD6nA2R1Gz5glBa6kLtvCxFfUMaNf1oZVVobKq6yEJNXI9py/tFyR3/f+W" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <!-- Font Awesome for Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/src/webapp/css/style.css">
+</head>
+<body>
+
+<div id="header"></div>
+
+<div class="container about-us">
+    <div class="row">
+        <div class="col-md-6">
+            <h2 class="main-title">About Us</h2>
+            <h4>Achieve Full <span class="highlight-text">Potential</span></h4>
+            <p>Our mission is to make education accessible to everyone, regardless of their location or background. We believe that learning should be a lifelong journey, and we are here to provide you with the tools and resources you need to succeed.</p>
+            <button class="btn btn-custom">Join Us</button>
+        </div>
+        <div class="col-md-6 feature-img-container">
+            <img src="/src/webapp/img/study2.jpg" alt="Image 1" class="feature-img mb-3">
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-md-6 feature-img-container">
+            <img src="/src/webapp/img/study3.jpg" alt="Feature Image" class="feature-img">
+        </div>
+        <div class="col-md-6">
+            <h5 class="feature-title">Features</h5>
+            <h1>We are always working to provide you best of the features in all aspects.</h1>
+            <p>The platform provides a <strong>user-friendly interface</strong> for easy navigation, secure and flexible payment options, and a personalized learning system that recommends courses based on user preferences. It offers <strong>diverse course content</strong> across various subjects and awards <strong>certificates upon completion</strong>. Learners benefit from 24/7 support, can <strong>access courses anytime, anywhere</strong>, and participate in discussion forums. The rating and review system helps guide course selection, and free trials allow users to sample content before purchasing.</p>
+        </div>
+    </div>
+</div>
+
+<div class="container benefits-section">
+    <h2 class="benefit-title">Our Benefits</h2>
+    <h3 class="benefit-heading">By Joining Funnycode,<br> One Can Avail a Lot Of Benefits.</h3>
+    <p>We ensure that learners have a flexible, personalized, and enriching learning experience tailored to their needs.</p>
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card benefit-card benefit-content">
+                <div class="benefit-number">01</div>
+                <h5 class="card-title">Skill enhancement</h5>
+                <p class="card-text">The platform offers in-depth courses that help learners improve their skills and increase career opportunities.</p>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card benefit-card">
+                <div class="benefit-number">02</div>
+                <h5 class="card-title">Reduced Costs</h5>
+                <p class="card-text">Users can learn from home, avoiding commuting costs and typically paying lower fees compared to traditional in-person classes.</p>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card benefit-card benefit-content">
+                <div class="benefit-number">03</div>
+                <h5 class="card-title">Flexible learning schedule</h5>
+                <p class="card-text">Learners can study at their own pace, fitting education into their personal and professional lives.</p>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card benefit-card">
+                <div class="benefit-number">04</div>
+                <h5 class="card-title">Personalized learning experience</h5>
+                <p class="card-text">The platform tailors course recommendations and content to suit each learner's goals and skill level.</p>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card benefit-card benefit-content">
+                <div class="benefit-number">05</div>
+                <h5 class="card-title">Connect with experts</h5>
+                <p class="card-text">Discussion forums and collaborative activities enable learners to interact with industry professionals and experienced peers.</p>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card benefit-card">
+                <div class="benefit-number">06</div>
+                <h5 class="card-title">Confidence & Independence</h5>
+                <p class="card-text">Self-paced learning helps users develop time management skills and the ability to learn independently, boosting their confidence.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="footer"></div>
+
+<script>
+    // Chèn Header và Footer
+    document.addEventListener('DOMContentLoaded', () => {
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header').innerHTML = data;
+                // Thực hiện các thao tác JavaScript sau khi header đã được chèn
+                const searchInput = document.getElementById('searchInput');
+                const exploreBtn = document.getElementById('exploreBtn');
+
+                if (searchInput && exploreBtn) {
+                    searchInput.addEventListener('focus', () => {
+                        exploreBtn.textContent = 'Search';
+                    });
+
+                    searchInput.addEventListener('blur', () => {
+                        exploreBtn.textContent = 'Explore';
+                    });
+                }
+            });
+
+            fetch('footer.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('footer').innerHTML = data;
+
+            // Thêm sự kiện cuộn trang
+            const backToTopBtn = document.querySelector('.back-to-top');
+            
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 200) { // Hiển thị nút khi cuộn xuống 200px
+                    backToTopBtn.style.display = 'block';
+                } else {
+                    backToTopBtn.style.display = 'none';
+                }
+            });
+
+            // Cuộn lên khi nhấn nút
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    });
+</script>
+</body>
+</html>
