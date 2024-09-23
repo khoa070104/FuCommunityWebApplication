@@ -1,11 +1,66 @@
 {
   "version": 3,
   "targets": {
-    "net8.0": {}
+    "net8.0": {
+      "FuCommunityWebDataAccess/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "FUCommunityWebModels": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/FuCommunityWebDataAccess.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/FuCommunityWebDataAccess.dll": {}
+        }
+      },
+      "FUCommunityWebModels/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/FUCommunityWebModels.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/FUCommunityWebModels.dll": {}
+        }
+      },
+      "FuCommunityWebServices/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "FuCommunityWebDataAccess": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/FuCommunityWebServices.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/FuCommunityWebServices.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "FuCommunityWebDataAccess/1.0.0": {
+      "type": "project",
+      "path": "../FuCommunityWebDataAccess/FuCommunityWebDataAccess.csproj",
+      "msbuildProject": "../FuCommunityWebDataAccess/FuCommunityWebDataAccess.csproj"
+    },
+    "FUCommunityWebModels/1.0.0": {
+      "type": "project",
+      "path": "../FUCommunityWebModels/FUCommunityWebModels.csproj",
+      "msbuildProject": "../FUCommunityWebModels/FUCommunityWebModels.csproj"
+    },
+    "FuCommunityWebServices/1.0.0": {
+      "type": "project",
+      "path": "../FuCommunityWebServices/FuCommunityWebServices.csproj",
+      "msbuildProject": "../FuCommunityWebServices/FuCommunityWebServices.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net8.0": []
+    "net8.0": [
+      "FuCommunityWebServices >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\NCPC\\.nuget\\packages\\": {}
@@ -13,11 +68,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Documents\\Repos\\FUCommunityWeb\\FUCommunityWeb\\FUCommunityWeb.csproj",
+      "projectUniqueName": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\FUCommunityWeb.csproj",
       "projectName": "FUCommunityWeb",
-      "projectPath": "D:\\Documents\\Repos\\FUCommunityWeb\\FUCommunityWeb\\FUCommunityWeb.csproj",
+      "projectPath": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\FUCommunityWeb.csproj",
       "packagesPath": "C:\\Users\\NCPC\\.nuget\\packages\\",
-      "outputPath": "D:\\Documents\\Repos\\FUCommunityWeb\\FUCommunityWeb\\obj\\",
+      "outputPath": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\NCPC\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -34,7 +89,11 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebServices\\FuCommunityWebServices.csproj": {
+              "projectPath": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebServices\\FuCommunityWebServices.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

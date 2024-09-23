@@ -1,0 +1,71 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "FUCommunityWeb/1.0.0": {
+        "dependencies": {
+          "FuCommunityWebServices": "1.0.0"
+        },
+        "runtime": {
+          "FUCommunityWeb.dll": {}
+        }
+      },
+      "FuCommunityWebDataAccess/1.0.0": {
+        "dependencies": {
+          "FUCommunityWebModels": "1.0.0"
+        },
+        "runtime": {
+          "FuCommunityWebDataAccess.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "FUCommunityWebModels/1.0.0": {
+        "runtime": {
+          "FUCommunityWebModels.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "FuCommunityWebServices/1.0.0": {
+        "dependencies": {
+          "FuCommunityWebDataAccess": "1.0.0"
+        },
+        "runtime": {
+          "FuCommunityWebServices.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "FUCommunityWeb/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "FuCommunityWebDataAccess/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "FUCommunityWebModels/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "FuCommunityWebServices/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "FuCommunityWebDataAccess/1.0.0": {
+        "dependencies": {
+          "FUCommunityWebModels": "1.0.0"
+        },
+        "runtime": {
+          "FuCommunityWebDataAccess.dll": {}
+        }
+      },
+      "FUCommunityWebModels/1.0.0": {
+        "runtime": {
+          "FUCommunityWebModels.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "FuCommunityWebDataAccess/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "FUCommunityWebModels/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
