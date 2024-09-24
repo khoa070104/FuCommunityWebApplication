@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\FUCommunityWebModels.csproj": {}
+    "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\FuCommunityWebModels.csproj": {}
   },
   "projects": {
-    "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\FUCommunityWebModels.csproj": {
+    "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\FuCommunityWebModels.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\FUCommunityWebModels.csproj",
-        "projectName": "FUCommunityWebModels",
-        "projectPath": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\FUCommunityWebModels.csproj",
+        "projectUniqueName": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\FuCommunityWebModels.csproj",
+        "projectName": "FuCommunityWebModels",
+        "projectPath": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\FuCommunityWebModels.csproj",
         "packagesPath": "C:\\Users\\NCPC\\.nuget\\packages\\",
         "outputPath": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\obj\\",
         "projectStyle": "PackageReference",
