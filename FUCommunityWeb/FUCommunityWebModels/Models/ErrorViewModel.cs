@@ -1,4 +1,4 @@
-namespace FUCommunityWebModels.Models
+namespace FuCommunityWebModels.Models
 {
 	public class ErrorViewModel
 	{
