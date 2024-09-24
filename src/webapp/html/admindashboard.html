@@ -126,32 +126,10 @@
                         </div>
                     </div>
                 </div>
-
-
                 <!-- Statistics Section -->
                 <div class="revenue-chart">
                     <div class="d-flex justify-content-between align-items-center">
-                        <h4>Statistics of revenue</h4>
-                        <div class="revenue-switches">
-                            <div class="form-check form-switch me-3">
-                                <input class="form-check-input" type="checkbox" id="totalSwitch" checked>
-                                <label class="form-check-label" for="totalSwitch">Total</label>
-                            </div>
-                            <div class="form-check form-switch me-3">
-                                <input class="form-check-input" type="checkbox" id="incomeSwitch">
-                                <label class="form-check-label" for="incomeSwitch">Income</label>
-                            </div>
-                            <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" id="outcomeSwitch">
-                                <label class="form-check-label" for="outcomeSwitch">Outcome</label>
-                            </div>
-                            <select class="form-select" style="width: auto; margin-left: 10px;">
-                                <option selected>July</option>
-                                <option value="1">January</option>
-                                <option value="2">February</option>
-                                <!-- Add other months -->
-                            </select>
-                        </div>
+                        <h4>Statistics of User Registrations</h4>
                     </div>
                     <!-- Placeholder for Chart -->
                     <canvas id="revenueChart" width="400" height="150"></canvas>
@@ -164,24 +142,17 @@
     <script>
         const ctx = document.getElementById('revenueChart').getContext('2d');
         const revenueChart = new Chart(ctx, {
-            type: 'bar',
+            type: 'line', // Changed to line chart
             data: {
                 labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
                 datasets: [
                     {
-                        label: 'Total',
-                        data: [30, 50, 60, 80, 90, 40, 60, 70, 50, 80, 60, 90],
-                        backgroundColor: 'rgba(0, 123, 255, 0.5)'
-                    },
-                    {
-                        label: 'Income',
-                        data: [10, 20, 30, 50, 60, 20, 30, 40, 20, 50, 30, 60],
-                        backgroundColor: 'rgba(255, 193, 7, 0.5)'
-                    },
-                    {
-                        label: 'Outcome',
-                        data: [20, 30, 40, 60, 70, 30, 50, 30, 30, 60, 50, 80],
-                        backgroundColor: 'rgba(255, 87, 34, 0.5)'
+                        label: 'Registered Users',
+                        data: [10, 20, 30, 40, 50, 100, 70, 80, 50, 100, 110, 120], // Example data for registered users
+                        borderColor: 'rgba(0, 123, 255, 1)',
+                        backgroundColor: 'rgba(0, 123, 255, 0.2)',
+                        fill: true,
+                        tension: 0.1 // Smooth line
                     }
                 ]
             },
@@ -189,7 +160,17 @@
                 responsive: true,
                 scales: {
                     y: {
-                        beginAtZero: true
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Number of Users'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Months'
+                        }
                     }
                 }
             }

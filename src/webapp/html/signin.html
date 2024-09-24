@@ -17,11 +17,19 @@
     <!-- Font Awesome for Icons -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/src/webapp/css/style.css">       
+    <style>
+        .back-home {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+    </style>
 </head>
 
 <body>
 
-    <div id="header"></div>
+    <a href="/" class="btn btn-outline-light back-home"><i class="fas fa-home"></i> Back to Homepage</a> <!-- Back to Homepage Button -->
 
     <div class="sign-in">
         <div class="container d-flex">
@@ -33,17 +41,16 @@
                         <p class="text-white">Welcome to FUNNYCODE!</p>
                         <form>
                             <div class="mb-3">
-                                <input type="text" class="form-control" placeholder="Enter your username">
+                                <input type="text" class="form-control" placeholder="Enter your username" required>
                             </div>
                             <div class="mb-3">
-                                <input type="password" class="form-control" placeholder="Enter your password">
+                                <input type="password" class="form-control" id="password" placeholder="Enter your password" required>
                             </div>
                             <div class="form-check mb-3 text-white">
-                                <input type="checkbox" class="form-check-input" id="showPassword">
-                                <label class="form-check-label" for="showPassword">Show your password</label>
-                                <a href="#" class="float-end forgot-text">Forgot Password?</a>
+                                <input type="checkbox" class="form-check-input" id="showPassword"> Show Password
+                                <a href="#" class="float-end forgot-text" data-bs-toggle="modal" data-bs-target="#forgotPasswordModal">Forgot Password?</a>
                             </div>
-                            <button type="submit" class="btn btn-primary w-100">SIGN IN</button>
+                            <button type="submit" class="btn btn-signin w-100">SIGN IN</button>
                         </form>
                         <hr class="text-white">
                         <p class="text-center text-white">Or continue with</p>
@@ -65,54 +72,36 @@
         </div>
     </div>
 
-    <div id="footer"></div>
+    <!-- Forgot Password Modal -->
+    <div class="modal fade" id="forgotPasswordModal" tabindex="-1" aria-labelledby="forgotPasswordModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="forgotPasswordModalLabel">Reset Password</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Enter your email address</label>
+                            <input type="email" class="form-control" id="email" placeholder="Email" required>
+                        </div>
+                        <button type="submit" class="btn w-100">Send Reset Link</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script>
-        // Chèn Header và Footer
-        document.addEventListener('DOMContentLoaded', () => {
-            fetch('header.html')
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('header').innerHTML = data;
-                    // Thực hiện các thao tác JavaScript sau khi header đã được chèn
-                    const searchInput = document.getElementById('searchInput');
-                    const exploreBtn = document.getElementById('exploreBtn');
-
-                    if (searchInput && exploreBtn) {
-                        searchInput.addEventListener('focus', () => {
-                            exploreBtn.textContent = 'Search';
-                        });
-
-                        searchInput.addEventListener('blur', () => {
-                            exploreBtn.textContent = 'Explore';
-                        });
-                    }
-                });
-
-            fetch('footer.html')
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('footer').innerHTML = data;
-
-                    // Thêm sự kiện cuộn trang
-                    const backToTopBtn = document.querySelector('.back-to-top');
-
-                    window.addEventListener('scroll', () => {
-                        if (window.scrollY > 200) { // Hiển thị nút khi cuộn xuống 200px
-                            backToTopBtn.style.display = 'block';
-                        } else {
-                            backToTopBtn.style.display = 'none';
-                        }
-                    });
-
-                    // Cuộn lên khi nhấn nút
-                    backToTopBtn.addEventListener('click', () => {
-                        window.scrollTo({
-                            top: 0,
-                            behavior: 'smooth'
-                        });
-                    });
-                });
+        // Function to show/hide password
+        document.getElementById('showPassword').addEventListener('change', function () {
+            const passwordInput = document.getElementById('password');
+            if (this.checked) {
+                passwordInput.type = 'text'; // Show password
+            } else {
+                passwordInput.type = 'password'; // Hide password
+            }
         });
     </script>
 </body>

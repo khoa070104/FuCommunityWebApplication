@@ -43,6 +43,21 @@
     box-shadow: 0 0 10px rgb(32, 180, 134, 0.6);
 }
 
+/* Style for Cancel Button */
+.btn-cancel {
+    background-color: #aeb2b1;
+    color: #FFFFFF;
+    border-radius: 20px;
+    padding: 8px 16px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-cancel:hover {
+    background-color: #e0e5e4;
+    color: #aeb2b1;
+    box-shadow: 0 0 10px rgb(0, 0, 0, 0.6);
+}
+
 .header .btn-explore {
     position: absolute;
     right: 10px;
@@ -620,168 +635,8 @@
     }
 }
 
-/*--------------------CART--------------------*/
+/*--------------------DEPOSIT--------------------*/
 
-.cart-container {
-    display: flex;
-    max-width: 1200px;
-    margin: 0 auto;
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
-.cart-items {
-    flex: 2;
-    margin-right: 20px;
-}
-
-.cart-container h1 {
-    color: #20B486;
-    font-size: 50px;
-}
-
-.cart-container .highlight {
-    color: #20B486;
-}
-
-.cart-container .item {
-    display: flex;
-    align-items: center;
-    background-color: white;
-    border-radius: 10px;
-    padding: 10px;
-    margin-bottom: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.cart-container .item i {
-    font-size: 24px;
-    color: #20B486;
-    margin-right: 10px;
-    cursor: pointer;
-}
-
-.cart-container .item img {
-    width: 120px; 
-    height: auto; 
-    border-radius: 10px;
-    margin-right: 10px;
-}
-
-
-.cart-container .item-details {
-    flex: 1;
-}
-
-.cart-container .price {
-    font-size: 18px;
-    font-weight: bold;
-    color: #00a86b;
-    text-align: right;
-}
-
-.cart-container .actions button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 18px;
-    margin-left: 5px;
-}
-
-.cart-container .actions button:hover {
-    transform: scale(1.1); 
-}
-
-.cart-container .actions i {
-    font-size: 24px; 
-    color: #000;
-}
-
-.cart-summary {
-    flex: 1;
-    background-color: rgb(34,178,134, 0.6);
-    border-radius: 10px;
-    padding: 30px;
-    color: white;
-}
-
-.card-details h2 {
-    margin-bottom: 20px;
-}
-
-.payment-icons i {
-    font-size: 36px; 
-    margin-right: 10px;
-}
-
-.cart-container .form-group {
-    margin: 15px;
-}
-
-.cart-container label {
-    display: block;
-    margin-bottom: 5px;
-}
-
-.cart-container input {
-    width: calc(100% - 20px);
-    padding: 10px;
-    border-radius: 5px;
-    border: none;
-    margin-bottom: 10px;
-}
-
-.cart-container .total {
-    margin: 20px 10px;
-    font-size: 20px;
-    font-weight: bold;
-    display: flex;
-    justify-content: space-between;
-}
-
-.cart-container .checkout-btn {
-    border: none;
-    padding: 15px;
-    width: 100%;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
-}
-
-.cart-container .checkout-btn:hover {
-    background-color: #f4f4f9;
-}
-
-.payment-icons {
-    display: flex;
-    justify-content: center; 
-    gap: 10px; 
-}
-
-.payment-icons a {
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    background-color: white; 
-    border: 2px solid #20B486; 
-    border-radius: 5px; 
-    padding: 10px; 
-    width: 70px; 
-    height: 70px; 
-    transition: transform 0.3s ease, background-color 0.3s ease; 
-}
-
-.payment-icons a img {
-    width: 50px; 
-    height: auto; 
-}
-
-.payment-icons a:hover {
-    background-color: #20B486; 
-    transform: scale(1.1); 
-    border-color: #22B286; 
-}
 
 /*--------------------CONTACT US--------------------*/
 
@@ -885,6 +740,15 @@
     margin: 0 auto;
     margin-top: 20px;
     margin-bottom: 20px;
+}
+
+.course-container .course-detail .course-card {
+    border: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    padding: 20px 20px;
+    flex: 0 0 calc(33.33% - 20px);
+    margin-bottom: 20px;
+
 }
 
 .course-container .title h1{
@@ -1054,34 +918,33 @@
     padding: 50px 200px;
 }
 
-.course-detail .course-header .breadcrumb {
+.breadcrumb {
     list-style: none;
-    padding: 0;
+    padding: 30px;
     margin: 0;
     display: flex;
     align-items: center;
 }
-
-.course-detail .course-header .breadcrumb li {
+.breadcrumb li {
     display: inline;
     font-size: 16px;
 }
 
-.course-detail .course-header .breadcrumb li a {
+.breadcrumb li a {
     text-decoration: none;
     color: #20B486; 
 }
 
-.course-detail .course-header .breadcrumb li a:hover {
+.breadcrumb li a:hover {
     text-decoration: underline;
 }
 
-.course-detail .course-header .breadcrumb li + li::before {
+.breadcrumb li + li::before {
     content: " / ";
     padding: 0 8px;
 }
 
-.course-detail .course-header .breadcrumb li.active {
+.breadcrumb li.active {
     color: #000; 
 }
 
@@ -1158,6 +1021,8 @@
     border: none;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     padding: 20px 20px;
+    margin-bottom: 20px;
+
 }
 
 .course-detail .course-card h3 {
@@ -1241,6 +1106,7 @@
     border-bottom: none;
 }
 
+/* -------------------------------------- */
 /* Center the Profile Section */
 .profile {
     padding: 30px;
@@ -1547,6 +1413,7 @@ textarea.form-control {
     justify-content: flex-end;
     align-items: center;
     transform-origin: top left;
+    height: 100vh;
 }
 
 .sign-in .login-container {
@@ -1604,18 +1471,17 @@ textarea.form-control {
     text-decoration: underline;
 }
 
-/*sign up*/
+/*------------SIGN-UP------------*/
 .sign-up {
     background-color: #2F5361;
 }
 
 .sign-up .background-image {
     width: 100%;
-    background-image: url('/src/webapp/icon/fn_SignUp_1.jpg');
+    background-image: url('/src/webapp/img/fn_SignUp_1.jpg');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: calc(100% + 150px) center;
-    /* Push image further right */
     display: flex;
     justify-content: center;
     align-items: center;

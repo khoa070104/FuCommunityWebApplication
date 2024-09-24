@@ -17,39 +17,45 @@
     <!-- Font Awesome for Icons -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/src/webapp/css/style.css">  
+    <style>
+        .back-home {
+            position: absolute;
+            top: 20px;
+            right: 20px; /* Move to the right */
+            z-index: 1000;
+        }
+    </style>
 </head>
 
 <body>
-
-    <div id="header"></div>
+    <a href="/" class="btn btn-outline-light back-home"><i class="fas fa-home"></i> Back to Homepage</a> <!-- Back to Homepage Button -->
 
     <div class="sign-up">
         <div class="background-image">
             <div class="container d-flex">
                 <div class="row w-100">
-
                     <div class="col-md-4">
                         <div class="signup-container p-4">
                             <h2 class="text-white">Sign Up</h2>
                             <hr class="text-white">
                             <form>
                                 <div class="mb-3">
-                                    <input type="text" class="form-control" placeholder="Enter your username">
+                                    <input type="text" class="form-control" placeholder="Enter your username" required>
                                 </div>
                                 <div class="mb-3">
-                                    <input type="email" class="form-control" placeholder="Enter your email">
+                                    <input type="email" class="form-control" placeholder="Enter your email" required>
                                 </div>
                                 <div class="mb-3">
-                                    <input type="password" class="form-control" placeholder="Enter your password">
+                                    <input type="password" class="form-control" id="password" placeholder="Enter your password" required>
                                 </div>
                                 <div class="mb-3">
-                                    <input type="password" class="form-control" placeholder="Confirm your password">
+                                    <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm your password" required>
                                 </div>
                                 <div class="form-check mb-3 text-white">
-                                    <input type="checkbox" class="form-check-input" id="terms">
-                                    <label class="form-check-label" for="terms">Show your password</a></label>
+                                    <input type="checkbox" class="form-check-input" id="showPassword"> 
+                                    <label class="form-check-label" for="showPassword">Show your password</label>
                                 </div>
-                                <button type="submit" class="btn btn-primary w-100">SIGN UP</button>
+                                <button type="submit" class="btn w-100">SIGN UP</button>
                             </form>
                             <hr class="text-white">
                             <p class="text-center text-white">Or continue with</p>
@@ -73,54 +79,18 @@
         </div>
     </div>
 
-    <div id="footer"></div>
-
     <script>
-        // Chèn Header và Footer
-        document.addEventListener('DOMContentLoaded', () => {
-            fetch('header.html')
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('header').innerHTML = data;
-                    // Thực hiện các thao tác JavaScript sau khi header đã được chèn
-                    const searchInput = document.getElementById('searchInput');
-                    const exploreBtn = document.getElementById('exploreBtn');
-
-                    if (searchInput && exploreBtn) {
-                        searchInput.addEventListener('focus', () => {
-                            exploreBtn.textContent = 'Search';
-                        });
-
-                        searchInput.addEventListener('blur', () => {
-                            exploreBtn.textContent = 'Explore';
-                        });
-                    }
-                });
-
-            fetch('footer.html')
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('footer').innerHTML = data;
-
-                    // Thêm sự kiện cuộn trang
-                    const backToTopBtn = document.querySelector('.back-to-top');
-
-                    window.addEventListener('scroll', () => {
-                        if (window.scrollY > 200) { // Hiển thị nút khi cuộn xuống 200px
-                            backToTopBtn.style.display = 'block';
-                        } else {
-                            backToTopBtn.style.display = 'none';
-                        }
-                    });
-
-                    // Cuộn lên khi nhấn nút
-                    backToTopBtn.addEventListener('click', () => {
-                        window.scrollTo({
-                            top: 0,
-                            behavior: 'smooth'
-                        });
-                    });
-                });
+        // Function to show/hide passwords
+        document.getElementById('showPassword').addEventListener('change', function () {
+            const passwordInput = document.getElementById('password');
+            const confirmPasswordInput = document.getElementById('confirmPassword');
+            if (this.checked) {
+                passwordInput.type = 'text'; // Show password
+                confirmPasswordInput.type = 'text'; // Show confirm password
+            } else {
+                passwordInput.type = 'password'; // Hide password
+                confirmPasswordInput.type = 'password'; // Hide confirm password
+            }
         });
     </script>
 </body>
