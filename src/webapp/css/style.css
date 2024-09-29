@@ -86,10 +86,8 @@
 }
 
 .header .search-container input {
-    padding-right: 120px;
     border-radius: 30px;
     border: 1px solid #20B486;
-    padding: 12px 100px;
     width: 100%;
     font-size: 16px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);

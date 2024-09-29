@@ -67,7 +67,7 @@
                         <div class="total mb-3">
                             <strong>Points to receive: </strong><span id="points">50</span> points
                         </div>
-                        <button type="button" class="btn btn-success w-100" onclick="confirmDeposit()">Confirm</button>
+                        <button type="button" class="btn w-100" onclick="confirmDeposit()">Confirm</button>
                     </form>
                 </div>
             </div>
@@ -90,7 +90,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Complete</button>
+                        <button type="button" class="btn" data-bs-dismiss="modal">Complete</button>
                     </div>
                 </div>
             </div>
@@ -138,18 +138,50 @@
         }
     </script>
     <script>
-        // Load Header and Footer
+        // Chèn Header và Footer
         document.addEventListener('DOMContentLoaded', () => {
-            fetch('header.html')
+            fetch('header-signin.html')
                 .then(response => response.text())
                 .then(data => {
                     document.getElementById('header').innerHTML = data;
+                    // Thực hiện các thao tác JavaScript sau khi header đã được chèn
+                    const searchInput = document.getElementById('searchInput');
+                    const exploreBtn = document.getElementById('exploreBtn');
+
+                    if (searchInput && exploreBtn) {
+                        searchInput.addEventListener('focus', () => {
+                            exploreBtn.textContent = 'Search';
+                        });
+
+                        searchInput.addEventListener('blur', () => {
+                            exploreBtn.textContent = 'Explore';
+                        });
+                    }
                 });
 
             fetch('footer.html')
                 .then(response => response.text())
                 .then(data => {
                     document.getElementById('footer').innerHTML = data;
+
+                    // Thêm sự kiện cuộn trang
+                    const backToTopBtn = document.querySelector('.back-to-top');
+
+                    window.addEventListener('scroll', () => {
+                        if (window.scrollY > 200) { // Hiển thị nút khi cuộn xuống 200px
+                            backToTopBtn.style.display = 'block';
+                        } else {
+                            backToTopBtn.style.display = 'none';
+                        }
+                    });
+
+                    // Cuộn lên khi nhấn nút
+                    backToTopBtn.addEventListener('click', () => {
+                        window.scrollTo({
+                            top: 0,
+                            behavior: 'smooth'
+                        });
+                    });
                 });
         });
     </script>
