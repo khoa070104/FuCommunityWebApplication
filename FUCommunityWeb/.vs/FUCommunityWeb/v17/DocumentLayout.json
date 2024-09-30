@@ -1,122 +1,26 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\",
+  "WorkspaceRootPath": "C:\\Users\\hahuy\\Desktop\\FunnyWeb\\FuCommunityWebApplication\\FUCommunityWeb\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\Migrations\\20240924124646_init.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:FuCommunityWebDataAccess\\Migrations\\20240924124646_init.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|c:\\users\\hahuy\\desktop\\funnyweb\\fucommunitywebapplication\\fucommunityweb\\fucommunityweb\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|solutionrelative:fucommunityweb\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{93321B2E-D440-49E7-9741-A0E0AC08400E}|FuCommunityWebDataAccess\\FuCommunityWebDataAccess.csproj|d:\\documents\\prn212\\fucommunitywebapplication\\fucommunityweb\\fucommunitywebdataaccess\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{93321B2E-D440-49E7-9741-A0E0AC08400E}|FuCommunityWebDataAccess\\FuCommunityWebDataAccess.csproj|solutionrelative:fucommunitywebdataaccess\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|c:\\users\\hahuy\\desktop\\funnyweb\\fucommunitywebapplication\\fucommunityweb\\fucommunityweb\\views\\home\\header.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|solutionrelative:fucommunityweb\\views\\home\\header.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C33520CE-0A00-428B-B5AD-FFC65DB00C35}|FUCommunityWebModels\\FuCommunityWebModels.csproj|d:\\documents\\prn212\\fucommunitywebapplication\\fucommunityweb\\fucommunitywebmodels\\models\\point.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C33520CE-0A00-428B-B5AD-FFC65DB00C35}|FUCommunityWebModels\\FuCommunityWebModels.csproj|solutionrelative:fucommunitywebmodels\\models\\point.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|c:\\users\\hahuy\\desktop\\funnyweb\\fucommunitywebapplication\\fucommunityweb\\fucommunityweb\\views\\home\\footer.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|solutionrelative:fucommunityweb\\views\\home\\footer.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C33520CE-0A00-428B-B5AD-FFC65DB00C35}|FUCommunityWebModels\\FuCommunityWebModels.csproj|d:\\documents\\prn212\\fucommunitywebapplication\\fucommunityweb\\fucommunitywebmodels\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C33520CE-0A00-428B-B5AD-FFC65DB00C35}|FUCommunityWebModels\\FuCommunityWebModels.csproj|solutionrelative:fucommunitywebmodels\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|c:\\users\\hahuy\\desktop\\funnyweb\\fucommunitywebapplication\\fucommunityweb\\fucommunityweb\\wwwroot\\css\\style.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|solutionrelative:fucommunityweb\\wwwroot\\css\\style.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|d:\\documents\\prn212\\fucommunitywebapplication\\fucommunityweb\\fucommunityweb\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|solutionrelative:fucommunityweb\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Migrations\\20240924010741_update.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:FUCommunityWeb\\Migrations\\20240924010741_update.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Migrations\\20240924010428_update.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:FUCommunityWeb\\Migrations\\20240924010428_update.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Migrations\\20240924005910_update-4.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:FUCommunityWeb\\Migrations\\20240924005910_update-4.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C33520CE-0A00-428B-B5AD-FFC65DB00C35}|FUCommunityWebModels\\FuCommunityWebModels.csproj|d:\\documents\\prn212\\fucommunitywebapplication\\fucommunityweb\\fucommunitywebmodels\\models\\question.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C33520CE-0A00-428B-B5AD-FFC65DB00C35}|FUCommunityWebModels\\FuCommunityWebModels.csproj|solutionrelative:fucommunitywebmodels\\models\\question.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C33520CE-0A00-428B-B5AD-FFC65DB00C35}|FUCommunityWebModels\\FuCommunityWebModels.csproj|d:\\documents\\prn212\\fucommunitywebapplication\\fucommunityweb\\fucommunitywebmodels\\models\\course.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C33520CE-0A00-428B-B5AD-FFC65DB00C35}|FUCommunityWebModels\\FuCommunityWebModels.csproj|solutionrelative:fucommunitywebmodels\\models\\course.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C33520CE-0A00-428B-B5AD-FFC65DB00C35}|FUCommunityWebModels\\FuCommunityWebModels.csproj|d:\\documents\\prn212\\fucommunitywebapplication\\fucommunityweb\\fucommunitywebmodels\\models\\post.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C33520CE-0A00-428B-B5AD-FFC65DB00C35}|FUCommunityWebModels\\FuCommunityWebModels.csproj|solutionrelative:fucommunitywebmodels\\models\\post.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|d:\\documents\\prn212\\fucommunitywebapplication\\fucommunityweb\\fucommunityweb\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|solutionrelative:fucommunityweb\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C33520CE-0A00-428B-B5AD-FFC65DB00C35}|FUCommunityWebModels\\FuCommunityWebModels.csproj|d:\\documents\\prn212\\fucommunitywebapplication\\fucommunityweb\\fucommunitywebmodels\\models\\vote.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C33520CE-0A00-428B-B5AD-FFC65DB00C35}|FUCommunityWebModels\\FuCommunityWebModels.csproj|solutionrelative:fucommunitywebmodels\\models\\vote.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C33520CE-0A00-428B-B5AD-FFC65DB00C35}|FUCommunityWebModels\\FuCommunityWebModels.csproj|d:\\documents\\prn212\\fucommunitywebapplication\\fucommunityweb\\fucommunitywebmodels\\models\\lesson.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C33520CE-0A00-428B-B5AD-FFC65DB00C35}|FUCommunityWebModels\\FuCommunityWebModels.csproj|solutionrelative:fucommunitywebmodels\\models\\lesson.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C33520CE-0A00-428B-B5AD-FFC65DB00C35}|FUCommunityWebModels\\FuCommunityWebModels.csproj|d:\\documents\\prn212\\fucommunitywebapplication\\fucommunityweb\\fucommunitywebmodels\\models\\errorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C33520CE-0A00-428B-B5AD-FFC65DB00C35}|FUCommunityWebModels\\FuCommunityWebModels.csproj|solutionrelative:fucommunitywebmodels\\models\\errorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C33520CE-0A00-428B-B5AD-FFC65DB00C35}|FUCommunityWebModels\\FuCommunityWebModels.csproj|d:\\documents\\prn212\\fucommunitywebapplication\\fucommunityweb\\fucommunitywebmodels\\models\\document.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C33520CE-0A00-428B-B5AD-FFC65DB00C35}|FUCommunityWebModels\\FuCommunityWebModels.csproj|solutionrelative:fucommunitywebmodels\\models\\document.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C33520CE-0A00-428B-B5AD-FFC65DB00C35}|FUCommunityWebModels\\FuCommunityWebModels.csproj|d:\\documents\\prn212\\fucommunitywebapplication\\fucommunityweb\\fucommunitywebmodels\\models\\comment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C33520CE-0A00-428B-B5AD-FFC65DB00C35}|FUCommunityWebModels\\FuCommunityWebModels.csproj|solutionrelative:fucommunitywebmodels\\models\\comment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C33520CE-0A00-428B-B5AD-FFC65DB00C35}|FUCommunityWebModels\\FuCommunityWebModels.csproj|d:\\documents\\prn212\\fucommunitywebapplication\\fucommunityweb\\fucommunitywebmodels\\models\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C33520CE-0A00-428B-B5AD-FFC65DB00C35}|FUCommunityWebModels\\FuCommunityWebModels.csproj|solutionrelative:fucommunitywebmodels\\models\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|d:\\documents\\prn212\\fucommunitywebapplication\\fucommunityweb\\fucommunityweb\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|solutionrelative:fucommunityweb\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|d:\\documents\\prn212\\fucommunitywebapplication\\fucommunityweb\\fucommunityweb\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|solutionrelative:fucommunityweb\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{93321B2E-D440-49E7-9741-A0E0AC08400E}|FuCommunityWebDataAccess\\FuCommunityWebDataAccess.csproj|d:\\documents\\prn212\\fucommunitywebapplication\\fucommunityweb\\fucommunitywebdataaccess\\fucommunitywebdataaccess.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{93321B2E-D440-49E7-9741-A0E0AC08400E}|FuCommunityWebDataAccess\\FuCommunityWebDataAccess.csproj|solutionrelative:fucommunitywebdataaccess\\fucommunitywebdataaccess.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C33520CE-0A00-428B-B5AD-FFC65DB00C35}|FUCommunityWebModels\\FuCommunityWebModels.csproj|d:\\documents\\prn212\\fucommunitywebapplication\\fucommunityweb\\fucommunitywebmodels\\fucommunitywebmodels.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{C33520CE-0A00-428B-B5AD-FFC65DB00C35}|FUCommunityWebModels\\FuCommunityWebModels.csproj|solutionrelative:fucommunitywebmodels\\fucommunitywebmodels.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|d:\\documents\\prn212\\fucommunitywebapplication\\fucommunityweb\\fucommunityweb\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|solutionrelative:fucommunityweb\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B830B4C2-25D2-4F9A-ABF5-F6FB74115107}|FuCommunityWebServices\\FuCommunityWebServices.csproj|d:\\documents\\prn212\\fucommunitywebapplication\\fucommunityweb\\fucommunitywebservices\\fucommunitywebservices.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{B830B4C2-25D2-4F9A-ABF5-F6FB74115107}|FuCommunityWebServices\\FuCommunityWebServices.csproj|solutionrelative:fucommunitywebservices\\fucommunitywebservices.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|d:\\documents\\prn212\\fucommunitywebapplication\\fucommunityweb\\fucommunityweb\\fucommunityweb.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|solutionrelative:fucommunityweb\\fucommunityweb.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B830B4C2-25D2-4F9A-ABF5-F6FB74115107}|FuCommunityWebServices\\FuCommunityWebServices.csproj|d:\\documents\\prn212\\fucommunitywebapplication\\fucommunityweb\\fucommunitywebservices\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B830B4C2-25D2-4F9A-ABF5-F6FB74115107}|FuCommunityWebServices\\FuCommunityWebServices.csproj|solutionrelative:fucommunitywebservices\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2FC82342-76FA-4CF0-B55D-7962BAA75898}|FuCommunityWebUtility\\FuCommunityWebUtility.csproj|d:\\documents\\prn212\\fucommunitywebapplication\\fucommunityweb\\fucommunitywebutility\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2FC82342-76FA-4CF0-B55D-7962BAA75898}|FuCommunityWebUtility\\FuCommunityWebUtility.csproj|solutionrelative:fucommunitywebutility\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{93321B2E-D440-49E7-9741-A0E0AC08400E}|FuCommunityWebDataAccess\\FuCommunityWebDataAccess.csproj|d:\\documents\\prn212\\fucommunitywebapplication\\fucommunityweb\\fucommunitywebdataaccess\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{93321B2E-D440-49E7-9741-A0E0AC08400E}|FuCommunityWebDataAccess\\FuCommunityWebDataAccess.csproj|solutionrelative:fucommunitywebdataaccess\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C33520CE-0A00-428B-B5AD-FFC65DB00C35}|FUCommunityWebModels\\FuCommunityWebModels.csproj|d:\\documents\\prn212\\fucommunitywebapplication\\fucommunityweb\\fucommunitywebmodels\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C33520CE-0A00-428B-B5AD-FFC65DB00C35}|FUCommunityWebModels\\FuCommunityWebModels.csproj|solutionrelative:fucommunitywebmodels\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|c:\\users\\hahuy\\desktop\\funnyweb\\fucommunitywebapplication\\fucommunityweb\\fucommunityweb\\views\\home\\about.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|solutionrelative:fucommunityweb\\views\\home\\about.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -126,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -134,362 +38,64 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "20240924124646_init.cs",
-              "DocumentMoniker": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\Migrations\\20240924124646_init.cs",
-              "RelativeDocumentMoniker": "FuCommunityWebDataAccess\\Migrations\\20240924124646_init.cs",
-              "ToolTip": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\Migrations\\20240924124646_init.cs",
-              "RelativeToolTip": "FuCommunityWebDataAccess\\Migrations\\20240924124646_init.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-24T12:46:46.569Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "20240924010741_update.cs",
-              "DocumentMoniker": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Migrations\\20240924010741_update.cs",
-              "RelativeDocumentMoniker": "FUCommunityWeb\\Migrations\\20240924010741_update.cs",
-              "ToolTip": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Migrations\\20240924010741_update.cs",
-              "RelativeToolTip": "FUCommunityWeb\\Migrations\\20240924010741_update.cs",
-              "ViewState": "AgIAAE4AAAAAAAAAAAAYwFsAAABJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-24T01:07:41.601Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "20240924010428_update.cs",
-              "DocumentMoniker": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Migrations\\20240924010428_update.cs",
-              "RelativeDocumentMoniker": "FUCommunityWeb\\Migrations\\20240924010428_update.cs",
-              "ToolTip": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Migrations\\20240924010428_update.cs",
-              "RelativeToolTip": "FUCommunityWeb\\Migrations\\20240924010428_update.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-24T01:04:28.229Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "20240924005910_update-4.cs",
-              "DocumentMoniker": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Migrations\\20240924005910_update-4.cs",
-              "RelativeDocumentMoniker": "FUCommunityWeb\\Migrations\\20240924005910_update-4.cs",
-              "ToolTip": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Migrations\\20240924005910_update-4.cs",
-              "RelativeToolTip": "FUCommunityWeb\\Migrations\\20240924005910_update-4.cs",
-              "ViewState": "AgIAADUBAAAAAAAAAAAYwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-24T00:59:10.159Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Point.cs",
-              "DocumentMoniker": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\Models\\Point.cs",
-              "RelativeDocumentMoniker": "FUCommunityWebModels\\Models\\Point.cs",
-              "ToolTip": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\Models\\Point.cs",
-              "RelativeToolTip": "FUCommunityWebModels\\Models\\Point.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAAxwBoAAAAgAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-23T16:24:10.106Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "Vote.cs",
-              "DocumentMoniker": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\Models\\Vote.cs",
-              "RelativeDocumentMoniker": "FUCommunityWebModels\\Models\\Vote.cs",
-              "ToolTip": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\Models\\Vote.cs",
-              "RelativeToolTip": "FUCommunityWebModels\\Models\\Vote.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAAgAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-23T16:23:46.207Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "ApplicationDbContext.cs",
-              "DocumentMoniker": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\Data\\ApplicationDbContext.cs",
-              "RelativeDocumentMoniker": "FuCommunityWebDataAccess\\Data\\ApplicationDbContext.cs",
-              "ToolTip": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\Data\\ApplicationDbContext.cs",
-              "RelativeToolTip": "FuCommunityWebDataAccess\\Data\\ApplicationDbContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAACAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-23T16:11:29.647Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{269a02dc-6af8-11d3-bdc4-00c04f688e50}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "Post.cs",
-              "DocumentMoniker": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\Models\\Post.cs",
-              "RelativeDocumentMoniker": "FUCommunityWebModels\\Models\\Post.cs",
-              "ToolTip": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\Models\\Post.cs",
-              "RelativeToolTip": "FUCommunityWebModels\\Models\\Post.cs",
-              "ViewState": "AgIAACIAAAAAAAAAAAAYwC8AAAAwAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-23T16:18:41.826Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "Category.cs",
-              "DocumentMoniker": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\Models\\Category.cs",
-              "RelativeDocumentMoniker": "FUCommunityWebModels\\Models\\Category.cs",
-              "ToolTip": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\Models\\Category.cs",
-              "RelativeToolTip": "FUCommunityWebModels\\Models\\Category.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAowBoAAAAuAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-23T16:18:24.155Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "Lesson.cs",
-              "DocumentMoniker": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\Models\\Lesson.cs",
-              "RelativeDocumentMoniker": "FUCommunityWebModels\\Models\\Lesson.cs",
-              "ToolTip": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\Models\\Lesson.cs",
-              "RelativeToolTip": "FUCommunityWebModels\\Models\\Lesson.cs",
-              "ViewState": "AgIAABIAAAAAAAAAAAA7wCIAAAAkAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-23T16:19:17.704Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "ErrorViewModel.cs",
-              "DocumentMoniker": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\Models\\ErrorViewModel.cs",
-              "RelativeDocumentMoniker": "FUCommunityWebModels\\Models\\ErrorViewModel.cs",
-              "ToolTip": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\Models\\ErrorViewModel.cs",
-              "RelativeToolTip": "FUCommunityWebModels\\Models\\ErrorViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-23T15:39:15.782Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "HomeController.cs",
-              "DocumentMoniker": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Controllers\\HomeController.cs",
-              "RelativeDocumentMoniker": "FUCommunityWeb\\Controllers\\HomeController.cs",
-              "ToolTip": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Controllers\\HomeController.cs",
-              "RelativeToolTip": "FUCommunityWeb\\Controllers\\HomeController.cs",
-              "ViewState": "AgIAABoAAAAAAAAAAAAgwAIAAAAZAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-23T15:35:07.271Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "Comment.cs",
-              "DocumentMoniker": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\Models\\Comment.cs",
-              "RelativeDocumentMoniker": "FUCommunityWebModels\\Models\\Comment.cs",
-              "ToolTip": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\Models\\Comment.cs",
-              "RelativeToolTip": "FUCommunityWebModels\\Models\\Comment.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAA7wCAAAAAgAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-23T16:19:48.283Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Course.cs",
-              "DocumentMoniker": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\Models\\Course.cs",
-              "RelativeDocumentMoniker": "FUCommunityWebModels\\Models\\Course.cs",
-              "ToolTip": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\Models\\Course.cs",
-              "RelativeToolTip": "FUCommunityWebModels\\Models\\Course.cs",
-              "ViewState": "AgIAACQAAAAAAAAAAAAIwCoAAABSAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-23T16:19:03.659Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "Document.cs",
-              "DocumentMoniker": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\Models\\Document.cs",
-              "RelativeDocumentMoniker": "FUCommunityWebModels\\Models\\Document.cs",
-              "ToolTip": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\Models\\Document.cs",
-              "RelativeToolTip": "FUCommunityWebModels\\Models\\Document.cs",
-              "ViewState": "AgIAABYAAAAAAAAAAAAwwB8AAAAfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-23T16:20:13.157Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Question.cs",
-              "DocumentMoniker": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\Models\\Question.cs",
-              "RelativeDocumentMoniker": "FUCommunityWebModels\\Models\\Question.cs",
-              "ToolTip": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\Models\\Question.cs",
-              "RelativeToolTip": "FUCommunityWebModels\\Models\\Question.cs",
-              "ViewState": "AgIAABoAAAAAAAAAAAAywCIAAAA0AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-23T16:19:33.656Z"
+              "Title": "Header.cshtml",
+              "DocumentMoniker": "C:\\Users\\hahuy\\Desktop\\FunnyWeb\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\Home\\Header.cshtml",
+              "RelativeDocumentMoniker": "FUCommunityWeb\\Views\\Home\\Header.cshtml",
+              "ToolTip": "C:\\Users\\hahuy\\Desktop\\FunnyWeb\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\Home\\Header.cshtml",
+              "RelativeToolTip": "FUCommunityWeb\\Views\\Home\\Header.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-30T16:41:34.131Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "User.cs",
-              "DocumentMoniker": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\Models\\User.cs",
-              "RelativeDocumentMoniker": "FUCommunityWebModels\\Models\\User.cs",
-              "ToolTip": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\Models\\User.cs",
-              "RelativeToolTip": "FUCommunityWebModels\\Models\\User.cs",
-              "ViewState": "AgIAACUAAAAAAAAAAAAYwDMAAAA4AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-23T16:17:59.479Z"
+              "Title": "Style.css",
+              "DocumentMoniker": "C:\\Users\\hahuy\\Desktop\\FunnyWeb\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\css\\Style.css",
+              "RelativeDocumentMoniker": "FUCommunityWeb\\wwwroot\\css\\Style.css",
+              "ToolTip": "C:\\Users\\hahuy\\Desktop\\FunnyWeb\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\css\\Style.css",
+              "RelativeToolTip": "FUCommunityWeb\\wwwroot\\css\\Style.css",
+              "ViewState": "AgIAABsHAAAAAAAAAAAiwDIHAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-09-30T16:46:03.365Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Program.cs",
-              "RelativeDocumentMoniker": "FUCommunityWeb\\Program.cs",
-              "ToolTip": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Program.cs",
-              "RelativeToolTip": "FUCommunityWeb\\Program.cs",
-              "ViewState": "AgIAABIAAAAAAAAAAAAAAB4AAAA0AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-23T16:06:03.744Z"
+              "DocumentIndex": 2,
+              "Title": "Footer.cshtml",
+              "DocumentMoniker": "C:\\Users\\hahuy\\Desktop\\FunnyWeb\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\Home\\Footer.cshtml",
+              "RelativeDocumentMoniker": "FUCommunityWeb\\Views\\Home\\Footer.cshtml",
+              "ToolTip": "C:\\Users\\hahuy\\Desktop\\FunnyWeb\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\Home\\Footer.cshtml",
+              "RelativeToolTip": "FUCommunityWeb\\Views\\Home\\Footer.cshtml",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAAADwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-30T16:41:55.992Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\appsettings.json",
-              "RelativeDocumentMoniker": "FUCommunityWeb\\appsettings.json",
-              "ToolTip": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\appsettings.json",
-              "RelativeToolTip": "FUCommunityWeb\\appsettings.json",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAcwAkAAABMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-09-23T16:04:44.314Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "appsettings.Development.json",
-              "DocumentMoniker": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\appsettings.Development.json",
-              "RelativeDocumentMoniker": "FUCommunityWeb\\appsettings.Development.json",
-              "ToolTip": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\appsettings.Development.json",
-              "RelativeToolTip": "FUCommunityWeb\\appsettings.Development.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-09-23T16:51:59.183Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 22,
-              "Title": "_ViewImports.cshtml",
-              "DocumentMoniker": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\_ViewImports.cshtml",
-              "RelativeDocumentMoniker": "FUCommunityWeb\\Views\\_ViewImports.cshtml",
-              "ToolTip": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\_ViewImports.cshtml",
-              "RelativeToolTip": "FUCommunityWeb\\Views\\_ViewImports.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
+              "Title": "About.cshtml",
+              "DocumentMoniker": "C:\\Users\\hahuy\\Desktop\\FunnyWeb\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\Home\\About.cshtml",
+              "RelativeDocumentMoniker": "FUCommunityWeb\\Views\\Home\\About.cshtml",
+              "ToolTip": "C:\\Users\\hahuy\\Desktop\\FunnyWeb\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\Home\\About.cshtml",
+              "RelativeToolTip": "FUCommunityWeb\\Views\\Home\\About.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEoAAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-09-23T15:34:49.987Z"
+              "WhenOpened": "2024-09-30T16:41:30.112Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
-              "Title": "FuCommunityWebModels.csproj",
-              "DocumentMoniker": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\FuCommunityWebModels.csproj",
-              "RelativeDocumentMoniker": "FUCommunityWebModels\\FuCommunityWebModels.csproj",
-              "ToolTip": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\FuCommunityWebModels.csproj",
-              "RelativeToolTip": "FUCommunityWebModels\\FuCommunityWebModels.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAOAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-09-23T16:08:08.55Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "FuCommunityWebDataAccess.csproj",
-              "DocumentMoniker": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\FuCommunityWebDataAccess.csproj",
-              "RelativeDocumentMoniker": "FuCommunityWebDataAccess\\FuCommunityWebDataAccess.csproj",
-              "ToolTip": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\FuCommunityWebDataAccess.csproj",
-              "RelativeToolTip": "FuCommunityWebDataAccess\\FuCommunityWebDataAccess.csproj",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAgwA0AAABYAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-09-23T16:07:49.293Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 23,
-              "Title": "FuCommunityWebServices.csproj",
-              "DocumentMoniker": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebServices\\FuCommunityWebServices.csproj",
-              "RelativeDocumentMoniker": "FuCommunityWebServices\\FuCommunityWebServices.csproj",
-              "ToolTip": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebServices\\FuCommunityWebServices.csproj",
-              "RelativeToolTip": "FuCommunityWebServices\\FuCommunityWebServices.csproj",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA8AAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-09-23T16:08:02.701Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 24,
-              "Title": "FUCommunityWeb.csproj",
-              "DocumentMoniker": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\FUCommunityWeb.csproj",
-              "RelativeDocumentMoniker": "FUCommunityWeb\\FUCommunityWeb.csproj",
-              "ToolTip": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\FUCommunityWeb.csproj",
-              "RelativeToolTip": "FUCommunityWeb\\FUCommunityWeb.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-09-23T15:38:52.021Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 26,
-              "Title": "Class1.cs",
-              "DocumentMoniker": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebUtility\\Class1.cs",
-              "RelativeDocumentMoniker": "FuCommunityWebUtility\\Class1.cs",
-              "ToolTip": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebUtility\\Class1.cs",
-              "RelativeToolTip": "FuCommunityWebUtility\\Class1.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-23T15:38:08.898Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 27,
-              "Title": "Class1.cs",
-              "DocumentMoniker": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\Class1.cs",
-              "RelativeDocumentMoniker": "FuCommunityWebDataAccess\\Class1.cs",
-              "ToolTip": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\Class1.cs",
-              "RelativeToolTip": "FuCommunityWebDataAccess\\Class1.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-23T15:37:47.1Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 25,
-              "Title": "Class1.cs",
-              "DocumentMoniker": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebServices\\Class1.cs",
-              "RelativeDocumentMoniker": "FuCommunityWebServices\\Class1.cs",
-              "ToolTip": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebServices\\Class1.cs",
-              "RelativeToolTip": "FuCommunityWebServices\\Class1.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAACAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-23T15:37:27.809Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 28,
-              "Title": "Class1.cs",
-              "DocumentMoniker": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\Class1.cs",
-              "RelativeDocumentMoniker": "FUCommunityWebModels\\Class1.cs",
-              "ToolTip": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\Class1.cs",
-              "RelativeToolTip": "FUCommunityWebModels\\Class1.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-23T15:34:25.285Z"
+              "DocumentIndex": 0,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\hahuy\\Desktop\\FunnyWeb\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "FUCommunityWeb\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\hahuy\\Desktop\\FunnyWeb\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "FUCommunityWeb\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAI8AAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-30T16:40:20.809Z",
+              "EditorCaption": ""
             }
           ]
         }

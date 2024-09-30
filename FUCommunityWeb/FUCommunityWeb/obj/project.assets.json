@@ -7776,19 +7776,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\NCPC\\.nuget\\packages\\": {}
+    "C:\\Users\\hahuy\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\FUCommunityWeb.csproj",
+      "projectUniqueName": "C:\\Users\\hahuy\\Desktop\\FunnyWeb\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\FUCommunityWeb.csproj",
       "projectName": "FUCommunityWeb",
-      "projectPath": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\FUCommunityWeb.csproj",
-      "packagesPath": "C:\\Users\\NCPC\\.nuget\\packages\\",
-      "outputPath": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\obj\\",
+      "projectPath": "C:\\Users\\hahuy\\Desktop\\FunnyWeb\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\FUCommunityWeb.csproj",
+      "packagesPath": "C:\\Users\\hahuy\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\hahuy\\Desktop\\FunnyWeb\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\NCPC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\hahuy\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -7803,8 +7803,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebServices\\FuCommunityWebServices.csproj": {
-              "projectPath": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebServices\\FuCommunityWebServices.csproj"
+            "C:\\Users\\hahuy\\Desktop\\FunnyWeb\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebServices\\FuCommunityWebServices.csproj": {
+              "projectPath": "C:\\Users\\hahuy\\Desktop\\FunnyWeb\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebServices\\FuCommunityWebServices.csproj"
             }
           }
         }

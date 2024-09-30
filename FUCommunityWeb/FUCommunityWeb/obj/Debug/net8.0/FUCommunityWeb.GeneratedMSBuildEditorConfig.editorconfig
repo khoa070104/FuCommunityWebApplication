@@ -17,39 +17,131 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = FUCommunityWeb
 build_property.RootNamespace = FUCommunityWeb
-build_property.ProjectDir = D:\Documents\PRN212\FuCommunityWebApplication\FUCommunityWeb\FUCommunityWeb\
+build_property.ProjectDir = C:\Users\hahuy\Desktop\FunnyWeb\FuCommunityWebApplication\FUCommunityWeb\FUCommunityWeb\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\Documents\PRN212\FuCommunityWebApplication\FUCommunityWeb\FUCommunityWeb
+build_property.MSBuildProjectDirectory = C:\Users\hahuy\Desktop\FunnyWeb\FuCommunityWebApplication\FUCommunityWeb\FUCommunityWeb
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/Documents/PRN212/FuCommunityWebApplication/FUCommunityWeb/FUCommunityWeb/Views/Home/Index.cshtml]
+[C:/Users/hahuy/Desktop/FunnyWeb/FuCommunityWebApplication/FUCommunityWeb/FUCommunityWeb/Views/Admin/AdminDashBoard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQWRtaW5EYXNoQm9hcmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/hahuy/Desktop/FunnyWeb/FuCommunityWebApplication/FUCommunityWeb/FUCommunityWeb/Views/Admin/ManageCourse.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cTWFuYWdlQ291cnNlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/hahuy/Desktop/FunnyWeb/FuCommunityWebApplication/FUCommunityWeb/FUCommunityWeb/Views/Admin/ManageForumGroup.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cTWFuYWdlRm9ydW1Hcm91cC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/hahuy/Desktop/FunnyWeb/FuCommunityWebApplication/FUCommunityWeb/FUCommunityWeb/Views/Admin/ManageForumPost.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cTWFuYWdlRm9ydW1Qb3N0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/hahuy/Desktop/FunnyWeb/FuCommunityWebApplication/FUCommunityWeb/FUCommunityWeb/Views/Admin/ManageForumUser.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cTWFuYWdlRm9ydW1Vc2VyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/hahuy/Desktop/FunnyWeb/FuCommunityWebApplication/FUCommunityWeb/FUCommunityWeb/Views/Admin/ManagePayment.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cTWFuYWdlUGF5bWVudC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/hahuy/Desktop/FunnyWeb/FuCommunityWebApplication/FUCommunityWeb/FUCommunityWeb/Views/Admin/ManageStudent.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cTWFuYWdlU3R1ZGVudC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/hahuy/Desktop/FunnyWeb/FuCommunityWebApplication/FUCommunityWeb/FUCommunityWeb/Views/Admin/ManageUser.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cTWFuYWdlVXNlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/hahuy/Desktop/FunnyWeb/FuCommunityWebApplication/FUCommunityWeb/FUCommunityWeb/Views/Home/About.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBYm91dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/hahuy/Desktop/FunnyWeb/FuCommunityWebApplication/FUCommunityWeb/FUCommunityWeb/Views/Home/Cart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDYXJ0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/hahuy/Desktop/FunnyWeb/FuCommunityWebApplication/FUCommunityWeb/FUCommunityWeb/Views/Home/ContactUs.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDb250YWN0VXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/hahuy/Desktop/FunnyWeb/FuCommunityWebApplication/FUCommunityWeb/FUCommunityWeb/Views/Home/Course.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDb3Vyc2UuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/hahuy/Desktop/FunnyWeb/FuCommunityWebApplication/FUCommunityWeb/FUCommunityWeb/Views/Home/CourseDetail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDb3Vyc2VEZXRhaWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/hahuy/Desktop/FunnyWeb/FuCommunityWebApplication/FUCommunityWeb/FUCommunityWeb/Views/Home/CourseHistory.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDb3Vyc2VIaXN0b3J5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/hahuy/Desktop/FunnyWeb/FuCommunityWebApplication/FUCommunityWeb/FUCommunityWeb/Views/Home/EditProfile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxFZGl0UHJvZmlsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/hahuy/Desktop/FunnyWeb/FuCommunityWebApplication/FUCommunityWeb/FUCommunityWeb/Views/Home/Footer.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxGb290ZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/hahuy/Desktop/FunnyWeb/FuCommunityWebApplication/FUCommunityWeb/FUCommunityWeb/Views/Home/Forum.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxGb3J1bS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/hahuy/Desktop/FunnyWeb/FuCommunityWebApplication/FUCommunityWeb/FUCommunityWeb/Views/Home/ForumDetail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxGb3J1bURldGFpbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/hahuy/Desktop/FunnyWeb/FuCommunityWebApplication/FUCommunityWeb/FUCommunityWeb/Views/Home/Header.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxIZWFkZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/hahuy/Desktop/FunnyWeb/FuCommunityWebApplication/FUCommunityWeb/FUCommunityWeb/Views/Home/Home.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxIb21lLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/hahuy/Desktop/FunnyWeb/FuCommunityWebApplication/FUCommunityWeb/FUCommunityWeb/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Documents/PRN212/FuCommunityWebApplication/FUCommunityWeb/FUCommunityWeb/Views/Home/Privacy.cshtml]
+[C:/Users/hahuy/Desktop/FunnyWeb/FuCommunityWebApplication/FUCommunityWeb/FUCommunityWeb/Views/Home/MentorHall.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxNZW50b3JIYWxsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/hahuy/Desktop/FunnyWeb/FuCommunityWebApplication/FUCommunityWeb/FUCommunityWeb/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Documents/PRN212/FuCommunityWebApplication/FUCommunityWeb/FUCommunityWeb/Views/Shared/Error.cshtml]
+[C:/Users/hahuy/Desktop/FunnyWeb/FuCommunityWebApplication/FUCommunityWeb/FUCommunityWeb/Views/Home/SignIn.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTaWduSW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/hahuy/Desktop/FunnyWeb/FuCommunityWebApplication/FUCommunityWeb/FUCommunityWeb/Views/Home/SignUp.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTaWduVXAuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/hahuy/Desktop/FunnyWeb/FuCommunityWebApplication/FUCommunityWeb/FUCommunityWeb/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Documents/PRN212/FuCommunityWebApplication/FUCommunityWeb/FUCommunityWeb/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/hahuy/Desktop/FunnyWeb/FuCommunityWebApplication/FUCommunityWeb/FUCommunityWeb/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Documents/PRN212/FuCommunityWebApplication/FUCommunityWeb/FUCommunityWeb/Views/_ViewImports.cshtml]
+[C:/Users/hahuy/Desktop/FunnyWeb/FuCommunityWebApplication/FUCommunityWeb/FUCommunityWeb/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Documents/PRN212/FuCommunityWebApplication/FUCommunityWeb/FUCommunityWeb/Views/_ViewStart.cshtml]
+[C:/Users/hahuy/Desktop/FunnyWeb/FuCommunityWebApplication/FUCommunityWeb/FUCommunityWeb/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Documents/PRN212/FuCommunityWebApplication/FUCommunityWeb/FUCommunityWeb/Views/Shared/_Layout.cshtml]
+[C:/Users/hahuy/Desktop/FunnyWeb/FuCommunityWebApplication/FUCommunityWeb/FUCommunityWeb/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-7cu6wngva8
