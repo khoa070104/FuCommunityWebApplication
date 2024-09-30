@@ -8,19 +8,19 @@
     "net8.0": []
   },
   "packageFolders": {
-    "C:\\Users\\NCPC\\.nuget\\packages\\": {}
+    "C:\\Users\\hahuy\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\FUCommunityWebModels.csproj",
-      "projectName": "FUCommunityWebModels",
-      "projectPath": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\FUCommunityWebModels.csproj",
-      "packagesPath": "C:\\Users\\NCPC\\.nuget\\packages\\",
-      "outputPath": "D:\\Documents\\PRN212\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\obj\\",
+      "projectUniqueName": "C:\\Users\\hahuy\\Desktop\\FunnyWeb\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\FuCommunityWebModels.csproj",
+      "projectName": "FuCommunityWebModels",
+      "projectPath": "C:\\Users\\hahuy\\Desktop\\FunnyWeb\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\FuCommunityWebModels.csproj",
+      "packagesPath": "C:\\Users\\hahuy\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\hahuy\\Desktop\\FunnyWeb\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\NCPC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\hahuy\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
