@@ -16,6 +16,6 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = FuCommunityWebDataAccess
-build_property.ProjectDir = C:\Users\hahuy\Desktop\FunnyWeb\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\
+build_property.ProjectDir = D:\UNIVERSITY\Sem5\SWP391\FUWeb\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 

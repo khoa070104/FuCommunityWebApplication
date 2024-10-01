@@ -8,25 +8,32 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/FUCommunityWeb.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="/css/Style.css">
+    <link rel="stylesheet" href="/js/site.js">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
 <body>
     <header class="header">
-
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container-fluid">
+                <!-- Brand Logo -->
                 <a class="navbar-brand" href="#">
-                    <img src="/img/Logo.png" alt="Logo"> <!-- Replace with actual logo -->
+                    <img src="/img/Logo.png" alt="Logo">
                 </a>
 
+                <!-- Navbar Toggler for Responsive -->
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
+                <!-- Navbar Content -->
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <div class="d-flex flex-column flex-lg-row align-items-lg-center w-100">
+
+                        <!-- Search Container -->
                         <div class="search-container me-lg-3 mb-3 mb-lg-0">
-                            <input type="text" id="searchInput" class="form-control" placeholder="Want to learn?">
+                            <input type="text" id="searchInput" class="form-control" placeholder="Want to search something?"
+                                   style="width: 500px; height: 55px; padding-left: 20px; padding-right: 110px;">
                             <button class="btn btn-explore dropdown-toggle" id="exploreBtn" type="button"
                                     data-bs-toggle="dropdown">
                                 Explore
@@ -89,7 +96,8 @@
                             </ul>
                         </div>
 
-                        <ul class="navbar-nav flex-grow-1">
+                        <!-- Navbar Links -->
+                        <ul class="navbar-mid navbar-nav flex-grow-1">
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Home</a>
                             </li>
@@ -104,9 +112,10 @@
                             </li>
                         </ul>
 
-                        <div class="d-flex align-items-center ms-lg-auto">
-                            <a href="#" class="nav-link signin">Sign in</a>
-                            <a href="#" class="btn btn-signup ms-3">Sign up</a>
+                        <!-- Right Aligned Buttons -->
+                        <div class="d-flex align-items-center ms-lg-auto btn-right">
+                            <a href="#" class="btn-signin">Sign in</a>
+                            <a href="#" class="btn ms-3">Sign up</a>
                         </div>
                     </div>
                 </div>
@@ -114,14 +123,14 @@
         </nav>
     </header>
 
-    <div class="container">
-        <main role="main" class="pb-3">
+    <div>
+        <main role="main">
             @RenderBody()
         </main>
     </div>
 
     <footer>
-        <div class="footer">
+        <div class="footer-content">
             <div class="column">
                 <img src="/img/Logo_FunnyCode.jpg" alt="LOGO">
                 <p>Top learning experiences that create more talent in the world.</p>
@@ -129,47 +138,46 @@
             <div class="column">
                 <h4>All subjects</h4>
                 <ul>
-                    <li>MAE101</li>
-                    <li>PRF192</li>
-                    <li>PRO192</li>
-                    <li>PRJ301</li>
-                    <li>WED201c</li>
+                    <li><a href="/courses/MAE101">MAE101</a></li>
+                    <li><a href="/courses/PRF192">PRF192</a></li>
+                    <li><a href="/courses/PRO192">PRO192</a></li>
+                    <li><a href="/courses/PRJ301">PRJ301</a></li>
+                    <li><a href="/courses/WED201c">WED201c</a></li>
                 </ul>
             </div>
             <div class="column">
                 <h4>Team</h4>
                 <ul>
-                    <li>About us</li>
-                    <li>Contact us</li>
-                    <li>Feedbacks</li>
+                    <li><a href="/about">About us</a></li>
+                    <li><a href="/contact">Contact us</a></li>
+                    <li><a href="/feedback">Feedbacks</a></li>
                 </ul>
             </div>
             <div class="column">
                 <h4>Social</h4>
                 <ul>
-                    <li>Our Forum <span class="new-badge">New</span></li>
-                    <li>LinkedIn</li>
-                    <li>GitHub</li>
-                    <li>Twitter</li>
+                    <li><a href="/forum">Our Forum <span class="new-badge">New</span></a></li>
+                    <li><a href="https://www.linkedin.com/" target="_blank">LinkedIn</a></li>
+                    <li><a href="https://github.com/" target="_blank">GitHub</a></li>
+                    <li><a href="https://twitter.com/" target="_blank">Twitter</a></li>
                 </ul>
             </div>
             <div class="column">
                 <h4>Settings</h4>
                 <ul>
-                    <li>Profile</li>
-                    <li>Notification</li>
+                    <li><a href="/profile">Profile</a></li>
+                    <li><a href="/notifications">Notification</a></li>
                 </ul>
             </div>
         </div>
-
         <div class="footer-bottom">
             <div class="footer-bottom-content">
                 <p>© 2024 LOGO. All rights reserved.</p>
                 <div class="social-icons">
-                    <i class="fab fa-twitter"></i>
-                    <i class="fab fa-linkedin"></i>
-                    <i class="fab fa-facebook"></i>
-                    <i class="fab fa-github"></i>
+                    <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.linkedin.com/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
+                    <a href="https://github.com/" target="_blank"><i class="fab fa-github"></i></a>
                 </div>
             </div>
             <button class="back-to-top"><i class="fas fa-chevron-up"></i></button>
