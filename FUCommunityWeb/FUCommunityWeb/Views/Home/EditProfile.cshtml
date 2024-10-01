@@ -1,32 +1,4 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-<!DOCTYPE html>
-<html lang="vi">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EditProfile - FunnyCode</title>
-    <link rel="shortcut icon" type="x-icon" href="/img/Logo.png">
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-ODn27RD6nA2R1Gz5glBa6kLtvCxFfUMaNf1oZVVobKq6yEJNXI9py/tFyR3/f+W" crossorigin="anonymous">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-            crossorigin="anonymous"></script>
-    <!-- Font Awesome for Icons -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/css/Style.css">
-</head>
-
-<body>
-    <div id="header"></div>
-
+﻿<body>
     <div class="container-fluid mt-4 profile">
         <h1 class="title text-start">PROFILE</h1> <!-- Align profile title to the left -->
         <div class="row justify-content-center">
@@ -43,13 +15,10 @@
                         <button class="btn btn-editprofile">Edit Profile</button>
                     </div>
                     <ul class="list-group">
-                        <li class="list-group-item"><i class="fa fa-cogs"></i> Setting</li>
-                        <li class="list-group-item"><i class="fa fa-users"></i> Friend</li>
-                        <li class="list-group-item"><i class="fa fa-users"></i> Group</li>
+                        <li class="list-group-item"><i class="fa fa-cog"></i> Setting</li>
+                        <li class="list-group-item"><i class="fa fa-comment-dots"></i> Message</li>
                         <li class="list-group-item"><i class="fa fa-pencil-alt"></i> Post</li>
-                        <li class="list-group-item"><i class="fa fa-share-alt"></i> Share</li>
                         <li class="list-group-item"><i class="fa fa-book"></i> Course History</li>
-                        <!-- New Course History list item -->
                     </ul>
                 </div>
             </div>
@@ -68,7 +37,7 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="username">Username:</label>
-                                    <input type="text" class="form-control" id="username" value="ahihi_nguyen">
+                                    <input type="text" class="form-control" id="username" value="hihihihihi">
                                 </div>
                             </div>
                         </div>
@@ -108,7 +77,8 @@
                         </div>
                         <div class="form-group mb-3">
                             <label for="description">Description:</label>
-                            <textarea class="form-control" id="description" rows="4">This is a short description about the user profile. Here you can include any additional information or bio.</textarea>
+                            <textarea class="form-control" id="description"
+                                      rows="4">This is a short description about the user profile. Here you can include any additional information or bio.</textarea>
                         </div>
                         <div>
                             <button type="submit" class="btn-savechange">Save Changes</button>
@@ -116,63 +86,6 @@
                     </form>
                 </div>
             </div>
-
-
         </div>
     </div>
-
-
-
-    <div id="footer"></div>
-
-    <script>
-        // Chèn Header và Footer
-        document.addEventListener('DOMContentLoaded', () => {
-            fetch('header.html')
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('header').innerHTML = data;
-                    // Thực hiện các thao tác JavaScript sau khi header đã được chèn
-                    const searchInput = document.getElementById('searchInput');
-                    const exploreBtn = document.getElementById('exploreBtn');
-
-                    if (searchInput && exploreBtn) {
-                        searchInput.addEventListener('focus', () => {
-                            exploreBtn.textContent = 'Search';
-                        });
-
-                        searchInput.addEventListener('blur', () => {
-                            exploreBtn.textContent = 'Explore';
-                        });
-                    }
-                });
-
-            fetch('footer.html')
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('footer').innerHTML = data;
-
-                    // Thêm sự kiện cuộn trang
-                    const backToTopBtn = document.querySelector('.back-to-top');
-
-                    window.addEventListener('scroll', () => {
-                        if (window.scrollY > 200) { // Hiển thị nút khi cuộn xuống 200px
-                            backToTopBtn.style.display = 'block';
-                        } else {
-                            backToTopBtn.style.display = 'none';
-                        }
-                    });
-
-                    // Cuộn lên khi nhấn nút
-                    backToTopBtn.addEventListener('click', () => {
-                        window.scrollTo({
-                            top: 0,
-                            behavior: 'smooth'
-                        });
-                    });
-                });
-        });
-    </script>
 </body>
-
-</html>

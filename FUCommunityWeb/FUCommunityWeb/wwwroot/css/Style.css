@@ -17,7 +17,7 @@
         justify-content: center;
     }
 
-    .header .nav-link {
+    .header .navbar-mid .nav-link {
         color: #000;
         font-weight: 500;
         transition: color 0.3s ease;
@@ -25,9 +25,28 @@
         margin-right: 10px;
     }
 
-        .header .nav-link:hover {
+        .header .navbar-mid .nav-link:hover {
             color: #20B486;
         }
+
+.btn-right a.btn {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.btn-right a.btn:hover {
+    color: #20B486;
+}
+
+.btn-right a.btn-signin {
+    color: #000;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+    .btn-right a.btn-signin:hover {
+        color: #20B486;
+    }
 
 .btn {
     background-color: #20B486;
@@ -41,6 +60,24 @@
         background-color: #F2FFFB;
         color: #20B486;
         box-shadow: 0 0 10px rgb(32, 180, 134, 0.6);
+    }
+
+
+
+
+/* Style for Cancel Button */
+.btn-cancel {
+    background-color: #aeb2b1;
+    color: #FFFFFF;
+    border-radius: 20px;
+    padding: 8px 16px;
+    transition: background-color 0.3s ease;
+}
+
+    .btn-cancel:hover {
+        background-color: #e0e5e4;
+        color: #aeb2b1;
+        box-shadow: 0 0 10px rgb(0, 0, 0, 0.6);
     }
 
 .header .btn-explore {
@@ -71,10 +108,8 @@
 }
 
     .header .search-container input {
-        padding-right: 120px;
         border-radius: 30px;
         border: 1px solid #20B486;
-        padding: 12px 100px;
         width: 100%;
         font-size: 16px;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -622,168 +657,8 @@
     }
 }
 
-/*--------------------CART--------------------*/
+/*--------------------DEPOSIT--------------------*/
 
-.cart-container {
-    display: flex;
-    max-width: 1200px;
-    margin: 0 auto;
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
-.cart-items {
-    flex: 2;
-    margin-right: 20px;
-}
-
-.cart-container h1 {
-    color: #20B486;
-    font-size: 50px;
-}
-
-.cart-container .highlight {
-    color: #20B486;
-}
-
-.cart-container .item {
-    display: flex;
-    align-items: center;
-    background-color: white;
-    border-radius: 10px;
-    padding: 10px;
-    margin-bottom: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-    .cart-container .item i {
-        font-size: 24px;
-        color: #20B486;
-        margin-right: 10px;
-        cursor: pointer;
-    }
-
-    .cart-container .item img {
-        width: 120px;
-        height: auto;
-        border-radius: 10px;
-        margin-right: 10px;
-    }
-
-
-.cart-container .item-details {
-    flex: 1;
-}
-
-.cart-container .price {
-    font-size: 18px;
-    font-weight: bold;
-    color: #00a86b;
-    text-align: right;
-}
-
-.cart-container .actions button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 18px;
-    margin-left: 5px;
-}
-
-    .cart-container .actions button:hover {
-        transform: scale(1.1);
-    }
-
-.cart-container .actions i {
-    font-size: 24px;
-    color: #000;
-}
-
-.cart-summary {
-    flex: 1;
-    background-color: rgb(34,178,134, 0.6);
-    border-radius: 10px;
-    padding: 30px;
-    color: white;
-}
-
-.card-details h2 {
-    margin-bottom: 20px;
-}
-
-.payment-icons i {
-    font-size: 36px;
-    margin-right: 10px;
-}
-
-.cart-container .form-group {
-    margin: 15px;
-}
-
-.cart-container label {
-    display: block;
-    margin-bottom: 5px;
-}
-
-.cart-container input {
-    width: calc(100% - 20px);
-    padding: 10px;
-    border-radius: 5px;
-    border: none;
-    margin-bottom: 10px;
-}
-
-.cart-container .total {
-    margin: 20px 10px;
-    font-size: 20px;
-    font-weight: bold;
-    display: flex;
-    justify-content: space-between;
-}
-
-.cart-container .checkout-btn {
-    border: none;
-    padding: 15px;
-    width: 100%;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
-}
-
-    .cart-container .checkout-btn:hover {
-        background-color: #f4f4f9;
-    }
-
-.payment-icons {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-}
-
-    .payment-icons a {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: white;
-        border: 2px solid #20B486;
-        border-radius: 5px;
-        padding: 10px;
-        width: 70px;
-        height: 70px;
-        transition: transform 0.3s ease, background-color 0.3s ease;
-    }
-
-        .payment-icons a img {
-            width: 50px;
-            height: auto;
-        }
-
-        .payment-icons a:hover {
-            background-color: #20B486;
-            transform: scale(1.1);
-            border-color: #22B286;
-        }
 
 /*--------------------CONTACT US--------------------*/
 
@@ -888,6 +763,14 @@
     margin-top: 20px;
     margin-bottom: 20px;
 }
+
+    .course-container .course-detail .course-card {
+        border: none;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        padding: 20px 20px;
+        flex: 0 0 calc(33.33% - 20px);
+        margin-bottom: 20px;
+    }
 
     .course-container .title h1 {
         color: #20B486;
@@ -1047,55 +930,51 @@
     }
 
 /*--------------------COURSE-DETAIL--------------------*/
-.course-detail {
-    background-color: #F9F9F9;
-}
-
-    .course-detail .course-header {
+.course-detail .course-header {
         background-color: #F2FFFB;
         padding: 50px 200px;
     }
 
-        .course-detail .course-header .breadcrumb {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            align-items: center;
+.breadcrumb {
+    list-style: none;
+    padding: 30px;
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+    .breadcrumb li {
+        display: inline;
+        font-size: 16px;
+    }
+
+        .breadcrumb li a {
+            text-decoration: none;
+            color: #20B486;
         }
 
-            .course-detail .course-header .breadcrumb li {
-                display: inline;
-                font-size: 16px;
+            .breadcrumb li a:hover {
+                text-decoration: underline;
             }
 
-                .course-detail .course-header .breadcrumb li a {
-                    text-decoration: none;
-                    color: #20B486;
-                }
-
-                    .course-detail .course-header .breadcrumb li a:hover {
-                        text-decoration: underline;
-                    }
-
-                .course-detail .course-header .breadcrumb li + li::before {
-                    content: " / ";
-                    padding: 0 8px;
-                }
-
-                .course-detail .course-header .breadcrumb li.active {
-                    color: #000;
-                }
-
-        .course-detail .course-header .display-2 {
-            font-style: italic;
-            font-weight: 400;
+        .breadcrumb li + li::before {
+            content: " / ";
+            padding: 0 8px;
         }
 
-    .course-detail .course-info {
-        padding: 20px;
-        border-radius: 8px;
-    }
+        .breadcrumb li.active {
+            color: #000;
+        }
+
+.course-detail .course-header .display-2 {
+    font-style: italic;
+    font-weight: 400;
+}
+
+.course-detail .course-info {
+    padding: 20px;
+    border-radius: 8px;
+}
 
 .course-info .info1 {
     display: flex;
@@ -1160,6 +1039,7 @@
     border: none;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     padding: 20px 20px;
+    margin-bottom: 20px;
 }
 
     .course-detail .course-card h3 {
@@ -1243,6 +1123,7 @@
     border-bottom: none;
 }
 
+/* -------------------------------------- */
 /* Center the Profile Section */
 .profile {
     padding: 30px;
@@ -1541,7 +1422,7 @@ textarea.form-control {
 /*------------SIGN-IN------------*/
 .sign-in {
     width: 100%;
-    background-image: url('/src/webapp/img/fn_SignIn_1.png');
+    background-image: url('/img/fn_SignIn_1.png');
     background-size: 100%;
     background-position: center;
     background-repeat: no-repeat;
@@ -1549,6 +1430,7 @@ textarea.form-control {
     justify-content: flex-end;
     align-items: center;
     transform-origin: top left;
+    height: 100%;
 }
 
     .sign-in .login-container {
@@ -1606,18 +1488,17 @@ textarea.form-control {
             text-decoration: underline;
         }
 
-/*sign up*/
+/*------------SIGN-UP------------*/
 .sign-up {
     background-color: #2F5361;
 }
 
     .sign-up .background-image {
         width: 100%;
-        background-image: url('/src/webapp/icon/fn_SignUp_1.jpg');
+        background-image: url('/img/fn_SignUp_1.jpg');
         background-size: contain;
         background-repeat: no-repeat;
         background-position: calc(100% + 150px) center;
-        /* Push image further right */
         display: flex;
         justify-content: center;
         align-items: center;
@@ -1835,13 +1716,33 @@ textarea.form-control {
 
 
 /*--------------------FOOTER--------------------*/
-.footer {
+.footer-content {
     display: flex;
     justify-content: space-around;
     padding: 40px 40px;
     background-color: #0a0e17;
     color: #c1c1c1;
 }
+
+    .footer-content a {
+        text-decoration: none; /* Remove underline */
+        color: inherit; /* Use the current text color */
+    }
+
+        .footer-content a:hover {
+            text-decoration: underline; /* Add underline on hover */
+            color: #20B486; /* Change color on hover */
+        }
+
+.social-icons a {
+    margin: 0 10px; /* Add spacing between icons */
+    color: inherit; /* Use current color */
+}
+
+    .social-icons a:hover {
+        color: #20B486; /* Change color on hover for icons */
+    }
+
 
 .column {
     flex: 1;
@@ -1895,20 +1796,20 @@ textarea.form-control {
 /* Thêm vào style.css */
 .back-to-top {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #20B486;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    padding: 10px;
-    font-size: 18px;
-    cursor: pointer;
-    display: none; /* Ẩn nút ban đầu */
+    bottom: 20px; /* Adjust this value as needed */
+    right: 20px; /* Adjust this value as needed */
+    display: none; /* Initially hidden */
+    background-color: #20B486; /* Background color */
+    color: white; /* Text color */
+    border: none; /* Remove border */
+    border-radius: 50%; /* Circular button */
+    padding: 15px; /* Button padding */
+    z-index: 1000; /* Ensure it's on top */
+    cursor: pointer; /* Pointer cursor */
 }
 
     .back-to-top:hover {
-        background-color: #20B486;
+        background-color: #1a9e72;
     }
 
 /* Responsive Adjustments */

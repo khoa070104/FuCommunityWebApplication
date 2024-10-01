@@ -1,39 +1,13 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-<!DOCTYPE html>
-<html lang="vi">
-
-<head>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HomePage - FunnyCode</title>
-    <link rel="shortcut icon" type="x-icon" href="/img/Logo.png">
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-ODn27RD6nA2R1Gz5glBa6kLtvCxFfUMaNf1oZVVobKq6yEJNXI9py/tFyR3/f+W" crossorigin="anonymous">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
-    <!-- Font Awesome for Icons -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/css/Style.css">
-</head>
-
-<body>
-    <div id="header"></div>
-
+﻿<body>
     <div class="home-container">
         <div class="container hero-section">
             <div class="text-section">
-                <h1>The Faster Way To <span class="highlight">Develop</span> And <span class="highlight">Improve</span>
-                    Your Skills.</h1>
-                <p>Explore advanced strategies to optimize learning, enhance skills, and achieve rapid career success.
+                <h1>
+                    The Faster Way To <span class="highlight">Develop</span> And <span class="highlight">Improve</span>
+                    Your Skills.
+                </h1>
+                <p>
+                    Explore advanced strategies to optimize learning, enhance skills, and achieve rapid career success.
                 </p>
                 <button class="btn custom-button">Explore Courses</button>
             </div>
@@ -61,7 +35,8 @@
                         <div class="card-body">
                             <i class="fas fa-code icon text-primary"></i>
                             <h5 class="card-title">Programming Course</h5>
-                            <p class="card-text">Classes in development that cover the most recent advancements in web.
+                            <p class="card-text">
+                                Classes in development that cover the most recent advancements in web.
                             </p>
                             <!-- <a href="#" class="text-custom-dark text-decoration-none">Learn More <i
                                     class="fas fa-arrow-right"></i></a> -->
@@ -86,86 +61,119 @@
             <p>Let's join our famous class, the knowledge provided will definitely be useful for you.</p>
             <div class="courses">
                 <div class="course-card">
-                    <div  class="course-image">
-                        <img src="/img/Course-IMG.png" alt="Course Image">
+                    <div class="course-image">
+                        <img src="/img/Course-IMG.png" alt="Course Image" class="img-fluid">
                     </div>
                     <div class="course-info">
                         <div class="category">
-
                             <span class="badge">Mathematics</span>
                             <span class="badge">+3</span>
                         </div>
                         <h3>MAE101 - Mathematics for Engineering</h3>
-                        <p>limit, derivative, integral, linear system of equations, matrix and their applications,...
+                        <p>
+                            limit, derivative, integral, linear system of equations, matrix and their
+                            applications,...
                         </p>
                         <div class="rating">
                             <span>3.9</span>
-                            <span class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                    class="fas fa-star"></i><i class="fas fa-star"></i></span>
+                            <span class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </span>
                             <span>(832)</span>
                         </div>
-                        <div class="price">
+                        <div class="price text-center">
                             <div>
-                                <span class="old-price">599k</span>
-                                <span class="new-price">400k</span>
+                                <span class="old-price">599 points</span>
+                                <span class="new-price">400 points</span>
                             </div>
-                            <span class="cart-icon"><i class="fas fa-shopping-cart"></i></span>
+                        </div>
+                        <hr>
+                        <div class="text-center">
+                            <button class="btn" data-bs-toggle="modal" data-bs-target="#buyNowModal">
+                                Buy
+                                Now
+                            </button>
                         </div>
                     </div>
                 </div>
                 <div class="course-card">
-                    <div  class="course-image">
-                        <img src="/img/Course-IMG.png" alt="Course Image">
+                    <div class="course-image">
+                        <img src="/img/Course-IMG.png" alt="Course Image" class="img-fluid">
                     </div>
                     <div class="course-info">
                         <div class="category">
-
                             <span class="badge">Mathematics</span>
                             <span class="badge">+3</span>
                         </div>
                         <h3>MAE101 - Mathematics for Engineering</h3>
-                        <p>limit, derivative, integral, linear system of equations, matrix and their applications,...
+                        <p>
+                            limit, derivative, integral, linear system of equations, matrix and their
+                            applications,...
                         </p>
                         <div class="rating">
                             <span>3.9</span>
-                            <span class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                    class="fas fa-star"></i><i class="fas fa-star"></i></span>
+                            <span class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </span>
                             <span>(832)</span>
                         </div>
-                        <div class="price">
+                        <div class="price text-center">
                             <div>
-                                <span class="old-price">599k</span>
-                                <span class="new-price">400k</span>
+                                <span class="old-price">599 points</span>
+                                <span class="new-price">400 points</span>
                             </div>
-                            <span class="cart-icon"><i class="fas fa-shopping-cart"></i></span>
+                        </div>
+                        <hr>
+                        <div class="text-center">
+                            <button class="btn" data-bs-toggle="modal" data-bs-target="#buyNowModal">
+                                Buy
+                                Now
+                            </button>
                         </div>
                     </div>
                 </div>
                 <div class="course-card">
-                    <div  class="course-image">
-                        <img src="/img/Course-IMG.png" alt="Course Image">
+                    <div class="course-image">
+                        <img src="/img/Course-IMG.png" alt="Course Image" class="img-fluid">
                     </div>
                     <div class="course-info">
                         <div class="category">
-
                             <span class="badge">Mathematics</span>
                             <span class="badge">+3</span>
                         </div>
                         <h3>MAE101 - Mathematics for Engineering</h3>
-                        <p>limit, derivative, integral, linear system of equations, matrix and their applications,...
+                        <p>
+                            limit, derivative, integral, linear system of equations, matrix and their
+                            applications,...
                         </p>
                         <div class="rating">
                             <span>3.9</span>
-                            <span class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                    class="fas fa-star"></i><i class="fas fa-star"></i></span>
+                            <span class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </span>
                             <span>(832)</span>
                         </div>
-                        <div class="price">
+                        <div class="price text-center">
                             <div>
-                                <span class="old-price">599k</span>
-                                <span class="new-price">400k</span>
+                                <span class="old-price">599 points</span>
+                                <span class="new-price">400 points</span>
                             </div>
-                            <span class="cart-icon"><i class="fas fa-shopping-cart"></i></span>
+                        </div>
+                        <hr>
+                        <div class="text-center">
+                            <button class="btn" data-bs-toggle="modal" data-bs-target="#buyNowModal">
+                                Buy
+                                Now
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -176,86 +184,119 @@
             <p>To enhance your skills and knowledge.</p>
             <div class="courses">
                 <div class="course-card">
-                    <div  class="course-image">
-                        <img src="/img/Course-IMG.png" alt="Course Image">
+                    <div class="course-image">
+                        <img src="/img/Course-IMG.png" alt="Course Image" class="img-fluid">
                     </div>
                     <div class="course-info">
                         <div class="category">
-
                             <span class="badge">Mathematics</span>
                             <span class="badge">+3</span>
                         </div>
                         <h3>MAE101 - Mathematics for Engineering</h3>
-                        <p>limit, derivative, integral, linear system of equations, matrix and their applications,...
+                        <p>
+                            limit, derivative, integral, linear system of equations, matrix and their
+                            applications,...
                         </p>
                         <div class="rating">
                             <span>3.9</span>
-                            <span class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                    class="fas fa-star"></i><i class="fas fa-star"></i></span>
+                            <span class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </span>
                             <span>(832)</span>
                         </div>
-                        <div class="price">
+                        <div class="price text-center">
                             <div>
-                                <span class="old-price">599k</span>
-                                <span class="new-price">400k</span>
+                                <span class="old-price">599 points</span>
+                                <span class="new-price">400 points</span>
                             </div>
-                            <span class="cart-icon"><i class="fas fa-shopping-cart"></i></span>
+                        </div>
+                        <hr>
+                        <div class="text-center">
+                            <button class="btn" data-bs-toggle="modal" data-bs-target="#buyNowModal">
+                                Buy
+                                Now
+                            </button>
                         </div>
                     </div>
                 </div>
                 <div class="course-card">
-                    <div  class="course-image">
-                        <img src="/img/Course-IMG.png" alt="Course Image">
+                    <div class="course-image">
+                        <img src="/img/Course-IMG.png" alt="Course Image" class="img-fluid">
                     </div>
                     <div class="course-info">
                         <div class="category">
-
                             <span class="badge">Mathematics</span>
                             <span class="badge">+3</span>
                         </div>
                         <h3>MAE101 - Mathematics for Engineering</h3>
-                        <p>limit, derivative, integral, linear system of equations, matrix and their applications,...
+                        <p>
+                            limit, derivative, integral, linear system of equations, matrix and their
+                            applications,...
                         </p>
                         <div class="rating">
                             <span>3.9</span>
-                            <span class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                    class="fas fa-star"></i><i class="fas fa-star"></i></span>
+                            <span class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </span>
                             <span>(832)</span>
                         </div>
-                        <div class="price">
+                        <div class="price text-center">
                             <div>
-                                <span class="old-price">599k</span>
-                                <span class="new-price">400k</span>
+                                <span class="old-price">599 points</span>
+                                <span class="new-price">400 points</span>
                             </div>
-                            <span class="cart-icon"><i class="fas fa-shopping-cart"></i></span>
+                        </div>
+                        <hr>
+                        <div class="text-center">
+                            <button class="btn" data-bs-toggle="modal" data-bs-target="#buyNowModal">
+                                Buy
+                                Now
+                            </button>
                         </div>
                     </div>
                 </div>
                 <div class="course-card">
-                    <div  class="course-image">
-                        <img src="/img/Course-IMG.png" alt="Course Image">
+                    <div class="course-image">
+                        <img src="/img/Course-IMG.png" alt="Course Image" class="img-fluid">
                     </div>
                     <div class="course-info">
                         <div class="category">
-
                             <span class="badge">Mathematics</span>
                             <span class="badge">+3</span>
                         </div>
                         <h3>MAE101 - Mathematics for Engineering</h3>
-                        <p>limit, derivative, integral, linear system of equations, matrix and their applications,...
+                        <p>
+                            limit, derivative, integral, linear system of equations, matrix and their
+                            applications,...
                         </p>
                         <div class="rating">
                             <span>3.9</span>
-                            <span class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                    class="fas fa-star"></i><i class="fas fa-star"></i></span>
+                            <span class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </span>
                             <span>(832)</span>
                         </div>
-                        <div class="price">
+                        <div class="price text-center">
                             <div>
-                                <span class="old-price">599k</span>
-                                <span class="new-price">400k</span>
+                                <span class="old-price">599 points</span>
+                                <span class="new-price">400 points</span>
                             </div>
-                            <span class="cart-icon"><i class="fas fa-shopping-cart"></i></span>
+                        </div>
+                        <hr>
+                        <div class="text-center">
+                            <button class="btn" data-bs-toggle="modal" data-bs-target="#buyNowModal">
+                                Buy
+                                Now
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -266,8 +307,10 @@
         <div class="container my-5">
             <div class="text-center">
                 <p class="section-title">Our Feedbacks</p>
-                <h2>Courses was fantastic! It is Master platform for those looking to start a new career, or need a
-                    refresher.</h2>
+                <h2>
+                    Courses was fantastic! It is Master platform for those looking to start a new career, or need a
+                    refresher.
+                </h2>
             </div>
             <div class="row mt-5">
                 <div class="col-md-4">
@@ -278,8 +321,10 @@
                                 <p class="testimonial-name">Wade Warren</p>
                             </div>
                         </div>
-                        <p class="testimonial-text">The website is very intuitive, making it easy to find and enroll
-                            in courses. The clean design enhances the overall learning experience.</p>
+                        <p class="testimonial-text">
+                            The website is very intuitive, making it easy to find and enroll
+                            in courses. The clean design enhances the overall learning experience.
+                        </p>
                         <div class="stars">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -297,8 +342,10 @@
                                 <p class="testimonial-name">Alan Walker</p>
                             </div>
                         </div>
-                        <p class="testimonial-text">Courses are good, but adding student reviews after completion
-                            would give a clearer view. A Q&A or forum within courses would be useful.</p>
+                        <p class="testimonial-text">
+                            Courses are good, but adding student reviews after completion
+                            would give a clearer view. A Q&A or forum within courses would be useful.
+                        </p>
                         <div class="stars">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -316,8 +363,10 @@
                                 <p class="testimonial-name">Ariana Grande</p>
                             </div>
                         </div>
-                        <p class="testimonial-text">The courses offered are well-structured and comprehensive,
-                            providing great value for learners at all levels.</p>
+                        <p class="testimonial-text">
+                            The courses offered are well-structured and comprehensive,
+                            providing great value for learners at all levels.
+                        </p>
                         <div class="stars">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -330,56 +379,22 @@
             </div>
         </div>
     </div>
-
-    <div id="footer"></div>
-    <script>
-        // Chèn Header và Footer
-        document.addEventListener('DOMContentLoaded', () => {
-            fetch('header.html')
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('header').innerHTML = data;
-                    // Thực hiện các thao tác JavaScript sau khi header đã được chèn
-                    const searchInput = document.getElementById('searchInput');
-                    const exploreBtn = document.getElementById('exploreBtn');
-
-                    if (searchInput && exploreBtn) {
-                        searchInput.addEventListener('focus', () => {
-                            exploreBtn.textContent = 'Search';
-                        });
-
-                        searchInput.addEventListener('blur', () => {
-                            exploreBtn.textContent = 'Explore';
-                        });
-                    }
-                });
-
-                fetch('footer.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('footer').innerHTML = data;
-
-                // Thêm sự kiện cuộn trang
-                const backToTopBtn = document.querySelector('.back-to-top');
-                
-                window.addEventListener('scroll', () => {
-                    if (window.scrollY > 200) { // Hiển thị nút khi cuộn xuống 200px
-                        backToTopBtn.style.display = 'block';
-                    } else {
-                        backToTopBtn.style.display = 'none';
-                    }
-                });
-
-                // Cuộn lên khi nhấn nút
-                backToTopBtn.addEventListener('click', () => {
-                    window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth'
-                    });
-                });
-            });
-        });
-    </script>
+    <!-- Modal for Buy Now Confirmation -->
+    <div class="modal fade" id="buyNowModal" tabindex="-1" aria-labelledby="buyNowModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="buyNowModalLabel">Confirm Purchase</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to purchase this course for 400 points?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-cancel" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
-
-</html>

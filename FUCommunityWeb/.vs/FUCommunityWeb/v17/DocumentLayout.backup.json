@@ -1,26 +1,22 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\hahuy\\Desktop\\FunnyWeb\\FuCommunityWebApplication\\FUCommunityWeb\\",
+  "WorkspaceRootPath": "D:\\UNIVERSITY\\Sem5\\SWP391\\FUWeb\\FuCommunityWebApplication\\FUCommunityWeb\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|c:\\users\\hahuy\\desktop\\funnyweb\\fucommunitywebapplication\\fucommunityweb\\fucommunityweb\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|solutionrelative:fucommunityweb\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|d:\\university\\sem5\\swp391\\fuweb\\fucommunitywebapplication\\fucommunityweb\\fucommunityweb\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|solutionrelative:fucommunityweb\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|c:\\users\\hahuy\\desktop\\funnyweb\\fucommunitywebapplication\\fucommunityweb\\fucommunityweb\\views\\home\\header.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|solutionrelative:fucommunityweb\\views\\home\\header.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|d:\\university\\sem5\\swp391\\fuweb\\fucommunitywebapplication\\fucommunityweb\\fucommunityweb\\views\\home\\signup.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|solutionrelative:fucommunityweb\\views\\home\\signup.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|c:\\users\\hahuy\\desktop\\funnyweb\\fucommunitywebapplication\\fucommunityweb\\fucommunityweb\\views\\home\\footer.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|solutionrelative:fucommunityweb\\views\\home\\footer.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|d:\\university\\sem5\\swp391\\fuweb\\fucommunitywebapplication\\fucommunityweb\\fucommunityweb\\views\\home\\signin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|solutionrelative:fucommunityweb\\views\\home\\signin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|c:\\users\\hahuy\\desktop\\funnyweb\\fucommunitywebapplication\\fucommunityweb\\fucommunityweb\\wwwroot\\css\\style.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|solutionrelative:fucommunityweb\\wwwroot\\css\\style.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|c:\\users\\hahuy\\desktop\\funnyweb\\fucommunitywebapplication\\fucommunityweb\\fucommunityweb\\views\\home\\about.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|solutionrelative:fucommunityweb\\views\\home\\about.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|d:\\university\\sem5\\swp391\\fuweb\\fucommunitywebapplication\\fucommunityweb\\fucommunityweb\\views\\home\\mentorhall.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|solutionrelative:fucommunityweb\\views\\home\\mentorhall.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -38,67 +34,54 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Header.cshtml",
-              "DocumentMoniker": "C:\\Users\\hahuy\\Desktop\\FunnyWeb\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\Home\\Header.cshtml",
-              "RelativeDocumentMoniker": "FUCommunityWeb\\Views\\Home\\Header.cshtml",
-              "ToolTip": "C:\\Users\\hahuy\\Desktop\\FunnyWeb\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\Home\\Header.cshtml",
-              "RelativeToolTip": "FUCommunityWeb\\Views\\Home\\Header.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-09-30T16:41:34.131Z",
+              "DocumentIndex": 0,
+              "Title": "site.js",
+              "DocumentMoniker": "D:\\UNIVERSITY\\Sem5\\SWP391\\FUWeb\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\js\\site.js",
+              "RelativeDocumentMoniker": "FUCommunityWeb\\wwwroot\\js\\site.js",
+              "ToolTip": "D:\\UNIVERSITY\\Sem5\\SWP391\\FUWeb\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\js\\site.js",
+              "RelativeToolTip": "FUCommunityWeb\\wwwroot\\js\\site.js",
+              "ViewState": "AgIAADkAAAAAAAAAAAAAAEgAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-10-01T03:07:30.74Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Style.css",
-              "DocumentMoniker": "C:\\Users\\hahuy\\Desktop\\FunnyWeb\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\css\\Style.css",
-              "RelativeDocumentMoniker": "FUCommunityWeb\\wwwroot\\css\\Style.css",
-              "ToolTip": "C:\\Users\\hahuy\\Desktop\\FunnyWeb\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\css\\Style.css",
-              "RelativeToolTip": "FUCommunityWeb\\wwwroot\\css\\Style.css",
-              "ViewState": "AgIAABsHAAAAAAAAAAAiwDIHAAATAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2024-09-30T16:46:03.365Z",
+              "DocumentIndex": 1,
+              "Title": "SignUp.cshtml",
+              "DocumentMoniker": "D:\\UNIVERSITY\\Sem5\\SWP391\\FUWeb\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\Home\\SignUp.cshtml",
+              "RelativeDocumentMoniker": "FUCommunityWeb\\Views\\Home\\SignUp.cshtml",
+              "ToolTip": "D:\\UNIVERSITY\\Sem5\\SWP391\\FUWeb\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\Home\\SignUp.cshtml*",
+              "RelativeToolTip": "FUCommunityWeb\\Views\\Home\\SignUp.cshtml*",
+              "ViewState": "AgIAACIAAAAAAAAAAAAUwDQAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-10-01T03:06:45.786Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Footer.cshtml",
-              "DocumentMoniker": "C:\\Users\\hahuy\\Desktop\\FunnyWeb\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\Home\\Footer.cshtml",
-              "RelativeDocumentMoniker": "FUCommunityWeb\\Views\\Home\\Footer.cshtml",
-              "ToolTip": "C:\\Users\\hahuy\\Desktop\\FunnyWeb\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\Home\\Footer.cshtml",
-              "RelativeToolTip": "FUCommunityWeb\\Views\\Home\\Footer.cshtml",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAAADwAAAAAAAAAAAAAAA==",
+              "Title": "SignIn.cshtml",
+              "DocumentMoniker": "D:\\UNIVERSITY\\Sem5\\SWP391\\FUWeb\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\Home\\SignIn.cshtml",
+              "RelativeDocumentMoniker": "FUCommunityWeb\\Views\\Home\\SignIn.cshtml",
+              "ToolTip": "D:\\UNIVERSITY\\Sem5\\SWP391\\FUWeb\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\Home\\SignIn.cshtml",
+              "RelativeToolTip": "FUCommunityWeb\\Views\\Home\\SignIn.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-09-30T16:41:55.992Z",
+              "WhenOpened": "2024-10-01T02:56:00.009Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "About.cshtml",
-              "DocumentMoniker": "C:\\Users\\hahuy\\Desktop\\FunnyWeb\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\Home\\About.cshtml",
-              "RelativeDocumentMoniker": "FUCommunityWeb\\Views\\Home\\About.cshtml",
-              "ToolTip": "C:\\Users\\hahuy\\Desktop\\FunnyWeb\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\Home\\About.cshtml",
-              "RelativeToolTip": "FUCommunityWeb\\Views\\Home\\About.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEoAAAAHAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "MentorHall.cshtml",
+              "DocumentMoniker": "D:\\UNIVERSITY\\Sem5\\SWP391\\FUWeb\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\Home\\MentorHall.cshtml",
+              "RelativeDocumentMoniker": "FUCommunityWeb\\Views\\Home\\MentorHall.cshtml",
+              "ToolTip": "D:\\UNIVERSITY\\Sem5\\SWP391\\FUWeb\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\Home\\MentorHall.cshtml",
+              "RelativeToolTip": "FUCommunityWeb\\Views\\Home\\MentorHall.cshtml",
+              "ViewState": "AgIAACwAAAAAAAAAAAAAwDgAAABOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-09-30T16:41:30.112Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "C:\\Users\\hahuy\\Desktop\\FunnyWeb\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\Shared\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "FUCommunityWeb\\Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "C:\\Users\\hahuy\\Desktop\\FunnyWeb\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\Shared\\_Layout.cshtml",
-              "RelativeToolTip": "FUCommunityWeb\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAAHQAAAAAAAAAAAAAAI8AAAAmAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-09-30T16:40:20.809Z",
+              "WhenOpened": "2024-10-01T02:52:21.419Z",
               "EditorCaption": ""
             }
           ]

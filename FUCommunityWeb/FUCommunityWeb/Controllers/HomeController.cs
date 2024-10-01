@@ -12,14 +12,6 @@ namespace FUCommunityWeb.Controllers
 		{
 			_logger = logger;
 		}
-        public IActionResult Header()
-        {
-            return View();
-        }
-        public IActionResult Footer()
-        {
-            return View();
-        }
         public IActionResult Index()
 		{
 			return View();
@@ -51,6 +43,10 @@ namespace FUCommunityWeb.Controllers
             return View();
         }
         public IActionResult CourseHistory()
+        {
+            return View();
+        }
+        public IActionResult Deposit()
         {
             return View();
         }
