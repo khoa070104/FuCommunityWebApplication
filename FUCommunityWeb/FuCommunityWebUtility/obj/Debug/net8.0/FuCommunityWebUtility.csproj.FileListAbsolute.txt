@@ -10,3 +10,4 @@ D:\Documents\PRN212\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebUtili
 D:\Documents\PRN212\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebUtility\obj\Debug\net8.0\refint\FuCommunityWebUtility.dll
 D:\Documents\PRN212\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebUtility\obj\Debug\net8.0\FuCommunityWebUtility.pdb
 D:\Documents\PRN212\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebUtility\obj\Debug\net8.0\ref\FuCommunityWebUtility.dll
+D:\Documents\PRN212\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebUtility\obj\Debug\net8.0\FuCommunityWebUtility.csproj.AssemblyReference.cache

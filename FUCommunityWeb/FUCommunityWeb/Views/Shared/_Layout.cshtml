@@ -114,8 +114,7 @@
 
                         <!-- Right Aligned Buttons -->
                         <div class="d-flex align-items-center ms-lg-auto btn-right">
-                            <a href="#" class="btn-signin">Sign in</a>
-                            <a href="#" class="btn ms-3">Sign up</a>
+                            @await Html.PartialAsync("_LoginPartial")
                         </div>
                     </div>
                 </div>
@@ -183,7 +182,6 @@
             <button class="back-to-top"><i class="fas fa-chevron-up"></i></button>
         </div>
     </footer>
-
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

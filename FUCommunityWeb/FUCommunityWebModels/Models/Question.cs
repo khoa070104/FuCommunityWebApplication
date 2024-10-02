@@ -8,30 +8,28 @@ namespace FuCommunityWebModels.Models
 {
 	public class Question
 	{
-		[Key]
-		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-		public int QuestionID { get; set; }
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int QuestionID { get; set; }
 
-		public int? UserID { get; set; }
+        public string UserID { get; set; } // Thay đổi kiểu dữ liệu cho UserID
 
-		[Required]
-		[MaxLength(255)]
-		public string Title { get; set; }
+        [Required]
+        [StringLength(255)]
+        public string Title { get; set; }
 
-		public string Content { get; set; }
+        public string Content { get; set; }
 
-		[DataType(DataType.DateTime)]
-		public DateTime? CreatedDate { get; set; } = DateTime.Now;
+        public DateTime CreatedDate { get; set; } = DateTime.Now;
 
-		[DataType(DataType.DateTime)]
-		public DateTime? UpdatedDate { get; set; }
+        public DateTime? UpdatedDate { get; set; }
 
-		[MaxLength(50)]
-		public string Status { get; set; }
+        [StringLength(50)]
+        public string Status { get; set; }
 
-		// Navigation property
-		[ForeignKey("UserID")]
-		public User User { get; set; }
-		public ICollection<Comment> Comments { get; set; }
-	}
+        [ForeignKey("Id")]
+        public virtual ApplicationUser User { get; set; } // Thay đổi từ User thành ApplicationUser
+
+        public ICollection<Comment> Comments { get; set; }
+    }
 }
