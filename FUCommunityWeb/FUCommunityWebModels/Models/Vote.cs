@@ -10,24 +10,24 @@ namespace FuCommunityWebModels.Models
 {
 	public class Vote
 	{
-		[Key]
-		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-		public int VoteID { get; set; }
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int VoteID { get; set; }
 
-		public int? UserID { get; set; }
-		public int? PostID { get; set; }
+        public string UserID { get; set; } // Thay đổi kiểu dữ liệu cho UserID
+        public int? PostID { get; set; }
 
-		[MaxLength(10)]
-		public string VoteType { get; set; }
+        [MaxLength(10)]
+        public string VoteType { get; set; }
 
-		[DataType(DataType.DateTime)]
-		public DateTime? VotedAt { get; set; } = DateTime.Now;
+        [DataType(DataType.DateTime)]
+        public DateTime? VotedAt { get; set; } = DateTime.Now;
 
-		// Navigation properties
-		[ForeignKey("UserID")]
-		public User User { get; set; }
+        // Navigation properties
+        [ForeignKey("Id")]
+        public virtual ApplicationUser User { get; set; } // Thay đổi từ User thành ApplicationUser
 
-		[ForeignKey("PostID")]
-		public Post Post { get; set; }
-	}
+        [ForeignKey("PostID")]
+        public virtual Post Post { get; set; }
+    }
 }

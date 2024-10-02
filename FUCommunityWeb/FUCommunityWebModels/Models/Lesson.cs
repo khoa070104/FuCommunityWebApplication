@@ -6,32 +6,42 @@ namespace FuCommunityWebModels.Models
 {
 	public class Lesson
 	{
-		[Key]
-		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-		public int LessonID { get; set; }
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int LessonID { get; set; }
 
-		public int? CourseID { get; set; }
+        public int CourseID { get; set; } // Khóa ngoại
 
-		[Required]
-		[MaxLength(255)]
-		public string Title { get; set; }
+        [ForeignKey("CourseID")]
+        public Course Course { get; set; } // Mối quan hệ với Course
 
-		public string Content { get; set; }
+        public string UserID { get; set; }
 
-		[DataType(DataType.DateTime)]
-		public DateTime? CreatedDate { get; set; } = DateTime.Now;
+        public int CategoryID { get; set; }
 
-		[DataType(DataType.DateTime)]
-		public DateTime? UpdatedDate { get; set; }
+        [Required]
+        [StringLength(255)]
+        public string Title { get; set; }
 
-		[MaxLength(255)]
-		public string LessonUrl { get; set; }
+        public string Content { get; set; }
 
-		[MaxLength(50)]
-		public string Status { get; set; }
+        [StringLength(255)]
+        public string PostImage { get; set; }
 
-		// Navigation property
-		[ForeignKey("CourseID")]
-		public Course Course { get; set; }
-	}
+        public DateTime CreatedDate { get; set; } = DateTime.Now;
+
+        public DateTime? UpdatedDate { get; set; }
+
+        [StringLength(50)]
+        public string Status { get; set; }
+
+        [ForeignKey("Id")]
+        public virtual ApplicationUser User { get; set; } // Thay đổi từ User thành ApplicationUser
+
+        [ForeignKey("CategoryID")]
+        public Category Category { get; set; }
+
+        public ICollection<Comment> Comments { get; set; }
+        public ICollection<IsVote> Votes { get; set; }
+    }
 }

@@ -4,30 +4,32 @@ using System.ComponentModel.DataAnnotations;
 
 public class Document
 {
-	[Key]
-	[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-	public int DocumentID { get; set; }
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public int DocumentID { get; set; }
+    public string UserID { get; set; }
 
-	public int? UserID { get; set; }
-	public int? CourseID { get; set; }
-	public int? PostID { get; set; }
+    public int? CourseID { get; set; }
 
-	[MaxLength(255)]
-	public string Name { get; set; }
+    public int? PostID { get; set; }
 
-	[MaxLength(255)]
-	public string FileUrl { get; set; }
+    [Required]
+    [StringLength(255)]
+    public string Name { get; set; }
 
-	[DataType(DataType.DateTime)]
-	public DateTime? UploadedAt { get; set; } = DateTime.Now;
+    [StringLength(255)]
+    public string FileUrl { get; set; }
 
-	// Navigation properties
-	[ForeignKey("CourseID")]
-	public Course Course { get; set; }
+    public DateTime UploadedAt { get; set; } = DateTime.Now;
 
-	[ForeignKey("PostID")]
-	public Post Post { get; set; }
+    [ForeignKey("Id")]
+    public virtual ApplicationUser User { get; set; }
 
-	[ForeignKey("UserID")]
-	public User User { get; set; }
+    [ForeignKey("CourseID")]
+    public virtual Course Course { get; set; }
+
+    [ForeignKey("PostID")]
+    public virtual Post Post { get; set; }
+
+    public virtual ICollection<Enrollment> Enrollments { get; set; }
 }

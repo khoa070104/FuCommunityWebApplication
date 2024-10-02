@@ -8,38 +8,35 @@ namespace FuCommunityWebModels.Models
 {
 	public class Course
 	{
-		[Key]
-		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-		public int CourseID { get; set; }
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int CourseID { get; set; }
 
-		public int? UserID { get; set; }
+        public string UserID { get; set; }
 
-		[Required]
-		[MaxLength(255)]
-		public string Title { get; set; }
+        [Required]
+        [StringLength(255)]
+        public string Title { get; set; }
 
-		public string Description { get; set; }
+        public string Description { get; set; }
 
-		[Column(TypeName = "decimal(10,2)")]
-		public decimal? Price { get; set; }
+        public decimal? Price { get; set; }
 
-		[DataType(DataType.DateTime)]
-		public DateTime? CreatedDate { get; set; } = DateTime.Now;
+        public DateTime CreatedDate { get; set; } = DateTime.Now;
 
-		[DataType(DataType.DateTime)]
-		public DateTime? UpdatedDate { get; set; }
+        public DateTime? UpdatedDate { get; set; }
 
-		[MaxLength(255)]
-		public string CourseImage { get; set; }
+        [StringLength(255)]
+        public string CourseImage { get; set; }
 
-		[MaxLength(50)]
-		public string Status { get; set; }
+        [StringLength(50)]
+        public string Status { get; set; }
 
-		// Navigation property
-		[ForeignKey("UserID")]
-		public User User { get; set; }
+        [ForeignKey("Id")]
+        public ApplicationUser User { get; set; }
 
-		public ICollection<Document> Documents { get; set; }  // Một Course có nhiều Documents
-		public ICollection<Lesson> Lessons { get; set; }  // Một Course có nhiều Lessons
-	}
+        public virtual ICollection<Lesson> Lessons { get; set; }
+        public virtual ICollection<Enrollment> Enrollments { get; set; }
+        public virtual ICollection<Document> Documents { get; set; }
+    }
 }

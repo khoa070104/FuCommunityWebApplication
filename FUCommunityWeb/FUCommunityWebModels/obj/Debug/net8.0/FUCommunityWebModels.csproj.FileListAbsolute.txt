@@ -34,3 +34,4 @@ D:\UNIVERSITY\Sem5\SWP391\FUWeb\FuCommunityWebApplication\FUCommunityWeb\FUCommu
 D:\UNIVERSITY\Sem5\SWP391\FUWeb\FuCommunityWebApplication\FUCommunityWeb\FUCommunityWebModels\obj\Debug\net8.0\refint\FuCommunityWebModels.dll
 D:\UNIVERSITY\Sem5\SWP391\FUWeb\FuCommunityWebApplication\FUCommunityWeb\FUCommunityWebModels\obj\Debug\net8.0\FuCommunityWebModels.pdb
 D:\UNIVERSITY\Sem5\SWP391\FUWeb\FuCommunityWebApplication\FUCommunityWeb\FUCommunityWebModels\obj\Debug\net8.0\ref\FuCommunityWebModels.dll
+D:\Documents\PRN212\FuCommunityWebApplication\FUCommunityWeb\FUCommunityWebModels\obj\Debug\net8.0\FuCommunityWebModels.csproj.AssemblyReference.cache
