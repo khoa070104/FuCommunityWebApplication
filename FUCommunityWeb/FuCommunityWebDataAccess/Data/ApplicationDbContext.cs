@@ -12,7 +12,10 @@ namespace FuCommunityWebDataAccess.Data
 {
 	public class ApplicationDbContext : IdentityDbContext<IdentityUser> // Sử dụng ApplicationUser thay vì IdentityUser
 	{
-		public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+        public ApplicationDbContext()
+        {
+        }
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
 		{
 		}
 		public DbSet<ApplicationUser> Users {  get; set; }

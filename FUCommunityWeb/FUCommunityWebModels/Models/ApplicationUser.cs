@@ -16,9 +16,13 @@ namespace FuCommunityWebModels.Models
         [MaxLength(1)]
         public string Gender { get; set; }
 
-        public DateTime? DOB { get; set; }
+        public DateTime DOB { get; set; }
 
         public string Bio { get; set; }
+		[MaxLength(255)]
+		public string Address { get; set; }
+		[MaxLength(500)]
+		public string Description { get; set; }
 
         [MaxLength(255)]
         public string AvatarImage { get; set; }

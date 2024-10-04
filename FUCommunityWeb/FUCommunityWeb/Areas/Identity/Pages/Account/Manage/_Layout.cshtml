@@ -1,25 +1,38 @@
 ﻿@{
-    if (ViewData.TryGetValue("ParentLayout", out var parentLayout) && parentLayout !=  null)
+    if (ViewData.TryGetValue("ParentLayout", out var parentLayout) && parentLayout != null)
     {
         Layout = parentLayout.ToString();
     }
     else
     {
-        Layout = "/Areas/Identity/Pages/_Layout.cshtml";
+        Layout = "/Views/Shared/_Layout.cshtml";
     }
 }
 
-<h1>Manage your account</h1>
-
-<div>
-    <h2>Change your account settings</h2>
-    <hr />
-    <div class="row">
-        <div class="col-md-3">
-            <partial name="_ManageNav" />
-        </div>
-        <div class="col-md-9">
-            @RenderBody()
+<div class="container-fluid mt-4 profile">
+        <h1 class="title text-start">PROFILE</h1> <!-- Align profile title to the left -->
+        <div class="row justify-content-center">
+            <!-- Sidebar -->
+            <div class="col-md-3">
+                <div class="sidebar">
+                    <img src="/img/avt2.jpg" class="avatar mb-3 rounded-circle" alt="Avatar">
+                    <!-- Replace with image, round it -->
+                    <h4 class="username mb-1">Nguyen Van A</h4> <!-- Smaller username -->
+                    <p class="points">Points of week: <span>100</span></p>
+                    <!-- Smaller points text, closer to username -->
+                    <div class="d-flex mb-3">
+                        <button class="btn btn-changeavt">Change Avatar</button>
+                        <button class="btn btn-editprofile">Edit Profile</button>
+                    </div>
+                    <ul class="list-group">
+                        <partial name="_ManageNav"/>
+                    </ul>
+                </div>
+            </div>
+            <!-- My Profile Section -->
+            <div class="col-md-9">
+                @RenderBody()
+            </div>
         </div>
     </div>
 </div>

@@ -1,0 +1,133 @@
+﻿@model UserVM
+
+
+<div class="container-fluid mt-4 profile">
+	<h1 class="title text-start">PROFILE</h1>
+	<div class="row justify-content-center">
+		<!-- Sidebar -->
+		<div class="col-md-3">
+			<div class="sidebar">
+				<img src="@(string.IsNullOrEmpty(Model.AvatarImage) ? "/img/avt2.jpg" : Model.AvatarImage)" class="avatar mb-3 rounded-circle" alt="Avatar" />				
+				<h4 class="username mb-1">@Model.FullName</h4>
+				<p class="points">Points of week: <span>100</span></p>
+				
+				<div class="d-flex mb-3">
+					<button class="btn btn-changeavt">Change Avatar</button>
+					<button class="btn btn-editprofile">Edit Profile</button>
+				</div>
+				<ul class="list-group">
+					<li class="list-group-item"><i class="fa fa-cog"></i> Setting</li>
+					<li class="list-group-item"><i class="fa fa-comment-dots"></i> Message</li>
+					<li class="list-group-item"><i class="fa fa-pencil-alt"></i> Post</li>
+					<li class="list-group-item"><i class="fa fa-book"></i> Course History</li>
+				</ul>
+			</div>
+		</div>
+		<!-- My Profile Section -->
+		<div class="col-md-9">
+			<div class="my-profile">
+				<h2 class="text-center custom-my-profile mb-4">Edit Profile</h2>
+				<form class="profile-form" method="post">
+					<div class="row mb-3">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="fullName">Full Name:</label>
+								<input asp-for="FullName" class="form-control" id="fullName"/>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="bio">Bio:</label>
+								<input asp-for="Bio" class="form-control" id="bio" />
+							</div>
+						</div>
+					</div>
+					<div class="row mb-3">
+						<div class="col-sm-12">
+							<div class="form-group">
+								<label for="address">Address:</label>
+								<input asp-for="Address" class="form-control" id="address" />
+							</div>
+						</div>
+					</div>
+					<div class="row mb-3">
+						<div class="col-sm-4">
+							<div class="form-group">
+								<label for="gender">Gender:</label>
+								<select asp-for="Gender" class="form-control" id="gender" >
+									<option value="M" selected="@Model.Gender == 'M'">Male</option>
+									<option value="F" selected="@Model.Gender == 'F'">Female</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-sm-4">
+							<div class="form-group">
+								<label for="dob">Date of Birth:</label>
+								<input asp-for="DOB" class="form-control" id="dob" />
+							</div>
+						</div>
+						<div class="col-sm-4">
+							<div class="form-group">
+								<label for="phone">Phone Number:</label>
+								<input asp-for="PhoneNumber" class="form-control" id="phone" disabled />
+								<span class="text-custom-light" style="font-size: 10px; margin-left: 12%">Muốn cập nhật Số điện thoại, <a style="text-decoration: none; font-size: 10px;font-weight:bold" href="#">Click here</a></span>
+							</div>
+						</div>
+					</div>
+					<div class="form-group mb-3">
+						<label for="description">Description:</label>
+						<textarea asp-for="Description" class="form-control" id="description"></textarea>
+					</div>
+					<div>
+						<button type="submit" class="btn-savechange">Save Changes</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	// document.addEventListener('DOMContentLoaded', function () {
+	// 	const inputs = document.querySelectorAll('.profile-form input, .profile-form textarea');
+	// 	const btnSaveChange = document.querySelector('.btn-savechange');
+	// 	const phoneInput = document.querySelector('#phone');
+	// 	btnSaveChange.textContent = 'Edit';
+	// 	inputs.forEach(input => {
+	// 		if (input !== phoneInput) {
+	// 			input.disabled = true;
+	// 		}
+	// 	});
+
+	// 	btnSaveChange.addEventListener('click', function (event) {
+	// 		if (btnSaveChange.textContent === 'Edit') {
+	// 			inputs.forEach(input => {
+	// 				if (input !== phoneInput) {
+	// 					input.disabled = false;
+	// 				}
+	// 			});
+	// 			btnSaveChange.textContent = 'Save Changes';
+	// 			event.preventDefault();
+	// 		} else {
+	// 			btnSaveChange.textContent = 'Edit';
+	// 			inputs.forEach(input => input.disabled = true);
+	// 		}
+	// 	});
+	// });
+	//---
+	// btnSaveChange.addEventListener('click', function (event) {
+	// 	if (btnSaveChange.textContent === 'Edit') {
+	// 		inputs.forEach(input => {
+	// 			if (input !== phoneInput) {
+	// 				input.disabled = false; Enable input fields
+	// 			}
+	// 		});
+	// 		btnSaveChange.textContent = 'Save Changes';
+	// 		event.preventDefault(); Prevent form submission on the first click
+	// 	} else {
+	// 		btnSaveChange.textContent = 'Edit';
+	// 		inputs.forEach(input => input.disabled = true);
+	// 		Allow form submission on the second click
+	// 	}
+	// });
+</script>

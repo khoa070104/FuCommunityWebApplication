@@ -1,91 +1,90 @@
-﻿<body>
-    <div class="container-fluid mt-4 profile">
-        <h1 class="title text-start">PROFILE</h1> <!-- Align profile title to the left -->
-        <div class="row justify-content-center">
-            <!-- Sidebar -->
-            <div class="col-md-3">
-                <div class="sidebar">
-                    <img src="/img/avt2.jpg" class="avatar mb-3 rounded-circle" alt="Avatar">
-                    <!-- Replace with image, round it -->
-                    <h4 class="username mb-1">Nguyen Van A</h4> <!-- Smaller username -->
-                    <p class="points">Points of week: <span>100</span></p>
-                    <!-- Smaller points text, closer to username -->
-                    <div class="d-flex mb-3">
-                        <button class="btn btn-changeavt">Change Avatar</button>
-                        <button class="btn btn-editprofile">Edit Profile</button>
-                    </div>
-                    <ul class="list-group">
-                        <li class="list-group-item"><i class="fa fa-cog"></i> Setting</li>
-                        <li class="list-group-item"><i class="fa fa-comment-dots"></i> Message</li>
-                        <li class="list-group-item"><i class="fa fa-pencil-alt"></i> Post</li>
-                        <li class="list-group-item"><i class="fa fa-book"></i> Course History</li>
-                    </ul>
-                </div>
-            </div>
-            <!-- My Profile Section -->
-            <div class="col-md-9">
-                <div class="my-profile">
-                    <h2 class="text-center custom-my-profile mb-4">Edit Profile</h2>
-                    <form class="profile-form">
-                        <div class="row mb-3">
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="fullName">Full Name:</label>
-                                    <input type="text" class="form-control" id="fullName" value="Nguyen Van A">
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="username">Username:</label>
-                                    <input type="text" class="form-control" id="username" value="hihihihihi">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="email">Email:</label>
-                                    <input type="email" class="form-control" id="email" value="example@example.com">
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="address">Address:</label>
-                                    <input type="text" class="form-control" id="address" value="123 Example St, City">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label for="gender">Gender:</label>
-                                    <input type="text" class="form-control" id="gender" value="Male">
-                                </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label for="dob">Date of Birth:</label>
-                                    <input type="date" class="form-control" id="dob" value="1990-01-01">
-                                </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label for="phone">Phone Number:</label>
-                                    <input type="text" class="form-control" id="phone" value="123-456-7890">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group mb-3">
-                            <label for="description">Description:</label>
-                            <textarea class="form-control" id="description"
-                                      rows="4">This is a short description about the user profile. Here you can include any additional information or bio.</textarea>
-                        </div>
-                        <div>
-                            <button type="submit" class="btn-savechange">Save Changes</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</body>
+﻿     <!--div class="container-fluid mt-4 profile">
+         <h1 class="title text-start">PROFILE</h1> 
+         <div class="row justify-content-center">
+           
+             <div class="col-md-3">
+                 <div class="sidebar">
+                     <img src="/img/avt2.jpg" class="avatar mb-3 rounded-circle" alt="Avatar">
+                   
+                     <h4 class="username mb-1">Nguyen Van A</h4> 
+                     <p class="points">Points of week: <span>100</span></p>
+                   
+                     <div class="d-flex mb-3">
+                         <button class="btn btn-changeavt">Change Avatar</button>
+                         <button class="btn btn-editprofile">Edit Profile</button>
+                     </div>
+                     <ul class="list-group">
+                         <li class="list-group-item"><i class="fa fa-cog"></i> Setting</li>
+                         <li class="list-group-item"><i class="fa fa-comment-dots"></i> Message</li>
+                         <li class="list-group-item"><i class="fa fa-pencil-alt"></i> Post</li>
+                         <li class="list-group-item"><i class="fa fa-book"></i> Course History</li>
+                     </ul>
+                 </div>
+             </div>
+          
+             <div class="col-md-9">
+                 <div class="my-profile">
+                     <h2 class="text-center custom-my-profile mb-4">Edit Profile</h2>
+                     <form class="profile-form" method="post" asp-controller="Profile" asp-action="Index">
+                         <div class="row mb-3">
+                             <div class="col-sm-6">
+                                 <div class="form-group">
+                                     <label asp-for="FullName" class="form-label">Full Name</label>
+                                     <input asp-for="FullName" class="form-control" placeholder="Enter your full name" />
+                                 </div>
+                             </div>
+                             <div class="col-sm-6">
+                                 <div class="form-group">
+                                     <label asp-for="PhoneNumber" class="form-label">Phone Number</label>
+                                     <input asp-for="PhoneNumber" class="form-control" placeholder="Enter your phone number" />
+                                 </div>
+                             </div>
+                         </div>
+                        
+                         <div class="row mb-3">
+                             <div class="col-sm-6">
+                                 <div class="form-group">
+                                     <label asp-for="Bio" class="form-label">Bio</label>
+                                     <textarea asp-for="Bio" class="form-control" rows="3" placeholder="Enter your bio"></textarea>
+                                 </div>
+                             </div>
+                             <div class="col-sm-6">
+                                 <div class="form-group">
+                                     <label asp-for="Address" class="form-label">Address</label>
+                                     <input asp-for="Address" class="form-control" placeholder="Enter your address" />
+                                 </div>
+                             </div>
+                         </div>
+                        
+                         <div class="row mb-3">
+                             <div class="col-sm-6">
+                                 <div class="form-group">
+                                     <label asp-for="Gender" class="form-label">Gender</label>
+                                     <select asp-for="Gender" class="form-control">
+                                         <option value="M">Male</option>
+                                         <option value="F">Female</option>
+                                         <option value="O">Other</option>
+                                     </select>
+                                 </div>
+                             </div>
+                             <div class="col-sm-6">
+                                 <div class="form-group">
+                                     <label asp-for="DOB" class="form-label">Date of Birth</label>
+                                     <input asp-for="DOB" class="form-control" type="date" />
+                                 </div>
+                             </div>
+                         </div>
+                        
+                         <div class="form-group mb-3">
+                             <label asp-for="Description" class="form-label">Description</label>
+                             <textarea asp-for="Description" class="form-control" rows="3" placeholder="Enter your description"></textarea>
+                         </div>
+                        
+                         <div>
+                             <button id="update-profile-button" type="submit" class="btn-savechange">Save</button>
+                         </div>
+                     </form>
+                 </div>
+             </div>
+         </div>
+     </!--div--> 

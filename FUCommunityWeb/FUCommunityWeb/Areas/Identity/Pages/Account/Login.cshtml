@@ -15,14 +15,14 @@
                         <h2 class="text-white">Log In</h2>
                         <p class="text-white">Welcome to FUNNYCODE!</p>
                         <form id="account" method="post">
-                            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+                            <div asp-validation-summary="ModelOnly" class="text-light" role="alert"></div>
                             <div class="mb-3">
                                 <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="Enter your email" />
-                                <span asp-validation-for="Input.Email" class="text-danger"></span>
+                                <span asp-validation-for="Input.Email" class="text-light"></span>
                             </div>
                             <div class="mb-3">
                                 <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" placeholder="Enter your password" />
-                                <span asp-validation-for="Input.Password" class="text-danger"></span>
+                                <span asp-validation-for="Input.Password" class="text-light"></span>
                             </div>
                             <div class="form-check mb-3 text-white">
                                 <input class="form-check-input" asp-for="Input.RememberMe" />
