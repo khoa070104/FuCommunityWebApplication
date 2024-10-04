@@ -1,22 +1,36 @@
-﻿<body>
+﻿@model CourseHistoryViewModel
+
+<body>
     <div class="container-fluid mt-4 profile">
-        <h1 class="title text-start">PROFILE</h1> <!-- Align profile title to the left -->
+        <h1 class="title text-start">PROFILE</h1>
         <div class="row justify-content-center">
             <!-- Sidebar -->
             <div class="col-md-3">
                 <div class="sidebar">
-                    <img src="/img/avt2.jpg" class="avatar mb-3 rounded-circle" alt="Avatar"> <!-- Replace with image, round it -->
-                    <h4 class="username mb-1">Nguyen Van A</h4> <!-- Smaller username -->
-                    <p class="points">Points of week: <span>100</span></p> <!-- Smaller points text, closer to username -->
-                    <div class="d-flex mb-3">
-                        <button class="btn btn-changeavt">Change Avatar</button>
-                        <button class="btn btn-editprofile">Edit Profile</button>
-                    </div>
+                    <form asp-action="ChangeAvatar" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="currentPage" value="@ViewData["CurrentPage"]" />
+                        <img src="@(Model.User.AvatarImage ?? "/img/avt2.jpg")" class="avatar mb-3 rounded-circle" alt="Avatar">
+                        <h4 class="username mb-1">@Model.User.FullName</h4>
+                        <p class="points">Points of week: <span>@Model.User.Point</span></p>
+                        <div class="d-flex mb-3">
+                            <input type="file" name="file" id="file" accept="image/*" style="display: none;" onchange="this.form.submit()">
+                            <button type="button" class="btn btn-changeavt" onclick="document.getElementById('file').click();">Change Avatar</button>
+                            <button class="btn btn-editprofile">Edit Profile</button>
+                        </div>
+                    </form>
                     <ul class="list-group">
-                        <li class="list-group-item"><i class="fa fa-cog"></i> Setting</li>
-                        <li class="list-group-item"><i class="fa fa-comment-dots"></i> Message</li>
-                        <li class="list-group-item"><i class="fa fa-pencil-alt"></i> Post</li>
-                        <li class="list-group-item"><i class="fa fa-book"></i> Course History</li>
+                        <li class="list-group-item">
+                            <a href="@Url.Action("EditProfile")"><i class="fa fa-cog"></i> Setting</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="@Url.Action("ContactUs")"><i class="fa fa-comment-dots"></i> Message</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="@Url.Action("PostHistory")"><i class="fa fa-pencil-alt"></i> Post</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="@Url.Action("CourseHistory")"><i class="fa fa-book"></i> Course History</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -28,41 +42,26 @@
                         <table class="custom-table table-hover">
                             <thead class="custom-table-header">
                                 <tr>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Enrolled Date</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Point</th>
+                                    <th scope="col">Tên</th>
+                                    <th scope="col">Ngày Đăng Ký</th>
+                                    <th scope="col">Trạng Thái</th>
+                                    <th scope="col">Điểm</th>
                                     <th scope="col"></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="custom-row-bg">
-                                    <td class="table-name">PRF192</td>
-                                    <td>22/04/2024</td>
-                                    <td>Completed</td>
-                                    <td><span class="custom-badge">400</span></td>
-                                    <th scope="col">
-                                        <i class="fa fa-arrow-right"></i>
-                                    </th>
-                                </tr>
-                                <tr class="custom-row-bg">
-                                    <td class="table-name">PRO192</td>
-                                    <td>13/05/2024</td>
-                                    <td>In Progress</td>
-                                    <td><span class="custom-badge">400</span></td>
-                                    <th scope="col">
-                                        <i class="fa fa-arrow-right"></i>
-                                    </th>
-                                </tr>
-                                <tr class="custom-row-bg">
-                                    <td class="table-name">PRN212</td>
-                                    <td>12/09/2024</td>
-                                    <td>Not Start</td>
-                                    <td><span class="custom-badge">400</span></td>
-                                    <th scope="col">
-                                        <i class="fa fa-arrow-right"></i>
-                                    </th>
-                                </tr>
+                                @foreach (var enrollment in Model.Enrollments)
+                                {
+                                    <tr class="custom-row-bg">
+                                        <td class="table-name">@enrollment.Course.Title</td>
+                                        <td>@enrollment.EnrollmentDate.ToString("dd/MM/yyyy")</td>
+                                        <td>@enrollment.Status</td>
+                                        <td><span class="custom-badge">@enrollment.Course.Price</span></td>
+                                        <th scope="col">
+                                            <i class="fa fa-arrow-right"></i>
+                                        </th>
+                                    </tr>
+                                }
                             </tbody>
                         </table>
                     </div>

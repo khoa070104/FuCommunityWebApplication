@@ -37,5 +37,13 @@ namespace FuCommunityWebModels.Models
 
         // Thêm thuộc tính Comments
         public virtual ICollection<Comment> Comments { get; set; } // Mối quan hệ với Comment
+        [NotMapped]
+        public int Point
+        {
+            get
+            {
+                return IsVotes?.Sum(vote => vote.Point) ?? 0;
+            }
+        }
     }
 }

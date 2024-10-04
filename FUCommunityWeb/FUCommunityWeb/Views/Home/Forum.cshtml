@@ -1,4 +1,6 @@
-﻿<body>
+﻿@model FuCommunityWebModels.Models.ForumViewModel
+
+<body>
     <div class="container forum">
         <h1 class="forum-title">FORUM</h1>
         <div class="row">
@@ -8,23 +10,29 @@
                         General
                     </div>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item d-flex align-items-center justify-content-between">
-                            <div class="d-flex align-items-center">
-                                <div class="forum-icon me-3"></div>
-                                <div>
-                                    <div>Announcements</div>
-                                    <div class="text-muted">Threads <span>7.4k</span> & Posts <span>7.4k</span></div>
+                        @foreach (var post in Model.Posts ?? new List<Post>()) // Kiểm tra nếu Model.Posts null
+                        {
+                            <li class="list-group-item d-flex align-items-center justify-content-between">
+                                <div class="d-flex align-items-center">
+                                    <div class="forum-icon me-3"></div>
+                                    <div>
+                                        <div>@post.Title</div>
+                                        <div class="text-muted">
+                                            Comments <span>@(post.Comments?.Count ?? 0)</span>
+                                            & Votes <span>@(post.Votes?.Count ?? 0)</span>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="d-flex align-items-center">
-                                <div class="text-end me-3">
-                                    Nguyen Van A<br>
-                                    07/09/2024
+                                <div class="d-flex align-items-center">
+                                    <div class="text-end me-3">
+                                        @(post.User?.FullName ?? "Unknown User")<br>
+                                        @post.CreatedDate?.ToString("dd/MM/yyyy")
+                                    </div>
+                                    <img class="user-avatar" src="@post.User?.AvatarImage" alt="Alternate Text" />
                                 </div>
-                                <div class="user-avatar"></div>
-                            </div>
-                        </li>
-                        <!-- Repeat list item for more entries -->
+                            </li>
+                        }
+
                     </ul>
                 </div>
             </div>
@@ -34,14 +42,16 @@
                         News
                     </div>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item d-flex align-items-center card-ul">
-                            <img src="https://via.placeholder.com/50" class="news-img me-3" alt="News">
-                            <div>
-                                <div>Famous Courses</div>
-                                <div class="text-muted">Nguyen Thi B<br>20:13 12/08/2024</div>
-                            </div>
-                        </li>
-                        <!-- Repeat list item for more news -->
+                        @foreach (var course in Model.Courses.OrderByDescending(c => c.CreatedDate).Take(5))
+                        {
+                            <li class="list-group-item d-flex align-items-center card-ul">
+                                <img src="@course.CourseImage" class="news-img me-3" alt="News">
+                                <div>
+                                    <div>@course.Title</div>
+                                    <div class="text-muted">@course.Description<br>@course.CreatedDate.ToString("HH:mm dd/MM/yyyy")</div>
+                                </div>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>

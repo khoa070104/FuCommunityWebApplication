@@ -65,7 +65,7 @@ namespace FuCommunityWebDataAccess.Migrations
 
                     b.HasIndex("UserID");
 
-                    b.ToTable("Document");
+                    b.ToTable("Documents");
                 });
 
             modelBuilder.Entity("FuCommunityWebModels.Models.Category", b =>
@@ -135,7 +135,7 @@ namespace FuCommunityWebDataAccess.Migrations
 
                     b.HasIndex("UserID");
 
-                    b.ToTable("Comment");
+                    b.ToTable("Comments");
                 });
 
             modelBuilder.Entity("FuCommunityWebModels.Models.Course", b =>
@@ -185,7 +185,7 @@ namespace FuCommunityWebDataAccess.Migrations
 
                     b.HasIndex("Id");
 
-                    b.ToTable("Course");
+                    b.ToTable("Courses");
                 });
 
             modelBuilder.Entity("FuCommunityWebModels.Models.Enrollment", b =>
@@ -258,7 +258,7 @@ namespace FuCommunityWebDataAccess.Migrations
 
                     b.HasIndex("UserID");
 
-                    b.ToTable("IsVote");
+                    b.ToTable("IsVotes");
                 });
 
             modelBuilder.Entity("FuCommunityWebModels.Models.Lesson", b =>
@@ -283,7 +283,6 @@ namespace FuCommunityWebDataAccess.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Id")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("PostImage")
@@ -337,10 +336,6 @@ namespace FuCommunityWebDataAccess.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Id")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("PostImage")
                         .IsRequired()
                         .HasMaxLength(255)
@@ -369,7 +364,7 @@ namespace FuCommunityWebDataAccess.Migrations
 
                     b.HasIndex("UserID");
 
-                    b.ToTable("Post");
+                    b.ToTable("Posts");
                 });
 
             modelBuilder.Entity("FuCommunityWebModels.Models.Question", b =>
@@ -447,7 +442,7 @@ namespace FuCommunityWebDataAccess.Migrations
 
                     b.HasIndex("UserID");
 
-                    b.ToTable("Vote");
+                    b.ToTable("Votes");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -675,7 +670,7 @@ namespace FuCommunityWebDataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("DOB")
+                    b.Property<DateTime>("DOB")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
@@ -709,7 +704,7 @@ namespace FuCommunityWebDataAccess.Migrations
                     b.HasOne("FuCommunityWebModels.Models.ApplicationUser", "User")
                         .WithMany("Documents")
                         .HasForeignKey("UserID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Course");
@@ -736,7 +731,7 @@ namespace FuCommunityWebDataAccess.Migrations
                     b.HasOne("FuCommunityWebModels.Models.ApplicationUser", "User")
                         .WithMany("Comments")
                         .HasForeignKey("UserID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Post");
@@ -760,7 +755,7 @@ namespace FuCommunityWebDataAccess.Migrations
                     b.HasOne("FuCommunityWebModels.Models.Course", "Course")
                         .WithMany("Enrollments")
                         .HasForeignKey("CourseID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Document", "Document")
@@ -770,7 +765,7 @@ namespace FuCommunityWebDataAccess.Migrations
                     b.HasOne("FuCommunityWebModels.Models.ApplicationUser", "User")
                         .WithMany("Enrollments")
                         .HasForeignKey("UserID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Course");
@@ -789,13 +784,13 @@ namespace FuCommunityWebDataAccess.Migrations
                     b.HasOne("FuCommunityWebModels.Models.Post", "Post")
                         .WithMany("IsVotes")
                         .HasForeignKey("PostID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("FuCommunityWebModels.Models.ApplicationUser", "User")
                         .WithMany("IsVotes")
                         .HasForeignKey("UserID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Post");
@@ -808,20 +803,18 @@ namespace FuCommunityWebDataAccess.Migrations
                     b.HasOne("FuCommunityWebModels.Models.Category", "Category")
                         .WithMany()
                         .HasForeignKey("CategoryID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("FuCommunityWebModels.Models.Course", "Course")
                         .WithMany("Lessons")
                         .HasForeignKey("CourseID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("FuCommunityWebModels.Models.ApplicationUser", "User")
                         .WithMany()
-                        .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("Id");
 
                     b.Navigation("Category");
 
@@ -839,7 +832,7 @@ namespace FuCommunityWebDataAccess.Migrations
                     b.HasOne("FuCommunityWebModels.Models.ApplicationUser", "User")
                         .WithMany("Posts")
                         .HasForeignKey("UserID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Category");
@@ -865,7 +858,7 @@ namespace FuCommunityWebDataAccess.Migrations
                     b.HasOne("FuCommunityWebModels.Models.ApplicationUser", "User")
                         .WithMany("Votes")
                         .HasForeignKey("UserID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Post");
@@ -878,7 +871,7 @@ namespace FuCommunityWebDataAccess.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -887,7 +880,7 @@ namespace FuCommunityWebDataAccess.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -896,7 +889,7 @@ namespace FuCommunityWebDataAccess.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -905,13 +898,13 @@ namespace FuCommunityWebDataAccess.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -920,7 +913,7 @@ namespace FuCommunityWebDataAccess.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 

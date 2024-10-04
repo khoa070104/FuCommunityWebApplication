@@ -70,3 +70,21 @@ D:\Documents\FuWeb\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAc
 D:\Documents\FuWeb\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\obj\Debug\net8.0\FuCommunityWebDataAccess.pdb
 D:\Documents\FuWeb\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\obj\Debug\net8.0\FuCommunityWebDataAccess.genruntimeconfig.cache
 D:\Documents\FuWeb\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\obj\Debug\net8.0\ref\FuCommunityWebDataAccess.dll
+C:\Users\hahuy\Desktop\Task Tong\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\bin\Debug\net8.0\FuCommunityWebDataAccess.deps.json
+C:\Users\hahuy\Desktop\Task Tong\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\bin\Debug\net8.0\FuCommunityWebDataAccess.runtimeconfig.json
+C:\Users\hahuy\Desktop\Task Tong\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\bin\Debug\net8.0\FuCommunityWebDataAccess.dll
+C:\Users\hahuy\Desktop\Task Tong\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\bin\Debug\net8.0\FuCommunityWebDataAccess.pdb
+C:\Users\hahuy\Desktop\Task Tong\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\bin\Debug\net8.0\FuCommunityWebModels.dll
+C:\Users\hahuy\Desktop\Task Tong\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\bin\Debug\net8.0\FuCommunityWebModels.pdb
+C:\Users\hahuy\Desktop\Task Tong\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\obj\Debug\net8.0\FuCommunityWebDataAccess.csproj.AssemblyReference.cache
+C:\Users\hahuy\Desktop\Task Tong\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\obj\Debug\net8.0\FuCommunityWebDataAccess.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\hahuy\Desktop\Task Tong\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\obj\Debug\net8.0\FuCommunityWebDataAccess.AssemblyInfoInputs.cache
+C:\Users\hahuy\Desktop\Task Tong\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\obj\Debug\net8.0\FuCommunityWebDataAccess.AssemblyInfo.cs
+C:\Users\hahuy\Desktop\Task Tong\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\obj\Debug\net8.0\FuCommunityWebDataAccess.csproj.CoreCompileInputs.cache
+C:\Users\hahuy\Desktop\Task Tong\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\obj\Debug\net8.0\FuCommunityWebDataAccess.sourcelink.json
+C:\Users\hahuy\Desktop\Task Tong\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\obj\Debug\net8.0\FuCommun.87D80B4A.Up2Date
+C:\Users\hahuy\Desktop\Task Tong\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\obj\Debug\net8.0\FuCommunityWebDataAccess.dll
+C:\Users\hahuy\Desktop\Task Tong\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\obj\Debug\net8.0\refint\FuCommunityWebDataAccess.dll
+C:\Users\hahuy\Desktop\Task Tong\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\obj\Debug\net8.0\FuCommunityWebDataAccess.pdb
+C:\Users\hahuy\Desktop\Task Tong\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\obj\Debug\net8.0\FuCommunityWebDataAccess.genruntimeconfig.cache
+C:\Users\hahuy\Desktop\Task Tong\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\obj\Debug\net8.0\ref\FuCommunityWebDataAccess.dll

@@ -40,7 +40,7 @@ namespace FuCommunityWebModels.Models
         [ForeignKey("CategoryID")]
         public virtual Category Category { get; set; }
 
-        [ForeignKey("Id")]
+        [ForeignKey("UserID")]
         public virtual ApplicationUser User { get; set; } // Thay đổi từ User thành ApplicationUser
 
         public ICollection<Comment> Comments { get; set; }  // Một Post có nhiều Comments

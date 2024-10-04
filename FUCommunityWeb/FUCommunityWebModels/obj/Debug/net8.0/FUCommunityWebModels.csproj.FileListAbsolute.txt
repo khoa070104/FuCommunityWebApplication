@@ -48,3 +48,16 @@ D:\Documents\FuWeb\FuCommunityWebApplication\FUCommunityWeb\FUCommunityWebModels
 D:\Documents\FuWeb\FuCommunityWebApplication\FUCommunityWeb\FUCommunityWebModels\obj\Debug\net8.0\refint\FuCommunityWebModels.dll
 D:\Documents\FuWeb\FuCommunityWebApplication\FUCommunityWeb\FUCommunityWebModels\obj\Debug\net8.0\FuCommunityWebModels.pdb
 D:\Documents\FuWeb\FuCommunityWebApplication\FUCommunityWeb\FUCommunityWebModels\obj\Debug\net8.0\ref\FuCommunityWebModels.dll
+C:\Users\hahuy\Desktop\Task Tong\FuCommunityWebApplication\FUCommunityWeb\FUCommunityWebModels\bin\Debug\net8.0\FuCommunityWebModels.deps.json
+C:\Users\hahuy\Desktop\Task Tong\FuCommunityWebApplication\FUCommunityWeb\FUCommunityWebModels\bin\Debug\net8.0\FuCommunityWebModels.dll
+C:\Users\hahuy\Desktop\Task Tong\FuCommunityWebApplication\FUCommunityWeb\FUCommunityWebModels\bin\Debug\net8.0\FuCommunityWebModels.pdb
+C:\Users\hahuy\Desktop\Task Tong\FuCommunityWebApplication\FUCommunityWeb\FUCommunityWebModels\obj\Debug\net8.0\FuCommunityWebModels.csproj.AssemblyReference.cache
+C:\Users\hahuy\Desktop\Task Tong\FuCommunityWebApplication\FUCommunityWeb\FUCommunityWebModels\obj\Debug\net8.0\FuCommunityWebModels.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\hahuy\Desktop\Task Tong\FuCommunityWebApplication\FUCommunityWeb\FUCommunityWebModels\obj\Debug\net8.0\FuCommunityWebModels.AssemblyInfoInputs.cache
+C:\Users\hahuy\Desktop\Task Tong\FuCommunityWebApplication\FUCommunityWeb\FUCommunityWebModels\obj\Debug\net8.0\FuCommunityWebModels.AssemblyInfo.cs
+C:\Users\hahuy\Desktop\Task Tong\FuCommunityWebApplication\FUCommunityWeb\FUCommunityWebModels\obj\Debug\net8.0\FuCommunityWebModels.csproj.CoreCompileInputs.cache
+C:\Users\hahuy\Desktop\Task Tong\FuCommunityWebApplication\FUCommunityWeb\FUCommunityWebModels\obj\Debug\net8.0\FuCommunityWebModels.sourcelink.json
+C:\Users\hahuy\Desktop\Task Tong\FuCommunityWebApplication\FUCommunityWeb\FUCommunityWebModels\obj\Debug\net8.0\FuCommunityWebModels.dll
+C:\Users\hahuy\Desktop\Task Tong\FuCommunityWebApplication\FUCommunityWeb\FUCommunityWebModels\obj\Debug\net8.0\refint\FuCommunityWebModels.dll
+C:\Users\hahuy\Desktop\Task Tong\FuCommunityWebApplication\FUCommunityWeb\FUCommunityWebModels\obj\Debug\net8.0\FuCommunityWebModels.pdb
+C:\Users\hahuy\Desktop\Task Tong\FuCommunityWebApplication\FUCommunityWeb\FUCommunityWebModels\obj\Debug\net8.0\ref\FuCommunityWebModels.dll

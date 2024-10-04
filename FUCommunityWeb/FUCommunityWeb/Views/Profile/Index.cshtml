@@ -7,14 +7,17 @@
 		<!-- Sidebar -->
 		<div class="col-md-3">
 			<div class="sidebar">
-				<img src="@(string.IsNullOrEmpty(Model.AvatarImage) ? "/img/avt2.jpg" : Model.AvatarImage)" class="avatar mb-3 rounded-circle" alt="Avatar" />				
-				<h4 class="username mb-1">@Model.FullName</h4>
-				<p class="points">Points of week: <span>100</span></p>
-				
-				<div class="d-flex mb-3">
-					<button class="btn btn-changeavt">Change Avatar</button>
-					<button class="btn btn-editprofile">Edit Profile</button>
-				</div>
+				<form asp-action="ChangeAvatar" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="currentPage" value="@ViewData["CurrentPage"]" />
+                        <img src="@(string.IsNullOrEmpty(Model.AvatarImage) ? "/img/avt2.jpg" : Model.AvatarImage)" class="avatar mb-3 rounded-circle" alt="Avatar" />				
+                        <h4 class="username mb-1">@Model.FullName</h4>
+						<p class="points">Points of week: <span>100</span></p>
+                        <div class="d-flex mb-3">
+                            <input type="file" name="file" id="file" accept="image/*" style="display: none;" onchange="this.form.submit()">
+                            <button type="button" class="btn btn-changeavt" onclick="document.getElementById('file').click();">Change Avatar</button>
+                            <button class="btn btn-editprofile">Edit Profile</button>
+                        </div>
+                    </form>
 				<ul class="list-group">
 					<li class="list-group-item"><i class="fa fa-cog"></i> Setting</li>
 					<li class="list-group-item"><i class="fa fa-comment-dots"></i> Message</li>

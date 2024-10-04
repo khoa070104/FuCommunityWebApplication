@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FuCommunityWebDataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241003110347_IdentityFix")]
-    partial class IdentityFix
+    [Migration("20241004062202_Identity")]
+    partial class Identity
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -68,7 +68,7 @@ namespace FuCommunityWebDataAccess.Migrations
 
                     b.HasIndex("UserID");
 
-                    b.ToTable("Document");
+                    b.ToTable("Documents");
                 });
 
             modelBuilder.Entity("FuCommunityWebModels.Models.Category", b =>
@@ -138,7 +138,7 @@ namespace FuCommunityWebDataAccess.Migrations
 
                     b.HasIndex("UserID");
 
-                    b.ToTable("Comment");
+                    b.ToTable("Comments");
                 });
 
             modelBuilder.Entity("FuCommunityWebModels.Models.Course", b =>
@@ -188,7 +188,7 @@ namespace FuCommunityWebDataAccess.Migrations
 
                     b.HasIndex("Id");
 
-                    b.ToTable("Course");
+                    b.ToTable("Courses");
                 });
 
             modelBuilder.Entity("FuCommunityWebModels.Models.Enrollment", b =>
@@ -261,7 +261,7 @@ namespace FuCommunityWebDataAccess.Migrations
 
                     b.HasIndex("UserID");
 
-                    b.ToTable("IsVote");
+                    b.ToTable("IsVotes");
                 });
 
             modelBuilder.Entity("FuCommunityWebModels.Models.Lesson", b =>
@@ -286,7 +286,6 @@ namespace FuCommunityWebDataAccess.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Id")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("PostImage")
@@ -340,10 +339,6 @@ namespace FuCommunityWebDataAccess.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Id")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("PostImage")
                         .IsRequired()
                         .HasMaxLength(255)
@@ -372,7 +367,7 @@ namespace FuCommunityWebDataAccess.Migrations
 
                     b.HasIndex("UserID");
 
-                    b.ToTable("Post");
+                    b.ToTable("Posts");
                 });
 
             modelBuilder.Entity("FuCommunityWebModels.Models.Question", b =>
@@ -450,7 +445,7 @@ namespace FuCommunityWebDataAccess.Migrations
 
                     b.HasIndex("UserID");
 
-                    b.ToTable("Vote");
+                    b.ToTable("Votes");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -664,6 +659,11 @@ namespace FuCommunityWebDataAccess.Migrations
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
                     b.Property<string>("AvatarImage")
                         .IsRequired()
                         .HasMaxLength(255)
@@ -673,8 +673,13 @@ namespace FuCommunityWebDataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("DOB")
+                    b.Property<DateTime>("DOB")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<string>("FullName")
                         .IsRequired()
@@ -812,9 +817,7 @@ namespace FuCommunityWebDataAccess.Migrations
 
                     b.HasOne("FuCommunityWebModels.Models.ApplicationUser", "User")
                         .WithMany()
-                        .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("Id");
 
                     b.Navigation("Category");
 
