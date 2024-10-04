@@ -17,6 +17,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using FuCommunityWebModels.Models;
+using FuCommunityWebUtility;
 
 namespace FUCommunityWeb.Areas.Identity.Pages.Account
 {
@@ -84,6 +86,13 @@ namespace FUCommunityWeb.Areas.Identity.Pages.Account
             [Required]
             [EmailAddress]
             public string Email { get; set; }
+            public string FullName { get; set; }
+            [Required(ErrorMessage = "Please enter your DOB")]
+            [DataType(DataType.Date, ErrorMessage = "Your DOB is not invalid.")]
+            [Display(Name = "Date Of Birth")]
+            public DateTime? DOB { get; set; }
+            [Required(ErrorMessage = "Please enter your gender")]
+            public string Gender { get; set; }
         }
         
         public IActionResult OnGet() => RedirectToPage("./Login");
@@ -131,7 +140,8 @@ namespace FUCommunityWeb.Areas.Identity.Pages.Account
                 {
                     Input = new InputModel
                     {
-                        Email = info.Principal.FindFirstValue(ClaimTypes.Email)
+                        Email = info.Principal.FindFirstValue(ClaimTypes.Email),
+                        FullName = info.Principal.FindFirstValue(ClaimTypes.Name)
                     };
                 }
                 return Page();
@@ -155,10 +165,14 @@ namespace FUCommunityWeb.Areas.Identity.Pages.Account
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
+                user.DOB = Input.DOB ?? DateTime.Now;
+                user.Gender = (Input.Gender == "Male") ? "M" : "F";
+                user.FullName = Input.FullName;
 
                 var result = await _userManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
+                    await _userManager.AddToRoleAsync(user, SD.Role_User_Student);
                     result = await _userManager.AddLoginAsync(user, info);
                     if (result.Succeeded)
                     {
@@ -197,11 +211,11 @@ namespace FUCommunityWeb.Areas.Identity.Pages.Account
             return Page();
         }
 
-        private IdentityUser CreateUser()
+        private ApplicationUser CreateUser()
         {
             try
             {
-                return Activator.CreateInstance<IdentityUser>();
+                return Activator.CreateInstance<ApplicationUser>();
             }
             catch
             {

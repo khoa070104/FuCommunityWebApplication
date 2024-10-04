@@ -11,3 +11,16 @@ D:\Documents\PRN212\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebUtili
 D:\Documents\PRN212\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebUtility\obj\Debug\net8.0\FuCommunityWebUtility.pdb
 D:\Documents\PRN212\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebUtility\obj\Debug\net8.0\ref\FuCommunityWebUtility.dll
 D:\Documents\PRN212\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebUtility\obj\Debug\net8.0\FuCommunityWebUtility.csproj.AssemblyReference.cache
+D:\Documents\FuWeb\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebUtility\bin\Debug\net8.0\FuCommunityWebUtility.deps.json
+D:\Documents\FuWeb\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebUtility\bin\Debug\net8.0\FuCommunityWebUtility.dll
+D:\Documents\FuWeb\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebUtility\bin\Debug\net8.0\FuCommunityWebUtility.pdb
+D:\Documents\FuWeb\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebUtility\obj\Debug\net8.0\FuCommunityWebUtility.csproj.AssemblyReference.cache
+D:\Documents\FuWeb\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebUtility\obj\Debug\net8.0\FuCommunityWebUtility.GeneratedMSBuildEditorConfig.editorconfig
+D:\Documents\FuWeb\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebUtility\obj\Debug\net8.0\FuCommunityWebUtility.AssemblyInfoInputs.cache
+D:\Documents\FuWeb\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebUtility\obj\Debug\net8.0\FuCommunityWebUtility.AssemblyInfo.cs
+D:\Documents\FuWeb\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebUtility\obj\Debug\net8.0\FuCommunityWebUtility.csproj.CoreCompileInputs.cache
+D:\Documents\FuWeb\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebUtility\obj\Debug\net8.0\FuCommunityWebUtility.sourcelink.json
+D:\Documents\FuWeb\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebUtility\obj\Debug\net8.0\FuCommunityWebUtility.dll
+D:\Documents\FuWeb\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebUtility\obj\Debug\net8.0\refint\FuCommunityWebUtility.dll
+D:\Documents\FuWeb\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebUtility\obj\Debug\net8.0\FuCommunityWebUtility.pdb
+D:\Documents\FuWeb\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebUtility\obj\Debug\net8.0\ref\FuCommunityWebUtility.dll

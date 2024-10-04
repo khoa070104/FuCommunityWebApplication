@@ -49,21 +49,33 @@ namespace FUCommunityWeb.Areas.Identity.Pages.Account.Manage
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
         ///     directly from your code. This API may change or be removed in future releases.
         /// </summary>
+        
+        // Tạo thêm các trường tại đây để nhận dữ liệu
         public class InputModel
         {
-            /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
-            /// </summary>
-            [Phone]
-            [Display(Name = "Phone number")]
-            public string PhoneNumber { get; set; }
-        }
+			/// <summary>
+			///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
+			///     directly from your code. This API may change or be removed in future releases.
+			/// </summary>
+			[Phone]
+			[Display(Name = "Phone number")]
+			public string PhoneNumber { get; set; }
+
+			[Required]
+			[Display(Name = "Full Name")]
+			public string FullName { get; set; }
+
+			[Required]
+			[DataType(DataType.Date)]
+			[Display(Name = "Date of Birth")]
+			public DateTime DOB { get; set; }
+		}
 
         private async Task LoadAsync(IdentityUser user)
         {
             var userName = await _userManager.GetUserNameAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
+           
 
             Username = userName;
 
