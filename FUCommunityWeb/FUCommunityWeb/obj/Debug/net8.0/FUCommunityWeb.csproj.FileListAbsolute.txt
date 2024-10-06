@@ -1105,3 +1105,4 @@ D:\Documents\FuWeb\FuCommunityWebApplication\FUCommunityWeb\FUCommunityWeb\obj\D
 D:\Documents\FuWeb\FuCommunityWebApplication\FUCommunityWeb\FUCommunityWeb\obj\Debug\net8.0\FUCommunityWeb.genruntimeconfig.cache
 D:\Documents\FuWeb\FuCommunityWebApplication\FUCommunityWeb\FUCommunityWeb\obj\Debug\net8.0\ref\FUCommunityWeb.dll
 D:\Documents\FuWeb\FuCommunityWebApplication\FUCommunityWeb\FUCommunityWeb\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.Facebook.dll
+D:\Documents\FuWeb\FuCommunityWebApplication\FUCommunityWeb\FUCommunityWeb\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.Google.dll

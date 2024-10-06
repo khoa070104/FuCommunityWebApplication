@@ -23,6 +23,11 @@ builder.Services.AddAuthentication().AddFacebook(option =>
 	option.AppId = "1071287101119725";
 	option.AppSecret = "b6fdf1abe67ae1a1f9ae8dbf85250f3b";
 });
+builder.Services.AddAuthentication().AddGoogle(option =>
+{
+	option.ClientId = "259572018019-oe41ude3d7fof9l33mkbthbbheru37rp.apps.googleusercontent.com";
+	option.ClientSecret = "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";
+});
 builder.Services.AddScoped<UserRepo>();
 
 builder.Services.AddScoped<UserService>();
