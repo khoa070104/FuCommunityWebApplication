@@ -9,6 +9,7 @@ using System.Xml.Linq;
 
 namespace FuCommunityWebModels.Models
 {
+    [Table("Post")]
 	public class Post
 	{
         [Key]

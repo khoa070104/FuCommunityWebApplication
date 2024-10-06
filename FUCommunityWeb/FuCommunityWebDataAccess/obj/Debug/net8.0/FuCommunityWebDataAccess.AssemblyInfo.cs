@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FuCommunityWebDataAccess")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e97ccef5e84a695846d8649b07a71045f8ef046a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9326d043c8ae119eb937e8eebbb345c2b5d9cc9c")]
 [assembly: System.Reflection.AssemblyProductAttribute("FuCommunityWebDataAccess")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FuCommunityWebDataAccess")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,4 +1,4 @@
-
+﻿
 using FuCommunityWebDataAccess.Data;
 using FuCommunityWebModels.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -102,6 +102,37 @@ namespace FUCommunityWeb.Controllers
 
 
             return View(forumViewModel);
+        }
+
+        [HttpGet]
+        public IActionResult GetPosts(int page = 1, int pageSize = 2, string searchString = "")
+        {
+            var query = _context.Posts.AsQueryable();
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                query = query.Where(p => p.Title.Contains(searchString) || p.Content.Contains(searchString));
+            }
+
+            var totalItems = query.Count();
+
+            var posts = query
+                .OrderBy(p => p.CreatedDate)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+
+            return Json(new
+            {
+                posts = posts,
+                totalItems = totalItems,
+                pageSize = pageSize,
+                currentPage = page
+            });
+        }
+
+        public IActionResult Post()
+        {
+            return View();
         }
 
         public IActionResult SignIn()

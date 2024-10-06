@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\FuCommunityWebDataAccess.csproj": {}
+    "D:\\Semester 5\\C#\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\FuCommunityWebDataAccess.csproj": {}
   },
   "projects": {
-    "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\FuCommunityWebDataAccess.csproj": {
+    "D:\\Semester 5\\C#\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\FuCommunityWebDataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\FuCommunityWebDataAccess.csproj",
+        "projectUniqueName": "D:\\Semester 5\\C#\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\FuCommunityWebDataAccess.csproj",
         "projectName": "FuCommunityWebDataAccess",
-        "projectPath": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\FuCommunityWebDataAccess.csproj",
-        "packagesPath": "C:\\Users\\NCPC\\.nuget\\packages\\",
-        "outputPath": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\obj\\",
+        "projectPath": "D:\\Semester 5\\C#\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\FuCommunityWebDataAccess.csproj",
+        "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
+        "outputPath": "D:\\Semester 5\\C#\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\NCPC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -29,8 +29,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\FuCommunityWebModels.csproj": {
-                "projectPath": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\FuCommunityWebModels.csproj"
+              "D:\\Semester 5\\C#\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\FuCommunityWebModels.csproj": {
+                "projectPath": "D:\\Semester 5\\C#\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\FuCommunityWebModels.csproj"
               }
             }
           }
@@ -89,21 +89,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.401/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\FuCommunityWebModels.csproj": {
+    "D:\\Semester 5\\C#\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\FuCommunityWebModels.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\FuCommunityWebModels.csproj",
+        "projectUniqueName": "D:\\Semester 5\\C#\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\FuCommunityWebModels.csproj",
         "projectName": "FuCommunityWebModels",
-        "projectPath": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\FuCommunityWebModels.csproj",
-        "packagesPath": "C:\\Users\\NCPC\\.nuget\\packages\\",
-        "outputPath": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\obj\\",
+        "projectPath": "D:\\Semester 5\\C#\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\FuCommunityWebModels.csproj",
+        "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
+        "outputPath": "D:\\Semester 5\\C#\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\NCPC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -160,7 +160,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.401/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

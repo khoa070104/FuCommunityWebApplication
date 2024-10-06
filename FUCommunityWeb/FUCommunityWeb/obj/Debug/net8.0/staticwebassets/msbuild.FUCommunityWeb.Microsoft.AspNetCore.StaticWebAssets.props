@@ -1648,6 +1648,38 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\lib\jquery\LICENSE.txt))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\avt_YXZhdGFyX1ExXzIwMjQwODI0MDczOTUw.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>FUCommunityWeb</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/FUCommunityWeb</BasePath>
+      <RelativePath>uploads/avt_YXZhdGFyX1ExXzIwMjQwODI0MDczOTUw.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\avt_YXZhdGFyX1ExXzIwMjQwODI0MDczOTUw.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\avt_YXZhdGFyX2ltcmVzaXplci0xNzI4MTA3OTc1MDI3.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>FUCommunityWeb</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/FUCommunityWeb</BasePath>
+      <RelativePath>uploads/avt_YXZhdGFyX2ltcmVzaXplci0xNzI4MTA3OTc1MDI3.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\avt_YXZhdGFyX2ltcmVzaXplci0xNzI4MTA3OTc1MDI3.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\avt_YXZhdGFyX2ltcmVzaXplci0xNzI4MTA3OTc2NjA3.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>FUCommunityWeb</SourceId>
