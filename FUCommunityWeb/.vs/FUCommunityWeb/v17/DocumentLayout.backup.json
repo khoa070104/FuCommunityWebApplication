@@ -3,6 +3,46 @@
   "WorkspaceRootPath": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{C33520CE-0A00-428B-B5AD-FFC65DB00C35}|FUCommunityWebModels\\FuCommunityWebModels.csproj|d:\\documents\\fuwebnew\\fucommunitywebapplication\\fucommunityweb\\fucommunitywebmodels\\models\\course.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C33520CE-0A00-428B-B5AD-FFC65DB00C35}|FUCommunityWebModels\\FuCommunityWebModels.csproj|solutionrelative:fucommunitywebmodels\\models\\course.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C33520CE-0A00-428B-B5AD-FFC65DB00C35}|FUCommunityWebModels\\FuCommunityWebModels.csproj|d:\\documents\\fuwebnew\\fucommunitywebapplication\\fucommunityweb\\fucommunitywebmodels\\models\\post.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C33520CE-0A00-428B-B5AD-FFC65DB00C35}|FUCommunityWebModels\\FuCommunityWebModels.csproj|solutionrelative:fucommunitywebmodels\\models\\post.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C33520CE-0A00-428B-B5AD-FFC65DB00C35}|FUCommunityWebModels\\FuCommunityWebModels.csproj|d:\\documents\\fuwebnew\\fucommunitywebapplication\\fucommunityweb\\fucommunitywebmodels\\models\\applicationuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C33520CE-0A00-428B-B5AD-FFC65DB00C35}|FUCommunityWebModels\\FuCommunityWebModels.csproj|solutionrelative:fucommunitywebmodels\\models\\applicationuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|d:\\documents\\fuwebnew\\fucommunitywebapplication\\fucommunityweb\\fucommunityweb\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|solutionrelative:fucommunityweb\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|d:\\documents\\fuwebnew\\fucommunitywebapplication\\fucommunityweb\\fucommunityweb\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|solutionrelative:fucommunityweb\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C33520CE-0A00-428B-B5AD-FFC65DB00C35}|FUCommunityWebModels\\FuCommunityWebModels.csproj|d:\\documents\\fuwebnew\\fucommunitywebapplication\\fucommunityweb\\fucommunitywebmodels\\viewmodels\\mentorvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C33520CE-0A00-428B-B5AD-FFC65DB00C35}|FUCommunityWebModels\\FuCommunityWebModels.csproj|solutionrelative:fucommunitywebmodels\\viewmodels\\mentorvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C33520CE-0A00-428B-B5AD-FFC65DB00C35}|FUCommunityWebModels\\FuCommunityWebModels.csproj|d:\\documents\\fuwebnew\\fucommunitywebapplication\\fucommunityweb\\fucommunitywebmodels\\viewmodels\\coursehistoryvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C33520CE-0A00-428B-B5AD-FFC65DB00C35}|FUCommunityWebModels\\FuCommunityWebModels.csproj|solutionrelative:fucommunitywebmodels\\viewmodels\\coursehistoryvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C33520CE-0A00-428B-B5AD-FFC65DB00C35}|FUCommunityWebModels\\FuCommunityWebModels.csproj|d:\\documents\\fuwebnew\\fucommunitywebapplication\\fucommunityweb\\fucommunitywebmodels\\viewmodels\\forumvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C33520CE-0A00-428B-B5AD-FFC65DB00C35}|FUCommunityWebModels\\FuCommunityWebModels.csproj|solutionrelative:fucommunitywebmodels\\viewmodels\\forumvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|d:\\documents\\fuwebnew\\fucommunitywebapplication\\fucommunityweb\\fucommunityweb\\views\\home\\forum.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|solutionrelative:fucommunityweb\\views\\home\\forum.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|d:\\documents\\fuwebnew\\fucommunitywebapplication\\fucommunityweb\\fucommunityweb\\views\\home\\mentorhall.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|solutionrelative:fucommunityweb\\views\\home\\mentorhall.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|d:\\documents\\fuwebnew\\fucommunitywebapplication\\fucommunityweb\\fucommunityweb\\controllers\\profilecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|solutionrelative:fucommunityweb\\controllers\\profilecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -15,10 +55,6 @@
       "RelativeMoniker": "D:0:0:{B830B4C2-25D2-4F9A-ABF5-F6FB74115107}|FuCommunityWebServices\\FuCommunityWebServices.csproj|solutionrelative:fucommunitywebservices\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|d:\\documents\\fuwebnew\\fucommunitywebapplication\\fucommunityweb\\fucommunityweb\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|solutionrelative:fucommunityweb\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|d:\\documents\\fuwebnew\\fucommunitywebapplication\\fucommunityweb\\fucommunityweb\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|solutionrelative:fucommunityweb\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -27,20 +63,8 @@
       "RelativeMoniker": "D:0:0:{C33520CE-0A00-428B-B5AD-FFC65DB00C35}|FUCommunityWebModels\\FuCommunityWebModels.csproj|solutionrelative:fucommunitywebmodels\\viewmodels\\errorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|d:\\documents\\fuwebnew\\fucommunitywebapplication\\fucommunityweb\\fucommunityweb\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|solutionrelative:fucommunityweb\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C33520CE-0A00-428B-B5AD-FFC65DB00C35}|FUCommunityWebModels\\FuCommunityWebModels.csproj|d:\\documents\\fuwebnew\\fucommunitywebapplication\\fucommunityweb\\fucommunitywebmodels\\viewmodels\\coursehistoryvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C33520CE-0A00-428B-B5AD-FFC65DB00C35}|FUCommunityWebModels\\FuCommunityWebModels.csproj|solutionrelative:fucommunitywebmodels\\viewmodels\\coursehistoryvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|d:\\documents\\fuwebnew\\fucommunitywebapplication\\fucommunityweb\\fucommunityweb\\views\\profile\\coursehistory.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|solutionrelative:fucommunityweb\\views\\profile\\coursehistory.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C33520CE-0A00-428B-B5AD-FFC65DB00C35}|FUCommunityWebModels\\FuCommunityWebModels.csproj|d:\\documents\\fuwebnew\\fucommunitywebapplication\\fucommunityweb\\fucommunitywebmodels\\models\\applicationuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C33520CE-0A00-428B-B5AD-FFC65DB00C35}|FUCommunityWebModels\\FuCommunityWebModels.csproj|solutionrelative:fucommunitywebmodels\\models\\applicationuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{93321B2E-D440-49E7-9741-A0E0AC08400E}|FuCommunityWebDataAccess\\FuCommunityWebDataAccess.csproj|d:\\documents\\fuwebnew\\fucommunitywebapplication\\fucommunityweb\\fucommunitywebdataaccess\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -81,10 +105,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|d:\\documents\\fuwebnew\\fucommunitywebapplication\\fucommunityweb\\fucommunityweb\\areas\\identity\\pages\\account\\manage\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|solutionrelative:fucommunityweb\\areas\\identity\\pages\\account\\manage\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C33520CE-0A00-428B-B5AD-FFC65DB00C35}|FUCommunityWebModels\\FuCommunityWebModels.csproj|d:\\documents\\fuwebnew\\fucommunitywebapplication\\fucommunityweb\\fucommunitywebmodels\\models\\course.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C33520CE-0A00-428B-B5AD-FFC65DB00C35}|FUCommunityWebModels\\FuCommunityWebModels.csproj|solutionrelative:fucommunitywebmodels\\models\\course.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C33520CE-0A00-428B-B5AD-FFC65DB00C35}|FUCommunityWebModels\\FuCommunityWebModels.csproj|d:\\documents\\fuwebnew\\fucommunitywebapplication\\fucommunityweb\\fucommunitywebmodels\\viewmodels\\uservm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -374,10 +394,6 @@
       "RelativeMoniker": "D:0:0:{C33520CE-0A00-428B-B5AD-FFC65DB00C35}|FUCommunityWebModels\\FuCommunityWebModels.csproj|solutionrelative:fucommunitywebmodels\\models\\question.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C33520CE-0A00-428B-B5AD-FFC65DB00C35}|FUCommunityWebModels\\FuCommunityWebModels.csproj|d:\\documents\\fuwebnew\\fucommunitywebapplication\\fucommunityweb\\fucommunitywebmodels\\models\\post.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C33520CE-0A00-428B-B5AD-FFC65DB00C35}|FUCommunityWebModels\\FuCommunityWebModels.csproj|solutionrelative:fucommunitywebmodels\\models\\post.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{C33520CE-0A00-428B-B5AD-FFC65DB00C35}|FUCommunityWebModels\\FuCommunityWebModels.csproj|d:\\documents\\fuwebnew\\fucommunitywebapplication\\fucommunityweb\\fucommunitywebmodels\\models\\lesson.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C33520CE-0A00-428B-B5AD-FFC65DB00C35}|FUCommunityWebModels\\FuCommunityWebModels.csproj|solutionrelative:fucommunitywebmodels\\models\\lesson.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -452,10 +468,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|d:\\documents\\fuwebnew\\fucommunitywebapplication\\fucommunityweb\\fucommunityweb\\views\\home\\signin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|solutionrelative:fucommunityweb\\views\\home\\signin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|d:\\documents\\fuwebnew\\fucommunitywebapplication\\fucommunityweb\\fucommunityweb\\views\\home\\mentorhall.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|solutionrelative:fucommunityweb\\views\\home\\mentorhall.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -465,71 +477,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 16,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{269a02dc-6af8-11d3-bdc4-00c04f688e50}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
-            },
-            {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "CourseHistory.cshtml",
-              "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\Profile\\CourseHistory.cshtml",
-              "RelativeDocumentMoniker": "FUCommunityWeb\\Views\\Profile\\CourseHistory.cshtml",
-              "ToolTip": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\Profile\\CourseHistory.cshtml",
-              "RelativeToolTip": "FUCommunityWeb\\Views\\Profile\\CourseHistory.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAwAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-06T08:44:24.123Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\appsettings.json",
-              "RelativeDocumentMoniker": "FUCommunityWeb\\appsettings.json",
-              "ToolTip": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\appsettings.json",
-              "RelativeToolTip": "FUCommunityWeb\\appsettings.json",
-              "ViewState": "AgIAAAYAAAAAAAAAAADwvw0AAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-10-03T09:46:17.135Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ProfileController.cs",
-              "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Controllers\\ProfileController.cs",
-              "RelativeDocumentMoniker": "FUCommunityWeb\\Controllers\\ProfileController.cs",
-              "ToolTip": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Controllers\\ProfileController.cs",
-              "RelativeToolTip": "FUCommunityWeb\\Controllers\\ProfileController.cs",
-              "ViewState": "AgIAAFQAAAAAAAAAAAAgwFsAAAAyAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-03T05:55:49.914Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "ApplicationUser.cs",
-              "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\Models\\ApplicationUser.cs",
-              "RelativeDocumentMoniker": "FUCommunityWebModels\\Models\\ApplicationUser.cs",
-              "ToolTip": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\Models\\ApplicationUser.cs",
-              "RelativeToolTip": "FUCommunityWebModels\\Models\\ApplicationUser.cs",
-              "ViewState": "AgIAAB4AAAAAAAAAAAA0wDEAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-01T17:12:11.573Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 33,
               "Title": "Error.cshtml",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\Shared\\Error.cshtml",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Views\\Shared\\Error.cshtml",
@@ -541,7 +493,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 12,
               "Title": "UserService.cs",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebServices\\Services\\UserService.cs",
               "RelativeDocumentMoniker": "FuCommunityWebServices\\Services\\UserService.cs",
@@ -549,12 +501,11 @@
               "RelativeToolTip": "FuCommunityWebServices\\Services\\UserService.cs",
               "ViewState": "AgIAACUAAAAAAAAAAAAhwC8AAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-03T12:39:40.361Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-03T12:39:40.361Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 11,
               "Title": "UserRepo.cs",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\Repositories\\UserRepo.cs",
               "RelativeDocumentMoniker": "FuCommunityWebDataAccess\\Repositories\\UserRepo.cs",
@@ -562,12 +513,86 @@
               "RelativeToolTip": "FuCommunityWebDataAccess\\Repositories\\UserRepo.cs",
               "ViewState": "AgIAADoAAAAAAAAAAAAwwDQAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-03T12:28:16.762Z",
+              "WhenOpened": "2024-10-03T12:28:16.762Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "MentorHall.cshtml",
+              "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\Home\\MentorHall.cshtml",
+              "RelativeDocumentMoniker": "FUCommunityWeb\\Views\\Home\\MentorHall.cshtml",
+              "ToolTip": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\Home\\MentorHall.cshtml",
+              "RelativeToolTip": "FUCommunityWeb\\Views\\Home\\MentorHall.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-10-01T02:52:21.419Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "FUCommunityWeb\\Controllers\\HomeController.cs",
+              "ToolTip": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "FUCommunityWeb\\Controllers\\HomeController.cs",
+              "ViewState": "AgIAAGQAAAAAAAAAAAAAAFsAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T03:44:37.647Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
+              "Title": "ForumVM.cs",
+              "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\ViewModels\\ForumVM.cs",
+              "RelativeDocumentMoniker": "FUCommunityWebModels\\ViewModels\\ForumVM.cs",
+              "ToolTip": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\ViewModels\\ForumVM.cs",
+              "RelativeToolTip": "FUCommunityWebModels\\ViewModels\\ForumVM.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-06T10:57:50.231Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ApplicationUser.cs",
+              "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\Models\\ApplicationUser.cs",
+              "RelativeDocumentMoniker": "FUCommunityWebModels\\Models\\ApplicationUser.cs",
+              "ToolTip": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\Models\\ApplicationUser.cs",
+              "RelativeToolTip": "FUCommunityWebModels\\Models\\ApplicationUser.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAwDEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-01T17:12:11.573Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\appsettings.json",
+              "RelativeDocumentMoniker": "FUCommunityWeb\\appsettings.json",
+              "ToolTip": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\appsettings.json",
+              "RelativeToolTip": "FUCommunityWeb\\appsettings.json",
+              "ViewState": "AgIAAAYAAAAAAAAAAADwvw0AAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-10-03T09:46:17.135Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "CourseHistory.cshtml",
+              "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\Profile\\CourseHistory.cshtml",
+              "RelativeDocumentMoniker": "FUCommunityWeb\\Views\\Profile\\CourseHistory.cshtml",
+              "ToolTip": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\Profile\\CourseHistory.cshtml",
+              "RelativeToolTip": "FUCommunityWeb\\Views\\Profile\\CourseHistory.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-10-06T08:44:24.123Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
               "Title": "AdminController.cs",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Controllers\\AdminController.cs",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Controllers\\AdminController.cs",
@@ -575,12 +600,11 @@
               "RelativeToolTip": "FUCommunityWeb\\Controllers\\AdminController.cs",
               "ViewState": "AgIAADEAAAAAAAAAAAAIwDQAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-03T10:55:33.277Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-03T10:55:33.277Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 28,
               "Title": "Register.cshtml.cs",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Register.cshtml.cs",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Register.cshtml.cs",
@@ -592,7 +616,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 26,
               "Title": "UserVM.cs",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\ViewModels\\UserVM.cs",
               "RelativeDocumentMoniker": "FUCommunityWebModels\\ViewModels\\UserVM.cs",
@@ -604,7 +628,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 24,
               "Title": "_ManageNav.cshtml",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Manage\\_ManageNav.cshtml",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Manage\\_ManageNav.cshtml",
@@ -616,20 +640,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "HomeController.cs",
-              "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Controllers\\HomeController.cs",
-              "RelativeDocumentMoniker": "FUCommunityWeb\\Controllers\\HomeController.cs",
-              "ToolTip": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Controllers\\HomeController.cs",
-              "RelativeToolTip": "FUCommunityWeb\\Controllers\\HomeController.cs",
-              "ViewState": "AgIAADcAAAAAAAAAAAAcwDwAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-02T03:44:37.647Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 6,
               "Title": "CourseHistoryVM.cs",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\ViewModels\\CourseHistoryVM.cs",
               "RelativeDocumentMoniker": "FUCommunityWebModels\\ViewModels\\CourseHistoryVM.cs",
@@ -642,7 +653,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 1,
+              "Title": "Post.cs",
+              "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\Models\\Post.cs",
+              "RelativeDocumentMoniker": "FUCommunityWebModels\\Models\\Post.cs",
+              "ToolTip": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\Models\\Post.cs",
+              "RelativeToolTip": "FUCommunityWebModels\\Models\\Post.cs",
+              "ViewState": "AgIAACYAAAAAAAAAAAAQwCoAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-01T17:35:01.316Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "_ViewImports.cshtml",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\_ViewImports.cshtml",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Views\\_ViewImports.cshtml",
@@ -655,7 +679,65 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Course.cs",
+              "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\Models\\Course.cs",
+              "RelativeDocumentMoniker": "FUCommunityWebModels\\Models\\Course.cs",
+              "ToolTip": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\Models\\Course.cs",
+              "RelativeToolTip": "FUCommunityWebModels\\Models\\Course.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAgwCIAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-01T17:34:41.598Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{269a02dc-6af8-11d3-bdc4-00c04f688e50}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 5,
+              "Title": "MentorVM.cs",
+              "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\ViewModels\\MentorVM.cs",
+              "RelativeDocumentMoniker": "FUCommunityWebModels\\ViewModels\\MentorVM.cs",
+              "ToolTip": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\ViewModels\\MentorVM.cs",
+              "RelativeToolTip": "FUCommunityWebModels\\ViewModels\\MentorVM.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-06T11:02:29.772Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "ProfileController.cs",
+              "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Controllers\\ProfileController.cs",
+              "RelativeDocumentMoniker": "FUCommunityWeb\\Controllers\\ProfileController.cs",
+              "ToolTip": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Controllers\\ProfileController.cs",
+              "RelativeToolTip": "FUCommunityWeb\\Controllers\\ProfileController.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAYwAoAAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-03T05:55:49.914Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Forum.cshtml",
+              "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\Home\\Forum.cshtml",
+              "RelativeDocumentMoniker": "FUCommunityWeb\\Views\\Home\\Forum.cshtml",
+              "ToolTip": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\Home\\Forum.cshtml",
+              "RelativeToolTip": "FUCommunityWeb\\Views\\Home\\Forum.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-10-06T10:58:54.341Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
               "Title": "ErrorViewModel.cs",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\ViewModels\\ErrorViewModel.cs",
               "RelativeDocumentMoniker": "FUCommunityWebModels\\ViewModels\\ErrorViewModel.cs",
@@ -663,12 +745,11 @@
               "RelativeToolTip": "FUCommunityWebModels\\ViewModels\\ErrorViewModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-01T17:31:14.769Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-01T17:31:14.769Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 16,
               "Title": "ApplicationDbContext.cs",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\Data\\ApplicationDbContext.cs",
               "RelativeDocumentMoniker": "FuCommunityWebDataAccess\\Data\\ApplicationDbContext.cs",
@@ -676,12 +757,11 @@
               "RelativeToolTip": "FuCommunityWebDataAccess\\Data\\ApplicationDbContext.cs",
               "ViewState": "AgIAAA0AAAAAAAAAAAAswBUAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-01T16:01:28.846Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-01T16:01:28.846Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 18,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Program.cs",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Program.cs",
@@ -693,7 +773,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
+              "DocumentIndex": 47,
               "Title": "_ViewImports.cshtml",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Manage\\_ViewImports.cshtml",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Manage\\_ViewImports.cshtml",
@@ -705,7 +785,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 21,
               "Title": "ExternalLogin.cshtml",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\ExternalLogin.cshtml",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\ExternalLogin.cshtml",
@@ -717,7 +797,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 27,
               "Title": "Register.cshtml",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Register.cshtml",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Register.cshtml",
@@ -729,7 +809,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 22,
               "Title": "20241003110347_IdentityFix.cs",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\Migrations\\20241003110347_IdentityFix.cs",
               "RelativeDocumentMoniker": "FuCommunityWebDataAccess\\Migrations\\20241003110347_IdentityFix.cs",
@@ -741,7 +821,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 23,
               "Title": "20241003161852_addProForUser.cs",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\Migrations\\20241003161852_addProForUser.cs",
               "RelativeDocumentMoniker": "FuCommunityWebDataAccess\\Migrations\\20241003161852_addProForUser.cs",
@@ -753,7 +833,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 20,
               "Title": "ExternalLogin.cshtml.cs",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\ExternalLogin.cshtml.cs",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\ExternalLogin.cshtml.cs",
@@ -765,7 +845,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 19,
               "Title": "Login.cshtml",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Login.cshtml",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Login.cshtml",
@@ -777,7 +857,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 35,
               "Title": "Class1.cs",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\Class1.cs",
               "RelativeDocumentMoniker": "FuCommunityWebDataAccess\\Class1.cs",
@@ -789,7 +869,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 25,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Manage\\_Layout.cshtml",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Manage\\_Layout.cshtml",
@@ -801,7 +881,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 44,
+              "DocumentIndex": 49,
               "Title": "_StatusMessage.cshtml",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Manage\\_StatusMessage.cshtml",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Manage\\_StatusMessage.cshtml",
@@ -813,7 +893,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 34,
               "Title": "_ViewStart.cshtml",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\_ViewStart.cshtml",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Views\\_ViewStart.cshtml",
@@ -825,7 +905,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 30,
               "Title": "EmailSender.cs",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebUtility\\EmailSender.cs",
               "RelativeDocumentMoniker": "FuCommunityWebUtility\\EmailSender.cs",
@@ -837,7 +917,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 32,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\Profile\\Index.cshtml",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Views\\Profile\\Index.cshtml",
@@ -849,19 +929,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "Course.cs",
-              "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\Models\\Course.cs",
-              "RelativeDocumentMoniker": "FUCommunityWebModels\\Models\\Course.cs",
-              "ToolTip": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\Models\\Course.cs",
-              "RelativeToolTip": "FUCommunityWebModels\\Models\\Course.cs",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAgwCcAAABEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-01T17:34:41.598Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 29,
               "Title": "FUCommunityWeb.csproj",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\FUCommunityWeb.csproj",
               "RelativeDocumentMoniker": "FUCommunityWeb\\FUCommunityWeb.csproj",
@@ -873,7 +941,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 31,
               "Title": "ConfirmEmail.cshtml.cs",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\ConfirmEmail.cshtml.cs",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\ConfirmEmail.cshtml.cs",
@@ -885,7 +953,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 37,
               "Title": "_ValidationScriptsPartial.cshtml",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
@@ -897,7 +965,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 43,
+              "DocumentIndex": 48,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Manage\\Index.cshtml",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Manage\\Index.cshtml",
@@ -909,7 +977,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 42,
               "Title": "_ViewStart.cshtml",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\_ViewStart.cshtml",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Areas\\Identity\\Pages\\_ViewStart.cshtml",
@@ -921,7 +989,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
+              "DocumentIndex": 45,
               "Title": "_ViewImports.cshtml",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\_ViewImports.cshtml",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\_ViewImports.cshtml",
@@ -933,7 +1001,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 41,
               "Title": "_ViewImports.cshtml",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\_ViewImports.cshtml",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Areas\\Identity\\Pages\\_ViewImports.cshtml",
@@ -945,7 +1013,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 39,
               "Title": "_LoginPartial.cshtml",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\Shared\\_LoginPartial.cshtml",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Views\\Shared\\_LoginPartial.cshtml",
@@ -957,7 +1025,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 36,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Views\\Shared\\_Layout.cshtml",
@@ -969,7 +1037,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 40,
               "Title": "_ValidationScriptsPartial.cshtml",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\_ValidationScriptsPartial.cshtml",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Areas\\Identity\\Pages\\_ValidationScriptsPartial.cshtml",
@@ -981,7 +1049,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 38,
               "Title": "FuCommunityWebServices.csproj",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebServices\\FuCommunityWebServices.csproj",
               "RelativeDocumentMoniker": "FuCommunityWebServices\\FuCommunityWebServices.csproj",
@@ -993,7 +1061,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 47,
+              "DocumentIndex": 52,
               "Title": "ResetPasswordConfirmation.cshtml.cs",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\ResetPasswordConfirmation.cshtml.cs",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\ResetPasswordConfirmation.cshtml.cs",
@@ -1005,7 +1073,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 46,
+              "DocumentIndex": 51,
               "Title": "TwoFactorAuthentication.cshtml.cs",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Manage\\TwoFactorAuthentication.cshtml.cs",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Manage\\TwoFactorAuthentication.cshtml.cs",
@@ -1017,7 +1085,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 41,
+              "DocumentIndex": 46,
               "Title": "_ViewStart.cshtml",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Manage\\_ViewStart.cshtml",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Manage\\_ViewStart.cshtml",
@@ -1029,7 +1097,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 43,
               "Title": "ConfirmEmail.cshtml",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\ConfirmEmail.cshtml",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\ConfirmEmail.cshtml",
@@ -1041,7 +1109,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 39,
+              "DocumentIndex": 44,
               "Title": "AccessDenied.cshtml",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\AccessDenied.cshtml",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\AccessDenied.cshtml",
@@ -1053,7 +1121,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 45,
+              "DocumentIndex": 50,
               "Title": "Disable2fa.cshtml.cs",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Manage\\Disable2fa.cshtml.cs",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Manage\\Disable2fa.cshtml.cs",
@@ -1065,7 +1133,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 54,
+              "DocumentIndex": 59,
               "Title": "Login.cshtml.cs",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Login.cshtml.cs",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Login.cshtml.cs",
@@ -1077,7 +1145,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 49,
+              "DocumentIndex": 54,
               "Title": "ResendEmailConfirmation.cshtml.cs",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\ResendEmailConfirmation.cshtml.cs",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\ResendEmailConfirmation.cshtml.cs",
@@ -1089,7 +1157,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 50,
+              "DocumentIndex": 55,
               "Title": "RegisterConfirmation.cshtml.cs",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\RegisterConfirmation.cshtml.cs",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\RegisterConfirmation.cshtml.cs",
@@ -1101,7 +1169,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 48,
+              "DocumentIndex": 53,
               "Title": "ResetPassword.cshtml.cs",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\ResetPassword.cshtml.cs",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\ResetPassword.cshtml.cs",
@@ -1113,7 +1181,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 51,
+              "DocumentIndex": 56,
               "Title": "Logout.cshtml.cs",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Logout.cshtml.cs",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Logout.cshtml.cs",
@@ -1125,7 +1193,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 52,
+              "DocumentIndex": 57,
               "Title": "LoginWithRecoveryCode.cshtml.cs",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\LoginWithRecoveryCode.cshtml.cs",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\LoginWithRecoveryCode.cshtml.cs",
@@ -1137,7 +1205,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 53,
+              "DocumentIndex": 58,
               "Title": "LoginWith2fa.cshtml.cs",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\LoginWith2fa.cshtml.cs",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\LoginWith2fa.cshtml.cs",
@@ -1149,7 +1217,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 55,
+              "DocumentIndex": 60,
               "Title": "Lockout.cshtml.cs",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Lockout.cshtml.cs",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Lockout.cshtml.cs",
@@ -1161,7 +1229,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 56,
+              "DocumentIndex": 61,
               "Title": "ForgotPasswordConfirmation.cshtml.cs",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\ForgotPasswordConfirmation.cshtml.cs",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\ForgotPasswordConfirmation.cshtml.cs",
@@ -1173,7 +1241,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 57,
+              "DocumentIndex": 62,
               "Title": "ForgotPassword.cshtml.cs",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\ForgotPassword.cshtml.cs",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\ForgotPassword.cshtml.cs",
@@ -1185,7 +1253,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 58,
+              "DocumentIndex": 63,
               "Title": "ConfirmEmailChange.cshtml.cs",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\ConfirmEmailChange.cshtml.cs",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\ConfirmEmailChange.cshtml.cs",
@@ -1197,7 +1265,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 64,
+              "DocumentIndex": 69,
               "Title": "ManageNavPages.cs",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Manage\\ManageNavPages.cs",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Manage\\ManageNavPages.cs",
@@ -1209,7 +1277,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 59,
+              "DocumentIndex": 64,
               "Title": "AccessDenied.cshtml.cs",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\AccessDenied.cshtml.cs",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\AccessDenied.cshtml.cs",
@@ -1221,7 +1289,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 60,
+              "DocumentIndex": 65,
               "Title": "ShowRecoveryCodes.cshtml.cs",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Manage\\ShowRecoveryCodes.cshtml.cs",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Manage\\ShowRecoveryCodes.cshtml.cs",
@@ -1233,7 +1301,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 61,
+              "DocumentIndex": 66,
               "Title": "SetPassword.cshtml.cs",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Manage\\SetPassword.cshtml.cs",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Manage\\SetPassword.cshtml.cs",
@@ -1245,7 +1313,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 62,
+              "DocumentIndex": 67,
               "Title": "ResetAuthenticator.cshtml.cs",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Manage\\ResetAuthenticator.cshtml.cs",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Manage\\ResetAuthenticator.cshtml.cs",
@@ -1257,7 +1325,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 63,
+              "DocumentIndex": 68,
               "Title": "PersonalData.cshtml.cs",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Manage\\PersonalData.cshtml.cs",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Manage\\PersonalData.cshtml.cs",
@@ -1269,7 +1337,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 65,
+              "DocumentIndex": 70,
               "Title": "GenerateRecoveryCodes.cshtml.cs",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Manage\\GenerateRecoveryCodes.cshtml.cs",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Manage\\GenerateRecoveryCodes.cshtml.cs",
@@ -1281,7 +1349,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 66,
+              "DocumentIndex": 71,
               "Title": "ExternalLogins.cshtml.cs",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Manage\\ExternalLogins.cshtml.cs",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Manage\\ExternalLogins.cshtml.cs",
@@ -1293,7 +1361,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 67,
+              "DocumentIndex": 72,
               "Title": "EnableAuthenticator.cshtml.cs",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Manage\\EnableAuthenticator.cshtml.cs",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Manage\\EnableAuthenticator.cshtml.cs",
@@ -1305,7 +1373,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 68,
+              "DocumentIndex": 73,
               "Title": "Email.cshtml.cs",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Manage\\Email.cshtml.cs",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Manage\\Email.cshtml.cs",
@@ -1317,7 +1385,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 69,
+              "DocumentIndex": 74,
               "Title": "DownloadPersonalData.cshtml.cs",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Manage\\DownloadPersonalData.cshtml.cs",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Manage\\DownloadPersonalData.cshtml.cs",
@@ -1329,7 +1397,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 70,
+              "DocumentIndex": 75,
               "Title": "DeletePersonalData.cshtml.cs",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Manage\\DeletePersonalData.cshtml.cs",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Manage\\DeletePersonalData.cshtml.cs",
@@ -1341,7 +1409,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 71,
+              "DocumentIndex": 76,
               "Title": "ChangePassword.cshtml.cs",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Manage\\ChangePassword.cshtml.cs",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Manage\\ChangePassword.cshtml.cs",
@@ -1353,7 +1421,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 72,
+              "DocumentIndex": 77,
               "Title": "Disable2fa.cshtml",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Manage\\Disable2fa.cshtml",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Manage\\Disable2fa.cshtml",
@@ -1365,7 +1433,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 73,
+              "DocumentIndex": 78,
               "Title": "DeletePersonalData.cshtml",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Manage\\DeletePersonalData.cshtml",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Manage\\DeletePersonalData.cshtml",
@@ -1377,7 +1445,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 74,
+              "DocumentIndex": 79,
               "Title": "ChangePassword.cshtml",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Manage\\ChangePassword.cshtml",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Manage\\ChangePassword.cshtml",
@@ -1389,7 +1457,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 75,
+              "DocumentIndex": 80,
               "Title": "Error.cshtml",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\Error.cshtml",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Areas\\Identity\\Pages\\Error.cshtml",
@@ -1401,7 +1469,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 82,
+              "DocumentIndex": 87,
               "Title": "ResetPasswordConfirmation.cshtml",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\ResetPasswordConfirmation.cshtml",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\ResetPasswordConfirmation.cshtml",
@@ -1413,7 +1481,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 81,
+              "DocumentIndex": 86,
               "Title": "ResetPassword.cshtml",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\ResetPassword.cshtml",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\ResetPassword.cshtml",
@@ -1425,7 +1493,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 80,
+              "DocumentIndex": 85,
               "Title": "ResendEmailConfirmation.cshtml",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\ResendEmailConfirmation.cshtml",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\ResendEmailConfirmation.cshtml",
@@ -1437,7 +1505,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 79,
+              "DocumentIndex": 84,
               "Title": "RegisterConfirmation.cshtml",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\RegisterConfirmation.cshtml",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\RegisterConfirmation.cshtml",
@@ -1449,7 +1517,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 78,
+              "DocumentIndex": 83,
               "Title": "Logout.cshtml",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Logout.cshtml",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Logout.cshtml",
@@ -1461,7 +1529,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 77,
+              "DocumentIndex": 82,
               "Title": "LoginWithRecoveryCode.cshtml",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\LoginWithRecoveryCode.cshtml",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\LoginWithRecoveryCode.cshtml",
@@ -1473,7 +1541,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 76,
+              "DocumentIndex": 81,
               "Title": "LoginWith2fa.cshtml",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\LoginWith2fa.cshtml",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\LoginWith2fa.cshtml",
@@ -1485,7 +1553,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 83,
+              "DocumentIndex": 88,
               "Title": "_StatusMessage.cshtml",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\_StatusMessage.cshtml",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\_StatusMessage.cshtml",
@@ -1497,7 +1565,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 84,
+              "DocumentIndex": 89,
               "Title": "DownloadPersonalData.cshtml",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Manage\\DownloadPersonalData.cshtml",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Manage\\DownloadPersonalData.cshtml",
@@ -1509,7 +1577,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 85,
+              "DocumentIndex": 90,
               "Title": "Email.cshtml",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Manage\\Email.cshtml",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Manage\\Email.cshtml",
@@ -1521,7 +1589,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 86,
+              "DocumentIndex": 91,
               "Title": "TwoFactorAuthentication.cshtml",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Manage\\TwoFactorAuthentication.cshtml",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Manage\\TwoFactorAuthentication.cshtml",
@@ -1533,7 +1601,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 87,
+              "DocumentIndex": 92,
               "Title": "GenerateRecoveryCodes.cshtml",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Manage\\GenerateRecoveryCodes.cshtml",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Manage\\GenerateRecoveryCodes.cshtml",
@@ -1545,7 +1613,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 88,
+              "DocumentIndex": 93,
               "Title": "20241003095223_IdentityFix.cs",
               "DocumentMoniker": "D:\\Documents\\FuWeb\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\Migrations\\20241003095223_IdentityFix.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\FuWeb\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\Migrations\\20241003095223_IdentityFix.cs",
@@ -1556,7 +1624,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 92,
+              "DocumentIndex": 97,
               "Title": "Question.cs",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\Models\\Question.cs",
               "RelativeDocumentMoniker": "FUCommunityWebModels\\Models\\Question.cs",
@@ -1568,7 +1636,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 91,
+              "DocumentIndex": 96,
               "Title": "Vote.cs",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\Models\\Vote.cs",
               "RelativeDocumentMoniker": "FUCommunityWebModels\\Models\\Vote.cs",
@@ -1580,7 +1648,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 98,
+              "DocumentIndex": 102,
               "Title": "Comment.cs",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\Models\\Comment.cs",
               "RelativeDocumentMoniker": "FUCommunityWebModels\\Models\\Comment.cs",
@@ -1592,7 +1660,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 90,
+              "DocumentIndex": 95,
               "Title": "SD.cs",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebUtility\\SD.cs",
               "RelativeDocumentMoniker": "FuCommunityWebUtility\\SD.cs",
@@ -1604,7 +1672,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 89,
+              "DocumentIndex": 94,
               "Title": "EditProfile.cshtml",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\Home\\EditProfile.cshtml",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Views\\Home\\EditProfile.cshtml",
@@ -1616,7 +1684,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 94,
+              "DocumentIndex": 98,
               "Title": "Lesson.cs",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\Models\\Lesson.cs",
               "RelativeDocumentMoniker": "FUCommunityWebModels\\Models\\Lesson.cs",
@@ -1628,7 +1696,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 97,
+              "DocumentIndex": 101,
               "Title": "Document.cs",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\Models\\Document.cs",
               "RelativeDocumentMoniker": "FUCommunityWebModels\\Models\\Document.cs",
@@ -1640,7 +1708,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 99,
+              "DocumentIndex": 103,
               "Title": "Category.cs",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\Models\\Category.cs",
               "RelativeDocumentMoniker": "FUCommunityWebModels\\Models\\Category.cs",
@@ -1652,7 +1720,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 95,
+              "DocumentIndex": 99,
               "Title": "IsVote.cs",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\Models\\IsVote.cs",
               "RelativeDocumentMoniker": "FUCommunityWebModels\\Models\\IsVote.cs",
@@ -1664,19 +1732,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 93,
-              "Title": "Post.cs",
-              "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\Models\\Post.cs",
-              "RelativeDocumentMoniker": "FUCommunityWebModels\\Models\\Post.cs",
-              "ToolTip": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\Models\\Post.cs",
-              "RelativeToolTip": "FUCommunityWebModels\\Models\\Post.cs",
-              "ViewState": "AgIAACYAAAAAAAAAAAAQwDAAAABaAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-01T17:35:01.316Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 100,
+              "DocumentIndex": 104,
               "Title": "About.cshtml",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\Home\\About.cshtml",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Views\\Home\\About.cshtml",
@@ -1688,7 +1744,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 96,
+              "DocumentIndex": 100,
               "Title": "Enrollment.cs",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\Models\\Enrollment.cs",
               "RelativeDocumentMoniker": "FUCommunityWebModels\\Models\\Enrollment.cs",
@@ -1700,7 +1756,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 102,
+              "DocumentIndex": 106,
               "Title": "ScaffoldingReadMe.txt",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\ScaffoldingReadMe.txt",
               "RelativeDocumentMoniker": "FUCommunityWeb\\ScaffoldingReadMe.txt",
@@ -1712,7 +1768,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 103,
+              "DocumentIndex": 107,
               "Title": "ManageUser.cshtml",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\Admin\\ManageUser.cshtml",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Views\\Admin\\ManageUser.cshtml",
@@ -1724,7 +1780,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 101,
+              "DocumentIndex": 105,
               "Title": "SignUp.cshtml",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\Home\\SignUp.cshtml",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Views\\Home\\SignUp.cshtml",
@@ -1736,7 +1792,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 104,
+              "DocumentIndex": 108,
               "Title": "ManageStudent.cshtml",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\Admin\\ManageStudent.cshtml",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Views\\Admin\\ManageStudent.cshtml",
@@ -1748,7 +1804,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 105,
+              "DocumentIndex": 109,
               "Title": "ManagePayment.cshtml",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\Admin\\ManagePayment.cshtml",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Views\\Admin\\ManagePayment.cshtml",
@@ -1760,7 +1816,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 106,
+              "DocumentIndex": 110,
               "Title": "ManageForumUser.cshtml",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\Admin\\ManageForumUser.cshtml",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Views\\Admin\\ManageForumUser.cshtml",
@@ -1772,7 +1828,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 107,
+              "DocumentIndex": 111,
               "Title": "ManageForumPost.cshtml",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\Admin\\ManageForumPost.cshtml",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Views\\Admin\\ManageForumPost.cshtml",
@@ -1784,7 +1840,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 108,
+              "DocumentIndex": 112,
               "Title": "ManageForumGroup.cshtml",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\Admin\\ManageForumGroup.cshtml",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Views\\Admin\\ManageForumGroup.cshtml",
@@ -1796,7 +1852,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 109,
+              "DocumentIndex": 113,
               "Title": "ManageCourse.cshtml",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\Admin\\ManageCourse.cshtml",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Views\\Admin\\ManageCourse.cshtml",
@@ -1808,7 +1864,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 110,
+              "DocumentIndex": 114,
               "Title": "AdminDashBoard.cshtml",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\Admin\\AdminDashBoard.cshtml",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Views\\Admin\\AdminDashBoard.cshtml",
@@ -1820,7 +1876,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 111,
+              "DocumentIndex": 115,
               "Title": "site.js",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\js\\site.js",
               "RelativeDocumentMoniker": "FUCommunityWeb\\wwwroot\\js\\site.js",
@@ -1832,7 +1888,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 112,
+              "DocumentIndex": 116,
               "Title": "SignIn.cshtml",
               "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\Home\\SignIn.cshtml",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Views\\Home\\SignIn.cshtml",
@@ -1841,18 +1897,6 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-10-01T02:56:00.009Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 113,
-              "Title": "MentorHall.cshtml",
-              "DocumentMoniker": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\Home\\MentorHall.cshtml",
-              "RelativeDocumentMoniker": "FUCommunityWeb\\Views\\Home\\MentorHall.cshtml",
-              "ToolTip": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\Home\\MentorHall.cshtml",
-              "RelativeToolTip": "FUCommunityWeb\\Views\\Home\\MentorHall.cshtml",
-              "ViewState": "AgIAACwAAAAAAAAAAAAAwDgAAABOAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-01T02:52:21.419Z"
             }
           ]
         }

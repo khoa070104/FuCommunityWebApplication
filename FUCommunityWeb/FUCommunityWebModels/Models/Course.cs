@@ -32,7 +32,7 @@ namespace FuCommunityWebModels.Models
         [StringLength(50)]
         public string Status { get; set; }
 
-        [ForeignKey("Id")]
+        [ForeignKey("UserID")] 
         public ApplicationUser User { get; set; }
 
         public virtual ICollection<Lesson> Lessons { get; set; }

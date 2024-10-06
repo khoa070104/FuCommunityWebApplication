@@ -1,132 +1,66 @@
-﻿<body>
-    <div class="award-container">
-        <h1>Mentor Recognition <span>Hall</span></h1>
-        <h3>Top 3 Outstanding Mentors</h3>
-        <div class="row">
+﻿@model MentorVM
+
+<div class="award-container">
+    <h1>Mentor Recognition <span>Hall</span></h1>
+    <h3>Top 3 Outstanding Mentors</h3>
+    <div class="row">
+        @if (Model.TopMentors.Count > 1)
+        {
+            <!-- Top 2 -->
             <div class="col-md-3">
                 <div class="mentor-card">
-                    <img src="/img/Logo_FunnyCode.jpg" alt="Mentor A">
+                    <img src="@Model.TopMentors[1].AvatarImage" alt="Top 2">
                     <div class="card-body">
-                        <h5 class="card-title">Nguyen Van A</h5>
-                        <p class="card-text">Programming Mentor</p>
-                        <p class="text-muted">
-                            Prominent Course: <a href="#">MAE101</a>, <a href="#">MAD101</a>, <a href="#">MAS192</a>
-                        </p>
+                        <h5 class="card-title">@Model.TopMentors[1].FullName</h5>
+                        <p class="card-text">Point: @Model.TopMentors[1].Point</p>
                     </div>
                 </div>
             </div>
+        }
+
+        @if (Model.TopMentors.Count > 0)
+        {
+            <!-- Top 1 -->
             <div class="col-md-3">
                 <div class="mentor-card higher top-1">
-                    <!-- Thêm lớp 'higher' và 'top-1' cho thẻ giữa -->
-                    <img src="/img/Logo_FunnyCode.jpg" alt="Mentor B">
+                    <img src="@Model.TopMentors[0].AvatarImage" alt="Top 1">
                     <div class="card-body">
-                        <h5 class="card-title">Nguyen Van B</h5>
-                        <p class="card-text">Programming Mentor</p>
-                        <p class="text-muted top-1">
-                            Prominent Course: <a href="#">MAE101</a>, <a href="#">MAD101</a>, <a href="#">MAS192</a>
-                        </p>
+                        <h5 class="card-title">@Model.TopMentors[0].FullName</h5>
+                        <p class="card-text">Point: @Model.TopMentors[0].Point</p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="mentor-card">
-                    <img src="/img/Logo_FunnyCode.jpg" alt="Mentor C">
-                    <div class="card-body">
-                        <h5 class="card-title">Nguyen Van C</h5>
-                        <p class="card-text">Programming Mentor</p>
-                        <p class="text-muted">
-                            Prominent Course: <a href="#">MAE101</a>, <a href="#">MAD101</a>, <a href="#">MAS192</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
+        }
 
-        <!-- Phần tìm kiếm -->
-        <div class="search d-flex justify-content-between align-items-center mt-4">
-            <div class="btn-group" role="group" aria-label="Basic example">
-                <button type="button" class="btn btn-light">This week</button>
-                <button type="button" class="btn btn-light">Last week</button>
-                <button type="button" class="btn btn-light">This month</button>
-                <button type="button" class="btn btn-light">Last month</button>
-            </div>
-
-            <div>
-                <div class="input-group" style="width: auto;">
-                    <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
-                    <input type="date" class="form-control" aria-label="Date">  
-                </div>
-
-                <button class="search-btn">SEARCH</button>
-            </div>
-        </div>
-
-        <!-- Hàng mentor bình thường phía dưới -->
-        <h3>Other Outstanding Mentors</h3>
-        <div class="row">
+        @if (Model.TopMentors.Count > 2)
+        {
+            <!-- Top 3 -->
             <div class="col-md-3">
                 <div class="mentor-card">
-                    <img src="/img/Logo_FunnyCode.jpg" alt="Mentor D">
+                    <img src="@Model.TopMentors[2].AvatarImage" alt="Top 3">
                     <div class="card-body">
-                        <h5 class="card-title">Nguyen Van D</h5>
-                        <p class="card-text">Programming Mentor</p>
-                        <p class="text-muted">Prominent Course: <a href="#">MAE201</a>, <a href="#">MAD202</a></p>
+                        <h5 class="card-title">@Model.TopMentors[2].FullName</h5>
+                        <p class="card-text">Point: @Model.TopMentors[2].Point</p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="mentor-card">
-                    <img src="/img/Logo_FunnyCode.jpg" alt="Mentor E">
-                    <div class="card-body">
-                        <h5 class="card-title">Nguyen Van E</h5>
-                        <p class="card-text">Programming Mentor</p>
-                        <p class="text-muted">Prominent Course: <a href="#">MAE201</a>, <a href="#">MAD202</a></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="mentor-card">
-                    <img src="/img/Logo_FunnyCode.jpg" alt="Mentor F">
-                    <div class="card-body">
-                        <h5 class="card-title">Nguyen Van F</h5>
-                        <p class="card-text">Programming Mentor</p>
-                        <p class="text-muted">Prominent Course: <a href="#">MAE201</a>, <a href="#">MAD202</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3">
-                <div class="mentor-card">
-                    <img src="/img/Logo_FunnyCode.jpg" alt="Mentor D">
-                    <div class="card-body">
-                        <h5 class="card-title">Nguyen Van D</h5>
-                        <p class="card-text">Programming Mentor</p>
-                        <p class="text-muted">Prominent Course: <a href="#">MAE201</a>, <a href="#">MAD202</a></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="mentor-card">
-                    <img src="/img/Logo_FunnyCode.jpg" alt="Mentor E">
-                    <div class="card-body">
-                        <h5 class="card-title">Nguyen Van E</h5>
-                        <p class="card-text">Programming Mentor</p>
-                        <p class="text-muted">Prominent Course: <a href="#">MAE201</a>, <a href="#">MAD202</a></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="mentor-card">
-                    <img src="/img/Logo_FunnyCode.jpg" alt="Mentor F">
-                    <div class="card-body">
-                        <h5 class="card-title">Nguyen Van F</h5>
-                        <p class="card-text">Programming Mentor</p>
-                        <p class="text-muted">Prominent Course: <a href="#">MAE201</a>, <a href="#">MAD202</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+        }
     </div>
-</body>
+
+    <!-- Phần Other Outstanding Mentors -->
+    <h3>Other Outstanding Mentors</h3>
+    <div class="row">
+        @foreach (var mentor in Model.OtherMentors)
+        {
+            <div class="col-md-3">
+                <div class="mentor-card">
+                    <img src="@mentor.AvatarImage" alt="Other Mentor">
+                    <div class="card-body">
+                        <h5 class="card-title">@mentor.FullName</h5>
+                        <p class="card-text">Point: @mentor.Point</p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

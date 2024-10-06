@@ -1,6 +1,8 @@
 
+using FuCommunityWebDataAccess.Data;
 using FuCommunityWebModels.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
 namespace FUCommunityWeb.Controllers
@@ -9,9 +11,11 @@ namespace FUCommunityWeb.Controllers
 	{
 		private readonly ILogger<HomeController> _logger;
 
-		public HomeController(ILogger<HomeController> logger)
+        private readonly ApplicationDbContext _context;
+        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
 		{
 			_logger = logger;
+            _context = context;
 		}
         public IActionResult Index()
 		{
@@ -23,10 +27,6 @@ namespace FUCommunityWeb.Controllers
             return View();
         }
 
-        public IActionResult MentorHall()
-        {
-            return View();
-        }
         public IActionResult Cart()
         {
             return View();
@@ -55,10 +55,7 @@ namespace FUCommunityWeb.Controllers
         {
             return View();
         }
-        public IActionResult Forum()
-        {
-            return View();
-        }
+        
         public IActionResult ForumDetail()
         {
             return View();
@@ -67,6 +64,46 @@ namespace FUCommunityWeb.Controllers
         {
             return View();
         }
+
+        public IActionResult MentorHall()
+        {
+            var users = _context.Users
+                .Include(u => u.IsVotes)
+                .ToList();
+
+            var sortedUsers = users
+                .OrderByDescending(u => u.Point)
+                .ToList();
+
+            var topUsers = sortedUsers.Take(3).ToList();
+            var otherUsers = sortedUsers.Skip(3).ToList();
+
+            var mentorViewModel = new MentorVM
+            {
+                TopMentors = topUsers,
+                OtherMentors = otherUsers
+            };
+
+            return View(mentorViewModel);
+        }
+
+        public IActionResult Forum()
+        {
+            var forumViewModel = new ForumVM
+            {
+                Courses = _context.Courses.ToList(),
+                Posts = _context.Posts
+            .Include(p => p.User)
+            .Include(p => p.Comments)
+            .Include(p => p.Votes)
+            .OrderByDescending(p => p.CreatedDate)
+                .ToList()
+            };
+
+
+            return View(forumViewModel);
+        }
+
         public IActionResult SignIn()
         {
             return View();
