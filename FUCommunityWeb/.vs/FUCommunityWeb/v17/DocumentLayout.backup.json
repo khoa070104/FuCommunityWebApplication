@@ -458,12 +458,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 15,
+          "SelectedChildIndex": 14,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
@@ -524,7 +520,7 @@
               "RelativeDocumentMoniker": "FUCommunityWeb\\Program.cs",
               "ToolTip": "D:\\Documents\\FuWeb\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Program.cs",
               "RelativeToolTip": "FUCommunityWeb\\Program.cs",
-              "ViewState": "AgIAADAAAAAAAAAAAAAAABwAAAA7AAAAAAAAAA==",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAAB0AAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-01T16:13:28.785Z",
               "EditorCaption": ""
@@ -633,7 +629,7 @@
               "RelativeDocumentMoniker": "FUCommunityWeb\\appsettings.json",
               "ToolTip": "D:\\Documents\\FuWeb\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\appsettings.json",
               "RelativeToolTip": "FUCommunityWeb\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAA3AAAAAAAAAA==",
+              "ViewState": "AgIAAAUAAAAAAAAAAADwvw0AAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2024-10-03T09:46:17.135Z",
               "EditorCaption": ""
