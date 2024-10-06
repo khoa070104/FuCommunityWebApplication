@@ -3,3 +3,7 @@
 ################################################################################
 
 /FUCommunityWeb/FUCommunityWeb/Areas/Identity/Pages/Account/Manage/_ViewStart.cshtml
+# Bỏ qua các file cache và cấu hình của Visual Studio
+FUCommunityWeb/.vs/
+FUCommunityWeb/FUCommunityWeb/bin/
+FUCommunityWeb/FUCommunityWeb/obj/
