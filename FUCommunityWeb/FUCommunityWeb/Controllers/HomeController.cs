@@ -105,29 +105,8 @@ namespace FUCommunityWeb.Controllers
         {
             return View();
         }
-        public IActionResult CourseHistory()
-        {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-            var user = _context.Users.Include(u => u.IsVotes)
-                .FirstOrDefault(u => u.Id == userId);
-
-
-            var enrollments = _context.Enrollment
-                .Where(e => e.UserID == userId)
-                .Include(e => e.Course)
-                .OrderByDescending(e => e.EnrollmentDate)
-                .ToList();
-
-            var model = new CourseHistoryViewModel
-            {
-                User = user,
-                Enrollments = enrollments
-            };
-
-            ViewData["CurrentPage"] = Url.Action("CourseHistory");
-            return View(model);
-        }
+        // 1
+        
         public IActionResult Deposit()
         {
             return View();
@@ -160,30 +139,8 @@ namespace FUCommunityWeb.Controllers
         {
             return View();
         }
-        public IActionResult PostHistory()
-        {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); 
-
-            var user = _context.Users.Include(u => u.IsVotes)
-                .FirstOrDefault(u => u.Id == userId);
-
-            var posts = _context.Posts
-                .Where(p => p.UserID == userId)
-                .Include(p => p.Comments)
-                .Include(p => p.Votes)
-                .Include(p => p.User)
-                .OrderByDescending(p => p.CreatedDate)
-                .ToList();
-
-            var viewModel = new PostHistoryViewModel
-            {
-                User = user,
-                Post = posts
-            };
-
-            ViewData["CurrentPage"] = Url.Action("PostHistory");
-            return View(viewModel);
-        }
+        // 2
+        
         public IActionResult SignIn()
         {
             return View();

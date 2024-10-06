@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FuCommunityWebUtility")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7de597e671216feb12a136abfe7a44e8313c1ff0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a2da7deb0d21f3069bbec19046f908f27c7c8cd5")]
 [assembly: System.Reflection.AssemblyProductAttribute("FuCommunityWebUtility")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FuCommunityWebUtility")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

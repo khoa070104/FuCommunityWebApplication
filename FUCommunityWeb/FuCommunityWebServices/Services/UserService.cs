@@ -38,5 +38,24 @@ namespace FuCommunityWebServices.Services
 			await _userRepo.UpdateUserAsync(user);
 		}
 
-	}
+        public async Task<ApplicationUser> GetUserWithVotesAsync(string userId)
+        {
+            return await _userRepo.GetUserWithVotesAsync(userId);
+        }
+
+        public async Task<List<Post>> GetUserPostsAsync(string userId)
+        {
+            return await _userRepo.GetUserPostsAsync(userId);
+        }
+
+        public async Task<List<Enrollment>> GetUserEnrollmentsAsync(string userId)
+        {
+            return await _userRepo.GetUserEnrollmentsAsync(userId);
+        }
+
+        public async Task UpdateUserAvatarAsync(string? userId, string avatarPath)
+        {
+            await _userRepo.UpdateUserAvatarAsync(userId, avatarPath);
+        }
+    }
 }

@@ -13,14 +13,12 @@ namespace FUCommunityWeb.Controllers
 	public class ProfileController : Controller
 	{
 		private readonly UserManager<IdentityUser> _userManager;
-		private readonly UserService _userService; // Thêm UserService
-        private readonly ApplicationDbContext _context;
+		private readonly UserService _userService; 
 
         public ProfileController(UserManager<IdentityUser> userManager, UserService userService, ApplicationDbContext context)
 		{
 			_userManager = userManager;
-			_userService = userService; // Khởi tạo UserService
-			_context = context;
+			_userService = userService; 
 		}
 
 		public async Task<IActionResult> Index()
@@ -40,43 +38,46 @@ namespace FUCommunityWeb.Controllers
             ViewData["CurrentPage"] = Url.Action("Index");
             return View(userVM);
 		}
+        
         [HttpPost]
         public async Task<IActionResult> ChangeAvatar(IFormFile file, string currentPage)
         {
             if (file != null && file.Length > 0)
             {
-                // Get the currently logged-in user
                 var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == userId);
+                var uploadsDirectory = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads");
 
-                if (user != null)
+                if (!Directory.Exists(uploadsDirectory))
                 {
-                    // Define the path to save the uploaded image
-                    var uploadsDirectory = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads");
-
-                    // Check if the uploads directory exists, if not, create it
-                    if (!Directory.Exists(uploadsDirectory))
-                    {
-                        Directory.CreateDirectory(uploadsDirectory);
-                    }
-
-                    var fileName = Path.GetFileName(file.FileName);
-                    var path = Path.Combine(uploadsDirectory, fileName);
-
-                    // Save the uploaded image to the server
-                    using (var stream = new FileStream(path, FileMode.Create))
-                    {
-                        await file.CopyToAsync(stream);
-                    }
-
-                    // Update the AvatarImage property
-                    user.AvatarImage = $"/uploads/{fileName}";
-                    await _context.SaveChangesAsync();
+                    Directory.CreateDirectory(uploadsDirectory);
                 }
+
+                var fileName = Path.GetFileName(file.FileName);
+                var encryptedFileName = "avt_" + EncryptFileName(fileName); 
+                var path = Path.Combine(uploadsDirectory, encryptedFileName);
+
+                using (var stream = new FileStream(path, FileMode.Create))
+                {
+                    await file.CopyToAsync(stream);
+                }
+
+                var avatarPath = $"/uploads/{encryptedFileName}";
+                await _userService.UpdateUserAvatarAsync(userId, avatarPath);
             }
 
-            // Redirect back to the current page
             return Redirect(currentPage);
+        }
+
+        private string EncryptFileName(string fileName)
+        {
+            var fileExtension = Path.GetExtension(fileName);
+            var fileNameWithoutExtension = Path.GetFileNameWithoutExtension(fileName);
+
+            string fileNameWithAvatar = "avatar_" + fileNameWithoutExtension;
+            var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(fileNameWithAvatar);
+            var encryptedFileName = System.Convert.ToBase64String(plainTextBytes);
+
+            return encryptedFileName + fileExtension;
         }
         [HttpPost]
 		public async Task<IActionResult> Index(UserVM userVM)
@@ -100,5 +101,39 @@ namespace FUCommunityWeb.Controllers
 			//return View(userVM);
 			
 		}
-	}
+
+        public async Task<IActionResult> PostHistory()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var user = await _userService.GetUserWithVotesAsync(userId);
+            var posts = await _userService.GetUserPostsAsync(userId);
+
+            var viewModel = new PostHistoryViewModel
+            {
+                User = user,
+                Post = posts
+            };
+
+            ViewData["CurrentPage"] = Url.Action("PostHistory");
+            return View(viewModel);
+        }
+
+        public async Task<IActionResult> CourseHistory()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var user = await _userService.GetUserWithVotesAsync(userId);
+            var enrollments = await _userService.GetUserEnrollmentsAsync(userId);
+
+            var model = new CourseHistoryViewModel
+            {
+                User = user,
+                Enrollments = enrollments
+            };
+
+            ViewData["CurrentPage"] = Url.Action("CourseHistory");
+            return View(model);
+        }
+    }
 }
