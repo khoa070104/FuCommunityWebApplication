@@ -23,6 +23,7 @@ namespace FuCommunityWebModels.Models
 		public string Address { get; set; }
 		[MaxLength(500)]
 		public string Description { get; set; }
+        
 
         [MaxLength(255)]
         public string AvatarImage { get; set; }

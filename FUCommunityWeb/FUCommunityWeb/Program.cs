@@ -18,10 +18,20 @@ options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectio
 builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 //builder.Services.AddDefaultIdentity<ApplicationUser>()
 //	.AddEntityFrameworkStores<ApplicationDbContext>();
+var facebookAppId = builder.Configuration["Authentication:Facebook:AppId"];
+var facebookAppSecret = builder.Configuration["Authentication:Facebook:AppSecret"];
+var googleClientId = builder.Configuration["Authentication:Google:ClientId"];
+var googleClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
+
 builder.Services.AddAuthentication().AddFacebook(option =>
 {
-	option.AppId = "1071287101119725";
-	option.AppSecret = "b6fdf1abe67ae1a1f9ae8dbf85250f3b";
+	option.AppId = facebookAppId;
+	option.AppSecret = facebookAppSecret;
+});
+builder.Services.AddAuthentication().AddGoogle(option =>
+{
+	option.ClientId = googleClientId;
+	option.ClientSecret = googleClientSecret;
 });
 builder.Services.AddScoped<UserRepo>();
 

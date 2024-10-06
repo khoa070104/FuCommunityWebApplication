@@ -11,6 +11,7 @@
           "FuCommunityWebServices": "1.0.0",
           "FuCommunityWebUtility": "1.0.0",
           "Microsoft.AspNetCore.Authentication.Facebook": "8.0.8",
+          "Microsoft.AspNetCore.Authentication.Google": "8.0.8",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "8.0.8",
           "Microsoft.AspNetCore.Identity.UI": "8.0.8",
           "Microsoft.EntityFrameworkCore": "8.0.8",
@@ -614,6 +615,14 @@
       "Microsoft.AspNetCore.Authentication.Facebook/8.0.8": {
         "runtime": {
           "lib/net8.0/Microsoft.AspNetCore.Authentication.Facebook.dll": {
+            "assemblyVersion": "8.0.8.0",
+            "fileVersion": "8.0.824.36908"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Authentication.Google/8.0.8": {
+        "runtime": {
+          "lib/net8.0/Microsoft.AspNetCore.Authentication.Google.dll": {
             "assemblyVersion": "8.0.8.0",
             "fileVersion": "8.0.824.36908"
           }
@@ -2719,6 +2728,13 @@
       "sha512": "sha512-3x4f9YCUpKI6O8+X1T04UKxE6uhaKYRX/+l+tb34YPNR3K1ioEeTGEISOasRpxQ9Q3cO1caZ5zOi1xer3MUKig==",
       "path": "microsoft.aspnetcore.authentication.facebook/8.0.8",
       "hashPath": "microsoft.aspnetcore.authentication.facebook.8.0.8.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Authentication.Google/8.0.8": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Hc6PfWcpNCSq9ZhesZSgLD62ACsxBuAx9jhkOv+No5tx+AdPPU+tonrxzM+PuTDvijOVPy4YydzuDK9NR4Z+PQ==",
+      "path": "microsoft.aspnetcore.authentication.google/8.0.8",
+      "hashPath": "microsoft.aspnetcore.authentication.google.8.0.8.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Authorization/2.2.0": {
       "type": "package",

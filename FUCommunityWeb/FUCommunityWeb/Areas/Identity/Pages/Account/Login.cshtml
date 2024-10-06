@@ -38,10 +38,29 @@
                                 <i class="fab fa-google"></i>
                                 Google
                             </button>
-                            <button class="btn btn-outline-light btn-facebook w-48">
-                                <i class="fab fa-facebook"></i>
-                                Facebook
-                            </button>
+                            @{
+                                if ((Model.ExternalLogins?.Count ?? 0) == 0)
+                                {
+                                    <div>
+                                        <p>
+                                            There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">
+                                                article
+                                                about setting up this ASP.NET application to support logging in via external services
+                                            </a>.
+                                        </p>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                                        
+                                                @foreach (var provider in Model.ExternalLogins!)
+                                                {
+                                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                                                }
+                                    </form>
+                                }
+                            }
                         </div>
                         <p class="text-center text-white mt-3 custom-link">
                             By registering you agree with our <a href="#">Terms and Conditions</a>
