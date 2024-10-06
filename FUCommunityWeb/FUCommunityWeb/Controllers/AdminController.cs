@@ -1,5 +1,4 @@
-﻿using FuCommunityWebModels.Models;
-using FuCommunityWebModels.ViewModels;
+﻿using FuCommunityWebModels.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 

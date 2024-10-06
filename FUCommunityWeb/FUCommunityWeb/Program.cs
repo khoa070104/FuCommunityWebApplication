@@ -9,15 +9,12 @@ using FuCommunityWebServices.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-// options => options.SignIn.RequireConfirmedAccount = true    ~ Sẽ update Confirm email sau
 builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
-//builder.Services.AddDefaultIdentity<ApplicationUser>()
-//	.AddEntityFrameworkStores<ApplicationDbContext>();
+
 var facebookAppId = builder.Configuration["Authentication:Facebook:AppId"];
 var facebookAppSecret = builder.Configuration["Authentication:Facebook:AppSecret"];
 var googleClientId = builder.Configuration["Authentication:Google:ClientId"];
@@ -33,19 +30,18 @@ builder.Services.AddAuthentication().AddGoogle(option =>
 	option.ClientId = googleClientId;
 	option.ClientSecret = googleClientSecret;
 });
-builder.Services.AddScoped<UserRepo>();
-
+builder.Services.AddScoped<UserRepo>(); 
 builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<HomeRepo>();
+builder.Services.AddScoped<HomeService>();
 
 builder.Services.AddRazorPages();
 builder.Services.AddScoped<IEmailSender,EmailSender>();
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
 	app.UseExceptionHandler("/Home/Error");
-	// The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
 	app.UseHsts();
 }
 

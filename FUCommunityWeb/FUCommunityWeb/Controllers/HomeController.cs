@@ -1,21 +1,23 @@
-﻿
-using FuCommunityWebDataAccess.Data;
+﻿using FuCommunityWebDataAccess.Data;
 using FuCommunityWebModels.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
+using FuCommunityWebServices.Services;
 
 namespace FUCommunityWeb.Controllers
 {
 	public class HomeController : Controller
 	{
 		private readonly ILogger<HomeController> _logger;
+		private readonly UserService _userService;
+		private readonly HomeService _homeService;
 
-        private readonly ApplicationDbContext _context;
-        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
+        public HomeController(ILogger<HomeController> logger, UserService userService, HomeService homeService)
 		{
 			_logger = logger;
-            _context = context;
+            _userService = userService;
+            _homeService = homeService;
 		}
         public IActionResult Index()
 		{
@@ -65,11 +67,9 @@ namespace FUCommunityWeb.Controllers
             return View();
         }
 
-        public IActionResult MentorHall()
+        public async Task<IActionResult> MentorHall()
         {
-            var users = _context.Users
-                .Include(u => u.IsVotes)
-                .ToList();
+            var users = await _homeService.GetAllUsersWithVotesAsync();
 
             var sortedUsers = users
                 .OrderByDescending(u => u.Point)
@@ -87,39 +87,24 @@ namespace FUCommunityWeb.Controllers
             return View(mentorViewModel);
         }
 
-        public IActionResult Forum()
+        public async Task<IActionResult> Forum()
         {
+            var courses = await _homeService.GetAllCoursesAsync();
+            var posts = await _homeService.GetAllPostsAsync();
+
             var forumViewModel = new ForumVM
             {
-                Courses = _context.Courses.ToList(),
-                Posts = _context.Posts
-            .Include(p => p.User)
-            .Include(p => p.Comments)
-            .Include(p => p.Votes)
-            .OrderByDescending(p => p.CreatedDate)
-                .ToList()
+                Courses = courses,
+                Posts = posts
             };
-
 
             return View(forumViewModel);
         }
 
         [HttpGet]
-        public IActionResult GetPosts(int page = 1, int pageSize = 2, string searchString = "")
+        public async Task<IActionResult> GetPosts(int page = 1, int pageSize = 2, string searchString = "")
         {
-            var query = _context.Posts.AsQueryable();
-            if (!string.IsNullOrEmpty(searchString))
-            {
-                query = query.Where(p => p.Title.Contains(searchString) || p.Content.Contains(searchString));
-            }
-
-            var totalItems = query.Count();
-
-            var posts = query
-                .OrderBy(p => p.CreatedDate)
-                .Skip((page - 1) * pageSize)
-                .Take(pageSize)
-                .ToList();
+            var (posts, totalItems) = await _homeService.GetPostsAsync(page, pageSize, searchString);
 
             return Json(new
             {

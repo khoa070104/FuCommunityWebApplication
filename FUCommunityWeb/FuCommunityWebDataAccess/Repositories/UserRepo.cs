@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace FuCommunityWebDataAccess.Repositories
 {
-    public class UserRepo
+    public class UserRepo 
     {
         private readonly ApplicationDbContext _context;
 
@@ -18,31 +18,41 @@ namespace FuCommunityWebDataAccess.Repositories
             _context = context;
         }
 
-        public async Task<ApplicationUser> GetUserByIdAsync(string userId)
+        public async Task<ApplicationUser> GetUserByIdAsync(string userId, bool includeVotes = false)
         {
-            return await _context.Users.FindAsync(userId);
+            var query = _context.Users.AsQueryable();
+
+            if (includeVotes)
+            {
+                query = query.Include(u => u.IsVotes);
+            }
+
+            return await query.FirstOrDefaultAsync(u => u.Id == userId);
         }
 
-        public async Task<List<ApplicationUser>> GetAllUsersAsync()
+        public async Task<List<ApplicationUser>> GetAllUsersAsync(bool includeVotes = false)
         {
-            return await _context.Users.ToListAsync();
+            var query = _context.Users.AsQueryable();
+
+            if (includeVotes)
+            {
+                query = query.Include(u => u.IsVotes);
+            }
+
+            return await query.ToListAsync();
         }
 
-        public async Task AddUserAsync(ApplicationUser user)
+        public async Task SaveUserAsync(ApplicationUser user)
         {
-            await _context.Users.AddAsync(user);
+            if (_context.Users.Any(u => u.Id == user.Id))
+            {
+                _context.Users.Update(user);
+            }
+            else
+            {
+                await _context.Users.AddAsync(user);
+            }
             await _context.SaveChangesAsync();
-        }
-
-        public async Task UpdateUserAsync(ApplicationUser user)
-        {
-            _context.Users.Update(user);
-            await _context.SaveChangesAsync();
-        }
-        public async Task<ApplicationUser> GetUserWithVotesAsync(string userId)
-        {
-            return await _context.Users.Include(u => u.IsVotes)
-                                       .FirstOrDefaultAsync(u => u.Id == userId);
         }
 
         public async Task<List<Post>> GetUserPostsAsync(string userId)
@@ -74,6 +84,19 @@ namespace FuCommunityWebDataAccess.Repositories
                 _context.Users.Update(user);
                 await _context.SaveChangesAsync();
             }
+        }
+
+        public async Task<ApplicationUser> GetUserWithVotesAsync(string userId)
+        {
+            return await _context.Users
+                .Include(u => u.IsVotes)
+                .FirstOrDefaultAsync(u => u.Id == userId);
+        }
+
+        public async Task UpdateUserAsync(ApplicationUser user)
+        {
+            _context.Users.Update(user);
+            await _context.SaveChangesAsync();
         }
     }
 }

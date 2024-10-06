@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FuCommunityWebServices.Services
 {
-    public class UserService
+    public class UserService 
     {
         private readonly UserRepo _userRepo;
 
@@ -18,29 +18,19 @@ namespace FuCommunityWebServices.Services
             _userRepo = userRepo;
         }
 
-        public async Task<ApplicationUser> GetUserByIdAsync(string userId)
+        public async Task<ApplicationUser> GetUserByIdAsync(string userId, bool includeVotes = false)
         {
-            return await _userRepo.GetUserByIdAsync(userId);
+            return await _userRepo.GetUserByIdAsync(userId, includeVotes);
         }
 
-        public async Task<List<ApplicationUser>> GetAllUsersAsync()
+        public async Task<List<ApplicationUser>> GetAllUsersAsync(bool includeVotes = false)
         {
-            return await _userRepo.GetAllUsersAsync();
+            return await _userRepo.GetAllUsersAsync(includeVotes);
         }
 
-        public async Task AddUserAsync(ApplicationUser user)
+        public async Task SaveUserAsync(ApplicationUser user)
         {
-            await _userRepo.AddUserAsync(user);
-        }
-
-        public async Task UpdateUserAsync(ApplicationUser user)
-        {
-            await _userRepo.UpdateUserAsync(user);
-        }
-
-        public async Task<ApplicationUser> GetUserWithVotesAsync(string userId)
-        {
-            return await _userRepo.GetUserWithVotesAsync(userId);
+            await _userRepo.SaveUserAsync(user);
         }
 
         public async Task<List<Post>> GetUserPostsAsync(string userId)
@@ -53,9 +43,19 @@ namespace FuCommunityWebServices.Services
             return await _userRepo.GetUserEnrollmentsAsync(userId);
         }
 
-        public async Task UpdateUserAvatarAsync(string? userId, string avatarPath)
+        public async Task UpdateUserAvatarAsync(string userId, string avatarPath)
         {
             await _userRepo.UpdateUserAvatarAsync(userId, avatarPath);
+        }
+
+        public async Task<ApplicationUser> GetUserWithVotesAsync(string userId)
+        {
+            return await _userRepo.GetUserWithVotesAsync(userId);
+        }
+
+        public async Task UpdateUserAsync(ApplicationUser user)
+        {
+            await _userRepo.UpdateUserAsync(user);
         }
     }
 }
