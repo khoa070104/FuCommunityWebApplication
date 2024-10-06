@@ -1,0 +1,71 @@
+﻿@model PostHistoryVM
+
+<body>
+    <div class="container-fluid mt-4 profile">
+        <h1 class="title text-start">PROFILE</h1>
+        <div class="row justify-content-center">
+            <div class="col-md-3">
+                <div class="sidebar">
+                    <form asp-action="ChangeAvatar" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="currentPage" value="@ViewData["CurrentPage"]" />
+                        <img src="@(Model.User.AvatarImage ?? "/img/avt2.jpg")" class="avatar mb-3 rounded-circle" alt="Avatar">
+                        <h4 class="username mb-1">@Model.User.FullName</h4>
+                        <p class="points">Points of week: <span>@Model.User.Point</span></p>
+                        <div class="d-flex mb-3">
+                            <input type="file" name="file" id="file" accept="image/*" style="display: none;" onchange="this.form.submit()">
+                            <button type="button" class="btn btn-changeavt" onclick="document.getElementById('file').click();">Change Avatar</button>
+                            <button class="btn btn-editprofile">Edit Profile</button>
+                        </div>
+                    </form>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <a href="@Url.Action("EditProfile")"><i class="fa fa-cog"></i> Setting</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="@Url.Action("ContactUs")"><i class="fa fa-comment-dots"></i> Message</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="@Url.Action("PostHistory")"><i class="fa fa-pencil-alt"></i> Post</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="@Url.Action("CourseHistory")"><i class="fa fa-book"></i> Course History</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="card mb-4">
+                    <div class="card-header">Your Posts</div>
+                    <ul class="list-group list-group-flush">
+                        @if (Model.Post != null && Model.Post.Count > 0)
+                        {
+                            foreach (var post in Model.Post)
+                            {
+                                <li class="list-group-item d-flex align-items-center justify-content-between">
+                                    <div class="d-flex align-items-center">
+                                        <div class="forum-icon me-3"></div>
+                                        <div>
+                                            <div>@post.Title</div>
+                                            <div class="text-muted">Comments <span>@(post.Comments?.Count ?? 0)</span> & Votes <span>@(post.Votes?.Count ?? 0)</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <div class="text-end me-3">
+                                            @(post.User?.FullName ?? "Unknown User")<br>
+                                            @post.CreatedDate?.ToString("dd/MM/yyyy")
+                                        </div>
+                                        <img class="user-avatar" src="@post.User?.AvatarImage" alt="User Avatar" />
+                                    </div>
+                                </li>
+                            }
+                        }
+                        else
+                        {
+                            <li class="list-group-item">No posts found.</li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

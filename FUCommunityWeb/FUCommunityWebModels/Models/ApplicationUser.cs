@@ -19,11 +19,10 @@ namespace FuCommunityWebModels.Models
         public DateTime DOB { get; set; }
 
         public string Bio { get; set; }
-		[MaxLength(255)]
-		public string Address { get; set; }
-		[MaxLength(500)]
-		public string Description { get; set; }
-        
+        [MaxLength(255)]
+        public string Address { get; set; }
+        [MaxLength(500)]
+        public string Description { get; set; }
 
         [MaxLength(255)]
         public string AvatarImage { get; set; }
@@ -38,5 +37,13 @@ namespace FuCommunityWebModels.Models
 
         // Thêm thuộc tính Comments
         public virtual ICollection<Comment> Comments { get; set; } // Mối quan hệ với Comment
+        [NotMapped]
+        public int Point
+        {
+            get
+            {
+                return IsVotes?.Sum(vote => vote.Point) ?? 0;
+            }
+        }
     }
 }

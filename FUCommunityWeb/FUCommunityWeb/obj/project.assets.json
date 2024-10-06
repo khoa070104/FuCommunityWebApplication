@@ -9228,11 +9228,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Documents\\FuWeb\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\FUCommunityWeb.csproj",
+      "projectUniqueName": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\FUCommunityWeb.csproj",
       "projectName": "FUCommunityWeb",
-      "projectPath": "D:\\Documents\\FuWeb\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\FUCommunityWeb.csproj",
+      "projectPath": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\FUCommunityWeb.csproj",
       "packagesPath": "C:\\Users\\NCPC\\.nuget\\packages\\",
-      "outputPath": "D:\\Documents\\FuWeb\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\obj\\",
+      "outputPath": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\NCPC\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -9250,11 +9250,11 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "D:\\Documents\\FuWeb\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebServices\\FuCommunityWebServices.csproj": {
-              "projectPath": "D:\\Documents\\FuWeb\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebServices\\FuCommunityWebServices.csproj"
+            "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebServices\\FuCommunityWebServices.csproj": {
+              "projectPath": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebServices\\FuCommunityWebServices.csproj"
             },
-            "D:\\Documents\\FuWeb\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebUtility\\FuCommunityWebUtility.csproj": {
-              "projectPath": "D:\\Documents\\FuWeb\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebUtility\\FuCommunityWebUtility.csproj"
+            "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebUtility\\FuCommunityWebUtility.csproj": {
+              "projectPath": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebUtility\\FuCommunityWebUtility.csproj"
             }
           }
         }

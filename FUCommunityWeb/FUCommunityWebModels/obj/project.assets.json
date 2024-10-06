@@ -4522,11 +4522,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Documents\\FuWeb\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\FuCommunityWebModels.csproj",
+      "projectUniqueName": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\FuCommunityWebModels.csproj",
       "projectName": "FuCommunityWebModels",
-      "projectPath": "D:\\Documents\\FuWeb\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\FuCommunityWebModels.csproj",
+      "projectPath": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\FuCommunityWebModels.csproj",
       "packagesPath": "C:\\Users\\NCPC\\.nuget\\packages\\",
-      "outputPath": "D:\\Documents\\FuWeb\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\obj\\",
+      "outputPath": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\NCPC\\AppData\\Roaming\\NuGet\\NuGet.Config",

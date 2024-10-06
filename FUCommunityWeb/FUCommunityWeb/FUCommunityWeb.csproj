@@ -23,5 +23,8 @@
     <ProjectReference Include="..\FuCommunityWebServices\FuCommunityWebServices.csproj" />
     <ProjectReference Include="..\FuCommunityWebUtility\FuCommunityWebUtility.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="wwwroot\uploads\" />
+  </ItemGroup>
 
 </Project>

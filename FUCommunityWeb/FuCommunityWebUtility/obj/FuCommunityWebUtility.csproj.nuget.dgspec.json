@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Documents\\FuWeb\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebUtility\\FuCommunityWebUtility.csproj": {}
+    "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebUtility\\FuCommunityWebUtility.csproj": {}
   },
   "projects": {
-    "D:\\Documents\\FuWeb\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebUtility\\FuCommunityWebUtility.csproj": {
+    "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebUtility\\FuCommunityWebUtility.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Documents\\FuWeb\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebUtility\\FuCommunityWebUtility.csproj",
+        "projectUniqueName": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebUtility\\FuCommunityWebUtility.csproj",
         "projectName": "FuCommunityWebUtility",
-        "projectPath": "D:\\Documents\\FuWeb\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebUtility\\FuCommunityWebUtility.csproj",
+        "projectPath": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebUtility\\FuCommunityWebUtility.csproj",
         "packagesPath": "C:\\Users\\NCPC\\.nuget\\packages\\",
-        "outputPath": "D:\\Documents\\FuWeb\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebUtility\\obj\\",
+        "outputPath": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebUtility\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\NCPC\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -8597,11 +8597,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Documents\\FuWeb\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebServices\\FuCommunityWebServices.csproj",
+      "projectUniqueName": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebServices\\FuCommunityWebServices.csproj",
       "projectName": "FuCommunityWebServices",
-      "projectPath": "D:\\Documents\\FuWeb\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebServices\\FuCommunityWebServices.csproj",
+      "projectPath": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebServices\\FuCommunityWebServices.csproj",
       "packagesPath": "C:\\Users\\NCPC\\.nuget\\packages\\",
-      "outputPath": "D:\\Documents\\FuWeb\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebServices\\obj\\",
+      "outputPath": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebServices\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\NCPC\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -8619,8 +8619,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "D:\\Documents\\FuWeb\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\FuCommunityWebDataAccess.csproj": {
-              "projectPath": "D:\\Documents\\FuWeb\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\FuCommunityWebDataAccess.csproj"
+            "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\FuCommunityWebDataAccess.csproj": {
+              "projectPath": "D:\\Documents\\FuWebNew\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\FuCommunityWebDataAccess.csproj"
             }
           }
         }
