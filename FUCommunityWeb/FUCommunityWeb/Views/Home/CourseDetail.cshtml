@@ -1,92 +1,335 @@
-﻿<body>
-    <div class="course-detail">
-        <div class="course-header">
-            <div id="course-detail-header">
-                <ol class="breadcrumb">
-                    <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
-                    <li><a href="#">Programming-IT</a></li>
-                    <li><a href="#">Back-end</a></li>
-                    <li><a href="#">.NET</a></li>
-                    <li class="active">PRN212</li>
-                </ol>
-                <h1 class="display-2">Platform Application Programming With .NET</h1>
-                <div class="course-info">
-                    <div class="info1">
-                        <span class="badge badge-secondary">Beginner</span>
-                        <div class="star-icon">
-                            <span class="badge badge-warning">3.0<span class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span></span>
-                        </div>
-                        <span class="badge badge-info">10 reviews</span>
-                        <span class="badge badge-light">English</span>
+﻿@model FuCommunityWebModels.ViewModels.CourseDetailVM
+
+@using System.Security.Claims
+
+@{
+    ViewData["Title"] = "Course Detail";
+}
+
+<div class="course-detail">
+    <!-- Existing Course Header and Curriculum Section -->
+    <div class="course-header">
+        <div id="course-detail-header">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/home/home"><i class="fa fa-home"></i> Home</a></li>
+                <li class="breadcrumb-item"><a href="#">Programming-IT</a></li>
+                <li class="breadcrumb-item"><a href="#">Back-end</a></li>
+                <li class="breadcrumb-item"><a href="#">.NET</a></li>
+                <li class="breadcrumb-item active" aria-current="page">PRN212</li>
+            </ol>
+            <h1 class="display-2">@Model.Course.Title</h1>
+            <div class="course-info">
+                <div class="info1">
+                    <span class="badge badge-secondary">Beginner</span>
+                    <div class="star-icon">
+                        <span class="badge badge-warning">
+                            @for (int i = 0; i < 5; i++)
+                            {
+                                <i class="fas fa-star"></i>
+                            }
+                        </span>
                     </div>
-                    <p><strong>Created by:</strong> ABCD</p>
-                    <p><strong>Last update:</strong> 13/09/2024</p>
-                    <p><strong>Course Overview:</strong> This course provides a comprehensive introduction to .NET platform application programming...</p>
-                    <p><strong>Instructor:</strong> John Doe, Senior Developer</p>
+                    <span class="badge badge-info">@Model.Course.Price points</span>
+                    <span class="badge badge-light">English</span>
                 </div>
+                <p><strong>Created by:</strong> @Model.Course.User.FullName</p>
+                <p><strong>Last update:</strong> @(Model.Course.UpdatedDate?.ToString("dd/MM/yyyy") ?? Model.Course.CreatedDate.ToString("dd/MM/yyyy"))</p>
+                <p><strong>Course Overview:</strong> @Model.Course.Description</p>
+                <p><strong>Instructor:</strong> @Model.Course.User.FullName</p>
             </div>
         </div>
-
-        <div class="container d-flex justify-content-between">
-            <div class="course-card col-md-8">
-                <!-- Adjusted to col-md-8 -->
-                <ul class="nav nav-tabs">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#">Curriculum</a>
-                    </li>
-                </ul>
-                <h2 class="mt-3">Curriculum for this course</h2>
-                <div class="lessons">
-                    <a href="#lesson1" class="lesson-item">
-                        <div class="d-flex align-items-center justify-content-between">
-                            <div class="lesson-info">
-                                <i class="fas fa-clock"></i>
-                                <p>Lesson 1: Overview</p>
-                            </div>
-                            <p>2 hr 30 mins</p>
-                        </div>
-                    </a>
-                    <a href="#lesson2" class="lesson-item">
-                        <div class="d-flex align-items-center justify-content-between">
-                            <div class="lesson-info">
-                                <i class="fas fa-clock"></i>
-                                <p>Lesson 2: Getting Started with .NET</p>
-                            </div>
-                            <p>1 hr 45 mins</p>
-                        </div>
-                    </a>
-                    <a href="#lesson3" class="lesson-item">
-                        <div class="d-flex align-items-center justify-content-between">
-                            <div class="lesson-info">
-                                <i class="fas fa-clock"></i>
-                                <p>Lesson 3: Building Your First Application</p>
-                            </div>
-                            <p>3 hr 10 mins</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-
-            <div class="course-card fixed-course-card col-md-4">
-                <!-- Keep this as col-md-4 -->
-                <div class="price">
-                    <span class="old-price">599 points</span>
-                    <span class="new-price">400 points</span>
-                </div>
-                <div class="button-row">
-                    <button class="btn btn-custom">Add to favorites</button>
-                    <button class="btn btn-custom">Buy now</button>
-                </div>
-                <p><strong>Includes:</strong></p>
-                <ul>
-                    <li>34 hr 39 mins of content</li>
-                    <li>100 lessons</li>
-                    <li>Downloadable resources</li>
-                    <li>Certificate of completion</li>
-                </ul>
-                <button class="btn btn-custom">Compare this course with other courses</button>
-            </div>
-        </div>
-
     </div>
-</body>
+
+    <div class="container d-flex justify-content-between">
+        <!-- Curriculum Section -->
+        <div class="course-card col-md-8">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Curriculum</a>
+                </li>
+                @if (User.Identity.IsAuthenticated && Model.Course.UserID == User.FindFirstValue(ClaimTypes.NameIdentifier))
+                {
+                    <li class="nav-item ms-auto">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createLessonModal">
+                            Add New Lesson
+                        </button>
+                    </li>
+                }
+            </ul>
+            <h2 class="mt-3">Curriculum for this course</h2>
+            <div class="lessons">
+                @foreach (var lesson in Model.Lessons)
+                {
+                    <div class="lesson-item mb-2 p-2 border rounded">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div class="lesson-info">
+                                <i class="fas fa-clock me-2"></i>
+                                <strong>@lesson.Title</strong>
+                            </div>
+                            <div>
+                                <span>@(lesson.UpdatedDate?.ToString("dd/MM/yyyy") ?? lesson.CreatedDate.ToString("dd/MM/yyyy"))</span>
+                                @if (User.Identity.IsAuthenticated && Model.Course.UserID == User.FindFirstValue(ClaimTypes.NameIdentifier))
+                                {
+                                    <button class="btn btn-sm btn-warning ms-2 edit-lesson-btn" data-lesson-id="@lesson.LessonID">Edit</button>
+                                    <button class="btn btn-sm btn-danger ms-2 delete-lesson-btn" data-lesson-id="@lesson.LessonID" data-lesson-title="@lesson.Title">Delete</button>
+                                }
+                            </div>
+                        </div>
+                        <div class="lesson-content mt-2">
+                            @Html.Raw(lesson.Content) <!-- Assuming Content contains HTML -->
+                        </div>
+                        <!-- Removed Lesson Image Display -->
+                    </div>
+                }
+            </div>
+        </div>
+
+        <!-- Fixed Course Card -->
+        <div class="course-card fixed-course-card col-md-4">
+            <div class="price">
+                <span class="old-price">500 points</span>
+                <span class="new-price">@Model.Course.Price points</span>
+            </div>
+            <div class="button-row">
+                <button class="btn btn-custom">Add to favorites</button>
+                @if (!Model.EnrolledCourses.Contains(Model.Course.CourseID)) // Check if the user is not enrolled
+                {
+                    <button class="btn btn-custom buy-now" data-course-id="@Model.Course.CourseID" data-bs-toggle="modal" data-bs-target="#buyNowModal">
+                        Buy now
+                    </button>
+                }
+                else
+                {
+                    <span class="text-success">Enrolled</span> <!-- Indicate the user is enrolled -->
+                }
+            </div>
+            <p><strong>Includes:</strong></p>
+            <ul>
+                <li>500 of content</li>
+                <li>300 lessons</li>
+                <li>Downloadable resources</li>
+                <li>Certificate of completion</li>
+            </ul>
+            <button class="btn btn-custom">Compare this course with other courses</button>
+        </div>
+    </div>
+</div>
+
+<!-- Existing Buy Now Modal -->
+<div class="modal fade" id="buyNowModal" tabindex="-1" aria-labelledby="buyNowModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirm Purchase</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to purchase this course for <span id="coursePrice"></span> points?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-cancel btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <form id="enrollForm" method="post" action="@Url.Action("CourseDetail", "Home")">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="courseId" id="enrollCourseId" />
+                    <input type="hidden" name="returnUrl" id="returnUrl" />
+                    <button type="submit" class="btn btn-primary" id="confirmEnrollBtn">Confirm</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Create Lesson Modal -->
+<div class="modal fade" id="createLessonModal" tabindex="-1" aria-labelledby="createLessonModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form asp-action="CreateLesson" asp-controller="Home" method="post" enctype="multipart/form-data">
+                @Html.AntiForgeryToken()
+                <div class="modal-header">
+                    <h5 class="modal-title" id="createLessonModalLabel">Add New Lesson</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Validation Summary -->
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <!-- Hidden CourseID -->
+                    <input type="hidden" asp-for="CreateLessonVM.CourseID" />
+
+                    <!-- Title -->
+                    <div class="mb-3">
+                        <label asp-for="CreateLessonVM.Title" class="form-label">Title</label>
+                        <input asp-for="CreateLessonVM.Title" class="form-control" required />
+                        <span asp-validation-for="CreateLessonVM.Title" class="text-danger"></span>
+                    </div>
+
+                    <!-- Content -->
+                    <div class="mb-3">
+                        <label asp-for="CreateLessonVM.Content" class="form-label">Content</label>
+                        <textarea asp-for="CreateLessonVM.Content" class="form-control" rows="5"></textarea>
+                        <span asp-validation-for="CreateLessonVM.Content" class="text-danger"></span>
+                    </div>
+
+                    <!-- Status -->
+                    <div class="mb-3">
+                        <label asp-for="CreateLessonVM.Status" class="form-label">Status</label>
+                        <select asp-for="CreateLessonVM.Status" class="form-select" required>
+                            <option value="Active">Active</option>
+                            <option value="Inactive">Inactive</option>
+                        </select>
+                        <span asp-validation-for="CreateLessonVM.Status" class="text-danger"></span>
+                    </div>
+
+                    <!-- Removed Lesson Image File Upload -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Add Lesson</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Lesson Modal -->
+<div class="modal fade" id="editLessonModal" tabindex="-1" aria-labelledby="editLessonModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form asp-action="EditLesson" asp-controller="Home" method="post" enctype="multipart/form-data">
+                @Html.AntiForgeryToken()
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editLessonModalLabel">Edit Lesson</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Validation Summary -->
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <!-- Hidden LessonID and CourseID -->
+                    <input type="hidden" asp-for="EditLessonVM.LessonID" />
+                    <input type="hidden" asp-for="EditLessonVM.CourseID" />
+
+                    <!-- Title -->
+                    <div class="mb-3">
+                        <label asp-for="EditLessonVM.Title" class="form-label">Title</label>
+                        <input asp-for="EditLessonVM.Title" class="form-control" required />
+                        <span asp-validation-for="EditLessonVM.Title" class="text-danger"></span>
+                    </div>
+
+                    <!-- Content -->
+                    <div class="mb-3">
+                        <label asp-for="EditLessonVM.Content" class="form-label">Content</label>
+                        <textarea asp-for="EditLessonVM.Content" class="form-control" rows="5"></textarea>
+                        <span asp-validation-for="EditLessonVM.Content" class="text-danger"></span>
+                    </div>
+
+                    <!-- Status -->
+                    <div class="mb-3">
+                        <label asp-for="EditLessonVM.Status" class="form-label">Status</label>
+                        <select asp-for="EditLessonVM.Status" class="form-select" required>
+                            <option value="Active">Active</option>
+                            <option value="Inactive">Inactive</option>
+                        </select>
+                        <span asp-validation-for="EditLessonVM.Status" class="text-danger"></span>
+                    </div>
+
+                    <!-- Removed Current Lesson Image and Lesson Image File Upload -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Lesson Modal -->
+<div class="modal fade" id="deleteLessonModal" tabindex="-1" aria-labelledby="deleteLessonModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form asp-action="DeleteLesson" asp-controller="Home" method="post">
+                @Html.AntiForgeryToken()
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteLessonModalLabel">Confirm Deletion</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete the lesson "<strong id="deleteLessonTitle"></strong>"? This action cannot be undone.
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" name="lessonId" id="deleteLessonId" />
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Scripts for Lesson Modals -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Buy Now Modal Handling
+        const buyNowButtons = document.querySelectorAll(".buy-now");
+
+        buyNowButtons.forEach(function (button) {
+            button.addEventListener("click", function () {
+                const courseId = this.getAttribute("data-course-id");
+                const coursePrice = this.closest('.course-card').querySelector('.new-price').textContent;
+
+                // Set courseId and coursePrice in the modal
+                document.getElementById("enrollCourseId").value = courseId;
+                document.getElementById("coursePrice").textContent = coursePrice;
+                document.getElementById("returnUrl").value = window.location.pathname;
+            });
+        });
+
+        // Edit Lesson Modal Handling
+        const editLessonButtons = document.querySelectorAll(".edit-lesson-btn");
+
+        editLessonButtons.forEach(function (button) {
+            button.addEventListener("click", function () {
+                const lessonId = this.getAttribute("data-lesson-id");
+
+                // Make an AJAX call to fetch the EditLesson modal content
+                fetch(`@Url.Action("EditLesson", "Home")?lessonId=${lessonId}`)
+                    .then(response => response.text())
+                    .then(html => {
+                        const editLessonModal = document.getElementById("editLessonModal");
+                        editLessonModal.querySelector(".modal-content").innerHTML = html;
+                        const bootstrapModal = new bootstrap.Modal(editLessonModal);
+                        bootstrapModal.show();
+                    })
+                    .catch(error => {
+                        console.error('Error fetching edit lesson modal:', error);
+                        alert('An error occurred while loading the edit lesson form.');
+                    });
+            });
+        });
+
+        // Delete Lesson Modal Handling
+        const deleteLessonButtons = document.querySelectorAll(".delete-lesson-btn");
+        const deleteLessonModal = document.getElementById("deleteLessonModal");
+
+        deleteLessonButtons.forEach(function (button) {
+            button.addEventListener("click", function () {
+                const lessonId = this.getAttribute("data-lesson-id");
+                const lessonTitle = this.getAttribute("data-lesson-title");
+
+                // Set the lesson ID and title in the modal
+                document.getElementById("deleteLessonId").value = lessonId;
+                document.getElementById("deleteLessonTitle").textContent = lessonTitle;
+
+                // Show the modal
+                const bootstrapModal = new bootstrap.Modal(deleteLessonModal);
+                bootstrapModal.show();
+            });
+        });
+    });
+</script>
+
+<!-- Include Validation Scripts -->
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

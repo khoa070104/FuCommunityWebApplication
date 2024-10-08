@@ -1,315 +1,461 @@
-﻿<body>
+﻿@model FuCommunityWebModels.ViewModels.CourseVM
+
+@using System.Security.Claims
+
+<body>
     <div class="course-container">
         <div class="container">
             <!-- Breadcrumb Navigation -->
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
-                    <li><a href="#">Programming-IT</a></li>
-                    <li><a href="#">Back-end</a></li>
-                    <li><a href="#">.NET</a></li>
-                    <li class="active">PRN212</li>
+                    <li class="breadcrumb-item"><a href="/home/home"><i class="fa fa-home"></i> Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Programming-IT</a></li>
+                    <li class="breadcrumb-item"><a href="#">Back-end</a></li>
+                    <li class="breadcrumb-item"><a href="#">.NET</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">PRN212</li>
                 </ol>
             </nav>
 
             <h1 class="title"><span>English</span> Courses</h1>
-            <div class="d-flex flex-wrap justify-content-center gap-2 my-3">
-                <!-- Semester Selection -->
-                <div class="selection">
-                    <label class="label" for="semester">Semester:</label>
-                    <select id="semester" class="form-select">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                    </select>
-                </div>
 
-                <!-- Category Selection -->
-                <div class="selection">
-                    <label class="label" for="category">Category:</label>
-                    <select id="category" class="form-select">
-                        <option value="language">Language</option>
-                    </select>
+            <!-- Create New Course Button -->
+            @if (User.Identity.IsAuthenticated)
+            {
+                <div class="text-end mb-3">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createCourseModal">
+                        Create New Course
+                    </button>
                 </div>
+            }
 
-                <!-- Subject Code Selection -->
-                <div class="selection">
-                    <label class="label" for="subject-code">Subject Code:</label>
-                    <select id="subject-code" class="form-select">
-                        <option value="PRF192">PRF192</option>
-                    </select>
-                </div>
+            <!-- Filter Form -->
+            <form method="get" action="@Url.Action("Course", "Home")">
+                <div class="d-flex flex-wrap justify-content-center gap-2 my-3">
+                    <!-- Semester Selection -->
+                    <div class="selection">
+                        <label class="label" for="semester">Semester:</label>
+                        <select id="semester" name="semester" class="form-select" onchange="this.form.submit()">
+                            <option value="">All Semesters</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                        </select>
+                    </div>
 
-                <!-- Rate Selection -->
-                <div class="selection">
-                    <label class="label" for="rate">Rate:</label>
-                    <select id="rate" class="form-select">
-                        <option value="4">&gt;4</option>
-                    </select>
-                </div>
+                    <!-- Category Selection -->
+                    <div class="selection">
+                        <label class="label" for="category">Category:</label>
+                        <select id="category" name="category" class="form-select" onchange="this.form.submit()">
+                            <option value="">All Categories</option>
+                            <option value="language">Language</option>
+                        </select>
+                    </div>
 
-                <!-- Cost Selection -->
-                <div class="selection">
-                    <label class="label" for="cost">Point:</label>
-                    <select id="cost" class="form-select">
-                        <option value="500000">&lt;500</option>
-                    </select>
-                </div>
+                    <!-- Subject Code Selection -->
+                    <div class="selection">
+                        <label class="label" for="subject-code">Subject Code:</label>
+                        <select id="subject-code" name="subjectCode" class="form-select" onchange="this.form.submit()">
+                            <option value="">All Subjects</option>
+                            @foreach (var course in Model.Courses)
+                            {
+                                <option value="@course.Title">@course.Title</option>
+                            }
+                        </select>
+                    </div>
 
-                <div class="selection">
-                    <div class="d-flex justify-content-center my-3">
-                        <i class="fas fa-sliders filter-icon" data-bs-toggle="offcanvas"
-                           data-bs-target="#filterOffcanvas" aria-controls="filterOffcanvas"></i>
+                    <!-- Rate Selection -->
+                    <div class="selection">
+                        <label class="label" for="rate">Rate:</label>
+                        <select id="rate" name="rate" class="form-select" onchange="this.form.submit()">
+                            <option value="">All Ratings</option>
+                            <option value="4">≥ 4</option>
+                        </select>
+                    </div>
+
+                    <!-- Cost Selection -->
+                    <div class="selection">
+                        <label class="label" for="cost">Cost:</label>
+                        <select id="cost" name="minPrice" class="form-select" onchange="this.form.submit()">
+                            <option value="">All Prices</option>
+                            <option value="500000">&lt;500 points</option>
+                        </select>
                     </div>
                 </div>
-            </div>
-
+            </form>
         </div>
-       
+
         <!-- Course Section -->
         <div class="course-section">
             <div class="row">
-                <div class="col-md-4 mb-4">
-                    <div class="course-card">
-                        <div class="course-image">
-                            <img src="/img/fn_Course+Cart_1.png" alt="Course Image" class="img-fluid">
-                        </div>
-                        <div class="course-info">
-                            <div class="category">
-                                <span class="badge">Mathematics</span>
-                                <span class="badge">+3</span>
+                @foreach (var course in Model.Courses)
+                {
+                    <div class="col-md-4 mb-4">
+                        <div class="course-card">
+                            <div class="course-image">
+                                <a href="@Url.Action("CourseDetail", "Home", new { id = course.CourseID })">
+                                    <img src="@course.CourseImage" alt="Course Image" class="img-fluid" />
+                                </a>
                             </div>
-                            <h3>MAE101 - Mathematics for Engineering</h3>
-                            <p>
-                                limit, derivative, integral, linear system of equations, matrix and their
-                                applications,...
-                            </p>
-                            <div class="rating">
-                                <span>3.9</span>
-                                <span class="stars">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </span>
-                                <span>(832)</span>
-                            </div>
-                            <div class="price text-center">
-                                <div>
-                                    <span class="old-price">599 points</span>
-                                    <span class="new-price">400 points</span>
+                            <div class="course-info">
+                                <div class="category">
+                                    <span class="badge bg-secondary">Mathematics</span>
+                                    <span class="badge bg-secondary">+3</span>
+                                </div>
+                                <h3>
+                                    <a href="@Url.Action("CourseDetail", "Home", new { id = course.CourseID })">@course.Title</a>
+                                </h3>
+                                <p>@course.Description</p>
+                                <div class="rating">
+                                    <span>3.9</span>
+                                    <span class="stars">
+                                        @for (int i = 0; i < 4; i++)
+                                        {
+                                            <i class="fas fa-star text-warning"></i>
+                                        }
+                                    </span>
+                                    <span>(832)</span>
+                                </div>
+                                <div class="price text-center">
+                                    <div>
+                                        <span class="old-price text-muted">500 points</span>
+                                        <span class="new-price fw-bold">@course.Price points</span>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="text-center">
+                                    @if (!Model.EnrolledCourses.Contains(course.CourseID)) // Check if the user is not enrolled
+                                    {
+                                        <button class="btn btn-success buy-now" data-course-id="@course.CourseID" data-bs-toggle="modal" data-bs-target="#buyNowModal">
+                                            Buy Now
+                                        </button>
+                                    }
+                                    else
+                                    {
+                                        <span class="text-success">Enrolled</span> <!-- Indicate the user is enrolled -->
+                                    }
+
+                                    @* Check if the current user is the owner *@
+                                    @if (User.Identity.IsAuthenticated && course.UserID == User.FindFirstValue(ClaimTypes.NameIdentifier))
+                                    {
+                                        <div class="mt-2">
+                                            <button type="button" class="btn btn-sm btn-warning me-2 edit-course-btn" data-course-id="@course.CourseID">
+                                                Edit
+                                            </button>
+                                            <button type="button" class="btn btn-sm btn-danger delete-course-btn" data-course-id="@course.CourseID" data-course-title="@course.Title" data-bs-toggle="modal" data-bs-target="#deleteCourseModal">
+                                                Delete
+                                            </button>
+                                        </div>
+                                    }
                                 </div>
                             </div>
-                            <hr>
-                            <div class="text-center">
-                                <button class="btn" data-bs-toggle="modal" data-bs-target="#buyNowModal">
-                                    Buy
-                                    Now
-                                </button>
-                            </div>
                         </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <!-- Modal for Buy Now Confirmation -->
+        <div class="modal fade" id="buyNowModal" tabindex="-1" aria-labelledby="buyNowModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Confirm Purchase</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure you want to purchase this course for <span id="coursePrice"></span> points?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <form id="formEnrollForm" method="post" action="@Url.Action("CourseDetails", "Home")">
+                            @Html.AntiForgeryToken() <!-- Anti-Forgery Token Added -->
+                            <input type="hidden" name="courseId" id="formEnrollCourseId" />
+                            <input type="hidden" name="returnUrl" id="returnUrl" value="@Url.Action("Course", "Home")" />
+                            <button type="submit" class="btn btn-primary" id="confirmEnrollBtn">Confirm</button>
+                        </form>
                     </div>
                 </div>
+            </div>
+        </div>
 
-                <!-- Nhân bản phần card ở đây -->
-                <div class="col-md-4 mb-4">
-                    <div class="course-card">
-                        <div class="course-image">
-                            <img src="/img/fn_Course+Cart_1.png" alt="Course Image" class="img-fluid">
+        <!-- Create Course Modal -->
+        <div class="modal fade" id="createCourseModal" tabindex="-1" aria-labelledby="createCourseModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form asp-action="CreateCourse" asp-controller="Home" method="post" enctype="multipart/form-data">
+                        @Html.AntiForgeryToken()
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="createCourseModalLabel">Create New Course</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="course-info">
-                            <div class="category">
-                                <span class="badge">Mathematics</span>
-                                <span class="badge">+3</span>
+                        <div class="modal-body">
+                            <!-- Validation Summary -->
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                            <!-- Title -->
+                            <div class="mb-3">
+                                <label asp-for="CreateCourseVM.Title" class="form-label">Title</label>
+                                <input asp-for="CreateCourseVM.Title" class="form-control" required />
+                                <span asp-validation-for="CreateCourseVM.Title" class="text-danger"></span>
                             </div>
-                            <h3>MAE101 - Mathematics for Engineering</h3>
-                            <p>
-                                limit, derivative, integral, linear system of equations, matrix and their
-                                applications,...
-                            </p>
-                            <div class="rating">
-                                <span>3.9</span>
-                                <span class="stars">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </span>
-                                <span>(832)</span>
+                            <!-- Description -->
+                            <div class="mb-3">
+                                <label asp-for="CreateCourseVM.Description" class="form-label">Description</label>
+                                <textarea asp-for="CreateCourseVM.Description" class="form-control" rows="3"></textarea>
+                                <span asp-validation-for="CreateCourseVM.Description" class="text-danger"></span>
                             </div>
-                            <div class="price text-center">
-                                <div>
-                                    <span class="old-price">599 points</span>
-                                    <span class="new-price">400 points</span>
-                                </div>
+                            <!-- Price -->
+                            <div class="mb-3">
+                                <label asp-for="CreateCourseVM.Price" class="form-label">Price (points)</label>
+                                <input asp-for="CreateCourseVM.Price" type="number" class="form-control" required />
+                                <span asp-validation-for="CreateCourseVM.Price" class="text-danger"></span>
                             </div>
-                            <hr>
-                            <div class="text-center">
-                                <button class="btn" data-bs-toggle="modal" data-bs-target="#buyNowModal">
-                                    Buy
-                                    Now
-                                </button>
+                            <!-- Status -->
+                            <div class="mb-3">
+                                <label asp-for="CreateCourseVM.Status" class="form-label">Status</label>
+                                <input asp-for="CreateCourseVM.Status" class="form-control" />
+                                <span asp-validation-for="CreateCourseVM.Status" class="text-danger"></span>
+                            </div>
+                            <!-- Course Image File Upload -->
+                            <div class="mb-3">
+                                <label asp-for="CreateCourseVM.CourseImageFile" class="form-label">Course Image</label>
+                                <input asp-for="CreateCourseVM.CourseImageFile" type="file" class="form-control" />
+                                <span asp-validation-for="CreateCourseVM.CourseImageFile" class="text-danger"></span>
+                                <small class="form-text text-muted">Upload an image for the course (optional).</small>
                             </div>
                         </div>
-                    </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Create</button>
+                        </div>
+                    </form>
                 </div>
+            </div>
+        </div>
 
-                <!-- Thêm card khác tương tự ở đây -->
-                <div class="col-md-4 mb-4">
-                    <div class="course-card">
-                        <div class="course-image">
-                            <img src="/img/fn_Course+Cart_1.png" alt="Course Image" class="img-fluid">
+
+        <!-- Edit Course Modal -->
+        <div class="modal fade" id="editCourseModal" tabindex="-1" aria-labelledby="editCourseModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form asp-action="Edit" asp-controller="Home" method="post" enctype="multipart/form-data">
+                        @Html.AntiForgeryToken()
+                        <!-- Hidden fields -->
+                        <input type="hidden" name="id" id="editCourseId" value="@Model.EditCourseVM.CourseID" />
+                        <input type="hidden" name="EditCourseVM.CourseID" value="@Model.EditCourseVM.CourseID" />
+                        <input type="hidden" asp-for="EditCourseVM.CourseImage" />
+
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editCourseModalLabel">Edit Course</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="course-info">
-                            <div class="category">
-                                <span class="badge">Mathematics</span>
-                                <span class="badge">+3</span>
+                        <div class="modal-body">
+                            <!-- Validation Summary -->
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                            <!-- Current Course Image -->
+                            <div class="mb-3 text-center">
+                                <label class="form-label">Current Course Image</label>
+                                <br />
+                                <img src="@Model.EditCourseVM.CourseImage" alt="Current Course Image" class="img-fluid mb-3" style="max-height: 200px;" id="currentCourseImage" />
                             </div>
-                            <h3>MAE101 - Mathematics for Engineering</h3>
-                            <p>
-                                limit, derivative, integral, linear system of equations, matrix and their
-                                applications,...
-                            </p>
-                            <div class="rating">
-                                <span>3.9</span>
-                                <span class="stars">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </span>
-                                <span>(832)</span>
+
+                            <!-- Title -->
+                            <div class="mb-3">
+                                <label asp-for="EditCourseVM.Title" class="form-label">Title</label>
+                                <input asp-for="EditCourseVM.Title" class="form-control" required />
+                                <span asp-validation-for="EditCourseVM.Title" class="text-danger"></span>
                             </div>
-                            <div class="price text-center">
-                                <div>
-                                    <span class="old-price">599 points</span>
-                                    <span class="new-price">400 points</span>
-                                </div>
+                            <!-- Description -->
+                            <div class="mb-3">
+                                <label asp-for="EditCourseVM.Description" class="form-label">Description</label>
+                                <textarea asp-for="EditCourseVM.Description" class="form-control" rows="3"></textarea>
+                                <span asp-validation-for="EditCourseVM.Description" class="text-danger"></span>
                             </div>
-                            <hr>
-                            <div class="text-center">
-                                <button class="btn" data-bs-toggle="modal" data-bs-target="#buyNowModal">
-                                    Buy
-                                    Now
-                                </button>
+                            <!-- Price -->
+                            <div class="mb-3">
+                                <label asp-for="EditCourseVM.Price" class="form-label">Price (points)</label>
+                                <input asp-for="EditCourseVM.Price" type="number" class="form-control" required />
+                                <span asp-validation-for="EditCourseVM.Price" class="text-danger"></span>
+                            </div>
+                            <!-- Status -->
+                            <div class="mb-3">
+                                <label asp-for="EditCourseVM.Status" class="form-label">Status</label>
+                                <input asp-for="EditCourseVM.Status" class="form-control" />
+                                <span asp-validation-for="EditCourseVM.Status" class="text-danger"></span>
+                            </div>
+                            <!-- Course Image File Upload -->
+                            <div class="mb-3">
+                                <label asp-for="EditCourseVM.CourseImageFile" class="form-label">Change Course Image</label>
+                                <input asp-for="EditCourseVM.CourseImageFile" type="file" class="form-control" />
+                                <span asp-validation-for="EditCourseVM.CourseImageFile" class="text-danger"></span>
+                                <small class="form-text text-muted">Leave empty to keep the current image.</small>
                             </div>
                         </div>
-                    </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                        </div>
+                    </form>
                 </div>
+            </div>
+        </div>
 
-                <div class="col-md-4 mb-4">
-                    <div class="course-card">
-                        <div class="course-image">
-                            <img src="/img/fn_Course+Cart_1.png" alt="Course Image" class="img-fluid">
+        <!-- Delete Course Modal -->
+        <div class="modal fade" id="deleteCourseModal" tabindex="-1" aria-labelledby="deleteCourseModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form asp-action="DeleteCourse" asp-controller="Home" method="post">
+                        @Html.AntiForgeryToken()
+
+                        <!-- Hidden input to store CourseID -->
+                        <input type="hidden" name="courseId" id="deleteCourseId" />
+
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="deleteCourseModalLabel">Confirm Deletion</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="course-info">
-                            <div class="category">
-                                <span class="badge">Mathematics</span>
-                                <span class="badge">+3</span>
-                            </div>
-                            <h3>MAE101 - Mathematics for Engineering</h3>
-                            <p>
-                                limit, derivative, integral, linear system of equations, matrix and their
-                                applications,...
-                            </p>
-                            <div class="rating">
-                                <span>3.9</span>
-                                <span class="stars">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </span>
-                                <span>(832)</span>
-                            </div>
-                            <div class="price text-center">
-                                <div>
-                                    <span class="old-price">599 points</span>
-                                    <span class="new-price">400 points</span>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="text-center">
-                                <button class="btn" data-bs-toggle="modal" data-bs-target="#buyNowModal">
-                                    Buy
-                                    Now
-                                </button>
-                            </div>
+                        <div class="modal-body">
+                            <!-- Confirmation Message -->
+                            Are you sure you want to delete the course "<strong id="deleteCourseTitle"></strong>"? This action cannot be undone.
                         </div>
-                    </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
 
     </div>
 
-    <!-- Modal for Buy Now Confirmation -->
-    <div class="modal fade" id="buyNowModal" tabindex="-1" aria-labelledby="buyNowModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="buyNowModalLabel">Confirm Purchase</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    Are you sure you want to purchase this course for 400 points?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn-cancel" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn">Confirm</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    <!-- Create and Edit Modals Scripts -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Buy Now Modal Handling
+            const buyNowButtons = document.querySelectorAll(".buy-now");
 
-    <!-- Offcanvas Sidebar -->
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="filterOffcanvas" aria-labelledby="filterOffcanvasLabel">
-        <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="filterOffcanvasLabel">Filter Courses</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-            <!-- Lọc theo giá -->
-            <div class="mb-3">
-                <label for="priceRange" class="form-label">Giá:</label>
-                <input type="range" class="form-range custom-range" id="priceRange" min="0" max="1000" value="500"
-                       step="10">
-                <div class="d-flex justify-content-between">
-                    <span id="minValue">0</span>
-                    <span id="maxValue">1000</span>
-                </div>
-            </div>
+            buyNowButtons.forEach(function (button) {
+                button.addEventListener("click", function () {
+                    const courseId = this.getAttribute("data-course-id");
+                    const coursePrice = this.closest('.course-card').querySelector('.new-price').textContent;
+                    const currentUrl = window.location.pathname;
+
+                    const enrollCourseIdInput = document.getElementById("formEnrollCourseId");
+                    if (enrollCourseIdInput) {
+                        enrollCourseIdInput.value = courseId;
+                    }
+
+                    const coursePriceSpan = document.getElementById("coursePrice");
+                    if (coursePriceSpan) {
+                        coursePriceSpan.textContent = coursePrice;
+                    }
+
+                    const returnUrlInput = document.getElementById("returnUrl");
+                    if (returnUrlInput) {
+                        returnUrlInput.value = currentUrl;
+                    }
+                });
+            });
+
+            // Edit Course Modal Handling
+            const editCourseButtons = document.querySelectorAll(".edit-course-btn");
+
+            editCourseButtons.forEach(function (button) {
+                button.addEventListener("click", function () {
+                    const courseId = this.getAttribute("data-course-id");
+                    // Find the course card based on courseId
+                    const courseCard = this.closest('.course-card');
+                    const title = courseCard.querySelector('h3 a').textContent.trim();
+                    const description = courseCard.querySelector('p').textContent.trim();
+                    const priceText = courseCard.querySelector('.new-price').textContent.trim();
+                    const price = priceText.split(' ')[0];
+                    const courseImage = courseCard.querySelector('.course-image img').getAttribute('src');
+                    const status = "Active"; // Or retrieve the actual status if available
+
+                    // Populate the edit modal with course data
+                    const editModal = document.getElementById("editCourseModal");
+                    editModal.querySelector("input[name='id']").value = courseId;
+                    editModal.querySelector("input[name='EditCourseVM.CourseID']").value = courseId;
+                    editModal.querySelector("input[name='EditCourseVM.Title']").value = title;
+                    editModal.querySelector("textarea[name='EditCourseVM.Description']").value = description;
+                    editModal.querySelector("input[name='EditCourseVM.Price']").value = price;
+                    editModal.querySelector("input[name='EditCourseVM.Status']").value = status;
+
+                    // Update the current image
+                    const currentImage = editModal.querySelector("#currentCourseImage");
+                    if (currentImage) {
+                        currentImage.src = courseImage;
+                    }
+
+                    // Reset the hidden CourseImage field
+                    editModal.querySelector("input[name='EditCourseVM.CourseImage']").value = courseImage;
+
+                    // Show the edit modal
+                    const bootstrapModal = new bootstrap.Modal(editModal);
+                    bootstrapModal.show();
+                });
+            });
+        });
+
+    </script>
 
 
-            <!-- Lọc theo danh mục -->
-            <div class="mb-3">
-                <label for="categorySelect" class="form-label">Danh Mục:</label>
-                <select id="categorySelect" class="form-select">
-                    <option value="all">Tất cả</option>
-                    <option value="mathematics">Toán Học</option>
-                    <option value="programming">Lập Trình</option>
-                    <option value="science">Khoa Học</option>
-                </select>
-            </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const showCreateModal = @Model.ShowCreateCourseModal.ToString().ToLower();
+            const showEditModal = @Model.ShowEditCourseModal.ToString().ToLower();
+            const editCourseID = @Model.EditCourseID?.ToString() ?? "null";
 
-            <!-- Lọc theo điểm đánh giá -->
-            <div class="mb-3">
-                <label for="ratingSelect" class="form-label">Điểm Đánh Giá:</label>
-                <select id="ratingSelect" class="form-select">
-                    <option value="all">Tất cả</option>
-                    <option value="4">&gt;= 4</option>
-                    <option value="3">&gt;= 3</option>
-                    <option value="2">&gt;= 2</option>
-                </select>
-            </div>
+            if (showCreateModal) {
+                const createCourseModal = new bootstrap.Modal(document.getElementById('createCourseModal'));
+                createCourseModal.show();
+            }
 
-            <!-- Nút Áp Dụng Lọc -->
-            <div class="text-center">
-                <div class="d-flex justify-content-center">
-                    <button class="btn-cancel me-2">Reset</button>
-                    <button class="btn">Apply</button>
-                </div>
-            </div>
+            if (showEditModal && editCourseID !== "null") {
+                const editCourseModal = new bootstrap.Modal(document.getElementById('editCourseModal'));
+                editCourseModal.show();
+            }
+        });
+    </script>
 
-        </div>
-    </div>
+    <!-- Delete Course Modal Handling -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const deleteCourseModal = document.getElementById('deleteCourseModal');
+
+            deleteCourseModal.addEventListener('show.bs.modal', function (event) {
+                // Button that triggered the modal
+                const button = event.relatedTarget;
+
+                // Extract info from data-* attributes
+                const courseId = button.getAttribute('data-course-id');
+                const courseTitle = button.getAttribute('data-course-title');
+
+                // Update the modal's content.
+                const modalTitle = deleteCourseModal.querySelector('#deleteCourseModalLabel');
+                const modalBodyTitle = deleteCourseModal.querySelector('#deleteCourseTitle');
+                const deleteCourseIdInput = deleteCourseModal.querySelector('#deleteCourseId');
+
+                modalTitle.textContent = 'Confirm Deletion';
+                modalBodyTitle.textContent = courseTitle;
+                deleteCourseIdInput.value = courseId;
+            });
+
+            // Optional: Reset modal content when hidden
+            deleteCourseModal.addEventListener('hidden.bs.modal', function () {
+                const modalBodyTitle = deleteCourseModal.querySelector('#deleteCourseTitle');
+                const deleteCourseIdInput = deleteCourseModal.querySelector('#deleteCourseId');
+
+                modalBodyTitle.textContent = '';
+                deleteCourseIdInput.value = '';
+            });
+        });
+    </script>
+
+    @* Include Validation Scripts *@
+    @section Scripts {
+        <partial name="_ValidationScriptsPartial" />
+    }
+
 </body>

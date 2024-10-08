@@ -26,6 +26,7 @@ namespace FuCommunityWebDataAccess.Data
         public DbSet<IsVote> IsVotes { get; set; }
         public DbSet<Course> Courses { get; set; }
         public DbSet<Enrollment> Enrollment { get; set; }
+        public DbSet<Lesson> Lessons { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder); // Gọi base method để đảm bảo cấu hình mặc định của Identity
