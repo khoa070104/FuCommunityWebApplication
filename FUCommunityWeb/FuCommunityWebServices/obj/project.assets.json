@@ -8592,19 +8592,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\hahuy\\.nuget\\packages\\": {}
+    "C:\\Users\\NCPC\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebServices\\FuCommunityWebServices.csproj",
+      "projectUniqueName": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebServices\\FuCommunityWebServices.csproj",
       "projectName": "FuCommunityWebServices",
-      "projectPath": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebServices\\FuCommunityWebServices.csproj",
-      "packagesPath": "C:\\Users\\hahuy\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebServices\\obj\\",
+      "projectPath": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebServices\\FuCommunityWebServices.csproj",
+      "packagesPath": "C:\\Users\\NCPC\\.nuget\\packages\\",
+      "outputPath": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebServices\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\hahuy\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\NCPC\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -8619,8 +8619,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\FuCommunityWebDataAccess.csproj": {
-              "projectPath": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\FuCommunityWebDataAccess.csproj"
+            "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\FuCommunityWebDataAccess.csproj": {
+              "projectPath": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\FuCommunityWebDataAccess.csproj"
             }
           }
         }

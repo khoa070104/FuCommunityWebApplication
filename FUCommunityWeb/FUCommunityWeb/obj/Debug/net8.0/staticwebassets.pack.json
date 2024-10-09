@@ -1,432 +1,448 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\FUCommunityWeb.bundle.scp.css",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\FUCommunityWeb.bundle.scp.css",
       "PackagePath": "staticwebassets\\FUCommunityWeb.bundle.scp.css"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\css\\Style.css",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\css\\Style.css",
       "PackagePath": "staticwebassets\\css\\Style.css"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\css\\site.css",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\favicon.ico",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\CART.png",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\CART.png",
       "PackagePath": "staticwebassets\\img\\CART.png"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\COURSE-HISTORY.png",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\COURSE-HISTORY.png",
       "PackagePath": "staticwebassets\\img\\COURSE-HISTORY.png"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\COURSE.png",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\COURSE.png",
       "PackagePath": "staticwebassets\\img\\COURSE.png"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\COURSES-DETAIL.png",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\COURSES-DETAIL.png",
       "PackagePath": "staticwebassets\\img\\COURSES-DETAIL.png"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\COURSES-OVERVIEW.png",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\COURSES-OVERVIEW.png",
       "PackagePath": "staticwebassets\\img\\COURSES-OVERVIEW.png"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\Course-IMG.png",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\Course-IMG.png",
       "PackagePath": "staticwebassets\\img\\Course-IMG.png"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\DASHBOARD.png",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\DASHBOARD.png",
       "PackagePath": "staticwebassets\\img\\DASHBOARD.png"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\FORUM-DETAIL2.png",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\FORUM-DETAIL2.png",
       "PackagePath": "staticwebassets\\img\\FORUM-DETAIL2.png"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\FORUM-GROUP.png",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\FORUM-GROUP.png",
       "PackagePath": "staticwebassets\\img\\FORUM-GROUP.png"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\FORUM-POST.png",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\FORUM-POST.png",
       "PackagePath": "staticwebassets\\img\\FORUM-POST.png"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\FORUM-USER.png",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\FORUM-USER.png",
       "PackagePath": "staticwebassets\\img\\FORUM-USER.png"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\FORUM.png",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\FORUM.png",
       "PackagePath": "staticwebassets\\img\\FORUM.png"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\HOME.png",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\HOME.png",
       "PackagePath": "staticwebassets\\img\\HOME.png"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\LOGIN (1).png",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\LOGIN (1).png",
       "PackagePath": "staticwebassets\\img\\LOGIN (1).png"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\Logo.png",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\Logo.png",
       "PackagePath": "staticwebassets\\img\\Logo.png"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\Logo_FunnyCode.jpg",
-      "PackagePath": "staticwebassets\\img\\Logo_FunnyCode.jpg"
-    },
-    {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\PROFILE.png",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\PROFILE.png",
       "PackagePath": "staticwebassets\\img\\PROFILE.png"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\REVENUE.png",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\REVENUE.png",
       "PackagePath": "staticwebassets\\img\\REVENUE.png"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\SIGNUP.png",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\SIGNUP.png",
       "PackagePath": "staticwebassets\\img\\SIGNUP.png"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\STUDENT.png",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\STUDENT.png",
       "PackagePath": "staticwebassets\\img\\STUDENT.png"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\USER.png",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\USER.png",
       "PackagePath": "staticwebassets\\img\\USER.png"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\avt1.png",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\avt1.png",
       "PackagePath": "staticwebassets\\img\\avt1.png"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\avt2.jpg",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\avt2.jpg",
       "PackagePath": "staticwebassets\\img\\avt2.jpg"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\avt3.jpg",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\avt3.jpg",
       "PackagePath": "staticwebassets\\img\\avt3.jpg"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\banner-header1.png",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\banner-header1.png",
       "PackagePath": "staticwebassets\\img\\banner-header1.png"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\fn_Course+Cart_1.png",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\fn_Course+Cart_1.png",
       "PackagePath": "staticwebassets\\img\\fn_Course+Cart_1.png"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\fn_Course+Cart_2.png",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\fn_Course+Cart_2.png",
       "PackagePath": "staticwebassets\\img\\fn_Course+Cart_2.png"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\fn_Course+Cart_3.png",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\fn_Course+Cart_3.png",
       "PackagePath": "staticwebassets\\img\\fn_Course+Cart_3.png"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\fn_Course+Cart_4.png",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\fn_Course+Cart_4.png",
       "PackagePath": "staticwebassets\\img\\fn_Course+Cart_4.png"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\fn_Course+Cart_5.png",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\fn_Course+Cart_5.png",
       "PackagePath": "staticwebassets\\img\\fn_Course+Cart_5.png"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\fn_HomeHeader_1.png",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\fn_HomeHeader_1.png",
       "PackagePath": "staticwebassets\\img\\fn_HomeHeader_1.png"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\fn_Profile_1.jpg",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\fn_Profile_1.jpg",
       "PackagePath": "staticwebassets\\img\\fn_Profile_1.jpg"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\fn_SignIn_1.png",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\fn_SignIn_1.png",
       "PackagePath": "staticwebassets\\img\\fn_SignIn_1.png"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\fn_SignUp_1.jpg",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\fn_SignUp_1.jpg",
       "PackagePath": "staticwebassets\\img\\fn_SignUp_1.jpg"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\payment1.png",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\payment1.png",
       "PackagePath": "staticwebassets\\img\\payment1.png"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\payment2.png",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\payment2.png",
       "PackagePath": "staticwebassets\\img\\payment2.png"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\payment3.png",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\payment3.png",
       "PackagePath": "staticwebassets\\img\\payment3.png"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\payment4.png",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\payment4.png",
       "PackagePath": "staticwebassets\\img\\payment4.png"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\study1.jpg",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\study1.jpg",
       "PackagePath": "staticwebassets\\img\\study1.jpg"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\study2.jpg",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\study2.jpg",
       "PackagePath": "staticwebassets\\img\\study2.jpg"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\study3.jpg",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\img\\study3.jpg",
       "PackagePath": "staticwebassets\\img\\study3.jpg"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\js\\site.js",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\LICENSE",
       "PackagePath": "staticwebassets\\lib\\bootstrap"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
       "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\jquery\\LICENSE.txt",
       "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\jquery\\dist\\jquery.js",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\uploads\\avt_YXZhdGFyX1ExXzIwMjQwODI0MDczOTUw.jpg",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\uploads\\3171b39f-9fa4-47d8-9801-00b55d10593a_erin-dau-buoi.jpg",
+      "PackagePath": "staticwebassets\\uploads\\3171b39f-9fa4-47d8-9801-00b55d10593a_erin-dau-buoi.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\uploads\\4c92e9f2-ce47-45a8-a4be-09a7ee6e2d87_Screenshot 2024-09-08 213951.png",
+      "PackagePath": "staticwebassets\\uploads\\4c92e9f2-ce47-45a8-a4be-09a7ee6e2d87_Screenshot 2024-09-08 213951.png"
+    },
+    {
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\uploads\\90507ce2-6b2c-4902-9c4f-a6fa5b81cd58_krixi-thoi-chi-ky-lu-2.jpg",
+      "PackagePath": "staticwebassets\\uploads\\90507ce2-6b2c-4902-9c4f-a6fa5b81cd58_krixi-thoi-chi-ky-lu-2.jpg"
+    },
+    {
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\uploads\\92bb4ac7-969c-4c25-a23e-23d44d6738aa_Screenshot 2024-09-08 232341.png",
+      "PackagePath": "staticwebassets\\uploads\\92bb4ac7-969c-4c25-a23e-23d44d6738aa_Screenshot 2024-09-08 232341.png"
+    },
+    {
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\uploads\\avt_YXZhdGFyX1ExXzIwMjQwODI0MDczOTUw.jpg",
       "PackagePath": "staticwebassets\\uploads\\avt_YXZhdGFyX1ExXzIwMjQwODI0MDczOTUw.jpg"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\uploads\\avt_YXZhdGFyX2ltcmVzaXplci0xNzI4MTA3OTc1MDI3.jpg",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\uploads\\avt_YXZhdGFyX2ltcmVzaXplci0xNzI4MTA3OTc1MDI3.jpg",
       "PackagePath": "staticwebassets\\uploads\\avt_YXZhdGFyX2ltcmVzaXplci0xNzI4MTA3OTc1MDI3.jpg"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\uploads\\avt_YXZhdGFyX2ltcmVzaXplci0xNzI4MTA3OTc2NjA3.jpg",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\uploads\\avt_YXZhdGFyX2ltcmVzaXplci0xNzI4MTA3OTc2NjA3.jpg",
       "PackagePath": "staticwebassets\\uploads\\avt_YXZhdGFyX2ltcmVzaXplci0xNzI4MTA3OTc2NjA3.jpg"
     },
     {
-      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\uploads\\d1eea500-1e1e-4a8a-84e1-2e94c5fedef7_iggy-dac-cau.jpeg",
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\uploads\\d1eea500-1e1e-4a8a-84e1-2e94c5fedef7_iggy-dac-cau.jpeg",
       "PackagePath": "staticwebassets\\uploads\\d1eea500-1e1e-4a8a-84e1-2e94c5fedef7_iggy-dac-cau.jpeg"
+    },
+    {
+      "Id": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\uploads\\d7de5f6f-bb84-410b-9d01-c7f48d308d84_iggy-dac-cau.jpeg",
+      "PackagePath": "staticwebassets\\uploads\\d7de5f6f-bb84-410b-9d01-c7f48d308d84_iggy-dac-cau.jpeg"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.FUCommunityWeb.Microsoft.AspNetCore.StaticWebAssets.props",

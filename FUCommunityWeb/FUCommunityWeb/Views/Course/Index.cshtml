@@ -9,7 +9,6 @@
 <body>
     <div class="course-container">
         <div class="container">
-            <!-- Breadcrumb Navigation -->
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="/home/home"><i class="fa fa-home"></i> Home</a></li>
@@ -19,7 +18,6 @@
 
             <h1 class="title"><span>English</span> Courses</h1>
 
-            <!-- Create New Course Button -->
             @if (User.Identity.IsAuthenticated)
             {
                 <div class="text-end mb-3">
@@ -29,10 +27,8 @@
                 </div>
             }
 
-            <!-- Filter Form -->
-            <form method="get" action="@Url.Action("Course", "Home")">
+            <form method="get" action="@Url.Action("Index", "Course")">
                 <div class="d-flex flex-wrap justify-content-center gap-2 my-3">
-                    <!-- Semester Selection -->
                     <div class="selection">
                         <label class="label" for="semester">Semester:</label>
                         <select id="semester" name="semester" class="form-select" onchange="this.form.submit()">
@@ -41,8 +37,6 @@
                             <option value="2">2</option>
                         </select>
                     </div>
-
-                    <!-- Category Selection -->
                     <div class="selection">
                         <label class="label" for="category">Category:</label>
                         <select id="category" name="category" class="form-select" onchange="this.form.submit()">
@@ -51,7 +45,6 @@
                         </select>
                     </div>
 
-                    <!-- Subject Code Selection -->
                     <div class="selection">
                         <label class="label" for="subject-code">Subject Code:</label>
                         <select id="subject-code" name="subjectCode" class="form-select" onchange="this.form.submit()">
@@ -63,7 +56,6 @@
                         </select>
                     </div>
 
-                    <!-- Rate Selection -->
                     <div class="selection">
                         <label class="label" for="rate">Rate:</label>
                         <select id="rate" name="rate" class="form-select" onchange="this.form.submit()">
@@ -72,7 +64,6 @@
                         </select>
                     </div>
 
-                    <!-- Cost Selection -->
                     <div class="selection">
                         <label class="label" for="cost">Cost:</label>
                         <select id="cost" name="minPrice" class="form-select" onchange="this.form.submit()">
@@ -84,7 +75,6 @@
             </form>
         </div>
 
-        <!-- Course Section -->
         <div class="course-section">
             <div class="row">
                 @foreach (var course in Model.Courses)
@@ -92,7 +82,7 @@
                     <div class="col-md-4 mb-4">
                         <div class="course-card">
                             <div class="course-image">
-                                <a href="@Url.Action("CourseDetail", "Home", new { id = course.CourseID })">
+                                <a href="@Url.Action("Detail", "Course", new { id = course.CourseID })">
                                     <img src="@course.CourseImage" alt="Course Image" class="img-fluid" />
                                 </a>
                             </div>
@@ -102,7 +92,7 @@
                                     <span class="badge bg-secondary">+3</span>
                                 </div>
                                 <h3>
-                                    <a href="@Url.Action("CourseDetail", "Home", new { id = course.CourseID })">@course.Title</a>
+                                    <a href="@Url.Action("Detail", "Course", new { id = course.CourseID })">@course.Title</a>
                                 </h3>
                                 <p>@course.Description</p>
                                 <div class="rating">
@@ -144,7 +134,7 @@
                                     }
                                     else
                                     {
-                                        <span class="text-success">Enrolled</span> <!-- Indicate the user is enrolled -->
+                                        <span class="text-success">Enrolled</span> 
                                     }
 
                                     @* Check if the current user is the owner *@
@@ -166,8 +156,6 @@
                 }
             </div>
         </div>
-
-        <!-- Modal for Buy Now Confirmation -->
         <div class="modal fade" id="buyNowModal" tabindex="-1" aria-labelledby="buyNowModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -181,7 +169,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                         <form id="formEnrollForm" method="post" action="@Url.Action("CourseDetails", "Home")">
-                            @Html.AntiForgeryToken() <!-- Anti-Forgery Token Added -->
+                            @Html.AntiForgeryToken() 
                             <input type="hidden" name="courseId" id="formEnrollCourseId" />
                             <input type="hidden" name="returnUrl" id="returnUrl" value="@Url.Action("Course", "Home")" />
                             <button type="submit" class="btn btn-primary" id="confirmEnrollBtn">Confirm</button>
@@ -191,7 +179,6 @@
             </div>
         </div>
 
-        <!-- Modal for Login Prompt (for guests) -->
         <div class="modal fade" id="loginPromptModal" tabindex="-1" aria-labelledby="loginPromptModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -210,45 +197,38 @@
             </div>
         </div>
 
-        <!-- Create Course Modal -->
         <div class="modal fade" id="createCourseModal" tabindex="-1" aria-labelledby="createCourseModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <form asp-action="CreateCourse" asp-controller="Home" method="post" enctype="multipart/form-data">
+                    <form asp-action="Create" asp-controller="Course" method="post" enctype="multipart/form-data">
                         @Html.AntiForgeryToken()
                         <div class="modal-header">
                             <h5 class="modal-title" id="createCourseModalLabel">Create New Course</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <!-- Validation Summary -->
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-                            <!-- Title -->
                             <div class="mb-3">
                                 <label asp-for="CreateCourseVM.Title" class="form-label">Title</label>
                                 <input asp-for="CreateCourseVM.Title" class="form-control" required />
                                 <span asp-validation-for="CreateCourseVM.Title" class="text-danger"></span>
                             </div>
-                            <!-- Description -->
                             <div class="mb-3">
                                 <label asp-for="CreateCourseVM.Description" class="form-label">Description</label>
                                 <textarea asp-for="CreateCourseVM.Description" class="form-control" rows="3"></textarea>
                                 <span asp-validation-for="CreateCourseVM.Description" class="text-danger"></span>
                             </div>
-                            <!-- Price -->
                             <div class="mb-3">
                                 <label asp-for="CreateCourseVM.Price" class="form-label">Price (points)</label>
                                 <input asp-for="CreateCourseVM.Price" type="number" class="form-control" required />
                                 <span asp-validation-for="CreateCourseVM.Price" class="text-danger"></span>
                             </div>
-                            <!-- Status -->
                             <div class="mb-3">
                                 <label asp-for="CreateCourseVM.Status" class="form-label">Status</label>
                                 <input asp-for="CreateCourseVM.Status" class="form-control" />
                                 <span asp-validation-for="CreateCourseVM.Status" class="text-danger"></span>
                             </div>
-                            <!-- Course Image File Upload -->
                             <div class="mb-3">
                                 <label asp-for="CreateCourseVM.CourseImageFile" class="form-label">Course Image</label>
                                 <input asp-for="CreateCourseVM.CourseImageFile" type="file" class="form-control" />
@@ -266,13 +246,11 @@
         </div>
 
 
-        <!-- Edit Course Modal -->
         <div class="modal fade" id="editCourseModal" tabindex="-1" aria-labelledby="editCourseModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <form asp-action="Edit" asp-controller="Home" method="post" enctype="multipart/form-data">
+                    <form asp-action="Edit" asp-controller="Course" method="post" enctype="multipart/form-data">
                         @Html.AntiForgeryToken()
-                        <!-- Hidden fields -->
                         <input type="hidden" name="id" id="editCourseId" value="@Model.EditCourseVM.CourseID" />
                         <input type="hidden" name="EditCourseVM.CourseID" value="@Model.EditCourseVM.CourseID" />
                         <input type="hidden" asp-for="EditCourseVM.CourseImage" />
@@ -282,41 +260,34 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <!-- Validation Summary -->
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-                            <!-- Current Course Image -->
                             <div class="mb-3 text-center">
                                 <label class="form-label">Current Course Image</label>
                                 <br />
                                 <img src="@Model.EditCourseVM.CourseImage" alt="Current Course Image" class="img-fluid mb-3" style="max-height: 200px;" id="currentCourseImage" />
                             </div>
 
-                            <!-- Title -->
                             <div class="mb-3">
                                 <label asp-for="EditCourseVM.Title" class="form-label">Title</label>
                                 <input asp-for="EditCourseVM.Title" class="form-control" required />
                                 <span asp-validation-for="EditCourseVM.Title" class="text-danger"></span>
                             </div>
-                            <!-- Description -->
                             <div class="mb-3">
                                 <label asp-for="EditCourseVM.Description" class="form-label">Description</label>
                                 <textarea asp-for="EditCourseVM.Description" class="form-control" rows="3"></textarea>
                                 <span asp-validation-for="EditCourseVM.Description" class="text-danger"></span>
                             </div>
-                            <!-- Price -->
                             <div class="mb-3">
                                 <label asp-for="EditCourseVM.Price" class="form-label">Price (points)</label>
                                 <input asp-for="EditCourseVM.Price" type="number" class="form-control" required />
                                 <span asp-validation-for="EditCourseVM.Price" class="text-danger"></span>
                             </div>
-                            <!-- Status -->
                             <div class="mb-3">
                                 <label asp-for="EditCourseVM.Status" class="form-label">Status</label>
                                 <input asp-for="EditCourseVM.Status" class="form-control" />
                                 <span asp-validation-for="EditCourseVM.Status" class="text-danger"></span>
                             </div>
-                            <!-- Course Image File Upload -->
                             <div class="mb-3">
                                 <label asp-for="EditCourseVM.CourseImageFile" class="form-label">Change Course Image</label>
                                 <input asp-for="EditCourseVM.CourseImageFile" type="file" class="form-control" />
@@ -333,14 +304,12 @@
             </div>
         </div>
 
-        <!-- Delete Course Modal -->
         <div class="modal fade" id="deleteCourseModal" tabindex="-1" aria-labelledby="deleteCourseModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <form asp-action="DeleteCourse" asp-controller="Home" method="post">
+                    <form asp-action="DeleteCourse" asp-controller="Course" method="post">
                         @Html.AntiForgeryToken()
 
-                        <!-- Hidden input to store CourseID -->
                         <input type="hidden" name="courseId" id="deleteCourseId" />
 
                         <div class="modal-header">
@@ -348,7 +317,6 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <!-- Confirmation Message -->
                             Are you sure you want to delete the course "<strong id="deleteCourseTitle"></strong>"? This action cannot be undone.
                         </div>
                         <div class="modal-footer">
@@ -362,10 +330,8 @@
 
     </div>
 
-    <!-- Scripts for Modals and Forms -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            // Buy Now Modal Handling
             const buyNowButtons = document.querySelectorAll(".buy-now");
 
             buyNowButtons.forEach(function (button) {
@@ -378,7 +344,6 @@
                     const targetModal = this.getAttribute("data-bs-target");
 
                     if (targetModal === "#buyNowModal") {
-                        // Đặt giá trị cho form enroll
                         document.getElementById("formEnrollCourseId").value = courseId;
                         document.getElementById("coursePrice").textContent = coursePrice;
                         document.getElementById("returnUrl").value = currentUrl;
@@ -386,22 +351,18 @@
                 });
             });
 
-            // Edit Course Modal Handling
             const editCourseButtons = document.querySelectorAll(".edit-course-btn");
 
             editCourseButtons.forEach(function (button) {
                 button.addEventListener("click", function () {
                     const courseId = this.getAttribute("data-course-id");
-                    // Find the course card based on courseId
                     const courseCard = this.closest('.course-card');
                     const title = courseCard.querySelector('h3 a').textContent.trim();
                     const description = courseCard.querySelector('p').textContent.trim();
                     const priceText = courseCard.querySelector('.new-price').textContent.trim();
                     const price = priceText.split(' ')[0];
                     const courseImage = courseCard.querySelector('.course-image img').getAttribute('src');
-                    const status = "Active"; // Hoặc lấy trạng thái thực tế nếu có
-
-                    // Populate the edit modal with course data
+                    const status = "Active"; 
                     const editModal = document.getElementById("editCourseModal");
                     editModal.querySelector("input[name='id']").value = courseId;
                     editModal.querySelector("input[name='EditCourseVM.CourseID']").value = courseId;
@@ -410,33 +371,26 @@
                     editModal.querySelector("input[name='EditCourseVM.Price']").value = price;
                     editModal.querySelector("input[name='EditCourseVM.Status']").value = status;
 
-                    // Update the current image
                     const currentImage = editModal.querySelector("#currentCourseImage");
                     if (currentImage) {
                         currentImage.src = courseImage;
                     }
 
-                    // Reset the hidden CourseImage field
                     editModal.querySelector("input[name='EditCourseVM.CourseImage']").value = courseImage;
 
-                    // Show the edit modal
                     const bootstrapModal = new bootstrap.Modal(editModal);
                     bootstrapModal.show();
                 });
             });
 
-            // Delete Course Modal Handling
             const deleteCourseModal = document.getElementById('deleteCourseModal');
 
             deleteCourseModal.addEventListener('show.bs.modal', function (event) {
-                // Button that triggered the modal
                 const button = event.relatedTarget;
 
-                // Extract info from data-* attributes
                 const courseId = button.getAttribute('data-course-id');
                 const courseTitle = button.getAttribute('data-course-title');
 
-                // Update the modal's content.
                 const modalTitle = deleteCourseModal.querySelector('#deleteCourseModalLabel');
                 const modalBodyTitle = deleteCourseModal.querySelector('#deleteCourseTitle');
                 const deleteCourseIdInput = deleteCourseModal.querySelector('#deleteCourseId');
@@ -446,7 +400,6 @@
                 deleteCourseIdInput.value = courseId;
             });
 
-            // Optional: Reset modal content when hidden
             deleteCourseModal.addEventListener('hidden.bs.modal', function () {
                 const modalBodyTitle = deleteCourseModal.querySelector('#deleteCourseTitle');
                 const deleteCourseIdInput = deleteCourseModal.querySelector('#deleteCourseId');
@@ -476,20 +429,16 @@
         });
     </script>
 
-    <!-- Delete Course Modal Handling -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const deleteCourseModal = document.getElementById('deleteCourseModal');
 
             deleteCourseModal.addEventListener('show.bs.modal', function (event) {
-                // Button that triggered the modal
                 const button = event.relatedTarget;
 
-                // Extract info from data-* attributes
                 const courseId = button.getAttribute('data-course-id');
                 const courseTitle = button.getAttribute('data-course-title');
 
-                // Update the modal's content.
                 const modalTitle = deleteCourseModal.querySelector('#deleteCourseModalLabel');
                 const modalBodyTitle = deleteCourseModal.querySelector('#deleteCourseTitle');
                 const deleteCourseIdInput = deleteCourseModal.querySelector('#deleteCourseId');
@@ -499,7 +448,6 @@
                 deleteCourseIdInput.value = courseId;
             });
 
-            // Optional: Reset modal content when hidden
             deleteCourseModal.addEventListener('hidden.bs.modal', function () {
                 const modalBodyTitle = deleteCourseModal.querySelector('#deleteCourseTitle');
                 const deleteCourseIdInput = deleteCourseModal.querySelector('#deleteCourseId');
