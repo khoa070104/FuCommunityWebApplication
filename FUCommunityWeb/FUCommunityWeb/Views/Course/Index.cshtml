@@ -92,7 +92,7 @@
                     <div class="col-md-4 mb-4">
                         <div class="course-card">
                             <div class="course-image">
-                                <a href="@Url.Action("CourseDetail", "Home", new { id = course.CourseID })">
+                                <a href="@Url.Action("Detail", "Course", new { id = course.CourseID })">
                                     <img src="@course.CourseImage" alt="Course Image" class="img-fluid" />
                                 </a>
                             </div>
@@ -102,7 +102,7 @@
                                     <span class="badge bg-secondary">+3</span>
                                 </div>
                                 <h3>
-                                    <a href="@Url.Action("CourseDetail", "Home", new { id = course.CourseID })">@course.Title</a>
+                                    <a href="@Url.Action("Detail", "Course", new { id = course.CourseID })">@course.Title</a>
                                 </h3>
                                 <p>@course.Description</p>
                                 <div class="rating">
