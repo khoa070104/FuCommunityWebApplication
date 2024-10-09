@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "FwjF0gd+DuggDStwQjtWbmflJBBsHrU9/mrxKNW6N9Y=",
+  "Hash": "tW2Azn+GQJnoSn8tOS/TOYT+xMC0CnNv0T9xLJwmaF4=",
   "Source": "FUCommunityWeb",
   "BasePath": "_content/FUCommunityWeb",
   "Mode": "Default",
@@ -3133,6 +3133,25 @@
       "OriginalItemSpec": "wwwroot\\uploads\\3171b39f-9fa4-47d8-9801-00b55d10593a_erin-dau-buoi.jpg"
     },
     {
+      "Identity": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\uploads\\4c92e9f2-ce47-45a8-a4be-09a7ee6e2d87_Screenshot 2024-09-08 213951.png",
+      "SourceId": "FUCommunityWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\",
+      "BasePath": "_content/FUCommunityWeb",
+      "RelativePath": "uploads/4c92e9f2-ce47-45a8-a4be-09a7ee6e2d87_Screenshot 2024-09-08 213951.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\4c92e9f2-ce47-45a8-a4be-09a7ee6e2d87_Screenshot 2024-09-08 213951.png"
+    },
+    {
       "Identity": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\uploads\\90507ce2-6b2c-4902-9c4f-a6fa5b81cd58_krixi-thoi-chi-ky-lu-2.jpg",
       "SourceId": "FUCommunityWeb",
       "SourceType": "Discovered",
@@ -3150,6 +3169,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\90507ce2-6b2c-4902-9c4f-a6fa5b81cd58_krixi-thoi-chi-ky-lu-2.jpg"
+    },
+    {
+      "Identity": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\uploads\\92bb4ac7-969c-4c25-a23e-23d44d6738aa_Screenshot 2024-09-08 232341.png",
+      "SourceId": "FUCommunityWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\",
+      "BasePath": "_content/FUCommunityWeb",
+      "RelativePath": "uploads/92bb4ac7-969c-4c25-a23e-23d44d6738aa_Screenshot 2024-09-08 232341.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\92bb4ac7-969c-4c25-a23e-23d44d6738aa_Screenshot 2024-09-08 232341.png"
     },
     {
       "Identity": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\uploads\\avt_YXZhdGFyX1ExXzIwMjQwODI0MDczOTUw.jpg",

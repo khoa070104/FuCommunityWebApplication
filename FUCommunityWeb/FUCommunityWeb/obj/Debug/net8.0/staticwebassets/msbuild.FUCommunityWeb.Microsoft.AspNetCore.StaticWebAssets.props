@@ -1648,6 +1648,22 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\3171b39f-9fa4-47d8-9801-00b55d10593a_erin-dau-buoi.jpg))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\4c92e9f2-ce47-45a8-a4be-09a7ee6e2d87_Screenshot 2024-09-08 213951.png))">
+      <SourceType>Package</SourceType>
+      <SourceId>FUCommunityWeb</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/FUCommunityWeb</BasePath>
+      <RelativePath>uploads/4c92e9f2-ce47-45a8-a4be-09a7ee6e2d87_Screenshot 2024-09-08 213951.png</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\4c92e9f2-ce47-45a8-a4be-09a7ee6e2d87_Screenshot 2024-09-08 213951.png))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\90507ce2-6b2c-4902-9c4f-a6fa5b81cd58_krixi-thoi-chi-ky-lu-2.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>FUCommunityWeb</SourceId>
@@ -1663,6 +1679,22 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\90507ce2-6b2c-4902-9c4f-a6fa5b81cd58_krixi-thoi-chi-ky-lu-2.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\92bb4ac7-969c-4c25-a23e-23d44d6738aa_Screenshot 2024-09-08 232341.png))">
+      <SourceType>Package</SourceType>
+      <SourceId>FUCommunityWeb</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/FUCommunityWeb</BasePath>
+      <RelativePath>uploads/92bb4ac7-969c-4c25-a23e-23d44d6738aa_Screenshot 2024-09-08 232341.png</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\92bb4ac7-969c-4c25-a23e-23d44d6738aa_Screenshot 2024-09-08 232341.png))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\avt_YXZhdGFyX1ExXzIwMjQwODI0MDczOTUw.jpg))">
       <SourceType>Package</SourceType>

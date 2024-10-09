@@ -3,16 +3,24 @@
   "WorkspaceRootPath": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|d:\\documents\\fuwebtest2\\fucommunitywebapplication\\fucommunityweb\\fucommunityweb\\views\\course\\detail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|solutionrelative:fucommunityweb\\views\\course\\detail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|d:\\documents\\fuwebtest2\\fucommunitywebapplication\\fucommunityweb\\fucommunityweb\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|solutionrelative:fucommunityweb\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|d:\\documents\\fuwebtest2\\fucommunitywebapplication\\fucommunityweb\\fucommunityweb\\controllers\\coursecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|solutionrelative:fucommunityweb\\controllers\\coursecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|d:\\documents\\fuwebtest2\\fucommunitywebapplication\\fucommunityweb\\fucommunityweb\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|solutionrelative:fucommunityweb\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|d:\\documents\\fuwebtest2\\fucommunitywebapplication\\fucommunityweb\\fucommunityweb\\views\\course\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|solutionrelative:fucommunityweb\\views\\course\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|d:\\documents\\fuwebtest2\\fucommunitywebapplication\\fucommunityweb\\fucommunityweb\\views\\course\\detail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|solutionrelative:fucommunityweb\\views\\course\\detail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|d:\\documents\\fuwebtest2\\fucommunitywebapplication\\fucommunityweb\\fucommunityweb\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
@@ -39,14 +47,6 @@
       "RelativeMoniker": "D:0:0:{93321B2E-D440-49E7-9741-A0E0AC08400E}|FuCommunityWebDataAccess\\FuCommunityWebDataAccess.csproj|solutionrelative:fucommunitywebdataaccess\\repositories\\courserepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|d:\\documents\\fuwebtest2\\fucommunitywebapplication\\fucommunityweb\\fucommunityweb\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|solutionrelative:fucommunityweb\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|d:\\documents\\fuwebtest2\\fucommunitywebapplication\\fucommunityweb\\fucommunityweb\\views\\home\\home.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|solutionrelative:fucommunityweb\\views\\home\\home.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|d:\\documents\\fuwebtest2\\fucommunitywebapplication\\fucommunityweb\\fucommunityweb\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|solutionrelative:fucommunityweb\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
@@ -58,7 +58,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 10,
+          "SelectedChildIndex": 13,
           "Children": [
             {
               "$type": "Bookmark",
@@ -70,7 +70,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "appsettings.json",
               "DocumentMoniker": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\appsettings.json",
               "RelativeDocumentMoniker": "FUCommunityWeb\\appsettings.json",
@@ -78,12 +78,11 @@
               "RelativeToolTip": "FUCommunityWeb\\appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-10-09T17:01:15.196Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-09T17:01:15.196Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "ApplicationDbContext.cs",
               "DocumentMoniker": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\Data\\ApplicationDbContext.cs",
               "RelativeDocumentMoniker": "FuCommunityWebDataAccess\\Data\\ApplicationDbContext.cs",
@@ -91,25 +90,23 @@
               "RelativeToolTip": "FuCommunityWebDataAccess\\Data\\ApplicationDbContext.cs",
               "ViewState": "AgIAABkAAAAAAAAAAAAwwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-09T17:01:11.5Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-09T17:01:11.5Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "FuCommunityWebDataAccess",
+              "DocumentIndex": 7,
+              "Title": "FuCommunityWebDataAccess.csproj",
               "DocumentMoniker": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\FuCommunityWebDataAccess.csproj",
               "RelativeDocumentMoniker": "FuCommunityWebDataAccess\\FuCommunityWebDataAccess.csproj",
               "ToolTip": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\FuCommunityWebDataAccess.csproj",
               "RelativeToolTip": "FuCommunityWebDataAccess\\FuCommunityWebDataAccess.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-10-09T17:01:03.958Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-09T17:01:03.958Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Program.cs",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Program.cs",
@@ -117,8 +114,7 @@
               "RelativeToolTip": "FUCommunityWeb\\Program.cs",
               "ViewState": "AgIAAAkAAAAAAAAAAAAAABcAAABFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-09T16:59:35.878Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-09T16:59:35.878Z"
             },
             {
               "$type": "Document",
@@ -128,14 +124,14 @@
               "RelativeDocumentMoniker": "FUCommunityWeb\\Controllers\\CourseController.cs",
               "ToolTip": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Controllers\\CourseController.cs",
               "RelativeToolTip": "FUCommunityWeb\\Controllers\\CourseController.cs",
-              "ViewState": "AgIAAEsBAAAAAAAAAAAwwBQAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAcBAAAAAAAAAAAewBQBAABDAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-09T16:56:10.701Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "CourseService.cs",
               "DocumentMoniker": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebServices\\Services\\CourseService.cs",
               "RelativeDocumentMoniker": "FuCommunityWebServices\\Services\\CourseService.cs",
@@ -143,12 +139,11 @@
               "RelativeToolTip": "FuCommunityWebServices\\Services\\CourseService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-09T16:56:08.215Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-09T16:56:08.215Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 10,
               "Title": "CourseRepo.cs",
               "DocumentMoniker": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\Repositories\\CourseRepo.cs",
               "RelativeDocumentMoniker": "FuCommunityWebDataAccess\\Repositories\\CourseRepo.cs",
@@ -156,8 +151,7 @@
               "RelativeToolTip": "FuCommunityWebDataAccess\\Repositories\\CourseRepo.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-09T16:56:00.38Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-09T16:56:00.38Z"
             },
             {
               "$type": "Document",
@@ -173,51 +167,52 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
               "Title": "Detail.cshtml",
               "DocumentMoniker": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\Course\\Detail.cshtml",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Views\\Course\\Detail.cshtml",
               "ToolTip": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\Course\\Detail.cshtml",
               "RelativeToolTip": "FUCommunityWeb\\Views\\Course\\Detail.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAACAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-10-09T14:29:40.16Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\Course\\Index.cshtml",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Views\\Course\\Index.cshtml",
               "ToolTip": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\Course\\Index.cshtml",
               "RelativeToolTip": "FUCommunityWeb\\Views\\Course\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEABAABfAAAAAAAAAA==",
+              "ViewState": "AgIAAE4AAAAAAAAAAAAQwFIAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-10-09T14:15:29.76Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "Home.cshtml",
-              "DocumentMoniker": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\Home\\Home.cshtml",
-              "RelativeDocumentMoniker": "FUCommunityWeb\\Views\\Home\\Home.cshtml",
-              "ToolTip": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\Home\\Home.cshtml",
-              "RelativeToolTip": "FUCommunityWeb\\Views\\Home\\Home.cshtml",
-              "ViewState": "AgIAAE8AAAAAAAAAAAAiwPQAAABeAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "FUCommunityWeb\\Views\\Home\\Index.cshtml",
+              "ToolTip": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "FUCommunityWeb\\Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAABsAAAAAAAAAAAAAAB4AAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-09T14:02:29.417Z"
+              "WhenOpened": "2024-10-09T14:02:29.417Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 0,
               "Title": "HomeController.cs",
               "DocumentMoniker": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Controllers\\HomeController.cs",
               "ToolTip": "D:\\Documents\\FuWebTest2\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Controllers\\HomeController.cs",
               "RelativeToolTip": "FUCommunityWeb\\Controllers\\HomeController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAiAAAAAAAAAA==",
+              "ViewState": "AgIAAIIAAAAAAAAAAAAiwDEAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-08T04:23:09.715Z",
               "EditorCaption": ""

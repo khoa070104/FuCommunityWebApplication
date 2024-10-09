@@ -274,7 +274,7 @@ namespace FUCommunityWeb.Controllers
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete(int courseId)
+        public async Task<IActionResult> DeleteCourse(int courseId)
         {
             var course = await _courseService.GetCourseByIdAsync(courseId);
 
