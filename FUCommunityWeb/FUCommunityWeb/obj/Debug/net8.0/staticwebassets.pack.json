@@ -425,6 +425,10 @@
       "PackagePath": "staticwebassets\\uploads\\avt_YXZhdGFyX2ltcmVzaXplci0xNzI4MTA3OTc2NjA3.jpg"
     },
     {
+      "Id": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\uploads\\d1eea500-1e1e-4a8a-84e1-2e94c5fedef7_iggy-dac-cau.jpeg",
+      "PackagePath": "staticwebassets\\uploads\\d1eea500-1e1e-4a8a-84e1-2e94c5fedef7_iggy-dac-cau.jpeg"
+    },
+    {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.FUCommunityWeb.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },

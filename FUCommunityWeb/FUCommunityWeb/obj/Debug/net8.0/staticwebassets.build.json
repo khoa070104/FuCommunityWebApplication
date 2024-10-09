@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "fG9cpXrvMio7idQr3kOTNEwTjBESC1VubeoUKkNkl+0=",
+  "Hash": "vqY9q9jO/vYyPt6rY6fbXI1VMzG7Cj7eWu8HA/7Wvoc=",
   "Source": "FUCommunityWeb",
   "BasePath": "_content/FUCommunityWeb",
   "Mode": "Default",
@@ -3188,6 +3188,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\avt_YXZhdGFyX2ltcmVzaXplci0xNzI4MTA3OTc2NjA3.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\uploads\\d1eea500-1e1e-4a8a-84e1-2e94c5fedef7_iggy-dac-cau.jpeg",
+      "SourceId": "FUCommunityWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\",
+      "BasePath": "_content/FUCommunityWeb",
+      "RelativePath": "uploads/d1eea500-1e1e-4a8a-84e1-2e94c5fedef7_iggy-dac-cau.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\d1eea500-1e1e-4a8a-84e1-2e94c5fedef7_iggy-dac-cau.jpeg"
     }
   ]
 }

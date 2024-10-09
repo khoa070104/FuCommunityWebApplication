@@ -429,38 +429,6 @@ namespace FUCommunityWeb.Controllers
             return View(viewModel);
         }
 
-        // GET: Create Lesson
-        [HttpGet]
-        [Authorize]
-        public IActionResult CreateLesson(int courseId)
-        {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var course = _context.Courses.Find(courseId);
-
-            if (course == null)
-            {
-                return NotFound();
-            }
-
-            if (course.UserID != userId)
-            {
-                return Forbid();
-            }
-
-            var createLessonVM = new CreateLessonVM
-            {
-                CourseID = courseId
-            };
-
-            var viewModel = new CourseDetailVM
-            {
-                Course = course,
-                CreateLessonVM = createLessonVM,
-                ShowCreateLessonModal = true
-            };
-
-            return PartialView("_CreateLessonModal", viewModel);
-        }
 
         [HttpPost]
         [Authorize]
@@ -486,6 +454,7 @@ namespace FUCommunityWeb.Controllers
                 {
                     CourseID = createLessonVM.CourseID,
                     UserID = userId,
+                    CategoryID = 1,
                     Title = createLessonVM.Title,
                     Content = createLessonVM.Content,
                     Status = createLessonVM.Status,
@@ -520,14 +489,14 @@ namespace FUCommunityWeb.Controllers
             return View("CourseDetail", viewModel);
         }
 
-
-        // GET: Edit Lesson
         [HttpGet]
         [Authorize]
-        public async Task<IActionResult> EditLesson(int lessonId)
+        public async Task<IActionResult> EditLesson(int id)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var lesson = await _context.Lessons.Include(l => l.Course).FirstOrDefaultAsync(l => l.LessonID == lessonId);
+            var lesson = await _context.Lessons
+                .Include(l => l.Course)
+                .FirstOrDefaultAsync(l => l.LessonID == id);
 
             if (lesson == null)
             {
@@ -551,74 +520,104 @@ namespace FUCommunityWeb.Controllers
             var viewModel = new CourseDetailVM
             {
                 Course = lesson.Course,
+                Lessons = await _context.Lessons
+                            .Where(l => l.CourseID == lesson.CourseID)
+                            .OrderBy(l => l.LessonID)
+                            .ToListAsync(),
                 EditLessonVM = editLessonVM,
-                ShowEditLessonModal = true
+                ShowEditLessonModal = true,
+                EditLessonID = lesson.LessonID,
+                EnrolledCourses = await _context.Enrollment
+                                        .Where(e => e.UserID == userId)
+                                        .Select(e => e.CourseID)
+                                        .ToListAsync()
             };
 
-            return PartialView("_EditLessonModal", viewModel);
+            return View("CourseDetail", viewModel);
         }
 
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditLesson(int lessonId, EditLessonVM editLessonVM)
+        public async Task<IActionResult> EditLesson(int id, EditLessonVM editLessonVM)
         {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var lesson = await _context.Lessons.Include(l => l.Course).FirstOrDefaultAsync(l => l.LessonID == lessonId);
+            if (id != editLessonVM.LessonID)
+            {
+                return BadRequest();
+            }
 
-            if (lesson == null)
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var lessonToUpdate = await _context.Lessons
+                .Include(l => l.Course)
+                .FirstOrDefaultAsync(l => l.LessonID == id);
+
+            if (lessonToUpdate == null)
             {
                 return NotFound();
             }
 
-            if (lesson.Course.UserID != userId)
+            if (lessonToUpdate.Course.UserID != userId)
             {
                 return Forbid();
             }
 
             if (ModelState.IsValid)
             {
-                lesson.Title = editLessonVM.Title;
-                lesson.Content = editLessonVM.Content;
-                lesson.Status = editLessonVM.Status;
-                lesson.UpdatedDate = DateTime.Now;
-
                 try
                 {
-                    _context.Lessons.Update(lesson);
+                    lessonToUpdate.Title = editLessonVM.Title;
+                    lessonToUpdate.Content = editLessonVM.Content;
+                    lessonToUpdate.Status = editLessonVM.Status;
+                    lessonToUpdate.UpdatedDate = DateTime.Now;
+
+                    _context.Lessons.Update(lessonToUpdate);
                     await _context.SaveChangesAsync();
 
-                    _logger.LogInformation("Lesson edited successfully: {LessonTitle}", lesson.Title);
+                    _logger.LogInformation("Lesson edited successfully: {LessonTitle}", lessonToUpdate.Title);
 
-                    return RedirectToAction("CourseDetail", new { id = lesson.CourseID });
+                    return RedirectToAction("CourseDetail", new { id = lessonToUpdate.CourseID });
                 }
                 catch (Exception ex)
                 {
                     _logger.LogError(ex, "Error editing lesson");
-                    ModelState.AddModelError(string.Empty, "An error occurred while editing the lesson. Please try again.");
+                    ModelState.AddModelError(string.Empty, "Đã xảy ra lỗi khi chỉnh sửa bài học. Vui lòng thử lại.");
                 }
             }
+            else
+            {
+                // Log ModelState errors
+                foreach (var state in ModelState)
+                {
+                    foreach (var error in state.Value.Errors)
+                    {
+                        _logger.LogError("Property: {Property}, Error: {ErrorMessage}", state.Key, error.ErrorMessage);
+                    }
+                }
 
-            // If we reach here, something failed; reload the CourseDetail view with validation errors
+                _logger.LogWarning("EditLesson called with invalid ModelState.");
+            }
+
+            // Nếu có lỗi, tải lại thông tin khóa học và bài học
             var courseDetail = await _context.Courses
                 .Include(c => c.Lessons)
                 .Include(c => c.User)
-                .FirstOrDefaultAsync(c => c.CourseID == editLessonVM.CourseID);
+                .FirstOrDefaultAsync(c => c.CourseID == lessonToUpdate.CourseID);
 
-            var viewModelFailure = new CourseDetailVM
+            var viewModelError = new CourseDetailVM
             {
                 Course = courseDetail,
-                EnrolledCourses = _context.Enrollment
-                    .Where(e => e.UserID == userId)
-                    .Select(e => e.CourseID)
-                    .ToList(),
+                EnrolledCourses = await _context.Enrollment
+                                        .Where(e => e.UserID == userId)
+                                        .Select(e => e.CourseID)
+                                        .ToListAsync(),
+                Lessons = courseDetail.Lessons.OrderBy(l => l.LessonID).ToList(),
                 EditLessonVM = editLessonVM,
-                ShowEditLessonModal = true
+                ShowEditLessonModal = true,
+                EditLessonID = lessonToUpdate.LessonID
             };
 
-            return View("CourseDetail", viewModelFailure);
+            return View("CourseDetail", viewModelError);
         }
-
 
         [HttpPost]
         [Authorize]
@@ -626,17 +625,20 @@ namespace FUCommunityWeb.Controllers
         public async Task<IActionResult> DeleteLesson(int lessonId)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var lesson = await _context.Lessons.Include(l => l.Course).FirstOrDefaultAsync(l => l.LessonID == lessonId);
+            var lesson = await _context.Lessons
+                .Include(l => l.Course)
+                .FirstOrDefaultAsync(l => l.LessonID == lessonId);
 
             if (lesson == null)
             {
-                TempData["Error"] = "Lesson not found.";
+                TempData["Error"] = "Bài học không tồn tại.";
                 return RedirectToAction("CourseDetail", new { id = lesson.CourseID });
             }
 
+            // Kiểm tra người dùng hiện tại có phải chủ sở hữu khóa học không
             if (lesson.Course.UserID != userId)
             {
-                TempData["Error"] = "You are not authorized to delete this lesson.";
+                TempData["Error"] = "Bạn không có quyền xóa bài học này.";
                 return Forbid();
             }
 
@@ -646,17 +648,16 @@ namespace FUCommunityWeb.Controllers
                 await _context.SaveChangesAsync();
 
                 _logger.LogInformation("Lesson deleted successfully: {LessonTitle}", lesson.Title);
-                TempData["Success"] = "Lesson deleted successfully.";
+                TempData["Success"] = "Bài học đã được xóa thành công.";
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error deleting lesson");
-                TempData["Error"] = "An error occurred while deleting the lesson. Please try again.";
+                TempData["Error"] = "Đã xảy ra lỗi khi xóa bài học. Vui lòng thử lại.";
             }
 
             return RedirectToAction("CourseDetail", new { id = lesson.CourseID });
         }
-
 
 
 

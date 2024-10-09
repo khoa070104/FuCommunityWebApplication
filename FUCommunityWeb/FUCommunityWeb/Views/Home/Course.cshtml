@@ -2,6 +2,10 @@
 
 @using System.Security.Claims
 
+@{
+    var currentUserId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+}
+
 <body>
     <div class="course-container">
         <div class="container">
@@ -9,10 +13,7 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="/home/home"><i class="fa fa-home"></i> Home</a></li>
-                    <li class="breadcrumb-item"><a href="#">Programming-IT</a></li>
-                    <li class="breadcrumb-item"><a href="#">Back-end</a></li>
-                    <li class="breadcrumb-item"><a href="#">.NET</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">PRN212</li>
+                    <li class="breadcrumb-item active" aria-current="page">Course</li>
                 </ol>
             </nav>
 
@@ -122,11 +123,24 @@
                                 </div>
                                 <hr>
                                 <div class="text-center">
-                                    @if (!Model.EnrolledCourses.Contains(course.CourseID)) // Check if the user is not enrolled
+                                    @if (currentUserId == course.UserID)
                                     {
-                                        <button class="btn btn-success buy-now" data-course-id="@course.CourseID" data-bs-toggle="modal" data-bs-target="#buyNowModal">
-                                            Buy Now
-                                        </button>
+                                        <span class="text-success">Owner</span>
+                                    }
+                                    else if (!Model.EnrolledCourses.Contains(course.CourseID)) // Check if the user is not enrolled
+                                    {
+                                        @if (User.Identity.IsAuthenticated)
+                                        {
+                                            <button class="btn btn-success buy-now" data-course-id="@course.CourseID" data-bs-toggle="modal" data-bs-target="#buyNowModal">
+                                                Buy Now
+                                            </button>
+                                        }
+                                        else
+                                        {
+                                            <button class="btn btn-success buy-now" data-course-id="@course.CourseID" data-bs-toggle="modal" data-bs-target="#loginPromptModal">
+                                                Buy Now
+                                            </button>
+                                        }
                                     }
                                     else
                                     {
@@ -172,6 +186,25 @@
                             <input type="hidden" name="returnUrl" id="returnUrl" value="@Url.Action("Course", "Home")" />
                             <button type="submit" class="btn btn-primary" id="confirmEnrollBtn">Confirm</button>
                         </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal for Login Prompt (for guests) -->
+        <div class="modal fade" id="loginPromptModal" tabindex="-1" aria-labelledby="loginPromptModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Login Required</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Please login to enroll in this course.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <a href="@Url.Action("SignIn", "Home")" class="btn btn-primary">Login</a>
                     </div>
                 </div>
             </div>
@@ -329,7 +362,7 @@
 
     </div>
 
-    <!-- Create and Edit Modals Scripts -->
+    <!-- Scripts for Modals and Forms -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             // Buy Now Modal Handling
@@ -338,22 +371,17 @@
             buyNowButtons.forEach(function (button) {
                 button.addEventListener("click", function () {
                     const courseId = this.getAttribute("data-course-id");
-                    const coursePrice = this.closest('.course-card').querySelector('.new-price').textContent;
+                    const coursePriceElement = this.closest('.course-card').querySelector('.new-price');
+                    const coursePrice = coursePriceElement ? coursePriceElement.textContent : '';
                     const currentUrl = window.location.pathname;
 
-                    const enrollCourseIdInput = document.getElementById("formEnrollCourseId");
-                    if (enrollCourseIdInput) {
-                        enrollCourseIdInput.value = courseId;
-                    }
+                    const targetModal = this.getAttribute("data-bs-target");
 
-                    const coursePriceSpan = document.getElementById("coursePrice");
-                    if (coursePriceSpan) {
-                        coursePriceSpan.textContent = coursePrice;
-                    }
-
-                    const returnUrlInput = document.getElementById("returnUrl");
-                    if (returnUrlInput) {
-                        returnUrlInput.value = currentUrl;
+                    if (targetModal === "#buyNowModal") {
+                        // Đặt giá trị cho form enroll
+                        document.getElementById("formEnrollCourseId").value = courseId;
+                        document.getElementById("coursePrice").textContent = coursePrice;
+                        document.getElementById("returnUrl").value = currentUrl;
                     }
                 });
             });
@@ -371,7 +399,7 @@
                     const priceText = courseCard.querySelector('.new-price').textContent.trim();
                     const price = priceText.split(' ')[0];
                     const courseImage = courseCard.querySelector('.course-image img').getAttribute('src');
-                    const status = "Active"; // Or retrieve the actual status if available
+                    const status = "Active"; // Hoặc lấy trạng thái thực tế nếu có
 
                     // Populate the edit modal with course data
                     const editModal = document.getElementById("editCourseModal");
@@ -396,8 +424,37 @@
                     bootstrapModal.show();
                 });
             });
-        });
 
+            // Delete Course Modal Handling
+            const deleteCourseModal = document.getElementById('deleteCourseModal');
+
+            deleteCourseModal.addEventListener('show.bs.modal', function (event) {
+                // Button that triggered the modal
+                const button = event.relatedTarget;
+
+                // Extract info from data-* attributes
+                const courseId = button.getAttribute('data-course-id');
+                const courseTitle = button.getAttribute('data-course-title');
+
+                // Update the modal's content.
+                const modalTitle = deleteCourseModal.querySelector('#deleteCourseModalLabel');
+                const modalBodyTitle = deleteCourseModal.querySelector('#deleteCourseTitle');
+                const deleteCourseIdInput = deleteCourseModal.querySelector('#deleteCourseId');
+
+                modalTitle.textContent = 'Confirm Deletion';
+                modalBodyTitle.textContent = courseTitle;
+                deleteCourseIdInput.value = courseId;
+            });
+
+            // Optional: Reset modal content when hidden
+            deleteCourseModal.addEventListener('hidden.bs.modal', function () {
+                const modalBodyTitle = deleteCourseModal.querySelector('#deleteCourseTitle');
+                const deleteCourseIdInput = deleteCourseModal.querySelector('#deleteCourseId');
+
+                modalBodyTitle.textContent = '';
+                deleteCourseIdInput.value = '';
+            });
+        });
     </script>
 
 

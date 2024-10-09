@@ -1,4 +1,8 @@
 ﻿@model HomeVM
+@{
+    var currentUserId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+}
+
 
 <body>
     <div class="home-container">
@@ -58,18 +62,31 @@
                             </div>
                             <hr>
                             <div class="text-center">
-                                @if (!Model.EnrolledCourses.Contains(course.CourseID))
+                                @if (currentUserId == course.UserID)
                                 {
-                                    <input type="hidden" class="course-id" value="@course.CourseID" />
-                                    <button class="btn buy-now" data-course-id="@course.CourseID" data-bs-toggle="modal" data-bs-target="#buyNowModal">
-                                        Buy Now
-                                    </button>
+                                    <span class="text-success">Owner</span>
+                                }
+                                else if (!Model.EnrolledCourses.Contains(course.CourseID))
+                                {
+                                    @if (User.Identity.IsAuthenticated)
+                                    {
+                                        <button class="btn buy-now" data-course-id="@course.CourseID" data-bs-toggle="modal" data-bs-target="#buyNowModal">
+                                            Buy Now
+                                        </button>
+                                    }
+                                    else
+                                    {
+                                        <button class="btn buy-now" data-course-id="@course.CourseID" data-bs-toggle="modal" data-bs-target="#loginPromptModal">
+                                            Buy Now
+                                        </button>
+                                    }
                                 }
                                 else
                                 {
                                     <span class="text-success">Enrolled</span>
                                 }
                             </div>
+
                         </div>
                     </div>
                 }
@@ -115,17 +132,31 @@
                             </div>
                             <hr>
                             <div class="text-center">
-                                @if (!Model.EnrolledCourses.Contains(course.CourseID))
+                                @if (currentUserId == course.UserID)
                                 {
-                                    <button class="btn buy-now" data-course-id="@course.CourseID" data-bs-toggle="modal" data-bs-target="#buyNowModal">
-                                        Buy Now
-                                    </button>
+                                    <span class="text-success">Owner</span>
+                                }
+                                else if (!Model.EnrolledCourses.Contains(course.CourseID))
+                                {
+                                    @if (User.Identity.IsAuthenticated)
+                                    {
+                                        <button class="btn buy-now" data-course-id="@course.CourseID" data-bs-toggle="modal" data-bs-target="#buyNowModal">
+                                            Buy Now
+                                        </button>
+                                    }
+                                    else
+                                    {
+                                        <button class="btn buy-now" data-course-id="@course.CourseID" data-bs-toggle="modal" data-bs-target="#loginPromptModal">
+                                            Buy Now
+                                        </button>
+                                    }
                                 }
                                 else
                                 {
                                     <span class="text-success">Enrolled</span>
                                 }
                             </div>
+
                         </div>
                     </div>
                 }
@@ -234,26 +265,49 @@
             </div>
         </div>
 
+        <!-- Modal for Login Prompt -->
+        <div class="modal fade" id="loginPromptModal" tabindex="-1" aria-labelledby="loginPromptModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Login requirement</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Please login to register for this course.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <a href="@Url.Action("SignIn", "Home")" class="btn btn-primary">Sign In</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
 
     </div>
     <script>
-            document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function () {
             const buyNowButtons = document.querySelectorAll(".buy-now");
 
             buyNowButtons.forEach(function (button) {
                 button.addEventListener("click", function () {
                     const courseId = this.getAttribute("data-course-id");
-                    const coursePrice = this.closest('.course-card').querySelector('.new-price').textContent;
+                    const coursePriceElement = this.closest('.course-card').querySelector('.new-price');
+                    const coursePrice = coursePriceElement ? coursePriceElement.textContent : '';
                     const currentUrl = window.location.href;
 
-                    // Set courseId and returnUrl in the form's hidden inputs
-                    document.getElementById("formEnrollCourseId").value = courseId;
-                    document.getElementById("coursePrice").textContent = coursePrice;
-                    document.getElementById("returnUrl").value = currentUrl;
+                    const targetModal = this.getAttribute("data-bs-target");
+
+                    if (targetModal === "#buyNowModal") {
+                        document.getElementById("formEnrollCourseId").value = courseId;
+                        document.getElementById("coursePrice").textContent = coursePrice;
+                        document.getElementById("returnUrl").value = currentUrl;
+                    }
                 });
             });
         });
-
     </script>
 
 </body>
