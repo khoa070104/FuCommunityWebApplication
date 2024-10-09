@@ -4,7 +4,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FuCommunityWebModels.Models
 {
-	public class Lesson
+    [Table("Lesson")]
+    public class Lesson
 	{
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
