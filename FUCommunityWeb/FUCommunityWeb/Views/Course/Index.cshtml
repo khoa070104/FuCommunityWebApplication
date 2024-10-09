@@ -429,14 +429,11 @@
             const deleteCourseModal = document.getElementById('deleteCourseModal');
 
             deleteCourseModal.addEventListener('show.bs.modal', function (event) {
-                // Button that triggered the modal
                 const button = event.relatedTarget;
 
-                // Extract info from data-* attributes
                 const courseId = button.getAttribute('data-course-id');
                 const courseTitle = button.getAttribute('data-course-title');
 
-                // Update the modal's content.
                 const modalTitle = deleteCourseModal.querySelector('#deleteCourseModalLabel');
                 const modalBodyTitle = deleteCourseModal.querySelector('#deleteCourseTitle');
                 const deleteCourseIdInput = deleteCourseModal.querySelector('#deleteCourseId');
@@ -446,7 +443,6 @@
                 deleteCourseIdInput.value = courseId;
             });
 
-            // Optional: Reset modal content when hidden
             deleteCourseModal.addEventListener('hidden.bs.modal', function () {
                 const modalBodyTitle = deleteCourseModal.querySelector('#deleteCourseTitle');
                 const deleteCourseIdInput = deleteCourseModal.querySelector('#deleteCourseId');
@@ -482,14 +478,11 @@
             const deleteCourseModal = document.getElementById('deleteCourseModal');
 
             deleteCourseModal.addEventListener('show.bs.modal', function (event) {
-                // Button that triggered the modal
                 const button = event.relatedTarget;
 
-                // Extract info from data-* attributes
                 const courseId = button.getAttribute('data-course-id');
                 const courseTitle = button.getAttribute('data-course-title');
 
-                // Update the modal's content.
                 const modalTitle = deleteCourseModal.querySelector('#deleteCourseModalLabel');
                 const modalBodyTitle = deleteCourseModal.querySelector('#deleteCourseTitle');
                 const deleteCourseIdInput = deleteCourseModal.querySelector('#deleteCourseId');
@@ -499,7 +492,6 @@
                 deleteCourseIdInput.value = courseId;
             });
 
-            // Optional: Reset modal content when hidden
             deleteCourseModal.addEventListener('hidden.bs.modal', function () {
                 const modalBodyTitle = deleteCourseModal.querySelector('#deleteCourseTitle');
                 const deleteCourseIdInput = deleteCourseModal.querySelector('#deleteCourseId');
