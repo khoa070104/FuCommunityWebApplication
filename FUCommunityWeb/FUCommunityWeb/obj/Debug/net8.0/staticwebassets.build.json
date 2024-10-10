@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "XUykFcB8+0acosYSUfm5R1T5DydmfIetfzldJpXu9Yc=",
+  "Hash": "gO1rbGGFFR6RnROfIgeL25j03uJ+cFlLEJGhP+2Fs88=",
   "Source": "FUCommunityWeb",
   "BasePath": "_content/FUCommunityWeb",
   "Mode": "Default",
@@ -3494,6 +3494,25 @@
       "OriginalItemSpec": "wwwroot\\uploads\\be159b69-20df-4ba5-87ce-681059262b10_krixi-thoi-chi-ky-lu-2.jpg"
     },
     {
+      "Identity": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\uploads\\cdec3e23-0220-4856-9003-f7c68ab52583_iggy-dac-cau.jpeg",
+      "SourceId": "FUCommunityWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\",
+      "BasePath": "_content/FUCommunityWeb",
+      "RelativePath": "uploads/cdec3e23-0220-4856-9003-f7c68ab52583_iggy-dac-cau.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\cdec3e23-0220-4856-9003-f7c68ab52583_iggy-dac-cau.jpeg"
+    },
+    {
       "Identity": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\uploads\\d1eea500-1e1e-4a8a-84e1-2e94c5fedef7_iggy-dac-cau.jpeg",
       "SourceId": "FUCommunityWeb",
       "SourceType": "Discovered",
@@ -3549,6 +3568,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\d7de5f6f-bb84-410b-9d01-c7f48d308d84_iggy-dac-cau.jpeg"
+    },
+    {
+      "Identity": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\uploads\\ddc6a55f-c124-40da-8c2e-c5f6107f458f_erin-dau-buoi.jpg",
+      "SourceId": "FUCommunityWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\",
+      "BasePath": "_content/FUCommunityWeb",
+      "RelativePath": "uploads/ddc6a55f-c124-40da-8c2e-c5f6107f458f_erin-dau-buoi.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\ddc6a55f-c124-40da-8c2e-c5f6107f458f_erin-dau-buoi.jpg"
     }
   ]
 }

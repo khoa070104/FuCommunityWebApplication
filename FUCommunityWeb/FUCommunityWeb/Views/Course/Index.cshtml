@@ -323,6 +323,42 @@
                                 <span asp-validation-for="EditCourseVM.Price" class="text-danger"></span>
                             </div>
                             <div class="mb-3">
+                                <label asp-for="EditCourseVM.Semester" class="form-label">Semester</label>
+                                <select asp-for="EditCourseVM.Semester" class="form-control">
+                                    <option value="">-- Select Semester --</option>
+                                    @for (int i = 1; i <= 9; i++)
+                                    {
+                                        if (i == Model.EditCourseVM.Semester)
+                                        {
+                                            <option value="@i" selected>Semester @i</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@i">Semester @i</option>
+                                        }
+                                    }
+                                </select>
+                                <span asp-validation-for="EditCourseVM.Semester" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label asp-for="EditCourseVM.CategoryID" class="form-label">Category</label>
+                                <select asp-for="EditCourseVM.CategoryID" class="form-control">
+                                    <option value="">-- Select Category --</option>
+                                    @foreach (var category in Model.Categories)
+                                    {
+                                        if (category.CategoryID == Model.EditCourseVM.CategoryID)
+                                        {
+                                            <option value="@category.CategoryID" selected>@category.CategoryName</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@category.CategoryID">@category.CategoryName</option>
+                                        }
+                                    }
+                                </select>
+                                <span asp-validation-for="EditCourseVM.CategoryID" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3">
                                 <label asp-for="EditCourseVM.Status" class="form-label">Status</label>
                                 <input asp-for="EditCourseVM.Status" class="form-control" />
                                 <span asp-validation-for="EditCourseVM.Status" class="text-danger"></span>
