@@ -26,6 +26,7 @@ namespace FuCommunityWebModels.Models
 
         [MaxLength(255)]
         public string AvatarImage { get; set; }
+        public decimal Point { get; set; }  
 
         // Navigation properties
         public virtual ICollection<Post> Posts { get; set; } // Mối quan hệ với Post
@@ -34,16 +35,11 @@ namespace FuCommunityWebModels.Models
         public virtual ICollection<Document> Documents { get; set; } // Mối quan hệ với Document
         public virtual ICollection<Vote> Votes { get; set; } // Mối quan hệ với Vote
         public virtual ICollection<IsVote> IsVotes { get; set; } // Mối quan hệ với IsVote
+        public virtual ICollection<Point> Points { get; set; } // Mối quan hệ với bảng Point
 
-        // Thêm thuộc tính Comments
         public virtual ICollection<Comment> Comments { get; set; } // Mối quan hệ với Comment
-        [NotMapped]
-        public int Point
-        {
-            get
-            {
-                return IsVotes?.Sum(vote => vote.Point) ?? 0;
-            }
-        }
+        public virtual ICollection<Review> Reviews { get; set; }
+        public virtual ICollection<Deposit> Deposits { get; set; } // Mối quan hệ với Deposit
+
     }
 }

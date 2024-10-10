@@ -24,7 +24,7 @@ namespace FuCommunityWebModels.Models
         public DateTime? VotedAt { get; set; } = DateTime.Now;
 
         // Navigation properties
-        [ForeignKey("Id")]
+        [ForeignKey("UserID")]
         public virtual ApplicationUser User { get; set; } // Thay đổi từ User thành ApplicationUser
 
         [ForeignKey("PostID")]

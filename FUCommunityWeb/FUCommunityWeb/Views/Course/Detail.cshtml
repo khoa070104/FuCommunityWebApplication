@@ -11,8 +11,8 @@
     <div class="course-header">
         <div id="course-detail-header">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/home/home"><i class="fa fa-home"></i> Home</a></li>
-                <li class="breadcrumb-item"><a href="/home/course">Course</a></li>
+                <li class="breadcrumb-item"><a href="/home/index"><i class="fa fa-home"></i> Home</a></li>
+                <li class="breadcrumb-item"><a href="/course/index">Course</a></li>
                 <li class="breadcrumb-item active" aria-current="page">@Model.Course.Title</li>
             </ol>
             <h1 class="display-2">@Model.Course.Title</h1>
@@ -140,7 +140,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn-cancel btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <form id="enrollForm" method="post" action="@Url.Action("CourseDetails", "Home")">
+                <form id="enrollForm" method="post" action="@Url.Action("BuyCourse", "Course")">
                     @Html.AntiForgeryToken()
                     <input type="hidden" name="courseId" id="enrollCourseId" />
                     <input type="hidden" name="returnUrl" id="returnUrl" />
@@ -174,7 +174,7 @@
 <div class="modal fade" id="createLessonModal" tabindex="-1" aria-labelledby="createLessonModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form asp-action="CreateLesson" asp-controller="Home" method="post" enctype="multipart/form-data">
+            <form asp-action="CreateLesson" asp-controller="Course" method="post" enctype="multipart/form-data">
                 @Html.AntiForgeryToken()
                 <div class="modal-header">
                     <h5 class="modal-title" id="createLessonModalLabel">Add New Lesson</h5>
@@ -226,7 +226,7 @@
 <div class="modal fade" id="editLessonModal" tabindex="-1" aria-labelledby="editLessonModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form asp-action="EditLesson" asp-controller="Home" method="post">
+            <form asp-action="EditLesson" asp-controller="Course" method="post">
                 @Html.AntiForgeryToken()
                 <div class="modal-header">
                     <h5 class="modal-title" id="editLessonModalLabel">Chỉnh sửa Bài học</h5>
@@ -280,7 +280,7 @@
 <div class="modal fade" id="deleteLessonModal" tabindex="-1" aria-labelledby="deleteLessonModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form asp-action="DeleteLesson" asp-controller="Home" method="post">
+            <form asp-action="DeleteLesson" asp-controller="Course" method="post">
                 @Html.AntiForgeryToken()
                 <div class="modal-header">
                     <h5 class="modal-title" id="deleteLessonModalLabel">Confirm Deletion</h5>
