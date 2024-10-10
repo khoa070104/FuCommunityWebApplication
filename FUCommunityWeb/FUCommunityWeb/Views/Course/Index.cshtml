@@ -224,29 +224,41 @@
                                 <input asp-for="CreateCourseVM.Price" type="number" class="form-control" required />
                                 <span asp-validation-for="CreateCourseVM.Price" class="text-danger"></span>
                             </div>
+                            <!-- Semester Select -->
                             <div class="mb-3">
                                 <label asp-for="CreateCourseVM.Semester" class="form-label">Semester</label>
                                 <select asp-for="CreateCourseVM.Semester" class="form-control">
                                     <option value="">-- Select Semester --</option>
-                                    <option value="1">Semester 1</option>
-                                    <option value="2">Semester 2</option>
-                                    <option value="3">Semester 3</option>
-                                    <option value="4">Semester 4</option>
-                                    <option value="5">Semester 5</option>
-                                    <option value="6">Semester 6</option>
-                                    <option value="7">Semester 7</option>
-                                    <option value="8">Semester 8</option>
-                                    <option value="9">Semester 9</option>
+                                    @for (int i = 1; i <= 9; i++)
+                                    {
+                                        if (i == Model.CreateCourseVM.Semester)
+                                        {
+                                            <option value="@i" selected>Semester @i</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@i">Semester @i</option>
+                                        }
+                                    }
                                 </select>
                                 <span asp-validation-for="CreateCourseVM.Semester" class="text-danger"></span>
                             </div>
+                            <!-- Category Select -->
                             <div class="mb-3">
                                 <label asp-for="CreateCourseVM.CategoryID" class="form-label">Category</label>
                                 <select asp-for="CreateCourseVM.CategoryID" class="form-control">
                                     <option value="">-- Select Category --</option>
-                                    <option value="1">code</option>
-                                    <option value="2">japanese</option>
-                                    <option value="3">math</option>
+                                    @foreach (var category in Model.Categories)
+                                    {
+                                        if (category.CategoryID == Model.CreateCourseVM.CategoryID)
+                                        {
+                                            <option value="@category.CategoryID" selected>@category.CategoryName</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@category.CategoryID">@category.CategoryName</option>
+                                        }
+                                    }
                                 </select>
                                 <span asp-validation-for="CreateCourseVM.CategoryID" class="text-danger"></span>
                             </div>

@@ -1,5 +1,4 @@
 ﻿using FuCommunityWebModels.Models;
-using System.Collections.Generic;
 
 namespace FuCommunityWebModels.ViewModels
 {
