@@ -32,7 +32,7 @@
                 {
                     <div class="course-card" data-course-id="@course.CourseID">
                         <div class="course-image">
-                            <a href="@Url.Action("CourseDetail", "Home", new { id = course.CourseID })">
+                            <a href="@Url.Action("Detail", "Course", new { id = course.CourseID })">
                                 <img src="@course.CourseImage" alt="Course Image" class="img-fluid">
                             </a>
                         </div>
@@ -41,7 +41,7 @@
                                 <span class="badge">Mathematics</span>
                             </div>
                             <h3>
-                                <a href="@Url.Action("CourseDetail", "Home", new { id = course.CourseID })">@course.Title</a>
+                                <a href="@Url.Action("Detail", "Course", new { id = course.CourseID })">@course.Title</a>
                             </h3>
                             <p>@course.Description</p>
                             <div class="rating">
@@ -102,7 +102,7 @@
                 {
                     <div class="course-card" data-course-id="@course.CourseID">
                         <div class="course-image">
-                            <a href="@Url.Action("CourseDetail", "Home", new { id = course.CourseID })">
+                            <a href="@Url.Action("Detail", "Course", new { id = course.CourseID })">
                                 <img src="@course.CourseImage" alt="Course Image" class="img-fluid">
                             </a>
                         </div>
@@ -111,7 +111,7 @@
                                 <span class="badge">Mathematics</span>
                             </div>
                             <h3>
-                                <a href="@Url.Action("CourseDetail", "Home", new { id = course.CourseID })">@course.Title</a>
+                                <a href="@Url.Action("Detail", "Course", new { id = course.CourseID })">@course.Title</a>
                             </h3>
                             <p>@course.Description</p>
                             <div class="rating">
@@ -254,7 +254,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn-cancel" data-bs-dismiss="modal">Cancel</button>
-                        <form id="enrollForm" method="post" action="@Url.Action("CourseDetails", "Home")">
+                        <form id="enrollForm" method="post" action="@Url.Action("BuyCourse", "Home")">
                             @Html.AntiForgeryToken() <!-- Anti-Forgery Token Added -->
                             <input type="hidden" name="courseId" id="formEnrollCourseId" />
                             <input type="hidden" name="returnUrl" id="returnUrl" />

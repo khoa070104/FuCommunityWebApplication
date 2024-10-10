@@ -11,7 +11,7 @@
         <div class="container">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/home/home"><i class="fa fa-home"></i> Home</a></li>
+                    <li class="breadcrumb-item"><a href="/home/index"><i class="fa fa-home"></i> Home</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Course</li>
                 </ol>
             </nav>
@@ -168,10 +168,10 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        <form id="formEnrollForm" method="post" action="@Url.Action("CourseDetails", "Home")">
+                        <form id="formEnrollForm" method="post" action="@Url.Action("BuyCourse", "Course")">
                             @Html.AntiForgeryToken() 
                             <input type="hidden" name="courseId" id="formEnrollCourseId" />
-                            <input type="hidden" name="returnUrl" id="returnUrl" value="@Url.Action("Course", "Home")" />
+                            <input type="hidden" name="returnUrl" id="returnUrl" value="@Url.Action("BuyCourse", "Course")" />
                             <button type="submit" class="btn btn-primary" id="confirmEnrollBtn">Confirm</button>
                         </form>
                     </div>

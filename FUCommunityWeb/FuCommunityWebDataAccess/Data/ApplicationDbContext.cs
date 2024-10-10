@@ -27,6 +27,8 @@ namespace FuCommunityWebDataAccess.Data
         public DbSet<Course> Courses { get; set; }
         public DbSet<Enrollment> Enrollment { get; set; }
         public DbSet<Lesson> Lessons { get; set; }
+        public DbSet<Point> Points { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder); // Gọi base method để đảm bảo cấu hình mặc định của Identity
@@ -102,6 +104,12 @@ namespace FuCommunityWebDataAccess.Data
                 .HasOne(c => c.Question)
                 .WithMany(q => q.Comments)
                 .HasForeignKey(c => c.QuestionID);
+
+            // Thiết lập quan hệ giữa ApplicationUser và Point
+            modelBuilder.Entity<Point>()
+                .HasOne(p => p.User)
+                .WithMany(u => u.Points)  // Mối quan hệ 1-nhiều giữa ApplicationUser và Point
+                .HasForeignKey(p => p.UserId);
         }
     }
 }

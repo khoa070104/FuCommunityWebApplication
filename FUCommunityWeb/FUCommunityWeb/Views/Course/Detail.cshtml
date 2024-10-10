@@ -11,8 +11,8 @@
     <div class="course-header">
         <div id="course-detail-header">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/home/home"><i class="fa fa-home"></i> Home</a></li>
-                <li class="breadcrumb-item"><a href="/home/course">Course</a></li>
+                <li class="breadcrumb-item"><a href="/home/index"><i class="fa fa-home"></i> Home</a></li>
+                <li class="breadcrumb-item"><a href="/course/index">Course</a></li>
                 <li class="breadcrumb-item active" aria-current="page">@Model.Course.Title</li>
             </ol>
             <h1 class="display-2">@Model.Course.Title</h1>
@@ -140,7 +140,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn-cancel btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <form id="enrollForm" method="post" action="@Url.Action("CourseDetails", "Home")">
+                <form id="enrollForm" method="post" action="@Url.Action("BuyCourse", "Course")">
                     @Html.AntiForgeryToken()
                     <input type="hidden" name="courseId" id="enrollCourseId" />
                     <input type="hidden" name="returnUrl" id="returnUrl" />

@@ -54,6 +54,87 @@ namespace FUCommunityWeb.Controllers
             return View(viewModel);
         }
 
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> BuyCourse(int courseId, string returnUrl)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var course = await _context.Courses
+                .FirstOrDefaultAsync(c => c.CourseID == courseId);
+
+            if (course == null)
+            {
+                TempData["Error"] = "Course not found.";
+                return RedirectToAction("Index");
+            }
+
+            var alreadyEnrolled = await _context.Enrollment
+                .AnyAsync(e => e.UserID == userId && e.CourseID == courseId);
+
+            if (alreadyEnrolled)
+            {
+                TempData["Error"] = "You are already enrolled in this course.";
+                return RedirectToAction("Index");
+            }
+
+            // Lấy thông tin người dùng
+            var user = await _context.Users.FindAsync(userId);
+            if (user == null)
+            {
+                TempData["Error"] = "User not found.";
+                return RedirectToAction("Index");
+            }
+
+            // Kiểm tra xem người dùng có đủ điểm để mua khóa học không
+            if (user.Point < course.Price)
+            {
+                TempData["Error"] = "You do not have enough points to purchase this course.";
+                if (Url.IsLocalUrl(returnUrl))
+                {
+                    return Redirect(returnUrl);
+                }
+                else
+                {
+                    return RedirectToAction("Index");
+                }
+            }
+
+            // Trừ điểm của người dùng
+            user.Point -= course.Price.Value;
+
+            var enrollment = new Enrollment
+            {
+                UserID = userId,
+                CourseID = courseId,
+                EnrollmentDate = DateTime.Now,
+                Status = "Active"
+            };
+
+            // Thêm đăng ký khóa học
+            _context.Enrollment.Add(enrollment);
+            await _context.SaveChangesAsync();
+
+            // Cập nhật điểm của người dùng
+            _context.Users.Update(user);
+            await _context.SaveChangesAsync();
+
+            TempData["Success"] = "Enrollment successful!";
+
+            if (Url.IsLocalUrl(returnUrl))
+            {
+                return Redirect(returnUrl);
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+        }
+
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CreateCourseVM createCourseVM)
@@ -365,7 +446,6 @@ namespace FUCommunityWeb.Controllers
                 {
                     CourseID = createLessonVM.CourseID,
                     UserID = userId,
-                    CategoryID = 1,
                     Title = createLessonVM.Title,
                     Content = createLessonVM.Content,
                     Status = createLessonVM.Status,
