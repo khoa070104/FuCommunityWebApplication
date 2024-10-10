@@ -174,7 +174,7 @@
 <div class="modal fade" id="createLessonModal" tabindex="-1" aria-labelledby="createLessonModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form asp-action="CreateLesson" asp-controller="Home" method="post" enctype="multipart/form-data">
+            <form asp-action="CreateLesson" asp-controller="Course" method="post" enctype="multipart/form-data">
                 @Html.AntiForgeryToken()
                 <div class="modal-header">
                     <h5 class="modal-title" id="createLessonModalLabel">Add New Lesson</h5>
@@ -226,7 +226,7 @@
 <div class="modal fade" id="editLessonModal" tabindex="-1" aria-labelledby="editLessonModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form asp-action="EditLesson" asp-controller="Home" method="post">
+            <form asp-action="EditLesson" asp-controller="Course" method="post">
                 @Html.AntiForgeryToken()
                 <div class="modal-header">
                     <h5 class="modal-title" id="editLessonModalLabel">Chỉnh sửa Bài học</h5>
@@ -280,7 +280,7 @@
 <div class="modal fade" id="deleteLessonModal" tabindex="-1" aria-labelledby="deleteLessonModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form asp-action="DeleteLesson" asp-controller="Home" method="post">
+            <form asp-action="DeleteLesson" asp-controller="Course" method="post">
                 @Html.AntiForgeryToken()
                 <div class="modal-header">
                     <h5 class="modal-title" id="deleteLessonModalLabel">Confirm Deletion</h5>
