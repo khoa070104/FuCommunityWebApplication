@@ -25,5 +25,11 @@ namespace FuCommunityWebModels.ViewModels
         [NotMapped]
         [Display(Name = "Course Image")]
         public IFormFile? CourseImageFile { get; set; }
+        [Required]
+        [Range(1, 9, ErrorMessage = "Please select a semester.")]
+        public int Semester { get; set; }
+
+        [Required(ErrorMessage = "Please select a category.")]
+        public int CategoryID { get; set; }
     }
 }

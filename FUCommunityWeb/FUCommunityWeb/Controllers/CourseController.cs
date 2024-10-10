@@ -30,6 +30,8 @@ namespace FUCommunityWeb.Controllers
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var enrolledCourses = await _courseService.GetEnrolledCoursesAsync(userId);
 
+            var categories = await _context.Categories.ToListAsync();
+
             if (!string.IsNullOrEmpty(subjectCode))
             {
                 courses = courses.Where(c => c.Title == subjectCode).ToList();
@@ -48,7 +50,8 @@ namespace FUCommunityWeb.Controllers
                 EditCourseVM = new EditCourseVM(),
                 ShowCreateCourseModal = false,
                 ShowEditCourseModal = false,
-                EditCourseID = null
+                EditCourseID = null,
+                Categories = categories
             };
 
             return View(viewModel);
@@ -174,7 +177,9 @@ namespace FUCommunityWeb.Controllers
                         CourseImage = createCourseVM.CourseImage,
                         Status = createCourseVM.Status,
                         UserID = User.FindFirstValue(ClaimTypes.NameIdentifier),
-                        CreatedDate = DateTime.Now
+                        CreatedDate = DateTime.Now,
+                        Semester = createCourseVM.Semester,
+                        CategoryID = createCourseVM.CategoryID
                     };
 
                     await _courseService.AddCourseAsync(course);
@@ -189,6 +194,7 @@ namespace FUCommunityWeb.Controllers
                     ModelState.AddModelError(string.Empty, "An error occurred while creating the course. Please try again.");
                 }
             }
+            var categories = await _context.Categories.ToListAsync();
 
             var courses = await _courseService.GetAllCoursesAsync();
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -199,7 +205,8 @@ namespace FUCommunityWeb.Controllers
                 Courses = courses,
                 EnrolledCourses = enrolledCourses,
                 CreateCourseVM = createCourseVM,
-                ShowCreateCourseModal = true
+                ShowCreateCourseModal = true,
+                Categories = categories
             };
 
             return View("Index", viewModel);
