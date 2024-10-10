@@ -155,7 +155,7 @@ namespace FUCommunityWeb.Controllers
                 Price = course.Price ?? 0,
                 CourseImage = course.CourseImage,
                 Status = course.Status,
-                Semester = course.Semester,
+                Semester = course.Semester, // Đảm bảo giá trị Semester được lấy từ cơ sở dữ liệu
                 CategoryID = course.CategoryID
             };
 
@@ -172,6 +172,9 @@ namespace FUCommunityWeb.Controllers
                 EnrolledCourses = await _courseService.GetEnrolledCoursesAsync(currentUserId),
                 Categories = categories // Truyền danh sách Categories vào ViewModel
             };
+
+            // Xóa ModelState để tránh ghi đè giá trị từ model
+            ModelState.Clear();
 
             return View("Index", viewModel);
         }
@@ -195,7 +198,14 @@ namespace FUCommunityWeb.Controllers
                     return Forbid();
                 }
 
+                // Thiết lập lại các giá trị từ cơ sở dữ liệu
                 editCourseVM.CourseImage = course.CourseImage;
+                editCourseVM.Semester = course.Semester; // Thiết lập lại Semester
+                editCourseVM.CategoryID = course.CategoryID;
+
+                // Xóa các lỗi liên quan để tránh ghi đè
+                ModelState.Remove("EditCourseVM.Semester");
+                ModelState.Remove("EditCourseVM.CategoryID");
 
                 // Lấy danh sách Categories
                 var categories = await _context.Categories.ToListAsync();

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "gO1rbGGFFR6RnROfIgeL25j03uJ+cFlLEJGhP+2Fs88=",
+  "Hash": "zHbxPOm/1F+6wS8OYMi1zXm5M/1tCj6I0pd1z1+S2WI=",
   "Source": "FUCommunityWeb",
   "BasePath": "_content/FUCommunityWeb",
   "Mode": "Default",
@@ -3494,12 +3494,12 @@
       "OriginalItemSpec": "wwwroot\\uploads\\be159b69-20df-4ba5-87ce-681059262b10_krixi-thoi-chi-ky-lu-2.jpg"
     },
     {
-      "Identity": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\uploads\\cdec3e23-0220-4856-9003-f7c68ab52583_iggy-dac-cau.jpeg",
+      "Identity": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\uploads\\cfec605f-6568-445d-a34e-7928a2cf2273_krixi-thoi-chi-ky-lu-2.jpg",
       "SourceId": "FUCommunityWeb",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\",
       "BasePath": "_content/FUCommunityWeb",
-      "RelativePath": "uploads/cdec3e23-0220-4856-9003-f7c68ab52583_iggy-dac-cau.jpeg",
+      "RelativePath": "uploads/cfec605f-6568-445d-a34e-7928a2cf2273_krixi-thoi-chi-ky-lu-2.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -3510,7 +3510,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\uploads\\cdec3e23-0220-4856-9003-f7c68ab52583_iggy-dac-cau.jpeg"
+      "OriginalItemSpec": "wwwroot\\uploads\\cfec605f-6568-445d-a34e-7928a2cf2273_krixi-thoi-chi-ky-lu-2.jpg"
     },
     {
       "Identity": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\uploads\\d1eea500-1e1e-4a8a-84e1-2e94c5fedef7_iggy-dac-cau.jpeg",

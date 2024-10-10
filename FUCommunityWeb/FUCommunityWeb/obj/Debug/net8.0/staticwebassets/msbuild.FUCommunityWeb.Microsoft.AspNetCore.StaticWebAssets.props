@@ -1952,12 +1952,12 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\be159b69-20df-4ba5-87ce-681059262b10_krixi-thoi-chi-ky-lu-2.jpg))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\cdec3e23-0220-4856-9003-f7c68ab52583_iggy-dac-cau.jpeg))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\cfec605f-6568-445d-a34e-7928a2cf2273_krixi-thoi-chi-ky-lu-2.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>FUCommunityWeb</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/FUCommunityWeb</BasePath>
-      <RelativePath>uploads/cdec3e23-0220-4856-9003-f7c68ab52583_iggy-dac-cau.jpeg</RelativePath>
+      <RelativePath>uploads/cfec605f-6568-445d-a34e-7928a2cf2273_krixi-thoi-chi-ky-lu-2.jpg</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -1966,7 +1966,7 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\cdec3e23-0220-4856-9003-f7c68ab52583_iggy-dac-cau.jpeg))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\cfec605f-6568-445d-a34e-7928a2cf2273_krixi-thoi-chi-ky-lu-2.jpg))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\d1eea500-1e1e-4a8a-84e1-2e94c5fedef7_iggy-dac-cau.jpeg))">
       <SourceType>Package</SourceType>
