@@ -22,7 +22,7 @@ public class Document
 
     public DateTime UploadedAt { get; set; } = DateTime.Now;
 
-    [ForeignKey("Id")]
+    [ForeignKey("UserID")]
     public virtual ApplicationUser User { get; set; }
 
     [ForeignKey("CourseID")]

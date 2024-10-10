@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FuCommunityWebDataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241010060645_index")]
-    partial class index
+    [Migration("20241010093246_khoitruyen")]
+    partial class khoitruyen
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -40,10 +40,6 @@ namespace FuCommunityWebDataAccess.Migrations
                         .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
-
-                    b.Property<string>("Id")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -108,10 +104,6 @@ namespace FuCommunityWebDataAccess.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Id")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int?>("LessonID")
                         .HasColumnType("int");
 
@@ -149,6 +141,9 @@ namespace FuCommunityWebDataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CourseID"));
 
+                    b.Property<int>("CategoryID")
+                        .HasColumnType("int");
+
                     b.Property<string>("CourseImage")
                         .IsRequired()
                         .HasMaxLength(255)
@@ -163,6 +158,9 @@ namespace FuCommunityWebDataAccess.Migrations
 
                     b.Property<decimal?>("Price")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("Semester")
+                        .HasColumnType("int");
 
                     b.Property<string>("Status")
                         .IsRequired()
@@ -183,9 +181,36 @@ namespace FuCommunityWebDataAccess.Migrations
 
                     b.HasKey("CourseID");
 
+                    b.HasIndex("CategoryID");
+
                     b.HasIndex("UserID");
 
                     b.ToTable("Courses");
+                });
+
+            modelBuilder.Entity("FuCommunityWebModels.Models.Deposit", b =>
+                {
+                    b.Property<int>("DepositID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DepositID"));
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("Money")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("UserID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("DepositID");
+
+                    b.HasIndex("UserID");
+
+                    b.ToTable("Deposit");
                 });
 
             modelBuilder.Entity("FuCommunityWebModels.Models.Enrollment", b =>
@@ -233,10 +258,6 @@ namespace FuCommunityWebDataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IsVoteID"));
 
-                    b.Property<string>("Id")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int?>("LessonID")
                         .HasColumnType("int");
 
@@ -268,9 +289,6 @@ namespace FuCommunityWebDataAccess.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("LessonID"));
-
-                    b.Property<int>("CategoryID")
-                        .HasColumnType("int");
 
                     b.Property<string>("Content")
                         .IsRequired()
@@ -328,13 +346,13 @@ namespace FuCommunityWebDataAccess.Migrations
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
 
-                    b.Property<string>("UserId")
+                    b.Property<string>("UserID")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("PointId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserID");
 
                     b.ToTable("Points");
                 });
@@ -357,6 +375,9 @@ namespace FuCommunityWebDataAccess.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("DocumentID")
+                        .HasColumnType("int");
+
                     b.Property<string>("PostImage")
                         .IsRequired()
                         .HasMaxLength(255)
@@ -366,6 +387,10 @@ namespace FuCommunityWebDataAccess.Migrations
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Tag")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -382,6 +407,8 @@ namespace FuCommunityWebDataAccess.Migrations
                     b.HasKey("PostID");
 
                     b.HasIndex("CategoryID");
+
+                    b.HasIndex("DocumentID");
 
                     b.HasIndex("UserID");
 
@@ -403,9 +430,6 @@ namespace FuCommunityWebDataAccess.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("Status")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -421,13 +445,47 @@ namespace FuCommunityWebDataAccess.Migrations
 
                     b.Property<string>("UserID")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("QuestionID");
 
-                    b.HasIndex("Id");
+                    b.HasIndex("UserID");
 
                     b.ToTable("Question");
+                });
+
+            modelBuilder.Entity("FuCommunityWebModels.Models.Review", b =>
+                {
+                    b.Property<int>("ReviewID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ReviewID"));
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("CourseID")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Rating")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("ReviewID");
+
+                    b.HasIndex("CourseID");
+
+                    b.HasIndex("UserID");
+
+                    b.ToTable("Reviews");
                 });
 
             modelBuilder.Entity("FuCommunityWebModels.Models.Vote", b =>
@@ -437,10 +495,6 @@ namespace FuCommunityWebDataAccess.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("VoteID"));
-
-                    b.Property<string>("Id")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("PostID")
                         .HasColumnType("int");
@@ -767,8 +821,27 @@ namespace FuCommunityWebDataAccess.Migrations
 
             modelBuilder.Entity("FuCommunityWebModels.Models.Course", b =>
                 {
+                    b.HasOne("FuCommunityWebModels.Models.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("FuCommunityWebModels.Models.ApplicationUser", "User")
                         .WithMany()
+                        .HasForeignKey("UserID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("FuCommunityWebModels.Models.Deposit", b =>
+                {
+                    b.HasOne("FuCommunityWebModels.Models.ApplicationUser", "User")
+                        .WithMany("Deposits")
                         .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -847,7 +920,7 @@ namespace FuCommunityWebDataAccess.Migrations
                 {
                     b.HasOne("FuCommunityWebModels.Models.ApplicationUser", "User")
                         .WithMany("Points")
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -860,6 +933,10 @@ namespace FuCommunityWebDataAccess.Migrations
                         .WithMany("Posts")
                         .HasForeignKey("CategoryID");
 
+                    b.HasOne("Document", "Document")
+                        .WithMany()
+                        .HasForeignKey("DocumentID");
+
                     b.HasOne("FuCommunityWebModels.Models.ApplicationUser", "User")
                         .WithMany("Posts")
                         .HasForeignKey("UserID")
@@ -868,6 +945,8 @@ namespace FuCommunityWebDataAccess.Migrations
 
                     b.Navigation("Category");
 
+                    b.Navigation("Document");
+
                     b.Navigation("User");
                 });
 
@@ -875,7 +954,26 @@ namespace FuCommunityWebDataAccess.Migrations
                 {
                     b.HasOne("FuCommunityWebModels.Models.ApplicationUser", "User")
                         .WithMany("Questions")
-                        .HasForeignKey("Id");
+                        .HasForeignKey("UserID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("FuCommunityWebModels.Models.Review", b =>
+                {
+                    b.HasOne("FuCommunityWebModels.Models.Course", null)
+                        .WithMany()
+                        .HasForeignKey("CourseID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FuCommunityWebModels.Models.ApplicationUser", "User")
+                        .WithMany("Reviews")
+                        .HasForeignKey("UserID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("User");
                 });
@@ -994,6 +1092,8 @@ namespace FuCommunityWebDataAccess.Migrations
                 {
                     b.Navigation("Comments");
 
+                    b.Navigation("Deposits");
+
                     b.Navigation("Documents");
 
                     b.Navigation("Enrollments");
@@ -1005,6 +1105,8 @@ namespace FuCommunityWebDataAccess.Migrations
                     b.Navigation("Posts");
 
                     b.Navigation("Questions");
+
+                    b.Navigation("Reviews");
 
                     b.Navigation("Votes");
                 });

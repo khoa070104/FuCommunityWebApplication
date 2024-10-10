@@ -37,8 +37,9 @@ namespace FuCommunityWebModels.Models
         public virtual ICollection<IsVote> IsVotes { get; set; } // Mối quan hệ với IsVote
         public virtual ICollection<Point> Points { get; set; } // Mối quan hệ với bảng Point
 
-        // Thêm thuộc tính Comments
         public virtual ICollection<Comment> Comments { get; set; } // Mối quan hệ với Comment
-        
+        public virtual ICollection<Review> Reviews { get; set; }
+        public virtual ICollection<Deposit> Deposits { get; set; } // Mối quan hệ với Deposit
+
     }
 }

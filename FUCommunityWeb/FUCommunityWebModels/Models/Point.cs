@@ -12,9 +12,7 @@ namespace FuCommunityWebModels.Models
     {
         [Key]
         public int PointId { get; set; }
-        public string UserId { get; set; }
-        [ForeignKey("UserId")]
-        public ApplicationUser User { get; set; }  // Tạo mối quan hệ với bảng ApplicationUser
+        public string UserID { get; set; }        
 
         public int PointValue { get; set; }  // Lưu giá trị điểm
 
@@ -23,6 +21,9 @@ namespace FuCommunityWebModels.Models
         public PointSource From { get; set; }  // Lưu nguồn điểm (Vote hoặc Nạp)
 
         public bool Status { get; set; }  // Trạng thái điểm đã cộng hay chưa
+
+        [ForeignKey("UserID")]
+        public ApplicationUser User { get; set; }  // Tạo mối quan hệ với bảng ApplicationUser
     }
     public enum PointSource
     {

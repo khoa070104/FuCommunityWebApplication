@@ -18,8 +18,6 @@ namespace FuCommunityWebModels.Models
 
         public string UserID { get; set; }
 
-        public int CategoryID { get; set; }
-
         [Required]
         [StringLength(255)]
         public string Title { get; set; }

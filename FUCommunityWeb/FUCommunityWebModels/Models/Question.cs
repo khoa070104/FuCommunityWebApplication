@@ -27,7 +27,7 @@ namespace FuCommunityWebModels.Models
         [StringLength(50)]
         public string Status { get; set; }
 
-        [ForeignKey("Id")]
+        [ForeignKey("UserID")]
         public virtual ApplicationUser User { get; set; } // Thay đổi từ User thành ApplicationUser
 
         public ICollection<Comment> Comments { get; set; }
