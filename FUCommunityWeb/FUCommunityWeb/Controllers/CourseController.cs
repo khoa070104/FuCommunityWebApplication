@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.IO;
-using FuCommunityWebModels.ViewModels.FuCommunityWebModels.ViewModels; // Thêm using cho FileStream
+using FuCommunityWebModels.ViewModels.FuCommunityWebModels.ViewModels; 
 
 namespace FUCommunityWeb.Controllers
 {
@@ -27,8 +27,8 @@ namespace FUCommunityWeb.Controllers
         {
             var viewModel = new CourseVM
             {
-                Categories = await _courseService.GetAllCategoriesAsync(), // Lấy danh sách danh mục từ service
-                AllSubjectCodes = await _courseService.GetAllSubjectCodesAsync(), // Lấy danh sách mã môn học từ service
+                Categories = await _courseService.GetAllCategoriesAsync(), 
+                AllSubjectCodes = await _courseService.GetAllSubjectCodesAsync(), 
                 SelectedSemester = semester,
                 SelectedCategory = category,
                 SelectedSubjectCode = subjectCode,
@@ -36,7 +36,6 @@ namespace FUCommunityWeb.Controllers
                 SelectedMinPrice = minPrice
             };
 
-            // Sử dụng service để lấy danh sách khóa học đã lọc
             viewModel.Courses = await _courseService.GetFilteredCoursesAsync(semester, category, subjectCode, minPrice);
 
             return View(viewModel);
@@ -100,10 +99,10 @@ namespace FUCommunityWeb.Controllers
                     ModelState.AddModelError(string.Empty, "An error occurred while creating the course. Please try again.");
                 }
             }
-            var categories = await _courseService.GetAllCategoriesAsync(); // Lấy danh sách danh mục từ service
-            var courses = await _courseService.GetAllCoursesAsync(); // Lấy danh sách khóa học từ service
+            var categories = await _courseService.GetAllCategoriesAsync(); 
+            var courses = await _courseService.GetAllCoursesAsync(); 
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var enrolledCourses = await _courseService.GetEnrolledCoursesAsync(userId); // Lấy danh sách khóa học đã đăng ký từ service
+            var enrolledCourses = await _courseService.GetEnrolledCoursesAsync(userId); 
 
             var viewModel = new CourseVM
             {
@@ -147,7 +146,7 @@ namespace FUCommunityWeb.Controllers
             };
 
 
-            var categories = await _courseService.GetAllCategoriesAsync(); // Lấy danh sách danh mục từ service
+            var categories = await _courseService.GetAllCategoriesAsync(); 
 
             var viewModel = new CourseVM
             {
@@ -155,8 +154,8 @@ namespace FUCommunityWeb.Controllers
                 CreateCourseVM = new CreateCourseVM(),
                 ShowEditCourseModal = true,
                 EditCourseID = course.CourseID,
-                Courses = await _courseService.GetAllCoursesAsync(), // Lấy danh sách khóa học từ service
-                EnrolledCourses = await _courseService.GetEnrolledCoursesAsync(currentUserId), // Lấy danh sách khóa học đã đăng ký từ service
+                Courses = await _courseService.GetAllCoursesAsync(), 
+                EnrolledCourses = await _courseService.GetEnrolledCoursesAsync(currentUserId), 
                 Categories = categories
             };
 
@@ -192,7 +191,7 @@ namespace FUCommunityWeb.Controllers
                 ModelState.Remove("EditCourseVM.Semester");
                 ModelState.Remove("EditCourseVM.CategoryID");
 
-                var categories = await _courseService.GetAllCategoriesAsync(); // Lấy danh sách danh mục từ service
+                var categories = await _courseService.GetAllCategoriesAsync();
 
                 var viewModel = new CourseVM
                 {
@@ -200,8 +199,8 @@ namespace FUCommunityWeb.Controllers
                   CreateCourseVM = new CreateCourseVM(),
                   ShowEditCourseModal = true,
                   EditCourseID = id,
-                  Courses = await _courseService.GetAllCoursesAsync(), // Lấy danh sách khóa học từ service
-                  EnrolledCourses = await _courseService.GetEnrolledCoursesAsync(currentUserId), // Lấy danh sách khóa học đã đăng ký từ service
+                  Courses = await _courseService.GetAllCoursesAsync(), 
+                  EnrolledCourses = await _courseService.GetEnrolledCoursesAsync(currentUserId),
                   Categories = categories
                 };
                 return View("Index", viewModel);
@@ -275,7 +274,7 @@ namespace FUCommunityWeb.Controllers
                     editCourseVM.CourseImage = course.CourseImage;
                 }
 
-                var categories = await _courseService.GetAllCategoriesAsync(); // Lấy danh sách danh mục từ service
+                var categories = await _courseService.GetAllCategoriesAsync(); 
 
                 var updatedViewModel = new CourseVM
                 {
@@ -283,8 +282,8 @@ namespace FUCommunityWeb.Controllers
                   CreateCourseVM = new CreateCourseVM(),
                   ShowEditCourseModal = true,
                   EditCourseID = id,
-                  Courses = await _courseService.GetAllCoursesAsync(), // Lấy danh sách khóa học từ service
-                  EnrolledCourses = await _courseService.GetEnrolledCoursesAsync(userId), // Lấy danh sách khóa học đã đăng ký từ service
+                  Courses = await _courseService.GetAllCoursesAsync(), 
+                  EnrolledCourses = await _courseService.GetEnrolledCoursesAsync(userId), 
                   Categories = categories
                 };
 
@@ -437,7 +436,7 @@ namespace FUCommunityWeb.Controllers
             var viewModel = new CourseDetailVM
             {
                 Course = lesson.Course,
-                Lessons = await _courseService.GetLessonsByCourseIdAsync(lesson.CourseID), // Sử dụng phương thức mới
+                Lessons = await _courseService.GetLessonsByCourseIdAsync(lesson.CourseID), 
                 EditLessonVM = editLessonVM,
                 ShowEditLessonModal = true,
                 EditLessonID = lesson.LessonID,
@@ -493,7 +492,7 @@ namespace FUCommunityWeb.Controllers
             }
             else
             {
-                // Log ModelState errors
+                
                 foreach (var state in ModelState)
                 {
                     foreach (var error in state.Value.Errors)
@@ -505,7 +504,6 @@ namespace FUCommunityWeb.Controllers
                 _logger.LogWarning("EditLesson called with invalid ModelState.");
             }
 
-            // Nếu có lỗi, tải lại thông tin khóa học và bài học
             var courseDetail = await _courseService.GetCourseByIdAsync(lessonToUpdate.CourseID);
 
             var viewModelError = new CourseDetailVM
