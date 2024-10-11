@@ -1664,12 +1664,12 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\39d63bab-e7e4-432f-bc89-c1f5569b00e9_iggy-dac-cau.jpeg))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\course_3eae5c35-72bc-4de5-8114-c5f192f77da5.png))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\course_f1d008a7-781b-4777-bdb6-97f1e516398e.png))">
       <SourceType>Package</SourceType>
       <SourceId>FUCommunityWeb</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/FUCommunityWeb</BasePath>
-      <RelativePath>uploads/course_3eae5c35-72bc-4de5-8114-c5f192f77da5.png</RelativePath>
+      <RelativePath>uploads/course_f1d008a7-781b-4777-bdb6-97f1e516398e.png</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -1678,7 +1678,7 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\course_3eae5c35-72bc-4de5-8114-c5f192f77da5.png))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\course_f1d008a7-781b-4777-bdb6-97f1e516398e.png))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\e17952be-b6c3-4b72-99b9-5064df8a18ab_unnamed.jpg))">
       <SourceType>Package</SourceType>
