@@ -13,5 +13,13 @@ namespace FuCommunityWebModels.ViewModels
         public int? EditCourseID { get; set; } // To identify which course is being edited
 
         public List<Category> Categories { get; set; } = new List<Category>();
+
+        public List<string> AllSubjectCodes { get; set; } = new List<string>();
+        public string SelectedSemester { get; set; }
+        public string SelectedCategory { get; set; }
+        public string SelectedSubjectCode { get; set; }
+        public string SelectedRate { get; set; }
+        public string SelectedMinPrice { get; set; }
+
     }
 }

@@ -3,36 +3,36 @@
   "WorkspaceRootPath": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|c:\\users\\hahuy\\desktop\\task tong\\fucommunitywebapplication\\fucommunityweb\\fucommunityweb\\controllers\\coursecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|solutionrelative:fucommunityweb\\controllers\\coursecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|c:\\users\\hahuy\\desktop\\task tong\\fucommunitywebapplication\\fucommunityweb\\fucommunityweb\\views\\course\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|solutionrelative:fucommunityweb\\views\\course\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|c:\\users\\hahuy\\desktop\\task tong\\fucommunitywebapplication\\fucommunityweb\\fucommunityweb\\controllers\\coursecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|solutionrelative:fucommunityweb\\controllers\\coursecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C33520CE-0A00-428B-B5AD-FFC65DB00C35}|FUCommunityWebModels\\FuCommunityWebModels.csproj|c:\\users\\hahuy\\desktop\\task tong\\fucommunitywebapplication\\fucommunityweb\\fucommunitywebmodels\\viewmodels\\editcoursevm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C33520CE-0A00-428B-B5AD-FFC65DB00C35}|FUCommunityWebModels\\FuCommunityWebModels.csproj|solutionrelative:fucommunitywebmodels\\viewmodels\\editcoursevm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C33520CE-0A00-428B-B5AD-FFC65DB00C35}|FUCommunityWebModels\\FuCommunityWebModels.csproj|c:\\users\\hahuy\\desktop\\task tong\\fucommunitywebapplication\\fucommunityweb\\fucommunitywebmodels\\viewmodels\\createcoursevm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C33520CE-0A00-428B-B5AD-FFC65DB00C35}|FUCommunityWebModels\\FuCommunityWebModels.csproj|solutionrelative:fucommunitywebmodels\\viewmodels\\createcoursevm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C33520CE-0A00-428B-B5AD-FFC65DB00C35}|FUCommunityWebModels\\FuCommunityWebModels.csproj|c:\\users\\hahuy\\desktop\\task tong\\fucommunitywebapplication\\fucommunityweb\\fucommunitywebmodels\\viewmodels\\coursevm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C33520CE-0A00-428B-B5AD-FFC65DB00C35}|FUCommunityWebModels\\FuCommunityWebModels.csproj|solutionrelative:fucommunitywebmodels\\viewmodels\\coursevm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C33520CE-0A00-428B-B5AD-FFC65DB00C35}|FUCommunityWebModels\\FuCommunityWebModels.csproj|c:\\users\\hahuy\\desktop\\task tong\\fucommunitywebapplication\\fucommunityweb\\fucommunitywebmodels\\models\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C33520CE-0A00-428B-B5AD-FFC65DB00C35}|FUCommunityWebModels\\FuCommunityWebModels.csproj|solutionrelative:fucommunitywebmodels\\models\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C33520CE-0A00-428B-B5AD-FFC65DB00C35}|FUCommunityWebModels\\FuCommunityWebModels.csproj|c:\\users\\hahuy\\desktop\\task tong\\fucommunitywebapplication\\fucommunityweb\\fucommunitywebmodels\\models\\course.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C33520CE-0A00-428B-B5AD-FFC65DB00C35}|FUCommunityWebModels\\FuCommunityWebModels.csproj|solutionrelative:fucommunitywebmodels\\models\\course.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C33520CE-0A00-428B-B5AD-FFC65DB00C35}|FUCommunityWebModels\\FuCommunityWebModels.csproj|c:\\users\\hahuy\\desktop\\task tong\\fucommunitywebapplication\\fucommunityweb\\fucommunitywebmodels\\viewmodels\\coursevm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C33520CE-0A00-428B-B5AD-FFC65DB00C35}|FUCommunityWebModels\\FuCommunityWebModels.csproj|solutionrelative:fucommunitywebmodels\\viewmodels\\coursevm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C33520CE-0A00-428B-B5AD-FFC65DB00C35}|FUCommunityWebModels\\FuCommunityWebModels.csproj|c:\\users\\hahuy\\desktop\\task tong\\fucommunitywebapplication\\fucommunityweb\\fucommunitywebmodels\\viewmodels\\createcoursevm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C33520CE-0A00-428B-B5AD-FFC65DB00C35}|FUCommunityWebModels\\FuCommunityWebModels.csproj|solutionrelative:fucommunitywebmodels\\viewmodels\\createcoursevm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{93321B2E-D440-49E7-9741-A0E0AC08400E}|FuCommunityWebDataAccess\\FuCommunityWebDataAccess.csproj|c:\\users\\hahuy\\desktop\\task tong\\fucommunitywebapplication\\fucommunityweb\\fucommunitywebdataaccess\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{93321B2E-D440-49E7-9741-A0E0AC08400E}|FuCommunityWebDataAccess\\FuCommunityWebDataAccess.csproj|solutionrelative:fucommunitywebdataaccess\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C33520CE-0A00-428B-B5AD-FFC65DB00C35}|FUCommunityWebModels\\FuCommunityWebModels.csproj|c:\\users\\hahuy\\desktop\\task tong\\fucommunitywebapplication\\fucommunityweb\\fucommunitywebmodels\\models\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C33520CE-0A00-428B-B5AD-FFC65DB00C35}|FUCommunityWebModels\\FuCommunityWebModels.csproj|solutionrelative:fucommunitywebmodels\\models\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,7 +42,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 9,
           "Children": [
             {
               "$type": "Bookmark",
@@ -54,7 +54,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "ApplicationDbContext.cs",
               "DocumentMoniker": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\Data\\ApplicationDbContext.cs",
               "RelativeDocumentMoniker": "FuCommunityWebDataAccess\\Data\\ApplicationDbContext.cs",
@@ -62,51 +62,48 @@
               "RelativeToolTip": "FuCommunityWebDataAccess\\Data\\ApplicationDbContext.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAABUAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-10T15:26:59.874Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-10T15:26:59.874Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 4,
               "Title": "Category.cs",
               "DocumentMoniker": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\Models\\Category.cs",
               "RelativeDocumentMoniker": "FUCommunityWebModels\\Models\\Category.cs",
               "ToolTip": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\Models\\Category.cs",
               "RelativeToolTip": "FUCommunityWebModels\\Models\\Category.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAXAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-10T10:36:58.409Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-10T10:36:58.409Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "Course.cs",
               "DocumentMoniker": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\Models\\Course.cs",
               "RelativeDocumentMoniker": "FUCommunityWebModels\\Models\\Course.cs",
               "ToolTip": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\Models\\Course.cs",
               "RelativeToolTip": "FUCommunityWebModels\\Models\\Course.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAIwC8AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAA0AAAAAAAAAAADwvy8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-10T10:33:37.541Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-10T10:33:37.541Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 3,
               "Title": "CourseVM.cs",
               "DocumentMoniker": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\ViewModels\\CourseVM.cs",
               "RelativeDocumentMoniker": "FUCommunityWebModels\\ViewModels\\CourseVM.cs",
               "ToolTip": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\ViewModels\\CourseVM.cs",
               "RelativeToolTip": "FUCommunityWebModels\\ViewModels\\CourseVM.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-10T10:33:26.042Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "CreateCourseVM.cs",
               "DocumentMoniker": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\ViewModels\\CreateCourseVM.cs",
               "RelativeDocumentMoniker": "FUCommunityWebModels\\ViewModels\\CreateCourseVM.cs",
@@ -114,8 +111,7 @@
               "RelativeToolTip": "FUCommunityWebModels\\ViewModels\\CreateCourseVM.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-10T10:33:14.902Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-10T10:33:14.902Z"
             },
             {
               "$type": "Document",
@@ -125,33 +121,32 @@
               "RelativeDocumentMoniker": "FUCommunityWebModels\\ViewModels\\EditCourseVM.cs",
               "ToolTip": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\ViewModels\\EditCourseVM.cs",
               "RelativeToolTip": "FUCommunityWebModels\\ViewModels\\EditCourseVM.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAAArAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACQAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-10T10:32:21.414Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-10T10:32:21.414Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "CourseController.cs",
               "DocumentMoniker": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Controllers\\CourseController.cs",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Controllers\\CourseController.cs",
-              "ToolTip": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Controllers\\CourseController.cs*",
-              "RelativeToolTip": "FUCommunityWeb\\Controllers\\CourseController.cs*",
-              "ViewState": "AgIAAP8AAAAAAAAAAAAwwC8BAAAAAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Controllers\\CourseController.cs",
+              "RelativeToolTip": "FUCommunityWeb\\Controllers\\CourseController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-10T09:55:56.507Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\Course\\Index.cshtml",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Views\\Course\\Index.cshtml",
               "ToolTip": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\Course\\Index.cshtml",
               "RelativeToolTip": "FUCommunityWeb\\Views\\Course\\Index.cshtml",
-              "ViewState": "AgIAAD0BAAAAAAAAAAAwwFYBAAAuAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACQAAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-10-10T09:55:46.533Z",
               "EditorCaption": ""

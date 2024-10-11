@@ -24,35 +24,66 @@ namespace FUCommunityWeb.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Index(string semester, string category, string subjectCode, int? rate, decimal? minPrice)
+        public IActionResult Index(string semester, string category, string subjectCode, string rate, string minPrice)
         {
-            var courses = await _courseService.GetAllCoursesAsync();
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var enrolledCourses = await _courseService.GetEnrolledCoursesAsync(userId);
+            // Initialize the ViewModel
+            var viewModel = new CourseVM
+            {
+                Categories = _context.Categories.ToList(),
+                AllSubjectCodes = _context.Courses
+                                    .Select(c => c.Title)
+                                    .Distinct()
+                                    .OrderBy(title => title)
+                                    .ToList(),
+                SelectedSemester = semester,
+                SelectedCategory = category,
+                SelectedSubjectCode = subjectCode,
+                SelectedRate = rate,
+                SelectedMinPrice = minPrice
+            };
 
-            var categories = await _context.Categories.ToListAsync();
+            // Apply filtering based on query parameters
+            var filteredCourses = _context.Courses.AsQueryable();
+
+            if (!string.IsNullOrEmpty(semester))
+            {
+                if (int.TryParse(semester, out int semesterInt))
+                {
+                    filteredCourses = filteredCourses.Where(c => c.Semester == semesterInt);
+                }
+            }
+
+            if (!string.IsNullOrEmpty(category))
+            {
+                if (int.TryParse(category, out int categoryInt))
+                {
+                    filteredCourses = filteredCourses.Where(c => c.CategoryID == categoryInt);
+                }
+            }
 
             if (!string.IsNullOrEmpty(subjectCode))
             {
-                courses = courses.Where(c => c.Title == subjectCode).ToList();
+                filteredCourses = filteredCourses.Where(c => c.Title == subjectCode);
             }
 
-            if (minPrice.HasValue)
+            //if (!string.IsNullOrEmpty(rate))
+            //{
+            //    if (int.TryParse(rate, out int rateInt))
+            //    {
+            //        // Assuming you have a Ratings property in Course
+            //        filteredCourses = filteredCourses.Where(c => c.Ratings >= rateInt);
+            //    }
+            //}
+
+            if (!string.IsNullOrEmpty(minPrice))
             {
-                courses = courses.Where(c => c.Price >= minPrice).ToList();
+                if (decimal.TryParse(minPrice, out decimal priceDecimal))
+                {
+                    filteredCourses = filteredCourses.Where(c => c.Price <= priceDecimal);
+                }
             }
 
-            var viewModel = new CourseVM
-            {
-                Courses = courses,
-                EnrolledCourses = enrolledCourses,
-                CreateCourseVM = new CreateCourseVM(),
-                EditCourseVM = new EditCourseVM(),
-                ShowCreateCourseModal = false,
-                ShowEditCourseModal = false,
-                EditCourseID = null,
-                Categories = categories
-            };
+            viewModel.Courses = filteredCourses.ToList();
 
             return View(viewModel);
         }

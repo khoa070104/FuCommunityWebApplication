@@ -29,29 +29,64 @@
 
             <form method="get" action="@Url.Action("Index", "Course")">
                 <div class="d-flex flex-wrap justify-content-center gap-2 my-3">
-                    <div class="selection">
-                        <label class="label" for="semester">Semester:</label>
-                        <select id="semester" name="semester" class="form-select" onchange="this.form.submit()">
-                            <option value="">All Semesters</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                        </select>
-                    </div>
-                    <div class="selection">
-                        <label class="label" for="category">Category:</label>
-                        <select id="category" name="category" class="form-select" onchange="this.form.submit()">
-                            <option value="">All Categories</option>
-                            <option value="language">Language</option>
-                        </select>
-                    </div>
+        
+        <div class="selection">
+            <label class="label" for="semester">Semester:</label>
+            <select id="semester" name="semester" class="form-select" onchange="this.form.submit()">
+                <option value="">All Semesters</option>
+                @for (int i = 1; i <= 9; i++)
+                {
+                    bool isSelected = (Model.SelectedSemester == i.ToString());
 
+                    if (isSelected)
+                    {
+                        <option value="@i" selected>Semester @i</option>
+                    }
+                    else
+                    {
+                        <option value="@i">Semester @i</option>
+                    }
+                }
+            </select>
+        </div>
+        
+        <div class="selection">
+            <label class="label" for="category">Category:</label>
+            <select id="category" name="category" class="form-select" onchange="this.form.submit()">
+                <option value="">All Categories</option>
+                @foreach (var category in Model.Categories)
+                {
+                    bool isSelected = (Model.SelectedCategory == category.CategoryID.ToString());
+
+                    if (isSelected)
+                    {
+                        <option value="@category.CategoryID" selected>@category.CategoryName</option>
+                    }
+                    else
+                    {
+                        <option value="@category.CategoryID">@category.CategoryName</option>
+                    }
+                }
+            </select>
+        </div>
+
+                    <!-- Subject Code Dropdown using AllSubjectCodes -->
                     <div class="selection">
                         <label class="label" for="subject-code">Subject Code:</label>
                         <select id="subject-code" name="subjectCode" class="form-select" onchange="this.form.submit()">
                             <option value="">All Subjects</option>
-                            @foreach (var course in Model.Courses)
+                            @foreach (var subjectCode in Model.AllSubjectCodes)
                             {
-                                <option value="@course.Title">@course.Title</option>
+                                bool isSelected = (Model.SelectedSubjectCode == subjectCode);
+
+                                if (isSelected)
+                                {
+                                    <option value="@subjectCode" selected>@subjectCode</option>
+                                }
+                                else
+                                {
+                                    <option value="@subjectCode">@subjectCode</option>
+                                }
                             }
                         </select>
                     </div>
@@ -60,7 +95,38 @@
                         <label class="label" for="rate">Rate:</label>
                         <select id="rate" name="rate" class="form-select" onchange="this.form.submit()">
                             <option value="">All Ratings</option>
-                            <option value="4">≥ 4</option>
+                            @if (Model.SelectedRate == "4")
+                            {
+                                <option value="4" selected>≥ 4</option>
+                            }
+                            else
+                            {
+                                <option value="4">≥ 4</option>
+                            }
+                            @if (Model.SelectedRate == "3")
+                            {
+                                <option value="3" selected>≥ 3</option>
+                            }
+                            else
+                            {
+                                <option value="3">≥ 3</option>
+                            }
+                            @if (Model.SelectedRate == "2")
+                            {
+                                <option value="2" selected>≥ 2</option>
+                            }
+                            else
+                            {
+                                <option value="2">≥ 2</option>
+                            }
+                            @if (Model.SelectedRate == "1")
+                            {
+                                <option value="1" selected>≥ 1</option>
+                            }
+                            else
+                            {
+                                <option value="1">≥ 1</option>
+                            }
                         </select>
                     </div>
 
@@ -68,10 +134,34 @@
                         <label class="label" for="cost">Cost:</label>
                         <select id="cost" name="minPrice" class="form-select" onchange="this.form.submit()">
                             <option value="">All Prices</option>
-                            <option value="500000">&lt;500 points</option>
+                            @if (Model.SelectedMinPrice == "500")
+                            {
+                                <option value="500" selected>&lt;500 points</option>
+                            }
+                            else
+                            {
+                                <option value="500">&lt;500 points</option>
+                            }
+                            @if (Model.SelectedMinPrice == "1000")
+                            {
+                                <option value="1000" selected>&lt;1000 points</option>
+                            }
+                            else
+                            {
+                                <option value="1000">&lt;1000 points</option>
+                            }
+                            @if (Model.SelectedMinPrice == "2000")
+                            {
+                                <option value="2000" selected>&lt;2000 points</option>
+                            }
+                            else
+                            {
+                                <option value="2000">&lt;2000 points</option>
+                            }
                         </select>
                     </div>
-                </div>
+
+    </div>
             </form>
         </div>
 
