@@ -48,28 +48,7 @@ namespace FUCommunityWeb.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (createCourseVM.CourseImageFile != null && createCourseVM.CourseImageFile.Length > 0)
-                {
-                    var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads");
-                    if (!Directory.Exists(uploadsFolder))
-                    {
-                        Directory.CreateDirectory(uploadsFolder);
-                    }
-
-                    var uniqueFileName = GenerateUniqueFileName(createCourseVM.CourseImageFile);
-                    var filePath = Path.Combine(uploadsFolder, uniqueFileName);
-
-                    using (var fileStream = new FileStream(filePath, FileMode.Create))
-                    {
-                        await createCourseVM.CourseImageFile.CopyToAsync(fileStream);
-                    }
-
-                    createCourseVM.CourseImage = "/uploads/" + uniqueFileName;
-                }
-                else
-                {
-                    createCourseVM.CourseImage = "/img/Logo_FunnyCode.jpg";
-                }
+                createCourseVM.CourseImage = await ProcessCourseImageAsync(createCourseVM.CourseImageFile);
 
                 try
                 {
@@ -85,7 +64,6 @@ namespace FUCommunityWeb.Controllers
                         Semester = createCourseVM.Semester,
                         CategoryID = createCourseVM.CategoryID
                     };
-
 
                     await _courseService.AddCourseAsync(course);
 
@@ -218,37 +196,7 @@ namespace FUCommunityWeb.Controllers
                 return Forbid();
             }
 
-            courseToUpdate.Title = editCourseVM.Title;
-            courseToUpdate.Description = editCourseVM.Description;
-            courseToUpdate.Price = editCourseVM.Price;
-            courseToUpdate.Status = editCourseVM.Status;
-            courseToUpdate.Semester = editCourseVM.Semester;
-            courseToUpdate.CategoryID = editCourseVM.CategoryID;
-
-            if (editCourseVM.CourseImageFile != null && editCourseVM.CourseImageFile.Length > 0)
-            {
-                var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads");
-                if (!Directory.Exists(uploadsFolder))
-                {
-                    Directory.CreateDirectory(uploadsFolder);
-                }
-
-                // Mã hóa tên file
-                var uniqueFileName = GenerateUniqueFileName(editCourseVM.CourseImageFile);
-                var filePath = Path.Combine(uploadsFolder, uniqueFileName);
-
-                using (var fileStream = new FileStream(filePath, FileMode.Create))
-                {
-                    await editCourseVM.CourseImageFile.CopyToAsync(fileStream);
-                }
-
-                // Xóa ảnh cũ
-                await DeleteOldImageAsync(courseToUpdate.CourseImage);
-
-                courseToUpdate.CourseImage = "/uploads/" + uniqueFileName;
-            }
-
-            courseToUpdate.UpdatedDate = DateTime.Now;
+            await HandleCourseUpdateAsync(courseToUpdate, editCourseVM);
 
             try
             {
@@ -620,6 +568,48 @@ namespace FUCommunityWeb.Controllers
                     System.IO.File.Delete(oldImagePath);
                 }
             }
+        }
+
+        private async Task<string> ProcessCourseImageAsync(IFormFile courseImageFile)
+        {
+            if (courseImageFile != null && courseImageFile.Length > 0)
+            {
+                var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads");
+                if (!Directory.Exists(uploadsFolder))
+                {
+                    Directory.CreateDirectory(uploadsFolder);
+                }
+
+                var uniqueFileName = GenerateUniqueFileName(courseImageFile);
+                var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    await courseImageFile.CopyToAsync(fileStream);
+                }
+
+                return "/uploads/" + uniqueFileName;
+            }
+            return "/img/Logo_FunnyCode.jpg"; // Default image
+        }
+
+        private async Task HandleCourseUpdateAsync(Course courseToUpdate, EditCourseVM editCourseVM)
+        {
+            courseToUpdate.Title = editCourseVM.Title;
+            courseToUpdate.Description = editCourseVM.Description;
+            courseToUpdate.Price = editCourseVM.Price;
+            courseToUpdate.Status = editCourseVM.Status;
+            courseToUpdate.Semester = editCourseVM.Semester;
+            courseToUpdate.CategoryID = editCourseVM.CategoryID;
+
+            if (editCourseVM.CourseImageFile != null && editCourseVM.CourseImageFile.Length > 0)
+            {
+                // Xóa ảnh cũ
+                await DeleteOldImageAsync(courseToUpdate.CourseImage);
+                courseToUpdate.CourseImage = await ProcessCourseImageAsync(editCourseVM.CourseImageFile);
+            }
+
+            courseToUpdate.UpdatedDate = DateTime.Now;
         }
     }
 }
