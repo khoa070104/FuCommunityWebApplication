@@ -27,7 +27,7 @@
                             <div class="form-check mb-3 text-white">
                                 <input class="form-check-input" asp-for="Input.RememberMe" />
                                 <label class="form-check-label" for="Input.RememberMe">Remember me?</label>
-                                <a href="#" class="float-end forgot-text" data-bs-toggle="modal" data-bs-target="#forgotPasswordModal">Forgot Password?</a>
+                                <a asp-page="/Account/ForgotPassword" class="float-end forgot-text" >Forgot Password?</a>
                             </div>
                             <button id="login-submit" type="submit" class="btn btn-signin w-100">Log in</button>
                         </form>
@@ -75,7 +75,7 @@
     </div>
 
     <!-- Forgot Password Modal -->
-    <div class="modal fade" id="forgotPasswordModal" tabindex="-1" aria-labelledby="forgotPasswordModalLabel" aria-hidden="true">
+    <!--div class="modal fade" id="forgotPasswordModal" tabindex="-1" aria-labelledby="forgotPasswordModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -93,7 +93,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </!--div-->
 </body> 
 
 @section Scripts {
