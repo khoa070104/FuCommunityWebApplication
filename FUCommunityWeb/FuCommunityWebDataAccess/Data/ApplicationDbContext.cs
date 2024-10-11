@@ -29,6 +29,7 @@ namespace FuCommunityWebDataAccess.Data
         public DbSet<Lesson> Lessons { get; set; }
         public DbSet<Point> Points { get; set; }
         public DbSet<Review> Reviews { get; set; }
+        public DbSet<Category> Categories { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder); // Gọi base method để đảm bảo cấu hình mặc định của Identity
@@ -111,21 +112,29 @@ namespace FuCommunityWebDataAccess.Data
                 .WithMany(u => u.Points)  // Mối quan hệ 1-nhiều giữa ApplicationUser và Point
                 .HasForeignKey(p => p.UserID);
 
-            // Thiết lập quan hệ giữa Review và ApplicationUser
+            // Thiết lập mối quan hệ giữa Review và ApplicationUser
             modelBuilder.Entity<Review>()
-                .HasOne(r => r.User) // Review có một User
-                .WithMany(u => u.Reviews) // User có nhiều Review
-                .HasForeignKey(r => r.UserID);
+                .HasOne(r => r.User)
+                .WithMany(u => u.Reviews)
+                .HasForeignKey(r => r.UserID)
+                .OnDelete(DeleteBehavior.Cascade);
 
-            // Thiết lập quan hệ giữa Review và Course
+            // Thiết lập mối quan hệ giữa Review và Course
             modelBuilder.Entity<Review>()
-                .HasOne<Course>() // Đối tượng Course
-                .WithMany() // Review không cần giữ thông tin Course
-                .HasForeignKey(r => r.CourseID); // Khóa ngoại
+                .HasOne(r => r.Course)
+                .WithMany(c => c.Reviews)
+                .HasForeignKey(r => r.CourseID)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // Thiết lập chỉ mục duy nhất để mỗi User chỉ có thể đánh giá một Course một lần
+            modelBuilder.Entity<Review>()
+                .HasIndex(r => new { r.CourseID, r.UserID })
+                .IsUnique()
+                .HasDatabaseName("IX_Review_CourseID_UserID");
 
             modelBuilder.Entity<Course>()
                 .HasOne(c => c.Category) // Course có một Category
-                .WithMany()  // Category có nhiều Course (giả định)
+                .WithMany()  // Category có nhiều Course 
                 .HasForeignKey(c => c.CategoryID); // Khóa ngoại
 
             // Thiết lập quan hệ giữa Deposit và ApplicationUser
