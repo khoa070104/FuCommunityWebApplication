@@ -34,10 +34,7 @@
                         <hr class="text-white">
                         <p class="text-center text-white">Or continue with</p>
                         <div class="d-flex justify-content-between">
-                            <button class="btn btn-outline-light btn-google w-48">
-                                <i class="fab fa-google"></i>
-                                Google
-                            </button>
+                            
                             @{
                                 if ((Model.ExternalLogins?.Count ?? 0) == 0)
                                 {
@@ -52,11 +49,16 @@
                                 }
                                 else
                                 {
-                                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                                    <form id="external-account" class="w-100" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
                                         
                                                 @foreach (var provider in Model.ExternalLogins!)
                                                 {
-                                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                                                <button type="submit" class="btn btn-primary w-100" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account"> 
+                                                    <p style="margin-bottom: 0px;">
+                                                        <i class="fab fa-google"></i>    
+                                                        @provider.DisplayName
+                                                    </p>
+                                                </button>
                                                 }
                                     </form>
                                 }

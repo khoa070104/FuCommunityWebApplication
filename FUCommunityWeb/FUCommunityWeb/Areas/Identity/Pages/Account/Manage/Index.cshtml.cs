@@ -61,14 +61,7 @@ namespace FUCommunityWeb.Areas.Identity.Pages.Account.Manage
 			[Display(Name = "Phone number")]
 			public string PhoneNumber { get; set; }
 
-			[Required]
-			[Display(Name = "Full Name")]
-			public string FullName { get; set; }
-
-			[Required]
-			[DataType(DataType.Date)]
-			[Display(Name = "Date of Birth")]
-			public DateTime DOB { get; set; }
+			
 		}
 
         private async Task LoadAsync(IdentityUser user)

@@ -14,8 +14,9 @@ namespace FUCommunityWeb.Controllers
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly UserService _userService;
+        private UserVM userVM;
 
-        public ProfileController(UserManager<IdentityUser> userManager, UserService userService, ApplicationDbContext context)
+		public ProfileController(UserManager<IdentityUser> userManager, UserService userService, ApplicationDbContext context)
         {
             _userManager = userManager;
             _userService = userService;
@@ -25,14 +26,9 @@ namespace FUCommunityWeb.Controllers
         {
             string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var user = await _userService.GetUserByIdAsync(userId);
-            UserVM userVM = new()
+            userVM = new()
             {
-                FullName = user.FullName,
-                DOB = user.DOB,
-                Bio = user.Bio,
-                Description = user.Description,
-                Address = user.Address,
-                PhoneNumber = user.PhoneNumber
+				User = user,
             };
             ViewData["CurrentPage"] = Url.Action("Index");
             return View(userVM);
@@ -84,15 +80,15 @@ namespace FUCommunityWeb.Controllers
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var user = await _userService.GetUserByIdAsync(userId);
 
-            user.FullName = userVM.FullName;
-            user.Bio = userVM.Bio;
-            user.Address = userVM.Address;
-            user.DOB = userVM.DOB;
-            user.Gender = userVM.Gender;
-            user.Description = userVM.Description;
+            user.FullName = userVM.User.FullName;
+            user.Bio = userVM.User.Bio;
+            user.Address = userVM.User.Address;
+            user.DOB = userVM.User.DOB;
+            user.Gender = userVM.User.Gender;
+            user.Description = userVM.User.Description;
 
             await _userService.UpdateUserAsync(user);
-            return View(userVM);
+            return Redirect("Index");
         }
 
         public async Task<IActionResult> PostHistory()
@@ -102,14 +98,14 @@ namespace FUCommunityWeb.Controllers
             var user = await _userService.GetUserWithVotesAsync(userId);
             var posts = await _userService.GetUserPostsAsync(userId);
 
-            var viewModel = new PostHistoryVM
+            userVM = new UserVM()
             {
                 User = user,
                 Post = posts
             };
 
             ViewData["CurrentPage"] = Url.Action("PostHistory");
-            return View(viewModel);
+            return View(userVM);
         }
 
         public async Task<IActionResult> CourseHistory()
@@ -119,14 +115,14 @@ namespace FUCommunityWeb.Controllers
             var user = await _userService.GetUserWithVotesAsync(userId);
             var enrollments = await _userService.GetUserEnrollmentsAsync(userId);
 
-            var model = new CourseHistoryVM
+            userVM = new UserVM()
             {
                 User = user,
-                Enrollments = enrollments
+                Enrollments = enrollments,
             };
 
             ViewData["CurrentPage"] = Url.Action("CourseHistory");
-            return View(model);
+            return View(userVM);
         }
     }
 }

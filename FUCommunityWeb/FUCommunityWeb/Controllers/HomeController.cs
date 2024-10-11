@@ -18,7 +18,7 @@ namespace FUCommunityWeb.Controllers
         private readonly UserService _userService;
 		private readonly HomeService _homeService;
         private readonly CourseService _courseService;
-
+        
         public HomeController(ILogger<HomeController> logger, UserService userService, HomeService homeService, CourseService courseService, ApplicationDbContext context)
 		{
 			_logger = logger;
