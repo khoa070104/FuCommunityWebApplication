@@ -409,8 +409,16 @@
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
     },
     {
+      "Id": "E:\\FuWebTest\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\uploads\\23cd95a0-e1bd-476c-8d59-ad254224ddbc_R.png",
+      "PackagePath": "staticwebassets\\uploads\\23cd95a0-e1bd-476c-8d59-ad254224ddbc_R.png"
+    },
+    {
       "Id": "E:\\FuWebTest\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\uploads\\39d63bab-e7e4-432f-bc89-c1f5569b00e9_iggy-dac-cau.jpeg",
       "PackagePath": "staticwebassets\\uploads\\39d63bab-e7e4-432f-bc89-c1f5569b00e9_iggy-dac-cau.jpeg"
+    },
+    {
+      "Id": "E:\\FuWebTest\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\uploads\\course_3eae5c35-72bc-4de5-8114-c5f192f77da5.png",
+      "PackagePath": "staticwebassets\\uploads\\course_3eae5c35-72bc-4de5-8114-c5f192f77da5.png"
     },
     {
       "Id": "E:\\FuWebTest\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\uploads\\e17952be-b6c3-4b72-99b9-5064df8a18ab_unnamed.jpg",

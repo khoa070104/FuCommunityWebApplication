@@ -56,7 +56,7 @@ namespace FUCommunityWeb.Controllers
                         Directory.CreateDirectory(uploadsFolder);
                     }
 
-                    var uniqueFileName = Guid.NewGuid().ToString() + "_" + Path.GetFileName(createCourseVM.CourseImageFile.FileName);
+                    var uniqueFileName = GenerateUniqueFileName(createCourseVM.CourseImageFile);
                     var filePath = Path.Combine(uploadsFolder, uniqueFileName);
 
                     using (var fileStream = new FileStream(filePath, FileMode.Create))
@@ -233,7 +233,8 @@ namespace FUCommunityWeb.Controllers
                     Directory.CreateDirectory(uploadsFolder);
                 }
 
-                var uniqueFileName = Guid.NewGuid().ToString() + "_" + Path.GetFileName(editCourseVM.CourseImageFile.FileName);
+                // Mã hóa tên file
+                var uniqueFileName = GenerateUniqueFileName(editCourseVM.CourseImageFile);
                 var filePath = Path.Combine(uploadsFolder, uniqueFileName);
 
                 using (var fileStream = new FileStream(filePath, FileMode.Create))
@@ -241,14 +242,8 @@ namespace FUCommunityWeb.Controllers
                     await editCourseVM.CourseImageFile.CopyToAsync(fileStream);
                 }
 
-                if (!string.IsNullOrEmpty(courseToUpdate.CourseImage))
-                {
-                    var oldImagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", courseToUpdate.CourseImage.TrimStart('/'));
-                    if (System.IO.File.Exists(oldImagePath))
-                    {
-                        System.IO.File.Delete(oldImagePath);
-                    }
-                }
+                // Xóa ảnh cũ
+                await DeleteOldImageAsync(courseToUpdate.CourseImage);
 
                 courseToUpdate.CourseImage = "/uploads/" + uniqueFileName;
             }
@@ -315,6 +310,9 @@ namespace FUCommunityWeb.Controllers
 
             try
             {
+                // Xóa ảnh liên quan đến khóa học
+                await DeleteOldImageAsync(course.CourseImage);
+
                 await _courseService.DeleteCourseAsync(course);
 
                 _logger.LogInformation("Course deleted successfully: {CourseTitle}", course.Title);
@@ -603,6 +601,25 @@ namespace FUCommunityWeb.Controllers
 
             TempData["Success"] = "Enrollment successful!";
             return RedirectToAction("Index");
+        }
+
+        private string GenerateUniqueFileName(IFormFile file)
+        {
+            var courseKey = Guid.NewGuid().ToString(); // Hoặc sử dụng một khóa cụ thể cho khóa học
+            var extension = Path.GetExtension(file.FileName);
+            return $"course_{courseKey}{extension}";
+        }
+
+        private async Task DeleteOldImageAsync(string imagePath)
+        {
+            if (!string.IsNullOrEmpty(imagePath))
+            {
+                var oldImagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", imagePath.TrimStart('/'));
+                if (System.IO.File.Exists(oldImagePath))
+                {
+                    System.IO.File.Delete(oldImagePath);
+                }
+            }
         }
     }
 }

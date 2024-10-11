@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "KsPbZJm/e7gReYuT5o5zeZmgOkYINVztuJgKmoNSXlU=",
+  "Hash": "pppVUWWS7CIK77cxShrddqEL7wD5aEm9SwY1wLbxbJw=",
   "Source": "FUCommunityWeb",
   "BasePath": "_content/FUCommunityWeb",
   "Mode": "Default",
@@ -3114,6 +3114,25 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
     },
     {
+      "Identity": "E:\\FuWebTest\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\uploads\\23cd95a0-e1bd-476c-8d59-ad254224ddbc_R.png",
+      "SourceId": "FUCommunityWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\FuWebTest\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\",
+      "BasePath": "_content/FUCommunityWeb",
+      "RelativePath": "uploads/23cd95a0-e1bd-476c-8d59-ad254224ddbc_R.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\23cd95a0-e1bd-476c-8d59-ad254224ddbc_R.png"
+    },
+    {
       "Identity": "E:\\FuWebTest\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\uploads\\39d63bab-e7e4-432f-bc89-c1f5569b00e9_iggy-dac-cau.jpeg",
       "SourceId": "FUCommunityWeb",
       "SourceType": "Discovered",
@@ -3131,6 +3150,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\39d63bab-e7e4-432f-bc89-c1f5569b00e9_iggy-dac-cau.jpeg"
+    },
+    {
+      "Identity": "E:\\FuWebTest\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\uploads\\course_3eae5c35-72bc-4de5-8114-c5f192f77da5.png",
+      "SourceId": "FUCommunityWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\FuWebTest\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\",
+      "BasePath": "_content/FUCommunityWeb",
+      "RelativePath": "uploads/course_3eae5c35-72bc-4de5-8114-c5f192f77da5.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\course_3eae5c35-72bc-4de5-8114-c5f192f77da5.png"
     },
     {
       "Identity": "E:\\FuWebTest\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\uploads\\e17952be-b6c3-4b72-99b9-5064df8a18ab_unnamed.jpg",
