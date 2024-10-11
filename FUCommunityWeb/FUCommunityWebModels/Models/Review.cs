@@ -19,6 +19,8 @@ namespace FuCommunityWebModels.Models
         public ApplicationUser User { get; set; }  // Tạo mối quan hệ với bảng ApplicationUser
 
         public int CourseID { get; set; }  // ID của khóa học
+        [ForeignKey("CourseID")]
+        public Course Course { get; set; }
 
         public string Content { get; set; }  // Nội dung đánh giá
 
