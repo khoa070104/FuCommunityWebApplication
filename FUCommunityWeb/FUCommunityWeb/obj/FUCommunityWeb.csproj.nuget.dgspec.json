@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\FUCommunityWeb.csproj": {}
+    "E:\\FuWebTest\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\FUCommunityWeb.csproj": {}
   },
   "projects": {
-    "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\FuCommunityWebDataAccess.csproj": {
+    "E:\\FuWebTest\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\FuCommunityWebDataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\FuCommunityWebDataAccess.csproj",
+        "projectUniqueName": "E:\\FuWebTest\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\FuCommunityWebDataAccess.csproj",
         "projectName": "FuCommunityWebDataAccess",
-        "projectPath": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\FuCommunityWebDataAccess.csproj",
-        "packagesPath": "C:\\Users\\hahuy\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\obj\\",
+        "projectPath": "E:\\FuWebTest\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\FuCommunityWebDataAccess.csproj",
+        "packagesPath": "C:\\Users\\Khoa Bug\\.nuget\\packages\\",
+        "outputPath": "E:\\FuWebTest\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\hahuy\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Khoa Bug\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -29,8 +29,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\FuCommunityWebModels.csproj": {
-                "projectPath": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\FuCommunityWebModels.csproj"
+              "E:\\FuWebTest\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\FuCommunityWebModels.csproj": {
+                "projectPath": "E:\\FuWebTest\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\FuCommunityWebModels.csproj"
               }
             }
           }
@@ -89,21 +89,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.401/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\FuCommunityWebModels.csproj": {
+    "E:\\FuWebTest\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\FuCommunityWebModels.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\FuCommunityWebModels.csproj",
+        "projectUniqueName": "E:\\FuWebTest\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\FuCommunityWebModels.csproj",
         "projectName": "FuCommunityWebModels",
-        "projectPath": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\FuCommunityWebModels.csproj",
-        "packagesPath": "C:\\Users\\hahuy\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\obj\\",
+        "projectPath": "E:\\FuWebTest\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\FuCommunityWebModels.csproj",
+        "packagesPath": "C:\\Users\\Khoa Bug\\.nuget\\packages\\",
+        "outputPath": "E:\\FuWebTest\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\hahuy\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Khoa Bug\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -160,21 +160,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.401/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebServices\\FuCommunityWebServices.csproj": {
+    "E:\\FuWebTest\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebServices\\FuCommunityWebServices.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebServices\\FuCommunityWebServices.csproj",
+        "projectUniqueName": "E:\\FuWebTest\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebServices\\FuCommunityWebServices.csproj",
         "projectName": "FuCommunityWebServices",
-        "projectPath": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebServices\\FuCommunityWebServices.csproj",
-        "packagesPath": "C:\\Users\\hahuy\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebServices\\obj\\",
+        "projectPath": "E:\\FuWebTest\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebServices\\FuCommunityWebServices.csproj",
+        "packagesPath": "C:\\Users\\Khoa Bug\\.nuget\\packages\\",
+        "outputPath": "E:\\FuWebTest\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebServices\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\hahuy\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Khoa Bug\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -189,8 +189,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\FuCommunityWebDataAccess.csproj": {
-                "projectPath": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\FuCommunityWebDataAccess.csproj"
+              "E:\\FuWebTest\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\FuCommunityWebDataAccess.csproj": {
+                "projectPath": "E:\\FuWebTest\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\FuCommunityWebDataAccess.csproj"
               }
             }
           }
@@ -249,21 +249,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.401/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebUtility\\FuCommunityWebUtility.csproj": {
+    "E:\\FuWebTest\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebUtility\\FuCommunityWebUtility.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebUtility\\FuCommunityWebUtility.csproj",
+        "projectUniqueName": "E:\\FuWebTest\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebUtility\\FuCommunityWebUtility.csproj",
         "projectName": "FuCommunityWebUtility",
-        "projectPath": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebUtility\\FuCommunityWebUtility.csproj",
-        "packagesPath": "C:\\Users\\hahuy\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebUtility\\obj\\",
+        "projectPath": "E:\\FuWebTest\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebUtility\\FuCommunityWebUtility.csproj",
+        "packagesPath": "C:\\Users\\Khoa Bug\\.nuget\\packages\\",
+        "outputPath": "E:\\FuWebTest\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebUtility\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\hahuy\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Khoa Bug\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -320,21 +320,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.401/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\FUCommunityWeb.csproj": {
+    "E:\\FuWebTest\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\FUCommunityWeb.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\FUCommunityWeb.csproj",
+        "projectUniqueName": "E:\\FuWebTest\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\FUCommunityWeb.csproj",
         "projectName": "FUCommunityWeb",
-        "projectPath": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\FUCommunityWeb.csproj",
-        "packagesPath": "C:\\Users\\hahuy\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\obj\\",
+        "projectPath": "E:\\FuWebTest\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\FUCommunityWeb.csproj",
+        "packagesPath": "C:\\Users\\Khoa Bug\\.nuget\\packages\\",
+        "outputPath": "E:\\FuWebTest\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\hahuy\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Khoa Bug\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -349,11 +349,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebServices\\FuCommunityWebServices.csproj": {
-                "projectPath": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebServices\\FuCommunityWebServices.csproj"
+              "E:\\FuWebTest\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebServices\\FuCommunityWebServices.csproj": {
+                "projectPath": "E:\\FuWebTest\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebServices\\FuCommunityWebServices.csproj"
               },
-              "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebUtility\\FuCommunityWebUtility.csproj": {
-                "projectPath": "C:\\Users\\hahuy\\Desktop\\Task Tong\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebUtility\\FuCommunityWebUtility.csproj"
+              "E:\\FuWebTest\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebUtility\\FuCommunityWebUtility.csproj": {
+                "projectPath": "E:\\FuWebTest\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebUtility\\FuCommunityWebUtility.csproj"
               }
             }
           }
@@ -431,7 +431,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.401/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace FuCommunityWebDataAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class khoitruyen : Migration
+    public partial class Test : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -692,9 +692,10 @@ namespace FuCommunityWebDataAccess.Migrations
                 column: "UserID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Reviews_CourseID",
+                name: "IX_Review_CourseID_UserID",
                 table: "Reviews",
-                column: "CourseID");
+                columns: new[] { "CourseID", "UserID" },
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Reviews_UserID",
