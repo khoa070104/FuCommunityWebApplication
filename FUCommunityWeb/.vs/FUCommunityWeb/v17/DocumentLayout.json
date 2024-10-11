@@ -3,20 +3,28 @@
   "WorkspaceRootPath": "D:\\Documents\\FuComunityVersionManager\\FuWebTest4\\FuCommunityWebApplication\\FUCommunityWeb\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|d:\\documents\\fucomunityversionmanager\\fuwebtest4\\fucommunitywebapplication\\fucommunityweb\\fucommunityweb\\areas\\identity\\pages\\account\\externallogin.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|solutionrelative:fucommunityweb\\areas\\identity\\pages\\account\\externallogin.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|d:\\documents\\fucomunityversionmanager\\fuwebtest4\\fucommunitywebapplication\\fucommunityweb\\fucommunityweb\\areas\\identity\\pages\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|solutionrelative:fucommunityweb\\areas\\identity\\pages\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|d:\\documents\\fucomunityversionmanager\\fuwebtest4\\fucommunitywebapplication\\fucommunityweb\\fucommunityweb\\areas\\identity\\pages\\account\\register.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|solutionrelative:fucommunityweb\\areas\\identity\\pages\\account\\register.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|d:\\documents\\fucomunityversionmanager\\fuwebtest4\\fucommunitywebapplication\\fucommunityweb\\fucommunityweb\\wwwroot\\css\\style.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|solutionrelative:fucommunityweb\\wwwroot\\css\\style.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|d:\\documents\\fucomunityversionmanager\\fuwebtest4\\fucommunitywebapplication\\fucommunityweb\\fucommunityweb\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|solutionrelative:fucommunityweb\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|d:\\documents\\fucomunityversionmanager\\fuwebtest4\\fucommunitywebapplication\\fucommunityweb\\fucommunityweb\\areas\\identity\\pages\\account\\externallogin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|solutionrelative:fucommunityweb\\areas\\identity\\pages\\account\\externallogin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|d:\\documents\\fucomunityversionmanager\\fuwebtest4\\fucommunitywebapplication\\fucommunityweb\\fucommunityweb\\areas\\identity\\pages\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|solutionrelative:fucommunityweb\\areas\\identity\\pages\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|d:\\documents\\fucomunityversionmanager\\fuwebtest4\\fucommunitywebapplication\\fucommunityweb\\fucommunityweb\\areas\\identity\\pages\\account\\register.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|solutionrelative:fucommunityweb\\areas\\identity\\pages\\account\\register.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|d:\\documents\\fucomunityversionmanager\\fuwebtest4\\fucommunitywebapplication\\fucommunityweb\\fucommunityweb\\areas\\identity\\pages\\account\\externallogin.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|solutionrelative:fucommunityweb\\areas\\identity\\pages\\account\\externallogin.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|d:\\documents\\fucomunityversionmanager\\fuwebtest4\\fucommunitywebapplication\\fucommunityweb\\fucommunityweb\\areas\\identity\\pages\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -98,58 +106,84 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 6,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{269a02dc-6af8-11d3-bdc4-00c04f688e50}"
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
+              "Title": "Style.css",
+              "DocumentMoniker": "D:\\Documents\\FuComunityVersionManager\\FuWebTest4\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\css\\Style.css",
+              "RelativeDocumentMoniker": "FUCommunityWeb\\wwwroot\\css\\Style.css",
+              "ToolTip": "D:\\Documents\\FuComunityVersionManager\\FuWebTest4\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\wwwroot\\css\\Style.css",
+              "RelativeToolTip": "FUCommunityWeb\\wwwroot\\css\\Style.css",
+              "ViewState": "AgIAAAEGAAAAAAAAAAAvwBIGAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-10-11T15:57:27.68Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Documents\\FuComunityVersionManager\\FuWebTest4\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Program.cs",
+              "RelativeDocumentMoniker": "FUCommunityWeb\\Program.cs",
+              "ToolTip": "D:\\Documents\\FuComunityVersionManager\\FuWebTest4\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Program.cs",
+              "RelativeToolTip": "FUCommunityWeb\\Program.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAABMAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-11T15:54:08.562Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "ExternalLogin.cshtml.cs",
               "DocumentMoniker": "D:\\Documents\\FuComunityVersionManager\\FuWebTest4\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\ExternalLogin.cshtml.cs",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\ExternalLogin.cshtml.cs",
               "ToolTip": "D:\\Documents\\FuComunityVersionManager\\FuWebTest4\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\ExternalLogin.cshtml.cs",
               "RelativeToolTip": "FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\ExternalLogin.cshtml.cs",
-              "ViewState": "AgIAAJAAAAAAAAAAAAAWwJcAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAKkAAAAAAAAAAAAjwBcAAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-11T15:36:51.482Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "Register.cshtml.cs",
               "DocumentMoniker": "D:\\Documents\\FuComunityVersionManager\\FuWebTest4\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Register.cshtml.cs",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Register.cshtml.cs",
               "ToolTip": "D:\\Documents\\FuComunityVersionManager\\FuWebTest4\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Register.cshtml.cs",
               "RelativeToolTip": "FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Register.cshtml.cs",
-              "ViewState": "AgIAAB8AAAAAAAAAAAASwCYAAAAxAAAAAAAAAA==",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAEwCYAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-11T15:35:08.27Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "Register.cshtml",
               "DocumentMoniker": "D:\\Documents\\FuComunityVersionManager\\FuWebTest4\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Register.cshtml",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Register.cshtml",
               "ToolTip": "D:\\Documents\\FuComunityVersionManager\\FuWebTest4\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Register.cshtml",
               "RelativeToolTip": "FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Register.cshtml",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAD0AAAAAAAAAAAAowEUAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-10-11T15:35:05.304Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "Login.cshtml",
               "DocumentMoniker": "D:\\Documents\\FuComunityVersionManager\\FuWebTest4\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Login.cshtml",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\Login.cshtml",
@@ -162,20 +196,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "ExternalLogin.cshtml",
               "DocumentMoniker": "D:\\Documents\\FuComunityVersionManager\\FuWebTest4\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\ExternalLogin.cshtml",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\ExternalLogin.cshtml",
               "ToolTip": "D:\\Documents\\FuComunityVersionManager\\FuWebTest4\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\ExternalLogin.cshtml",
               "RelativeToolTip": "FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\ExternalLogin.cshtml",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-10-11T15:34:56.963Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "_ViewImports.cshtml",
               "DocumentMoniker": "D:\\Documents\\FuComunityVersionManager\\FuWebTest4\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\_ViewImports.cshtml",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Areas\\Identity\\Pages\\Account\\_ViewImports.cshtml",
@@ -188,7 +222,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "20241011153405_adddb.cs",
               "DocumentMoniker": "D:\\Documents\\FuComunityVersionManager\\FuWebTest4\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\Migrations\\20241011153405_adddb.cs",
               "RelativeDocumentMoniker": "FuCommunityWebDataAccess\\Migrations\\20241011153405_adddb.cs",
@@ -201,7 +235,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 10,
               "Title": "appsettings.Development.json",
               "DocumentMoniker": "D:\\Documents\\FuComunityVersionManager\\FuWebTest4\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\appsettings.Development.json",
               "RelativeDocumentMoniker": "FUCommunityWeb\\appsettings.Development.json",
@@ -214,7 +248,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 14,
               "Title": "UserRepo.cs",
               "DocumentMoniker": "D:\\Documents\\FuComunityVersionManager\\FuWebTest4\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\Repositories\\UserRepo.cs",
               "RelativeDocumentMoniker": "FuCommunityWebDataAccess\\Repositories\\UserRepo.cs",
@@ -226,7 +260,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 15,
               "Title": "HomeRepo.cs",
               "DocumentMoniker": "D:\\Documents\\FuComunityVersionManager\\FuWebTest4\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\Repositories\\HomeRepo.cs",
               "RelativeDocumentMoniker": "FuCommunityWebDataAccess\\Repositories\\HomeRepo.cs",
@@ -238,7 +272,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 12,
               "Title": "CourseRepo.cs",
               "DocumentMoniker": "D:\\Documents\\FuComunityVersionManager\\FuWebTest4\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\Repositories\\CourseRepo.cs",
               "RelativeDocumentMoniker": "FuCommunityWebDataAccess\\Repositories\\CourseRepo.cs",
@@ -250,7 +284,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 13,
               "Title": "CourseService.cs",
               "DocumentMoniker": "D:\\Documents\\FuComunityVersionManager\\FuWebTest4\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebServices\\Services\\CourseService.cs",
               "RelativeDocumentMoniker": "FuCommunityWebServices\\Services\\CourseService.cs",
@@ -262,7 +296,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "appsettings.json",
               "DocumentMoniker": "D:\\Documents\\FuComunityVersionManager\\FuWebTest4\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\appsettings.json",
               "RelativeDocumentMoniker": "FUCommunityWeb\\appsettings.json",
@@ -275,7 +309,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 17,
               "Title": "Review.cs",
               "DocumentMoniker": "D:\\Documents\\FuComunityVersionManager\\FuWebTest4\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\Models\\Review.cs",
               "RelativeDocumentMoniker": "FUCommunityWebModels\\Models\\Review.cs",
@@ -287,7 +321,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 16,
               "Title": "ApplicationDbContext.cs",
               "DocumentMoniker": "D:\\Documents\\FuComunityVersionManager\\FuWebTest4\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\Data\\ApplicationDbContext.cs",
               "RelativeDocumentMoniker": "FuCommunityWebDataAccess\\Data\\ApplicationDbContext.cs",
@@ -299,7 +333,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 11,
               "Title": "CourseController.cs",
               "DocumentMoniker": "D:\\Documents\\FuComunityVersionManager\\FuWebTest4\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Controllers\\CourseController.cs",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Controllers\\CourseController.cs",
@@ -312,7 +346,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 23,
               "Title": "Category.cs",
               "DocumentMoniker": "D:\\Documents\\FuComunityVersionManager\\FuWebTest4\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\Models\\Category.cs",
               "RelativeDocumentMoniker": "FUCommunityWebModels\\Models\\Category.cs",
@@ -324,7 +358,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 18,
               "Title": "Course.cs",
               "DocumentMoniker": "D:\\Documents\\FuComunityVersionManager\\FuWebTest4\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\Models\\Course.cs",
               "RelativeDocumentMoniker": "FUCommunityWebModels\\Models\\Course.cs",
@@ -336,7 +370,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 21,
               "Title": "CourseVM.cs",
               "DocumentMoniker": "D:\\Documents\\FuComunityVersionManager\\FuWebTest4\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\ViewModels\\CourseVM.cs",
               "RelativeDocumentMoniker": "FUCommunityWebModels\\ViewModels\\CourseVM.cs",
@@ -348,7 +382,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 22,
               "Title": "CreateCourseVM.cs",
               "DocumentMoniker": "D:\\Documents\\FuComunityVersionManager\\FuWebTest4\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\ViewModels\\CreateCourseVM.cs",
               "RelativeDocumentMoniker": "FUCommunityWebModels\\ViewModels\\CreateCourseVM.cs",
@@ -360,7 +394,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 20,
               "Title": "EditCourseVM.cs",
               "DocumentMoniker": "D:\\Documents\\FuComunityVersionManager\\FuWebTest4\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\ViewModels\\EditCourseVM.cs",
               "RelativeDocumentMoniker": "FUCommunityWebModels\\ViewModels\\EditCourseVM.cs",
@@ -372,7 +406,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 19,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\Documents\\FuComunityVersionManager\\FuWebTest4\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\Course\\Index.cshtml",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Views\\Course\\Index.cshtml",

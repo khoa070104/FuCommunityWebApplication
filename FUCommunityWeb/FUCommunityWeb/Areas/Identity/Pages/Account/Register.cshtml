@@ -55,10 +55,10 @@
                             <hr class="text-white">
                             <p class="text-center text-white">Or continue with</p>
                             <div class="d-flex justify-content-between">
-                                <button class="btn btn-outline-light btn-google w-48">
+                                <!--button class="btn btn-outline-light btn-google w-48">
                                     <i class="fab fa-google"></i>
                                     Google
-                                </button>
+                                </!--button-->
                                 @if ((Model.ExternalLogins?.Count ?? 0) == 0)
                                 {
                                     <div>
@@ -70,11 +70,14 @@
                                 }
                                 else
                                 {
-                                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                                    <form id="external-account" class="w-100" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post">
                                         
                                                 @foreach (var provider in Model.ExternalLogins!)
                                                 {
-                                                    <button type="submit" class="btn btn-outline-light w-48" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                                                    
+                                                    <button type="submit" class="btn btn-outline-light w-100" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">
+                                                        <i class="fab fa-google"></i>
+                                                        @provider.DisplayName</button>
                                                 }
                                            
                                     </form>
