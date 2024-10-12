@@ -9,6 +9,7 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using FuCommunityWebModels.ViewModels.FuCommunityWebModels.ViewModels;
 using Microsoft.Extensions.Hosting;
+using System.Net;
 
 namespace FUCommunityWeb.Controllers
 {
@@ -19,13 +20,15 @@ namespace FUCommunityWeb.Controllers
         private readonly UserService _userService;
 		private readonly HomeService _homeService;
         private readonly CourseService _courseService;
+        private readonly ForumService _forumService;
 
-        public HomeController(ILogger<HomeController> logger, UserService userService, HomeService homeService, CourseService courseService, ApplicationDbContext context)
+        public HomeController(ILogger<HomeController> logger, UserService userService, HomeService homeService, CourseService courseService, ApplicationDbContext context, ForumService forumService)
 		{
 			_logger = logger;
             _userService = userService;
             _homeService = homeService;
             _courseService = courseService;
+            _forumService = forumService;
             _context = context;
         }
         public IActionResult Index()
@@ -80,7 +83,7 @@ namespace FUCommunityWeb.Controllers
         public async Task<IActionResult> Forum()
         {
             var courses = await _homeService.GetAllCoursesAsync();
-            var category = await _homeService.GetAllCategoryAsync();
+            var category = await _forumService.GetAllCategoryAsync();
 
             var forumViewModel = new ForumVM
             {
@@ -187,79 +190,6 @@ namespace FUCommunityWeb.Controllers
             {
                 return RedirectToAction("Index");
             }
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> GetPosts(int categoryID, int page = 1, int pageSize = 2, string searchString = "")
-        {
-            var (posts, totalItems) = await _homeService.GetPostsByCategory(categoryID, page, pageSize, searchString);
-
-            return Json(new
-            {
-                posts = posts,
-                totalItems = totalItems,
-                pageSize = pageSize,
-                currentPage = page
-            });
-        }
-
-        
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreatePost(PostVM postVM)
-        {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            if (postVM.CreatePostVM.PostImageFile != null && postVM.CreatePostVM.PostImageFile.Length > 0)
-            {
-                var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads");
-                if (!Directory.Exists(uploadsFolder))
-                {
-                    Directory.CreateDirectory(uploadsFolder);
-                }
-
-                var uniqueFileName = Guid.NewGuid().ToString() + "_" + Path.GetFileName(postVM.CreatePostVM.PostImageFile.FileName);
-                var filePath = Path.Combine(uploadsFolder, uniqueFileName);
-
-                using (var fileStream = new FileStream(filePath, FileMode.Create))
-                {
-                    await postVM.CreatePostVM.PostImageFile.CopyToAsync(fileStream);
-                }
-                postVM.CreatePostVM.PostImage = "/uploads/" + uniqueFileName;
-            }
-            else
-            {
-                postVM.CreatePostVM.PostImage = "/uploads/default-image.png";
-            }
-
-            var post = new Post
-            {
-                Title = postVM.CreatePostVM.Title,
-                Content = postVM.CreatePostVM.Content,
-                CategoryID = postVM.CreatePostVM.CategoryID,
-                UserID = userId,
-                CreatedDate = DateTime.Now,
-                Status = "Published",
-                Tag = postVM.CreatePostVM.Tag,
-                PostImage = postVM.CreatePostVM.PostImage
-            };
-
-            _context.Posts.Add(post);
-            await _context.SaveChangesAsync();
-
-            return RedirectToAction("Forum");
-        }
-
-        public IActionResult Post(CategoryVM categoryVM)
-        {
-            var modal = new PostVM
-            {
-                CategoryVM = new CategoryVM
-                {
-                    CategoryName = categoryVM.CategoryName,
-                    CategoryID = categoryVM.CategoryID
-                }
-            };
-            return View(modal);
         }
 
         public IActionResult SignIn()

@@ -10,6 +10,10 @@
     <link rel="stylesheet" href="/css/Style.css">
     <link rel="stylesheet" href="/js/site.js">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/43.2.0/ckeditor5.css" />
+    <link href="~/jquery-te/jquery-te-1.4.0.css" rel="stylesheet" />
+
+
 </head>
 <body>
     <header class="header">
@@ -186,7 +190,15 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="https://cdn.tiny.cloud/1/7whngahja421aoz3t00n7ehekeqstgnqx1vjjvt9hoe0us2d/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+    <script type="importmap">
+        {
+            "imports": {
+                "ckeditor5": "https://cdn.ckeditor.com/ckeditor5/43.2.0/ckeditor5.js",
+                "ckeditor5/": "https://cdn.ckeditor.com/ckeditor5/43.2.0/"
+            }
+        }
+    </script>
+    <script src="~/jquery-te/jquery-te-1.4.0.min.js"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>

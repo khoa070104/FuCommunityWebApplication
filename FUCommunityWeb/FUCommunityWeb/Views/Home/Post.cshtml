@@ -92,7 +92,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="postContent" class="form-label">Content</label>
-                        <textarea asp-for="@Model.CreatePostVM.Content" class="form-control" id="postContent" rows="3" placeholder="What's on your mind?"></textarea>
+                        <textarea asp-for="@Model.CreatePostVM.Content" class="form-control" id="editor" rows="3" placeholder="What's on your mind?"></textarea>
                     </div>
                     <div class="mb-3">
                         <input asp-for="@Model.CreatePostVM.PostImageFile" type="file" required />
@@ -220,7 +220,7 @@
     </script>
 
 
-<script>
+<!--<script>
     // tinymce.init({
     //     selector: 'textarea',
     //     plugins: [
@@ -239,8 +239,28 @@
     //     ],
     //     ai_request: (request, respondWith) => respondWith.string(() => Promise.reject('See docs to implement AI Assistant')),
     // });
-</script>
+</script> -->
+    <script type="module">
+        import {
+            ClassicEditor,
+            Essentials,
+            Bold,
+            Italic,
+            Font,
+            Paragraph
+        } from 'ckeditor5';
 
+        ClassicEditor
+            .create(document.querySelector('#editor'), {
+                plugins: [Essentials, Bold, Italic, Font, Paragraph],
+                toolbar: [
+                    'undo', 'redo', '|', 'bold', 'italic', '|',
+                    'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor'
+                ]
+            })
+            .then( /* ... */)
+            .catch( /* ... */);
+    </script>
 
 }
 

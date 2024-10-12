@@ -1792,6 +1792,22 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\83deffe8-635f-4543-81a9-82f2b95f0cae_iggy-dac-cau.jpeg))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\8719b6be-71d7-444f-859f-efe3cbf7fa77_7cfcc4e0-f67f-4f54-936b-c7970cea5bbb.jfif))">
+      <SourceType>Package</SourceType>
+      <SourceId>FUCommunityWeb</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/FUCommunityWeb</BasePath>
+      <RelativePath>uploads/8719b6be-71d7-444f-859f-efe3cbf7fa77_7cfcc4e0-f67f-4f54-936b-c7970cea5bbb.jfif</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\8719b6be-71d7-444f-859f-efe3cbf7fa77_7cfcc4e0-f67f-4f54-936b-c7970cea5bbb.jfif))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\8ca1aadc-83a6-4644-a8f6-8951f149d7a5_krixi-thoi-chi-ky-lu-2.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>FUCommunityWeb</SourceId>
