@@ -28,7 +28,7 @@ namespace FuCommunityWebModels.Models
         [ForeignKey("QuestionID")]
         public Question Question { get; set; }
 
-        [ForeignKey("Id")]
+        [ForeignKey("UserID")]
         public ApplicationUser User { get; set; }
     }
 }

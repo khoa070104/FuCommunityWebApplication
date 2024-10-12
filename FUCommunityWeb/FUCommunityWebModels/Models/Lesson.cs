@@ -4,7 +4,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FuCommunityWebModels.Models
 {
-	public class Lesson
+    [Table("Lesson")]
+    public class Lesson
 	{
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -17,16 +18,11 @@ namespace FuCommunityWebModels.Models
 
         public string UserID { get; set; }
 
-        public int CategoryID { get; set; }
-
         [Required]
         [StringLength(255)]
         public string Title { get; set; }
 
         public string Content { get; set; }
-
-        [StringLength(255)]
-        public string PostImage { get; set; }
 
         public DateTime CreatedDate { get; set; } = DateTime.Now;
 
@@ -35,11 +31,8 @@ namespace FuCommunityWebModels.Models
         [StringLength(50)]
         public string Status { get; set; }
 
-        [ForeignKey("Id")]
+        [ForeignKey("UserID")]
         public virtual ApplicationUser User { get; set; } // Thay đổi từ User thành ApplicationUser
-
-        [ForeignKey("CategoryID")]
-        public Category Category { get; set; }
 
         public ICollection<Comment> Comments { get; set; }
         public ICollection<IsVote> Votes { get; set; }

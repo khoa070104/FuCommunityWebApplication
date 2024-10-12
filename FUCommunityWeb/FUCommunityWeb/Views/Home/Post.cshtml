@@ -1,4 +1,4 @@
-﻿@model List<FuCommunityWebModels.Models.Post>
+﻿@model FuCommunityWebModels.ViewModels.PostVM
 
 <style>
     .post a {
@@ -37,6 +37,10 @@
                 border: 1px solid #dee2e6; /* Màu viền cho nút vô hiệu hóa */
                 cursor: not-allowed; /* Thay đổi con trỏ khi hover trên nút vô hiệu hóa */
             }
+
+    .custom-modal-width {
+        max-width: 80%; /* Điều chỉnh theo tỷ lệ mong muốn, ví dụ 80% */
+    }
 </style>
 
 <div class="container post">
@@ -45,13 +49,13 @@
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
             <li><a href="#">Forum</a></li>
-            <li class="active">Data Structure</li>
+            <li class="active">@Model.CategoryVM.CategoryName</li>
         </ol>
     </nav>
 
     <!-- Topic Title -->
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1 class="display-6" style="font-weight: 500;">Topic: <span class="text-success">Data Structure</span></h1>
+        <h1 class="display-6" style="font-weight: 500;">Topic: <span class="text-success">@Model.CategoryVM.CategoryName</span></h1>
         <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#createPostModal">
             Create new post
         </button>
@@ -70,119 +74,176 @@
 </div>
 <!-- Modal -->
 <div class="modal fade" id="createPostModal" tabindex="-1" aria-labelledby="createPostModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog custom-modal-width">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="createPostModalLabel">New Post</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form>
+                <form asp-action="CreatePost" asp-controller="Home" enctype="multipart/form-data">
                     <div class="mb-3">
                         <label for="postTitle" class="form-label">Post Title</label>
-                        <input type="text" class="form-control" id="postTitle" placeholder="Enter post title">
+                        <input asp-for="@Model.CreatePostVM.Title" type="text" class="form-control" id="postTitle" placeholder="Enter post title">
+                    </div>
+                    <div class="mb-3">
+                        <label for="tag" class="form-label">Tag</label>
+                        <input asp-for="@Model.CreatePostVM.Tag" type="text" class="form-control" id="postTitle" placeholder="What's tag?'">
                     </div>
                     <div class="mb-3">
                         <label for="postContent" class="form-label">Content</label>
-                        <textarea class="form-control" id="postContent" rows="3" placeholder="What's on your mind?"></textarea>
+                        <textarea asp-for="@Model.CreatePostVM.Content" class="form-control" id="postContent" rows="3" placeholder="What's on your mind?"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <input asp-for="@Model.CreatePostVM.PostImageFile" type="file" required />
+                    </div>
+                    <input type="hidden" asp-for="@Model.CreatePostVM.CategoryID" value="@Model.CategoryVM.CategoryID" />
+                    
+                    <div class="modal-footer">
+                        <button type="submit" class="btn">Create</button>
+                        <button type="button" class="btn-cancel" data-bs-dismiss="modal">Close</button>
                     </div>
                 </form>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn-cancel" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn">Create</button>
-            </div>
+            
         </div>
     </div>
 </div>
 
+@section Scripts {
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    let allPosts = []; /
+    <script>
+        let allPosts = [];
+        const urlParams = new URLSearchParams(window.location.search);
+        const categoryID = urlParams.get('CategoryID'); // Lấy categoryID từ query string
 
-    $(document).ready(function () {
-        // Call API
-        function loadPosts(page = 1, pageSize = 5) {
-            $.ajax({
-                url: "/Home/GetPosts",
-                type: "GET",
-                data: { page: page, pageSize: pageSize }, 
-                success: function (response) {
-                    allPosts = response.posts;
-                    displayPosts(allPosts);
-                    buildPagination(response.totalItems, pageSize, page);
-                },
-                error: function (error) {
-                    console.log("Error fetching posts:", error);
+        $(document).ready(function () {
+            // Gọi API để tải các bài viết
+            function loadPosts(page = 1, pageSize = 5) {
+                // Kiểm tra xem categoryID có hợp lệ không
+                if (!categoryID) {
+                    console.error("Invalid category ID.");
+                    return;
                 }
-            });
-        }
-        function displayPosts(posts) {
-            $("#postList").empty();
 
-            let tableContent = `
-                <div class="row">
-                    <div class="col-12">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Title</th>
-                                    <th>Description</th>
-                                    <th>Tags</th>
-                                    <th>Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-            `;
+                $.ajax({
+                    url: "/Home/GetPosts",
+                    type: "GET",
+                    data: {
+                        page: page,
+                        pageSize: pageSize,
+                        categoryID: categoryID // Thêm categoryID vào dữ liệu gửi đi
+                    },
+                    success: function (response) {
+                        allPosts = response.posts;
+                        displayPosts(allPosts);
+                        buildPagination(response.totalItems, pageSize, page);
+                    },
+                    error: function (error) {
+                        console.log("Error fetching posts:", error);
+                    }
+                });
+            }
 
-            $.each(posts, function (index, post) {
+            // Hiển thị danh sách bài viết
+            function displayPosts(posts) {
+                $("#postList").empty();
+
+                let tableContent = `
+                                <div class="row">
+                                    <div class="col-12">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Title</th>
+                                                    <th>Description</th>
+                                                    <th>Tags</th>
+                                                    <th>Status</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                            `;
+
+                $.each(posts, function (index, post) {
+                    tableContent += `
+                                    <tr>
+                                        <td><a href="${post.postImage}">${post.title}</a></td>
+                                        <td>${post.content}</td>
+                                        <td>
+                                            <span class="badge bg-secondary">${post.status}</span>
+                                        </td>
+                                        <td class="text-muted">${post.status}</td>
+                                    </tr>
+                                `;
+                });
+
                 tableContent += `
-                    <tr>
-                        <td><a href="${post.postImage}">${post.title}</a></td>
-                        <td>${post.content}</td>
-                        <td>
-                            <span class="badge bg-secondary">${post.status}</span>
-                        </td>
-                        <td class="text-muted">${post.status}</td>
-                    </tr>
-                `;
-            });
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            `;
 
-            tableContent += `
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            `;
+                $("#postList").append(tableContent);
+            }
 
-            $("#postList").append(tableContent);
-        }
+            // Xây dựng phân trang
+            function buildPagination(totalItems, pageSize, currentPage) {
+                $("#pagination").empty();
+                const totalPages = Math.ceil(totalItems / pageSize);
 
-        function buildPagination(totalItems, pageSize, currentPage) {
-            $("#pagination").empty();
-            for (let i = 1; i <= Math.ceil(totalItems / pageSize); i++) {
-                if (i === currentPage) {
-                    $("#pagination").append(`<button class="page-button" data-page="${i}" disabled>${i}</button>`);
-                } else {
-                    $("#pagination").append(`<button class="page-button" data-page="${i}">${i}</button>`);
+                for (let i = 1; i <= totalPages; i++) {
+                    if (i === currentPage) {
+                        $("#pagination").append(`<button class="page-button" data-page="${i}" disabled>${i}</button>`);
+                    } else {
+                        $("#pagination").append(`<button class="page-button" data-page="${i}">${i}</button>`);
+                    }
                 }
             }
-        }
 
-        $("#searchString").on("input", function () {
-            var searchString = $(this).val().toLowerCase(); 
-            var filteredPosts = allPosts.filter(post => post.content.toLowerCase().includes(searchString));
-            displayPosts(filteredPosts); 
+            // Xử lý tìm kiếm
+            $("#searchString").on("input", function () {
+                const searchString = $(this).val().toLowerCase();
+                const filteredPosts = allPosts.filter(post => post.content.toLowerCase().includes(searchString));
+                displayPosts(filteredPosts);
+            });
 
-        $(document).on("click", ".page-button", function () {
-            var page = $(this).data("page");
-            loadPosts(page); 
+            // Xử lý sự kiện click cho phân trang
+            $(document).on("click", ".page-button", function () {
+                const page = $(this).data("page");
+                loadPosts(page);
+            });
+
+            // Gọi API để tải bài viết
+            loadPosts();
         });
+    </script>
 
-        loadPosts();
-    });
 
+<script>
+    // tinymce.init({
+    //     selector: 'textarea',
+    //     plugins: [
+    //         Core editing features
+    //         'anchor', 'autolink', 'charmap', 'codesample', 'emoticons', 'image', 'link', 'lists', 'media', 'searchreplace', 'table', 'visualblocks', 'wordcount',
+    //         Your account includes a free trial of TinyMCE premium features
+    //         Try the most popular premium features until Oct 10, 2024:
+    //         'checklist', 'mediaembed', 'casechange', 'export', 'formatpainter', 'pageembed', 'a11ychecker', 'tinymcespellchecker', 'permanentpen', 'powerpaste', 'advtable', 'advcode', 'editimage', 'advtemplate', 'ai', 'mentions', 'tinycomments', 'tableofcontents', 'footnotes', 'mergetags', 'autocorrect', 'typography', 'inlinecss', 'markdown',
+    //     ],
+    //     toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+    //     tinycomments_mode: 'embedded',
+    //     tinycomments_author: 'Author name',
+    //     mergetags_list: [
+    //         { value: 'First.Name', title: 'First Name' },
+    //         { value: 'Email', title: 'Email' },
+    //     ],
+    //     ai_request: (request, respondWith) => respondWith.string(() => Promise.reject('See docs to implement AI Assistant')),
+    // });
 </script>
+
+
+}
+
 
 
 

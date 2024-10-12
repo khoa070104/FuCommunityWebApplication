@@ -1,0 +1,378 @@
+﻿@model FuCommunityWebModels.ViewModels.CourseDetailVM
+
+@using System.Security.Claims
+
+@{
+    ViewData["Title"] = "Course Detail";
+    var currentUserId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+}
+
+<div class="course-detail">
+    <div class="course-header">
+        <div id="course-detail-header">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/home/index"><i class="fa fa-home"></i> Home</a></li>
+                <li class="breadcrumb-item"><a href="/course/index">Course</a></li>
+                <li class="breadcrumb-item active" aria-current="page">@Model.Course.Title</li>
+            </ol>
+            <h1 class="display-2">@Model.Course.Title</h1>
+            <div class="course-info">
+                <div class="info1">
+                    <span class="badge badge-secondary">Beginner</span>
+                    <div class="star-icon">
+                        <span class="badge badge-warning">
+                            @for (int i = 0; i < 5; i++)
+                            {
+                                <i class="fas fa-star"></i>
+                            }
+                        </span>
+                    </div>
+                    <span class="badge badge-info">@Model.Course.Price points</span>
+                    <span class="badge badge-light">English</span>
+                </div>
+                <p><strong>Created by:</strong> @Model.Course.User.FullName</p>
+                <p><strong>Last update:</strong> @(Model.Course.UpdatedDate?.ToString("dd/MM/yyyy") ?? Model.Course.CreatedDate.ToString("dd/MM/yyyy"))</p>
+                <p><strong>Course Overview:</strong> @Model.Course.Description</p>
+                <p><strong>Instructor:</strong> @Model.Course.User.FullName</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container d-flex justify-content-between">
+        <!-- Curriculum Section -->
+        <div class="course-card col-md-8">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Curriculum</a>
+                </li>
+                @if (User.Identity.IsAuthenticated && Model.Course.UserID == User.FindFirstValue(ClaimTypes.NameIdentifier))
+                {
+                    <li class="nav-item ms-auto">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createLessonModal">
+                            Add New Lesson
+                        </button>
+                    </li>
+                }
+            </ul>
+            <h2 class="mt-3">Curriculum for this course</h2>
+            <div class="lessons">
+                @foreach (var lesson in Model.Lessons)
+                {
+                    <div class="lesson-item mb-2 p-2 border rounded">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div class="lesson-info">
+                                <i class="fas fa-clock me-2"></i>
+                                <strong>@lesson.Title</strong>
+                            </div>
+                            <div>
+                                <span>@(lesson.UpdatedDate?.ToString("dd/MM/yyyy") ?? lesson.CreatedDate.ToString("dd/MM/yyyy"))</span>
+                                @if (User.Identity.IsAuthenticated && Model.Course.UserID == User.FindFirstValue(ClaimTypes.NameIdentifier))
+                                {
+                                    <button class="btn btn-sm btn-warning ms-2 edit-lesson-btn" data-lesson-id="@lesson.LessonID">Edit</button>
+                                    <button class="btn btn-sm btn-danger ms-2 delete-lesson-btn" data-lesson-id="@lesson.LessonID" data-lesson-title="@lesson.Title">Delete</button>
+                                }
+                            </div>
+                        </div>
+                        <div class="lesson-content mt-2">
+                            @Html.Raw(lesson.Content) <!-- Assuming Content contains HTML -->
+                        </div>
+                        <!-- Removed Lesson Image Display -->
+                    </div>
+                }
+            </div>
+        </div>
+
+        <!-- Fixed Course Card -->
+        <div class="course-card fixed-course-card col-md-4">
+            <div class="price">
+                <span class="old-price">500 points</span>
+                <span class="new-price">@Model.Course.Price points</span>
+            </div>
+            <div class="button-row">
+                <button class="btn btn-custom">Add to favorites</button>
+                @if (currentUserId == @Model.Course.UserID)
+                                    {
+                                        <span class="text-success">Owner</span>
+                                    }
+                
+                else if (!Model.EnrolledCourses.Contains(@Model.Course.CourseID)) // Check if the user is not enrolled
+                {
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <button class="btn btn-success buy-now" data-course-id="@Model.Course.CourseID" data-bs-toggle="modal" data-bs-target="#buyNowModal">
+                            Buy Now
+                        </button>
+                    }
+                    else
+                    {
+                        <button class="btn btn-success buy-now" data-course-id="@Model.Course.CourseID" data-bs-toggle="modal" data-bs-target="#loginPromptModal">
+                            Buy Now
+                        </button>
+                    }
+                }
+                else
+                {
+                    <span class="text-success">Enrolled</span> <!-- Indicate the user is enrolled -->
+                }
+            </div>
+            <p><strong>Includes:</strong></p>
+            <ul>
+                <li>500 of content</li>
+                <li>300 lessons</li>
+                <li>Downloadable resources</li>
+                <li>Certificate of completion</li>
+            </ul>
+            <button class="btn btn-custom">Compare this course with other courses</button>
+        </div>
+    </div>
+</div>
+
+<!-- Existing Buy Now Modal -->
+<div class="modal fade" id="buyNowModal" tabindex="-1" aria-labelledby="buyNowModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirm Purchase</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to purchase this course for <span id="coursePrice"></span> points?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-cancel btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <form id="enrollForm" method="post" action="@Url.Action("BuyCourse", "Course")">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="courseId" id="enrollCourseId" />
+                    <input type="hidden" name="returnUrl" id="returnUrl" />
+                    <button type="submit" class="btn btn-primary" id="confirmEnrollBtn">Confirm</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for Login Prompt (for guests) -->
+<div class="modal fade" id="loginPromptModal" tabindex="-1" aria-labelledby="loginPromptModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Login Required</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Please login to enroll in this course.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <a href="@Url.Action("SignIn", "Home")" class="btn btn-primary">Login</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Create Lesson Modal -->
+<div class="modal fade" id="createLessonModal" tabindex="-1" aria-labelledby="createLessonModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form asp-action="CreateLesson" asp-controller="Course" method="post" enctype="multipart/form-data">
+                @Html.AntiForgeryToken()
+                <div class="modal-header">
+                    <h5 class="modal-title" id="createLessonModalLabel">Add New Lesson</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Validation Summary -->
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <!-- Hidden CourseID -->
+                    <input type="hidden" asp-for="CreateLessonVM.CourseID" />
+
+                    <!-- Title -->
+                    <div class="mb-3">
+                        <label asp-for="CreateLessonVM.Title" class="form-label">Title</label>
+                        <input asp-for="CreateLessonVM.Title" class="form-control" required />
+                        <span asp-validation-for="CreateLessonVM.Title" class="text-danger"></span>
+                    </div>
+
+                    <!-- Content -->
+                    <div class="mb-3">
+                        <label asp-for="CreateLessonVM.Content" class="form-label">Content</label>
+                        <textarea asp-for="CreateLessonVM.Content" class="form-control" rows="5"></textarea>
+                        <span asp-validation-for="CreateLessonVM.Content" class="text-danger"></span>
+                    </div>
+
+                    <!-- Status -->
+                    <div class="mb-3">
+                        <label asp-for="CreateLessonVM.Status" class="form-label">Status</label>
+                        <select asp-for="CreateLessonVM.Status" class="form-select" required>
+                            <option value="Active">Active</option>
+                            <option value="Inactive">Inactive</option>
+                        </select>
+                        <span asp-validation-for="CreateLessonVM.Status" class="text-danger"></span>
+                    </div>
+
+                    <!-- Removed Lesson Image File Upload -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Add Lesson</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Lesson Modal -->
+<div class="modal fade" id="editLessonModal" tabindex="-1" aria-labelledby="editLessonModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form asp-action="EditLesson" asp-controller="Course" method="post">
+                @Html.AntiForgeryToken()
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editLessonModalLabel">Chỉnh sửa Bài học</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Validation Summary -->
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <!-- Hidden LessonID và CourseID -->
+                    <input type="hidden" name="id" id="editLessonId" />
+                    <input type="hidden" name="EditLessonVM.LessonID" id="editLessonVM_LessonID" />
+                    <input type="hidden" name="EditLessonVM.CourseID" id="editLessonVM_CourseID" />
+
+                    <!-- Tiêu đề -->
+                    <div class="mb-3">
+                        <label asp-for="EditLessonVM.Title" class="form-label">Tiêu đề</label>
+                        <input asp-for="EditLessonVM.Title" class="form-control" required />
+                        <span asp-validation-for="EditLessonVM.Title" class="text-danger"></span>
+                    </div>
+
+                    <!-- Nội dung -->
+                    <div class="mb-3">
+                        <label asp-for="EditLessonVM.Content" class="form-label">Nội dung</label>
+                        <textarea asp-for="EditLessonVM.Content" class="form-control" rows="5"></textarea>
+                        <span asp-validation-for="EditLessonVM.Content" class="text-danger"></span>
+                    </div>
+
+                    <!-- Trạng thái -->
+                    <div class="mb-3">
+                        <label asp-for="EditLessonVM.Status" class="form-label">Trạng thái</label>
+                        <select asp-for="EditLessonVM.Status" class="form-select" required>
+                            <option value="Active">Active</option>
+                            <option value="Inactive">Inactive</option>
+                        </select>
+                        <span asp-validation-for="EditLessonVM.Status" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                    <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Delete Lesson Modal -->
+<div class="modal fade" id="deleteLessonModal" tabindex="-1" aria-labelledby="deleteLessonModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form asp-action="DeleteLesson" asp-controller="Course" method="post">
+                @Html.AntiForgeryToken()
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteLessonModalLabel">Confirm Deletion</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete the lesson "<strong id="deleteLessonTitle"></strong>"? This action cannot be undone.
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" name="lessonId" id="deleteLessonId" />
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Scripts for Lesson Modals -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Buy Now Modal Handling
+        const buyNowButtons = document.querySelectorAll(".buy-now");
+
+        buyNowButtons.forEach(function (button) {
+            button.addEventListener("click", function () {
+                const courseId = this.getAttribute("data-course-id");
+                const coursePriceElement = this.closest('.course-card').querySelector('.new-price');
+                const coursePrice = coursePriceElement ? coursePriceElement.textContent : '';
+                const currentUrl = window.location.pathname + window.location.search;
+
+                // Kiểm tra xem nút này mở modal nào
+                const targetModal = this.getAttribute("data-bs-target");
+
+                if (targetModal === "#buyNowModal") {
+                    // Đặt giá trị cho form enroll
+                    document.getElementById("enrollCourseId").value = courseId;
+                    document.getElementById("coursePrice").textContent = coursePrice;
+                    document.getElementById("returnUrl").value = currentUrl; // Sử dụng URL tương đối
+                }
+                // Nếu modal là loginPromptModal thì không cần đặt giá trị
+            });
+        });
+        // Edit Lesson Modal Handling
+        const editLessonButtons = document.querySelectorAll(".edit-lesson-btn");
+
+        editLessonButtons.forEach(function (button) {
+            button.addEventListener("click", function () {
+                const lessonId = this.getAttribute("data-lesson-id");
+                // Gửi yêu cầu AJAX để lấy thông tin bài học nếu cần, hoặc lấy từ DOM
+                const lessonItem = this.closest('.lesson-item');
+                const title = lessonItem.querySelector('.lesson-info strong').textContent.trim();
+                const content = lessonItem.querySelector('.lesson-content').innerHTML.trim();
+                const status = "Active"; // Hoặc lấy trạng thái thực tế nếu có
+
+                // Populate the edit modal with lesson data
+                const editModal = document.getElementById("editLessonModal");
+                editModal.querySelector("#editLessonId").value = lessonId;
+                editModal.querySelector("#editLessonVM_LessonID").value = lessonId;
+                editModal.querySelector("#editLessonVM_CourseID").value = @Model.Course.CourseID;
+                editModal.querySelector("input[name='EditLessonVM.Title']").value = title;
+                editModal.querySelector("textarea[name='EditLessonVM.Content']").value = lessonItem.querySelector('.lesson-content').innerHTML.trim();
+                editModal.querySelector("select[name='EditLessonVM.Status']").value = status;
+
+                // Hiển thị modal
+                const bootstrapModal = new bootstrap.Modal(editModal);
+                bootstrapModal.show();
+            });
+        });
+
+        // Delete Lesson Modal Handling
+        const deleteLessonButtons = document.querySelectorAll(".delete-lesson-btn");
+
+        deleteLessonButtons.forEach(function (button) {
+            button.addEventListener("click", function () {
+                const lessonId = this.getAttribute("data-lesson-id");
+                const lessonTitle = this.getAttribute("data-lesson-title");
+
+                // Cập nhật nội dung modal
+                const deleteModal = document.getElementById("deleteLessonModal");
+                deleteModal.querySelector("#deleteLessonTitle").textContent = lessonTitle;
+                deleteModal.querySelector("#deleteLessonId").value = lessonId;
+
+                // Hiển thị modal
+                const bootstrapModal = new bootstrap.Modal(deleteModal);
+                bootstrapModal.show();
+            });
+        });
+    });
+</script>
+
+<!-- Include Validation Scripts -->
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

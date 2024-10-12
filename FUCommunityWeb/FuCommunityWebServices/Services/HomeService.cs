@@ -23,6 +23,10 @@ namespace FuCommunityWebServices.Services
         {
             return await _homeRepo.GetAllPostsAsync();
         }
+        public async Task<List<Category>> GetAllCategoryAsync()
+        {
+            return await _homeRepo.GetAllCategoryAsync();
+        }
 
         public async Task<(List<Post> posts, int totalItems)> GetPostsAsync(int page, int pageSize, string searchString)
         {
@@ -32,6 +36,11 @@ namespace FuCommunityWebServices.Services
         public async Task<List<ApplicationUser>> GetAllUsersWithVotesAsync()
         {
             return await _homeRepo.GetAllUsersWithVotesAsync();
+        }
+
+        public async Task<(List<Post> posts, int totalItems)> GetPostsByCategory(int categoryID, int page, int pageSize, string searchString)
+        {
+            return await _homeRepo.GetPostsByCategory(categoryID, page, pageSize, searchString);
         }
     }
 }

@@ -20,7 +20,7 @@ namespace FuCommunityWebModels.Models
 
         public int Point { get; set; }
 
-        [ForeignKey("Id")]
+        [ForeignKey("UserID")]
         public virtual ApplicationUser User { get; set; } // Thay đổi từ User thành ApplicationUser
 
         [ForeignKey("PostID")]

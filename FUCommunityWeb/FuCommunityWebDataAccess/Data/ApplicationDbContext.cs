@@ -26,6 +26,10 @@ namespace FuCommunityWebDataAccess.Data
         public DbSet<IsVote> IsVotes { get; set; }
         public DbSet<Course> Courses { get; set; }
         public DbSet<Enrollment> Enrollment { get; set; }
+        public DbSet<Lesson> Lessons { get; set; }
+        public DbSet<Point> Points { get; set; }
+        public DbSet<Review> Reviews { get; set; }
+        public DbSet<Category> Categories { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder); // Gọi base method để đảm bảo cấu hình mặc định của Identity
@@ -101,6 +105,41 @@ namespace FuCommunityWebDataAccess.Data
                 .HasOne(c => c.Question)
                 .WithMany(q => q.Comments)
                 .HasForeignKey(c => c.QuestionID);
+
+            // Thiết lập quan hệ giữa ApplicationUser và Point
+            modelBuilder.Entity<Point>()
+                .HasOne(p => p.User)
+                .WithMany(u => u.Points)  // Mối quan hệ 1-nhiều giữa ApplicationUser và Point
+                .HasForeignKey(p => p.UserID);
+
+            // Thiết lập quan hệ giữa Review và ApplicationUser
+            modelBuilder.Entity<Review>()
+                .HasOne(r => r.User) // Review có một User
+                .WithMany(u => u.Reviews) // User có nhiều Review
+                .HasForeignKey(r => r.UserID);
+
+            // Thiết lập quan hệ giữa Review và Course
+            modelBuilder.Entity<Review>()
+                .HasOne<Course>() // Đối tượng Course
+                .WithMany() // Review không cần giữ thông tin Course
+                .HasForeignKey(r => r.CourseID); // Khóa ngoại
+
+            modelBuilder.Entity<Course>()
+                .HasOne(c => c.Category) // Course có một Category
+                .WithMany()  // Category có nhiều Course (giả định)
+                .HasForeignKey(c => c.CategoryID); // Khóa ngoại
+
+            // Thiết lập quan hệ giữa Deposit và ApplicationUser
+            modelBuilder.Entity<Deposit>()
+                .HasOne(d => d.User) // Deposit có một User
+                .WithMany(u => u.Deposits) // User có nhiều Deposit
+                .HasForeignKey(d => d.UserID); // Khóa ngoại
+
+            // Thiết lập quan hệ giữa Post và Document
+            modelBuilder.Entity<Post>()
+                .HasOne(p => p.Document) // Post có một Document
+                .WithMany() // Không cần giữ thông tin Post trong Document
+                .HasForeignKey(p => p.DocumentID); // Khóa ngoại
         }
     }
 }

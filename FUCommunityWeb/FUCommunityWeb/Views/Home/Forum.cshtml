@@ -2,7 +2,7 @@
 
 <body>
     <div class="container forum">
-        <h1 class="forum-title">FORUM</h1>
+        <h1 class="forum-title">Forum</h1>
         <div class="row">
             <div class="col-md-8">
                 <div class="card mb-4">
@@ -10,25 +10,27 @@
                         General
                     </div>
                     <ul class="list-group list-group-flush">
-                        @foreach (var post in Model.Posts ?? new List<Post>()) // Kiểm tra nếu Model.Posts null
+                        @foreach (var category in Model.Categories ?? new List<Category>()) // Kiểm tra nếu Model.Category null
                         {
                             <li class="list-group-item d-flex align-items-center justify-content-between">
                                 <div class="d-flex align-items-center">
                                     <div class="forum-icon me-3"></div>
+                                    <a asp-controller="Home" asp-action="Post"
+                                       asp-route-CategoryName="@category.CategoryName"
+                                       asp-route-CategoryID="@category.CategoryID"
+                                        class="text-decoration-none">
                                     <div>
-                                        <div>@post.Title</div>
+                                        <div>@category.CategoryName</div>
                                         <div class="text-muted">
-                                            Comments <span>@(post.Comments?.Count ?? 0)</span>
-                                            & Votes <span>@(post.Votes?.Count ?? 0)</span>
+                                            @category.Description
                                         </div>
                                     </div>
+                                    </a>
                                 </div>
                                 <div class="d-flex align-items-center">
-                                    <div class="text-end me-3">
-                                        @(post.User?.FullName ?? "Unknown User")<br>
-                                        @post.CreatedDate?.ToString("dd/MM/yyyy")
+                                    <div class="text-end me-3">  
                                     </div>
-                                    <img class="user-avatar" src="@post.User?.AvatarImage" alt="Alternate Text" />
+                                    <img class="user-avatar" src="" alt="Alternate Text" />
                                 </div>
                             </li>
                         }

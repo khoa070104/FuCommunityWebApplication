@@ -36,6 +36,8 @@ namespace FuCommunityWebModels.Models
 
         [MaxLength(50)]
         public string Status { get; set; }
+        public string Tag { get; set; }
+        public int? DocumentID { get; set; }
 
         // Navigation properties
         [ForeignKey("CategoryID")]
@@ -43,7 +45,8 @@ namespace FuCommunityWebModels.Models
 
         [ForeignKey("UserID")] 
         public virtual ApplicationUser User { get; set; } // Thay đổi từ User thành ApplicationUser
-
+        [ForeignKey("DocumentID")]
+        public virtual Document Document { get; set; } // Tạo mối quan hệ với Document
         public ICollection<Comment> Comments { get; set; }  // Một Post có nhiều Comments
         public ICollection<Document> Documents { get; set; }  // Một Post có nhiều Documents
         public ICollection<Vote> Votes { get; set; }  // Một Post có nhiều Votes

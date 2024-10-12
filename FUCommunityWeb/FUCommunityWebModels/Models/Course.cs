@@ -31,6 +31,11 @@ namespace FuCommunityWebModels.Models
 
         [StringLength(50)]
         public string Status { get; set; }
+        public int Semester { get; set; } 
+
+        public int CategoryID { get; set; }
+        [ForeignKey("CategoryID")] 
+        public Category Category { get; set; }
 
         [ForeignKey("UserID")] 
         public ApplicationUser User { get; set; }
