@@ -1,5 +1,6 @@
 ﻿using FuCommunityWebDataAccess.Data;
 using FuCommunityWebModels.Models;
+using FuCommunityWebModels.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,37 @@ namespace FuCommunityWebDataAccess.Repositories
         {
             _context = context;
         }
+
+        public async Task<PostVM> GetPostDetailsAsync(int postId)
+        {
+            var post = await _context.Posts.FindAsync(postId);
+
+            var comments = await _context.Comments
+                .Where(c => c.PostID == postId)
+                .Select(c => new Comment
+                {
+                    Content = c.Content,
+                    CreatedDate = c.CreatedDate,
+                    UserID = c.UserID
+                }).ToListAsync();
+
+            var userIds = comments.Select(c => c.UserID).Distinct().ToList();
+            var users = await _context.Users
+                    .Where(u => userIds.Contains(u.Id)) 
+                    .Select(u => new UserVM
+                    {
+                        UserID = u.Id,
+                        FullName = u.FullName,
+                        AvatarImage = u.AvatarImage
+                    }).ToListAsync();
+            return new PostVM
+            {
+                Post = post,
+                Comments = comments,
+                Users = users 
+            };
+        }
+
         public async Task<List<Category>> GetAllCategoryAsync()
         {
             return await _context.Categories.ToListAsync();
@@ -23,24 +55,19 @@ namespace FuCommunityWebDataAccess.Repositories
 
         public async Task<(List<Post> posts, int totalItems)> GetPostsByCategory(int categoryID, int page, int pageSize, string searchString)
         {
-            // Giả sử bạn có một ngữ cảnh DbContext để truy vấn dữ liệu từ cơ sở dữ liệu
-            var query = _context.Posts.AsQueryable(); // Khởi tạo truy vấn với Posts
+            var query = _context.Posts.AsQueryable(); 
 
-            // Lọc theo categoryID
             query = query.Where(post => post.CategoryID == categoryID);
 
-            // Lọc theo searchString nếu nó không rỗng
             if (!string.IsNullOrWhiteSpace(searchString))
             {
                 query = query.Where(post => post.Title.Contains(searchString) || post.Content.Contains(searchString));
             }
 
-            // Lấy tổng số bài viết sau khi lọc
             var totalItems = await query.CountAsync();
 
-            // Phân trang và lấy bài viết theo pageSize và page
             var posts = await query
-                .OrderBy(post => post.CreatedDate) // Giả sử bạn có trường CreatedDate để sắp xếp
+                .OrderBy(post => post.PostID) 
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
                 .ToListAsync();
@@ -73,6 +100,11 @@ namespace FuCommunityWebDataAccess.Repositories
                 .Include(p => p.Votes)
                 .OrderByDescending(p => p.CreatedDate)
                 .ToListAsync();
+        }
+        public async Task<Post> GetPostByID(int postId)
+        {
+            return await _context.Posts
+                .FirstOrDefaultAsync(post => post.PostID == postId);
         }
     }
 }

@@ -80,24 +80,7 @@ namespace FUCommunityWeb.Controllers
         {
             return View();
         }
-        public async Task<IActionResult> Forum()
-        {
-            var courses = await _homeService.GetAllCoursesAsync();
-            var category = await _forumService.GetAllCategoryAsync();
 
-            var forumViewModel = new ForumVM
-            {
-                Courses = courses,
-                Categories = category
-            };
-
-            return View(forumViewModel);
-        }
-
-        public IActionResult PostDetail()
-        {
-            return View();
-        }
         public IActionResult Home()
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);

@@ -1,5 +1,6 @@
 ﻿using FuCommunityWebDataAccess.Repositories;
 using FuCommunityWebModels.Models;
+using FuCommunityWebModels.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,6 +35,16 @@ namespace FuCommunityWebServices.Services
         public async Task<(List<Post> posts, int totalItems)> GetPostsByCategory(int categoryID, int page, int pageSize, string searchString)
         {
             return await _forumRepo.GetPostsByCategory(categoryID, page, pageSize, searchString);
+        }
+
+        public async Task<Post> GetPostByID(int id)
+        {
+            return await _forumRepo.GetPostByID(id);
+        }
+
+        public async Task<PostVM> GetComments(int postID)
+        {
+            return await _forumRepo.GetPostDetailsAsync(postID);
         }
     }
 }

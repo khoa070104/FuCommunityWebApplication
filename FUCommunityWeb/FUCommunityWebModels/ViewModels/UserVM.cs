@@ -11,7 +11,8 @@ namespace FuCommunityWebModels.ViewModels
     public class UserVM
     {
 		public string FullName { get; set; }
-		public string Bio { get; set; }
+		public string UserID { get; set; }
+        public string Bio { get; set; }
 		public string Address { get; set; }
 		public string Gender { get; set; }
 		[ValidateNever]

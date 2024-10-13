@@ -3,16 +3,12 @@
   "WorkspaceRootPath": "D:\\Semester 5\\C#\\FuCommunityWebApplication\\FUCommunityWeb\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|d:\\semester 5\\c#\\fucommunitywebapplication\\fucommunityweb\\fucommunityweb\\views\\home\\post.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|solutionrelative:fucommunityweb\\views\\home\\post.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|d:\\semester 5\\c#\\fucommunitywebapplication\\fucommunityweb\\fucommunityweb\\controllers\\forumcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|solutionrelative:fucommunityweb\\controllers\\forumcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|d:\\semester 5\\c#\\fucommunitywebapplication\\fucommunityweb\\fucommunityweb\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|solutionrelative:fucommunityweb\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|d:\\semester 5\\c#\\fucommunitywebapplication\\fucommunityweb\\fucommunityweb\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|solutionrelative:fucommunityweb\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|d:\\semester 5\\c#\\fucommunitywebapplication\\fucommunityweb\\fucommunityweb\\views\\forum\\postdetail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|solutionrelative:fucommunityweb\\views\\forum\\postdetail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -39,40 +35,27 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "D:\\Semester 5\\C#\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\Shared\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "FUCommunityWeb\\Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "D:\\Semester 5\\C#\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\Shared\\_Layout.cshtml",
-              "RelativeToolTip": "FUCommunityWeb\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAAKYAAAAAAAAAAAAAAL4AAAAJAAAAAAAAAA==",
+              "Title": "PostDetail.cshtml",
+              "DocumentMoniker": "D:\\Semester 5\\C#\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\Forum\\PostDetail.cshtml",
+              "RelativeDocumentMoniker": "FUCommunityWeb\\Views\\Forum\\PostDetail.cshtml",
+              "ToolTip": "D:\\Semester 5\\C#\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\Forum\\PostDetail.cshtml",
+              "RelativeToolTip": "FUCommunityWeb\\Views\\Forum\\PostDetail.cshtml",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAAB4AAABLAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-12T15:30:02.36Z",
+              "WhenOpened": "2024-10-13T10:21:07.871Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Post.cshtml",
-              "DocumentMoniker": "D:\\Semester 5\\C#\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\Home\\Post.cshtml",
-              "RelativeDocumentMoniker": "FUCommunityWeb\\Views\\Home\\Post.cshtml",
-              "ToolTip": "D:\\Semester 5\\C#\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\Home\\Post.cshtml",
-              "RelativeToolTip": "FUCommunityWeb\\Views\\Home\\Post.cshtml",
-              "ViewState": "AgIAANgAAAAAAAAAAAAAAAcBAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-10T12:08:32.275Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "HomeController.cs",
-              "DocumentMoniker": "D:\\Semester 5\\C#\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Controllers\\HomeController.cs",
-              "RelativeDocumentMoniker": "FUCommunityWeb\\Controllers\\HomeController.cs",
-              "ToolTip": "D:\\Semester 5\\C#\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Controllers\\HomeController.cs",
-              "RelativeToolTip": "FUCommunityWeb\\Controllers\\HomeController.cs",
-              "ViewState": "AgIAANMAAAAAAAAAAAAywOMAAAARAAAAAAAAAA==",
+              "Title": "ForumController.cs",
+              "DocumentMoniker": "D:\\Semester 5\\C#\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Controllers\\ForumController.cs",
+              "RelativeDocumentMoniker": "FUCommunityWeb\\Controllers\\ForumController.cs",
+              "ToolTip": "D:\\Semester 5\\C#\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Controllers\\ForumController.cs",
+              "RelativeToolTip": "FUCommunityWeb\\Controllers\\ForumController.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAAAADoAAABWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-10T12:18:16.675Z",
+              "WhenOpened": "2024-10-13T06:52:23.406Z",
               "EditorCaption": ""
             }
           ]

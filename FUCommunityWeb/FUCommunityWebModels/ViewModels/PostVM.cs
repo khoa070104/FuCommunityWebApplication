@@ -9,9 +9,13 @@ namespace FuCommunityWebModels.ViewModels
 {
     public class PostVM
     {
+        public List<Comment> Comments { get; set; } = new List<Comment>();
+        public List<UserVM> Users { get; set; } = new List<UserVM>();
         public List<Post> Posts { get; set; } = new List<Post>();
         public List<Category> Categories { get; set; } = new List<Category>();
         public CreatePostVM CreatePostVM { get; set; } = new CreatePostVM();
         public CategoryVM CategoryVM { get; set; } = new CategoryVM();
+        public Post Post { get; set; } = new Post();
+        public Comment Comment { get; set; } = new Comment();
     }
 }

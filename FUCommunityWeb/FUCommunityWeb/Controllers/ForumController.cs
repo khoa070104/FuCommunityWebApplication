@@ -13,10 +13,50 @@ namespace FUCommunityWeb.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly ApplicationDbContext _context;
         private readonly ForumService _forumService;
+        private readonly HomeService _homeService;
 
-        public IActionResult Index()
+        public ForumController(ILogger<HomeController> logger, ApplicationDbContext context, ForumService forumService, HomeService homeService)
         {
-            return View();
+            _logger = logger;
+            _context = context;
+            _forumService = forumService;
+            _homeService = homeService;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            var courses = await _homeService.GetAllCoursesAsync();
+            var category = await _forumService.GetAllCategoryAsync();
+
+            var forumViewModel = new ForumVM
+            {
+                Courses = courses,
+                Categories = category
+            };
+
+            return View(forumViewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Comment(PostVM postVM)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var post = new PostVM
+            {
+                Comment = new Comment
+                {
+                    Content = WebUtility.HtmlEncode(postVM.Comment.Content),
+                    PostID = postVM.Comment.PostID,
+                    UserID = userId,
+                    CreatedDate = DateTime.Now
+                }
+            };
+
+            _context.Comments.Add(post.Comment);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("PostDetail", new { postId = postVM.Comment.PostID });
         }
 
         [HttpGet]
@@ -77,7 +117,7 @@ namespace FUCommunityWeb.Controllers
             _context.Posts.Add(post);
             await _context.SaveChangesAsync();
 
-            return RedirectToAction("Forum");
+            return RedirectToAction("Index");
         }
 
         public IActionResult Post(CategoryVM categoryVM)
@@ -92,5 +132,14 @@ namespace FUCommunityWeb.Controllers
             };
             return View(modal);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> PostDetail(int postId)
+        {
+            var modal = new PostVM();
+            modal = await _forumService.GetComments(postId);
+            return View(modal);
+        }
+
     }
 }

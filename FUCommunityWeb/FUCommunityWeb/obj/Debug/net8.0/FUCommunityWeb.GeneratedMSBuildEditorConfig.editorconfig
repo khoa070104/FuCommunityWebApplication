@@ -230,8 +230,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ291cnNlXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Semester 5/C\#/FuCommunityWebApplication/FUCommunityWeb/FUCommunityWeb/Views/Forum/Forum.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9ydW1cRm9ydW0uY3NodG1s
+[D:/Semester 5/C\#/FuCommunityWebApplication/FUCommunityWeb/FUCommunityWeb/Views/Forum/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9ydW1cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Semester 5/C\#/FuCommunityWebApplication/FUCommunityWeb/FUCommunityWeb/Views/Forum/Post.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9ydW1cUG9zdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Semester 5/C\#/FuCommunityWebApplication/FUCommunityWeb/FUCommunityWeb/Views/Forum/PostDetail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9ydW1cUG9zdERldGFpbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Semester 5/C\#/FuCommunityWebApplication/FUCommunityWeb/FUCommunityWeb/Views/Home/About.cshtml]
@@ -260,14 +268,6 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/Semester 5/C\#/FuCommunityWebApplication/FUCommunityWeb/FUCommunityWeb/Views/Home/MentorHall.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxNZW50b3JIYWxsLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/Semester 5/C\#/FuCommunityWebApplication/FUCommunityWeb/FUCommunityWeb/Views/Home/Post.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQb3N0LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/Semester 5/C\#/FuCommunityWebApplication/FUCommunityWeb/FUCommunityWeb/Views/Home/PostDetail.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQb3N0RGV0YWlsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Semester 5/C\#/FuCommunityWebApplication/FUCommunityWeb/FUCommunityWeb/Views/Home/Privacy.cshtml]
