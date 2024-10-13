@@ -1,13 +1,13 @@
 using FuCommunityWebDataAccess.Data;
 using FuCommunityWebModels.Models;
 using FuCommunityWebModels.ViewModels;
+using FuCommunityWebModels.ViewModels.FuCommunityWebModels.ViewModels;
 using FuCommunityWebServices.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using System.IO;
-using FuCommunityWebModels.ViewModels.FuCommunityWebModels.ViewModels; 
 
 namespace FUCommunityWeb.Controllers
 {
@@ -15,31 +15,124 @@ namespace FUCommunityWeb.Controllers
     {
         private readonly CourseService _courseService;
         private readonly ILogger<CourseController> _logger;
+        private readonly ApplicationDbContext _context;
 
-        public CourseController(CourseService courseService, ILogger<CourseController> logger)
+        public CourseController(CourseService courseService, ILogger<CourseController> logger, ApplicationDbContext context)
         {
             _courseService = courseService;
             _logger = logger;
+            _context = context;
         }
 
-
-        public async Task<IActionResult> Index(string semester, string category, string subjectCode, string rate, string minPrice)
+        public async Task<IActionResult> Index(string semester, string category, string subjectCode, int? rate, decimal? minPrice)
         {
+            var courses = await _courseService.GetAllCoursesAsync();
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var enrolledCourses = await _courseService.GetEnrolledCoursesAsync(userId);
+
+            if (!string.IsNullOrEmpty(subjectCode))
+            {
+                courses = courses.Where(c => c.Title == subjectCode).ToList();
+            }
+
+            if (minPrice.HasValue)
+            {
+                courses = courses.Where(c => c.Price >= minPrice).ToList();
+            }
+
             var viewModel = new CourseVM
             {
-                Categories = await _courseService.GetAllCategoriesAsync(), 
-                AllSubjectCodes = await _courseService.GetAllSubjectCodesAsync(), 
-                SelectedSemester = semester,
-                SelectedCategory = category,
-                SelectedSubjectCode = subjectCode,
-                SelectedRate = rate,
-                SelectedMinPrice = minPrice
+                Courses = courses,
+                EnrolledCourses = enrolledCourses,
+                CreateCourseVM = new CreateCourseVM(),
+                EditCourseVM = new EditCourseVM(),
+                ShowCreateCourseModal = false,
+                ShowEditCourseModal = false,
+                EditCourseID = null
             };
-
-            viewModel.Courses = await _courseService.GetFilteredCoursesAsync(semester, category, subjectCode, minPrice);
 
             return View(viewModel);
         }
+
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> BuyCourse(int courseId, string returnUrl)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var course = await _context.Courses
+                .FirstOrDefaultAsync(c => c.CourseID == courseId);
+
+            if (course == null)
+            {
+                TempData["Error"] = "Course not found.";
+                return RedirectToAction("Index");
+            }
+
+            var alreadyEnrolled = await _context.Enrollment
+                .AnyAsync(e => e.UserID == userId && e.CourseID == courseId);
+
+            if (alreadyEnrolled)
+            {
+                TempData["Error"] = "You are already enrolled in this course.";
+                return RedirectToAction("Index");
+            }
+
+            // Lấy thông tin người dùng
+            var user = await _context.Users.FindAsync(userId);
+            if (user == null)
+            {
+                TempData["Error"] = "User not found.";
+                return RedirectToAction("Index");
+            }
+
+            // Kiểm tra xem người dùng có đủ điểm để mua khóa học không
+            if (user.Point < course.Price)
+            {
+                TempData["Error"] = "You do not have enough points to purchase this course.";
+                if (Url.IsLocalUrl(returnUrl))
+                {
+                    return Redirect(returnUrl);
+                }
+                else
+                {
+                    return RedirectToAction("Index");
+                }
+            }
+
+            // Trừ điểm của người dùng
+            user.Point -= course.Price.Value;
+
+            var enrollment = new Enrollment
+            {
+                UserID = userId,
+                CourseID = courseId,
+                EnrollmentDate = DateTime.Now,
+                Status = "Active"
+            };
+
+            // Thêm đăng ký khóa học
+            _context.Enrollment.Add(enrollment);
+            await _context.SaveChangesAsync();
+
+            // Cập nhật điểm của người dùng
+            _context.Users.Update(user);
+            await _context.SaveChangesAsync();
+
+            TempData["Success"] = "Enrollment successful!";
+
+            if (Url.IsLocalUrl(returnUrl))
+            {
+                return Redirect(returnUrl);
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+        }
+
 
 
         [HttpPost]
@@ -48,7 +141,28 @@ namespace FUCommunityWeb.Controllers
         {
             if (ModelState.IsValid)
             {
-                createCourseVM.CourseImage = await ProcessCourseImageAsync(createCourseVM.CourseImageFile);
+                if (createCourseVM.CourseImageFile != null && createCourseVM.CourseImageFile.Length > 0)
+                {
+                    var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads");
+                    if (!Directory.Exists(uploadsFolder))
+                    {
+                        Directory.CreateDirectory(uploadsFolder);
+                    }
+
+                    var uniqueFileName = Guid.NewGuid().ToString() + "_" + Path.GetFileName(createCourseVM.CourseImageFile.FileName);
+                    var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await createCourseVM.CourseImageFile.CopyToAsync(fileStream);
+                    }
+
+                    createCourseVM.CourseImage = "/uploads/" + uniqueFileName;
+                }
+                else
+                {
+                    createCourseVM.CourseImage = "/img/Logo_FunnyCode.jpg";
+                }
 
                 try
                 {
@@ -60,9 +174,7 @@ namespace FUCommunityWeb.Controllers
                         CourseImage = createCourseVM.CourseImage,
                         Status = createCourseVM.Status,
                         UserID = User.FindFirstValue(ClaimTypes.NameIdentifier),
-                        CreatedDate = DateTime.Now,
-                        Semester = createCourseVM.Semester,
-                        CategoryID = createCourseVM.CategoryID
+                        CreatedDate = DateTime.Now
                     };
 
                     await _courseService.AddCourseAsync(course);
@@ -77,23 +189,21 @@ namespace FUCommunityWeb.Controllers
                     ModelState.AddModelError(string.Empty, "An error occurred while creating the course. Please try again.");
                 }
             }
-            var categories = await _courseService.GetAllCategoriesAsync(); 
-            var courses = await _courseService.GetAllCoursesAsync(); 
+
+            var courses = await _courseService.GetAllCoursesAsync();
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var enrolledCourses = await _courseService.GetEnrolledCoursesAsync(userId); 
+            var enrolledCourses = await _courseService.GetEnrolledCoursesAsync(userId);
 
             var viewModel = new CourseVM
             {
                 Courses = courses,
                 EnrolledCourses = enrolledCourses,
                 CreateCourseVM = createCourseVM,
-                ShowCreateCourseModal = true,
-                Categories = categories
+                ShowCreateCourseModal = true
             };
 
             return View("Index", viewModel);
         }
-
 
         [HttpGet]
         [Authorize]
@@ -118,13 +228,8 @@ namespace FUCommunityWeb.Controllers
                 Description = course.Description,
                 Price = course.Price ?? 0,
                 CourseImage = course.CourseImage,
-                Status = course.Status,
-                Semester = course.Semester,
-                CategoryID = course.CategoryID
+                Status = course.Status
             };
-
-
-            var categories = await _courseService.GetAllCategoriesAsync(); 
 
             var viewModel = new CourseVM
             {
@@ -132,16 +237,12 @@ namespace FUCommunityWeb.Controllers
                 CreateCourseVM = new CreateCourseVM(),
                 ShowEditCourseModal = true,
                 EditCourseID = course.CourseID,
-                Courses = await _courseService.GetAllCoursesAsync(), 
-                EnrolledCourses = await _courseService.GetEnrolledCoursesAsync(currentUserId), 
-                Categories = categories
+                Courses = await _courseService.GetAllCoursesAsync(),
+                EnrolledCourses = await _courseService.GetEnrolledCoursesAsync(currentUserId)
             };
-
-            ModelState.Clear();
 
             return View("Index", viewModel);
         }
-
 
         [HttpPost]
         [Authorize]
@@ -163,23 +264,15 @@ namespace FUCommunityWeb.Controllers
                 }
 
                 editCourseVM.CourseImage = course.CourseImage;
-                editCourseVM.Semester = course.Semester;
-                editCourseVM.CategoryID = course.CategoryID;
-
-                ModelState.Remove("EditCourseVM.Semester");
-                ModelState.Remove("EditCourseVM.CategoryID");
-
-                var categories = await _courseService.GetAllCategoriesAsync();
 
                 var viewModel = new CourseVM
                 {
-                  EditCourseVM = editCourseVM,
-                  CreateCourseVM = new CreateCourseVM(),
-                  ShowEditCourseModal = true,
-                  EditCourseID = id,
-                  Courses = await _courseService.GetAllCoursesAsync(), 
-                  EnrolledCourses = await _courseService.GetEnrolledCoursesAsync(currentUserId),
-                  Categories = categories
+                    EditCourseVM = editCourseVM,
+                    CreateCourseVM = new CreateCourseVM(),
+                    ShowEditCourseModal = true,
+                    EditCourseID = id,
+                    Courses = await _courseService.GetAllCoursesAsync(),
+                    EnrolledCourses = await _courseService.GetEnrolledCoursesAsync(currentUserId)
                 };
                 return View("Index", viewModel);
             }
@@ -196,7 +289,40 @@ namespace FUCommunityWeb.Controllers
                 return Forbid();
             }
 
-            await HandleCourseUpdateAsync(courseToUpdate, editCourseVM);
+            courseToUpdate.Title = editCourseVM.Title;
+            courseToUpdate.Description = editCourseVM.Description;
+            courseToUpdate.Price = editCourseVM.Price;
+            courseToUpdate.Status = editCourseVM.Status;
+
+            if (editCourseVM.CourseImageFile != null && editCourseVM.CourseImageFile.Length > 0)
+            {
+                var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads");
+                if (!Directory.Exists(uploadsFolder))
+                {
+                    Directory.CreateDirectory(uploadsFolder);
+                }
+
+                var uniqueFileName = Guid.NewGuid().ToString() + "_" + Path.GetFileName(editCourseVM.CourseImageFile.FileName);
+                var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    await editCourseVM.CourseImageFile.CopyToAsync(fileStream);
+                }
+
+                if (!string.IsNullOrEmpty(courseToUpdate.CourseImage))
+                {
+                    var oldImagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", courseToUpdate.CourseImage.TrimStart('/'));
+                    if (System.IO.File.Exists(oldImagePath))
+                    {
+                        System.IO.File.Delete(oldImagePath);
+                    }
+                }
+
+                courseToUpdate.CourseImage = "/uploads/" + uniqueFileName;
+            }
+
+            courseToUpdate.UpdatedDate = DateTime.Now;
 
             try
             {
@@ -217,23 +343,19 @@ namespace FUCommunityWeb.Controllers
                     editCourseVM.CourseImage = course.CourseImage;
                 }
 
-                var categories = await _courseService.GetAllCategoriesAsync(); 
-
                 var updatedViewModel = new CourseVM
                 {
-                  EditCourseVM = editCourseVM,
-                  CreateCourseVM = new CreateCourseVM(),
-                  ShowEditCourseModal = true,
-                  EditCourseID = id,
-                  Courses = await _courseService.GetAllCoursesAsync(), 
-                  EnrolledCourses = await _courseService.GetEnrolledCoursesAsync(userId), 
-                  Categories = categories
+                    EditCourseVM = editCourseVM,
+                    CreateCourseVM = new CreateCourseVM(),
+                    ShowEditCourseModal = true,
+                    EditCourseID = id,
+                    Courses = await _courseService.GetAllCoursesAsync(),
+                    EnrolledCourses = await _courseService.GetEnrolledCoursesAsync(userId)
                 };
 
                 return View("Index", updatedViewModel);
             }
         }
-
 
         [HttpPost]
         [Authorize]
@@ -258,9 +380,6 @@ namespace FUCommunityWeb.Controllers
 
             try
             {
-                // Xóa ảnh liên quan đến khóa học
-                await DeleteOldImageAsync(course.CourseImage);
-
                 await _courseService.DeleteCourseAsync(course);
 
                 _logger.LogInformation("Course deleted successfully: {CourseTitle}", course.Title);
@@ -353,12 +472,15 @@ namespace FUCommunityWeb.Controllers
             return View("Detail", viewModel);
         }
 
+
         [HttpGet]
         [Authorize]
         public async Task<IActionResult> EditLesson(int id)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var lesson = await _courseService.GetLessonByIdAsync(id);
+            var lesson = await _context.Lessons
+                .Include(l => l.Course)
+                .FirstOrDefaultAsync(l => l.LessonID == id);
 
             if (lesson == null)
             {
@@ -382,11 +504,17 @@ namespace FUCommunityWeb.Controllers
             var viewModel = new CourseDetailVM
             {
                 Course = lesson.Course,
-                Lessons = await _courseService.GetLessonsByCourseIdAsync(lesson.CourseID), 
+                Lessons = await _context.Lessons
+                            .Where(l => l.CourseID == lesson.CourseID)
+                            .OrderBy(l => l.LessonID)
+                            .ToListAsync(),
                 EditLessonVM = editLessonVM,
                 ShowEditLessonModal = true,
                 EditLessonID = lesson.LessonID,
-                EnrolledCourses = await _courseService.GetEnrolledCoursesAsync(userId)
+                EnrolledCourses = await _context.Enrollment
+                                        .Where(e => e.UserID == userId)
+                                        .Select(e => e.CourseID)
+                                        .ToListAsync()
             };
 
             return View("Detail", viewModel);
@@ -403,7 +531,9 @@ namespace FUCommunityWeb.Controllers
             }
 
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var lessonToUpdate = await _courseService.GetLessonByIdAsync(id);
+            var lessonToUpdate = await _context.Lessons
+                .Include(l => l.Course)
+                .FirstOrDefaultAsync(l => l.LessonID == id);
 
             if (lessonToUpdate == null)
             {
@@ -424,7 +554,8 @@ namespace FUCommunityWeb.Controllers
                     lessonToUpdate.Status = editLessonVM.Status;
                     lessonToUpdate.UpdatedDate = DateTime.Now;
 
-                    await _courseService.UpdateLessonAsync(lessonToUpdate);
+                    _context.Lessons.Update(lessonToUpdate);
+                    await _context.SaveChangesAsync();
 
                     _logger.LogInformation("Lesson edited successfully: {LessonTitle}", lessonToUpdate.Title);
 
@@ -438,7 +569,7 @@ namespace FUCommunityWeb.Controllers
             }
             else
             {
-                
+                // Log ModelState errors
                 foreach (var state in ModelState)
                 {
                     foreach (var error in state.Value.Errors)
@@ -450,12 +581,19 @@ namespace FUCommunityWeb.Controllers
                 _logger.LogWarning("EditLesson called with invalid ModelState.");
             }
 
-            var courseDetail = await _courseService.GetCourseByIdAsync(lessonToUpdate.CourseID);
+            // Nếu có lỗi, tải lại thông tin khóa học và bài học
+            var courseDetail = await _context.Courses
+                .Include(c => c.Lessons)
+                .Include(c => c.User)
+                .FirstOrDefaultAsync(c => c.CourseID == lessonToUpdate.CourseID);
 
             var viewModelError = new CourseDetailVM
             {
                 Course = courseDetail,
-                EnrolledCourses = await _courseService.GetEnrolledCoursesAsync(userId),
+                EnrolledCourses = await _context.Enrollment
+                                        .Where(e => e.UserID == userId)
+                                        .Select(e => e.CourseID)
+                                        .ToListAsync(),
                 Lessons = courseDetail.Lessons.OrderBy(l => l.LessonID).ToList(),
                 EditLessonVM = editLessonVM,
                 ShowEditLessonModal = true,
@@ -464,6 +602,7 @@ namespace FUCommunityWeb.Controllers
 
             return View("Detail", viewModelError);
         }
+
 
         [HttpPost]
         [Authorize]
@@ -499,117 +638,6 @@ namespace FUCommunityWeb.Controllers
             }
 
             return RedirectToAction("Detail", new { id = lesson.CourseID });
-        }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> BuyCourse(int courseId, string returnUrl)
-        {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var course = await _courseService.GetCourseByIdAsync(courseId);
-
-            if (course == null)
-            {
-                TempData["Error"] = "Course not found.";
-                return RedirectToAction("Index");
-            }
-
-            var alreadyEnrolled = await _courseService.GetEnrollmentAsync(userId, courseId) != null;
-
-            if (alreadyEnrolled)
-            {
-                TempData["Error"] = "You are already enrolled in this course.";
-                return RedirectToAction("Index");
-            }
-
-            var user = await _courseService.GetUserByIdAsync(userId);
-            if (user == null)
-            {
-                TempData["Error"] = "User not found.";
-                return RedirectToAction("Index");
-            }
-
-            if (user.Point < course.Price)
-            {
-                TempData["Error"] = "You do not have enough points to purchase this course.";
-                return RedirectToAction("Index");
-            }
-
-            user.Point -= course.Price.Value;
-
-            var enrollment = new Enrollment
-            {
-                UserID = userId,
-                CourseID = courseId,
-                EnrollmentDate = DateTime.Now,
-                Status = "Active"
-            };
-
-            await _courseService.AddEnrollmentAsync(enrollment);
-            await _courseService.UpdateUserAsync(user);
-
-            TempData["Success"] = "Enrollment successful!";
-            return RedirectToAction("Index");
-        }
-
-        private string GenerateUniqueFileName(IFormFile file)
-        {
-            var courseKey = Guid.NewGuid().ToString(); // Hoặc sử dụng một khóa cụ thể cho khóa học
-            var extension = Path.GetExtension(file.FileName);
-            return $"course_{courseKey}{extension}";
-        }
-
-        private async Task DeleteOldImageAsync(string imagePath)
-        {
-            if (!string.IsNullOrEmpty(imagePath))
-            {
-                var oldImagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", imagePath.TrimStart('/'));
-                if (System.IO.File.Exists(oldImagePath))
-                {
-                    System.IO.File.Delete(oldImagePath);
-                }
-            }
-        }
-
-        private async Task<string> ProcessCourseImageAsync(IFormFile courseImageFile)
-        {
-            if (courseImageFile != null && courseImageFile.Length > 0)
-            {
-                var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads");
-                if (!Directory.Exists(uploadsFolder))
-                {
-                    Directory.CreateDirectory(uploadsFolder);
-                }
-
-                var uniqueFileName = GenerateUniqueFileName(courseImageFile);
-                var filePath = Path.Combine(uploadsFolder, uniqueFileName);
-
-                using (var fileStream = new FileStream(filePath, FileMode.Create))
-                {
-                    await courseImageFile.CopyToAsync(fileStream);
-                }
-
-                return "/uploads/" + uniqueFileName;
-            }
-            return "/img/Logo_FunnyCode.jpg"; // Default image
-        }
-
-        private async Task HandleCourseUpdateAsync(Course courseToUpdate, EditCourseVM editCourseVM)
-        {
-            courseToUpdate.Title = editCourseVM.Title;
-            courseToUpdate.Description = editCourseVM.Description;
-            courseToUpdate.Price = editCourseVM.Price;
-            courseToUpdate.Status = editCourseVM.Status;
-            courseToUpdate.Semester = editCourseVM.Semester;
-            courseToUpdate.CategoryID = editCourseVM.CategoryID;
-
-            if (editCourseVM.CourseImageFile != null && editCourseVM.CourseImageFile.Length > 0)
-            {
-                // Xóa ảnh cũ
-                await DeleteOldImageAsync(courseToUpdate.CourseImage);
-                courseToUpdate.CourseImage = await ProcessCourseImageAsync(editCourseVM.CourseImageFile);
-            }
-
-            courseToUpdate.UpdatedDate = DateTime.Now;
         }
     }
 }

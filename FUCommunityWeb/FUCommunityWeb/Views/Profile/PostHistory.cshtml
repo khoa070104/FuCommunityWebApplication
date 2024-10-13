@@ -1,11 +1,37 @@
-﻿@model UserVM
+﻿@model PostHistoryVM
 
 <body>
     <div class="container-fluid mt-4 profile">
         <h1 class="title text-start">PROFILE</h1>
         <div class="row justify-content-center">
             <div class="col-md-3">
-                    @Html.Partial("Sidebar", Model)
+                <div class="sidebar">
+                    <form asp-action="ChangeAvatar" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="currentPage" value="@ViewData["CurrentPage"]" />
+                        <img src="@(Model.User.AvatarImage ?? "/img/avt2.jpg")" class="avatar mb-3 rounded-circle" alt="Avatar">
+                        <h4 class="username mb-1">@Model.User.FullName</h4>
+                        <p class="points">Points of week: <span>@Model.User.Point</span></p>
+                        <div class="d-flex mb-3">
+                            <input type="file" name="file" id="file" accept="image/*" style="display: none;" onchange="this.form.submit()">
+                            <button type="button" class="btn btn-changeavt" onclick="document.getElementById('file').click();">Change Avatar</button>
+                            <button class="btn btn-editprofile">Edit Profile</button>
+                        </div>
+                    </form>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <a href="@Url.Action("EditProfile")"><i class="fa fa-cog"></i> Setting</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="@Url.Action("ContactUs")"><i class="fa fa-comment-dots"></i> Message</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="@Url.Action("PostHistory")"><i class="fa fa-pencil-alt"></i> Post</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="@Url.Action("CourseHistory")"><i class="fa fa-book"></i> Course History</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
             <div class="col-md-9">
                 <div class="card mb-4">

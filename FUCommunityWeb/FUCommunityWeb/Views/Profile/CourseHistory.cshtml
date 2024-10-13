@@ -1,4 +1,4 @@
-﻿@model UserVM
+﻿@model CourseHistoryVM
 
 <body>
     <div class="container-fluid mt-4 profile">
@@ -6,7 +6,33 @@
         <div class="row justify-content-center">
             <!-- Sidebar -->
             <div class="col-md-3">
-                @Html.Partial("Sidebar", Model)
+                <div class="sidebar">
+                    <form asp-action="ChangeAvatar" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="currentPage" value="@ViewData["CurrentPage"]" />
+                        <img src="@(Model.User.AvatarImage ?? "/img/avt2.jpg")" class="avatar mb-3 rounded-circle" alt="Avatar">
+                        <h4 class="username mb-1">@Model.User.FullName</h4>
+                        <p class="points">Points of week: <span>@Model.User.Point</span></p>
+                        <div class="d-flex mb-3">
+                            <input type="file" name="file" id="file" accept="image/*" style="display: none;" onchange="this.form.submit()">
+                            <button type="button" class="btn btn-changeavt" onclick="document.getElementById('file').click();">Change Avatar</button>
+                            <button class="btn btn-editprofile">Edit Profile</button>
+                        </div>
+                    </form>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <a href="@Url.Action("EditProfile")"><i class="fa fa-cog"></i> Setting</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="@Url.Action("ContactUs")"><i class="fa fa-comment-dots"></i> Message</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="@Url.Action("PostHistory")"><i class="fa fa-pencil-alt"></i> Post</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="@Url.Action("CourseHistory")"><i class="fa fa-book"></i> Course History</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
             <!-- Course History Section -->
             <div class="col-md-9">
@@ -24,28 +50,18 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @if (Model.Enrollments != null && Model.Enrollments.Any())
+                                @foreach (var enrollment in Model.Enrollments)
                                 {
-                                    @foreach (var enrollment in Model.Enrollments)
-                                    {
-                                        <tr class="custom-row-bg">
-                                            <td class="table-name">@enrollment.Course.Title</td>
-                                            <td>@enrollment.EnrollmentDate.ToString("dd/MM/yyyy")</td>
-                                            <td>@enrollment.Status</td>
-                                            <td><span class="custom-badge">@enrollment.Course.Price</span></td>
-                                            <th scope="col">
-                                                <i class="fa fa-arrow-right"></i>
-                                            </th>
-                                        </tr>
-                                    }
-                                }
-                                else
-                                {
-                                    <tr>
-                                        <td colspan="5" class="text-center">Không có dữ liệu khóa học.</td>
+                                    <tr class="custom-row-bg">
+                                        <td class="table-name">@enrollment.Course.Title</td>
+                                        <td>@enrollment.EnrollmentDate.ToString("dd/MM/yyyy")</td>
+                                        <td>@enrollment.Status</td>
+                                        <td><span class="custom-badge">@enrollment.Course.Price</span></td>
+                                        <th scope="col">
+                                            <i class="fa fa-arrow-right"></i>
+                                        </th>
                                     </tr>
                                 }
-                                
                             </tbody>
                         </table>
                     </div>

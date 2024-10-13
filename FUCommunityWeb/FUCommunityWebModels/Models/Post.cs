@@ -15,7 +15,6 @@ namespace FuCommunityWebModels.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int PostID { get; set; }
-
         public string UserID { get; set; } // Đảm bảo kiểu dữ liệu là string
         public int? CategoryID { get; set; }
 

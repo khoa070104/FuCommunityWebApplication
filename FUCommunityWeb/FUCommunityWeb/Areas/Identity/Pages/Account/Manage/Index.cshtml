@@ -45,7 +45,22 @@
 				</div>
 			</div>
 		</div>
-		
+		 <div-- class="row mb-3">
+		 	<div class="col-sm-6">
+		 		<div class="form-group">
+		 			<label asp-for="Input.FullName" class="form-label"></label>
+		 			<input asp-for="Input.FullName" class="form-control" placeholder="Enter your full name" />
+		 			<span asp-validation-for="Input.FullName" class="text-danger"></span>
+		 		</div>
+		 	</div>
+		 	<div class="col-sm-6">
+		 		<div class="form-group">
+		 			<label asp-for="Input.DOB" class="form-label"></label>
+		 			<input asp-for="Input.DOB" class="form-control" type="date" />
+		 			<span asp-validation-for="Input.DOB" class="text-danger"></span>
+		 		</div>
+		 	</div>
+		 </div>
 
 		<div>
 			<button id="update-profile-button" type="submit" class="btn-savechange">Save</button>

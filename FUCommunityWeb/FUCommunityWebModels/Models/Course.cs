@@ -43,16 +43,5 @@ namespace FuCommunityWebModels.Models
         public virtual ICollection<Lesson> Lessons { get; set; }
         public virtual ICollection<Enrollment> Enrollments { get; set; }
         public virtual ICollection<Document> Documents { get; set; }
-        public virtual ICollection<Review> Reviews { get; set; }
-        [NotMapped]
-        public double Rate
-        {
-            get
-            {
-                if (Reviews == null || !Reviews.Any())
-                    return 0;
-                return Reviews.Average(r => r.Rating);
-            }
-        }
     }
 }

@@ -1,0 +1,102 @@
+﻿@model FuCommunityWebModels.ViewModels.PostVM;
+
+<body>
+    <div class="container mt-4 forum-detail">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">@Model.Post.Title</h5>
+                        <div class="card-text">
+                            @Html.Raw(System.Net.WebUtility.HtmlDecode(Model.Post.Content))
+                        </div>
+                        <!--  div class="code-block">
+                           <pre>
+1 package main
+2 import "fmt"
+3
+4 func main() {
+5     fmt.Println("Hello, world!")
+6 }
+                        </pre>
+                                                    </div>-->
+                        <img src="@Model.Post.PostImage" /></br>                                
+                        <button class="btn btn-success"><i class="fas fa-thumbs-up"></i> Vote</button>
+                    </div>
+                </div>
+                <div class="suggestions mt-3">
+                    <form asp-action="Comment" asp-controller="Forum">
+                        <label for="commentContent" class="form-label">Share your idea:</label>
+                        <textarea asp-for="@Model.Comment.Content" class="form-control" id="editor" rows="3" placeholder=""></textarea>
+                        <input type="hidden" asp-for="@Model.Comment.PostID" value="@Model.Post.PostID" />
+                        <button type="submit" class="btn btn-secondary mt-2">Comment</button>
+                    </form>
+                </div>
+                @if (Model.Comments != null && Model.Comments.Any())
+
+                {
+                    foreach (var comment in Model.Comments)
+                    {
+
+                        // Tìm user dựa trên UserID trong comment
+
+                        var user = Model.Users.FirstOrDefault(u => u.UserID == comment.UserID);
+
+                        <div class="card card-body card-comment mt-3">
+                            <div class="d-flex align-items-center mb-2">
+                                <a href="#" class="user-picture me-2">
+                                    <!-- Hiển thị avatar nếu user tồn tại -->
+                                    <img src="@user?.AvatarImage" alt="@user?.FullName's Picture"
+                                         style="width: 40px; height: 40px; border-radius: 50%;" />
+                                </a>
+                                <div>
+                                    <strong>@user?.FullName</strong> <!-- Hiển thị tên người dùng -->
+                                    <p class="mb-0 text-muted" style="font-size: 0.9rem;">
+                                        @comment.CreatedDate.ToString("g") <!-- Hiển thị ngày giờ định dạng ngắn -->
+                                    </p>
+                                </div>
+                            </div>
+                            <p>@comment.Content</p>
+
+                           
+                            @if (!string.IsNullOrEmpty(comment.Content))
+                            {
+                                <!--  <div class="bg-light p-2 rounded">
+                                    <pre><code>@comment.Content</code></pre>
+                                </div>-->
+                            } 
+                          <!--  <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <a href="#" class="me-3"><i class="far fa-thumbs-up"></i> @comment</a>
+                                    <a href="#"><i class="far fa-comment"></i> @comment</a>
+                                </div>
+                                <a href="#" class="text-decoration-none">Reply</a>
+                            </div> -->
+                        </div>
+                    }
+
+                }
+
+                else
+
+                {
+                    <p class="text-muted mt-3">Chưa có bình luận nào.</p>
+                }
+
+            </div>
+            <div class="col-md-4 text-center">
+                <div class="user-info">
+                    <img src="/img/Logo_FunnyCode.jpg" alt="Profile Picture" class="profile-pic mb-2">
+                    <p>Golanginya</p>
+                    <p><i class="fas fa-trophy"></i> 125 [ 8 ]</p>
+                    <div>
+                        <a href="#"><i class="fab fa-github fa-lg me-2"></i></a>
+                        <a href="#"><i class="fab fa-instagram fa-lg me-2"></i></a>
+                        <a href="#"><i class="fab fa-facebook fa-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+

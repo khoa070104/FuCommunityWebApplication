@@ -73,45 +73,5 @@ namespace FuCommunityWebServices.Services
         {
             return await _courseRepo.GetHighestQualityCoursesAsync(count);
         }
-
-        public async Task<List<Course>> GetFilteredCoursesAsync(string semester, string category, string subjectCode, string minPrice)
-        {
-            return await _courseRepo.GetFilteredCoursesAsync(semester, category, subjectCode, minPrice);
-        }
-
-        public async Task<List<Category>> GetAllCategoriesAsync()
-        {
-            return await _courseRepo.GetAllCategoriesAsync();
-        }
-
-        public async Task<List<string>> GetAllSubjectCodesAsync()
-        {
-            return await _courseRepo.GetAllSubjectCodesAsync();
-        }
-
-        public async Task<ApplicationUser> GetUserByIdAsync(string userId)
-        {
-            return await _courseRepo.GetUserByIdAsync(userId);
-        }
-
-        public async Task<Enrollment> GetEnrollmentAsync(string userId, int courseId)
-        {
-            return await _courseRepo.GetEnrollmentAsync(userId, courseId);
-        }
-
-        public async Task AddEnrollmentAsync(Enrollment enrollment)
-        {
-            await _courseRepo.AddEnrollmentAsync(enrollment);
-        }
-
-        public async Task UpdateUserAsync(ApplicationUser user)
-        {
-            await _courseRepo.UpdateUserAsync(user);
-        }
-
-        public async Task<List<Lesson>> GetLessonsByCourseIdAsync(int courseId)
-        {
-            return await _courseRepo.GetLessonsByCourseIdAsync(courseId);
-        }
     }
 }

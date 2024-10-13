@@ -19,7 +19,6 @@ using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using FuCommunityWebModels.Models;
 using FuCommunityWebUtility;
-using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
 
 namespace FUCommunityWeb.Areas.Identity.Pages.Account
 {
@@ -32,13 +31,12 @@ namespace FUCommunityWeb.Areas.Identity.Pages.Account
         private readonly IUserEmailStore<IdentityUser> _emailStore;
         private readonly IEmailSender _emailSender;
         private readonly ILogger<ExternalLoginModel> _logger;
-        private readonly RoleManager<IdentityRole> _roleManager;
+
         public ExternalLoginModel(
             SignInManager<IdentityUser> signInManager,
             UserManager<IdentityUser> userManager,
             IUserStore<IdentityUser> userStore,
             ILogger<ExternalLoginModel> logger,
-            RoleManager<IdentityRole> roleManager,
             IEmailSender emailSender)
         {
             _signInManager = signInManager;
@@ -47,7 +45,6 @@ namespace FUCommunityWeb.Areas.Identity.Pages.Account
             _emailStore = GetEmailStore();
             _logger = logger;
             _emailSender = emailSender;
-            _roleManager = roleManager;
         }
 
         /// <summary>
@@ -102,6 +99,7 @@ namespace FUCommunityWeb.Areas.Identity.Pages.Account
 
         public IActionResult OnPost(string provider, string returnUrl = null)
         {
+            // Request a redirect to the external login provider.
             var redirectUrl = Url.Page("./ExternalLogin", pageHandler: "Callback", values: new { returnUrl });
             var properties = _signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl);
             return new ChallengeResult(provider, properties);
@@ -122,6 +120,7 @@ namespace FUCommunityWeb.Areas.Identity.Pages.Account
                 return RedirectToPage("./Login", new { ReturnUrl = returnUrl });
             }
 
+            // Sign in the user with this external login provider if the user already has a login.
             var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false, bypassTwoFactor: true);
             if (result.Succeeded)
             {
@@ -134,6 +133,7 @@ namespace FUCommunityWeb.Areas.Identity.Pages.Account
             }
             else
             {
+                // If the user does not have an account, then ask the user to create an account.
                 ReturnUrl = returnUrl;
                 ProviderDisplayName = info.ProviderDisplayName;
                 if (info.Principal.HasClaim(c => c.Type == ClaimTypes.Email))
@@ -147,18 +147,9 @@ namespace FUCommunityWeb.Areas.Identity.Pages.Account
                 return Page();
             }
         }
-        private async Task EnsureRolesExistAsync()
-        {
-            if (!await _roleManager.RoleExistsAsync(SD.Role_User_Student))
-            {
-                await _roleManager.CreateAsync(new IdentityRole(SD.Role_User_Student));
-                await _roleManager.CreateAsync(new IdentityRole(SD.Role_User_Mentor));
-                await _roleManager.CreateAsync(new IdentityRole(SD.Role_User_Admin));
-            }
-        }
+
         public async Task<IActionResult> OnPostConfirmationAsync(string returnUrl = null)
         {
-            await EnsureRolesExistAsync();
             returnUrl = returnUrl ?? Url.Content("~/");
             // Get the information about the user from the external login provider
             var info = await _signInManager.GetExternalLoginInfoAsync();

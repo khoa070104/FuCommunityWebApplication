@@ -20,19 +20,21 @@ builder.Services.AddScoped<UserRepo>();
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<HomeRepo>();
 builder.Services.AddScoped<HomeService>();
-builder.Services.AddScoped<CourseRepo>(); // Đăng ký CourseRepo
-builder.Services.AddScoped<CourseService>(); // Đăng ký CourseService
+builder.Services.AddScoped<CourseRepo>(); 
+builder.Services.AddScoped<CourseService>();
+builder.Services.AddScoped<ForumRepo>(); 
+builder.Services.AddScoped<ForumService>(); 
 
-//var facebookAppId = builder.Configuration["Authentication:Facebook:AppId"];
-//var facebookAppSecret = builder.Configuration["Authentication:Facebook:AppSecret"];
+var facebookAppId = builder.Configuration["Authentication:Facebook:AppId"];
+var facebookAppSecret = builder.Configuration["Authentication:Facebook:AppSecret"];
 var googleClientId = builder.Configuration["Authentication:Google:ClientId"];
 var googleClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
 
-//builder.Services.AddAuthentication().AddFacebook(option =>
-//{
-//	option.AppId = facebookAppId;
-//	option.AppSecret = facebookAppSecret;
-//});
+builder.Services.AddAuthentication().AddFacebook(option =>
+{
+	option.AppId = facebookAppId;
+	option.AppSecret = facebookAppSecret;
+});
 builder.Services.AddAuthentication().AddGoogle(option =>
 {
 	option.ClientId = googleClientId;

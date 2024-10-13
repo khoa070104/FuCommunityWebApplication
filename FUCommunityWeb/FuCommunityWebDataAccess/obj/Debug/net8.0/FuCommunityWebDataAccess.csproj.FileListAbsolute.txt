@@ -88,24 +88,6 @@ D:\Documents\FuWebNew\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDat
 D:\Documents\FuWebNew\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\obj\Debug\net8.0\FuCommunityWebDataAccess.pdb
 D:\Documents\FuWebNew\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\obj\Debug\net8.0\FuCommunityWebDataAccess.genruntimeconfig.cache
 D:\Documents\FuWebNew\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\obj\Debug\net8.0\ref\FuCommunityWebDataAccess.dll
-D:\Semester 5\C#\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\bin\Debug\net8.0\FuCommunityWebDataAccess.deps.json
-D:\Semester 5\C#\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\bin\Debug\net8.0\FuCommunityWebDataAccess.runtimeconfig.json
-D:\Semester 5\C#\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\bin\Debug\net8.0\FuCommunityWebDataAccess.dll
-D:\Semester 5\C#\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\bin\Debug\net8.0\FuCommunityWebDataAccess.pdb
-D:\Semester 5\C#\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\bin\Debug\net8.0\FuCommunityWebModels.dll
-D:\Semester 5\C#\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\bin\Debug\net8.0\FuCommunityWebModels.pdb
-D:\Semester 5\C#\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\obj\Debug\net8.0\FuCommunityWebDataAccess.csproj.AssemblyReference.cache
-D:\Semester 5\C#\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\obj\Debug\net8.0\FuCommunityWebDataAccess.GeneratedMSBuildEditorConfig.editorconfig
-D:\Semester 5\C#\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\obj\Debug\net8.0\FuCommunityWebDataAccess.AssemblyInfoInputs.cache
-D:\Semester 5\C#\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\obj\Debug\net8.0\FuCommunityWebDataAccess.AssemblyInfo.cs
-D:\Semester 5\C#\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\obj\Debug\net8.0\FuCommunityWebDataAccess.csproj.CoreCompileInputs.cache
-D:\Semester 5\C#\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\obj\Debug\net8.0\FuCommunityWebDataAccess.sourcelink.json
-D:\Semester 5\C#\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\obj\Debug\net8.0\FuCommun.87D80B4A.Up2Date
-D:\Semester 5\C#\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\obj\Debug\net8.0\FuCommunityWebDataAccess.dll
-D:\Semester 5\C#\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\obj\Debug\net8.0\refint\FuCommunityWebDataAccess.dll
-D:\Semester 5\C#\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\obj\Debug\net8.0\FuCommunityWebDataAccess.pdb
-D:\Semester 5\C#\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\obj\Debug\net8.0\FuCommunityWebDataAccess.genruntimeconfig.cache
-D:\Semester 5\C#\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\obj\Debug\net8.0\ref\FuCommunityWebDataAccess.dll
 D:\Documents\FuTest\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\bin\Debug\net8.0\FuCommunityWebDataAccess.deps.json
 D:\Documents\FuTest\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\bin\Debug\net8.0\FuCommunityWebDataAccess.runtimeconfig.json
 D:\Documents\FuTest\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\bin\Debug\net8.0\FuCommunityWebDataAccess.dll
@@ -160,39 +142,20 @@ D:\Documents\FuWebTest2\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebD
 D:\Documents\FuWebTest2\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\obj\Debug\net8.0\FuCommun.87D80B4A.Up2Date
 D:\Documents\FuWebTest2\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\obj\Debug\net8.0\FuCommunityWebDataAccess.genruntimeconfig.cache
 D:\Documents\FuWebTest2\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\obj\Debug\net8.0\ref\FuCommunityWebDataAccess.dll
-E:\FuWebTest\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\bin\Debug\net8.0\FuCommunityWebDataAccess.deps.json
-E:\FuWebTest\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\bin\Debug\net8.0\FuCommunityWebDataAccess.runtimeconfig.json
-E:\FuWebTest\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\bin\Debug\net8.0\FuCommunityWebDataAccess.dll
-E:\FuWebTest\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\bin\Debug\net8.0\FuCommunityWebDataAccess.pdb
-E:\FuWebTest\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\bin\Debug\net8.0\FuCommunityWebModels.dll
-E:\FuWebTest\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\bin\Debug\net8.0\FuCommunityWebModels.pdb
-E:\FuWebTest\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\obj\Debug\net8.0\FuCommunityWebDataAccess.csproj.AssemblyReference.cache
-E:\FuWebTest\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\obj\Debug\net8.0\FuCommunityWebDataAccess.GeneratedMSBuildEditorConfig.editorconfig
-E:\FuWebTest\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\obj\Debug\net8.0\FuCommunityWebDataAccess.AssemblyInfoInputs.cache
-E:\FuWebTest\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\obj\Debug\net8.0\FuCommunityWebDataAccess.AssemblyInfo.cs
-E:\FuWebTest\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\obj\Debug\net8.0\FuCommunityWebDataAccess.csproj.CoreCompileInputs.cache
-E:\FuWebTest\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\obj\Debug\net8.0\FuCommunityWebDataAccess.sourcelink.json
-E:\FuWebTest\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\obj\Debug\net8.0\FuCommun.87D80B4A.Up2Date
-E:\FuWebTest\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\obj\Debug\net8.0\FuCommunityWebDataAccess.dll
-E:\FuWebTest\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\obj\Debug\net8.0\refint\FuCommunityWebDataAccess.dll
-E:\FuWebTest\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\obj\Debug\net8.0\FuCommunityWebDataAccess.pdb
-E:\FuWebTest\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\obj\Debug\net8.0\FuCommunityWebDataAccess.genruntimeconfig.cache
-E:\FuWebTest\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\obj\Debug\net8.0\ref\FuCommunityWebDataAccess.dll
-D:\Documents\FuComunityVersionManager\FuWebTest4\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\bin\Debug\net8.0\FuCommunityWebDataAccess.deps.json
-D:\Documents\FuComunityVersionManager\FuWebTest4\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\bin\Debug\net8.0\FuCommunityWebDataAccess.runtimeconfig.json
-D:\Documents\FuComunityVersionManager\FuWebTest4\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\bin\Debug\net8.0\FuCommunityWebDataAccess.dll
-D:\Documents\FuComunityVersionManager\FuWebTest4\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\bin\Debug\net8.0\FuCommunityWebDataAccess.pdb
-D:\Documents\FuComunityVersionManager\FuWebTest4\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\bin\Debug\net8.0\FuCommunityWebModels.dll
-D:\Documents\FuComunityVersionManager\FuWebTest4\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\bin\Debug\net8.0\FuCommunityWebModels.pdb
-D:\Documents\FuComunityVersionManager\FuWebTest4\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\obj\Debug\net8.0\FuCommunityWebDataAccess.csproj.AssemblyReference.cache
-D:\Documents\FuComunityVersionManager\FuWebTest4\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\obj\Debug\net8.0\FuCommunityWebDataAccess.GeneratedMSBuildEditorConfig.editorconfig
-D:\Documents\FuComunityVersionManager\FuWebTest4\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\obj\Debug\net8.0\FuCommunityWebDataAccess.AssemblyInfoInputs.cache
-D:\Documents\FuComunityVersionManager\FuWebTest4\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\obj\Debug\net8.0\FuCommunityWebDataAccess.AssemblyInfo.cs
-D:\Documents\FuComunityVersionManager\FuWebTest4\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\obj\Debug\net8.0\FuCommunityWebDataAccess.csproj.CoreCompileInputs.cache
-D:\Documents\FuComunityVersionManager\FuWebTest4\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\obj\Debug\net8.0\FuCommunityWebDataAccess.sourcelink.json
-D:\Documents\FuComunityVersionManager\FuWebTest4\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\obj\Debug\net8.0\FuCommun.87D80B4A.Up2Date
-D:\Documents\FuComunityVersionManager\FuWebTest4\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\obj\Debug\net8.0\FuCommunityWebDataAccess.dll
-D:\Documents\FuComunityVersionManager\FuWebTest4\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\obj\Debug\net8.0\refint\FuCommunityWebDataAccess.dll
-D:\Documents\FuComunityVersionManager\FuWebTest4\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\obj\Debug\net8.0\FuCommunityWebDataAccess.pdb
-D:\Documents\FuComunityVersionManager\FuWebTest4\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\obj\Debug\net8.0\FuCommunityWebDataAccess.genruntimeconfig.cache
-D:\Documents\FuComunityVersionManager\FuWebTest4\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebDataAccess\obj\Debug\net8.0\ref\FuCommunityWebDataAccess.dll
+D:\Semester 5\C#\hoangcc\FuCommunityWebApplication-hoangcc\FUCommunityWeb\FuCommunityWebDataAccess\bin\Debug\net8.0\FuCommunityWebDataAccess.deps.json
+D:\Semester 5\C#\hoangcc\FuCommunityWebApplication-hoangcc\FUCommunityWeb\FuCommunityWebDataAccess\bin\Debug\net8.0\FuCommunityWebDataAccess.runtimeconfig.json
+D:\Semester 5\C#\hoangcc\FuCommunityWebApplication-hoangcc\FUCommunityWeb\FuCommunityWebDataAccess\bin\Debug\net8.0\FuCommunityWebDataAccess.dll
+D:\Semester 5\C#\hoangcc\FuCommunityWebApplication-hoangcc\FUCommunityWeb\FuCommunityWebDataAccess\bin\Debug\net8.0\FuCommunityWebDataAccess.pdb
+D:\Semester 5\C#\hoangcc\FuCommunityWebApplication-hoangcc\FUCommunityWeb\FuCommunityWebDataAccess\bin\Debug\net8.0\FuCommunityWebModels.dll
+D:\Semester 5\C#\hoangcc\FuCommunityWebApplication-hoangcc\FUCommunityWeb\FuCommunityWebDataAccess\bin\Debug\net8.0\FuCommunityWebModels.pdb
+D:\Semester 5\C#\hoangcc\FuCommunityWebApplication-hoangcc\FUCommunityWeb\FuCommunityWebDataAccess\obj\Debug\net8.0\FuCommunityWebDataAccess.csproj.AssemblyReference.cache
+D:\Semester 5\C#\hoangcc\FuCommunityWebApplication-hoangcc\FUCommunityWeb\FuCommunityWebDataAccess\obj\Debug\net8.0\FuCommunityWebDataAccess.GeneratedMSBuildEditorConfig.editorconfig
+D:\Semester 5\C#\hoangcc\FuCommunityWebApplication-hoangcc\FUCommunityWeb\FuCommunityWebDataAccess\obj\Debug\net8.0\FuCommunityWebDataAccess.AssemblyInfoInputs.cache
+D:\Semester 5\C#\hoangcc\FuCommunityWebApplication-hoangcc\FUCommunityWeb\FuCommunityWebDataAccess\obj\Debug\net8.0\FuCommunityWebDataAccess.AssemblyInfo.cs
+D:\Semester 5\C#\hoangcc\FuCommunityWebApplication-hoangcc\FUCommunityWeb\FuCommunityWebDataAccess\obj\Debug\net8.0\FuCommunityWebDataAccess.csproj.CoreCompileInputs.cache
+D:\Semester 5\C#\hoangcc\FuCommunityWebApplication-hoangcc\FUCommunityWeb\FuCommunityWebDataAccess\obj\Debug\net8.0\FuCommun.87D80B4A.Up2Date
+D:\Semester 5\C#\hoangcc\FuCommunityWebApplication-hoangcc\FUCommunityWeb\FuCommunityWebDataAccess\obj\Debug\net8.0\FuCommunityWebDataAccess.dll
+D:\Semester 5\C#\hoangcc\FuCommunityWebApplication-hoangcc\FUCommunityWeb\FuCommunityWebDataAccess\obj\Debug\net8.0\refint\FuCommunityWebDataAccess.dll
+D:\Semester 5\C#\hoangcc\FuCommunityWebApplication-hoangcc\FUCommunityWeb\FuCommunityWebDataAccess\obj\Debug\net8.0\FuCommunityWebDataAccess.pdb
+D:\Semester 5\C#\hoangcc\FuCommunityWebApplication-hoangcc\FUCommunityWeb\FuCommunityWebDataAccess\obj\Debug\net8.0\FuCommunityWebDataAccess.genruntimeconfig.cache
+D:\Semester 5\C#\hoangcc\FuCommunityWebApplication-hoangcc\FUCommunityWeb\FuCommunityWebDataAccess\obj\Debug\net8.0\ref\FuCommunityWebDataAccess.dll

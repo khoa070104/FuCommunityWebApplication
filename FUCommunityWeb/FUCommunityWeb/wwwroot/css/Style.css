@@ -1550,10 +1550,8 @@ textarea.form-control {
 
     .sign-up .btn-outline-light {
         flex: 1;
-        /*
-            margin-left: 5px;
+        margin-left: 5px;
         margin-right: 5px;
-        */
         color: #20B486;
         background-color: white;
     }
