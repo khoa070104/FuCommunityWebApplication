@@ -16,7 +16,7 @@ namespace FUCommunityWeb.Controllers
         private readonly UserService _userService;
         private UserVM userVM;
 
-		public ProfileController(UserManager<IdentityUser> userManager, UserService userService, ApplicationDbContext context)
+        public ProfileController(UserManager<IdentityUser> userManager, UserService userService, ApplicationDbContext context)
         {
             _userManager = userManager;
             _userService = userService;
@@ -28,7 +28,7 @@ namespace FUCommunityWeb.Controllers
             var user = await _userService.GetUserByIdAsync(userId);
             userVM = new()
             {
-				User = user,
+                User = user,
             };
             ViewData["CurrentPage"] = Url.Action("Index");
             return View(userVM);

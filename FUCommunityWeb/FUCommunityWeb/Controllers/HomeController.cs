@@ -8,6 +8,8 @@ using FuCommunityWebModels.Models;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using FuCommunityWebModels.ViewModels.FuCommunityWebModels.ViewModels;
+using Microsoft.Extensions.Hosting;
+using System.Net;
 
 namespace FUCommunityWeb.Controllers
 {
@@ -18,13 +20,15 @@ namespace FUCommunityWeb.Controllers
         private readonly UserService _userService;
 		private readonly HomeService _homeService;
         private readonly CourseService _courseService;
-        
-        public HomeController(ILogger<HomeController> logger, UserService userService, HomeService homeService, CourseService courseService, ApplicationDbContext context)
+        private readonly ForumService _forumService;
+
+        public HomeController(ILogger<HomeController> logger, UserService userService, HomeService homeService, CourseService courseService, ApplicationDbContext context, ForumService forumService)
 		{
 			_logger = logger;
             _userService = userService;
             _homeService = homeService;
             _courseService = courseService;
+            _forumService = forumService;
             _context = context;
         }
         public IActionResult Index()
@@ -76,11 +80,7 @@ namespace FUCommunityWeb.Controllers
         {
             return View();
         }
-        
-        public IActionResult ForumDetail()
-        {
-            return View();
-        }
+
         public IActionResult Home()
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -173,26 +173,6 @@ namespace FUCommunityWeb.Controllers
             {
                 return RedirectToAction("Index");
             }
-        }
-
-
-
-        public async Task<IActionResult> GetPosts(int page = 1, int pageSize = 2, string searchString = "")
-        {
-            var (posts, totalItems) = await _homeService.GetPostsAsync(page, pageSize, searchString);
-
-            return Json(new
-            {
-                posts = posts,
-                totalItems = totalItems,
-                pageSize = pageSize,
-                currentPage = page
-            });
-        }
-
-        public IActionResult Post()
-        {
-            return View();
         }
 
         public IActionResult SignIn()
