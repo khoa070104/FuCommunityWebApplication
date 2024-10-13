@@ -42,13 +42,13 @@
                         News
                     </div>
                     <ul class="list-group list-group-flush">
-                        @foreach (var course in Model.Courses.OrderByDescending(c => c.CreatedDate).Take(5))
+                        @foreach (var post in Model.Posts.OrderByDescending(c => c.CreatedDate).Take(5))
                         {
                             <li class="list-group-item d-flex align-items-center card-ul">
-                                <img src="@course.CourseImage" class="news-img me-3" alt="News">
+                                <img src="@post.PostImage" class="news-img me-3" alt="News">
                                 <div>
-                                    <div>@course.Title</div>
-                                    <div class="text-muted">@course.Description<br>@course.CreatedDate.ToString("HH:mm dd/MM/yyyy")</div>
+                                    <div>@post.Title</div>
+                                    <div class="text-muted">@post.Content<br>
                                 </div>
                             </li>
                         }

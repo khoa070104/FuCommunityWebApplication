@@ -25,12 +25,12 @@ namespace FUCommunityWeb.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var courses = await _homeService.GetAllCoursesAsync();
+            var posts = await _forumService.GetAllPostsAsync();
             var category = await _forumService.GetAllCategoryAsync();
 
             var forumViewModel = new ForumVM
             {
-                Courses = courses,
+                Posts = posts,
                 Categories = category
             };
 
