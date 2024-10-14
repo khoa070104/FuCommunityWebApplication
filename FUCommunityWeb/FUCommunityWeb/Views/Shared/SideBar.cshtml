@@ -3,21 +3,20 @@
 <div class="sidebar">
     <form asp-action="ChangeAvatar" method="post" enctype="multipart/form-data">
         <input type="hidden" name="currentPage" value="@ViewData["CurrentPage"]" />
-        <img src="@(Model.User.AvatarImage ?? "/img/avt2.jpg")" class="avatar mb-3 rounded-circle" alt="Avatar">
+        <div class="avatar-container position-relative" onclick="document.getElementById('file').click();">
+            <img src="@(Model.User.AvatarImage ?? "/img/avt2.jpg")" class="avatar mb-3 rounded-circle" alt="Avatar">
+            <div class="avatar-hover position-absolute top-50 start-50 translate-middle d-none">
+                <i class="fa fa-edit"></i>
+            </div>
+            <input type="file" name="file" id="file" accept="image/*" style="display: none;" onchange="this.form.submit()">
+        </div>
         <h4 class="username mb-1">@Model.User.FullName</h4>
         <p class="points">Points of week: <span>@Model.User.Point</span></p>
-        <div class="d-flex mb-3">
-            <input type="file" name="file" id="file" accept="image/*" style="display: none;" onchange="this.form.submit()">
-            <button type="button" class="btn btn-changeavt" onclick="document.getElementById('file').click();">Change Avatar</button>
-            <button class="btn btn-editprofile">Edit Profile</button>
-        </div>
+
     </form>
     <ul class="list-group">
         <li class="list-group-item">
-            <a href="@Url.Action("Index")"><i class="fa fa-cog"></i> Setting</a>
-        </li>
-        <li class="list-group-item">
-            <a href="@Url.Action("ContactUs")"><i class="fa fa-comment-dots"></i> Message</a>
+            <a href="@Url.Action("Index")"><i class="fa fa-user"></i> Profile</a>
         </li>
         <li class="list-group-item">
             <a href="@Url.Action("PostHistory")"><i class="fa fa-pencil-alt"></i> Post</a>

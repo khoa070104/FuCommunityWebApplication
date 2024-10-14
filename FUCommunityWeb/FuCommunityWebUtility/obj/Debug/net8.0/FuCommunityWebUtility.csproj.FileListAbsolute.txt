@@ -115,3 +115,16 @@ D:\Documents\FuComunityVersionManager\FuWebTest4\FuCommunityWebApplication\FUCom
 D:\Documents\FuComunityVersionManager\FuWebTest4\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebUtility\obj\Debug\net8.0\refint\FuCommunityWebUtility.dll
 D:\Documents\FuComunityVersionManager\FuWebTest4\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebUtility\obj\Debug\net8.0\FuCommunityWebUtility.pdb
 D:\Documents\FuComunityVersionManager\FuWebTest4\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebUtility\obj\Debug\net8.0\ref\FuCommunityWebUtility.dll
+D:\UNIVERSITY\Sem5\SWP391\1_version_1.0\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebUtility\bin\Debug\net8.0\FuCommunityWebUtility.deps.json
+D:\UNIVERSITY\Sem5\SWP391\1_version_1.0\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebUtility\bin\Debug\net8.0\FuCommunityWebUtility.dll
+D:\UNIVERSITY\Sem5\SWP391\1_version_1.0\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebUtility\bin\Debug\net8.0\FuCommunityWebUtility.pdb
+D:\UNIVERSITY\Sem5\SWP391\1_version_1.0\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebUtility\obj\Debug\net8.0\FuCommunityWebUtility.csproj.AssemblyReference.cache
+D:\UNIVERSITY\Sem5\SWP391\1_version_1.0\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebUtility\obj\Debug\net8.0\FuCommunityWebUtility.GeneratedMSBuildEditorConfig.editorconfig
+D:\UNIVERSITY\Sem5\SWP391\1_version_1.0\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebUtility\obj\Debug\net8.0\FuCommunityWebUtility.AssemblyInfoInputs.cache
+D:\UNIVERSITY\Sem5\SWP391\1_version_1.0\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebUtility\obj\Debug\net8.0\FuCommunityWebUtility.AssemblyInfo.cs
+D:\UNIVERSITY\Sem5\SWP391\1_version_1.0\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebUtility\obj\Debug\net8.0\FuCommunityWebUtility.csproj.CoreCompileInputs.cache
+D:\UNIVERSITY\Sem5\SWP391\1_version_1.0\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebUtility\obj\Debug\net8.0\FuCommunityWebUtility.sourcelink.json
+D:\UNIVERSITY\Sem5\SWP391\1_version_1.0\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebUtility\obj\Debug\net8.0\FuCommunityWebUtility.dll
+D:\UNIVERSITY\Sem5\SWP391\1_version_1.0\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebUtility\obj\Debug\net8.0\refint\FuCommunityWebUtility.dll
+D:\UNIVERSITY\Sem5\SWP391\1_version_1.0\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebUtility\obj\Debug\net8.0\FuCommunityWebUtility.pdb
+D:\UNIVERSITY\Sem5\SWP391\1_version_1.0\FuCommunityWebApplication\FUCommunityWeb\FuCommunityWebUtility\obj\Debug\net8.0\ref\FuCommunityWebUtility.dll

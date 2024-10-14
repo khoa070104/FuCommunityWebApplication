@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FuCommunityWebDataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241011153405_adddb")]
-    partial class adddb
+    [Migration("20241014040002_v1")]
+    partial class v1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -481,11 +481,9 @@ namespace FuCommunityWebDataAccess.Migrations
 
                     b.HasKey("ReviewID");
 
-                    b.HasIndex("UserID");
+                    b.HasIndex("CourseID");
 
-                    b.HasIndex("CourseID", "UserID")
-                        .IsUnique()
-                        .HasDatabaseName("IX_Review_CourseID_UserID");
+                    b.HasIndex("UserID");
 
                     b.ToTable("Reviews");
                 });
@@ -965,8 +963,8 @@ namespace FuCommunityWebDataAccess.Migrations
 
             modelBuilder.Entity("FuCommunityWebModels.Models.Review", b =>
                 {
-                    b.HasOne("FuCommunityWebModels.Models.Course", "Course")
-                        .WithMany("Reviews")
+                    b.HasOne("FuCommunityWebModels.Models.Course", null)
+                        .WithMany()
                         .HasForeignKey("CourseID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -976,8 +974,6 @@ namespace FuCommunityWebDataAccess.Migrations
                         .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Course");
 
                     b.Navigation("User");
                 });
@@ -1067,8 +1063,6 @@ namespace FuCommunityWebDataAccess.Migrations
                     b.Navigation("Enrollments");
 
                     b.Navigation("Lessons");
-
-                    b.Navigation("Reviews");
                 });
 
             modelBuilder.Entity("FuCommunityWebModels.Models.Lesson", b =>

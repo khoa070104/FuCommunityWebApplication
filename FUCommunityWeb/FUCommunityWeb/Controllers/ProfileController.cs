@@ -75,7 +75,7 @@ namespace FUCommunityWeb.Controllers
             return encryptedFileName + fileExtension;
         }
         [HttpPost]
-        public async Task<IActionResult> Index(UserVM userVM)
+        public async Task<IActionResult> EditProfile(UserVM userVM)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var user = await _userService.GetUserByIdAsync(userId);

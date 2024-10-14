@@ -10,14 +10,14 @@ using Microsoft.AspNetCore.Identity;
 
 namespace FuCommunityWebDataAccess.Data
 {
-	public class ApplicationDbContext : IdentityDbContext<IdentityUser> // Sử dụng ApplicationUser thay vì IdentityUser
-	{
+    public class ApplicationDbContext : IdentityDbContext<IdentityUser> // Sử dụng ApplicationUser thay vì IdentityUser
+    {
         public ApplicationDbContext()
         {
         }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
-		{
-		}
+        {
+        }
         public DbSet<ApplicationUser> Users { get; set; }
         public DbSet<Post> Posts { get; set; }
         public DbSet<Comment> Comments { get; set; }
@@ -62,7 +62,7 @@ namespace FuCommunityWebDataAccess.Data
             modelBuilder.Entity<Document>()
                 .HasOne(d => d.User)
                 .WithMany(u => u.Documents)
-                .HasForeignKey(d => d.UserID); 
+                .HasForeignKey(d => d.UserID);
 
             // Thiết lập quan hệ giữa ApplicationUser và Enrollment
             modelBuilder.Entity<Enrollment>()
