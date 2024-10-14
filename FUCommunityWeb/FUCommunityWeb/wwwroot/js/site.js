@@ -1,4 +1,11 @@
-﻿function initBackToTopButton() {
+﻿document.querySelector('.avatar-container').addEventListener('mouseover', function () {
+    document.querySelector('.avatar-hover').classList.remove('d-none');
+});
+
+document.querySelector('.avatar-container').addEventListener('mouseout', function () {
+    document.querySelector('.avatar-hover').classList.add('d-none');
+});
+function initBackToTopButton() {
     const backToTopBtn = document.querySelector('.back-to-top');
 
     // Show or hide the button based on scroll position
