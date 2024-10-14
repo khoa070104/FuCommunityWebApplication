@@ -1,0 +1,36 @@
+﻿@{
+    ViewData["Title"] = "Kết quả thanh toán";
+}
+
+<div class="container">
+    <div class="header clearfix">
+        <h3 class="text-muted">Kết quả thanh toán</h3>
+    </div>
+    <div class="table-responsive">
+        <p>@ViewBag.Message</p>
+        @if (ViewBag.TerminalID != null)
+        {
+            <p>Mã Website (Terminal ID): @ViewBag.TerminalID</p>
+        }
+        @if (ViewBag.OrderId != null)
+        {
+            <p>Mã giao dịch thanh toán: @ViewBag.OrderId</p>
+        }
+        @if (ViewBag.VnpayTranNo != null)
+        {
+            <p>Mã giao dịch tại VNPAY: @ViewBag.VnpayTranNo</p>
+        }
+        @if (ViewBag.Amount != null)
+        {
+            <p>Số tiền thanh toán (VND): @ViewBag.Amount</p>
+        }
+        @if (ViewBag.BankCode != null)
+        {
+            <p>Ngân hàng thanh toán: @ViewBag.BankCode</p>
+        }
+    </div>
+    <footer class="footer">
+        <p>&copy; VNPAY 2020</p>
+    </footer>
+</div>
+<script src="~/js/bootstrap.min.js"></script>

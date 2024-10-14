@@ -16,25 +16,22 @@ namespace FUCommunityWeb.Controllers
         private readonly ILogger<PaymentController> _logger;
         private readonly VnPayService _vnPayService;
         private readonly OrderRepo _orderRepository;
-        private readonly ApplicationDbContext _context;
+        private readonly UserService _userService;
 
-
-        public PaymentController(IConfiguration configuration, ILogger<PaymentController> logger, VnPayService vnPayService, OrderRepo orderRepository, ApplicationDbContext context)
+        public PaymentController(IConfiguration configuration, ILogger<PaymentController> logger, VnPayService vnPayService, OrderRepo orderRepository, UserService userService)
         {
             _configuration = configuration;
             _logger = logger;
             _vnPayService = vnPayService;
             _orderRepository = orderRepository;
-            _context = context;
+            _userService = userService;
         }
 
-        // Index Action (formerly in HomeController)
         public IActionResult Index()
         {
             return View();
         }
 
-        // Pay Actions
         [HttpGet]
         public IActionResult Pay()
         {
@@ -44,21 +41,19 @@ namespace FUCommunityWeb.Controllers
         [HttpPost]
         public async Task<IActionResult> Pay(OrderInfo order, string paymentMethod, string locale, int Amount)
         {
-            // Lấy thông tin người dùng hiện tại từ Claim
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (string.IsNullOrEmpty(userId))
             {
                 return Unauthorized();
             }
 
-            // Ghi log để kiểm tra paymentMethod
             _logger.LogInformation($"Received payment method: {paymentMethod}");
 
             if (string.IsNullOrEmpty(paymentMethod))
             {
                 _logger.LogWarning("Payment method is null or empty.");
                 ModelState.AddModelError("paymentMethod", "Vui lòng chọn phương thức thanh toán.");
-                return View(order); // Trả lại form nếu không có phương thức thanh toán nào được chọn
+                return View(order);
             }
 
             if (Amount <= 0)
@@ -68,13 +63,11 @@ namespace FUCommunityWeb.Controllers
                 return View(order);
             }
 
-            // Thiết lập chi tiết đơn hàng
-            order.Amount = Amount; // Sử dụng số tiền người dùng nhập
+            order.Amount = Amount;
             order.Status = "0";
             order.CreatedDate = DateTime.Now;
-            order.UserID = userId; // Gắn UserId cho đơn hàng
+            order.UserID = userId;
 
-            // Xác định BankCode dựa trên phương thức thanh toán được chọn
             string bankCode = paymentMethod switch
             {
                 "VNPAYQR" => "VNPAYQR",
@@ -85,34 +78,22 @@ namespace FUCommunityWeb.Controllers
 
             order.BankCode = bankCode;
 
-            // Lưu đơn hàng vào cơ sở dữ liệu
             await _orderRepository.AddOrderAsync(order);
 
-            // Ghi log để kiểm tra bankCode
             _logger.LogInformation($"Determined BankCode: {bankCode}");
 
-            // Xác định ngôn ngữ (locale)
             string selectedLocale = locale switch
             {
                 "en" => "en",
                 _ => "vn",
             };
 
-            // Tạo URL thanh toán
             string paymentUrl = _vnPayService.CreateRequestUrl(order, bankCode, selectedLocale);
             _logger.LogInformation($"Generated VNPAY URL: {paymentUrl}");
 
-            // Điều hướng tới URL thanh toán
             return Redirect(paymentUrl);
         }
 
-
-
-
-
-
-
-        // QueryDR Actions
         [HttpGet]
         public IActionResult QueryDR()
         {
@@ -127,7 +108,6 @@ namespace FUCommunityWeb.Controllers
             return View();
         }
 
-        // Refund Actions
         [HttpGet]
         public IActionResult Refund()
         {
@@ -142,7 +122,6 @@ namespace FUCommunityWeb.Controllers
             return View();
         }
 
-        // IPN Action
         [HttpPost]
         public async Task<IActionResult> IPN()
         {
@@ -170,7 +149,6 @@ namespace FUCommunityWeb.Controllers
                 string responseCode = sortedVnpayData["vnp_ResponseCode"];
                 string transactionStatus = sortedVnpayData["vnp_TransactionStatus"];
 
-                // Retrieve order from database using orderId
                 OrderInfo order = await _orderRepository.GetOrderByIdAsync(orderId);
 
                 if (order != null)
@@ -181,20 +159,17 @@ namespace FUCommunityWeb.Controllers
                         {
                             if (responseCode == "00" && transactionStatus == "00")
                             {
-                                // Payment successful
                                 _logger.LogInformation($"Payment successful, OrderId={orderId}, VNPAY TranId={vnpayTranId}");
                                 order.Status = "1";
                                 ViewBag.Message = "Giao dịch thành công";
                             }
                             else
                             {
-                                // Payment failed
                                 _logger.LogInformation($"Payment failed, OrderId={orderId}, VNPAY TranId={vnpayTranId}, ResponseCode={responseCode}");
                                 order.Status = "2";
                                 ViewBag.Message = $"Có lỗi xảy ra. Mã lỗi: {responseCode}";
                             }
 
-                            // Update order status in database
                             await _orderRepository.UpdateOrderAsync(order);
 
                             returnContent = "{\"RspCode\":\"00\",\"Message\":\"Confirm Success\"}";
@@ -223,8 +198,6 @@ namespace FUCommunityWeb.Controllers
             return Content(returnContent, "application/json");
         }
 
-
-        // Return Action
         [HttpGet]
         public async Task<IActionResult> Return()
         {
@@ -249,31 +222,24 @@ namespace FUCommunityWeb.Controllers
                 {
                     ViewBag.Message = "Giao dịch được thực hiện thành công. Cảm ơn quý khách đã sử dụng dịch vụ";
 
-                    // Lấy OrderId từ VNPAY
                     var orderId = Convert.ToInt64(sortedVnpayData["vnp_TxnRef"]);
                     var amount = Convert.ToInt64(sortedVnpayData["vnp_Amount"]) / 100;
 
-                    // Lấy thông tin đơn hàng từ cơ sở dữ liệu
                     var order = await _orderRepository.GetOrderByIdAsync(orderId);
 
-                    if (order != null && order.Status == "0") // Trạng thái "0" là chưa xử lý
+                    if (order != null && order.Status == "0")
                     {
-                        // Đánh dấu đơn hàng là đã hoàn thành
                         order.Status = "1";
                         await _orderRepository.UpdateOrderAsync(order);
 
-                        // Lấy thông tin người dùng từ Claim
                         var userId = order.UserID;
-                        var user = await _context.Users.FindAsync(userId);
+                        var user = await _userService.GetUserByIdAsync(userId);
 
                         if (user != null)
                         {
-                            // Cộng số điểm tương ứng với số tiền đã nạp
                             user.Point += amount / 1000;
 
-                            // Cập nhật thông tin người dùng
-                            _context.Users.Update(user);
-                            await _context.SaveChangesAsync();
+                            await _userService.UpdateUserAsync(user);
 
                             _logger.LogInformation($"User {user.UserName} đã được cộng {amount} điểm.");
                         }
@@ -281,7 +247,6 @@ namespace FUCommunityWeb.Controllers
                 }
                 else if (responseCode == "24")
                 {
-                    // Điều hướng người dùng trở lại trang thanh toán
                     return RedirectToAction("Pay", "VnPay");
                 }
                 else
@@ -296,8 +261,5 @@ namespace FUCommunityWeb.Controllers
 
             return View();
         }
-
-
-
     }
 }
