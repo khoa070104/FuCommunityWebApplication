@@ -1,4 +1,5 @@
-﻿/*--------------------Header Styles--------------------*/
+﻿
+/*--------------------Header Styles--------------------*/
 .header {
     background-color: #FFFF;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -62,6 +63,32 @@
         box-shadow: 0 0 10px rgb(32, 180, 134, 0.6);
     }
 
+.btn-1 {
+    background: linear-gradient(135deg, #20B486 20%, #A3E4D7 100%);
+    color: #FFFFFF;
+    border-radius: 10px;
+    padding: 12px 24px; 
+    font-size: 1.1rem;
+    font-weight: 600;
+    border: none;
+    box-shadow: 0 8px 15px rgba(32, 180, 134, 0.3);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+    .btn-1:hover {
+        background-color: #20B486;
+        color: #FFFFFF;
+        box-shadow: 0 8px 25px rgba(32, 180, 134, 0.8);
+        transform: translateY(-3px);
+    }
+
+    .btn-1:active {
+        transform: translateY(1px); 
+        box-shadow: 0 5px 10px rgba(32, 180, 134, 0.2);
+    }
+
+
 .btn, .btn-red {
     font-family: inherit; /* Giữ nguyên font chữ */
     font-size: inherit; /* Giữ nguyên kích thước chữ */
@@ -97,6 +124,20 @@
         background-color: #e0e5e4;
         color: #aeb2b1;
         box-shadow: 0 0 10px rgb(0, 0, 0, 0.6);
+    }
+
+.btn-outline-light {
+    flex: 1;
+    margin-left: 5px;
+    margin-right: 5px;
+    color: #20B486;
+    background-color: white;
+}
+
+    .btn-outline-light:hover {
+        color: #fff;
+        background-color: #20B486;
+        border-color: #20B486;
     }
 
 .header .btn-explore {
@@ -1251,8 +1292,7 @@
     border-bottom: none;
 }
 
-/* -------------------------------------- */
-/* Center the Profile Section */
+/* -------------------PROFILE------------------- */
 .profile {
     padding: 30px;
     margin: auto;
@@ -1283,16 +1323,58 @@
     }
 
     /* Avatar */
-    .profile .avatar {
-        width: 100px;
-        height: 100px;
-        margin-bottom: 10px;
-        border: 1px solid #00796b;
-        padding: 1px;
+    .profile .avatar-container {
+        position: relative;
         display: block;
+        width: 150px;
+        height: 150px;
+        margin-bottom: 10px;
         margin-left: auto;
         margin-right: auto;
+        cursor: pointer;
+        text-align: center;
     }
+
+    .profile .avatar {
+        width: 100%;
+        height: 100%;
+        border: 1px solid #00796b;
+        padding: 1px;
+        border-radius: 50%;
+        transition: opacity 0.3s ease-in-out;
+    }
+
+    .profile .avatar-container:hover .avatar {
+        opacity: 0.7;
+    }
+
+    .profile .avatar-hover {
+        color: white;
+        font-size: 24px;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(0, 0, 0, 0.5);
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%); /* Căn giữa lớp phủ */
+    }
+
+    .profile .avatar-container:hover .avatar-hover {
+        display: flex;
+    }
+
+
+.username, .points {
+    text-align: center;
+}
+
+
+
 
 /* Center Username and Points */
 .username, .points {
@@ -1646,19 +1728,7 @@ textarea.form-control {
             border: none;
         }
 
-    .sign-in .btn-outline-light {
-        flex: 1;
-        margin-left: 5px;
-        margin-right: 5px;
-        color: #20B486;
-        background-color: white;
-    }
 
-        .sign-in .btn-outline-light:hover {
-            color: #fff;
-            background-color: #20B486;
-            border-color: #20B486;
-        }
 
     .sign-in .forgot-text {
         color: white;
@@ -1905,56 +1975,67 @@ textarea.form-control {
 }
 
 /*------------EXTERNAL-LOGIN------------*/
-
 .external-email {
     max-width: 600px;
     margin: 80px auto;
     padding: 30px;
-    background-color: #f0fff1;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(145deg, #E0FFF7, #E8F9F1);
+    border-radius: 16px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
 }
+
+    .external-email:hover {
+        transform: scale(1.02);
+    }
 
     .external-email h1 {
         font-size: 3rem;
         text-align: center;
         color: #20B486;
         margin-bottom: 30px;
+        letter-spacing: 2px;
+        font-weight: bold;
     }
 
     .external-email h2 {
-        font-size: 1.5rem;
-        color: #000000;
+        font-size: 1.75rem;
+        color: #333333;
         text-align: center;
         margin-bottom: 20px;
+        font-style: italic;
     }
 
 #external-login-description {
-    font-size: 1rem;
+    font-size: 1.1rem;
     color: #5a5a5a;
     text-align: center;
     margin-bottom: 30px;
+    line-height: 1.5;
 }
 
 .form-floating input,
 .form-floating select {
-    border-radius: 8px;
-    padding: 10px;
-    border: 1px solid #b1ea99;
+    border-radius: 12px;
+    padding: 12px;
+    border: 1px solid #20B486;
+    background-color: #FFFFFF;
     font-size: 1rem;
-    color: #333;
+    color: #333333;
     width: 100%;
     box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
     .form-floating input:focus,
     .form-floating select:focus {
-        border-color: #1aff00;
-        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        border-color: #FFD3B6;
+        box-shadow: 0 0 10px rgba(255, 211, 182, 0.5);
     }
 
 .form-floating .form-control::placeholder {
     color: #888;
+    font-style: italic;
 }
 
 .form-floating input:placeholder-shown + label {
@@ -1966,9 +2047,8 @@ textarea.form-control {
     transform: translateY(-150%);
     opacity: 0.65;
     font-size: 12px;
+    transition: all 0.3s ease;
 }
-
-
 
 /*------------REGISTER-CONFIRMATION------------*/
 
@@ -1996,7 +2076,7 @@ textarea.form-control {
     }
 
     .register-confirmation a {
-        color: #20B486;
+        color: rgb(32, 180, 134);
         text-decoration: none;
     }
 
