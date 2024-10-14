@@ -8,9 +8,11 @@
 <body> 
     <div class="sign-in">
         <div class="container d-flex">
+            <div class="background-image">
             <div class="row w-100">
                 <div class="col-md-8 d-none d-md-block"></div>
                 <div class="col-md-4">
+
                     <div class="login-container p-4">
                         <h2 class="text-white">Log In</h2>
                         <p class="text-white">Welcome to FUNNYCODE!</p>
@@ -29,7 +31,7 @@
                                 <label class="form-check-label" for="Input.RememberMe">Remember me?</label>
                                 <a asp-page="/Account/ForgotPassword" class="float-end forgot-text" >Forgot Password?</a>
                             </div>
-                            <button id="login-submit" type="submit" class="btn btn-signin w-100">Log in</button>
+                                <button id="login-submit" type="submit" class="btn-1 w-100">LOGIN</button>
                         </form>
                         <hr class="text-white">
                         <p class="text-center text-white">Or continue with</p>
@@ -53,7 +55,7 @@
                                         
                                                 @foreach (var provider in Model.ExternalLogins!)
                                                 {
-                                                <button type="submit" class="btn btn-primary w-100" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account"> 
+                                                <button type="submit" class="btn btn-outline-light w-100" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">
                                                     <p style="margin-bottom: 0px;">
                                                         <i class="fab fa-google"></i>    
                                                         @provider.DisplayName
@@ -65,14 +67,15 @@
                             }
                         </div>
                         <p class="text-center text-white mt-3 custom-link">
-                            By registering you agree with our <a href="#">Terms and Conditions</a>
+                            By registering you agree with our <a href="#" style="text-decoration:none;">Terms and Conditions</a>
                         </p>
                         <p class="text-center text-white">
-                            Don't have an account? <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" class="register-link fw-bold">Register Here</a>
+                                Don't have an account? <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" class="register-link fw-bold">Register</a> Here
                         </p>
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     </div>
 
