@@ -10,14 +10,14 @@ using Microsoft.AspNetCore.Identity;
 
 namespace FuCommunityWebDataAccess.Data
 {
-	public class ApplicationDbContext : IdentityDbContext<IdentityUser> // Sử dụng ApplicationUser thay vì IdentityUser
-	{
+    public class ApplicationDbContext : IdentityDbContext<IdentityUser> // Sử dụng ApplicationUser thay vì IdentityUser
+    {
         public ApplicationDbContext()
         {
         }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
-		{
-		}
+        {
+        }
         public DbSet<ApplicationUser> Users { get; set; }
         public DbSet<Post> Posts { get; set; }
         public DbSet<Comment> Comments { get; set; }
@@ -30,6 +30,7 @@ namespace FuCommunityWebDataAccess.Data
         public DbSet<Point> Points { get; set; }
         public DbSet<Review> Reviews { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<OrderInfo> Orders { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder); // Gọi base method để đảm bảo cấu hình mặc định của Identity
@@ -62,7 +63,7 @@ namespace FuCommunityWebDataAccess.Data
             modelBuilder.Entity<Document>()
                 .HasOne(d => d.User)
                 .WithMany(u => u.Documents)
-                .HasForeignKey(d => d.UserID); 
+                .HasForeignKey(d => d.UserID);
 
             // Thiết lập quan hệ giữa ApplicationUser và Enrollment
             modelBuilder.Entity<Enrollment>()
@@ -140,6 +141,12 @@ namespace FuCommunityWebDataAccess.Data
                 .HasOne(p => p.Document) // Post có một Document
                 .WithMany() // Không cần giữ thông tin Post trong Document
                 .HasForeignKey(p => p.DocumentID); // Khóa ngoại
+
+            // Thiết lập quan hệ giữa ApplicationUser và OrderInfo
+            modelBuilder.Entity<OrderInfo>()
+                .HasOne(o => o.User)
+                .WithMany(u => u.Orders) // ApplicationUser có nhiều OrderInfo
+                .HasForeignKey(o => o.UserID); // OrderInfo có một User thông qua UserId
         }
     }
 }
