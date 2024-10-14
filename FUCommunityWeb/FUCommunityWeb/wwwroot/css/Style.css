@@ -1374,8 +1374,6 @@
 }
 
 
-
-
 /* Center Username and Points */
 .username, .points {
     text-align: center;
@@ -1390,14 +1388,6 @@
 .profile .points {
     font-size: 14px;
     margin-top: 0;
-}
-
-/* Button */
-.profile .btn {
-    padding: 8px 15px;
-    font-size: 14px;
-    margin: 10px auto;
-    width: fit-content;
 }
 
 /* List Group Items */
@@ -1470,53 +1460,77 @@
 }
 
 /* My Profile Section Styling */
-.my-profile {
-    padding: 40px;
-    background-color: #20B486;
-    border-radius: 10px;
+.profile .container-fluid {
+    margin-top: 20px;
 }
 
-.custom-my-profile {
-    font-style: italic;
-    color: #fff;
+.profile .form-group label {
     font-weight: bold;
+    color: #333;
 }
 
-/* Profile Form Styling */
-.profile-form {
+.profile .form-control {
+    border: 1px solid #20B486;
+    padding: 10px;
+    border-radius: 5px;
     width: 100%;
+    box-sizing: border-box; 
 }
 
-.form-group {
-    margin-bottom: 15px;
+.profile select.form-control,
+.profile input.form-control,
+.profile textarea.form-control {
+    width: 100%; 
 }
 
-.form-control {
+.profile .form-control:focus {
+    border-color: #20B486;
+    box-shadow: 0 0 5px rgba(32, 180, 134, 0.5);
+}
+
+.profile .btn-savechange {
+    background-color: #20B486;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+    .profile .btn-savechange:hover {
+        background-color: #1e9e74;
+    }
+
+.profile .text-custom-light {
+    color: #777;
+}
+
+/* Custom p Section */
+.profile .points {
+    background-color: #cfe7de;
+    padding: 10.5px 9px;
     border-radius: 5px;
 }
 
-textarea.form-control {
-    resize: vertical;
-}
-
-/* Label Styling */
-.form-group label {
-    color: #fff;
-    font-weight: bold;
-}
-
-.btn-savechange {
-    background-color: #F2FFFB;
-    color: #20B486;
-    border-radius: 20px;
-    padding: 8px 16px;
-    transition: background-color 0.3s ease;
-    border: 1px solid #20B486;
-}
-
-    .btn-savechange:hover {
-        box-shadow: 0 0 20px rgb(242,255,251, 0.8);
+    .profile .points a {
+        color: black;
+        text-decoration: none;
     }
+
+        .profile .points a:hover {
+            color: #1e9e74;
+        }
+
+
+/* Responsive */
+@media (max-width: 768px) {
+    .profile .col-sm-6,
+    .profile .col-sm-4,
+    .profile .col-sm-12 {
+        margin-bottom: 10px;
+    }
+}
 
 /*------------FORUM------------*/
 .forum .forum-title {
@@ -2088,10 +2102,8 @@ textarea.form-control {
 /*------------LOGOUT-PAGE------------*/
 
 .logout-page {
-    max-width: 600px;
-    margin: 80px auto;
     padding: 30px;
-    background-color: #f0fff1;
+    background-color: #E8FAFB;
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
