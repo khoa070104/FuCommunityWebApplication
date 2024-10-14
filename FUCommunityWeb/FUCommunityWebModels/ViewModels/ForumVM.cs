@@ -9,7 +9,7 @@ namespace FuCommunityWebModels.ViewModels
 {
     public class ForumVM
     {
-        public List<Course> Courses { get; set; }
+        public List<Post> Posts { get; set; }
         public List<Category> Categories { get; set; }  
     }
 }
