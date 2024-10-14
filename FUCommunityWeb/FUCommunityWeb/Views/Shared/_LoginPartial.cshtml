@@ -16,17 +16,9 @@
                 <span class="ms-2">@UserManager.GetUserName(User)</span>
             </a>
             <ul class="dropdown-menu" aria-labelledby="profileDropdown">
-                <li>
-                    <a class="dropdown-item" href="/Profile/Index">
-                        <i class="fas fa-user"></i> My Profile
-                    </a>
-                </li>
-                <li>
-                    <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index">
-                        <i class="fas fa-key"></i> Authenticator
-                    </a>
-                </li>
-                <li><a class="dropdown-item" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })"><i class="fas fa-sign-out-alt"></i>Log out</a></li>
+                <li><a class="dropdown-item" href="/Profile/Index">My Profile</a></li>
+                <li><a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index">Setting</a></li>
+                <li><a class="dropdown-item" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">Log out</a></li>
             </ul>
         </div>
     </div>
