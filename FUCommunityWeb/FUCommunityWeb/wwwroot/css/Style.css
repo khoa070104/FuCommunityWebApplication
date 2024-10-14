@@ -34,9 +34,9 @@
     text-decoration: none;
 }
 
-.btn-right a.btn:hover {
-    color: #20B486;
-}
+    .btn-right a.btn:hover {
+        color: #20B486;
+    }
 
 .btn-right a.btn-signin {
     color: #000;
@@ -62,7 +62,26 @@
         box-shadow: 0 0 10px rgb(32, 180, 134, 0.6);
     }
 
+.btn, .btn-red {
+    font-family: inherit; /* Giữ nguyên font chữ */
+    font-size: inherit; /* Giữ nguyên kích thước chữ */
+    display: inline-block;
+}
 
+
+.btn-red {
+    background-color: #FF4B4B;
+    color: #FFFFFF;
+    border-radius: 20px;
+    padding: 8px 16px;
+    transition: background-color 0.3s ease;
+}
+
+    .btn-red:hover {
+        background-color: #FFECEC;
+        color: #FF4B4B;
+        box-shadow: 0 0 10px rgba(255, 75, 75, 0.6);
+    }
 
 
 /* Style for Cancel Button */
@@ -518,6 +537,115 @@
     padding: 30px;
 }
 
+/* Responsive Adjustments */
+@media (max-width: 1200px) {
+    /* Adjusts the hero section for medium-large screens */
+    .home-container .hero-section {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .home-container .text-section {
+        margin-right: 0;
+        text-align: center;
+    }
+
+        .home-container .text-section h1 {
+            font-size: 3rem;
+        }
+
+    .home-container .image-section {
+        width: 50%;
+    }
+}
+
+@media (max-width: 992px) {
+    /* Service card adjustments */
+    .home-container .service-card {
+        width: 48%;
+        margin-bottom: 20px;
+    }
+
+        .home-container .service-card .icon {
+            font-size: 1.5rem;
+        }
+
+    .home-container .title {
+        font-size: 1.5rem;
+    }
+
+    /* Course card adjustments */
+    .home-container .course-section .course-card {
+        flex-direction: column;
+    }
+
+    .home-container .course-image {
+        width: 100%;
+    }
+
+    .home-container .course-info {
+        padding: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Hero section adjustments for tablets */
+    .home-container .hero-section {
+        margin-bottom: 30px;
+    }
+
+    .home-container .text-section h1 {
+        font-size: 2.5rem;
+    }
+
+    .home-container .service-card {
+        width: 100%;
+    }
+
+    .home-container .course-card {
+        max-width: 100%;
+    }
+
+    .home-container .image-section img {
+        width: 40vw;
+    }
+}
+
+@media (max-width: 576px) {
+    /* Header adjustments for smaller devices */
+    .header .navbar-brand img {
+        height: 30px;
+    }
+
+    .header .btn-explore {
+        width: 100%;
+    }
+
+    /* Hero section adjustments for mobile devices */
+    .home-container .hero-section {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .home-container .text-section {
+        margin-right: 0;
+        text-align: center;
+    }
+
+        .home-container .text-section h1 {
+            font-size: 2rem;
+        }
+
+    .home-container .service-card {
+        width: 100%;
+    }
+
+    /* Feedback and footer adjustments */
+    .home-feedback .testimonial-card {
+        padding: 10px;
+    }
+}
+
 /*-----------------------About Us-----------------------*/
 .about-us {
     background-color: #fff;
@@ -931,9 +1059,9 @@
 
 /*--------------------COURSE-DETAIL--------------------*/
 .course-detail .course-header {
-        background-color: #F2FFFB;
-        padding: 50px 200px;
-    }
+    background-color: #F2FFFB;
+    padding: 50px 200px;
+}
 
 .breadcrumb {
     list-style: none;
@@ -1201,6 +1329,35 @@
         background-color: #e0e0e0;
     }
 
+    .profile .list-group-item a {
+        display: block;
+        width: 100%;
+        padding: 0px;
+        text-decoration: none;
+        color: inherit;
+    }
+
+        .profile .list-group-item a:hover {
+            color: #000;
+        }
+
+.modal-footer .btn-cancel {
+    margin: 0;
+}
+
+
+.modal-footer .btn {
+    margin: 0;
+    padding: 10px 10px;
+    font-size: 15px;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end; /* Căn nút về phía phải */
+    gap: 10px; /* Tạo khoảng cách giữa hai nút */
+}
+
 /*------------COURSE-HISTORY------------*/
 .profile .course-history .custom-table {
     padding: 15px;
@@ -1421,29 +1578,73 @@ textarea.form-control {
 
 /*------------SIGN-IN------------*/
 .sign-in {
-    width: 100%;
-    background-image: url('/img/fn_SignIn_1.png');
-    background-size: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    transform-origin: top left;
-    height: 100%;
+    background-color: #2F5361;
+    padding-top: 50px; /* Thêm khoảng cách với header */
+    padding-bottom: 200px; /* Thêm khoảng cách với footer */
+    min-height: calc(100vh - 200px); /* Đảm bảo form không bị dính vào header và footer */
 }
 
+    .sign-in .background-image {
+        width: 100%;
+        background-image: url('/img/Login-image.png'); /* Đặt URL cho ảnh nền */
+        background-size: cover; /* Ảnh nền sẽ thu nhỏ theo kích thước màn hình */
+        background-repeat: no-repeat;
+        background-position: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        margin: 0;
+    }
+
     .sign-in .login-container {
-        background: linear-gradient(to right, #a7acae7c, #283D43);
+        background: rgba(61, 94, 107, 0.85);
         padding: 40px;
         border-radius: 10px;
         backdrop-filter: blur(10px);
         box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
         width: 100%;
-        max-width: 800px;
+        max-width: 600px;
         margin-left: auto;
-        margin-right: 40px;
+        margin-right: auto;
     }
+
+    .sign-in .form-control {
+        background-color: rgba(255, 255, 255, 0.2);
+        border: none;
+        color: white;
+        height: 50px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+    }
+
+        .sign-in .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .sign-in .form-control:focus {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            outline: none;
+            border: 1px solid #20B486;
+        }
+
+    .sign-in .btn-primary {
+        background-color: #20B486;
+        color: white;
+        border: none;
+        padding: 12px 0;
+        font-weight: bold;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+
+        .sign-in .btn-primary:hover {
+            background-color: #168f65;
+            color: white;
+            border: none;
+        }
 
     .sign-in .btn-outline-light {
         flex: 1;
@@ -1459,16 +1660,18 @@ textarea.form-control {
             border-color: #20B486;
         }
 
-    .sign-in .text-white a {
+    .sign-in .forgot-text {
+        color: white;
         text-decoration: none;
     }
 
-        .sign-in .text-white a:hover {
-            text-decoration: none;
+        .sign-in .forgot-text:hover {
+            color: #20B486;
+            text-decoration: underline;
         }
 
     .sign-in .custom-link a {
-        color: #f2f2f2;
+        color: #F2FFFB;
     }
 
         .sign-in .custom-link a:hover {
@@ -1476,46 +1679,80 @@ textarea.form-control {
             text-decoration: none;
         }
 
-    .sign-in .register-link,
-    .forgot-text {
+    .sign-in .register-link {
         color: white;
         text-decoration: none;
     }
 
-        .sign-in .register-link:hover,
-        .forgot-text:hover {
+        .sign-in .register-link:hover {
             color: #20B486;
             text-decoration: underline;
         }
 
+    .sign-in .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        height: 100vh;
+        padding: 20px; /* Thêm khoảng cách cho header và footer */
+    }
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .sign-in .login-container {
+        padding: 20px;
+        max-width: 90%;
+    }
+
+    .sign-in .background-image {
+        background-position: center;
+    }
+
+    .sign-in h2 {
+        font-size: 24px;
+    }
+
+    .sign-in .form-control {
+        height: 45px;
+    }
+
+    .sign-in .btn-signin {
+        padding: 10px 0;
+    }
+}
+
 /*------------SIGN-UP------------*/
 .sign-up {
     background-color: #2F5361;
+    padding-top: 50px; /* Thêm khoảng cách với header */
+    padding-bottom: 200px; /* Thêm khoảng cách với footer */
+    min-height: calc(100vh - 200px); /* Đảm bảo form không bị dính vào header và footer */
 }
 
     .sign-up .background-image {
         width: 100%;
-        background-image: url('/img/fn_SignUp_1.jpg');
-        background-size: contain;
+        background-image: url('/img/Register-image.png');
+        background-size: cover; /* Ảnh nền sẽ thu nhỏ theo kích thước màn hình */
         background-repeat: no-repeat;
-        background-position: calc(100% + 150px) center;
+        background-position: center;
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 100vh;
+        height: 100%;
         margin: 0;
     }
 
     .sign-up .signup-container {
-        background: linear-gradient(to right,#3D5E6B,#647B84);
+        background: rgba(61, 94, 107, 0.85);
         padding: 40px;
         border-radius: 10px;
         backdrop-filter: blur(10px);
         box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
         width: 100%;
-        max-width: 700px;
+        max-width: 600px;
         margin-left: auto;
-        margin-right: 0;
+        margin-right: auto;
     }
 
     .sign-up .form-control {
@@ -1525,6 +1762,7 @@ textarea.form-control {
         height: 50px;
         margin-top: 10px;
         margin-bottom: 10px;
+        border-radius: 5px;
     }
 
         .sign-up .form-control::placeholder {
@@ -1534,26 +1772,30 @@ textarea.form-control {
         .sign-up .form-control:focus {
             background-color: rgba(255, 255, 255, 0.2);
             color: white;
+            outline: none;
+            border: 1px solid #20B486;
         }
 
     .sign-up .btn-primary {
-        background-color: white;
-        color: #20B486;
+        background-color: #20B486;
+        color: white;
         border: none;
+        padding: 12px 0;
+        font-weight: bold;
+        border-radius: 5px;
+        transition: background-color 0.3s;
     }
 
         .sign-up .btn-primary:hover {
-            background-color: #20B486;
+            background-color: #168f65;
             color: white;
             border: none;
         }
 
     .sign-up .btn-outline-light {
         flex: 1;
-        /*
-            margin-left: 5px;
+        margin-left: 5px;
         margin-right: 5px;
-        */
         color: #20B486;
         background-color: white;
     }
@@ -1566,10 +1808,12 @@ textarea.form-control {
 
     .sign-up .text-white a {
         text-decoration: none;
+        color: #F2FFFB;
     }
 
         .sign-up .text-white a:hover {
-            text-decoration: none;
+            text-decoration: underline;
+            color: #20B486;
         }
 
     .sign-up .custom-link a {
@@ -1592,6 +1836,244 @@ textarea.form-control {
             color: #20B486;
             text-decoration: underline;
         }
+
+    .sign-up .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        height: 100vh;
+        padding: 20px; /* Thêm khoảng cách cho header và footer */
+    }
+
+    .sign-up .row {
+        width: 100%;
+    }
+
+    .sign-up .col-md-4 {
+        max-width: 400px; /* Giới hạn chiều rộng form */
+        width: 100%;
+    }
+
+    .sign-up .col-md-8 {
+        display: none; /* Ẩn cột thừa trên màn hình nhỏ */
+    }
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .sign-up .signup-container {
+        padding: 20px;
+        max-width: 90%;
+    }
+
+    .sign-up .background-image {
+        background-position: center;
+    }
+
+    .sign-up h2 {
+        font-size: 24px;
+    }
+
+    .sign-up .form-control {
+        height: 45px;
+    }
+
+    .sign-up .btn-primary {
+        padding: 10px 0;
+    }
+}
+
+@media (min-width: 768px) {
+    .sign-up .col-md-8 {
+        display: block; /* Hiển thị lại cột khi màn hình lớn hơn 768px */
+    }
+}
+
+.sign-up .form-check {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.sign-up .form-check-input {
+    margin-right: 10px;
+}
+
+.sign-up .custom-link {
+    display: inline-block;
+}
+
+/*------------EXTERNAL-LOGIN------------*/
+
+.external-email {
+    max-width: 600px;
+    margin: 80px auto;
+    padding: 30px;
+    background-color: #f0fff1;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+    .external-email h1 {
+        font-size: 3rem;
+        text-align: center;
+        color: #20B486;
+        margin-bottom: 30px;
+    }
+
+    .external-email h2 {
+        font-size: 1.5rem;
+        color: #000000;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+#external-login-description {
+    font-size: 1rem;
+    color: #5a5a5a;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.form-floating input,
+.form-floating select {
+    border-radius: 8px;
+    padding: 10px;
+    border: 1px solid #b1ea99;
+    font-size: 1rem;
+    color: #333;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+    .form-floating input:focus,
+    .form-floating select:focus {
+        border-color: #1aff00;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    }
+
+.form-floating .form-control::placeholder {
+    color: #888;
+}
+
+.form-floating input:placeholder-shown + label {
+    display: none;
+}
+
+.form-floating input:not(:placeholder-shown) + label {
+    display: block;
+    transform: translateY(-150%);
+    opacity: 0.65;
+    font-size: 12px;
+}
+
+
+
+/*------------REGISTER-CONFIRMATION------------*/
+
+.register-confirmation {
+    max-width: 600px;
+    margin: 80px auto;
+    padding: 30px;
+    background-color: #f0fff1;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+    .register-confirmation h1 {
+        font-size: 3rem;
+        text-align: center;
+        color: #20B486;
+        margin-bottom: 30px;
+    }
+
+    .register-confirmation p {
+        font-size: 1rem;
+        color: #000000;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .register-confirmation a {
+        color: #20B486;
+        text-decoration: none;
+    }
+
+        .register-confirmation a:hover {
+            color: #2ca61e;
+            text-decoration: underline;
+        }
+
+/*------------LOGOUT-PAGE------------*/
+
+.logout-page {
+    max-width: 600px;
+    margin: 80px auto;
+    padding: 30px;
+    background-color: #f0fff1;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+    .logout-page h1 {
+        font-size: 3rem;
+        text-align: center;
+        color: #20B486;
+        margin-bottom: 30px;
+    }
+
+    .logout-page p {
+        font-size: 1rem;
+        color: #000000;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .logout-page form {
+        text-align: center;
+    }
+
+/*------------FORGOT PASSWORD------------*/
+.forgot-password-container {
+    background-color: #2F5361; /* Màu nền xanh đậm */
+    padding-top: 50px;
+    padding-bottom: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    .forgot-password-container h1,
+    .forgot-password-container h2 {
+        color: white; /* Tiêu đề màu trắng */
+        text-align: center;
+    }
+
+    .forgot-password-container .form-container {
+        background: rgba(61, 94, 107, 0.85); /* Nền mờ */
+        padding: 40px;
+        border-radius: 10px;
+        backdrop-filter: blur(10px); /* Làm mờ nền phía sau */
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Hiệu ứng đổ bóng */
+        width: 100%;
+        max-width: 500px; /* Giới hạn chiều rộng */
+    }
+
+.text-danger {
+    color: #ff6b6b !important; /* Màu đỏ nổi bật cho các thông báo lỗi */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .forgot-password-container {
+        padding: 20px;
+    }
+
+        .forgot-password-container .form-container {
+            padding: 20px;
+        }
+}
 
 
 /*------------MENTOR-HALL------------*/
@@ -1718,71 +2200,72 @@ textarea.form-control {
 
 
 /*--------------------FOOTER--------------------*/
-.footer-content {
+footer .footer-content {
     display: flex;
+    flex-wrap: wrap; /* Cho phép các cột xuống dòng trên thiết bị nhỏ */
     justify-content: space-around;
     padding: 40px 40px;
     background-color: #0a0e17;
     color: #c1c1c1;
 }
 
-    .footer-content a {
+    footer .footer-content a {
         text-decoration: none; /* Remove underline */
         color: inherit; /* Use the current text color */
     }
 
-        .footer-content a:hover {
+        footer .footer-content a:hover {
             text-decoration: underline; /* Add underline on hover */
             color: #20B486; /* Change color on hover */
         }
 
-.social-icons a {
+footer .social-icons a {
     margin: 0 10px; /* Add spacing between icons */
     color: inherit; /* Use current color */
 }
 
-    .social-icons a:hover {
+    footer .social-icons a:hover {
         color: #20B486; /* Change color on hover for icons */
     }
 
-
-.column {
-    flex: 1;
+footer .column {
+    flex: 1 1 200px; /* Đảm bảo các cột co lại khi cần thiết */
     text-align: center;
+    padding: 10px 20px; /* Khoảng cách giữa các cột */
 }
 
-    .column i {
+    footer .column i {
         font-size: 100px;
         color: #d3d3d3;
         margin-bottom: 20px;
     }
 
-    .column h4 {
+    footer .column h4 {
         margin-bottom: 10px;
         color: #98A2B3;
     }
 
-    .column ul {
+    footer .column ul {
         list-style: none;
         padding: 0;
     }
 
-        .column ul li {
+        footer .column ul li {
             margin: 5px 0;
         }
 
-            .column ul li i {
+            footer .column ul li i {
                 margin-right: 8px;
             }
 
-.new-badge {
+footer .new-badge {
     background-color: #fff;
     color: #000;
     padding: 2px 5px;
     border-radius: 5px;
 }
 
-.footer-bottom {
+footer .footer-bottom {
     text-align: center;
     padding: 20px 0;
     font-size: 12px;
@@ -1790,13 +2273,12 @@ textarea.form-control {
     color: #98A2B3;
 }
 
-    .footer-bottom i {
+    footer .footer-bottom i {
         font-size: 20px;
         margin: 0 5px;
     }
 
-/* Thêm vào style.css */
-.back-to-top {
+footer .back-to-top {
     position: fixed;
     bottom: 20px; /* Adjust this value as needed */
     right: 20px; /* Adjust this value as needed */
@@ -1810,137 +2292,49 @@ textarea.form-control {
     cursor: pointer; /* Pointer cursor */
 }
 
-    .back-to-top:hover {
+    footer .back-to-top:hover {
         background-color: #1a9e72;
     }
 
-/* Responsive Adjustments */
-@media (max-width: 1200px) {
-    /* Adjusts the hero section for medium-large screens */
-    .home-container .hero-section {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .home-container .text-section {
-        margin-right: 0;
-        text-align: center;
-    }
-
-        .home-container .text-section h1 {
-            font-size: 3rem;
-        }
-
-    .home-container .image-section {
-        width: 50%;
-    }
-}
-
-@media (max-width: 992px) {
-    /* Service card adjustments */
-    .home-container .service-card {
-        width: 48%;
-        margin-bottom: 20px;
-    }
-
-        .home-container .service-card .icon {
-            font-size: 1.5rem;
-        }
-
-    .home-container .title {
-        font-size: 1.5rem;
-    }
-
-    /* Course card adjustments */
-    .home-container .course-section .course-card {
-        flex-direction: column;
-    }
-
-    .home-container .course-image {
-        width: 100%;
-    }
-
-    .home-container .course-info {
-        padding: 10px;
-    }
-}
-
+/* Responsive Footer */
 @media (max-width: 768px) {
-    /* Hero section adjustments for tablets */
-    .home-container .hero-section {
-        margin-bottom: 30px;
+    footer .footer-content {
+        flex-direction: column; /* Chuyển sang chiều dọc khi màn hình nhỏ */
+        padding: 20px;
     }
 
-    .home-container .text-section h1 {
-        font-size: 2.5rem;
+    footer .column {
+        margin-bottom: 20px; /* Thêm khoảng cách giữa các cột */
     }
 
-    .home-container .service-card {
-        width: 100%;
-    }
-
-    .home-container .course-card {
-        max-width: 100%;
-    }
-
-    .home-container .image-section img {
-        width: 40vw;
+    footer .back-to-top {
+        bottom: 15px;
+        right: 15px;
+        padding: 10px;
     }
 }
 
-@media (max-width: 576px) {
-    /* Header adjustments for smaller devices */
-    .header .navbar-brand img {
-        height: 30px;
-    }
-
-    .header .btn-explore {
-        width: 100%;
-    }
-
-    /* Hero section adjustments for mobile devices */
-    .home-container .hero-section {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .home-container .text-section {
-        margin-right: 0;
-        text-align: center;
-    }
-
-        .home-container .text-section h1 {
-            font-size: 2rem;
-        }
-
-    .home-container .service-card {
-        width: 100%;
-    }
-
-    /* Feedback and footer adjustments */
-    .home-feedback .testimonial-card {
+@media (max-width: 480px) {
+    footer .footer-content {
         padding: 10px;
     }
 
-    .footer {
-        flex-direction: column;
-        text-align: center;
+    footer .column {
+        padding: 10px 0;
     }
 
-        .footer .column {
-            margin-bottom: 20px;
-        }
-
-    .footer-bottom {
-        padding: 10px;
+    footer .footer-bottom {
+        font-size: 10px;
     }
 
-    /* Back to top button adjustments */
-    .back-to-top {
+    footer .back-to-top {
+        bottom: 10px;
+        right: 10px;
         padding: 8px;
-        font-size: 16px;
     }
 }
+
+
 
 /* ------------------ ADMIN ------------------ */
 .admin .sidebar {
