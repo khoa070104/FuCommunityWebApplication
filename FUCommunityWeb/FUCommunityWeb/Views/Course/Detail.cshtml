@@ -21,10 +21,11 @@
                     <span class="badge badge-secondary">Beginner</span>
                     <div class="star-icon">
                         <span class="badge badge-warning">
-                            @for (int i = 0; i < 5; i++)
-                            {
-                                <i class="fas fa-star"></i>
-                            }
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
                         </span>
                     </div>
                     <span class="badge badge-info">@Model.Course.Price points</span>
@@ -91,10 +92,10 @@
             <div class="button-row">
                 <button class="btn btn-custom">Add to favorites</button>
                 @if (currentUserId == @Model.Course.UserID)
-                                    {
-                                        <span class="text-success">Owner</span>
-                                    }
-                
+                {
+                    <span class="text-success">Owner</span>
+                }
+
                 else if (!Model.EnrolledCourses.Contains(@Model.Course.CourseID)) // Check if the user is not enrolled
                 {
                     @if (User.Identity.IsAuthenticated)

@@ -19,9 +19,9 @@ namespace FuCommunityWebServices.Services
             return await _courseRepo.GetAllCoursesAsync();
         }
 
-        public async Task<Course> GetCourseByIdAsync(int id)
+        public async Task<Course> GetCourseByIdAsync(int courseId)
         {
-            return await _courseRepo.GetCourseByIdAsync(id);
+            return await _courseRepo.GetCourseByIdAsync(courseId);
         }
 
         public async Task AddCourseAsync(Course course)
@@ -72,6 +72,56 @@ namespace FuCommunityWebServices.Services
         public async Task<List<Course>> GetHighestQualityCoursesAsync(int count)
         {
             return await _courseRepo.GetHighestQualityCoursesAsync(count);
+        }
+
+        public async Task<List<Category>> GetAllCategoriesAsync()
+        {
+            return await _courseRepo.GetAllCategoriesAsync();
+        }
+
+        public async Task<List<string>> GetAllSubjectCodesAsync()
+        {
+            return await _courseRepo.GetAllSubjectCodesAsync();
+        }
+
+        public async Task<List<Course>> GetFilteredCoursesAsync(string semester, string category, string subjectCode, string rate, string minPrice)
+        {
+            return await _courseRepo.GetFilteredCoursesAsync(semester, category, subjectCode, rate, minPrice);
+        }
+
+        public async Task<Lesson> GetLessonWithCourseAsync(int lessonId)
+        {
+            return await _courseRepo.GetLessonWithCourseAsync(lessonId);
+        }
+
+        public async Task<List<Lesson>> GetLessonsByCourseIdAsync(int courseId)
+        {
+            return await _courseRepo.GetLessonsByCourseIdAsync(courseId);
+        }
+
+        public async Task<List<int>> GetEnrolledCourseIdsAsync(string userId)
+        {
+            return await _courseRepo.GetEnrolledCourseIdsAsync(userId);
+        }
+
+        public async Task<ApplicationUser> GetUserByIdAsync(string userId)
+        {
+            return await _courseRepo.GetUserByIdAsync(userId);
+        }
+
+        public async Task<bool> IsUserEnrolledInCourseAsync(string userId, int courseId)
+        {
+            return await _courseRepo.IsUserEnrolledInCourseAsync(userId, courseId);
+        }
+
+        public async Task EnrollUserInCourseAsync(Enrollment enrollment)
+        {
+            await _courseRepo.EnrollUserInCourseAsync(enrollment);
+        }
+
+        public async Task UpdateUserAsync(ApplicationUser user)
+        {
+            await _courseRepo.UpdateUserAsync(user);
         }
     }
 }

@@ -18,15 +18,17 @@ namespace FuCommunityWebDataAccess.Repositories
 
         public async Task<List<Course>> GetAllCoursesAsync()
         {
-            return await _context.Courses.ToListAsync();
+            return await _context.Courses
+                .Include(c => c.User) 
+                .ToListAsync();
         }
 
-        public async Task<Course> GetCourseByIdAsync(int id)
+        public async Task<Course> GetCourseByIdAsync(int courseId)
         {
             return await _context.Courses
-                .Include(c => c.Lessons)
                 .Include(c => c.User)
-                .FirstOrDefaultAsync(c => c.CourseID == id);
+                .Include(c => c.Lessons)
+                .FirstOrDefaultAsync(c => c.CourseID == courseId);
         }
 
         public async Task AddCourseAsync(Course course)
@@ -94,6 +96,99 @@ namespace FuCommunityWebDataAccess.Repositories
                 .OrderByDescending(c => c.Price)
                 .Take(count)
                 .ToListAsync();
+        }
+
+        public async Task<List<Category>> GetAllCategoriesAsync()
+        {
+            return await _context.Categories.ToListAsync();
+        }
+
+        public async Task<List<string>> GetAllSubjectCodesAsync()
+        {
+            return await _context.Courses
+                .Select(c => c.Title)
+                .Distinct()
+                .OrderBy(title => title)
+                .ToListAsync();
+        }
+
+        public async Task<List<Course>> GetFilteredCoursesAsync(string semester, string category, string subjectCode, string rate, string minPrice)
+        {
+            var filteredCourses = _context.Courses.AsQueryable();
+
+            if (!string.IsNullOrEmpty(semester) && int.TryParse(semester, out int semesterInt))
+            {
+                filteredCourses = filteredCourses.Where(c => c.Semester == semesterInt);
+            }
+
+            if (!string.IsNullOrEmpty(category) && int.TryParse(category, out int categoryInt))
+            {
+                filteredCourses = filteredCourses.Where(c => c.CategoryID == categoryInt);
+            }
+
+            if (!string.IsNullOrEmpty(subjectCode))
+            {
+                filteredCourses = filteredCourses.Where(c => c.Title == subjectCode);
+            }
+
+            if (!string.IsNullOrEmpty(rate) && int.TryParse(rate, out int rateInt))
+            {
+                filteredCourses = filteredCourses
+                    .Where(c => c.Reviews.Any())
+                    .Where(c => c.Reviews.Average(r => r.Rating) >= rateInt);
+            }
+
+            if (!string.IsNullOrEmpty(minPrice) && decimal.TryParse(minPrice, out decimal priceDecimal))
+            {
+                filteredCourses = filteredCourses.Where(c => c.Price <= priceDecimal);
+            }
+
+            return await filteredCourses.ToListAsync();
+        }
+
+        public async Task<Lesson> GetLessonWithCourseAsync(int lessonId)
+        {
+            return await _context.Lessons
+                .Include(l => l.Course)
+                .FirstOrDefaultAsync(l => l.LessonID == lessonId);
+        }
+
+        public async Task<List<Lesson>> GetLessonsByCourseIdAsync(int courseId)
+        {
+            return await _context.Lessons
+                .Where(l => l.CourseID == courseId)
+                .OrderBy(l => l.LessonID)
+                .ToListAsync();
+        }
+
+        public async Task<List<int>> GetEnrolledCourseIdsAsync(string userId)
+        {
+            return await _context.Enrollment
+                .Where(e => e.UserID == userId)
+                .Select(e => e.CourseID)
+                .ToListAsync();
+        }
+
+        public async Task<ApplicationUser> GetUserByIdAsync(string userId)
+        {
+            return await _context.Users.FindAsync(userId);
+        }
+
+        public async Task<bool> IsUserEnrolledInCourseAsync(string userId, int courseId)
+        {
+            return await _context.Enrollment.AnyAsync(e => e.UserID == userId && e.CourseID == courseId);
+        }
+
+        public async Task EnrollUserInCourseAsync(Enrollment enrollment)
+        {
+            _context.Enrollment.Add(enrollment);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task UpdateUserAsync(ApplicationUser user)
+        {
+            _context.Users.Update(user);
+            await _context.SaveChangesAsync();
         }
     }
 }
