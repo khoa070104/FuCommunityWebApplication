@@ -9,9 +9,9 @@
         <div class="background-image">
             <div class="container d-flex">
                 <div class="row w-100">
-                    <div class="col-md-4">
+                    <div class="col-md-5">
                         <div class="signup-container p-4">
-                            <h2 class="text-white">Sign Up</h2>
+                            <h2 class="text-white">Register</h2>
                             <hr class="text-white">
                             <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
                                 <div asp-validation-summary="ModelOnly" style="list-style:none;" class="text-light" role="alert"></div>
@@ -46,11 +46,11 @@
                                 </div>
                                 
                                 <div class="form-check mb-3 text-white">
-                                    <input type="checkbox" class="form-check-input" id="agree-check" >
-                                    <label for="agree-check" class="text-center text-white mt-3 custom-link">By registering you agree with our <a href="#">Terms and Conditions</a></label>
-                                    
+                                    <input type="checkbox" class="form-check-input" id="agree-check">
+                                    <label for="agree-check" class="text-center text-white custom-link">By registering you agree with our <a href="#">Terms and Conditions</a></label>
+
                                 </div>
-                                <button type="submit" class="btn w-100">SIGN UP</button>
+                                <button type="submit" class="btn-1 w-100">SIGN UP</button>
                             </form>
                             <hr class="text-white">
                             <p class="text-center text-white">Or continue with</p>
@@ -90,7 +90,7 @@
                             </p>
                         </div>
                     </div>
-                    <div class="col-md-8 d-none d-md-block"></div>
+                    <div class="col-md-7 d-none d-md-block"></div>
                 </div>
             </div>
         </div>
