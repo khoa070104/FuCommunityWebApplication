@@ -1,4 +1,9 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Identity
+@using FuCommunityWebModels.Models
+@inject UserManager<IdentityUser> UserManager
+@inject FuCommunityWebServices.Services.UserService UserService
+
+@{
     if (ViewData.TryGetValue("ParentLayout", out var parentLayout) && parentLayout != null)
     {
         Layout = parentLayout.ToString();
@@ -7,30 +12,31 @@
     {
         Layout = "/Views/Shared/_Layout.cshtml";
     }
+
+    var userId = UserManager.GetUserId(User);
+    var user = UserService.GetUserByIdAsync(userId).Result;
 }
 
 <div class="container-fluid mt-4 profile">
     <h1 class="title text-start">AUTHENTICATOR</h1>
     <div class="row justify-content-center">
-            <!-- Sidebar -->
-            <div class="col-md-3">
-                <div class="sidebar">
+        <div class="col-md-3">
+            <div class="sidebar">
                 <div class="avatar-container position-relative">
-                    <img src="/img/avt2.jpg" class="avatar mb-3 rounded-circle" alt="Avatar">
+                    <img src="@(user.AvatarImage ?? "/img/avt2.jpg")" class="avatar mb-3 rounded-circle" alt="Avatar">
                     <div class="avatar-hover position-absolute top-50 start-50 translate-middle d-none">
                         <i class="bi bi-pencil-fill"></i>
                     </div>
                 </div>
-                    <h4 class="username mb-1">Nguyen Van A</h4> 
-                    <p class="points">Points of week: <span>100</span></p>
-                    <ul class="list-group">
-                        <partial name="_ManageNav"/>
-                    </ul>
-                </div>
+                <h4 class="username mb-1">@user.FullName</h4>
+                <p class="points">Points of week: <span>@user.Point</span></p>
+                <ul class="list-group">
+                    <partial name="_ManageNav"/>
+                </ul>
             </div>
-            <div class="col-md-9">
-                @RenderBody()
-            </div>
+        </div>
+        <div class="col-md-9">
+            @RenderBody()
         </div>
     </div>
 </div>
