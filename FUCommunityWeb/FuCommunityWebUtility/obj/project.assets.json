@@ -1053,19 +1053,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\NCPC\\.nuget\\packages\\": {}
+    "C:\\Users\\ADMIN\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Documents\\FuComunityVersionManager\\FuWebTest4\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebUtility\\FuCommunityWebUtility.csproj",
+      "projectUniqueName": "D:\\UNIVERSITY\\Sem5\\SWP391\\1_version_1.0\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebUtility\\FuCommunityWebUtility.csproj",
       "projectName": "FuCommunityWebUtility",
-      "projectPath": "D:\\Documents\\FuComunityVersionManager\\FuWebTest4\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebUtility\\FuCommunityWebUtility.csproj",
-      "packagesPath": "C:\\Users\\NCPC\\.nuget\\packages\\",
-      "outputPath": "D:\\Documents\\FuComunityVersionManager\\FuWebTest4\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebUtility\\obj\\",
+      "projectPath": "D:\\UNIVERSITY\\Sem5\\SWP391\\1_version_1.0\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebUtility\\FuCommunityWebUtility.csproj",
+      "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
+      "outputPath": "D:\\UNIVERSITY\\Sem5\\SWP391\\1_version_1.0\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebUtility\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\NCPC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\ADMIN\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1122,7 +1122,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
