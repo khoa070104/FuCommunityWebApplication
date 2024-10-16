@@ -20,6 +20,7 @@ namespace FuCommunityWebModels.ViewModels
         public string UserID { get; set; }
         public int PostID { get; set; }
         public string Tag { get; set; }
+        public int Type { get; set; }
         public DateTime? CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
         public string PostImage { get; set; }
