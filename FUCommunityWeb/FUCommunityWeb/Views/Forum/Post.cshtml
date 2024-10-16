@@ -41,6 +41,10 @@
     .custom-modal-width {
         max-width: 80%; /* Điều chỉnh theo tỷ lệ mong muốn, ví dụ 80% */
     }
+
+    .cke_notification {
+        display: none !important; /* Ẩn tất cả thông báo CKEditor */
+    }
 </style>
 
 <div class="container post">
@@ -57,7 +61,7 @@
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h1 class="display-6" style="font-weight: 500;">Topic: <span class="text-success">@Model.CategoryVM.CategoryName</span></h1>
         <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#createPostModal">
-            Create new post
+            Create New Post/Question
         </button>
     </div>
 
@@ -72,7 +76,7 @@
     <div id="postList"></div> <!-- Show postlist -->
     <div id="pagination" class="pagination"></div><!-- Show paging -->
 </div>
-<!-- Modal -->
+<!--Add Modal -->
 <div class="modal fade" id="createPostModal" tabindex="-1" aria-labelledby="createPostModalLabel" aria-hidden="true">
     <div class="modal-dialog custom-modal-width">
         <div class="modal-content">
@@ -81,9 +85,9 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form asp-action="CreatePost" asp-controller="Forum" enctype="multipart/form-data">
+                <form asp-action="Create" asp-controller="Forum" enctype="multipart/form-data">
                     <div class="mb-3">
-                        <label for="postTitle" class="form-label">Post Title</label>
+                        <label for="postTitle" class="form-label">Title</label>
                         <input asp-for="@Model.CreatePostVM.Title" type="text" class="form-control" id="postTitle" placeholder="Enter post title">
                     </div>
                     <div class="mb-3">
@@ -92,7 +96,14 @@
                     </div>
                     <div class="mb-3">
                         <label for="postContent" class="form-label">Content</label>
-                        <textarea asp-for="@Model.CreatePostVM.Content" class="form-control" id="editor" rows="3" placeholder="What's on your mind?"></textarea>
+                        <textarea asp-for="@Model.CreatePostVM.Content" class="form-control" id="editor" rows="3"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label>Type</label>
+                        <div>
+                            <input asp-for="@Model.CreatePostVM.Type" type="radio" value="1" /> Post
+                            <input asp-for="@Model.CreatePostVM.Type" type="radio" value="2" /> Question
+                        </div>
                     </div>
                     <div class="mb-3">
                         <input asp-for="@Model.CreatePostVM.PostImageFile" type="file" required />
@@ -109,15 +120,126 @@
         </div>
     </div>
 </div>
+<!-- Edit Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog custom-modal-width">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editModalLabel">Edit</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form asp-controller="Forum" asp-action="EditPost" method="post" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="editTitle" class="form-label">Title</label>
+                        <input asp-for="Post.Title" type="text" class="form-control" id="editTitle" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="editContent" class="form-label">Content</label>
+                        <textarea asp-for="Post.Content" class="form-control" id="editor2" rows="3"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editTag" class="form-label">Tag</label>
+                        <input asp-for="Post.Tag" class="form-control" id="editTag" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="editImg" class="form-label">Your Image Post</label>
+                        <input asp-for="CreatePostVM.PostImageFile" type="file" />
+                    </div>
+
+                    <input type="hidden" asp-for="@Model.Post.PostID" value="" />
+                    <input type="hidden" asp-for="@Model.CategoryVM.CategoryID" value="" />
+                    <input type="hidden" asp-for="@Model.CategoryVM.CategoryName" value="" />
+                    <div class="modal-footer">
+                        <button type="button" class="btn-cancel" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Delete Confirmation Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Confirm Delete</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete this?
+            </div>
+            <form asp-controller="Forum" asp-action="DeletePost">
+                <input type="hidden" asp-for="@Model.Post.PostID" value="" />
+                <input type="hidden" asp-for="@Model.CategoryVM.CategoryID" value="" />
+                <input type="hidden" asp-for="@Model.CategoryVM.CategoryName" value="" />
+
+                <div class="modal-footer">
+                    <button type="button" class="btn-cancel" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn">Delete</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 @section Scripts {
+    <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+    <script>
+        $(document).on("click", ".fa-edit", function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const categoryID = urlParams.get('CategoryID');
+            const categoryName = urlParams.get('CategoryName');
+
+            const postID = $(this).closest("tr").find("a").attr("href").split("=")[1];
+            const post = allPosts.find(p => p.postID == postID);
+
+            if (!post) {
+                console.error("Post not found!");
+                return;
+            }
+
+            $("#editTitle").val(post.title);
+            $("#editTag").val(post.tag);
+            $("#editPostID").val(post.postID);
+
+            const contentTextArea = $("#editContent");
+            contentTextArea.val(post.content);
+
+            if (CKEDITOR.instances['editContent']) {
+                CKEDITOR.instances['editContent'].destroy(true);
+            }
+            CKEDITOR.replace('editContent');
+
+            $("input[name='CategoryVM.CategoryID']").val(categoryID);
+            $("input[name='CategoryVM.CategoryName']").val(categoryName);
+            $("input[name='Post.PostID']").val(postID);
+
+            $("#editModal").modal("show");
+        });
+    </script>
+    <script>
+        $(document).on("click", ".fa-trash", function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const categoryID = urlParams.get('CategoryID');
+            const categoryName = urlParams.get('CategoryName');
+
+            const postID = $(this).closest("tr").find("a").attr("href").split("=")[1];
+
+            $("input[name='CategoryVM.CategoryID']").val(categoryID);
+            $("input[name='CategoryVM.CategoryName']").val(categoryName);
+            $("input[name='Post.PostID']").val(postID);
+
+            $("#deleteModal").modal("show");
+        });
+    </script>
     <script>
         let allPosts = [];
         const urlParams = new URLSearchParams(window.location.search);
-        const categoryID = urlParams.get('CategoryID'); // Lấy categoryID từ query string
+        const categoryID = urlParams.get('CategoryID');
 
         $(document).ready(function () {
-            // Gọi API để tải các bài viết
             function loadPosts(page = 1, pageSize = 5) {
                 if (!categoryID) {
                     console.error("Invalid category ID.");
@@ -143,7 +265,6 @@
                 });
             }
 
-            // Hiển thị danh sách bài viết
             function displayPosts(posts) {
                 $("#postList").empty();
 
@@ -156,17 +277,28 @@
                                             <th>Title</th>
                                             <th>CreateDate</th>
                                             <th>Tags</th>
+                                            <th>Type</th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                     `;
 
                 $.each(posts, function (index, post) {
+                    const postType = post.type === 1 ? "Post" : "Question";
+
                     tableContent += `
                             <tr>
                                 <td><a href="/Forum/PostDetail?postId=${post.postID}">${post.title}</a></td>
-                                <td>${post.createdDate}</td> 
+                                <td>${post.createdDate}</td>
                                 <td class="text-muted">${post.tag}</td>
+                                <td>${postType}</td>
+                                <td>
+                                    <i class="fas fa-edit table-settings me-2" data-bs-toggle="modal"
+                                        data-bs-target="#editModal"></i>
+                                    <i class="fas fa-trash table-settings" data-bs-toggle="modal"
+                                        data-bs-target="#deleteModal"></i>
+                                </td>
                             </tr>
                         `;
                 });
@@ -181,7 +313,6 @@
                 $("#postList").append(tableContent);
             }
 
-            // Xây dựng phân trang
             function buildPagination(totalItems, pageSize, currentPage) {
                 $("#pagination").empty();
                 const totalPages = Math.ceil(totalItems / pageSize);
@@ -195,43 +326,48 @@
                 }
             }
 
-            // Xử lý tìm kiếm
+            // Tìm kiếm chính xác hơn với các ký tự liên quan
             $("#searchString").on("input", function () {
-                const searchString = $(this).val().toLowerCase();
-                const filteredPosts = allPosts.filter(post => post.content.toLowerCase().includes(searchString));
+                const searchString = $(this).val().toLowerCase().trim();
+                const keywords = searchString.split(/\s+/).filter(Boolean); // tách từ và loại bỏ trống
+
+                const filteredPosts = allPosts.filter(post => {
+                    const titleMatches = keywords.every(keyword => post.title.toLowerCase().includes(keyword));
+                    const contentMatches = keywords.every(keyword => post.content.toLowerCase().includes(keyword));
+
+                    return titleMatches || contentMatches; // trả về true nếu có ít nhất một điều kiện thỏa mãn
+                });
                 displayPosts(filteredPosts);
             });
 
-            // Xử lý sự kiện click cho phân trang
             $(document).on("click", ".page-button", function () {
                 const page = $(this).data("page");
                 loadPosts(page);
             });
 
-            // Gọi API để tải bài viết
             loadPosts();
         });
     </script>
+    <script>
+        $(document).ready(function () {
+            $('#createPostModal').on('shown.bs.modal', function () {
+                CKEDITOR.replace('editor'); 
+            });
 
-    <script type="module">
-        import {
-            ClassicEditor,
-            Essentials,
-            Bold,
-            Italic,
-            Font,
-            Paragraph
-        } from 'ckeditor5';
+            if (!$('#createPostModal').hasClass('show')) {
+                CKEDITOR.replace('editor'); 
+            }
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#editModal').on('shown.bs.modal', function () {
+                CKEDITOR.replace('editor2');
+            });
 
-        ClassicEditor
-            .create(document.querySelector('#editor'), {
-                plugins: [Essentials, Bold, Italic, Font, Paragraph],
-                toolbar: [
-                    'undo', 'redo', '|', 'bold', 'italic', '|',
-                    'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor'
-                ]
-            })
-            .then( /* ... */)
-            .catch( /* ... */);
+            if (!$('#editModal').hasClass('show')) {
+                CKEDITOR.replace('editor2');
+            }
+        });
     </script>
 }
