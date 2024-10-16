@@ -1,4 +1,10 @@
-﻿@model FuCommunityWebModels.ViewModels.PostVM;
+﻿@using System.Security.Claims
+@model FuCommunityWebModels.ViewModels.PostVM;
+
+@{
+    var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+    var isPostOwner = Model.Post.UserID == currentUserId;
+}
 
 <body>
     <div class="container mt-4 forum-detail">
@@ -12,9 +18,12 @@
                         </div>
                         <img src="@Model.Post.PostImage" /></br>   
                         <p><strong>Votes:</strong> @Model.VoteCount</p>
-                        <button class="btn vote-btn" data-post-id="@Model.Post.PostID" data-point="1">
-                            <i class="fas fa-thumbs-up"></i> Vote
-                        </button>
+                        @if (!isPostOwner)
+                        {
+                            <button class="btn vote-btn" data-post-id="@Model.Post.PostID" data-point="1">
+                                <i class="fas fa-thumbs-up"></i> Vote
+                            </button>
+                        }
                     </div>
                 </div>
                 <div class="suggestions mt-3">
