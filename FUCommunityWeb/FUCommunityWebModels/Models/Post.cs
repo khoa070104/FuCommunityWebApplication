@@ -35,6 +35,7 @@ namespace FuCommunityWebModels.Models
 
         [MaxLength(50)]
         public string Status { get; set; }
+        public int Type { get; set; }
         public string Tag { get; set; }
         public int? DocumentID { get; set; }
 
