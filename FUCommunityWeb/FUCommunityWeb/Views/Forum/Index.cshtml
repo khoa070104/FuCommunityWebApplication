@@ -50,7 +50,7 @@
                                 <img src="@post.PostImage" class="news-img me-3" alt="News">
                                 <div>
                                     <div>@post.Title</div>
-                                    <div class="text-muted">@post.Content<br>
+                                    <div class="text-muted">@Html.Raw(System.Net.WebUtility.HtmlDecode(post.Content))<br>
                                 </div>
                             </li>
                         }
