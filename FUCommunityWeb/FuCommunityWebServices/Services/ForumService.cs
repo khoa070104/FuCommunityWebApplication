@@ -46,5 +46,45 @@ namespace FuCommunityWebServices.Services
         {
             return await _forumRepo.GetPostDetailsAsync(postID);
         }
+
+        public async Task UpdatePost(Post post)
+        {
+            await _forumRepo.UpdatePost(post);
+        }
+
+        public async Task DeletePost(int id)
+        {
+            await _forumRepo.DeletePost(id);
+        }
+
+        public async Task DeteleComment(int id)
+        {
+            await _forumRepo.DeleteComment(id);
+        }
+
+        public async Task<Comment> GetCommentByID(int id)
+        {
+            return await _forumRepo.GetCommentByID(id);
+        }
+
+        public async Task UpdateComment(Comment comment)
+        {
+            await _forumRepo.UpdateComment(comment);
+        }
+
+        public async Task<IsVote> GetVoteByUserAndPost(string userId, int postID)
+        {
+            return await _forumRepo.GetVoteByUserAndPost(userId, postID);
+        }
+
+        public async Task DeleteVote(IsVote vote)
+        {
+            await _forumRepo.DeleteVote(vote);
+        }
+
+        public async Task AddVote(IsVote vote)
+        {
+            await _forumRepo.AddVote(vote);
+        }
     }
 }

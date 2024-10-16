@@ -17,5 +17,6 @@ namespace FuCommunityWebModels.ViewModels
         public CategoryVM CategoryVM { get; set; } = new CategoryVM();
         public Post Post { get; set; } = new Post();
         public Comment Comment { get; set; } = new Comment();
+        public Point Point { get; set; } = new Point();
     }
 }

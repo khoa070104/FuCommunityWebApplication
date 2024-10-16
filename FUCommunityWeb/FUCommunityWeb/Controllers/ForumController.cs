@@ -3,8 +3,10 @@ using FuCommunityWebModels.Models;
 using FuCommunityWebModels.ViewModels;
 using FuCommunityWebServices.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Net;
 using System.Security.Claims;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace FUCommunityWeb.Controllers
 {
@@ -36,7 +38,6 @@ namespace FUCommunityWeb.Controllers
 
             return View(forumViewModel);
         }
-
         [HttpPost]
         public async Task<IActionResult> Comment(PostVM postVM)
         {
@@ -75,7 +76,7 @@ namespace FUCommunityWeb.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreatePost(PostVM postVM)
+        public async Task<IActionResult> Create(PostVM postVM)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
@@ -111,6 +112,7 @@ namespace FUCommunityWeb.Controllers
                 CreatedDate = DateTime.Now,
                 Status = "Published",
                 Tag = WebUtility.HtmlEncode(postVM.CreatePostVM.Tag),
+                Type = postVM.CreatePostVM.Type,
                 PostImage = postVM.CreatePostVM.PostImage
             };
 
@@ -141,5 +143,158 @@ namespace FUCommunityWeb.Controllers
             return View(modal);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> EditPost(PostVM postVM)
+        {
+            var existingPost = await _forumService.GetPostByID(postVM.Post.PostID);
+            if (existingPost == null)
+            {
+                return NotFound();
+            }
+
+            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (currentUserId != existingPost.UserID)
+            {
+                return Forbid();
+            }
+
+            if (postVM.CreatePostVM.PostImageFile != null && postVM.CreatePostVM.PostImageFile.Length > 0)
+            {
+                var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads");
+                if (!Directory.Exists(uploadsFolder))
+                {
+                    Directory.CreateDirectory(uploadsFolder);
+                }
+
+                var uniqueFileName = Guid.NewGuid().ToString() + "_" + Path.GetFileName(postVM.CreatePostVM.PostImageFile.FileName);
+                var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    await postVM.CreatePostVM.PostImageFile.CopyToAsync(fileStream);
+                }
+                existingPost.PostImage = "/uploads/" + uniqueFileName;
+            }
+
+            existingPost.Title = postVM.Post.Title;
+            existingPost.Content = WebUtility.HtmlEncode(postVM.Post.Content);
+            existingPost.Tag = postVM.Post.Tag;
+
+            await _forumService.UpdatePost(existingPost);
+
+            return RedirectToAction("Post", new
+            {
+                CategoryName = postVM.CategoryVM.CategoryName,
+                CategoryID = postVM.CategoryVM.CategoryID
+            });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeletePost(PostVM postVM)
+        {
+            var existingPost = await _forumService.GetPostByID(postVM.Post.PostID);
+            if (existingPost == null)
+            {
+                return NotFound();
+            }
+
+            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (currentUserId != existingPost.UserID)
+            {
+                return Forbid();
+            }
+
+            await _forumService.DeletePost(existingPost.PostID);
+
+            return RedirectToAction("Post", new
+            {
+                CategoryName = postVM.CategoryVM.CategoryName,
+                CategoryID = postVM.CategoryVM.CategoryID
+            });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteComment(PostVM postVM)
+        {
+            var existingComment = await _forumService.GetCommentByID(postVM.Comment.CommentID);
+            if (existingComment == null)
+            {
+                return NotFound();
+            }
+
+            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (currentUserId != existingComment.UserID)
+            {
+                return Forbid();
+            }
+
+            await _forumService.DeteleComment(existingComment.CommentID);
+
+            return RedirectToAction("PostDetail", new
+            {
+                postId = postVM.Post.PostID
+            });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditComment(PostVM postVM)
+        {
+            var existingComment = await _forumService.GetCommentByID(postVM.Comment.CommentID);
+            if (existingComment == null)
+            {
+                return NotFound();
+            }
+
+            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (currentUserId != existingComment.UserID)
+            {
+                return Forbid();
+            }
+
+            existingComment.Content = WebUtility.HtmlEncode(postVM.Post.Content);
+
+            await _forumService.UpdateComment(existingComment);
+
+            return RedirectToAction("PostDetail", new
+            {
+                postId = postVM.Post.PostID
+            });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Vote([FromBody] PostVM postVM)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var existingVote = await _forumService.GetVoteByUserAndPost(userId, postVM.Post.PostID); 
+
+            if (existingVote != null)
+            {
+                await _forumService.DeleteVote(existingVote);
+                return Ok(new { message = "Vote removed successfully!" });
+            }
+            else
+            {
+                var newVote = new IsVote
+                {
+                    UserID = userId, 
+                    PostID = postVM.Post.PostID, 
+                    Point = postVM.Point.PointValue 
+                };
+                await _forumService.AddVote(newVote); 
+            }
+
+            return Ok(); 
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> CheckVote(int postId)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var hasVoted = await _context.IsVotes
+            .AnyAsync(v => v.PostID == postId && v.UserID == userId);
+
+            return Ok(new { hasVoted });
+        }
     }
 }
