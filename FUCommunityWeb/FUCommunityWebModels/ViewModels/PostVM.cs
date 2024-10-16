@@ -18,5 +18,6 @@ namespace FuCommunityWebModels.ViewModels
         public Post Post { get; set; } = new Post();
         public Comment Comment { get; set; } = new Comment();
         public Point Point { get; set; } = new Point();
+        public int VoteCount { get; set; }
     }
 }

@@ -10,7 +10,8 @@
                         <div class="card-text">
                             @Html.Raw(System.Net.WebUtility.HtmlDecode(Model.Post.Content))
                         </div>
-                        <img src="@Model.Post.PostImage" /></br>                                
+                        <img src="@Model.Post.PostImage" /></br>   
+                        <p><strong>Votes:</strong> @Model.VoteCount</p>
                         <button class="btn vote-btn" data-post-id="@Model.Post.PostID" data-point="1">
                             <i class="fas fa-thumbs-up"></i> Vote
                         </button>

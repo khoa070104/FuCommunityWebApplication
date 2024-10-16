@@ -38,15 +38,18 @@ namespace FuCommunityWebDataAccess.Repositories
                 .Where(u => userIds.Contains(u.Id))
                 .Select(u => new UserVM
                 {
-                    User = u,  
+                    User = u,
                     Post = _context.Posts.Where(p => p.UserID == u.Id).ToList()
                 }).ToListAsync();
+
+            var voteCount = await _context.IsVotes.CountAsync(v => v.PostID == postId); 
 
             return new PostVM
             {
                 Post = post,
                 Comments = comments,
-                Users = users
+                Users = users,
+                VoteCount = voteCount 
             };
         }
 
