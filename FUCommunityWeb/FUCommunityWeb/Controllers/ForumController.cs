@@ -265,26 +265,35 @@ namespace FUCommunityWeb.Controllers
         public async Task<IActionResult> Vote([FromBody] PostVM postVM)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var existingVote = await _forumService.GetVoteByUserAndPost(userId, postVM.Post.PostID);
 
-            var existingVote = await _forumService.GetVoteByUserAndPost(userId, postVM.Post.PostID); 
+            var post = await _forumService.GetPostByID(postVM.Post.PostID);
+            if (post == null)
+            {
+                return NotFound();
+            }
+
+            var postOwnerId = post.UserID;
 
             if (existingVote != null)
             {
                 await _forumService.DeleteVote(existingVote);
+                await _forumService.UpdateUserPoints(postOwnerId, -10, PointSource.Vote);
                 return Ok(new { message = "Vote removed successfully!" });
             }
             else
             {
                 var newVote = new IsVote
                 {
-                    UserID = userId, 
-                    PostID = postVM.Post.PostID, 
-                    Point = postVM.Point.PointValue 
+                    UserID = userId,
+                    PostID = postVM.Post.PostID,
+                    Point = postVM.Point.PointValue
                 };
-                await _forumService.AddVote(newVote); 
+                await _forumService.AddVote(newVote);
+                await _forumService.UpdateUserPoints(postOwnerId, 10, PointSource.Vote);
             }
 
-            return Ok(); 
+            return Ok();
         }
 
         [HttpGet]

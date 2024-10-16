@@ -161,6 +161,21 @@ namespace FuCommunityWebDataAccess.Repositories
             await _context.SaveChangesAsync();
         }
 
+        public async Task AddPoint(Point point)
+        {
+            _context.Points.Add(point);
+            await _context.SaveChangesAsync();
+        }
 
+        public async Task<ApplicationUser> GetUserById(string userId)
+        {
+            return await _context.Users.FirstOrDefaultAsync(u => u.Id == userId);
+        }
+
+        public async Task UpdateUser(ApplicationUser user)
+        {
+            _context.Users.Update(user);
+            await _context.SaveChangesAsync();
+        }
     }
 }

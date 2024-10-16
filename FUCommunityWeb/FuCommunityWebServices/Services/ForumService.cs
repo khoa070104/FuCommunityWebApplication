@@ -86,5 +86,26 @@ namespace FuCommunityWebServices.Services
         {
             await _forumRepo.AddVote(vote);
         }
+
+        public async Task UpdateUserPoints(string userId, int pointValue, PointSource source)
+        {
+            var point = new Point
+            {
+                UserID = userId,
+                PointValue = pointValue,
+                From = source,
+                Status = true,
+                CreateDate = DateTime.Now
+            };
+
+            await _forumRepo.AddPoint(point);
+
+            var user = await _forumRepo.GetUserById(userId);
+            if (user != null)
+            {
+                user.Point += pointValue;
+                await _forumRepo.UpdateUser(user);
+            }
+        }
     }
 }
