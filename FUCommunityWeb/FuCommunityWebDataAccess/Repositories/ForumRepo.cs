@@ -28,7 +28,8 @@ namespace FuCommunityWebDataAccess.Repositories
                 {
                     Content = c.Content,
                     CreatedDate = c.CreatedDate,
-                    UserID = c.UserID
+                    UserID = c.UserID,
+                    CommentID = c.CommentID
                 }).ToListAsync();
 
             var userIds = comments.Select(c => c.UserID).Distinct().ToList();
@@ -48,7 +49,6 @@ namespace FuCommunityWebDataAccess.Repositories
                 Users = users
             };
         }
-
 
         public async Task<List<Category>> GetAllCategoryAsync()
         {
@@ -108,5 +108,56 @@ namespace FuCommunityWebDataAccess.Repositories
             return await _context.Posts
                 .FirstOrDefaultAsync(post => post.PostID == postId);
         }
+
+        public async Task UpdatePost(Post post)
+        {
+            _context.Posts.Update(post);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task DeletePost(int postId)
+        {
+            var post = await _context.Posts.FindAsync(postId);
+            _context.Posts.Remove(post);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task DeleteComment(int commentId)
+        {
+            var comment = await _context.Comments.FindAsync(commentId);
+            _context.Comments.Remove(comment);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<Comment> GetCommentByID(int commentId)
+        {
+            return await _context.Comments.FindAsync(commentId);
+        }
+
+        public async Task UpdateComment(Comment comment)
+        {
+            _context.Comments.Update(comment);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<IsVote> GetVoteByUserAndPost(string userId, int postId)
+        {
+            return await _context.IsVotes
+                .FirstOrDefaultAsync(v => v.UserID == userId && v.PostID == postId);
+        }
+
+        public async Task AddVote(IsVote vote)
+        {
+            _context.IsVotes.Add(vote);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task DeleteVote(IsVote vote)
+        {
+            _context.IsVotes.Remove(vote);
+            await _context.SaveChangesAsync();
+        }
+
+
     }
 }
