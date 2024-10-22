@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using FuCommunityWebModels.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using FuCommunityWebDataAccess.Data;
+using System.IO;
 
 namespace FUCommunityWeb.Controllers
 {
@@ -35,6 +36,7 @@ namespace FUCommunityWeb.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> ChangeAvatar(IFormFile file, string currentPage)
         {
             if (file != null && file.Length > 0)
@@ -48,7 +50,7 @@ namespace FUCommunityWeb.Controllers
                 }
 
                 var fileName = Path.GetFileName(file.FileName);
-                var encryptedFileName = "avt_" + EncryptFileName(fileName);
+                var encryptedFileName = "avt_" + EncryptAvatarFileName(fileName);
                 var path = Path.Combine(uploadsDirectory, encryptedFileName);
 
                 using (var stream = new FileStream(path, FileMode.Create))
@@ -63,7 +65,37 @@ namespace FUCommunityWeb.Controllers
             return Redirect(currentPage);
         }
 
-        private string EncryptFileName(string fileName)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ChangeBanner(IFormFile file, string currentPage)
+        {
+            if (file != null && file.Length > 0)
+            {
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                var uploadsDirectory = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads");
+
+                if (!Directory.Exists(uploadsDirectory))
+                {
+                    Directory.CreateDirectory(uploadsDirectory);
+                }
+
+                var fileName = Path.GetFileName(file.FileName);
+                var encryptedFileName = "banner_" + EncryptBannerFileName(fileName);
+                var path = Path.Combine(uploadsDirectory, encryptedFileName);
+
+                using (var stream = new FileStream(path, FileMode.Create))
+                {
+                    await file.CopyToAsync(stream);
+                }
+
+                var bannerPath = $"/uploads/{encryptedFileName}";
+                await _userService.UpdateUserBannerAsync(userId, bannerPath);
+            }
+
+            return Redirect(currentPage);
+        }
+
+        private string EncryptAvatarFileName(string fileName)
         {
             var fileExtension = Path.GetExtension(fileName);
             var fileNameWithoutExtension = Path.GetFileNameWithoutExtension(fileName);
@@ -74,7 +106,22 @@ namespace FUCommunityWeb.Controllers
 
             return encryptedFileName + fileExtension;
         }
+
+        private string EncryptBannerFileName(string fileName)
+        {
+            var fileExtension = Path.GetExtension(fileName);
+            var fileNameWithoutExtension = Path.GetFileNameWithoutExtension(fileName);
+
+            string fileNameWithBanner = "banner_" + fileNameWithoutExtension;
+            var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(fileNameWithBanner);
+            var encryptedFileName = System.Convert.ToBase64String(plainTextBytes);
+
+            return encryptedFileName + fileExtension;
+        }
+
+
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditProfile(UserVM userVM)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
