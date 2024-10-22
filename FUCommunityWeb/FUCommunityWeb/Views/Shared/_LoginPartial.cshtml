@@ -7,27 +7,25 @@
 {
 
     <div class="d-flex align-items-center ms-lg-auto">
-        <div class="dropdown ms-3">
-            <a class="nav-link dropdown-toggle d-flex align-items-center" href="#"
-               id="profileDropdown" role="button" data-bs-toggle="dropdown"
-               aria-expanded="false">
-                <img src="~/img/Logo_FunnyCode.jpg" alt="Profile Avatar"
-                     class="profile-avatar">
-                <span class="ms-2">@UserManager.GetUserName(User)</span>
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="profileDropdown">
-                <li>
-                    <a class="dropdown-item" href="/Profile/Index">
+        <div class="dropdown ms-3 profile-personal">
+            <div class="dropdown">
+                <button class="dropbtn">
+                    <img src="~/img/Logo_FunnyCode.jpg" alt="Profile Avatar" class="profile-avatar">
+                    <span class="ms-2"> Hi, @UserManager.GetUserName(User)</span>
+                    <i id="dropdownIcon" class="fa-solid fa-circle-chevron-down ms-2"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="/Profile/Index">
                         <i class="fas fa-user"></i> My Profile
                     </a>
-                </li>
-                <li>
-                    <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index">
+                    <a asp-area="Identity" asp-page="/Account/Manage/Index">
                         <i class="fas fa-key"></i> Authenticator
                     </a>
-                </li>
-                <li><a class="dropdown-item" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })"><i class="fas fa-sign-out-alt"></i>Log out</a></li>
-            </ul>
+                    <a asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                        <i class="fas fa-sign-out-alt"></i> Log out
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 }

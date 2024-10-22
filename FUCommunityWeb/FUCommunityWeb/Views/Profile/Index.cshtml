@@ -129,13 +129,23 @@
                             <tr>
                                 <th for="phone" scope="row">Phone Number:</th>
                                 <td>
-                                    <input asp-for="User.PhoneNumber" class="form-control" id="phone" readonly />
-                                    <p>
-                                        <a target="_blank" href="https://zalo.me/@(Model.User.PhoneNumber)" style="text-decoration: none; color: black;">
-                                            @(Model.User.PhoneNumber)
+                                    <div style="position: relative;">
+                                        <input asp-for="User.PhoneNumber" class="form-control" id="phone" readonly style="padding-right: 40px;" />
+                                        @if (!string.IsNullOrEmpty(Model.User.PhoneNumber))
+                                        {
+                                            <a target="_blank" href="https://zalo.me/@(Model.User.PhoneNumber)"
+                                               style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+                                  background: transparent; border: none; cursor: pointer;">
+                                                <i class="fa fa-external-link" style="font-size: 20px; color: green;"></i>
+                                            </a>
+                                        }
+                                    </div>
+                                    <span class="text-custom-light" style="font-weight: 500; font-style: italic;">
+                                        Want to update Phone Number?
+                                        <a href="/Identity/Account/Manage" style="text-decoration: none; color: green;">
+                                            <i class="fa-regular fa-hand-point-right"></i> Click here
                                         </a>
-                                    </p>
-                                    <span class="text-custom-light">Muốn cập nhật Số điện thoại, <a href="/Identity/Account/Manage">Click here</a></span>
+                                    </span>
                                 </td>
                             </tr>
 
