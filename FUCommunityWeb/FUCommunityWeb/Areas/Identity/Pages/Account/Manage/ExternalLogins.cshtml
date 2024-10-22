@@ -8,21 +8,22 @@
 <partial name="_StatusMessage" for="StatusMessage" />
 @if (Model.CurrentLogins?.Count > 0)
 {
-    <h3>Registered Logins</h3>
-    <table class="table">
+    <h3>External Logins</h3>
+    <hr />
+    <table class="table external-log">
         <tbody>
             @foreach (var login in Model.CurrentLogins)
             {
                 <tr>
-                    <td id="@($"login-provider-{login.LoginProvider}")">@login.ProviderDisplayName</td>
-                    <td>
+                    <td class="btn" id="@($"login-provider-{login.LoginProvider}")"><i class="fab fa-google"></i> @login.ProviderDisplayName</td>
+                    <td style="border: none;">
                         @if (Model.ShowRemoveButton)
                         {
                             <form id="@($"remove-login-{login.LoginProvider}")" asp-page-handler="RemoveLogin" method="post">
                                 <div>
                                     <input asp-for="@login.LoginProvider" name="LoginProvider" type="hidden" />
                                     <input asp-for="@login.ProviderKey" name="ProviderKey" type="hidden" />
-                                    <button type="submit" class="btn" title="Remove this @login.ProviderDisplayName login from your account">Remove</button>
+                                    <button class="btn" type="submit" title="Remove this @login.ProviderDisplayName login from your account">Remove</button>
                                 </div>
                             </form>
                         }
@@ -42,10 +43,10 @@
     <hr />
     <form id="link-login-form" asp-page-handler="LinkLogin" method="post" class="form-horizontal">
         <div id="socialLoginList">
-            <p>
+            <p class="btn-logo">
                 @foreach (var provider in Model.OtherLogins)
                 {
-                    <button id="@($"link-login-button-{provider.Name}")" type="submit" class="btn" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                    <button id="@($"link-login-button-{provider.Name}")" type="submit" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
                 }
             </p>
         </div>
