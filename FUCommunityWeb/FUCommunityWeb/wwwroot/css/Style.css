@@ -925,7 +925,52 @@
     }
 }
 
-/*--------------------DEPOSIT--------------------*/
+/*--------------------PAYMENT--------------------*/
+
+    .payment .container {
+        min-height: 100vh;
+    }
+
+    .payment .card {
+        background-color: white;
+        border: none;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        padding: 20px;
+        margin: auto;
+    }
+
+    .payment .card-title {
+        color: #20B486;
+        font-size: 4rem;
+        font-weight: bold;
+    }
+
+    .payment .form-control {
+        border: 2px solid #20B486;
+        border-radius: 5px;
+        padding: 10px;
+        transition: all 0.3s ease;
+    }
+
+        .payment .form-control:focus {
+            border-color: #FFD3B6;
+            outline: none;
+            box-shadow: 0 0 8px rgba(255, 211, 182, 0.5);
+        }
+
+    .payment .form-check-label {
+        font-size: 1rem;
+        color: #333;
+    }
+
+    .payment .form-check-input:checked ~ .form-check-label {
+        color: #20B486;
+    }
+
+    .payment input[type="radio"]:hover {
+        background-color: #E4F7F1;
+    }
 
 
 /*--------------------CONTACT US--------------------*/
