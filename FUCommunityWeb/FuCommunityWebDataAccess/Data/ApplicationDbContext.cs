@@ -31,6 +31,7 @@ namespace FuCommunityWebDataAccess.Data
         public DbSet<Review> Reviews { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<OrderInfo> Orders { get; set; }
+        public DbSet<Follower> Followers { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -129,6 +130,16 @@ namespace FuCommunityWebDataAccess.Data
                 .HasOne(o => o.User)
                 .WithMany(u => u.Orders)
                 .HasForeignKey(o => o.UserID);
+
+            modelBuilder.Entity<Follower>()
+                .HasOne(f => f.FollowedUser)
+                .WithMany(u => u.Followers)
+                .HasForeignKey(f => f.FollowId);
+
+            modelBuilder.Entity<Follower>()
+                .HasOne(f => f.FollowingUser)
+                .WithMany(u => u.Following)
+                .HasForeignKey(f => f.UserID);
         }
     }
 }
