@@ -1,5 +1,6 @@
 ﻿using FuCommunityWebDataAccess.Data;
 using FuCommunityWebModels.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -9,13 +10,15 @@ using System.Threading.Tasks;
 
 namespace FuCommunityWebDataAccess.Repositories
 {
-    public class UserRepo 
+    public class UserRepo
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public UserRepo(ApplicationDbContext context)
+        public UserRepo(ApplicationDbContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         public async Task<ApplicationUser> GetUserByIdAsync(string userId, bool includeVotes = false)
@@ -97,6 +100,52 @@ namespace FuCommunityWebDataAccess.Repositories
         {
             _context.Users.Update(user);
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<bool> IsFollowingAsync(string userId, string followId)
+        {
+            Console.WriteLine($"Checking if user {userId} is following {followId}");
+            return await _context.Followers.AnyAsync(f => f.UserID == userId && f.FollowId == followId);
+        }
+
+        public async Task FollowUserAsync(string userId, string followId)
+        {
+            var follower = new Follower
+            {
+                UserID = userId,
+                FollowId = followId
+            };
+            _context.Followers.Add(follower);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task UnfollowUserAsync(string userId, string followId)
+        {
+            var follower = await _context.Followers.FirstOrDefaultAsync(f => f.UserID == userId && f.FollowId == followId);
+            if (follower != null)
+            {
+                _context.Followers.Remove(follower);
+                await _context.SaveChangesAsync();
+            }
+        }
+
+        public async Task<bool> IsUserInRoleAsync(string userId, string role)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+                return false;
+            return await _userManager.IsInRoleAsync(user, role);
+        }
+
+        public async Task UpdateUserBannerAsync(string userId, string bannerPath)
+        {
+            var user = await _context.Users.FindAsync(userId);
+            if (user != null)
+            {
+                user.BannerImage = bannerPath;
+                _context.Users.Update(user);
+                await _context.SaveChangesAsync();
+            }
         }
     }
 }
