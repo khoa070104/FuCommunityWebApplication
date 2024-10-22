@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FuCommunityWebServices.Services
 {
-    public class UserService 
+    public class UserService
     {
         private readonly UserRepo _userRepo;
 
@@ -56,6 +56,31 @@ namespace FuCommunityWebServices.Services
         public async Task UpdateUserAsync(ApplicationUser user)
         {
             await _userRepo.UpdateUserAsync(user);
+        }
+
+        public async Task<bool> IsFollowingAsync(string userId, string followId)
+        {
+            return await _userRepo.IsFollowingAsync(userId, followId);
+        }
+
+        public async Task FollowUserAsync(string userId, string followId)
+        {
+            await _userRepo.FollowUserAsync(userId, followId);
+        }
+
+        public async Task UnfollowUserAsync(string userId, string followId)
+        {
+            await _userRepo.UnfollowUserAsync(userId, followId);
+        }
+
+        public async Task<bool> IsUserInRoleAsync(string userId, string role)
+        {
+            return await _userRepo.IsUserInRoleAsync(userId, role);
+        }
+
+        public async Task UpdateUserBannerAsync(string userId, string bannerPath)
+        {
+            await _userRepo.UpdateUserBannerAsync(userId, bannerPath);
         }
     }
 }

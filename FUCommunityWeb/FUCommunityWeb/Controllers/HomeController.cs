@@ -13,18 +13,18 @@ using System.Net;
 
 namespace FUCommunityWeb.Controllers
 {
-	public class HomeController : Controller
-	{
-		private readonly ILogger<HomeController> _logger;
+    public class HomeController : Controller
+    {
+        private readonly ILogger<HomeController> _logger;
         private readonly ApplicationDbContext _context;
         private readonly UserService _userService;
-		private readonly HomeService _homeService;
+        private readonly HomeService _homeService;
         private readonly CourseService _courseService;
         private readonly ForumService _forumService;
 
         public HomeController(ILogger<HomeController> logger, UserService userService, HomeService homeService, CourseService courseService, ApplicationDbContext context, ForumService forumService)
-		{
-			_logger = logger;
+        {
+            _logger = logger;
             _userService = userService;
             _homeService = homeService;
             _courseService = courseService;
@@ -32,7 +32,7 @@ namespace FUCommunityWeb.Controllers
             _context = context;
         }
         public IActionResult Index()
-		{
+        {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             // Sử dụng CourseService để lấy danh sách khóa học đã đăng ký
@@ -185,9 +185,85 @@ namespace FUCommunityWeb.Controllers
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-		public IActionResult Error()
-		{
-			return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-		}
-	}
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+        public IActionResult ViewUser(string searchTerm = "")
+        {
+            var users = _userService.GetAllUsersAsync().Result;
+
+            if (!string.IsNullOrEmpty(searchTerm))
+            {
+                users = users.Where(u => u.FullName.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)).ToList();
+            }
+
+            ViewData["searchTerm"] = searchTerm; // Để giữ lại giá trị tìm kiếm trong ô input
+            return View(users);
+        }
+        public IActionResult ViewUserProfile(string userId)
+        {
+            if (string.IsNullOrEmpty(userId))
+            {
+                return RedirectToAction("ViewUser");
+            }
+
+            var user = _userService.GetUserByIdAsync(userId).Result;
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var followers = _context.Followers
+                .Where(f => f.FollowId == userId)
+                .Include(f => f.FollowingUser)
+                .Select(f => f.FollowingUser)
+                .ToList();
+
+            // Sử dụng phương thức mới để kiểm tra vai trò
+            var isMentor = _userService.IsUserInRoleAsync(userId, "mentor").Result;
+
+            var userViewModel = new UserVM
+            {
+                User = user,
+                Enrollments = _context.Enrollment
+                    .Where(e => e.UserID == userId)
+                    .Include(e => e.Course)
+                    .ToList(),
+                Post = _context.Posts.Where(p => p.UserID == userId).ToList(),
+                IsCurrentUser = (userId == currentUserId),
+                IsFollowing = _userService.IsFollowingAsync(currentUserId, userId).Result,
+                Followers = followers,
+                IsMentor = isMentor,
+
+                // Tính toán tổng số Posts và Questions
+                TotalPosts = _context.Posts.Count(p => p.UserID == userId && p.Type == 1),
+                TotalQuestions = _context.Posts.Count(p => p.UserID == userId && p.Type == 2)
+            };
+
+            return View(userViewModel);
+        }
+
+        public async Task<IActionResult> ToggleFollow(string followId)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrEmpty(userId) || string.IsNullOrEmpty(followId))
+            {
+                return BadRequest("Invalid user or follow ID.");
+            }
+
+            if (await _userService.IsFollowingAsync(userId, followId))
+            {
+                await _userService.UnfollowUserAsync(userId, followId);
+            }
+            else
+            {
+                await _userService.FollowUserAsync(userId, followId);
+            }
+            return RedirectToAction("ViewUserProfile", new { userId = followId });
+        }
+    }
 }
