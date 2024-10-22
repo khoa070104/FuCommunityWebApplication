@@ -47,6 +47,11 @@ namespace FuCommunityWebServices.Services
             return await _forumRepo.GetPostDetailsAsync(postID);
         }
 
+        public async Task<List<Comment>> GetCommentsByPostID(int postID)
+        {
+            return await _forumRepo.GetCommentsByPostID(postID);
+        }
+
         public async Task UpdatePost(Post post)
         {
             await _forumRepo.UpdatePost(post);

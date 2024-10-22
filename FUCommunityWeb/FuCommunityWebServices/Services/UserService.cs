@@ -82,5 +82,21 @@ namespace FuCommunityWebServices.Services
         {
             await _userRepo.UpdateUserBannerAsync(userId, bannerPath);
         }
+
+        public async Task CreateUserAsync(ApplicationUser user, string password)
+        {
+            // Assuming UserRepo handles password hashing or identity logic
+            await _userRepo.CreateUserAsync(user, password);
+        }
+
+        public async Task DeleteUserAsync(ApplicationUser user)
+        {
+            if (user == null)
+            {
+                throw new ArgumentNullException(nameof(user), "User not found.");
+            }
+
+            await _userRepo.DeleteUserAsync(user);
+        }
     }
 }
