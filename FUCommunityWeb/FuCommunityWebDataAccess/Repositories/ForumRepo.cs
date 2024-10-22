@@ -121,8 +121,18 @@ namespace FuCommunityWebDataAccess.Repositories
         public async Task DeletePost(int postId)
         {
             var post = await _context.Posts.FindAsync(postId);
-            _context.Posts.Remove(post);
-            await _context.SaveChangesAsync();
+            if (post != null)
+            {
+                _context.Posts.Remove(post);
+                await _context.SaveChangesAsync();
+            }
+        }
+
+        public async Task<List<Comment>> GetCommentsByPostID(int postId)
+        {
+            return await _context.Comments
+                .Where(c => c.PostID == postId)
+                .ToListAsync();
         }
 
         public async Task DeleteComment(int commentId)

@@ -147,5 +147,53 @@ namespace FuCommunityWebDataAccess.Repositories
                 await _context.SaveChangesAsync();
             }
         }
+
+        public async Task CreateUserAsync(ApplicationUser user, string password)
+        {
+            // Hash password and create the user
+            // If you're using Identity, ensure the password is hashed correctly
+            var hasher = new PasswordHasher<ApplicationUser>();
+            user.PasswordHash = hasher.HashPassword(user, password);
+            _context.Users.Add(user);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task DeleteUserAsync(ApplicationUser user)
+        {
+            if (user == null)
+            {
+                throw new ArgumentNullException(nameof(user), "User not found.");
+            }
+
+            // Delete all related data before deleting the user
+            var roles = _context.UserRoles.Where(r => r.UserId == user.Id);
+            var enrollments = _context.Enrollment.Where(e => e.UserID == user.Id);
+            var posts = _context.Posts.Where(p => p.UserID == user.Id);
+            var reviews = _context.Reviews.Where(r => r.UserID == user.Id);
+            var documents = _context.Documents.Where(d => d.UserID == user.Id);
+            var votes = _context.Votes.Where(v => v.UserID == user.Id);
+            var isVotes = _context.IsVotes.Where(iv => iv.UserID == user.Id);
+            var points = _context.Points.Where(p => p.UserID == user.Id);
+            var comments = _context.Comments.Where(c => c.UserID == user.Id);
+            var orders = _context.Orders.Where(o => o.UserID == user.Id);
+
+            // Remove the related entities
+            _context.UserRoles.RemoveRange(roles);
+            _context.Enrollment.RemoveRange(enrollments);
+            _context.Posts.RemoveRange(posts);
+            _context.Reviews.RemoveRange(reviews);
+            _context.Documents.RemoveRange(documents);
+            _context.Votes.RemoveRange(votes);
+            _context.IsVotes.RemoveRange(isVotes);
+            _context.Points.RemoveRange(points);
+            _context.Comments.RemoveRange(comments);
+            _context.Orders.RemoveRange(orders);
+
+            // Finally, remove the user itself
+            _context.Users.Remove(user);
+
+            // Save all changes
+            await _context.SaveChangesAsync();
+        }
     }
 }
