@@ -1,0 +1,303 @@
+@model FuCommunityWebModels.ViewModels.PostVM
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Posts - FunnyCode</title>
+    <link rel="shortcut icon" type="x-icon" href="/src/webapp/img/Logo.png">
+    <!-- Include Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Include Font Awesome for Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/src/webapp/css/style.css">
+    <style>
+        .cke_notification {
+            display: none !important; 
+        }
+        </style>
+</head>
+<body>
+    <div class="container-fluid admin admin-manage">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-2 sidebar">
+                <div class="d-flex flex-column align-items-center">
+                    <img src="/img/Logo_FunnyCode.jpg" alt="Logo" class="rounded-circle mb-3" width="200">
+                    <div class="d-flex align-items-center mb-4">
+                        <img src="/img/avt1.png" alt="Maria"
+                             class="rounded-circle me-2 avatar-img">
+                        <div class="d-flex align-items-center">
+                            <div class="me-2">
+                                <h5 class="mb-0">Maria</h5>
+                                <p class="text-muted mb-0">HR Manager</p>
+                            </div>
+                            <a href="#"><i class="fas fa-info-circle"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="nav flex-column">
+                    <a href="/admin/admindashboard" class="btn-nav mb-2">
+                        <i class="fas fa-home me-2"></i>Dashboard
+                    </a>
+                    <a href="/admin/ManageCourse" class="btn-nav mb-2">
+                        <i class="fas fa-book me-2"></i>Courses
+                    </a>
+                    <a href="/admin/ManageForumCategory" class="btn-nav mb-2">
+                        <i class="fas fa-comments me-2"></i>Forum
+                    </a>
+                    <a href="/admin/ManageUser" class="btn-nav mb-2">
+                        <i class="fas fa-user me-2"></i>User
+                    </a>
+                    <a href="/admin/ManagePayment" class="btn-nav mb-2">
+                        <i class="fas fa-wallet me-2"></i>Payments
+                    </a>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-md-10 content">
+                <div class="d-flex flex-column">
+                    <h1>Manage Posts</h1>
+
+                    <!-- Button to open Create Post Modal -->
+                    <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#createPostModal">Create New Post</button>
+
+                    <!-- Search form -->
+                    <div class="mb-3">
+                        <input type="text" id="searchString" placeholder="Enter search keyword..." class="form-control" style="max-width: 300px; display: inline-block;" />
+                        <button class="btn btn-secondary" id="searchButton">Search</button>
+                    </div>
+
+                    <!-- Table of Posts -->
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Create Date</th>
+                                    <th>Tags</th>
+                                    <th>Type</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="postList">
+                                @foreach (var post in Model.Posts)
+                                {
+                                    <tr>
+                                        <td>@post.Title</td>
+                                        <td>@post.CreatedDate?.ToString("yyyy-MM-dd")</td>
+                                        <td>@post.Tag</td>
+                                        <td>@(post.Type == 1 ? "Post" : "Question")</td>
+                                        <td>
+                                            <a href="@Url.Action("ManagePostDetail", "Admin", new { postId = post.PostID })" class="btn btn-info btn-sm">View</a>
+                                            <button class="btn btn-warning btn-sm editPostBtn" data-post-id="@post.PostID">Edit</button>
+                                            <button class="btn btn-danger btn-sm deletePostBtn" data-post-id="@post.PostID">Delete</button>
+                                        </td>
+                                    </tr>
+                                }
+                                <!-- No posts message -->
+                                @if (!Model.Posts.Any())
+                                {
+                                    <tr>
+                                        <td colspan="5" class="text-center">No posts available.</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Pagination (if needed) -->
+                    <!-- <nav aria-label="Page navigation">
+                        <ul class="pagination">
+                            <!-- Pagination links here -->
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <!-- Create Post Modal -->
+    <div class="modal fade" id="createPostModal" tabindex="-1" aria-labelledby="createPostModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Create New Post</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form asp-action="CreatePost" asp-controller="Admin" method="post" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <input type="hidden" name="CategoryID" value="@Model.CategoryVM.CategoryID" />
+                        <div class="mb-3">
+                            <label for="postTitle" class="form-label">Title</label>
+                            <input name="Title" type="text" class="form-control" id="postTitle" required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="postTag" class="form-label">Tag</label>
+                            <input name="Tag" type="text" class="form-control" id="postTag" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="postType" class="form-label">Type</label>
+                            <select name="Type" class="form-select" id="postType">
+                                <option value="1">Post</option>
+                                <option value="2">Question</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="postContent" class="form-label">Content</label>
+                            <textarea name="CreatePostVM.Content" class="form-control" id="postContent" rows="5" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="postImage" class="form-label">Image</label>
+                            <input name="PostImageFile" type="file" class="form-control" id="postImage" />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Create Post</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Post Modal -->
+    <div class="modal fade" id="editPostModal" tabindex="-1" aria-labelledby="editPostModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Post</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form asp-action="EditPost" asp-controller="Admin" method="post" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <input type="hidden" name="PostID" id="editPostID" />
+                        <div class="mb-3">
+                            <label for="editPostTitle" class="form-label">Title</label>
+                            <input name="Title" type="text" class="form-control" id="editPostTitle" required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="editPostTag" class="form-label">Tag</label>
+                            <input name="Tag" type="text" class="form-control" id="editPostTag" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="editPostType" class="form-label">Type</label>
+                            <select name="Type" class="form-select" id="editPostType">
+                                <option value="1">Post</option>
+                                <option value="2">Question</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editPostContent" class="form-label">Content</label>
+                            <textarea name="Content" class="form-control" id="editPostContent" rows="5"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editPostImage" class="form-label">Image</label>
+                            <input name="PostImageFile" type="file" class="form-control" id="editPostImage" />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Post Modal -->
+    <div class="modal fade" id="deletePostModal" tabindex="-1" aria-labelledby="deletePostModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form asp-action="DeletePost" asp-controller="Admin" method="post">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Confirm Delete</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure you want to delete this post?
+                        <input type="hidden" name="postId" id="deletePostID" />
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+@section Scripts{
+        <!-- Include Bootstrap JS and dependencies -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Include CKEditor -->
+        <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+
+        <script>
+            // Initialize CKEditor for Create Post Modal
+            $('#createPostModal').on('shown.bs.modal', function () {
+                CKEDITOR.replace('postContent');
+            });
+            $('#createPostModal').on('hidden.bs.modal', function () {
+                CKEDITOR.instances['postContent'].destroy(true);
+            });
+
+            $('#editPostModal').on('shown.bs.modal', function () {
+                CKEDITOR.replace('editPostContent');
+            });
+            $('#editPostModal').on('hidden.bs.modal', function () {
+                CKEDITOR.instances['editPostContent'].destroy(true);
+            });
+
+            // Edit Post Button Click
+            $('.editPostBtn').click(function () {
+                var postId = $(this).data('post-id');
+                $.ajax({
+                    url: '/Admin/GetPost', 
+                    type: 'GET',
+                    data: { postId: postId },
+                    success: function (data) {
+                        $('#editPostID').val(data.postID);
+                        $('#editPostTitle').val(data.title);
+                        $('#editPostTag').val(data.tag);
+                        $('#editPostType').val(data.type);
+                        if (CKEDITOR.instances['editPostContent']) {
+                            CKEDITOR.instances['editPostContent'].setData(data.content);
+                        } else {
+                            $('#editPostContent').val(data.content);
+                        }
+                        $('#editPostModal').modal('show');
+                    },
+                    error: function () {
+                        alert('Failed to get post data.');
+                    }
+                });
+            });
+
+            // Delete Post Button Click
+            $('.deletePostBtn').click(function () {
+                var postId = $(this).data('post-id');
+                $('#deletePostID').val(postId);
+                $('#deletePostModal').modal('show');
+            });
+
+            // Search functionality
+            $('#searchButton').click(function () {
+                var searchString = $('#searchString').val().toLowerCase();
+                $('#postList tr').each(function () {
+                    var title = $(this).find('td').eq(0).text().toLowerCase();
+                    if (title.indexOf(searchString) === -1) {
+                        $(this).hide();
+                    } else {
+                        $(this).show();
+                    }
+                });
+            });
+        </script>
+}
+</body>
+</html>
