@@ -27,6 +27,7 @@ namespace FuCommunityWebModels.Models
         [MaxLength(255)]
         public string AvatarImage { get; set; }
         public decimal Point { get; set; }
+        public string BannerImage { get; set; }
 
         // Navigation properties
         public virtual ICollection<Post> Posts { get; set; } // Mối quan hệ với Post
@@ -41,7 +42,8 @@ namespace FuCommunityWebModels.Models
         public virtual ICollection<Review> Reviews { get; set; }
         public virtual ICollection<Deposit> Deposits { get; set; } // Mối quan hệ với Deposit
         public virtual ICollection<OrderInfo> Orders { get; set; }
-
+        public virtual ICollection<Follower> Followers { get; set; } // Những người theo dõi
+        public virtual ICollection<Follower> Following { get; set; } // Những người mà người dùng này theo dõi
 
     }
 }
