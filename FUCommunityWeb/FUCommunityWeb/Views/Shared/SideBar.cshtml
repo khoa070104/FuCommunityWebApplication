@@ -6,7 +6,7 @@
         <div class="avatar-container position-relative" onclick="document.getElementById('file').click();">
             <img src="@(Model.User.AvatarImage ?? "/img/avt2.jpg")" class="avatar mb-3 rounded-circle" alt="Avatar">
             <div class="avatar-hover position-absolute top-50 start-50 translate-middle d-none">
-                <i class="bi bi-pencil-fill"></i>
+                <i class="fa fa-edit"></i>
             </div>
             <input type="file" name="file" id="file" accept="image/*" style="display: none;" onchange="this.form.submit()">
         </div>
