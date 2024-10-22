@@ -16,11 +16,20 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// Configure Identity
+// Configure Identity for IdentityUser
 builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
     options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultTokenProviders();
+
+// Configure IdentityCore for ApplicationUser
+builder.Services.AddIdentityCore<ApplicationUser>()
+    .AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<ApplicationDbContext>()
+    .AddDefaultTokenProviders();
+
+// Register ApplicationUserService
+builder.Services.AddScoped<ApplicationUserService>();
 
 // Register repositories and services for dependency injection
 builder.Services.AddScoped<UserRepo>();
@@ -33,6 +42,7 @@ builder.Services.AddScoped<ForumRepo>();
 builder.Services.AddScoped<ForumService>();
 builder.Services.AddScoped<OrderRepo>();
 builder.Services.AddScoped<VnPayService>();
+builder.Services.AddScoped<OrderService>();
 
 // Register VnPayService for VNPAY integration
 builder.Services.AddScoped<VnPayService>();
@@ -63,6 +73,14 @@ builder.Services.AddScoped<IEmailSender, EmailSender>();
 
 // Build the application
 var app = builder.Build();
+
+// Seed the admin user
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var userService = services.GetRequiredService<ApplicationUserService>();
+    await userService.SeedAdminUser();
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
