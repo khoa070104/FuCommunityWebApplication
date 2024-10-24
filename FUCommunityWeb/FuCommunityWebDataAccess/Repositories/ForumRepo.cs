@@ -79,6 +79,18 @@ namespace FuCommunityWebDataAccess.Repositories
 
             return (posts, totalItems);
         }
+        public async Task<List<Post>> GetPostsByCategory(int categoryID)
+        {
+            var query = _context.Posts.AsQueryable();
+
+            query = query.Where(post => post.CategoryID == categoryID);
+
+            var posts = await query
+                .OrderBy(post => post.PostID)
+                .ToListAsync();
+
+            return posts;
+        }
         public async Task<(List<Post> posts, int totalItems)> GetPostsAsync(int page, int pageSize, string searchString)
         {
             var query = _context.Posts.AsQueryable();
