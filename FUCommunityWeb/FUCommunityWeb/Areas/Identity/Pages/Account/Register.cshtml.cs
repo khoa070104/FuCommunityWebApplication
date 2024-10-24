@@ -124,11 +124,11 @@ namespace FUCommunityWeb.Areas.Identity.Pages.Account
                 _roleManager.CreateAsync(new IdentityRole(SD.Role_User_Mentor)).GetAwaiter().GetResult();
                 _roleManager.CreateAsync(new IdentityRole(SD.Role_User_Admin)).GetAwaiter().GetResult();
             }
-            
+
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
         }
-        
+
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
@@ -139,10 +139,12 @@ namespace FUCommunityWeb.Areas.Identity.Pages.Account
                 var user = CreateUser();
                 user.FullName = Input.FullName;
                 user.DOB = Input.DOB ?? DateTime.Now;
-				user.Gender = (Input.Gender == "Male") ? "M" : "F";
+                user.Gender = (Input.Gender == "Male") ? "M" : "F";
+                user.Ban = false;
+                user.CreatedDate = DateTime.Now; 
+
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
-                
 
                 var result = await _userManager.CreateAsync(user, Input.Password);
 

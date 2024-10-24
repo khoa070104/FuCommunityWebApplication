@@ -10,5 +10,6 @@ namespace FuCommunityWebModels.ViewModels
     {
         public string CategoryName { get; set; }
         public string CategoryID { get; set; }
+        public string Description { get; set; } // Thêm thuộc tính Description
     }
 }

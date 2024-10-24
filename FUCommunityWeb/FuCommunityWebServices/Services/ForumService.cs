@@ -36,6 +36,11 @@ namespace FuCommunityWebServices.Services
         {
             return await _forumRepo.GetPostsByCategory(categoryID, page, pageSize, searchString);
         }
+        public async Task<List<Post>> GetPostsByCategory(int categoryID)
+        {
+            return await _forumRepo.GetPostsByCategory(categoryID);
+        }
+
 
         public async Task<Post> GetPostByID(int id)
         {
@@ -45,6 +50,11 @@ namespace FuCommunityWebServices.Services
         public async Task<PostVM> GetComments(int postID)
         {
             return await _forumRepo.GetPostDetailsAsync(postID);
+        }
+
+        public async Task<List<Comment>> GetCommentsByPostID(int postID)
+        {
+            return await _forumRepo.GetCommentsByPostID(postID);
         }
 
         public async Task UpdatePost(Post post)
