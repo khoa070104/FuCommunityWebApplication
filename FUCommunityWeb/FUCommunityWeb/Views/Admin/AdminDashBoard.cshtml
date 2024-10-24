@@ -17,6 +17,17 @@
     <!-- Font Awesome for Icons -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/src/webapp/css/style.css">
+
+    <style>
+        .card-header-value a {
+            text-decoration: none; /* Loại bỏ gạch chân */
+            color: inherit; /* Giữ nguyên màu chữ */
+        }
+
+            .card-header-value a:hover {
+                color: #007bff; /* Màu chữ khi hover */
+            }
+    </style>
 </head>
 
 <body>
@@ -63,10 +74,12 @@
             <div class="col-md-10 content">
                 <div class="d-flex flex-column">
                     <!-- Tìm kiếm -->
+                    <!--
                     <div class="input-group mb-3" style="max-width: 300px;">
                         <input type="text" class="form-control" placeholder="Search">
                         <span class="input-group-text"><i class="fas fa-search"></i></span>
                     </div>
+                    -->
 
                     <!-- Tiêu đề Dashboard và các nút -->
                     <div class="d-flex justify-content-between align-items-center">
@@ -74,14 +87,15 @@
                     </div>
                 </div>
 
-
                 <!-- Cards Row -->
                 <div class="row text-center g-4">
                     <div class="col-md-3">
                         <div class="card">
                             <div class="card-body">
-                                <p class="text-muted">Total Users <span class="custom-badge growth">+10.0%</span></p>
-                                <h2 class="card-header-value">856</h2>
+                                <p class="text-muted">Total Users</p>
+                                <h2 class="card-header-value">
+                                    <a href="@Url.Action("ManageUser", "Admin")">@Model.TotalUsers</a>
+                                </h2>
                                 <p class="text-muted">Users</p>
                             </div>
                         </div>
@@ -89,8 +103,10 @@
                     <div class="col-md-3">
                         <div class="card">
                             <div class="card-body">
-                                <p class="text-muted">Total Courses <span class="custom-badge decline">-5.0%</span></p>
-                                <h2 class="card-header-value">1000</h2>
+                                <p class="text-muted">Total Courses</p>
+                                <h2 class="card-header-value">
+                                    <a href="@Url.Action("ManageCourse", "Admin")">@Model.TotalCourses</a>
+                                </h2>
                                 <p class="text-muted">Courses</p>
                             </div>
                         </div>
@@ -98,8 +114,10 @@
                     <div class="col-md-3">
                         <div class="card">
                             <div class="card-body">
-                                <p class="text-muted">Total Posts <span class="custom-badge growth">+10.0%</span></p>
-                                <h2 class="card-header-value">1000</h2>
+                                <p class="text-muted">Total Posts</p>
+                                <h2 class="card-header-value">
+                                    <a href="@Url.Action("ManageForumCategory", "Admin")">@Model.TotalPosts</a>
+                                </h2>
                                 <p class="text-muted">Posts</p>
                             </div>
                         </div>
@@ -107,8 +125,10 @@
                     <div class="col-md-3">
                         <div class="card">
                             <div class="card-body">
-                                <p class="text-muted">Total Amount <span class="custom-badge growth">+10.0%</span></p>
-                                <h2 class="card-header-value">1,000,000</h2>
+                                <p class="text-muted">Total Amount</p>
+                                <h2 class="card-header-value">
+                                    <a href="@Url.Action("ManagePayment", "Admin")">@Model.TotalAmount</a>
+                                </h2>
                                 <p class="text-muted">VND</p>
                             </div>
                         </div>
@@ -128,15 +148,24 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
+        const currentMonth = new Date().getMonth();
+        const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        const labels = [];
+
+        for (let i = 0; i < 12; i++) {
+            const monthIndex = (currentMonth - i + 12) % 12;
+            labels.unshift(monthNames[monthIndex]);
+        }
+
         const ctx = document.getElementById('revenueChart').getContext('2d');
         const revenueChart = new Chart(ctx, {
             type: 'line', // Changed to line chart
             data: {
-                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                labels: labels,
                 datasets: [
                     {
                         label: 'Registered Users',
-                        data: [10, 20, 30, 40, 50, 100, 70, 80, 50, 100, 110, 120], // Example data for registered users
+                        data: @Html.Raw(Json.Serialize(Model.MonthlyUserRegistrations)),
                         borderColor: 'rgba(0, 123, 255, 1)',
                         backgroundColor: 'rgba(0, 123, 255, 0.2)',
                         fill: true,

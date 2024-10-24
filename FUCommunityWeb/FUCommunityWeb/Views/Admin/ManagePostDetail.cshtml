@@ -63,10 +63,14 @@
             <!-- Main Content -->
             <div class="col-md-10 content">
                 <div class="d-flex flex-column">
-                    <h1>Post Detail: @Model.Post.Title</h1>
+                    <h2 class="dashboard-header mb-0">Post Detail: @Model.Post.Title</h2>
+
+                    <!-- Back Button -->
+                    <a href="@Url.Action("ManagePost", "Admin", new { CategoryID = Model.Post.CategoryID })" class="btn btn-secondary mb-3">Quay lại</a>
+
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">@Model.Post.Title</h5>
+                            <h4 class="card-title">@Model.Post.Title</h4>
                             <p class="card-text">@Html.Raw(System.Net.WebUtility.HtmlDecode(Model.Post.Content))</p>
                             <img src="@Model.Post.PostImage" alt="Post Image" class="img-fluid" />
                         </div>
