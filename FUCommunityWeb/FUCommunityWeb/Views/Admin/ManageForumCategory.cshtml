@@ -82,7 +82,7 @@
                                     <td>@category.CategoryName</td>
                                     <td>@category.Description</td>
                                     <td>
-                                        <a href="@Url.Action("ManagePost", "Admin", new { categoryId = category.CategoryID })" class="btn btn-info btn-sm">View Posts</a>
+                                        <a href="@Url.Action("ManagePost", "Admin", new { CategoryID = category.CategoryID })" class="btn btn-info btn-sm">View Posts</a>
                                         <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editCategoryModal" data-category-id="@category.CategoryID" data-category-name="@category.CategoryName" data-category-description="@category.Description">Edit</button>
                                         <form asp-action="DeleteCategory" asp-controller="Admin" method="post" class="d-inline">
                                             <input type="hidden" name="categoryId" value="@category.CategoryID" />
