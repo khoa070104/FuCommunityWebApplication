@@ -77,7 +77,7 @@
                         {
                             <div class="list-group-item">
                                 <strong>@comment.UserID</strong>: @comment.Content
-                                <button class="btn btn-danger btn-sm">Delete</button>
+                                <button class="btn btn-danger btn-sm deleteCommentBtn" data-comment-id="@comment.CommentID">Delete</button>
                             </div>
                         }
                     </div>
@@ -85,6 +85,44 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="deleteCommentModal" tabindex="-1" aria-labelledby="deleteCommentModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form asp-action="DeleteComment" asp-controller="Admin" method="post">
+                    <input type="hidden" name="Comment.CommentID" value="" />
+                    <input type="hidden" name="Post.PostID" value="" />
+                    <div class="modal-header">
+                        <h5 class="modal-title">Confirm Delete</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Sure to delete this ?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
 </body>
 
 </html>
+@section Scripts{
+    <script>
+        $(document).on("click", ".deleteCommentBtn", function () {
+            const commentID = $(this).data("comment-id");
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const postID = urlParams.get('postId'); 
+
+            $("input[name='Comment.CommentID']").val(commentID);
+            $("input[name='Post.PostID']").val(postID); 
+
+            $("#deleteCommentModal").modal("show");
+        });
+    </script>
+
+}
