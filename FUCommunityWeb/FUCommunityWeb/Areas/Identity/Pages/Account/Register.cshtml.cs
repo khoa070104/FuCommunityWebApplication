@@ -140,11 +140,11 @@ namespace FUCommunityWeb.Areas.Identity.Pages.Account
                 user.FullName = Input.FullName;
                 user.DOB = Input.DOB ?? DateTime.Now;
                 user.Gender = (Input.Gender == "Male") ? "M" : "F";
-                user.Ban = false; // Đảm bảo thuộc tính Ban được đặt là false khi đăng ký
+                user.Ban = false;
+                user.CreatedDate = DateTime.Now; 
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
-
 
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
