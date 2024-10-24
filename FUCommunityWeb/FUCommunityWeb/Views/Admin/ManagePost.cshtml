@@ -89,7 +89,7 @@
                                         <td>@post.Title</td>
                                         <td>@post.CreatedDate?.ToString("yyyy-MM-dd")</td>
                                         <td>@post.Tag</td>
-                                        <td>@(post.Type == 1 ? "Post" : "Question")</td>
+                                        <td>@(post.Type == 1 ? "Blog" : "Question")</td>
                                         <td>
                                             <a href="@Url.Action("ManagePostDetail", "Admin", new { postId = post.PostID })" class="btn btn-info btn-sm">View</a>
                                             <button class="btn btn-warning btn-sm editPostBtn" data-post-id="@post.PostID">Edit</button>
@@ -130,29 +130,29 @@
                 </div>
                 <form asp-action="CreatePost" asp-controller="Admin" method="post" enctype="multipart/form-data">
                     <div class="modal-body">
-                        <input type="hidden" name="CategoryID" value="@Model.CategoryVM.CategoryID" />
+                        <input type="hidden" asp-for="@Model.CreatePostVM.CategoryID" value="@Model.CategoryVM.CategoryID" />
                         <div class="mb-3">
                             <label for="postTitle" class="form-label">Title</label>
-                            <input name="Title" type="text" class="form-control" id="postTitle" required />
+                            <input asp-for="@Model.CreatePostVM.Title" type="text" class="form-control" id="postTitle">
                         </div>
                         <div class="mb-3">
                             <label for="postTag" class="form-label">Tag</label>
-                            <input name="Tag" type="text" class="form-control" id="postTag" />
+                            <input asp-for="@Model.CreatePostVM.Tag" type="text" class="form-control" id="postTitle" >
                         </div>
                         <div class="mb-3">
                             <label for="postType" class="form-label">Type</label>
-                            <select name="Type" class="form-select" id="postType">
-                                <option value="1">Post</option>
+                            <select asp-for="@Model.CreatePostVM.Type" class="form-select" id="postType">
+                                <option value="1">Blog</option>
                                 <option value="2">Question</option>
                             </select>
                         </div>
                         <div class="mb-3">
                             <label for="postContent" class="form-label">Content</label>
-                            <textarea name="CreatePostVM.Content" class="form-control" id="postContent" rows="5" required></textarea>
+                            <textarea asp-for="@Model.CreatePostVM.Content" name="CreatePostVM.Content" class="form-control" id="postContent" rows="5" required></textarea>
                         </div>
                         <div class="mb-3">
                             <label for="postImage" class="form-label">Image</label>
-                            <input name="PostImageFile" type="file" class="form-control" id="postImage" />
+                            <input asp-for="@Model.CreatePostVM.PostImageFile" name="PostImageFile" type="file" class="form-control" id="postImage" />
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -174,29 +174,30 @@
                 </div>
                 <form asp-action="EditPost" asp-controller="Admin" method="post" enctype="multipart/form-data">
                     <div class="modal-body">
-                        <input type="hidden" name="PostID" id="editPostID" />
+                        <input asp-for="Post.PostID" type="hidden" id="editPostID" />
+                        <input type="hidden" asp-for="@Model.CreatePostVM.CategoryID" value="@Model.CategoryVM.CategoryID" />
                         <div class="mb-3">
                             <label for="editPostTitle" class="form-label">Title</label>
-                            <input name="Title" type="text" class="form-control" id="editPostTitle" required />
+                            <input asp-for="Post.Title" type="text" class="form-control" id="editPostTitle" />
                         </div>
                         <div class="mb-3">
                             <label for="editPostTag" class="form-label">Tag</label>
-                            <input name="Tag" type="text" class="form-control" id="editPostTag" />
+                            <input asp-for="Post.Tag" class="form-control" id="editPostTag" />
                         </div>
                         <div class="mb-3">
                             <label for="editPostType" class="form-label">Type</label>
-                            <select name="Type" class="form-select" id="editPostType">
-                                <option value="1">Post</option>
+                            <select asp-for="@Model.CreatePostVM.Type" class="form-select" id="editPostType">
+                                <option value="1">Blog</option>
                                 <option value="2">Question</option>
                             </select>
                         </div>
                         <div class="mb-3">
                             <label for="editPostContent" class="form-label">Content</label>
-                            <textarea name="Content" class="form-control" id="editPostContent" rows="5"></textarea>
+                            <textarea asp-for="Post.Content" class="form-control" id="editPostContent" rows="5"></textarea>
                         </div>
                         <div class="mb-3">
                             <label for="editPostImage" class="form-label">Image</label>
-                            <input name="PostImageFile" type="file" class="form-control" id="editPostImage" />
+                            <input asp-for="CreatePostVM.PostImageFile" type="file" id="editPostImage" />
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -213,6 +214,9 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <form asp-action="DeletePost" asp-controller="Admin" method="post">
+                    <input type="hidden" asp-for="@Model.Post.PostID" value="" />
+                    <input type="hidden" asp-for="@Model.CategoryVM.CategoryID" value="" />
+                    <input type="hidden" asp-for="@Model.CategoryVM.CategoryName" value="" />
                     <div class="modal-header">
                         <h5 class="modal-title">Confirm Delete</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -224,7 +228,7 @@
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-danger">Delete</button>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    </div>
+                    </div>                
                 </form>
             </div>
         </div>
@@ -265,10 +269,17 @@
                         $('#editPostTitle').val(data.title);
                         $('#editPostTag').val(data.tag);
                         $('#editPostType').val(data.type);
+                        const decodeHTML = function (html) {
+                            var txt = document.createElement("textarea");
+                            txt.innerHTML = html;
+                            return txt.value;
+                        };
+                        const decodedContent = decodeHTML(data.content);
+
                         if (CKEDITOR.instances['editPostContent']) {
-                            CKEDITOR.instances['editPostContent'].setData(data.content);
+                            CKEDITOR.instances['editPostContent'].setData(decodedContent);
                         } else {
-                            $('#editPostContent').val(data.content);
+                            $('#editPostContent').val(decodedContent);
                         }
                         $('#editPostModal').modal('show');
                     },
@@ -297,6 +308,24 @@
                     }
                 });
             });
+        </script>
+        <script>
+            $(document).on("click", ".deletePostBtn", function () {
+                const postID = $(this).data("post-id");
+
+                const urlParams = new URLSearchParams(window.location.search);
+                const categoryID = urlParams.get('CategoryID');
+                const categoryName = urlParams.get('CategoryName');
+
+                // Populate the hidden inputs in the form with the post and category details
+                $("input[name='Post.PostID']").val(postID);
+                $("input[name='CategoryVM.CategoryID']").val(categoryID);
+                $("input[name='CategoryVM.CategoryName']").val(categoryName);
+
+                // Show the modal
+                $("#deletePostModal").modal("show");
+            });
+
         </script>
 }
 </body>
