@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.Security.Claims;
 using FuCommunityWebDataAccess.Data;
 using System.Net;
+using Microsoft.EntityFrameworkCore;
 
 namespace FUCommunityWeb.Controllers
 {
@@ -39,14 +40,14 @@ namespace FUCommunityWeb.Controllers
             // Xử lý tìm kiếm
             if (!string.IsNullOrEmpty(search))
             {
-                courses = courses.Where(c => c.Title.Contains(search) || c.CourseID.ToString().Contains(search)).ToList();
+                courses = courses.Where(c => c.Title.Contains(search, StringComparison.OrdinalIgnoreCase)).ToList();
             }
 
             // Xử lý sắp xếp
+            ViewData["SearchQuery"] = search;
             ViewData["IDSortParm"] = String.IsNullOrEmpty(sortOrder) ? "id_desc" : "";
             ViewData["UserIDSortParm"] = sortOrder == "UserID" ? "userid_desc" : "UserID";
             ViewData["TitleSortParm"] = sortOrder == "Title" ? "title_desc" : "Title";
-            // Thêm các tham số sắp xếp khác nếu cần
 
             switch (sortOrder)
             {
@@ -78,6 +79,8 @@ namespace FUCommunityWeb.Controllers
 
             return View(viewModel);
         }
+
+
 
         // Action để tạo khóa học mới
         [HttpPost]
@@ -382,7 +385,7 @@ namespace FUCommunityWeb.Controllers
 
                     await _courseService.UpdateLessonAsync(lessonToUpdate);
 
-                    _logger.LogInformation("Bài học đã được cập nhật: {LessonTitle}", lessonToUpdate.Title);
+                    _logger.LogInformation("Bài học đã được cp nhật: {LessonTitle}", lessonToUpdate.Title);
                     TempData["Success"] = "Cập nhật bài học thành công.";
                 }
                 catch (Exception ex)
@@ -428,9 +431,50 @@ namespace FUCommunityWeb.Controllers
         }
 
 
-        public IActionResult AdminDashBoard()
+        public async Task<IActionResult> AdminDashBoard()
         {
-            return View();
+            var totalUsers = await _context.Users.CountAsync();
+            var totalCourses = await _context.Courses.CountAsync();
+            var totalPosts = await _context.Posts.CountAsync();
+            var totalAmount = await _context.Orders
+                .Where(o => o.Status == "1")
+                .SumAsync(o => o.Amount);
+
+            // Tính toán số lượng người dùng đăng ký theo từng tháng
+            var userRegistrations = await _context.Users
+                .GroupBy(u => new { u.CreatedDate.Year, u.CreatedDate.Month })
+                .Select(g => new
+                {
+                    Year = g.Key.Year,
+                    Month = g.Key.Month,
+                    Count = g.Count()
+                })
+                .ToListAsync();
+
+            // Tạo mảng dữ liệu cho 12 tháng gần nhất
+            var currentMonth = DateTime.Now.Month;
+            var currentYear = DateTime.Now.Year;
+            var monthlyRegistrations = new int[12];
+
+            for (int i = 0; i < 12; i++)
+            {
+                var month = (currentMonth - i + 11) % 12 + 1;
+                var year = currentMonth - i <= 0 ? currentYear - 1 : currentYear;
+
+                var registration = userRegistrations.FirstOrDefault(r => r.Year == year && r.Month == month);
+                monthlyRegistrations[11 - i] = registration?.Count ?? 0;
+            }
+
+            var dashboardVM = new DashboardVM
+            {
+                TotalUsers = totalUsers,
+                TotalCourses = totalCourses,
+                TotalPosts = totalPosts,
+                TotalAmount = totalAmount,
+                MonthlyUserRegistrations = monthlyRegistrations
+            };
+
+            return View(dashboardVM);
         }
         public IActionResult ManageForumGroup()
         {
