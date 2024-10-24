@@ -436,16 +436,18 @@ namespace FUCommunityWeb.Controllers
         {
             return View();
         }
-        public async Task<IActionResult> ManagePost()
+        public async Task<IActionResult> ManagePost(CategoryVM categoryVM)
         {
-            var posts = await _forumService.GetAllPostsAsync();
-            var categories = await _forumService.GetAllCategoryAsync();
-            var viewModel = new PostVM
+            var modal = new PostVM
             {
-                Posts = posts,
-                Categories = categories
+                CategoryVM = new CategoryVM
+                {
+                    CategoryID = categoryVM.CategoryID
+                }
             };
-            return View(viewModel);
+            var posts = await _forumService.GetPostsByCategory(int.Parse(categoryVM.CategoryID));
+            modal.Posts = posts;
+            return View(modal);
         }
 
         [HttpGet]
@@ -466,11 +468,6 @@ namespace FUCommunityWeb.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreatePost(PostVM postVM)
         {
-            // Kiểm tra trạng thái mô hình
-            if (!ModelState.IsValid)
-            {
-                return RedirectToAction("ManagePost");
-            }
 
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
@@ -513,7 +510,10 @@ namespace FUCommunityWeb.Controllers
             _context.Posts.Add(post);
             await _context.SaveChangesAsync();
 
-            return RedirectToAction("Index");
+            return RedirectToAction("ManagePost", new
+            {
+                CategoryID = postVM.CreatePostVM.CategoryID
+            });
         }
 
         public IActionResult Post(CategoryVM categoryVM)
@@ -567,12 +567,6 @@ namespace FUCommunityWeb.Controllers
                 return NotFound();
             }
 
-            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            if (currentUserId != existingPost.UserID)
-            {
-                return Forbid();
-            }
-
             if (postVM.CreatePostVM.PostImageFile != null && postVM.CreatePostVM.PostImageFile.Length > 0)
             {
                 var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads");
@@ -594,13 +588,14 @@ namespace FUCommunityWeb.Controllers
             existingPost.Title = postVM.Post.Title;
             existingPost.Content = WebUtility.HtmlEncode(postVM.Post.Content);
             existingPost.Tag = postVM.Post.Tag;
+            existingPost.Type = postVM.CreatePostVM.Type;
+
 
             await _forumService.UpdatePost(existingPost);
 
-            return RedirectToAction("Post", new
+            return RedirectToAction("ManagePost", new
             {
-                CategoryName = postVM.CategoryVM.CategoryName,
-                CategoryID = postVM.CategoryVM.CategoryID
+                CategoryID = postVM.CreatePostVM.CategoryID
             });
         }
 
@@ -621,10 +616,9 @@ namespace FUCommunityWeb.Controllers
 
             await _forumService.DeletePost(existingPost.PostID);
 
-            return RedirectToAction("Post", new
+            return RedirectToAction("ManagePost", new
             {
-                CategoryName = postVM.CategoryVM.CategoryName,
-                CategoryID = postVM.CategoryVM.CategoryID
+                categoryId = postVM.CategoryVM.CategoryID
             });
         }
 
@@ -938,6 +932,22 @@ namespace FUCommunityWeb.Controllers
             return RedirectToAction("ManageForumCategory");
         }
 
+        [HttpPost]
+        public async Task<IActionResult> DeleteComment(PostVM postVM)
+        {
+            var existingComment = await _forumService.GetCommentByID(postVM.Comment.CommentID);
+            if (existingComment == null)
+            {
+                return NotFound();
+            }
+
+            await _forumService.DeteleComment(existingComment.CommentID);
+
+            return RedirectToAction("ManagePostDetail", new
+            {
+                postId = postVM.Post.PostID
+            });
+        }
 
 
     }
