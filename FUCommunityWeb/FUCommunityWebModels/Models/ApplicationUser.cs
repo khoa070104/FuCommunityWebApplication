@@ -29,6 +29,7 @@ namespace FuCommunityWebModels.Models
         public decimal Point { get; set; }
         public string BannerImage { get; set; }
         public bool Ban { get; set; } = false;
+        public DateTime CreatedDate { get; set; } = DateTime.Now;
 
         // Navigation properties
         public virtual ICollection<Post> Posts { get; set; } // Mối quan hệ với Post
