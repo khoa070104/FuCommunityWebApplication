@@ -46,10 +46,11 @@
                 <li class="nav-item">
                     <a class="nav-link active" href="#">Curriculum</a>
                 </li>
+                
                 @if (User.Identity.IsAuthenticated && Model.Course.UserID == User.FindFirstValue(ClaimTypes.NameIdentifier))
                 {
                     <li class="nav-item ms-auto">
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createLessonModal">
+                        <button type="button" class="btn-1" data-bs-toggle="modal" data-bs-target="#createLessonModal" style="margin-bottom:20px;">
                             Add New Lesson
                         </button>
                     </li>
@@ -69,8 +70,8 @@
                                 <span>@(lesson.UpdatedDate?.ToString("dd/MM/yyyy") ?? lesson.CreatedDate.ToString("dd/MM/yyyy"))</span>
                                 @if (User.Identity.IsAuthenticated && Model.Course.UserID == User.FindFirstValue(ClaimTypes.NameIdentifier))
                                 {
-                                    <button class="btn btn-sm btn-warning ms-2 edit-lesson-btn" data-lesson-id="@lesson.LessonID">Edit</button>
-                                    <button class="btn btn-sm btn-danger ms-2 delete-lesson-btn" data-lesson-id="@lesson.LessonID" data-lesson-title="@lesson.Title">Delete</button>
+                                    <button class="btn-edit btn-sm ms-2 edit-lesson-btn" data-lesson-id="@lesson.LessonID">Edit</button>
+                                    <button class="btn-del btn-sm ms-2 delete-lesson-btn" data-lesson-id="@lesson.LessonID" data-lesson-title="@lesson.Title">Delete</button>
                                 }
                             </div>
                         </div>
@@ -100,13 +101,13 @@
                 {
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <button class="btn btn-success buy-now" data-course-id="@Model.Course.CourseID" data-bs-toggle="modal" data-bs-target="#buyNowModal">
+                        <button class="btn buy-now" data-course-id="@Model.Course.CourseID" data-bs-toggle="modal" data-bs-target="#buyNowModal">
                             Buy Now
                         </button>
                     }
                     else
                     {
-                        <button class="btn btn-success buy-now" data-course-id="@Model.Course.CourseID" data-bs-toggle="modal" data-bs-target="#loginPromptModal">
+                        <button class="btn buy-now" data-course-id="@Model.Course.CourseID" data-bs-toggle="modal" data-bs-target="#loginPromptModal">
                             Buy Now
                         </button>
                     }
@@ -145,7 +146,7 @@
                     @Html.AntiForgeryToken()
                     <input type="hidden" name="courseId" id="enrollCourseId" />
                     <input type="hidden" name="returnUrl" id="returnUrl" />
-                    <button type="submit" class="btn btn-primary" id="confirmEnrollBtn">Confirm</button>
+                    <button type="submit" class="btn" id="confirmEnrollBtn">Confirm</button>
                 </form>
             </div>
         </div>
@@ -164,8 +165,8 @@
                 Please login to enroll in this course.
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <a href="@Url.Action("SignIn", "Home")" class="btn btn-primary">Login</a>
+                <button type="button" class="btn-cancel" data-bs-dismiss="modal">Cancel</button>
+                <a href="@Url.Action("SignIn", "Home")" class="btn">Login</a>
             </div>
         </div>
     </div>
@@ -215,8 +216,8 @@
                     <!-- Removed Lesson Image File Upload -->
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Add Lesson</button>
+                    <button type="button" class="btn-cancel-2" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn-blue">Add Lesson</button>
                 </div>
             </form>
         </div>
@@ -267,8 +268,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-                    <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+                    <button type="button" class="btn-cancel-2" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn-blue">Save Changes</button>
                 </div>
             </form>
         </div>
@@ -292,8 +293,8 @@
                 </div>
                 <div class="modal-footer">
                     <input type="hidden" name="lessonId" id="deleteLessonId" />
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-danger">Delete</button>
+                    <button type="button" class="btn-cancel-2" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn-del">Delete</button>
                 </div>
             </form>
         </div>
