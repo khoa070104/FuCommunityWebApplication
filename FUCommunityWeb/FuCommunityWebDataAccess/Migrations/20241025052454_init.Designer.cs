@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FuCommunityWebDataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241014040002_v1")]
-    partial class v1
+    [Migration("20241025052454_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -250,6 +250,31 @@ namespace FuCommunityWebDataAccess.Migrations
                     b.ToTable("Enrollment");
                 });
 
+            modelBuilder.Entity("FuCommunityWebModels.Models.Follower", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("FollowId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("UserID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FollowId");
+
+                    b.HasIndex("UserID");
+
+                    b.ToTable("Followers");
+                });
+
             modelBuilder.Entity("FuCommunityWebModels.Models.IsVote", b =>
                 {
                     b.Property<int>("IsVoteID")
@@ -326,6 +351,47 @@ namespace FuCommunityWebDataAccess.Migrations
                     b.ToTable("Lesson");
                 });
 
+            modelBuilder.Entity("FuCommunityWebModels.Models.OrderInfo", b =>
+                {
+                    b.Property<long>("OrderId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("OrderId"));
+
+                    b.Property<long>("Amount")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("BankCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("OrderDesc")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PayStatus")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("PaymentTranId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("OrderId");
+
+                    b.HasIndex("UserID");
+
+                    b.ToTable("Orders");
+                });
+
             modelBuilder.Entity("FuCommunityWebModels.Models.Point", b =>
                 {
                     b.Property<int>("PointId")
@@ -396,6 +462,9 @@ namespace FuCommunityWebDataAccess.Migrations
                         .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
@@ -469,6 +538,9 @@ namespace FuCommunityWebDataAccess.Migrations
                     b.Property<int>("CourseID")
                         .HasColumnType("int");
 
+                    b.Property<int>("CourseID1")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
 
@@ -482,6 +554,8 @@ namespace FuCommunityWebDataAccess.Migrations
                     b.HasKey("ReviewID");
 
                     b.HasIndex("CourseID");
+
+                    b.HasIndex("CourseID1");
 
                     b.HasIndex("UserID");
 
@@ -741,9 +815,19 @@ namespace FuCommunityWebDataAccess.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
+                    b.Property<bool>("Ban")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("BannerImage")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Bio")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DOB")
                         .HasColumnType("datetime2");
@@ -874,6 +958,25 @@ namespace FuCommunityWebDataAccess.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("FuCommunityWebModels.Models.Follower", b =>
+                {
+                    b.HasOne("FuCommunityWebModels.Models.ApplicationUser", "FollowedUser")
+                        .WithMany("Followers")
+                        .HasForeignKey("FollowId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FuCommunityWebModels.Models.ApplicationUser", "FollowingUser")
+                        .WithMany("Following")
+                        .HasForeignKey("UserID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("FollowedUser");
+
+                    b.Navigation("FollowingUser");
+                });
+
             modelBuilder.Entity("FuCommunityWebModels.Models.IsVote", b =>
                 {
                     b.HasOne("FuCommunityWebModels.Models.Lesson", null)
@@ -916,6 +1019,17 @@ namespace FuCommunityWebDataAccess.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("FuCommunityWebModels.Models.OrderInfo", b =>
+                {
+                    b.HasOne("FuCommunityWebModels.Models.ApplicationUser", "User")
+                        .WithMany("Orders")
+                        .HasForeignKey("UserID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("FuCommunityWebModels.Models.Point", b =>
                 {
                     b.HasOne("FuCommunityWebModels.Models.ApplicationUser", "User")
@@ -931,7 +1045,8 @@ namespace FuCommunityWebDataAccess.Migrations
                 {
                     b.HasOne("FuCommunityWebModels.Models.Category", "Category")
                         .WithMany("Posts")
-                        .HasForeignKey("CategoryID");
+                        .HasForeignKey("CategoryID")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Document", "Document")
                         .WithMany()
@@ -969,11 +1084,19 @@ namespace FuCommunityWebDataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("FuCommunityWebModels.Models.Course", "Course")
+                        .WithMany("Reviews")
+                        .HasForeignKey("CourseID1")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("FuCommunityWebModels.Models.ApplicationUser", "User")
                         .WithMany("Reviews")
                         .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Course");
 
                     b.Navigation("User");
                 });
@@ -1063,6 +1186,8 @@ namespace FuCommunityWebDataAccess.Migrations
                     b.Navigation("Enrollments");
 
                     b.Navigation("Lessons");
+
+                    b.Navigation("Reviews");
                 });
 
             modelBuilder.Entity("FuCommunityWebModels.Models.Lesson", b =>
@@ -1098,7 +1223,13 @@ namespace FuCommunityWebDataAccess.Migrations
 
                     b.Navigation("Enrollments");
 
+                    b.Navigation("Followers");
+
+                    b.Navigation("Following");
+
                     b.Navigation("IsVotes");
+
+                    b.Navigation("Orders");
 
                     b.Navigation("Points");
 

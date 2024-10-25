@@ -116,6 +116,12 @@
                                 </td>
                             </tr>
                             <tr>
+                                <th for="username" scope="row">Username:</th>
+                                <td>
+                                    <input asp-for="User.UserName" class="form-control" id="username" readonly />
+                                </td>
+                            </tr>
+                            <tr>
                                 <th for="bio" scope="row">Bio:</th>
                                 <td>
                                     <input asp-for="User.Bio" class="form-control" id="bio" readonly />
@@ -170,6 +176,7 @@
                                     <textarea asp-for="User.Description" class="form-control" id="description" readonly></textarea>
                                 </td>
                             </tr>
+                            
                             <tr>
                                 <td colspan="2" class="text-center">
                                     <a href="#" class="btn" data-bs-toggle="modal" data-bs-target="#editProfileModal">Edit Profile</a>
@@ -236,6 +243,10 @@
                     <div class="mb-3">
                         <label for="descriptionEdit" class="form-label">Description</label>
                         <textarea asp-for="User.Description" class="form-control" id="descriptionEdit"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="usernameEdit" class="form-label">Username</label>
+                        <input asp-for="User.UserName" class="form-control" id="usernameEdit" />
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn-cancel" data-bs-dismiss="modal">Cancel</button>

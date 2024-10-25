@@ -152,3 +152,16 @@ D:\UNIVERSITY\Sem5\SWP391\1_version_1.0\FuCommunityWebApplication\FUCommunityWeb
 D:\UNIVERSITY\Sem5\SWP391\1_version_1.0\FuCommunityWebApplication\FUCommunityWeb\FUCommunityWebModels\obj\Debug\net8.0\refint\FuCommunityWebModels.dll
 D:\UNIVERSITY\Sem5\SWP391\1_version_1.0\FuCommunityWebApplication\FUCommunityWeb\FUCommunityWebModels\obj\Debug\net8.0\FuCommunityWebModels.pdb
 D:\UNIVERSITY\Sem5\SWP391\1_version_1.0\FuCommunityWebApplication\FUCommunityWeb\FUCommunityWebModels\obj\Debug\net8.0\ref\FuCommunityWebModels.dll
+D:\Documents\FuComunityVersionManager\FuWebTest11\FuCommunityWebApplication\FUCommunityWeb\FUCommunityWebModels\bin\Debug\net8.0\FuCommunityWebModels.deps.json
+D:\Documents\FuComunityVersionManager\FuWebTest11\FuCommunityWebApplication\FUCommunityWeb\FUCommunityWebModels\bin\Debug\net8.0\FuCommunityWebModels.dll
+D:\Documents\FuComunityVersionManager\FuWebTest11\FuCommunityWebApplication\FUCommunityWeb\FUCommunityWebModels\bin\Debug\net8.0\FuCommunityWebModels.pdb
+D:\Documents\FuComunityVersionManager\FuWebTest11\FuCommunityWebApplication\FUCommunityWeb\FUCommunityWebModels\obj\Debug\net8.0\FuCommunityWebModels.csproj.AssemblyReference.cache
+D:\Documents\FuComunityVersionManager\FuWebTest11\FuCommunityWebApplication\FUCommunityWeb\FUCommunityWebModels\obj\Debug\net8.0\FuCommunityWebModels.GeneratedMSBuildEditorConfig.editorconfig
+D:\Documents\FuComunityVersionManager\FuWebTest11\FuCommunityWebApplication\FUCommunityWeb\FUCommunityWebModels\obj\Debug\net8.0\FuCommunityWebModels.AssemblyInfoInputs.cache
+D:\Documents\FuComunityVersionManager\FuWebTest11\FuCommunityWebApplication\FUCommunityWeb\FUCommunityWebModels\obj\Debug\net8.0\FuCommunityWebModels.AssemblyInfo.cs
+D:\Documents\FuComunityVersionManager\FuWebTest11\FuCommunityWebApplication\FUCommunityWeb\FUCommunityWebModels\obj\Debug\net8.0\FuCommunityWebModels.csproj.CoreCompileInputs.cache
+D:\Documents\FuComunityVersionManager\FuWebTest11\FuCommunityWebApplication\FUCommunityWeb\FUCommunityWebModels\obj\Debug\net8.0\FuCommunityWebModels.sourcelink.json
+D:\Documents\FuComunityVersionManager\FuWebTest11\FuCommunityWebApplication\FUCommunityWeb\FUCommunityWebModels\obj\Debug\net8.0\FuCommunityWebModels.dll
+D:\Documents\FuComunityVersionManager\FuWebTest11\FuCommunityWebApplication\FUCommunityWeb\FUCommunityWebModels\obj\Debug\net8.0\refint\FuCommunityWebModels.dll
+D:\Documents\FuComunityVersionManager\FuWebTest11\FuCommunityWebApplication\FUCommunityWeb\FUCommunityWebModels\obj\Debug\net8.0\FuCommunityWebModels.pdb
+D:\Documents\FuComunityVersionManager\FuWebTest11\FuCommunityWebApplication\FUCommunityWeb\FUCommunityWebModels\obj\Debug\net8.0\ref\FuCommunityWebModels.dll

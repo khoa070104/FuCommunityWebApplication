@@ -247,6 +247,31 @@ namespace FuCommunityWebDataAccess.Migrations
                     b.ToTable("Enrollment");
                 });
 
+            modelBuilder.Entity("FuCommunityWebModels.Models.Follower", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("FollowId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("UserID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FollowId");
+
+                    b.HasIndex("UserID");
+
+                    b.ToTable("Followers");
+                });
+
             modelBuilder.Entity("FuCommunityWebModels.Models.IsVote", b =>
                 {
                     b.Property<int>("IsVoteID")
@@ -787,9 +812,19 @@ namespace FuCommunityWebDataAccess.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
+                    b.Property<bool>("Ban")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("BannerImage")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Bio")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DOB")
                         .HasColumnType("datetime2");
@@ -920,6 +955,25 @@ namespace FuCommunityWebDataAccess.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("FuCommunityWebModels.Models.Follower", b =>
+                {
+                    b.HasOne("FuCommunityWebModels.Models.ApplicationUser", "FollowedUser")
+                        .WithMany("Followers")
+                        .HasForeignKey("FollowId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FuCommunityWebModels.Models.ApplicationUser", "FollowingUser")
+                        .WithMany("Following")
+                        .HasForeignKey("UserID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("FollowedUser");
+
+                    b.Navigation("FollowingUser");
+                });
+
             modelBuilder.Entity("FuCommunityWebModels.Models.IsVote", b =>
                 {
                     b.HasOne("FuCommunityWebModels.Models.Lesson", null)
@@ -988,7 +1042,8 @@ namespace FuCommunityWebDataAccess.Migrations
                 {
                     b.HasOne("FuCommunityWebModels.Models.Category", "Category")
                         .WithMany("Posts")
-                        .HasForeignKey("CategoryID");
+                        .HasForeignKey("CategoryID")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Document", "Document")
                         .WithMany()
@@ -1164,6 +1219,10 @@ namespace FuCommunityWebDataAccess.Migrations
                     b.Navigation("Documents");
 
                     b.Navigation("Enrollments");
+
+                    b.Navigation("Followers");
+
+                    b.Navigation("Following");
 
                     b.Navigation("IsVotes");
 

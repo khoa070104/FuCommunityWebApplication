@@ -133,6 +133,7 @@ namespace FUCommunityWeb.Controllers
             user.DOB = userVM.User.DOB;
             user.Gender = userVM.User.Gender;
             user.Description = userVM.User.Description;
+            user.UserName = userVM.User.UserName; 
 
             await _userService.UpdateUserAsync(user);
             return Redirect("Index");
