@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "OuRevU+x6SQ=",
+  "dgSpecHash": "kS/mcdkqYYg=",
   "success": true,
-  "projectFilePath": "D:\\Documents\\FuComunityVersionManager\\FuWebTest11\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\FuCommunityWebDataAccess.csproj",
+  "projectFilePath": "D:\\Documents\\FuComunityVersionManager\\FuWebTest12\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\FuCommunityWebDataAccess.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\NCPC\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\NCPC\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",

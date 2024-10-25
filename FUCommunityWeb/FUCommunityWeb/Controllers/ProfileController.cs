@@ -127,16 +127,26 @@ namespace FUCommunityWeb.Controllers
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var user = await _userService.GetUserByIdAsync(userId);
 
+            // Kiểm tra username đã tồn tại chưa
+            if (user.UserName != userVM.User.UserName) // Chỉ kiểm tra nếu username thay đổi
+            {
+                var existingUser = await _userService.GetUserByUsernameAsync(userVM.User.UserName);
+                if (existingUser != null)
+                {
+                    return Json(new { success = false, message = "Username is already taken!" });
+                }
+            }
+
             user.FullName = userVM.User.FullName;
             user.Bio = userVM.User.Bio;
             user.Address = userVM.User.Address;
             user.DOB = userVM.User.DOB;
             user.Gender = userVM.User.Gender;
             user.Description = userVM.User.Description;
-            user.UserName = userVM.User.UserName; 
+            user.UserName = userVM.User.UserName;
 
             await _userService.UpdateUserAsync(user);
-            return Redirect("Index");
+            return Json(new { success = true, message = "Profile updated successfully!" });
         }
 
         public async Task<IActionResult> PostHistory()

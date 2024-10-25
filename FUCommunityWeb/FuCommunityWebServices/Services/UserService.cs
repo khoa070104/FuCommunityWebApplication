@@ -103,5 +103,10 @@ namespace FuCommunityWebServices.Services
         {
             return await _userRepo.GetFollowersAsync(userId);
         }
+
+        public async Task<ApplicationUser> GetUserByUsernameAsync(string username)
+        {
+            return await _userRepo.GetUserByUsernameAsync(username);
+        }
     }
 }

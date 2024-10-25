@@ -8597,11 +8597,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Documents\\FuComunityVersionManager\\FuWebTest11\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebServices\\FuCommunityWebServices.csproj",
+      "projectUniqueName": "D:\\Documents\\FuComunityVersionManager\\FuWebTest12\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebServices\\FuCommunityWebServices.csproj",
       "projectName": "FuCommunityWebServices",
-      "projectPath": "D:\\Documents\\FuComunityVersionManager\\FuWebTest11\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebServices\\FuCommunityWebServices.csproj",
+      "projectPath": "D:\\Documents\\FuComunityVersionManager\\FuWebTest12\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebServices\\FuCommunityWebServices.csproj",
       "packagesPath": "C:\\Users\\NCPC\\.nuget\\packages\\",
-      "outputPath": "D:\\Documents\\FuComunityVersionManager\\FuWebTest11\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebServices\\obj\\",
+      "outputPath": "D:\\Documents\\FuComunityVersionManager\\FuWebTest12\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebServices\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\NCPC\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -8619,8 +8619,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "D:\\Documents\\FuComunityVersionManager\\FuWebTest11\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\FuCommunityWebDataAccess.csproj": {
-              "projectPath": "D:\\Documents\\FuComunityVersionManager\\FuWebTest11\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\FuCommunityWebDataAccess.csproj"
+            "D:\\Documents\\FuComunityVersionManager\\FuWebTest12\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\FuCommunityWebDataAccess.csproj": {
+              "projectPath": "D:\\Documents\\FuComunityVersionManager\\FuWebTest12\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\FuCommunityWebDataAccess.csproj"
             }
           }
         }

@@ -215,7 +215,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form class="edit-profile-form" asp-action="EditProfile" method="post">
+                <form class="edit-profile-form" id="editProfileForm">
                     @Html.AntiForgeryToken()
                     <div class="mb-3">
                         <label for="fullNameEdit" class="form-label">Full Name</label>
@@ -268,5 +268,44 @@
     }
 </script>
 
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["Error"]
+    </div>
+}
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Success"]
+    </div>
+}
 
-
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("#editProfileForm").on("submit", function (e) {
+                e.preventDefault();
+                
+                $.ajax({
+                    url: '@Url.Action("EditProfile", "Profile")',
+                    type: 'POST',
+                    data: $(this).serialize(),
+                    success: function (response) {
+                        if (response.success) {
+                            // Nếu thành công
+                            alert(response.message);
+                            location.reload(); // Tải lại trang
+                        } else {
+                            // Nếu thất bại
+                            alert(response.message);
+                        }
+                    },
+                    error: function () {
+                        alert("An error occurred while processing your request.");
+                    }
+                });
+            });
+        });
+    </script>
+}
