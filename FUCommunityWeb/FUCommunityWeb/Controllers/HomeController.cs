@@ -182,7 +182,8 @@ namespace FUCommunityWeb.Controllers
 
             if (!string.IsNullOrEmpty(searchTerm))
             {
-                users = users.Where(u => u.UserName.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)).ToList();
+                users = _userService.GetAllUsersAsync().Result
+                    .Where(u => u.UserName.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)).ToList();
             }
 
             ViewData["searchTerm"] = searchTerm;
