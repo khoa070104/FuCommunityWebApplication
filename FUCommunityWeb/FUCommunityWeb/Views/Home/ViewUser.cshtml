@@ -2,23 +2,49 @@
 
 <div class="container mt-4">
     <h1 class="text-center mb-4">Danh sách người dùng</h1>
-    <form method="get" asp-action="ViewUser" class="user-search mb-3 d-flex">
-        <input type="text" name="searchTerm" class="form-control me-2" placeholder="Tìm kiếm người dùng..." value="@ViewData["searchTerm"]" />
-        <button type="submit" class="btn btn-primary">Find</button>
+    <form method="get" asp-action="ViewUser" class="user-search mb-3 d-flex" id="searchForm">
+        <input type="text" id="searchInput" name="searchTerm" class="form-control me-2" placeholder="Nhập username để tìm kiếm..." />
     </form>
 
-    <div class="row user-list">
-        @foreach (var user in Model)
+    <div class="row user-list" id="userList">
+        @if (string.IsNullOrEmpty(ViewData["searchTerm"]?.ToString()))
         {
-            <div class="col-md-4 mb-4 user-item">
-                <div class="card h-100">
-                    <img src="@(user.AvatarImage ?? "/img/avt2.jpg")" alt="Avatar" class="card-img-top user-avatar" />
-                    <div class="card-body text-center">
-                        <h5 class="card-title user-name">@user.FullName</h5>
-                        <a href="@Url.Action("ViewUserProfile", "Home", new { userId = user.Id })" class="btn btn-primary">Xem hồ sơ</a>
+            <div class="col-12 text-center">
+                <p class="text-muted">Vui lòng nhập username để tìm kiếm người dùng</p>
+            </div>
+        }
+        else if (Model.Count == 0)
+        {
+            <div class="col-12 text-center">
+                <p class="text-danger">Không tìm thấy người dùng với username: '@ViewData["searchTerm"]'</p>
+            </div>
+        }
+        else
+        {
+            @foreach (var user in Model)
+            {
+                <div class="col-md-4 mb-4 user-item">
+                    <div class="card h-100">
+                        <img src="@(user.AvatarImage ?? "/img/avt2.jpg")" alt="Avatar" class="card-img-top user-avatar" />
+                        <div class="card-body text-center">
+                            <h5 class="card-title user-name">@user.FullName</h5>
+                            <a href="@Url.Action("ViewUserProfile", "Home", new { userId = user.Id })" class="btn btn-primary">Xem hồ sơ</a>
+                        </div>
                     </div>
                 </div>
-            </div>
+            }
         }
     </div>
 </div>
+
+<script>
+    document.getElementById('searchInput').addEventListener('input', function() {
+        const searchTerm = this.value.trim();
+        if (searchTerm.length > 0) {
+            document.getElementById('searchForm').submit();
+        } else {
+            // Nếu ô tìm kiếm trống, reload trang để hiển thị thông báo mặc định
+            window.location.href = '@Url.Action("ViewUser", "Home")';
+        }
+    });
+</script>

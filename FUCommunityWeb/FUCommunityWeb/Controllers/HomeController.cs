@@ -179,11 +179,13 @@ namespace FUCommunityWeb.Controllers
         }
         public IActionResult ViewUser(string searchTerm = "")
         {
-            var users = _userService.GetAllUsersAsync().Result;
+            List<ApplicationUser> users = new List<ApplicationUser>();
 
             if (!string.IsNullOrEmpty(searchTerm))
             {
-                users = users.Where(u => u.UserName.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)).ToList();
+                users = _userService.GetAllUsersAsync().Result
+                    .Where(u => u.UserName.Contains(searchTerm, StringComparison.OrdinalIgnoreCase))
+                    .ToList();
             }
 
             ViewData["searchTerm"] = searchTerm;
