@@ -190,5 +190,13 @@ namespace FuCommunityWebDataAccess.Repositories
             _context.Users.Update(user);
             await _context.SaveChangesAsync();
         }
+
+        public async Task<List<Enrollment>> GetUserEnrollmentsAsync(string userId)
+        {
+            return await _context.Enrollment
+                .Where(e => e.UserID == userId)
+                .Include(e => e.Course)
+                .ToListAsync();
+        }
     }
 }

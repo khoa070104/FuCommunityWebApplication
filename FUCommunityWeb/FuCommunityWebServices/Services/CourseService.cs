@@ -123,5 +123,10 @@ namespace FuCommunityWebServices.Services
         {
             await _courseRepo.UpdateUserAsync(user);
         }
+
+        public async Task<List<Enrollment>> GetUserEnrollmentsAsync(string userId)
+        {
+            return await _courseRepo.GetUserEnrollmentsAsync(userId);
+        }
     }
 }

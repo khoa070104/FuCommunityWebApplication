@@ -199,5 +199,18 @@ namespace FuCommunityWebDataAccess.Repositories
             _context.Users.Update(user);
             await _context.SaveChangesAsync();
         }
+
+        public async Task<List<Post>> GetUserPostsAsync(string userId)
+        {
+            return await _context.Posts
+                .Where(p => p.UserID == userId)
+                .ToListAsync();
+        }
+
+        public async Task<int> GetUserPostCountAsync(string userId, int postType)
+        {
+            return await _context.Posts
+                .CountAsync(p => p.UserID == userId && p.Type == postType);
+        }
     }
 }

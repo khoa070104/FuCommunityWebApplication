@@ -13,9 +13,9 @@ namespace FuCommunityWebDataAccess.Repositories
     public class UserRepo
     {
         private readonly ApplicationDbContext _context;
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public UserRepo(ApplicationDbContext context, UserManager<IdentityUser> userManager)
+        public UserRepo(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
             _userManager = userManager;
@@ -102,9 +102,16 @@ namespace FuCommunityWebDataAccess.Repositories
             await _context.SaveChangesAsync();
         }
 
+        public async Task<List<ApplicationUser>> GetFollowersAsync(string userId)
+        {
+            return await _context.Followers
+                .Where(f => f.FollowId == userId)
+                .Select(f => f.FollowingUser)
+                .ToListAsync();
+        }
+
         public async Task<bool> IsFollowingAsync(string userId, string followId)
         {
-            Console.WriteLine($"Checking if user {userId} is following {followId}");
             return await _context.Followers.AnyAsync(f => f.UserID == userId && f.FollowId == followId);
         }
 

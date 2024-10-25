@@ -98,5 +98,10 @@ namespace FuCommunityWebServices.Services
 
             await _userRepo.DeleteUserAsync(user);
         }
+
+        public async Task<List<ApplicationUser>> GetFollowersAsync(string userId)
+        {
+            return await _userRepo.GetFollowersAsync(userId);
+        }
     }
 }

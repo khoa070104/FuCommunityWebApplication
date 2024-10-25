@@ -117,5 +117,15 @@ namespace FuCommunityWebServices.Services
                 await _forumRepo.UpdateUser(user);
             }
         }
+
+        public async Task<List<Post>> GetUserPostsAsync(string userId)
+        {
+            return await _forumRepo.GetUserPostsAsync(userId);
+        }
+
+        public async Task<int> GetUserPostCountAsync(string userId, int postType)
+        {
+            return await _forumRepo.GetUserPostCountAsync(userId, postType);
+        }
     }
 }

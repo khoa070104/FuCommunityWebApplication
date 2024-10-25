@@ -16,27 +16,30 @@ namespace FUCommunityWeb.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly ApplicationDbContext _context;
         private readonly UserService _userService;
         private readonly HomeService _homeService;
         private readonly CourseService _courseService;
         private readonly ForumService _forumService;
 
-        public HomeController(ILogger<HomeController> logger, UserService userService, HomeService homeService, CourseService courseService, ApplicationDbContext context, ForumService forumService)
+        public HomeController(ILogger<HomeController> logger, UserService userService, HomeService homeService, CourseService courseService, ForumService forumService)
         {
             _logger = logger;
             _userService = userService;
             _homeService = homeService;
             _courseService = courseService;
             _forumService = forumService;
-            _context = context;
         }
         public IActionResult Index()
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
+            // Sử dụng CourseService để lấy danh sách khóa học đã đăng ký
             var enrolledCourses = _courseService.GetEnrolledCoursesAsync(userId).Result;
+
+            // Sử dụng CourseService để lấy danh sách khóa học được mua nhiều nhất
             var mostPurchasedCourses = _courseService.GetMostPurchasedCoursesAsync(3).Result;
+
+            // Sử dụng CourseService để lấy danh sách khóa học chất lượng cao nhất
             var highestQualityCourse = _courseService.GetHighestQualityCoursesAsync(3).Result;
 
             var homeViewModel = new HomeVM
@@ -80,10 +83,13 @@ namespace FUCommunityWeb.Controllers
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
+            // Sử dụng CourseService để lấy danh sách khóa học đã đăng ký
             var enrolledCourses = _courseService.GetEnrolledCoursesAsync(userId).Result;
 
+            // Sử dụng CourseService để lấy danh sách khóa học được mua nhiều nhất
             var mostPurchasedCourses = _courseService.GetMostPurchasedCoursesAsync(3).Result;
 
+            // Sử dụng CourseService để lấy danh sách khóa học chất lượng cao nhất
             var highestQualityCourse = _courseService.GetHighestQualityCoursesAsync(3).Result;
 
             var homeViewModel = new HomeVM
@@ -103,8 +109,7 @@ namespace FUCommunityWeb.Controllers
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            var course = await _context.Courses
-                .FirstOrDefaultAsync(c => c.CourseID == courseId);
+            var course = await _courseService.GetCourseByIdAsync(courseId);
 
             if (course == null)
             {
@@ -112,8 +117,7 @@ namespace FUCommunityWeb.Controllers
                 return RedirectToAction("Index");
             }
 
-            var alreadyEnrolled = await _context.Enrollment
-                .AnyAsync(e => e.UserID == userId && e.CourseID == courseId);
+            var alreadyEnrolled = await _courseService.IsUserEnrolledInCourseAsync(userId, courseId);
 
             if (alreadyEnrolled)
             {
@@ -121,7 +125,7 @@ namespace FUCommunityWeb.Controllers
                 return RedirectToAction("Index");
             }
 
-            var user = await _context.Users.FindAsync(userId);
+            var user = await _userService.GetUserByIdAsync(userId);
             if (user == null)
             {
                 TempData["Error"] = "User not found.";
@@ -144,11 +148,8 @@ namespace FUCommunityWeb.Controllers
                 Status = "Active"
             };
 
-            _context.Enrollment.Add(enrollment);
-            await _context.SaveChangesAsync();
-
-            _context.Users.Update(user);
-            await _context.SaveChangesAsync();
+            await _courseService.EnrollUserInCourseAsync(enrollment);
+            await _userService.UpdateUserAsync(user);
 
             TempData["Success"] = "Enrollment successful!";
 
@@ -182,21 +183,20 @@ namespace FUCommunityWeb.Controllers
 
             if (!string.IsNullOrEmpty(searchTerm))
             {
-                users = _userService.GetAllUsersAsync().Result
-                    .Where(u => u.UserName.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)).ToList();
+                users = users.Where(u => u.UserName.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)).ToList();
             }
 
             ViewData["searchTerm"] = searchTerm;
             return View(users);
         }
-        public IActionResult ViewUserProfile(string userId)
+        public async Task<IActionResult> ViewUserProfile(string userId)
         {
             if (string.IsNullOrEmpty(userId))
             {
                 return RedirectToAction("ViewUser");
             }
 
-            var user = _userService.GetUserByIdAsync(userId).Result;
+            var user = await _userService.GetUserByIdAsync(userId);
 
             if (user == null)
             {
@@ -205,29 +205,20 @@ namespace FUCommunityWeb.Controllers
 
             var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            var followers = _context.Followers
-                .Where(f => f.FollowId == userId)
-                .Include(f => f.FollowingUser)
-                .Select(f => f.FollowingUser)
-                .ToList();
-
-            var isMentor = _userService.IsUserInRoleAsync(userId, "mentor").Result;
+            var followers = await _userService.GetFollowersAsync(userId);
+            var isMentor = await _userService.IsUserInRoleAsync(userId, "mentor");
 
             var userViewModel = new UserVM
             {
                 User = user,
-                Enrollments = _context.Enrollment
-                    .Where(e => e.UserID == userId)
-                    .Include(e => e.Course)
-                    .ToList(),
-                Post = _context.Posts.Where(p => p.UserID == userId).ToList(),
+                Enrollments = await _courseService.GetUserEnrollmentsAsync(userId),
+                Post = await _forumService.GetUserPostsAsync(userId),
                 IsCurrentUser = (userId == currentUserId),
-                IsFollowing = _userService.IsFollowingAsync(currentUserId, userId).Result,
+                IsFollowing = await _userService.IsFollowingAsync(currentUserId, userId),
                 Followers = followers,
                 IsMentor = isMentor,
-
-                TotalPosts = _context.Posts.Count(p => p.UserID == userId && p.Type == 1),
-                TotalQuestions = _context.Posts.Count(p => p.UserID == userId && p.Type == 2)
+                TotalPosts = await _forumService.GetUserPostCountAsync(userId, 1),
+                TotalQuestions = await _forumService.GetUserPostCountAsync(userId, 2)
             };
 
             return View(userViewModel);
