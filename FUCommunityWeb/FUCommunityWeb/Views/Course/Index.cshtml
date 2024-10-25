@@ -234,10 +234,10 @@
                                     @if (User.Identity.IsAuthenticated && course.UserID == User.FindFirstValue(ClaimTypes.NameIdentifier))
                                     {
                                         <div class="mt-2">
-                                            <button type="button" class="btn btn-sm btn-warning me-2 edit-course-btn" data-course-id="@course.CourseID">
+                                            <button type="button" class="btn-sm btn-edit me-2 edit-course-btn" data-course-id="@course.CourseID">
                                                 Edit
                                             </button>
-                                            <button type="button" class="btn btn-sm btn-danger delete-course-btn" data-course-id="@course.CourseID" data-course-title="@course.Title" data-bs-toggle="modal" data-bs-target="#deleteCourseModal">
+                                            <button type="button" class="btn-sm btn-del delete-course-btn" data-course-id="@course.CourseID" data-course-title="@course.Title" data-bs-toggle="modal" data-bs-target="#deleteCourseModal">
                                                 Delete
                                             </button>
                                         </div>
