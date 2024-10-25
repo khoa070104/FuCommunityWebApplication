@@ -35,13 +35,8 @@ namespace FUCommunityWeb.Controllers
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            // Sử dụng CourseService để lấy danh sách khóa học đã đăng ký
             var enrolledCourses = _courseService.GetEnrolledCoursesAsync(userId).Result;
-
-            // Sử dụng CourseService để lấy danh sách khóa học được mua nhiều nhất
             var mostPurchasedCourses = _courseService.GetMostPurchasedCoursesAsync(3).Result;
-
-            // Sử dụng CourseService để lấy danh sách khóa học chất lượng cao nhất
             var highestQualityCourse = _courseService.GetHighestQualityCoursesAsync(3).Result;
 
             var homeViewModel = new HomeVM
@@ -85,13 +80,10 @@ namespace FUCommunityWeb.Controllers
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            // Sử dụng CourseService để lấy danh sách khóa học đã đăng ký
             var enrolledCourses = _courseService.GetEnrolledCoursesAsync(userId).Result;
 
-            // Sử dụng CourseService để lấy danh sách khóa học được mua nhiều nhất
             var mostPurchasedCourses = _courseService.GetMostPurchasedCoursesAsync(3).Result;
 
-            // Sử dụng CourseService để lấy danh sách khóa học chất lượng cao nhất
             var highestQualityCourse = _courseService.GetHighestQualityCoursesAsync(3).Result;
 
             var homeViewModel = new HomeVM
@@ -129,7 +121,6 @@ namespace FUCommunityWeb.Controllers
                 return RedirectToAction("Index");
             }
 
-            // Lấy thông tin người dùng
             var user = await _context.Users.FindAsync(userId);
             if (user == null)
             {
@@ -137,14 +128,12 @@ namespace FUCommunityWeb.Controllers
                 return RedirectToAction("Index");
             }
 
-            // Kiểm tra xem người dùng có đủ điểm để mua khóa học không
             if (user.Point < course.Price)
             {
                 TempData["Error"] = "You do not have enough points to purchase this course.";
                 return RedirectToAction("Index");
             }
 
-            // Trừ điểm của người dùng
             user.Point -= course.Price.Value;
 
             var enrollment = new Enrollment
@@ -155,11 +144,9 @@ namespace FUCommunityWeb.Controllers
                 Status = "Active"
             };
 
-            // Thêm đăng ký khóa học
             _context.Enrollment.Add(enrollment);
             await _context.SaveChangesAsync();
 
-            // Cập nhật điểm của người dùng
             _context.Users.Update(user);
             await _context.SaveChangesAsync();
 
@@ -195,10 +182,10 @@ namespace FUCommunityWeb.Controllers
 
             if (!string.IsNullOrEmpty(searchTerm))
             {
-                users = users.Where(u => u.FullName.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)).ToList();
+                users = users.Where(u => u.UserName.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)).ToList();
             }
 
-            ViewData["searchTerm"] = searchTerm; // Để giữ lại giá trị tìm kiếm trong ô input
+            ViewData["searchTerm"] = searchTerm;
             return View(users);
         }
         public IActionResult ViewUserProfile(string userId)
@@ -223,7 +210,6 @@ namespace FUCommunityWeb.Controllers
                 .Select(f => f.FollowingUser)
                 .ToList();
 
-            // Sử dụng phương thức mới để kiểm tra vai trò
             var isMentor = _userService.IsUserInRoleAsync(userId, "mentor").Result;
 
             var userViewModel = new UserVM
@@ -239,7 +225,6 @@ namespace FUCommunityWeb.Controllers
                 Followers = followers,
                 IsMentor = isMentor,
 
-                // Tính toán tổng số Posts và Questions
                 TotalPosts = _context.Posts.Count(p => p.UserID == userId && p.Type == 1),
                 TotalQuestions = _context.Posts.Count(p => p.UserID == userId && p.Type == 2)
             };
