@@ -27,7 +27,7 @@
             <!-- Sidebar -->
             <div class="col-md-2 sidebar">
                 <div class="d-flex flex-column align-items-center">
-                    <img src="/img/Logo_FunnyCode.jpg" alt="Logo" class="rounded-circle mb-3" width="200">
+                    <img src="/img/Logo_FunnyCode.jpg" alt="Logo" class="rounded-circle mb-3 responsive-logo">
                     <div class="d-flex align-items-center mb-4">
                         <img src="/img/avt1.png" alt="Maria"
                              class="rounded-circle me-2 avatar-img">
@@ -122,8 +122,8 @@
                     </div>
                     <div class="modal-footer">
                         @Html.Hidden("orderId", "", new { id = "deleteOrderId" })
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-danger">Delete</button>
+                        <button type="button" class="btn-cancel-2" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn-del">Delete</button>
                     </div>
                 </form>
             </div>
