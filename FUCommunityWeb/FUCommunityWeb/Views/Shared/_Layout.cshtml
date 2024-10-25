@@ -148,7 +148,22 @@
             <button class="back-to-top"><i class="fas fa-chevron-up"></i></button>
         </div>
     </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const searchInput = document.getElementById('searchInput');
+            const exploreBtn = document.getElementById('exploreBtn');
 
+            searchInput.addEventListener('focus', function () {
+                exploreBtn.textContent = 'Search';
+            });
+
+            searchInput.addEventListener('blur', function () {
+                if (searchInput.value === '') {
+                    exploreBtn.textContent = 'Explore';
+                }
+            });
+        });
+    </script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
