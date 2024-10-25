@@ -32,18 +32,15 @@ namespace FUCommunityWeb.Controllers
             _forumService = forumService;
         }
 
-        // Action để hiển thị danh sách khóa học
         public async Task<IActionResult> ManageCourse(string search, string sortOrder)
         {
             var courses = await _courseService.GetAllCoursesAsync();
 
-            // Xử lý tìm kiếm
             if (!string.IsNullOrEmpty(search))
             {
                 courses = courses.Where(c => c.Title.Contains(search, StringComparison.OrdinalIgnoreCase)).ToList();
             }
 
-            // Xử lý sắp xếp
             ViewData["SearchQuery"] = search;
             ViewData["IDSortParm"] = String.IsNullOrEmpty(sortOrder) ? "id_desc" : "";
             ViewData["UserIDSortParm"] = sortOrder == "UserID" ? "userid_desc" : "UserID";
@@ -80,16 +77,12 @@ namespace FUCommunityWeb.Controllers
             return View(viewModel);
         }
 
-
-
-        // Action để tạo khóa học mới
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateCourse(CreateCourseVM createCourseVM)
         {
             if (ModelState.IsValid)
             {
-                // Tải lên hình ảnh khóa học
                 createCourseVM.CourseImage = await UploadCourseImage(createCourseVM.CourseImageFile);
 
                 try
@@ -126,7 +119,6 @@ namespace FUCommunityWeb.Controllers
             return RedirectToAction("ManageCourse");
         }
 
-        // Action để chỉnh sửa khóa học
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditCourse(EditCourseVM editCourseVM)
@@ -140,15 +132,12 @@ namespace FUCommunityWeb.Controllers
                     return RedirectToAction("ManageCourse");
                 }
 
-                // Cập nhật thông tin khóa học
                 courseToUpdate.Title = editCourseVM.Title;
                 courseToUpdate.Description = editCourseVM.Description;
                 courseToUpdate.Price = editCourseVM.Price;
                 courseToUpdate.Status = editCourseVM.Status;
                 courseToUpdate.Semester = editCourseVM.Semester;
                 courseToUpdate.CategoryID = editCourseVM.CategoryID;
-
-                // Nếu admin tải lên hình ảnh mới
                 if (editCourseVM.CourseImageFile != null && editCourseVM.CourseImageFile.Length > 0)
                 {
                     courseToUpdate.CourseImage = await UploadCourseImage(editCourseVM.CourseImageFile);
@@ -176,7 +165,6 @@ namespace FUCommunityWeb.Controllers
             return RedirectToAction("ManageCourse");
         }
 
-        // Action để xóa khóa học
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteCourse(int courseId)
@@ -229,21 +217,16 @@ namespace FUCommunityWeb.Controllers
 
         public async Task<IActionResult> ManageLesson(int courseId, string search, string sortOrder)
         {
-            // Lấy danh sách bài học thuộc khóa học có CourseID là courseId
             var lessons = await _courseService.GetLessonsByCourseIdAsync(courseId);
 
             if (lessons == null)
             {
                 return NotFound();
             }
-
-            // Xử lý tìm kiếm
             if (!string.IsNullOrEmpty(search))
             {
                 lessons = lessons.Where(l => l.Title.Contains(search) || l.LessonID.ToString().Contains(search)).ToList();
             }
-
-            // Xử lý sắp xếp
             ViewData["IDSortParm"] = String.IsNullOrEmpty(sortOrder) ? "id_desc" : "";
             ViewData["TitleSortParm"] = sortOrder == "Title" ? "title_desc" : "Title";
 
@@ -263,7 +246,7 @@ namespace FUCommunityWeb.Controllers
                     break;
             }
 
-            var course = await _courseService.GetCourseByIdAsync(courseId); // Lấy thông tin khóa học
+            var course = await _courseService.GetCourseByIdAsync(courseId); 
 
             if (course == null)
             {
@@ -274,7 +257,7 @@ namespace FUCommunityWeb.Controllers
             {
                 Course = course,
                 Lessons = lessons,
-                CreateLessonVM = new CreateLessonVM { CourseID = courseId }, // Khởi tạo CreateLessonVM
+                CreateLessonVM = new CreateLessonVM { CourseID = courseId }, 
                 ShowCreateLessonModal = false,
                 ShowEditLessonModal = false
             };
@@ -287,7 +270,7 @@ namespace FUCommunityWeb.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateLesson(CreateLessonVM createLessonVM)
         {
-            var course = await _courseService.GetCourseByIdAsync(createLessonVM.CourseID); // Kiểm tra khóa học tồn tại
+            var course = await _courseService.GetCourseByIdAsync(createLessonVM.CourseID); 
 
             if (course == null)
             {
@@ -304,7 +287,7 @@ namespace FUCommunityWeb.Controllers
                         Title = createLessonVM.Title,
                         Content = createLessonVM.Content,
                         Status = createLessonVM.Status,
-                        CourseID = createLessonVM.CourseID, // Đảm bảo liên kết với khóa học
+                        CourseID = createLessonVM.CourseID, 
                         UserID = User.FindFirstValue(ClaimTypes.NameIdentifier),
                         CreatedDate = DateTime.Now
                     };
@@ -331,18 +314,12 @@ namespace FUCommunityWeb.Controllers
         [HttpGet]
         public async Task<IActionResult> EditLesson(int id)
         {
-            // Retrieve the lesson by ID
             var lesson = await _courseService.GetLessonByIdAsync(id);
             if (lesson == null)
             {
                 TempData["Error"] = "Bài học không tồn tại.";
                 return RedirectToAction("ManageLesson", new { courseId = lesson?.CourseID });
             }
-
-            // Optionally, verify if the admin has permissions to edit this lesson
-            // For example, if admins can edit all lessons, this step might be unnecessary
-
-            // Prepare the EditLessonVM
             var editLessonVM = new EditLessonVM
             {
                 LessonID = lesson.LessonID,
@@ -356,8 +333,6 @@ namespace FUCommunityWeb.Controllers
             {
                 EditLessonVM = editLessonVM
             };
-
-            // Return a partial view with the edit form
             return PartialView("ManageLesson", viewModel);
         }
 
@@ -377,7 +352,6 @@ namespace FUCommunityWeb.Controllers
             {
                 try
                 {
-                    // Cập nhật thông tin bài học
                     lessonToUpdate.Title = editLessonVM.Title;
                     lessonToUpdate.Content = editLessonVM.Content;
                     lessonToUpdate.Status = editLessonVM.Status;
@@ -440,7 +414,6 @@ namespace FUCommunityWeb.Controllers
                 .Where(o => o.Status == "1")
                 .SumAsync(o => o.Amount);
 
-            // Tính toán số lượng người dùng đăng ký theo từng tháng
             var userRegistrations = await _context.Users
                 .GroupBy(u => new { u.CreatedDate.Year, u.CreatedDate.Month })
                 .Select(g => new
@@ -451,7 +424,6 @@ namespace FUCommunityWeb.Controllers
                 })
                 .ToListAsync();
 
-            // Tạo mảng dữ liệu cho 12 tháng gần nhất
             var currentMonth = DateTime.Now.Month;
             var currentYear = DateTime.Now.Year;
             var monthlyRegistrations = new int[12];
@@ -676,25 +648,22 @@ namespace FUCommunityWeb.Controllers
         }
         public async Task<IActionResult> ManagePayment()
         {
-            var orders = await _orderService.GetAllOrdersAsync(); // Giả sử bạn có một service để lấy dữ liệu
+            var orders = await _orderService.GetAllOrdersAsync(); 
             return View(orders);
         }
         public IActionResult ManageStudent()
         {
             return View();
         }
-        // Action để hiển thị danh sách người dùng
         public async Task<IActionResult> ManageUser(string search, string sortOrder)
         {
             var users = await _userService.GetAllUsersAsync();
 
-            // Xử lý tìm kiếm
             if (!string.IsNullOrEmpty(search))
             {
                 users = users.Where(u => u.FullName.Contains(search) || u.Email.Contains(search)).ToList();
             }
 
-            // Xử lý sắp xếp
             ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewData["EmailSortParm"] = sortOrder == "Email" ? "email_desc" : "Email";
             ViewData["PointSortParm"] = sortOrder == "Point" ? "point_desc" : "Point";
@@ -729,7 +698,6 @@ namespace FUCommunityWeb.Controllers
             return View(viewModel);
         }
 
-        // Action để xóa người dùng
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteUser(string userId)
@@ -769,7 +737,7 @@ namespace FUCommunityWeb.Controllers
         {
             try
             {
-                await _orderService.DeleteOrderAsync(orderId); // Giả sử bạn có một service để xóa đơn hàng
+                await _orderService.DeleteOrderAsync(orderId); 
                 TempData["Success"] = "Order deleted successfully.";
             }
             catch (Exception ex)
@@ -835,7 +803,6 @@ namespace FUCommunityWeb.Controllers
             return RedirectToAction("ManageUser");
         }
 
-        // Quản lý danh mục
         public async Task<IActionResult> ManageForumCategory()
         {
             var categories = await _forumService.GetAllCategoryAsync();
@@ -846,7 +813,6 @@ namespace FUCommunityWeb.Controllers
             return View(viewModel);
         }
 
-        // Chi tiết bài viết
         public async Task<IActionResult> ManagePostDetail(int postId)
         {
             var post = await _forumService.GetPostByID(postId);
@@ -855,11 +821,11 @@ namespace FUCommunityWeb.Controllers
                 return NotFound();
             }
 
-            var comments = await _forumService.GetCommentsByPostID(postId); // Đảm bảo rằng GetComments trả về List<Comment>
+            var comments = await _forumService.GetCommentsByPostID(postId); 
             var viewModel = new PostVM
             {
                 Post = post,
-                Comments = comments // Đảm bảo rằng comments là List<Comment>
+                Comments = comments 
             };
             return View(viewModel);
         }
@@ -906,7 +872,6 @@ namespace FUCommunityWeb.Controllers
             return RedirectToAction("ManageForumCategory");
         }
 
-        // Action để chỉnh sửa danh mục
         [HttpGet]
         public async Task<IActionResult> EditCategory(int categoryId)
         {

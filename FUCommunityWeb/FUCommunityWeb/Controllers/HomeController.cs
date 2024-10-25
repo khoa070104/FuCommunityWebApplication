@@ -32,14 +32,8 @@ namespace FUCommunityWeb.Controllers
         public IActionResult Index()
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-            // Sử dụng CourseService để lấy danh sách khóa học đã đăng ký
             var enrolledCourses = _courseService.GetEnrolledCoursesAsync(userId).Result;
-
-            // Sử dụng CourseService để lấy danh sách khóa học được mua nhiều nhất
             var mostPurchasedCourses = _courseService.GetMostPurchasedCoursesAsync(3).Result;
-
-            // Sử dụng CourseService để lấy danh sách khóa học chất lượng cao nhất
             var highestQualityCourse = _courseService.GetHighestQualityCoursesAsync(3).Result;
 
             var homeViewModel = new HomeVM
@@ -82,14 +76,8 @@ namespace FUCommunityWeb.Controllers
         public IActionResult Home()
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-            // Sử dụng CourseService để lấy danh sách khóa học đã đăng ký
             var enrolledCourses = _courseService.GetEnrolledCoursesAsync(userId).Result;
-
-            // Sử dụng CourseService để lấy danh sách khóa học được mua nhiều nhất
             var mostPurchasedCourses = _courseService.GetMostPurchasedCoursesAsync(3).Result;
-
-            // Sử dụng CourseService để lấy danh sách khóa học chất lượng cao nhất
             var highestQualityCourse = _courseService.GetHighestQualityCoursesAsync(3).Result;
 
             var homeViewModel = new HomeVM
