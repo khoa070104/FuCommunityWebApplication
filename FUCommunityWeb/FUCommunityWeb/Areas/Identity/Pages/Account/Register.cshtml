@@ -20,7 +20,7 @@
                                     <span asp-validation-for="Input.FullName" class="text-light"></span>
                                 </div>
                                 <div class="mb-3">
-                                    <input asp-for="Input.DOB" class="form-control" placeholder="Enter your DOB" />
+                                    <input asp-for="Input.DOB" class="form-control" placeholder="Enter your DOB" max="@DateTime.Now.ToString("yyyy-MM-dd")" />
                                     <span asp-validation-for="Input.DOB" class="text-light"></span>
                                 </div>
                                 <div class="mb-3">
