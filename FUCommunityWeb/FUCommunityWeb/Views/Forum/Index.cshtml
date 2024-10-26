@@ -10,27 +10,22 @@
                         General
                     </div>
                     <ul class="list-group list-group-flush">
-                        @foreach (var category in Model.Categories ?? new List<Category>()) 
+                        @foreach (var category in Model.Categories ?? new List<Category>())
                         {
                             <li class="list-group-item d-flex align-items-center justify-content-between">
                                 <div class="d-flex align-items-center">
-                                    <div class="forum-icon me-3"></div>
+                                    <div class="me-3"><img class="category-img" src="/img/avt2.jpg" alt="Alternate Text" style="width:50px;height:50px;border-radius:50%;" /></div>
                                     <a asp-controller="Forum" asp-action="Post"
                                        asp-route-CategoryName="@category.CategoryName"
                                        asp-route-CategoryID="@category.CategoryID"
-                                        class="text-decoration-none">
-                                    <div>
-                                        <div>@category.CategoryName</div>
-                                        <div class="text-muted">
-                                            @category.Description
+                                       class="text-decoration-none">
+                                        <div>
+                                            <div>@category.CategoryName</div>
+                                            <div class="text-muted">
+                                                @category.Description
+                                            </div>
                                         </div>
-                                    </div>
                                     </a>
-                                </div>
-                                <div class="d-flex align-items-center">
-                                    <div class="text-end me-3">  
-                                    </div>
-                                    <img class="user-avatar" src="" alt="Alternate Text" />
                                 </div>
                             </li>
                         }
@@ -47,11 +42,12 @@
                         @foreach (var post in Model.Posts.OrderByDescending(c => c.CreatedDate).Take(5))
                         {
                             <li class="list-group-item d-flex align-items-center card-ul">
-                                <img src="@post.PostImage" class="news-img me-3" alt="News">
-                                <div>
-                                    <div>@post.Title</div>
-                                    <div class="text-muted">@Html.Raw(System.Net.WebUtility.HtmlDecode(post.Content))<br>
-                                </div>
+                                <a href="/Forum/PostDetail?postId=@post.PostID" class="d-flex align-items-center text-decoration-none w-100">
+                                    <img src="@post.PostImage" class="news-img me-3" alt="News">
+                                    <div>
+                                        <div>@Html.Raw(System.Net.WebUtility.HtmlDecode(post.Title))</div>
+                                    </div>
+                                </a>
                             </li>
                         }
                     </ul>

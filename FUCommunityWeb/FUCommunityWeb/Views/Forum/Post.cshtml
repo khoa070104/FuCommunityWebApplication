@@ -51,8 +51,8 @@
     <!-- Breadcrumb Navigation -->
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
-            <li><a href="#">Forum</a></li>
+            <li><a asp-controller="Home" asp-action="Index"><i class="fa fa-home"></i> Home</a></li>
+            <li><a asp-controller="Forum" asp-action="Index">Forum</a></li>
             <li class="active">@Model.CategoryVM.CategoryName</li>
         </ol>
     </nav>
@@ -60,17 +60,22 @@
     <!-- Topic Title -->
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h1 class="display-6" style="font-weight: 500;">Topic: <span class="text-success">@Model.CategoryVM.CategoryName</span></h1>
-        <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#createPostModal">
-            Create New Post/Question
-        </button>
+        <div>
+            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#createPostModal"
+                    data-post-type="1">
+                Create New Blog
+            </button>
+            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#createPostModal"
+                    data-post-type="2">
+                Create New Question
+            </button>
+        </div>
     </div>
 
     <div class="row">
         <div class="col-md-6">
-            <input type="text" id="searchString" placeholder="Enter search keyword..."
+            <input type="text" id="searchString" placeholder="Search any blog or question here..."
                    style="width: 300px; padding: 10px; font-size: 16px; border: 1px solid #ccc; border-radius: 15px;" />
-
-            <button class="btn" id="searchButton">Search</button>
         </div>
     </div>
     <div id="postList"></div> <!-- Show postlist -->
@@ -101,22 +106,25 @@
                     <div class="mb-3">
                         <label>Type</label>
                         <div>
-                            <input asp-for="@Model.CreatePostVM.Type" type="radio" value="1" /> Post
-                            <input asp-for="@Model.CreatePostVM.Type" type="radio" value="2" /> Question
+                            <input asp-for="@Model.CreatePostVM.Type" type="radio" value="1" name="CreatePostVM.Type" id="blogOption" /> Blog
+                            <input asp-for="@Model.CreatePostVM.Type" type="radio" value="2" name="CreatePostVM.Type" id="questionOption" /> Question
                         </div>
                     </div>
                     <div class="mb-3">
-                        <input asp-for="@Model.CreatePostVM.PostImageFile" type="file" required />
+                        <input asp-for="@Model.CreatePostVM.PostImageFile" type="file" />
                     </div>
+
                     <input type="hidden" asp-for="@Model.CreatePostVM.CategoryID" value="@Model.CategoryVM.CategoryID" />
-                    
+                    <input type="hidden" asp-for="@Model.CategoryVM.CategoryName" value="@Model.CategoryVM.CategoryName" />
+                    <input type="hidden" asp-for="@Model.CategoryVM.CategoryID" value="@Model.CategoryVM.CategoryID" />
+
                     <div class="modal-footer">
                         <button type="submit" class="btn">Create</button>
                         <button type="button" class="btn-cancel" data-bs-dismiss="modal">Close</button>
                     </div>
                 </form>
             </div>
-            
+
         </div>
     </div>
 </div>
@@ -204,13 +212,19 @@
             $("#editTag").val(post.tag);
             $("#editPostID").val(post.postID);
 
-            const contentTextArea = $("#editContent");
-            contentTextArea.val(post.content);
+            const decodeHTML = function (html) {
+                var txt = document.createElement("textarea");
+                txt.innerHTML = html;
+                return txt.value;
+            };
 
-            if (CKEDITOR.instances['editContent']) {
-                CKEDITOR.instances['editContent'].destroy(true);
+            const decodedContent = decodeHTML(post.content);
+            $("#editor2").val(decodedContent);
+
+            if (CKEDITOR.instances['editor2']) {
+                CKEDITOR.instances['editor2'].destroy(true);
             }
-            CKEDITOR.replace('editContent');
+            CKEDITOR.replace('editor2');
 
             $("input[name='CategoryVM.CategoryID']").val(categoryID);
             $("input[name='CategoryVM.CategoryName']").val(categoryName);
@@ -219,6 +233,8 @@
             $("#editModal").modal("show");
         });
     </script>
+
+
     <script>
         $(document).on("click", ".fa-trash", function () {
             const urlParams = new URLSearchParams(window.location.search);
@@ -265,50 +281,62 @@
                 });
             }
 
+            function formatDate(dateString) {
+                const date = new Date(dateString);
+                const hours = String(date.getHours()).padStart(2, '0');
+                const minutes = String(date.getMinutes()).padStart(2, '0');
+                const day = String(date.getDate()).padStart(2, '0');
+                const month = String(date.getMonth() + 1).padStart(2, '0');
+                const year = date.getFullYear();
+                return `${hours}:${minutes} ${day}/${month}/${year}`;
+            }
+
             function displayPosts(posts) {
                 $("#postList").empty();
 
                 let tableContent = `
-                        <div class="row">
-                            <div class="col-12">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>Title</th>
-                                            <th>CreateDate</th>
-                                            <th>Tags</th>
-                                            <th>Type</th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                    `;
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Title</th>
+                                                            <th>Avatar</th>
+                                                            <th>Create Date</th>
+                                                            <th>Tags</th>
+                                                            <th>Type</th>
+                                                            <th></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                    `;
 
                 $.each(posts, function (index, post) {
-                    const postType = post.type === 1 ? "Post" : "Question";
+                    const formattedDate = formatDate(post.createdDate);
 
                     tableContent += `
-                            <tr>
-                                <td><a href="/Forum/PostDetail?postId=${post.postID}">${post.title}</a></td>
-                                <td>${post.createdDate}</td>
-                                <td class="text-muted">${post.tag}</td>
-                                <td>${postType}</td>
-                                <td>
-                                    <i class="fas fa-edit table-settings me-2" data-bs-toggle="modal"
-                                        data-bs-target="#editModal"></i>
-                                    <i class="fas fa-trash table-settings" data-bs-toggle="modal"
-                                        data-bs-target="#deleteModal"></i>
-                                </td>
-                            </tr>
-                        `;
+                                            <tr>
+                                                <td><a href="/Forum/PostDetail?postId=${post.postID}">${post.title}</a></td>
+                                                <td><img src="${post.userAvatar}" alt="Avatar" class="avatar-img" style="width:50px;height:50px;border-radius:50%;"/></td>
+                                                <td>${formattedDate}</td>
+                                                <td class="text-muted">${post.tag}</td>
+                                                <td>${post.type}</td>
+                                                <td>
+                                                    <i class="fas fa-edit table-settings me-2" data-bs-toggle="modal"
+                                                        data-bs-target="#editModal"></i>
+                                                    <i class="fas fa-trash table-settings" data-bs-toggle="modal"
+                                                        data-bs-target="#deleteModal"></i>
+                                                </td>
+                                            </tr>
+                                        `;
                 });
 
                 tableContent += `
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    `;
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    `;
 
                 $("#postList").append(tableContent);
             }
@@ -326,16 +354,14 @@
                 }
             }
 
-            // Tìm kiếm chính xác hơn với các ký tự liên quan
             $("#searchString").on("input", function () {
                 const searchString = $(this).val().toLowerCase().trim();
-                const keywords = searchString.split(/\s+/).filter(Boolean); // tách từ và loại bỏ trống
+                const keywords = searchString.split(/\s+/).filter(Boolean);
 
                 const filteredPosts = allPosts.filter(post => {
                     const titleMatches = keywords.every(keyword => post.title.toLowerCase().includes(keyword));
                     const contentMatches = keywords.every(keyword => post.content.toLowerCase().includes(keyword));
-
-                    return titleMatches || contentMatches; // trả về true nếu có ít nhất một điều kiện thỏa mãn
+                    return titleMatches || contentMatches;
                 });
                 displayPosts(filteredPosts);
             });
@@ -351,23 +377,40 @@
     <script>
         $(document).ready(function () {
             $('#createPostModal').on('shown.bs.modal', function () {
-                CKEDITOR.replace('editor'); 
+                CKEDITOR.replace('editor');
             });
 
             if (!$('#createPostModal').hasClass('show')) {
-                CKEDITOR.replace('editor'); 
+                CKEDITOR.replace('editor');
             }
         });
     </script>
     <script>
-        $(document).ready(function () {
-            $('#editModal').on('shown.bs.modal', function () {
-                CKEDITOR.replace('editor2');
+        document.addEventListener('DOMContentLoaded', function () {
+            const createPostModal = document.getElementById('createPostModal');
+
+            createPostModal.addEventListener('show.bs.modal', function (event) {
+                const button = event.relatedTarget;
+                const postType = button.getAttribute('data-post-type');
+
+                const blogOption = document.getElementById('blogOption');
+                const questionOption = document.getElementById('questionOption');
+
+                if (postType === "1") {
+                    blogOption.checked = true;
+                    questionOption.disabled = true;
+                } else if (postType === "2") {
+                    questionOption.checked = true;
+                    blogOption.disabled = true;
+                }
             });
 
-            if (!$('#editModal').hasClass('show')) {
-                CKEDITOR.replace('editor2');
-            }
+            createPostModal.addEventListener('hidden.bs.modal', function () {
+                document.getElementById('blogOption').disabled = false;
+                document.getElementById('questionOption').disabled = false;
+            });
         });
     </script>
+
+
 }

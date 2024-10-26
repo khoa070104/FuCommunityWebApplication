@@ -4,8 +4,13 @@
 @{
     var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
     var isPostOwner = Model.Post.UserID == currentUserId;
-}
 
+}
+<style>
+    .cke_notification {
+        display: none !important; /* Ẩn tất cả thông báo CKEditor */
+    }
+</style>
 <body>
     <div class="container mt-4 forum-detail">
         <div class="row">
@@ -16,7 +21,7 @@
                         <div class="card-text">
                             @Html.Raw(System.Net.WebUtility.HtmlDecode(Model.Post.Content))
                         </div>
-                        <img src="@Model.Post.PostImage" /></br>   
+                        <img src="@Model.Post.PostImage" class="img-fluid fixed-size-img" alt="Post Image" />
                         <p>Votes:<strong>@Model.VoteCount</strong> </p>
                         @if (!isPostOwner)
                         {
@@ -29,74 +34,103 @@
                 <div class="suggestions mt-3">
                     <form asp-action="Comment" asp-controller="Forum">
                         <label for="commentContent" class="form-label">Share your idea:</label>
-                        <textarea asp-for="@Model.Comment.Content" class="form-control" id="editor" rows="3" placeholder=""></textarea>
+                        <textarea asp-for="@Model.Comment.Content" class="form-control" id="editorComment" rows="3" placeholder="" required></textarea>
                         <input type="hidden" asp-for="@Model.Comment.PostID" value="@Model.Post.PostID" />
                         <button type="submit" class="btn btn-secondary mt-2">Comment</button>
                     </form>
                 </div>
                 @if (Model.Comments != null && Model.Comments.Any())
                 {
-                    foreach (var comment in Model.Comments)
+                    @foreach (var comment in Model.Comments)
                     {
                         var user = Model.Users.FirstOrDefault(u => u.User.Id == comment.UserID);
-                        <div class="card card-body card-comment mt-3">
-                            <div class="d-flex align-items-center mb-2">
-                                <a href="#" class="user-picture me-2">
-                                    <img src="@user?.User.AvatarImage" alt="@user?.User.FullName's Picture"
-                                         style="width: 40px; height: 40px; border-radius: 50%;" />
-                                </a>
-                                <div>
-                                    <strong>@user?.User.FullName</strong>
-                                    <p class="mb-0 text-muted" style="font-size: 0.9rem;">
-                                        @comment.CreatedDate.ToString("g")
-                                    </p>
+                        if (comment.ReplyID == 0)
+                        {
+                            <div class="card card-body card-comment mt-3">
+                                <input type="hidden" value="@Model.Comment.ReplyID" />
+                                <div class="d-flex align-items-center mb-2">
+                                    <a href="#" class="user-picture me-2">
+                                        <img alt="@user?.User.FullName's Picture" src="@user?.User.AvatarImage" style="width: 50px; height: 50px; border-radius: 50%;">
+                                    </a>
+                                    <div>
+                                        <strong>@user?.User.FullName</strong>
+                                        <p class="mb-0 text-muted" style="font-size: 0.9rem;">
+                                            @Html.Raw(System.Net.WebUtility.HtmlDecode(comment.CreatedDate.ToString("g")))
+                                        </p>
+                                    </div>
+                                    <div class="ms-auto dropdown">
+                                        <button class="btn-link text-muted" id="settingsDropdown" data-bs-toggle="dropdown" aria-expanded="false" style="background: none; border: none; box-shadow: none;">
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </button>
+                                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="settingsDropdown">
+                                            <li>
+                                                <a class="dropdown-item edit-comment" href="#" data-bs-toggle="modal" data-bs-target="#editModal" data-comment-id="@comment.CommentID" data-post-id="@Model.Post.PostID" data-comment-content="@comment.Content">
+                                                    Edit
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item delete-comment" href="#" data-bs-toggle="modal" data-bs-target="#deleteModal" data-comment-id="@comment.CommentID">
+                                                    Delete
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
-                                <div class="ms-auto dropdown">
-                                    <button class="btn-link text-muted" id="settingsDropdown"
-                                            data-bs-toggle="dropdown" aria-expanded="false"
-                                            style="background: none; border: none; box-shadow: none;">
-                                        <i class="fas fa-ellipsis-v"></i>
-                                    </button>
-                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="settingsDropdown">
-                                        <li>
-                                            <a class="dropdown-item edit-comment"
-                                               href="#"
-                                               data-bs-toggle="modal"
-                                               data-bs-target="#editModal"
-                                               data-comment-id="@comment.CommentID"
-                                               data-post-id="@Model.Post.PostID"
-                                               data-comment-content="@comment.Content">
-                                                Edit
-                                            </a>
-
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item delete-comment"
-                                               href="#"
-                                               data-bs-toggle="modal"
-                                               data-bs-target="#deleteModal"
-                                               data-comment-id="@comment.CommentID">
-                                                Delete
-                                            </a>
-                                        </li>
-                                    </ul>
+                                <p>@Html.Raw(System.Net.WebUtility.HtmlDecode(comment.Content))</p>
+                                <a href="#" class="text-decoration-none reply-btn">Reply</a>
+                                <div class="reply-area mt-2" style="display: none;">
+                                    <p>Write your reply</p>
+                                    <form asp-action="Comment" asp-controller="Forum" method="post" enctype="multipart/form-data">
+                                        <input type="hidden" asp-for="Comment.ReplyID" value="@comment.CommentID" />
+                                        <input type="hidden" asp-for="Comment.PostID" value="@Model.Post.PostID" />
+                                        <!-- Thêm id duy nhất cho mỗi textarea -->
+                                        <textarea asp-for="Comment.Content" class="form-control reply-textarea" id="replyEditor-@comment.CommentID" rows="3"></textarea>
+                                        <button type="submit" class="btn btn-secondary mt-2 submit-reply">Reply</button>
+                                    </form>
                                 </div>
+                                <ul class="list-unstyled mt-2">
+                                    <!-- Replies are displayed within the same <div> -->
+                                    @foreach (var reply in Model.Comments.Where(r => r.ReplyID == comment.CommentID))
+                                    {
+                                        var replyUser = Model.Users.FirstOrDefault(u => u.User.Id == reply.UserID);
+                                        <li class="d-flex align-items-center mb-2">
+                                            <a href="#" class="user-picture me-2">
+                                                <img alt="@replyUser?.User.FullName's Picture" src="@replyUser?.User.AvatarImage" style="width: 40px; height: 40px; border-radius: 50%;">
+                                            </a>
+                                            <div>
+                                                <strong>@replyUser?.User.FullName</strong>
+                                                <p class="mb-0 text-muted" style="font-size: 0.8rem;">
+                                                    @Html.Raw(System.Net.WebUtility.HtmlDecode(reply.CreatedDate.ToString("g")))
+                                                </p>
+                                                <p>@Html.Raw(System.Net.WebUtility.HtmlDecode(reply.Content))</p>
+                                                <a href="#" class="text-decoration-none reply-btn">Reply</a>
+                                                <div class="reply-area mt-2" style="display: none;">
+                                                    <p>Write your reply</p>
+                                                    <form asp-action="Comment" asp-controller="Forum" method="post" enctype="multipart/form-data">
+                                                        <input type="hidden" asp-for="Comment.ReplyID" value="@comment.CommentID" />
+                                                        <input type="hidden" asp-for="Comment.PostID" value="@Model.Post.PostID" />
+                                                        <!-- Thêm id duy nhất cho mỗi textarea -->
+                                                        <textarea asp-for="Comment.Content" class="form-control reply-textarea" id="replyEditor-@reply.CommentID" rows="3"></textarea>
+                                                        <button type="submit" class="btn btn-secondary mt-2 submit-reply">Reply</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    }
+                                </ul>
                             </div>
-                            <p>@comment.Content</p>
-                        </div>
+                        }
                     }
                 }
-
                 else
-
                 {
                     <p class="text-muted mt-3">Chưa có bình luận nào.</p>
                 }
             </div>
             <div class="col-md-4 text-center">
                 <div class="user-info">
-                    <img src="/img/Logo_FunnyCode.jpg" alt="Profile Picture" class="profile-pic mb-2">
-                    <p>Golanginya</p>
+                    <img src="@Model.Post.User.AvatarImage" alt="Profile Picture" class="profile-pic mb-2" style="width: 150px; height: 150px; border-radius: 50%;">
+                    <p>@Model.Post.User.FullName</p>
                     <p><i class="fas fa-trophy"></i> 125 [ 8 ]</p>
                     <div>
                         <a href="#"><i class="fab fa-github fa-lg me-2"></i></a>
@@ -153,29 +187,58 @@
             </div>
         </div>
     </div>
-
 </body>
 
 @section Scripts {
+    <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+    <script>
+        $(document).ready(function () {
+            if ($('.suggestions #editorComment').length) {
+                CKEDITOR.replace('editorComment');
+            }
+
+            $('.reply-btn').on('click', function (e) {
+                e.preventDefault();
+
+                $('.reply-area').hide();
+                var replyArea = $(this).next('.reply-area');
+                replyArea.slideDown();
+
+                var textareaId = replyArea.find('textarea').attr('id');
+                if (textareaId && !CKEDITOR.instances[textareaId]) {
+                    CKEDITOR.replace(textareaId);
+                }
+            });
+
+            $(document).on('click', function (e) {
+                if (!$(e.target).closest('.reply-area, .reply-btn, .suggestions').length) {
+                    for (var instanceName in CKEDITOR.instances) {
+                        if (instanceName !== 'editorComment') {
+                            CKEDITOR.instances[instanceName].destroy(true);
+                        }
+                    }
+                    $('.reply-area').slideUp();
+                }
+            });
+        });
+    </script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const deleteModal = document.getElementById('deleteModal');
 
             deleteModal.addEventListener('show.bs.modal', function (event) {
-                const button = event.relatedTarget; 
-                if (!button) return; 
+                const button = event.relatedTarget;
+                if (!button) return;
 
-                const commentId = button.getAttribute('data-comment-id'); 
+                const commentId = button.getAttribute('data-comment-id');
                 const commentIdInput = deleteModal.querySelector('input[name="Comment.CommentID"]');
                 const postIdInput = deleteModal.querySelector('input[name="Post.PostID"]');
 
                 const urlParams = new URLSearchParams(window.location.search);
                 const postId = urlParams.get('postId');
 
-                if (commentIdInput) commentIdInput.value = commentId; 
-                if (postIdInput) postIdInput.value = postId; 
-                console.log('Comment ID:', commentId);
-                console.log('Post ID:', postId);
+                if (commentIdInput) commentIdInput.value = commentId;
+                if (postIdInput) postIdInput.value = postId;
             });
         });
 
@@ -192,10 +255,10 @@
                     .then(response => response.json())
                     .then(data => {
                         if (data.hasVoted) {
-                            button.classList.add('voted'); 
-                            button.style.backgroundColor = 'gray'; 
-                            button.setAttribute('data-point', '0'); 
-                            button.innerHTML = '<i class="fas fa-thumbs-up"></i> Unvote'; 
+                            button.classList.add('voted');
+                            button.style.backgroundColor = 'gray';
+                            button.setAttribute('data-point', '0');
+                            button.innerHTML = '<i class="fas fa-thumbs-up"></i> Unvote';
                         }
                     })
                     .catch(error => {
@@ -208,7 +271,7 @@
 
                     const data = {
                         Post: { PostID: postId },
-                        Point: { PointValue: point } 
+                        Point: { PointValue: point }
                     };
 
                     fetch('/Forum/Vote', {
@@ -222,16 +285,16 @@
                         .then(response => {
                             if (response.ok) {
                                 if (point === 1) {
-                                    button.classList.add('voted'); 
-                                    button.style.backgroundColor = 'gray'; 
-                                    button.setAttribute('data-point', '0'); 
-                                    button.innerHTML = '<i class="fas fa-thumbs-down"></i> Unvote'; 
+                                    button.classList.add('voted');
+                                    button.style.backgroundColor = 'gray';
+                                    button.setAttribute('data-point', '0');
+                                    button.innerHTML = '<i class="fas fa-thumbs-down"></i> Unvote';
                                     voteCountElement.textContent = parseInt(voteCountElement.textContent) + 1;
                                 } else {
-                                    button.classList.remove('voted'); 
-                                    button.style.backgroundColor = ''; 
-                                    button.setAttribute('data-point', '1'); 
-                                    button.innerHTML = '<i class="fas fa-thumbs-up"></i> Vote'; 
+                                    button.classList.remove('voted');
+                                    button.style.backgroundColor = '';
+                                    button.setAttribute('data-point', '1');
+                                    button.innerHTML = '<i class="fas fa-thumbs-up"></i> Vote';
                                     voteCountElement.textContent = parseInt(voteCountElement.textContent) - 1;
                                 }
                             } else {
