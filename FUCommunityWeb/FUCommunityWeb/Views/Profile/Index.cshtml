@@ -115,9 +115,9 @@
                     </div>
                     <form asp-action="ChangeBanner" method="post" enctype="multipart/form-data" id="bannerForm">
                         <input type="hidden" name="currentPage" value="@ViewData["CurrentPage"]" />
-                        <div class="form-group text-center">
+                        <div class="form-group text-end">
                             <input type="file" name="file" id="bannerfile" accept="image/*" style="display: none;" onchange="uploadBanner()" />
-                            <button type="button" class="btn-1" onclick="document.getElementById('bannerfile').click();">Upload Banner Image</button>
+                            <button type="button" style="margin-top:15px;font-size: 10px;" class="btn-2" onclick="document.getElementById('bannerfile').click();">Upload Banner Image</button>
                         </div>
                     </form>
                 </div>
