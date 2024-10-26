@@ -33,6 +33,12 @@ namespace FuCommunityWebDataAccess.Repositories
             return await query.FirstOrDefaultAsync(u => u.Id == userId);
         }
 
+        public async Task<ApplicationUser> GetUserById(string userId)
+        {
+            var query = _context.Users.AsQueryable();
+
+            return await query.FirstOrDefaultAsync(u => u.Id == userId);
+        }
         public async Task<List<ApplicationUser>> GetAllUsersAsync(bool includeVotes = false)
         {
             var query = _context.Users.AsQueryable();

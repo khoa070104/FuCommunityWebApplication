@@ -23,6 +23,11 @@ namespace FuCommunityWebServices.Services
             return await _userRepo.GetUserByIdAsync(userId, includeVotes);
         }
 
+        public async Task<ApplicationUser> GetUserById(string userId)
+        {
+            return await _userRepo.GetUserById(userId);
+        }
+
         public async Task<List<ApplicationUser>> GetAllUsersAsync(bool includeVotes = false)
         {
             return await _userRepo.GetAllUsersAsync(includeVotes);
