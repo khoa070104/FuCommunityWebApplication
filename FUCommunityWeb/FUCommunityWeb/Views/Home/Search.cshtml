@@ -1,0 +1,100 @@
+﻿@model SearchVM
+
+<body>
+    <div class="search-page">
+        <div class="container" id="search">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <!-- Search Form -->
+                    <div class="search-form p-4 shadow-sm rounded" style="background-color: #f9f9f9;">
+                        <h2 class="text-center mb-4" style="font-weight: bold;">SEARCH PAGE</h2>
+
+                        <!-- Updated Search Form -->
+                        <form id="search-form" asp-controller="Home" asp-action="Search" method="post">
+                            <label class="form-label">Find what you're looking for</label>
+                            <div class="input-group mb-3">
+                                <input type="text" id="search-keyword" name="keyword" class="form-control" placeholder="Enter to search" />
+                                <button type="submit" class="btn btn-primary">Search</button>
+                            </div>
+                        </form>
+
+                        @if (Model?.Posts != null && Model.Posts.Any())
+                        {
+                            <h3>Posts</h3>
+                            <ul>
+                                @foreach (var post in Model.Posts)
+                                {
+                                    <li>
+                                        <a href="/Forum/PostDetail?postID=@post.PostID" class="search-title">@Html.Raw(System.Net.WebUtility.HtmlDecode(post.Title))</a>
+                                        <p class="search-content">@Html.Raw(post.Content)</p>
+                                    </li>
+                                }
+                            </ul>
+                        }
+                        @if (Model?.Categories != null && Model.Categories.Any())
+                        {
+                            <h3>Categories</h3>
+                            <ul>
+                                @foreach (var category in Model.Categories)
+                                {
+                                    <li>
+                                        <a href="/Forum/Post?CategoryName=@category.CategoryName&CategoryID=@category.CategoryID" class="search-title">@Html.Raw(System.Net.WebUtility.HtmlDecode(category.CategoryName))</a>
+                                        <p class="search-content">@Html.Raw(System.Net.WebUtility.HtmlDecode(category.Description))</p>
+                                    </li>
+                                }
+                            </ul>
+                        }
+                        @if (Model?.Courses != null && Model.Courses.Any())
+                        {
+                            <h3>Courses</h3>
+                            <ul>
+                                @foreach (var course in Model.Courses)
+                                {
+                                    <li>
+                                        <a href="/Course/Detail?courseID=@course.CourseID" class="search-title">@Html.Raw(System.Net.WebUtility.HtmlDecode(course.Title))</a>
+                                        <p class="search-content">@Html.Raw(System.Net.WebUtility.HtmlDecode(course.Description))</p>
+                                    </li>
+                                }
+                            </ul>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+@section Scripts {
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script>
+    document.getElementById("search-form").addEventListener("submit", function () {
+        const keyword = document.getElementById('search-keyword').value;
+        localStorage.setItem('searchKeyword', keyword);
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const keyword = localStorage.getItem('searchKeyword');
+
+        if (keyword) {
+            document.querySelectorAll('.search-title').forEach((element) => {
+                const originalTitle = element.innerHTML;
+                element.innerHTML = boldMe(originalTitle, keyword);
+            });
+
+            document.querySelectorAll('.search-content').forEach((element) => {
+                const decoder = document.createElement('textarea'); 
+                decoder.innerHTML = element.innerHTML; 
+                const decodedContent = decoder.value; 
+                
+                element.innerHTML = boldMe(decodedContent, keyword);
+            });
+        }
+    });
+
+    function boldMe(text, keyword) {
+        const regex = new RegExp(`(${keyword})`, 'gi');
+        return text.replace(regex, '<b>$1</b>');
+    }
+</script>
+
+}
