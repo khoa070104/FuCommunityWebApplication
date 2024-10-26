@@ -89,11 +89,16 @@ namespace FUCommunityWeb.Areas.Identity.Pages.Account
             [Required]
             [EmailAddress]
             public string Email { get; set; }
+
+            [Required(ErrorMessage = "Please enter your name")]
             public string FullName { get; set; }
+
             [Required(ErrorMessage = "Please enter your DOB")]
             [DataType(DataType.Date, ErrorMessage = "Your DOB is not invalid.")]
             [Display(Name = "Date Of Birth")]
+            [CustomValidation(typeof(ValidationHelper), "ValidateDateOfBirth")]
             public DateTime? DOB { get; set; }
+
             [Required(ErrorMessage = "Please enter your gender")]
             public string Gender { get; set; }
         }

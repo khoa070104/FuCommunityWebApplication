@@ -202,5 +202,10 @@ namespace FuCommunityWebDataAccess.Repositories
             // Save all changes
             await _context.SaveChangesAsync();
         }
+
+        public async Task<ApplicationUser> GetUserByUsernameAsync(string username)
+        {
+            return await _context.Users.FirstOrDefaultAsync(u => u.UserName == username);
+        }
     }
 }

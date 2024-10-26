@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Documents\\FuComunityVersionManager\\FuWebTest11\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\FUCommunityWeb.csproj": {}
+    "D:\\Documents\\FuComunityVersionManager\\FuWebTest12\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\FUCommunityWeb.csproj": {}
   },
   "projects": {
-    "D:\\Documents\\FuComunityVersionManager\\FuWebTest11\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\FuCommunityWebDataAccess.csproj": {
+    "D:\\Documents\\FuComunityVersionManager\\FuWebTest12\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\FuCommunityWebDataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Documents\\FuComunityVersionManager\\FuWebTest11\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\FuCommunityWebDataAccess.csproj",
+        "projectUniqueName": "D:\\Documents\\FuComunityVersionManager\\FuWebTest12\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\FuCommunityWebDataAccess.csproj",
         "projectName": "FuCommunityWebDataAccess",
-        "projectPath": "D:\\Documents\\FuComunityVersionManager\\FuWebTest11\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\FuCommunityWebDataAccess.csproj",
+        "projectPath": "D:\\Documents\\FuComunityVersionManager\\FuWebTest12\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\FuCommunityWebDataAccess.csproj",
         "packagesPath": "C:\\Users\\NCPC\\.nuget\\packages\\",
-        "outputPath": "D:\\Documents\\FuComunityVersionManager\\FuWebTest11\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\obj\\",
+        "outputPath": "D:\\Documents\\FuComunityVersionManager\\FuWebTest12\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\NCPC\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -29,8 +29,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\Documents\\FuComunityVersionManager\\FuWebTest11\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\FuCommunityWebModels.csproj": {
-                "projectPath": "D:\\Documents\\FuComunityVersionManager\\FuWebTest11\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\FuCommunityWebModels.csproj"
+              "D:\\Documents\\FuComunityVersionManager\\FuWebTest12\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\FuCommunityWebModels.csproj": {
+                "projectPath": "D:\\Documents\\FuComunityVersionManager\\FuWebTest12\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\FuCommunityWebModels.csproj"
               }
             }
           }
@@ -93,14 +93,14 @@
         }
       }
     },
-    "D:\\Documents\\FuComunityVersionManager\\FuWebTest11\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\FuCommunityWebModels.csproj": {
+    "D:\\Documents\\FuComunityVersionManager\\FuWebTest12\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\FuCommunityWebModels.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Documents\\FuComunityVersionManager\\FuWebTest11\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\FuCommunityWebModels.csproj",
+        "projectUniqueName": "D:\\Documents\\FuComunityVersionManager\\FuWebTest12\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\FuCommunityWebModels.csproj",
         "projectName": "FuCommunityWebModels",
-        "projectPath": "D:\\Documents\\FuComunityVersionManager\\FuWebTest11\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\FuCommunityWebModels.csproj",
+        "projectPath": "D:\\Documents\\FuComunityVersionManager\\FuWebTest12\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\FuCommunityWebModels.csproj",
         "packagesPath": "C:\\Users\\NCPC\\.nuget\\packages\\",
-        "outputPath": "D:\\Documents\\FuComunityVersionManager\\FuWebTest11\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\obj\\",
+        "outputPath": "D:\\Documents\\FuComunityVersionManager\\FuWebTest12\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\NCPC\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -164,14 +164,14 @@
         }
       }
     },
-    "D:\\Documents\\FuComunityVersionManager\\FuWebTest11\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebServices\\FuCommunityWebServices.csproj": {
+    "D:\\Documents\\FuComunityVersionManager\\FuWebTest12\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebServices\\FuCommunityWebServices.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Documents\\FuComunityVersionManager\\FuWebTest11\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebServices\\FuCommunityWebServices.csproj",
+        "projectUniqueName": "D:\\Documents\\FuComunityVersionManager\\FuWebTest12\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebServices\\FuCommunityWebServices.csproj",
         "projectName": "FuCommunityWebServices",
-        "projectPath": "D:\\Documents\\FuComunityVersionManager\\FuWebTest11\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebServices\\FuCommunityWebServices.csproj",
+        "projectPath": "D:\\Documents\\FuComunityVersionManager\\FuWebTest12\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebServices\\FuCommunityWebServices.csproj",
         "packagesPath": "C:\\Users\\NCPC\\.nuget\\packages\\",
-        "outputPath": "D:\\Documents\\FuComunityVersionManager\\FuWebTest11\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebServices\\obj\\",
+        "outputPath": "D:\\Documents\\FuComunityVersionManager\\FuWebTest12\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebServices\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\NCPC\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -189,8 +189,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\Documents\\FuComunityVersionManager\\FuWebTest11\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\FuCommunityWebDataAccess.csproj": {
-                "projectPath": "D:\\Documents\\FuComunityVersionManager\\FuWebTest11\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\FuCommunityWebDataAccess.csproj"
+              "D:\\Documents\\FuComunityVersionManager\\FuWebTest12\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\FuCommunityWebDataAccess.csproj": {
+                "projectPath": "D:\\Documents\\FuComunityVersionManager\\FuWebTest12\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\FuCommunityWebDataAccess.csproj"
               }
             }
           }
@@ -253,14 +253,14 @@
         }
       }
     },
-    "D:\\Documents\\FuComunityVersionManager\\FuWebTest11\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebUtility\\FuCommunityWebUtility.csproj": {
+    "D:\\Documents\\FuComunityVersionManager\\FuWebTest12\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebUtility\\FuCommunityWebUtility.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Documents\\FuComunityVersionManager\\FuWebTest11\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebUtility\\FuCommunityWebUtility.csproj",
+        "projectUniqueName": "D:\\Documents\\FuComunityVersionManager\\FuWebTest12\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebUtility\\FuCommunityWebUtility.csproj",
         "projectName": "FuCommunityWebUtility",
-        "projectPath": "D:\\Documents\\FuComunityVersionManager\\FuWebTest11\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebUtility\\FuCommunityWebUtility.csproj",
+        "projectPath": "D:\\Documents\\FuComunityVersionManager\\FuWebTest12\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebUtility\\FuCommunityWebUtility.csproj",
         "packagesPath": "C:\\Users\\NCPC\\.nuget\\packages\\",
-        "outputPath": "D:\\Documents\\FuComunityVersionManager\\FuWebTest11\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebUtility\\obj\\",
+        "outputPath": "D:\\Documents\\FuComunityVersionManager\\FuWebTest12\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebUtility\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\NCPC\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -324,14 +324,14 @@
         }
       }
     },
-    "D:\\Documents\\FuComunityVersionManager\\FuWebTest11\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\FUCommunityWeb.csproj": {
+    "D:\\Documents\\FuComunityVersionManager\\FuWebTest12\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\FUCommunityWeb.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Documents\\FuComunityVersionManager\\FuWebTest11\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\FUCommunityWeb.csproj",
+        "projectUniqueName": "D:\\Documents\\FuComunityVersionManager\\FuWebTest12\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\FUCommunityWeb.csproj",
         "projectName": "FUCommunityWeb",
-        "projectPath": "D:\\Documents\\FuComunityVersionManager\\FuWebTest11\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\FUCommunityWeb.csproj",
+        "projectPath": "D:\\Documents\\FuComunityVersionManager\\FuWebTest12\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\FUCommunityWeb.csproj",
         "packagesPath": "C:\\Users\\NCPC\\.nuget\\packages\\",
-        "outputPath": "D:\\Documents\\FuComunityVersionManager\\FuWebTest11\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\obj\\",
+        "outputPath": "D:\\Documents\\FuComunityVersionManager\\FuWebTest12\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\NCPC\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -349,11 +349,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\Documents\\FuComunityVersionManager\\FuWebTest11\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebServices\\FuCommunityWebServices.csproj": {
-                "projectPath": "D:\\Documents\\FuComunityVersionManager\\FuWebTest11\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebServices\\FuCommunityWebServices.csproj"
+              "D:\\Documents\\FuComunityVersionManager\\FuWebTest12\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebServices\\FuCommunityWebServices.csproj": {
+                "projectPath": "D:\\Documents\\FuComunityVersionManager\\FuWebTest12\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebServices\\FuCommunityWebServices.csproj"
               },
-              "D:\\Documents\\FuComunityVersionManager\\FuWebTest11\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebUtility\\FuCommunityWebUtility.csproj": {
-                "projectPath": "D:\\Documents\\FuComunityVersionManager\\FuWebTest11\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebUtility\\FuCommunityWebUtility.csproj"
+              "D:\\Documents\\FuComunityVersionManager\\FuWebTest12\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebUtility\\FuCommunityWebUtility.csproj": {
+                "projectPath": "D:\\Documents\\FuComunityVersionManager\\FuWebTest12\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebUtility\\FuCommunityWebUtility.csproj"
               }
             }
           }
