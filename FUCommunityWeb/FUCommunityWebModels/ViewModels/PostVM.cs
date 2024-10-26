@@ -19,5 +19,6 @@ namespace FuCommunityWebModels.ViewModels
         public Comment Comment { get; set; } = new Comment();
         public Point Point { get; set; } = new Point();
         public int VoteCount { get; set; }
+        public UserVM UserVM { get; set; } = new UserVM();
     }
 }
