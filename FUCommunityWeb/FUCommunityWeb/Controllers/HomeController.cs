@@ -20,14 +20,16 @@ namespace FUCommunityWeb.Controllers
         private readonly HomeService _homeService;
         private readonly CourseService _courseService;
         private readonly ForumService _forumService;
+        private readonly ApplicationDbContext _context;
 
-        public HomeController(ILogger<HomeController> logger, UserService userService, HomeService homeService, CourseService courseService, ForumService forumService)
+        public HomeController(ILogger<HomeController> logger, UserService userService, HomeService homeService, CourseService courseService, ForumService forumService, ApplicationDbContext context)
         {
             _logger = logger;
             _userService = userService;
             _homeService = homeService;
             _courseService = courseService;
             _forumService = forumService;
+            _context = context;
         }
         public IActionResult Index()
         {
@@ -231,6 +233,52 @@ namespace FUCommunityWeb.Controllers
                 await _userService.FollowUserAsync(userId, followId);
             }
             return RedirectToAction("ViewUserProfile", new { userId = followId });
+        }
+        [HttpGet]
+        public IActionResult Search()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Search(string keyword)
+        {
+            var homeVM = new SearchVM();
+
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                homeVM.Posts = _context.Posts
+                    .Where(p => p.Title.Contains(keyword) || p.Content.Contains(keyword))
+                    .Select(p => new Post
+                    {
+                        PostID = p.PostID,
+                        Title = p.Title,
+                        Content = p.Content
+                    })
+                    .ToList();
+
+                homeVM.Categories = _context.Categories
+                    .Where(c => c.CategoryName.Contains(keyword) || c.Description.Contains(keyword))
+                    .Select(c => new Category
+                    {
+                        CategoryID = c.CategoryID,
+                        CategoryName = c.CategoryName,
+                        Description = c.Description
+                    })
+                    .ToList();
+
+                homeVM.Courses = _context.Courses
+                    .Where(c => c.Title.Contains(keyword) || c.Description.Contains(keyword))
+                    .Select(c => new Course
+                    {
+                        CourseID = c.CourseID,
+                        Title = c.Title,
+                        Description = c.Description
+                    })
+                    .ToList();
+            }
+
+            return View(homeVM);
         }
     }
 }
