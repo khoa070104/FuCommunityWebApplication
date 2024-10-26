@@ -29,7 +29,8 @@ namespace FuCommunityWebDataAccess.Repositories
                     Content = c.Content,
                     CreatedDate = c.CreatedDate,
                     UserID = c.UserID,
-                    CommentID = c.CommentID
+                    CommentID = c.CommentID,
+                    ReplyID = c.ReplyID
                 }).ToListAsync();
 
             var userIds = comments.Select(c => c.UserID).Distinct().ToList();
