@@ -18,7 +18,7 @@
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container-fluid">
                 <!-- Brand Logo -->
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" asp-controller="Home" asp-action="Index">
                     <img src="/img/Logo.png" alt="Logo" class="logo-header">
                 </a>
 
@@ -65,16 +65,16 @@
                         <!-- Navbar Links -->
                         <ul class="navbar-mid navbar-nav flex-grow-1">
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Home</a>
+                                <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">About</a>
+                                <a class="nav-link" asp-controller="Home" asp-action="About">About</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Forum</a>
+                                <a class="nav-link" asp-controller="Forum" asp-action="Index">Forum</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Contact</a>
+                                <a class="nav-link" asp-controller="Home" asp-action="ContactUs">Contact</a>
                             </li>
                         </ul>
 
@@ -114,15 +114,15 @@
             <div class="column">
                 <h4>Team</h4>
                 <ul>
-                    <li><a href="/about">About us</a></li>
-                    <li><a href="/contact">Contact us</a></li>
+                    <li><a asp-controller="Home" asp-action="About">About us</a></li>
+                    <li><a asp-controller="Home" asp-action="ContactUs">Contact us</a></li>
                     <li><a href="/feedback">Feedbacks</a></li>
                 </ul>
             </div>
             <div class="column">
                 <h4>Social</h4>
                 <ul>
-                    <li><a href="/forum">Our Forum <span class="new-badge">New</span></a></li>
+                    <li><a asp-controller="Forum" asp-action="Index">Our Forum <span class="new-badge">New</span></a></li>
                     <li><a href="https://www.linkedin.com/" target="_blank">LinkedIn</a></li>
                     <li><a href="https://github.com/" target="_blank">GitHub</a></li>
                     <li><a href="https://twitter.com/" target="_blank">Twitter</a></li>
@@ -131,7 +131,7 @@
             <div class="column">
                 <h4>Settings</h4>
                 <ul>
-                    <li><a href="/profile">Profile</a></li>
+                    <li><a asp-controller="Profile" asp-action="Index">Profile</a></li>
                     <li><a href="/notifications">Notification</a></li>
                 </ul>
             </div>
@@ -168,7 +168,6 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="~/jquery-te/jquery-te-1.4.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.4.0/purify.min.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
