@@ -24,40 +24,7 @@
     <div class="container-fluid admin admin-manage">
         <div class="row">
             <!-- Sidebar -->
-            <div class="col-md-2 sidebar">
-                <div class="d-flex flex-column align-items-center">
-                    <img src="/img/Logo_FunnyCode.jpg" alt="Logo" class="rounded-circle mb-3 responsive-logo">
-                    <div class="d-flex align-items-center mb-4">
-                        <img src="/img/avt1.png" alt="Maria"
-                             class="rounded-circle me-2 avatar-img">
-                        <div class="d-flex align-items-center">
-                            <div class="me-2">
-                                <h5 class="mb-0">Maria</h5>
-                                <p class="text-muted mb-0">HR Manager</p>
-                            </div>
-                            <a href="#"><i class="fas fa-info-circle"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <hr>
-                <div class="nav flex-column">
-                    <a href="/admin/admindashboard" class="btn-nav mb-2">
-                        <i class="fas fa-home me-2"></i>Dashboard
-                    </a>
-                    <a href="/admin/ManageCourse" class="btn-nav mb-2">
-                        <i class="fas fa-book me-2"></i>Courses
-                    </a>
-                    <a href="/admin/ManageForumCategory" class="btn-nav mb-2">
-                        <i class="fas fa-comments me-2"></i>Forum
-                    </a>
-                    <a href="/admin/ManageUser" class="btn-nav mb-2">
-                        <i class="fas fa-user me-2"></i>User
-                    </a>
-                    <a href="/admin/ManagePayment" class="btn-nav mb-2">
-                        <i class="fas fa-wallet me-2"></i>Payments
-                    </a>
-                </div>
-            </div>
+            @await Component.InvokeAsync("UserSidebar")
 
             <!-- Main Content -->
             <div class="col-md-10 content">

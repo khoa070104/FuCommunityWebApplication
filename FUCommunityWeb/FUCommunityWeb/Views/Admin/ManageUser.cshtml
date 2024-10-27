@@ -1,4 +1,5 @@
 ﻿@model FuCommunityWebModels.ViewModels.ManageUserVM
+@inject FuCommunityWebServices.Services.UserService _userService
 
 @{
     ViewData["Title"] = "Manage User";
@@ -29,40 +30,7 @@
     <div class="container-fluid admin admin-manage">
         <div class="row">
             <!-- Sidebar -->
-            <div class="col-md-2 sidebar">
-                <div class="d-flex flex-column align-items-center">
-                    <img src="/img/Logo_FunnyCode.jpg" alt="Logo" class="rounded-circle mb-3 responsive-logo">
-                    <div class="d-flex align-items-center mb-4">
-                        <img src="/img/avt1.png" alt="Maria"
-                             class="rounded-circle me-2 avatar-img">
-                        <div class="d-flex align-items-center">
-                            <div class="me-2">
-                                <h5 class="mb-0">Maria</h5>
-                                <p class="text-muted mb-0">HR Manager</p>
-                            </div>
-                            <a href="#"><i class="fas fa-info-circle"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <hr>
-                <div class="nav flex-column">
-                    <a href="/admin/admindashboard" class="btn-nav mb-2">
-                        <i class="fas fa-home me-2"></i>Dashboard
-                    </a>
-                    <a href="/admin/ManageCourse" class="btn-nav mb-2">
-                        <i class="fas fa-book me-2"></i>Courses
-                    </a>
-                    <a href="/admin/ManageForumCategory" class="btn-nav mb-2">
-                        <i class="fas fa-comments me-2"></i>Forum
-                    </a>
-                    <a href="/admin/ManageUser" class="btn-nav mb-2">
-                        <i class="fas fa-user me-2"></i>User
-                    </a>
-                    <a href="/admin/ManagePayment" class="btn-nav mb-2">
-                        <i class="fas fa-wallet me-2"></i>Payments
-                    </a>
-                </div>
-            </div>
+            @await Component.InvokeAsync("UserSidebar")
 
             <!-- Main Content -->
             <div class="col-md-10 content">
@@ -159,9 +127,25 @@
                                                data-bs-target="#banModal" data-user-id="@user.Id"
                                                data-fullname="@user.FullName"></i>
                                         }
-                                        <i class="fas fa-trash table-settings" data-bs-toggle="modal"
+                                        <i class="fas fa-trash table-settings  me-2" data-bs-toggle="modal"
                                            data-bs-target="#deleteModal" data-user-id="@user.Id"
                                            data-fullname="@user.FullName"></i>
+                                        @{
+                                            var isMentor = await _userService.IsUserInRoleAsync(user.Id, "Mentor");
+                                            var isAdmin = await _userService.IsUserInRoleAsync(user.Id, "Admin");
+                                        }
+
+                                        @if (!isAdmin)
+                                        {
+                                            @if (isMentor)
+                                            {
+                                                <i class="fas fa-arrow-down table-settings" data-bs-toggle="modal" data-bs-target="#demoteModal" data-user-id="@user.Id" data-fullname="@user.FullName"></i>
+                                            }
+                                            else
+                                            {
+                                                <i class="fas fa-arrow-up table-settings" data-bs-toggle="modal" data-bs-target="#promoteModal" data-user-id="@user.Id" data-fullname="@user.FullName"></i>
+                                            }
+                                        }
                                     </td>
                                 </tr>
                             }
@@ -241,6 +225,52 @@
         </div>
     </div>
 
+    <!-- Modal Xác Nhận Thăng Cấp -->
+    <div class="modal fade" id="promoteModal" tabindex="-1" aria-labelledby="promoteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form asp-action="PromoteToMentor" asp-controller="Admin" method="post">
+                    @Html.AntiForgeryToken()
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="promoteModalLabel">Xác Nhận Thăng Cấp</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" name="userId" id="promoteUserID" />
+                        Bạn có chắc chắn muốn thăng cấp người dùng "<strong id="promoteUserFullName"></strong>"?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn-cancel" data-bs-dismiss="modal">Hủy</button>
+                        <button type="submit" class="btn btn-primary">Thăng Cấp</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Xác Nhận Hạ Cấp -->
+    <div class="modal fade" id="demoteModal" tabindex="-1" aria-labelledby="demoteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form asp-action="DemoteToStudent" asp-controller="Admin" method="post">
+                    @Html.AntiForgeryToken()
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="demoteModalLabel">Xác Nhận Hạ Cấp</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" name="userId" id="demoteUserID" />
+                        Bạn có chắc chắn muốn hạ cấp người dùng "<strong id="demoteUserFullName"></strong>"?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn-cancel" data-bs-dismiss="modal">Hủy</button>
+                        <button type="submit" class="btn btn-secondary">Hạ Cấp</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <!-- Scripts -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -304,6 +334,34 @@
                     e.preventDefault();
                     searchButton.click();
                 }
+            });
+        });
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Xử lý khi mở Modal Thăng Cấp
+            const promoteModal = document.getElementById('promoteModal');
+            promoteModal.addEventListener('show.bs.modal', function (event) {
+                const button = event.relatedTarget;
+                const userId = button.getAttribute('data-user-id');
+                const fullName = button.getAttribute('data-fullname');
+
+                // Gán giá trị cho các trường trong form
+                promoteModal.querySelector('#promoteUserID').value = userId;
+                promoteModal.querySelector('#promoteUserFullName').textContent = fullName;
+            });
+
+            // Xử lý khi mở Modal Hạ Cấp
+            const demoteModal = document.getElementById('demoteModal');
+            demoteModal.addEventListener('show.bs.modal', function (event) {
+                const button = event.relatedTarget;
+                const userId = button.getAttribute('data-user-id');
+                const fullName = button.getAttribute('data-fullname');
+
+                // Gán giá trị cho các trường trong form
+                demoteModal.querySelector('#demoteUserID').value = userId;
+                demoteModal.querySelector('#demoteUserFullName').textContent = fullName;
             });
         });
     </script>
