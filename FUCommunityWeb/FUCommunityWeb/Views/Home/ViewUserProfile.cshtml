@@ -25,7 +25,7 @@
                     <a href="@Url.Action("ViewUserProfile", "Home", new { userId = Model.User.Id })">
                         <img src="@(Model.User.AvatarImage ?? "/img/avt2.jpg")" alt="Profile Picture" class="profile-avatar me-3">
                     </a>
-                    @if (Model.IsMentor)
+                    @if (Model.PrimaryRole == "Admin" || Model.PrimaryRole == "Mentor")
                     {
                         <div class="verification-badge">
                             <i class="fas fa-check"></i>
@@ -64,8 +64,8 @@
                     <p>@Model.User.Point</p>
                 </div>
                 <div>
-                    <h5>Personal</h5>
-                    <p>@(Model.IsMentor ? "Mentor" : "Student")</p>
+                    <h5>Role</h5>
+                    <p>@Model.PrimaryRole</p>
                 </div>
             </div>
         </div>
