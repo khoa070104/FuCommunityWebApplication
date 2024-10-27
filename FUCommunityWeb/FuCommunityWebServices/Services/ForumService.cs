@@ -127,5 +127,34 @@ namespace FuCommunityWebServices.Services
         {
             return await _forumRepo.GetUserPostCountAsync(userId, postType);
         }
+
+        public async Task AddPostAsync(Post post)
+        {
+            await _forumRepo.AddPostAsync(post);
+        }
+
+        public async Task AddCategoryAsync(Category category)
+        {
+            await _forumRepo.AddCategoryAsync(category);
+        }
+
+        public async Task<Category> GetCategoryByIdAsync(int categoryId)
+        {
+            return await _forumRepo.GetCategoryByIdAsync(categoryId);
+        }
+        public async Task UpdateCategoryAsync(Category category)
+        {
+            await _forumRepo.UpdateCategoryAsync(category);
+        }
+
+        public async Task DeleteCategoryAsync(Category category)
+        {
+            await _forumRepo.DeleteCategoryAsync(category);
+        }
+
+        public async Task DeletePostsAsync(IEnumerable<Post> posts)
+        {
+            await _forumRepo.DeletePostsAsync(posts);
+        }
     }
 }
