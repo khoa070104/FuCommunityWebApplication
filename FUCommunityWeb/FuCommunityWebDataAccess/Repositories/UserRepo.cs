@@ -161,16 +161,6 @@ namespace FuCommunityWebDataAccess.Repositories
             }
         }
 
-        public async Task CreateUserAsync(ApplicationUser user, string password)
-        {
-            // Hash password and create the user
-            // If you're using Identity, ensure the password is hashed correctly
-            var hasher = new PasswordHasher<ApplicationUser>();
-            user.PasswordHash = hasher.HashPassword(user, password);
-            _context.Users.Add(user);
-            await _context.SaveChangesAsync();
-        }
-
         public async Task DeleteUserAsync(ApplicationUser user)
         {
             if (user == null)
@@ -212,6 +202,51 @@ namespace FuCommunityWebDataAccess.Repositories
         public async Task<ApplicationUser> GetUserByUsernameAsync(string username)
         {
             return await _context.Users.FirstOrDefaultAsync(u => u.UserName == username);
+        }
+
+        public async Task AddToRoleAsync(ApplicationUser user, string role)
+        {
+            var identityUser = await _userManager.FindByIdAsync(user.Id);
+            if (identityUser != null && !await _userManager.IsInRoleAsync(identityUser, role))
+            {
+                var result = await _userManager.AddToRoleAsync(identityUser, role);
+            }
+        }
+
+        public async Task RemoveFromRoleAsync(ApplicationUser user, string role)
+        {
+            var identityUser = await _userManager.FindByIdAsync(user.Id);
+            if (identityUser != null && await _userManager.IsInRoleAsync(identityUser, role))
+            {
+                await _userManager.RemoveFromRoleAsync(identityUser, role);
+            }
+        }
+
+        public async Task<List<string>> GetUserRolesAsync(string userId)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+                return new List<string>();
+
+            return (await _userManager.GetRolesAsync(user)).ToList();
+        }
+
+        public async Task<string> GetPrimaryUserRoleAsync(string userId)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+                return null;
+
+            var roles = await _userManager.GetRolesAsync(user);
+
+            if (roles.Contains("Admin"))
+                return "Admin";
+            if (roles.Contains("Mentor"))
+                return "Mentor";
+            if (roles.Contains("Student"))
+                return "Student";
+
+            return "User";
         }
     }
 }
