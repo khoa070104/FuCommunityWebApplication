@@ -115,15 +115,24 @@ namespace FUCommunityWeb.Areas.Identity.Pages.Account
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
-                    var user = await _userManager.FindByEmailAsync(Input.Email);
-                    if (user != null && await _userManager.IsInRoleAsync(user, "Admin"))
+                    var user = await _userManager.FindByEmailAsync(Input.Email) as ApplicationUser;
+                    if (user != null)
                     {
-                        _logger.LogInformation("Admin user logged in.");
-                        return LocalRedirect("/admin/admindashboard");
-                    }
+                        if (user.Ban)
+                        {
+                            _logger.LogWarning("Banned user attempted to log in.");
+                            return LocalRedirect("/Home/Banned");
+                        }
 
-                    _logger.LogInformation("User logged in.");
-                    return LocalRedirect(returnUrl);
+                        if (await _userManager.IsInRoleAsync(user, "Admin"))
+                        {
+                            _logger.LogInformation("Admin user logged in.");
+                            return LocalRedirect("/admin");
+                        }
+
+                        _logger.LogInformation("User logged in.");
+                        return LocalRedirect(returnUrl);
+                    }
                 }
                 if (result.RequiresTwoFactor)
                 {
