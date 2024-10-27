@@ -43,6 +43,8 @@ builder.Services.AddScoped<ForumService>();
 builder.Services.AddScoped<OrderRepo>();
 builder.Services.AddScoped<VnPayService>();
 builder.Services.AddScoped<OrderService>();
+builder.Services.AddScoped<AdminService>();
+builder.Services.AddScoped<AdminRepo>();
 
 // Register VnPayService for VNPAY integration
 builder.Services.AddScoped<VnPayService>();
