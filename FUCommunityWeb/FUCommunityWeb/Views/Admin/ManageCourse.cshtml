@@ -1,7 +1,7 @@
 ﻿@model FuCommunityWebModels.ViewModels.CourseVM
 
 @{
-    ViewData["Title"] = "Quản Lý Khóa Học";
+    ViewData["Title"] = "Course Management";
 }
 
 <!DOCTYPE html>
@@ -101,7 +101,7 @@
                                     <td>@course.Semester</td>
                                     <td>@course.CategoryID</td>
                                     <td>
-                                        <i class="fas fa-cog table-settings me-2" data-bs-toggle="modal"
+                                        <i class="fas fa-edit table-settings me-2" data-bs-toggle="modal"
                                            data-bs-target="#editModal" data-course-id="@course.CourseID"
                                            data-user-id="@course.UserID"
                                            data-title="@course.Title"
@@ -131,7 +131,7 @@
                 <form asp-action="CreateCourse" asp-controller="Admin" method="post" enctype="multipart/form-data">
                     @Html.AntiForgeryToken()
                     <div class="modal-header">
-                        <h5 class="modal-title" id="createModalLabel">Tạo Khóa Học Mới</h5>
+                        <h5 class="modal-title" id="createModalLabel">Create New Course</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -169,7 +169,7 @@
                         <div class="mb-3">
                             <label asp-for="CreateCourseVM.Semester" class="form-label">Semester</label>
                             <select asp-for="CreateCourseVM.Semester" class="form-control">
-                                <option value="">-- Chọn Học Kỳ --</option>
+                                <option value="">-- Select Semester --</option>
                                 @for (int i = 1; i <= 9; i++)
                                 {
                                     <option value="@i">Semester @i</option>
@@ -181,7 +181,7 @@
                         <div class="mb-3">
                             <label asp-for="CreateCourseVM.CategoryID" class="form-label">Category</label>
                             <select asp-for="CreateCourseVM.CategoryID" class="form-control">
-                                <option value="">-- Chọn Category --</option>
+                                <option value="">-- Select Category --</option>
                                 @foreach (var category in Model.Categories)
                                 {
                                     <option value="@category.CategoryID">@category.CategoryName</option>
@@ -206,7 +206,7 @@
                 <form asp-action="EditCourse" asp-controller="Admin" method="post" enctype="multipart/form-data">
                     @Html.AntiForgeryToken()
                     <div class="modal-header">
-                        <h5 class="modal-title" id="editModalLabel">Chỉnh Sửa Khóa Học</h5>
+                        <h5 class="modal-title" id="editModalLabel">Edit Course</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -241,7 +241,7 @@
                         <div class="mb-3">
                             <label asp-for="EditCourseVM.Semester" class="form-label">Semester</label>
                             <select asp-for="EditCourseVM.Semester" class="form-control" id="editSemester">
-                                <option value="">-- Chọn Học Kỳ --</option>
+                                <option value="">-- Select Semester --</option>
                                 @for (int i = 1; i <= 9; i++)
                                 {
                                     <option value="@i">Semester @i</option>
@@ -252,7 +252,7 @@
                         <div class="mb-3">
                             <label asp-for="EditCourseVM.CategoryID" class="form-label">Category</label>
                             <select asp-for="EditCourseVM.CategoryID" class="form-control" id="editCategoryID">
-                                <option value="">-- Chọn Category --</option>
+                                <option value="">-- Select Category --</option>
                                 @foreach (var category in Model.Categories)
                                 {
                                     <option value="@category.CategoryID">@category.CategoryName</option>
@@ -277,12 +277,12 @@
                 <form asp-action="DeleteCourse" asp-controller="Admin" method="post">
                     @Html.AntiForgeryToken()
                     <div class="modal-header">
-                        <h5 class="modal-title" id="deleteModalLabel">Xác Nhận Xóa</h5>
+                        <h5 class="modal-title" id="deleteModalLabel">Confirm Delete</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <input type="hidden" name="courseId" id="deleteCourseID" />
-                        Bạn có chắc chắn muốn xóa khóa học "<strong id="deleteCourseTitle"></strong>"?
+                        Are you sure you want to delete "<strong id="deleteCourseTitle"></strong>"?
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn-cancel-2" data-bs-dismiss="modal">Cancel</button>
