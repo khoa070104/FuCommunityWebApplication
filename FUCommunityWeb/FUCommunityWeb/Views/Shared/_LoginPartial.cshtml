@@ -15,8 +15,11 @@
                     <i id="dropdownIcon" class="fa-solid fa-circle-chevron-down ms-2"></i>
                 </button>
                 <div class="dropdown-content">
-                    <a href="/Profile/Index">
+                    <a href="@Url.Action("ViewUserProfile", "Home", new { userId = UserManager.GetUserId(User) })">
                         <i class="fas fa-user"></i> My Profile
+                    </a>
+                    <a href="/Profile/Index">
+                        <i class="fas fa-user"></i> Setting
                     </a>
                     <a asp-area="Identity" asp-page="/Account/Manage/Index">
                         <i class="fas fa-key"></i> Authenticator

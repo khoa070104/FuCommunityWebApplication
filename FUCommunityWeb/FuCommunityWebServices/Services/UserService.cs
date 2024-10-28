@@ -88,19 +88,8 @@ namespace FuCommunityWebServices.Services
             await _userRepo.UpdateUserBannerAsync(userId, bannerPath);
         }
 
-        public async Task CreateUserAsync(ApplicationUser user, string password)
-        {
-            // Assuming UserRepo handles password hashing or identity logic
-            await _userRepo.CreateUserAsync(user, password);
-        }
-
         public async Task DeleteUserAsync(ApplicationUser user)
         {
-            if (user == null)
-            {
-                throw new ArgumentNullException(nameof(user), "User not found.");
-            }
-
             await _userRepo.DeleteUserAsync(user);
         }
 
@@ -112,6 +101,26 @@ namespace FuCommunityWebServices.Services
         public async Task<ApplicationUser> GetUserByUsernameAsync(string username)
         {
             return await _userRepo.GetUserByUsernameAsync(username);
+        }
+
+        public async Task AddToRoleAsync(ApplicationUser user, string role)
+        {
+            await _userRepo.AddToRoleAsync(user, role);
+        }
+
+        public async Task RemoveFromRoleAsync(ApplicationUser user, string role)
+        {
+            await _userRepo.RemoveFromRoleAsync(user, role);
+        }
+
+        public async Task<List<string>> GetUserRolesAsync(string userId)
+        {
+            return await _userRepo.GetUserRolesAsync(userId);
+        }
+
+        public async Task<string> GetPrimaryUserRoleAsync(string userId)
+        {
+            return await _userRepo.GetPrimaryUserRoleAsync(userId);
         }
     }
 }

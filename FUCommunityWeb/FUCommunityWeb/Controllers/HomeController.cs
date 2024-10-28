@@ -198,7 +198,7 @@ namespace FUCommunityWeb.Controllers
             var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             var followers = await _userService.GetFollowersAsync(userId);
-            var isMentor = await _userService.IsUserInRoleAsync(userId, "mentor");
+            var primaryRole = _userService.GetPrimaryUserRoleAsync(userId).Result;
 
             var userViewModel = new UserVM
             {
@@ -208,7 +208,7 @@ namespace FUCommunityWeb.Controllers
                 IsCurrentUser = (userId == currentUserId),
                 IsFollowing = await _userService.IsFollowingAsync(currentUserId, userId),
                 Followers = followers,
-                IsMentor = isMentor,
+                PrimaryRole = primaryRole,
                 TotalPosts = await _forumService.GetUserPostCountAsync(userId, 1),
                 TotalQuestions = await _forumService.GetUserPostCountAsync(userId, 2)
             };
@@ -279,6 +279,11 @@ namespace FUCommunityWeb.Controllers
             }
 
             return View(homeVM);
+        }
+
+        public IActionResult Banned()
+        {
+            return View();
         }
     }
 }

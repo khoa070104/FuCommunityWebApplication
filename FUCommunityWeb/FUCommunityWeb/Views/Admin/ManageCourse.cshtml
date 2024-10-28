@@ -29,40 +29,7 @@
     <div class="container-fluid admin admin-manage">
         <div class="row">
             <!-- Sidebar -->
-            <div class="col-md-2 sidebar">
-                <div class="d-flex flex-column align-items-center">
-                    <img src="/img/Logo_FunnyCode.jpg" alt="Logo" class="rounded-circle mb-3 responsive-logo">
-                    <div class="d-flex align-items-center mb-4">
-                        <img src="/img/avt1.png" alt="Maria"
-                             class="rounded-circle me-2 avatar-img">
-                        <div class="d-flex align-items-center">
-                            <div class="me-2">
-                                <h5 class="mb-0">Maria</h5>
-                                <p class="text-muted mb-0">HR Manager</p>
-                            </div>
-                            <a href="#"><i class="fas fa-info-circle"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <hr>
-                <div class="nav flex-column">
-                    <a href="/admin/admindashboard" class="btn-nav mb-2">
-                        <i class="fas fa-home me-2"></i>Dashboard
-                    </a>
-                    <a href="/admin/ManageCourse" class="btn-nav mb-2">
-                        <i class="fas fa-book me-2"></i>Courses
-                    </a>
-                    <a href="/admin/ManageForumCategory" class="btn-nav mb-2">
-                        <i class="fas fa-comments me-2"></i>Forum
-                    </a>
-                    <a href="/admin/ManageUser" class="btn-nav mb-2">
-                        <i class="fas fa-user me-2"></i>User
-                    </a>
-                    <a href="/admin/ManagePayment" class="btn-nav mb-2">
-                        <i class="fas fa-wallet me-2"></i>Payments
-                    </a>
-                </div>
-            </div>
+            @await Component.InvokeAsync("UserSidebar")
 
             <!-- Main Content -->
             <div class="col-md-10 content">
@@ -98,7 +65,7 @@
                                     @Html.ActionLink("ID", "ManageCourse", new { sortOrder = ViewData["IDSortParm"] })
                                 </th>
                                 <th>
-                                    @Html.ActionLink("UserID", "ManageCourse", new { sortOrder = ViewData["UserIDSortParm"] })
+                                    @Html.ActionLink("Username", "ManageCourse", new { sortOrder = ViewData["UserIDSortParm"] })
                                 </th>
                                 <th>
                                     @Html.ActionLink("Title", "ManageCourse", new { sortOrder = ViewData["TitleSortParm"] })
@@ -120,7 +87,7 @@
                                     <td><input type="checkbox" class="select-item"></td>
                                     -->
                                     <td>@course.CourseID</td>
-                                    <td>@course.UserID</td>
+                                    <td>@course.User.UserName</td>
                                     <td>
                                         <!-- Thêm liên kết để chuyển đến trang ManageLesson -->
                                         <a href="@Url.Action("ManageLesson", "Admin", new { courseId = course.CourseID })">@course.Title</a>
@@ -243,44 +210,37 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <!-- Hidden CourseID -->
                         <input type="hidden" name="EditCourseVM.CourseID" id="editCourseID" />
 
-                        <!-- Title -->
                         <div class="mb-3">
                             <label asp-for="EditCourseVM.Title" class="form-label">Title</label>
-                            <input asp-for="EditCourseVM.Title" class="form-control" required />
+                            <input asp-for="EditCourseVM.Title" class="form-control" id="editTitle" required />
                             <span asp-validation-for="EditCourseVM.Title" class="text-danger"></span>
                         </div>
-                        <!-- Description -->
                         <div class="mb-3">
                             <label asp-for="EditCourseVM.Description" class="form-label">Description</label>
-                            <textarea asp-for="EditCourseVM.Description" class="form-control" rows="3"></textarea>
+                            <textarea asp-for="EditCourseVM.Description" class="form-control" id="editDescription" rows="3"></textarea>
                             <span asp-validation-for="EditCourseVM.Description" class="text-danger"></span>
                         </div>
-                        <!-- Price -->
                         <div class="mb-3">
                             <label asp-for="EditCourseVM.Price" class="form-label">Price</label>
-                            <input asp-for="EditCourseVM.Price" class="form-control" required />
+                            <input asp-for="EditCourseVM.Price" class="form-control" id="editPrice" required />
                             <span asp-validation-for="EditCourseVM.Price" class="text-danger"></span>
                         </div>
-                        <!-- Course Image -->
                         <div class="mb-3">
                             <label asp-for="EditCourseVM.CourseImageFile" class="form-label">Course Image</label>
                             <input asp-for="EditCourseVM.CourseImageFile" type="file" class="form-control" />
                             <span asp-validation-for="EditCourseVM.CourseImageFile" class="text-danger"></span>
                             <img src="" alt="Current Course Image" id="currentCourseImage" class="img-fluid mt-2" style="max-height: 100px;" />
                         </div>
-                        <!-- Status -->
                         <div class="mb-3">
                             <label asp-for="EditCourseVM.Status" class="form-label">Status</label>
-                            <input asp-for="EditCourseVM.Status" class="form-control" required />
+                            <input asp-for="EditCourseVM.Status" class="form-control" id="editStatus" required />
                             <span asp-validation-for="EditCourseVM.Status" class="text-danger"></span>
                         </div>
-                        <!-- Semester -->
                         <div class="mb-3">
                             <label asp-for="EditCourseVM.Semester" class="form-label">Semester</label>
-                            <select asp-for="EditCourseVM.Semester" class="form-control">
+                            <select asp-for="EditCourseVM.Semester" class="form-control" id="editSemester">
                                 <option value="">-- Chọn Học Kỳ --</option>
                                 @for (int i = 1; i <= 9; i++)
                                 {
@@ -289,10 +249,9 @@
                             </select>
                             <span asp-validation-for="EditCourseVM.Semester" class="text-danger"></span>
                         </div>
-                        <!-- Category -->
                         <div class="mb-3">
                             <label asp-for="EditCourseVM.CategoryID" class="form-label">Category</label>
-                            <select asp-for="EditCourseVM.CategoryID" class="form-control">
+                            <select asp-for="EditCourseVM.CategoryID" class="form-control" id="editCategoryID">
                                 <option value="">-- Chọn Category --</option>
                                 @foreach (var category in Model.Categories)
                                 {
@@ -362,57 +321,60 @@
         });
     </script>
 
-
-
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            // Xử lý khi mở Modal Chỉnh Sửa
-            const editModal = document.getElementById('editModal');
-            editModal.addEventListener('show.bs.modal', function (event) {
-                const button = event.relatedTarget;
-                const courseId = button.getAttribute('data-course-id');
-                const userId = button.getAttribute('data-user-id');
-                const title = button.getAttribute('data-title');
-                const description = button.getAttribute('data-description');
-                const price = button.getAttribute('data-price');
-                const courseImage = button.getAttribute('data-course-image');
-                const status = button.getAttribute('data-status');
-                const semester = button.getAttribute('data-semester');
-                const categoryId = button.getAttribute('data-category-id');
-
-                // Gán giá trị cho các trường trong form
-                editModal.querySelector('#editCourseID').value = courseId;
-                editModal.querySelector('#editUserID').value = userId;
-                editModal.querySelector('#editTitle').value = title;
-                editModal.querySelector('#editDescription').value = description;
-                editModal.querySelector('#editPrice').value = price;
-                editModal.querySelector('#editStatus').value = status;
-                editModal.querySelector('#editSemester').value = semester;
-                editModal.querySelector('#editCategoryID').value = categoryId;
-                editModal.querySelector('#currentCourseImage').src = courseImage;
-            });
-
-            // Xử lý khi mở Modal Xóa
             const deleteModal = document.getElementById('deleteModal');
+
             deleteModal.addEventListener('show.bs.modal', function (event) {
                 const button = event.relatedTarget;
                 const courseId = button.getAttribute('data-course-id');
                 const courseTitle = button.getAttribute('data-title');
 
-                // Gán giá trị cho các trường trong form
                 deleteModal.querySelector('#deleteCourseID').value = courseId;
                 deleteModal.querySelector('#deleteCourseTitle').textContent = courseTitle;
             });
+        });
+    </script>
 
-            // Xử lý chọn tất cả các checkbox
-            const selectAllCheckbox = document.getElementById('select-all');
-            const itemCheckboxes = document.querySelectorAll('.select-item');
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+        const editModal = document.getElementById('editModal');
 
-            selectAllCheckbox.addEventListener('change', function () {
-                itemCheckboxes.forEach(function (checkbox) {
-                    checkbox.checked = selectAllCheckbox.checked;
-                });
+        editModal.addEventListener('show.bs.modal', function (event) {
+            const button = event.relatedTarget;
+
+            const courseId = button.getAttribute('data-course-id');
+            const title = button.getAttribute('data-title');
+            const description = button.getAttribute('data-description');
+            const price = button.getAttribute('data-price');
+            const courseImage = button.getAttribute('data-course-image');
+            const status = button.getAttribute('data-status');
+            const semester = button.getAttribute('data-semester');
+            const categoryId = button.getAttribute('data-category-id');
+
+            document.getElementById('editCourseID').value = courseId;
+            document.getElementById('editTitle').value = title;
+            document.getElementById('editDescription').value = description;
+            document.getElementById('editPrice').value = price;
+            document.getElementById('editStatus').value = status;
+            document.getElementById('editSemester').value = semester;
+            document.getElementById('editCategoryID').value = categoryId;
+
+            const currentCourseImage = document.getElementById('currentCourseImage');
+            currentCourseImage.src = courseImage;
+        });
+    });
+    </script>
+
+    <script>
+        const selectAllCheckbox = document.getElementById('select-all');
+        const itemCheckboxes = document.querySelectorAll('.select-item');
+
+        selectAllCheckbox.addEventListener('change', function () {
+            itemCheckboxes.forEach(function (checkbox) {
+                checkbox.checked = selectAllCheckbox.checked;
             });
+        });
 
     </script>
     @* Bao gồm các script xác thực *@

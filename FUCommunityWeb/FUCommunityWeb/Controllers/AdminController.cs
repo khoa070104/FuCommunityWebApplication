@@ -10,6 +10,7 @@ using System.Security.Claims;
 using FuCommunityWebDataAccess.Data;
 using System.Net;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FUCommunityWeb.Controllers
 {
@@ -19,17 +20,17 @@ namespace FUCommunityWeb.Controllers
         private readonly ILogger<AdminController> _logger;
         private readonly UserService _userService;
         private readonly OrderService _orderService;
-        private readonly ApplicationDbContext _context;
         private readonly ForumService _forumService;
+        private readonly AdminService _adminService;
 
-        public AdminController(CourseService courseService, UserService userService, ILogger<AdminController> logger, OrderService orderService, ApplicationDbContext context, ForumService forumService)
+        public AdminController(CourseService courseService, UserService userService, ILogger<AdminController> logger, OrderService orderService, ForumService forumService, AdminService adminService)
         {
             _courseService = courseService;
             _userService = userService;
             _logger = logger;
             _orderService = orderService;
-            _context = context;
             _forumService = forumService;
+            _adminService = adminService;
         }
 
         public async Task<IActionResult> ManageCourse(string search, string sortOrder)
@@ -102,21 +103,40 @@ namespace FUCommunityWeb.Controllers
 
                     await _courseService.AddCourseAsync(course);
 
-                    _logger.LogInformation("Khóa học mới đã được tạo: {CourseTitle}", course.Title);
-                    TempData["Success"] = "Tạo khóa học thành công.";
                 }
                 catch (Exception ex)
                 {
-                    _logger.LogError(ex, "Lỗi khi tạo khóa học");
-                    TempData["Error"] = "Đã xảy ra lỗi khi tạo khóa học. Vui lòng thử lại.";
                 }
             }
             else
             {
-                TempData["Error"] = "Dữ liệu nhập không hợp lệ. Vui lòng kiểm tra lại.";
             }
 
             return RedirectToAction("ManageCourse");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> EditCourse(int id)
+        {
+            var course = await _courseService.GetCourseByIdAsync(id);
+            if (course == null)
+            {
+                return NotFound();
+            }
+
+            var editCourseVM = new EditCourseVM
+            {
+                CourseID = course.CourseID,
+                Title = course.Title,
+                Description = course.Description,
+                Price = course.Price ?? 0,
+                CourseImage = course.CourseImage,
+                Status = course.Status,
+                Semester = course.Semester,
+                CategoryID = course.CategoryID
+            };
+
+            return View("ManageCourse", editCourseVM);
         }
 
         [HttpPost]
@@ -128,7 +148,6 @@ namespace FUCommunityWeb.Controllers
                 var courseToUpdate = await _courseService.GetCourseByIdAsync(editCourseVM.CourseID);
                 if (courseToUpdate == null)
                 {
-                    TempData["Error"] = "Khóa học không tồn tại.";
                     return RedirectToAction("ManageCourse");
                 }
 
@@ -138,6 +157,7 @@ namespace FUCommunityWeb.Controllers
                 courseToUpdate.Status = editCourseVM.Status;
                 courseToUpdate.Semester = editCourseVM.Semester;
                 courseToUpdate.CategoryID = editCourseVM.CategoryID;
+
                 if (editCourseVM.CourseImageFile != null && editCourseVM.CourseImageFile.Length > 0)
                 {
                     courseToUpdate.CourseImage = await UploadCourseImage(editCourseVM.CourseImageFile);
@@ -148,24 +168,17 @@ namespace FUCommunityWeb.Controllers
                 try
                 {
                     await _courseService.UpdateCourseAsync(courseToUpdate);
-                    _logger.LogInformation("Khóa học đã được cập nhật: {CourseTitle}", courseToUpdate.Title);
-                    TempData["Success"] = "Cập nhật khóa học thành công.";
                 }
                 catch (Exception ex)
                 {
-                    _logger.LogError(ex, "Lỗi khi cập nhật khóa học");
-                    TempData["Error"] = "Đã xảy ra lỗi khi cập nhật khóa học. Vui lòng thử lại.";
                 }
-            }
-            else
-            {
-                TempData["Error"] = "Dữ liệu nhập không hợp lệ. Vui lòng kiểm tra lại.";
             }
 
             return RedirectToAction("ManageCourse");
         }
 
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteCourse(int courseId)
         {
@@ -173,20 +186,15 @@ namespace FUCommunityWeb.Controllers
 
             if (course == null)
             {
-                TempData["Error"] = "Khóa học không tồn tại.";
                 return RedirectToAction("ManageCourse");
             }
 
             try
             {
                 await _courseService.DeleteCourseAsync(course);
-                _logger.LogInformation("Khóa học đã được xóa: {CourseTitle}", course.Title);
-                TempData["Success"] = "Xóa khóa học thành công.";
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                _logger.LogError(ex, "Lỗi khi xóa khóa học");
-                TempData["Error"] = "Đã xảy ra lỗi khi xóa khóa học. Vui lòng thử lại.";
             }
 
             return RedirectToAction("ManageCourse");
@@ -274,7 +282,6 @@ namespace FUCommunityWeb.Controllers
 
             if (course == null)
             {
-                TempData["Error"] = "Khóa học không tồn tại.";
                 return RedirectToAction("ManageLesson", new { courseId = createLessonVM.CourseID });
             }
 
@@ -294,18 +301,13 @@ namespace FUCommunityWeb.Controllers
 
                     await _courseService.AddLessonAsync(lesson);
 
-                    _logger.LogInformation("Bài học mới đã được tạo: {LessonTitle}", lesson.Title);
-                    TempData["Success"] = "Tạo bài học thành công.";
                 }
                 catch (Exception ex)
                 {
-                    _logger.LogError(ex, "Lỗi khi tạo bài học");
-                    TempData["Error"] = "Đã xảy ra lỗi khi tạo bài học. Vui lòng thử lại.";
                 }
             }
             else
             {
-                TempData["Error"] = "Dữ liệu nhập không hợp lệ. Vui lòng kiểm tra lại.";
             }
 
             return RedirectToAction("ManageLesson", "Admin", new { courseId = createLessonVM.CourseID });
@@ -317,7 +319,6 @@ namespace FUCommunityWeb.Controllers
             var lesson = await _courseService.GetLessonByIdAsync(id);
             if (lesson == null)
             {
-                TempData["Error"] = "Bài học không tồn tại.";
                 return RedirectToAction("ManageLesson", new { courseId = lesson?.CourseID });
             }
             var editLessonVM = new EditLessonVM
@@ -344,7 +345,6 @@ namespace FUCommunityWeb.Controllers
 
             if (lessonToUpdate == null)
             {
-                TempData["Error"] = "Bài học không tồn tại.";
                 return RedirectToAction("ManageLesson", new { courseId = editLessonVM.CourseID });
             }
 
@@ -359,18 +359,13 @@ namespace FUCommunityWeb.Controllers
 
                     await _courseService.UpdateLessonAsync(lessonToUpdate);
 
-                    _logger.LogInformation("Bài học đã được cp nhật: {LessonTitle}", lessonToUpdate.Title);
-                    TempData["Success"] = "Cập nhật bài học thành công.";
                 }
                 catch (Exception ex)
                 {
-                    _logger.LogError(ex, "Lỗi khi cập nhật bài học");
-                    TempData["Error"] = "Đã xảy ra lỗi khi cập nhật bài học. Vui lòng thử lại.";
                 }
             }
             else
             {
-                TempData["Error"] = "Dữ liệu nhập không hợp lệ. Vui lòng kiểm tra lại.";
             }
 
             return RedirectToAction("ManageLesson", new { courseId = lessonToUpdate.CourseID });
@@ -385,44 +380,28 @@ namespace FUCommunityWeb.Controllers
 
             if (lesson == null)
             {
-                TempData["Error"] = "Bài học không tồn tại.";
                 return RedirectToAction("ManageLesson", new { courseId = lesson.CourseID });
             }
 
             try
             {
                 await _courseService.DeleteLessonAsync(lesson);
-                _logger.LogInformation("Bài học đã được xóa: {LessonTitle}", lesson.Title);
-                TempData["Success"] = "Xóa bài học thành công.";
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Lỗi khi xóa bài học");
-                TempData["Error"] = "Đã xảy ra lỗi khi xóa bài học. Vui lòng thử lại.";
             }
 
             return RedirectToAction("ManageLesson", new { courseId = lesson.CourseID });
         }
 
 
-        public async Task<IActionResult> AdminDashBoard()
+        public async Task<IActionResult> Index()
         {
-            var totalUsers = await _context.Users.CountAsync();
-            var totalCourses = await _context.Courses.CountAsync();
-            var totalPosts = await _context.Posts.CountAsync();
-            var totalAmount = await _context.Orders
-                .Where(o => o.Status == "1")
-                .SumAsync(o => o.Amount);
-
-            var userRegistrations = await _context.Users
-                .GroupBy(u => new { u.CreatedDate.Year, u.CreatedDate.Month })
-                .Select(g => new
-                {
-                    Year = g.Key.Year,
-                    Month = g.Key.Month,
-                    Count = g.Count()
-                })
-                .ToListAsync();
+            var totalUsers = await _adminService.GetTotalUsersAsync();
+            var totalCourses = await _adminService.GetTotalCoursesAsync();
+            var totalPosts = await _adminService.GetTotalPostsAsync();
+            var totalAmount = await _adminService.GetTotalAmountAsync();
+            var userRegistrations = await _adminService.GetUserRegistrationsAsync();
 
             var currentMonth = DateTime.Now.Month;
             var currentYear = DateTime.Now.Year;
@@ -434,7 +413,7 @@ namespace FUCommunityWeb.Controllers
                 var year = currentMonth - i <= 0 ? currentYear - 1 : currentYear;
 
                 var registration = userRegistrations.FirstOrDefault(r => r.Year == year && r.Month == month);
-                monthlyRegistrations[11 - i] = registration?.Count ?? 0;
+                monthlyRegistrations[11 - i] = registration.Count;
             }
 
             var dashboardVM = new DashboardVM
@@ -448,6 +427,7 @@ namespace FUCommunityWeb.Controllers
 
             return View(dashboardVM);
         }
+
         public IActionResult ManageForumGroup()
         {
             return View();
@@ -523,8 +503,7 @@ namespace FUCommunityWeb.Controllers
                 PostImage = postVM.CreatePostVM.PostImage
             };
 
-            _context.Posts.Add(post);
-            await _context.SaveChangesAsync();
+            await _forumService.AddPostAsync(post);
 
             return RedirectToAction("ManagePost", new
             {
@@ -556,7 +535,7 @@ namespace FUCommunityWeb.Controllers
         [HttpGet]
         public async Task<IActionResult> GetPost(int postId)
         {
-            var post = await _context.Posts.FindAsync(postId);
+            var post = await _forumService.GetPostByID(postId);
             if (post == null)
             {
                 return NotFound();
@@ -706,20 +685,15 @@ namespace FUCommunityWeb.Controllers
 
             if (user == null)
             {
-                TempData["Error"] = "Người dùng không tồn tại.";
                 return RedirectToAction("ManageUser");
             }
 
             try
             {
                 await _userService.DeleteUserAsync(user);
-                _logger.LogInformation("Đã xóa người dùng: {UserEmail}", user.Email);
-                TempData["Success"] = "Xóa người dùng thành công.";
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Lỗi khi xóa người dùng");
-                TempData["Error"] = "Đã xảy ra lỗi khi xóa người dùng. Vui lòng thử lại.";
             }
 
             return RedirectToAction("ManageUser");
@@ -738,12 +712,9 @@ namespace FUCommunityWeb.Controllers
             try
             {
                 await _orderService.DeleteOrderAsync(orderId); 
-                TempData["Success"] = "Order deleted successfully.";
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error deleting order");
-                TempData["Error"] = "An error occurred while deleting the order. Please try again.";
             }
 
             return RedirectToAction("ManagePayment");
@@ -756,7 +727,6 @@ namespace FUCommunityWeb.Controllers
             var user = await _userService.GetUserByIdAsync(userId);
             if (user == null)
             {
-                TempData["Error"] = "Người dùng không tồn tại.";
                 return RedirectToAction("ManageUser");
             }
 
@@ -764,13 +734,9 @@ namespace FUCommunityWeb.Controllers
             {
                 user.Ban = true;
                 await _userService.UpdateUserAsync(user);
-                _logger.LogInformation("Người dùng đã bị ban: {UserEmail}", user.Email);
-                TempData["Success"] = "Người dùng đã bị ban thành công.";
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Lỗi khi ban người dùng");
-                TempData["Error"] = "Đã xảy ra lỗi khi ban người dùng. Vui lòng thử lại.";
             }
 
             return RedirectToAction("ManageUser");
@@ -783,7 +749,6 @@ namespace FUCommunityWeb.Controllers
             var user = await _userService.GetUserByIdAsync(userId);
             if (user == null)
             {
-                TempData["Error"] = "Người dùng không tồn tại.";
                 return RedirectToAction("ManageUser");
             }
 
@@ -791,13 +756,9 @@ namespace FUCommunityWeb.Controllers
             {
                 user.Ban = false;
                 await _userService.UpdateUserAsync(user);
-                _logger.LogInformation("Người dùng đã được unban: {UserEmail}", user.Email);
-                TempData["Success"] = "Người dùng đã được unban thành công.";
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Lỗi khi unban người dùng");
-                TempData["Error"] = "Đã xảy ra lỗi khi unban người dùng. Vui lòng thử lại.";
             }
 
             return RedirectToAction("ManageUser");
@@ -830,15 +791,22 @@ namespace FUCommunityWeb.Controllers
             return View(viewModel);
         }
 
+        public async Task<IActionResult> ManageCategory()
+        {
+            var categories = await _forumService.GetAllCategoryAsync();
+            var viewModel = new ForumVM
+            {
+                Categories = categories
+            };
+            return View(viewModel);
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateCategory([Bind(Prefix = "CreateCategory")] CreateCategoryVM createCategoryVM)
         {
-            _logger.LogInformation("Bắt đầu tạo danh mục mới.");
-
             if (ModelState.IsValid)
             {
-                _logger.LogInformation("ModelState hợp lệ.");
                 var category = new Category
                 {
                     CategoryName = createCategoryVM.CategoryName,
@@ -847,35 +815,19 @@ namespace FUCommunityWeb.Controllers
 
                 try
                 {
-                    _context.Categories.Add(category);
-                    await _context.SaveChangesAsync();
-                    _logger.LogInformation("Danh mục đã được lưu vào cơ sở dữ liệu.");
-                    TempData["Success"] = "Tạo danh mục thành công.";
+                    await _forumService.AddCategoryAsync(category);
                 }
                 catch (Exception ex)
                 {
-                    _logger.LogError(ex, "Lỗi khi tạo danh mục");
-                    TempData["Error"] = "Đã xảy ra lỗi khi tạo danh mục. Vui lòng thử lại.";
                 }
             }
-            else
-            {
-                _logger.LogWarning("ModelState không hợp lệ.");
-                foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
-                {
-                    _logger.LogWarning("Lỗi ModelState: {ErrorMessage}", error.ErrorMessage);
-                }
-                TempData["Error"] = "Dữ liệu nhập không hợp lệ. Vui lòng kiểm tra lại.";
-            }
-
-            _logger.LogInformation("Kết thúc tạo danh mục.");
-            return RedirectToAction("ManageForumCategory");
+            return RedirectToAction("ManageCategory");
         }
 
         [HttpGet]
         public async Task<IActionResult> EditCategory(int categoryId)
         {
-            var category = await _context.Categories.FindAsync(categoryId);
+            var category = await _forumService.GetCategoryByIdAsync(categoryId);
             if (category == null)
             {
                 return NotFound();
@@ -897,48 +849,42 @@ namespace FUCommunityWeb.Controllers
         {
             if (ModelState.IsValid)
             {
-                var category = await _context.Categories.FindAsync(editCategoryVM.CategoryID);
+                var category = await _forumService.GetCategoryByIdAsync(editCategoryVM.CategoryID);
                 if (category == null)
                 {
-                    TempData["Error"] = "Danh mục không tồn tại.";
                     return RedirectToAction("ManageForumCategory");
                 }
 
                 category.CategoryName = editCategoryVM.CategoryName;
                 category.Description = editCategoryVM.Description;
 
-                await _context.SaveChangesAsync();
-                TempData["Success"] = "Cập nhật danh mục thành công.";
+                await _forumService.UpdateCategoryAsync(category);
             }
             else
             {
-                TempData["Error"] = "Dữ liệu nhập không hợp lệ. Vui lòng kiểm tra lại.";
             }
-            return RedirectToAction("ManageForumCategory");
+            return RedirectToAction("ManageCategory");
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteCategory(int categoryId)
         {
-            var category = await _context.Categories.FindAsync(categoryId);
+            var category = await _forumService.GetCategoryByIdAsync(categoryId);
             if (category == null)
             {
-                TempData["Error"] = "Danh mục không tồn tại.";
                 return RedirectToAction("ManageForumCategory");
             }
 
-            var relatedPosts = _context.Posts.Where(p => p.CategoryID == categoryId).ToList();
+            var relatedPosts = await _forumService.GetPostsByCategory(categoryId);
 
             if (relatedPosts.Any())
             {
-                _context.Posts.RemoveRange(relatedPosts);
+                await _forumService.DeletePostsAsync(relatedPosts); ;
             }
 
-            _context.Categories.Remove(category);
-            await _context.SaveChangesAsync();
-            TempData["Success"] = "Xóa danh mục thành công.";
-            return RedirectToAction("ManageForumCategory");
+            await _forumService.DeleteCategoryAsync(category);
+            return RedirectToAction("ManageCategory");
         }
 
         [HttpPost]
@@ -958,6 +904,36 @@ namespace FUCommunityWeb.Controllers
             });
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> PromoteToMentor(string userId)
+        {
+            var user = await _userService.GetUserByIdAsync(userId);
+            if (user == null)
+            {
+                return RedirectToAction("ManageUser");
+            }
 
+            await _userService.RemoveFromRoleAsync(user, "Student");
+            await _userService.AddToRoleAsync(user, "Mentor");
+
+            return RedirectToAction("ManageUser");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DemoteToStudent(string userId)
+        {
+            var user = await _userService.GetUserByIdAsync(userId);
+            if (user == null)
+            {
+                return RedirectToAction("ManageUser");
+            }
+
+            await _userService.RemoveFromRoleAsync(user, "Mentor");
+            await _userService.AddToRoleAsync(user, "Student");
+
+            return RedirectToAction("ManageUser");
+        }
     }
 }

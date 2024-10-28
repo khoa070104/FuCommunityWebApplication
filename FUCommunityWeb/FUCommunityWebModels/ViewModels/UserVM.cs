@@ -28,12 +28,12 @@ namespace FuCommunityWebModels.ViewModels
         public bool IsCurrentUser { get; set; }
         public bool IsFollowing { get; set; }
 
-        // Thêm thuộc tính để lưu trữ danh sách người theo dõi
         public List<ApplicationUser> Followers { get; set; }
         public bool IsMentor { get; set; }
 
-        // Thêm các thuộc tính mới để lưu trữ tổng số Posts và Questions
         public int TotalPosts { get; set; }
         public int TotalQuestions { get; set; }
+        public List<string> Roles { get; set; }
+        public string PrimaryRole { get; set; }
     }
 }

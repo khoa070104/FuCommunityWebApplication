@@ -213,5 +213,40 @@ namespace FuCommunityWebDataAccess.Repositories
             return await _context.Posts
                 .CountAsync(p => p.UserID == userId && p.Type == postType);
         }
+
+        public async Task AddPostAsync(Post post)
+        {
+            await _context.Posts.AddAsync(post);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task AddCategoryAsync(Category category)
+        {
+            await _context.Categories.AddAsync(category);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<Category> GetCategoryByIdAsync(int categoryId)
+        {
+            return await _context.Categories.FindAsync(categoryId);
+        }
+
+        public async Task UpdateCategoryAsync(Category category)
+        {
+            _context.Categories.Update(category);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task DeleteCategoryAsync(Category category)
+        {
+            _context.Categories.Remove(category);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task DeletePostsAsync(IEnumerable<Post> posts)
+        {
+            _context.Posts.RemoveRange(posts);
+            await _context.SaveChangesAsync();
+        }
     }
 }

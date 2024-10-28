@@ -11,7 +11,7 @@ namespace FuCommunityWebModels.ViewModels
         public EditCourseVM EditCourseVM { get; set; } = new EditCourseVM();
         public bool ShowCreateCourseModal { get; set; }
         public bool ShowEditCourseModal { get; set; }
-        public int? EditCourseID { get; set; } // To identify which course is being edited
+        public int? EditCourseID { get; set; } 
 
         public List<Category> Categories { get; set; } = new List<Category>();
 
@@ -21,5 +21,6 @@ namespace FuCommunityWebModels.ViewModels
         public string SelectedSubjectCode { get; set; }
         public string SelectedRate { get; set; }
         public string SelectedMinPrice { get; set; }
+        public int TotalLessons { get; set; }
     }
 }
