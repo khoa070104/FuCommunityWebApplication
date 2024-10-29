@@ -147,7 +147,37 @@ namespace FuCommunityWebDataAccess.Data
                 .WithMany(c => c.Posts)
                 .HasForeignKey(p => p.CategoryID)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            // Default Data
+            modelBuilder.Entity<Category>().HasData(
+                new Category
+                {
+                    CategoryID = 1,
+                    CategoryName = "Programming",
+                    Description = "All about programming languages and software development."
+                },
+                new Category
+                {
+                    CategoryID = 2,
+                    CategoryName = "Web Development",
+                    Description = "Resources and articles on web development technologies and frameworks."
+                },
+                new Category
+                {
+                    CategoryID = 3,
+                    CategoryName = "Data Science",
+                    Description = "Insights and techniques in data analysis, machine learning, and statistics."
+                },
+                new Category
+                {
+                    CategoryID = 4,
+                    CategoryName = "Mobile Development",
+                    Description = "Content focused on mobile app development for Android and iOS."
+                }
+            );
         }
+
+        
 
         public static async Task SeedAdminUser(IServiceProvider serviceProvider)
         {

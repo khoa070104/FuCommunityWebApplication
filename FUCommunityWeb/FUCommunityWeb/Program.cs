@@ -6,6 +6,7 @@ using FuCommunityWebUtility;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using FuCommunityWebDataAccess.Repositories;
 using FuCommunityWebServices.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -63,20 +64,18 @@ builder.Services.AddAuthentication()
 // Register Razor Pages
 builder.Services.AddRazorPages();
 
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.Cookie.HttpOnly = true;
+    options.ExpireTimeSpan = TimeSpan.FromDays(30);
+    options.LoginPath = "/Identity/Account/Login";
+    options.LogoutPath = "/Identity/Account/Logout";
+    options.SlidingExpiration = true;
+});
+
 // Register Email Sender Service
 builder.Services.AddScoped<IEmailSender, EmailSender>();
-
-// (Optional) Configure Log4Net if required
-// Uncomment and configure the following lines if you intend to use Log4Net
-// builder.Services.AddLogging(loggingBuilder =>
-// {
-//     loggingBuilder.AddLog4Net("log4net.config");
-// });
-
-// Build the application
 var app = builder.Build();
-
-// Seed the admin user
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
@@ -90,6 +89,8 @@ if (!app.Environment.IsDevelopment())
     app.UseExceptionHandler("/Home/Error");
     app.UseHsts();
 }
+
+
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
