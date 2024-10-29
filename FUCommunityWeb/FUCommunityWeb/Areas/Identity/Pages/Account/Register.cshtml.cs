@@ -143,9 +143,6 @@ namespace FUCommunityWeb.Areas.Identity.Pages.Account
                     Email = Input.Email,
                     FullName = Input.FullName,
                     Gender = Input.Gender,
-                    DOB = Input.DOB,
-                    Address = Input.Address,
-                    Description = Input.Description,
                     AvatarImage = "/img/avt2.jpg",
                     BannerImage = "/img/banner.jpg",
                     Point = 0,
@@ -188,7 +185,6 @@ namespace FUCommunityWeb.Areas.Identity.Pages.Account
                 }
             }
 
-            // If we got this far, something failed, redisplay form
             return Page();
         }
 
