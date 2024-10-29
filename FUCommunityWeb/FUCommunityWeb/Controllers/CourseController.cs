@@ -68,6 +68,9 @@ namespace FUCommunityWeb.Controllers
             var isMentor = User.IsInRole(SD.Role_User_Mentor);
             var isStudent = User.IsInRole(SD.Role_User_Student);
 
+            var allCourses = await _courseService.GetFilteredCoursesAsync(semester, category, subjectCode, rate, minPrice);
+            var activeCourses = allCourses.Where(c => c.Status == "active").ToList(); 
+
             var viewModel = new CourseVM
             {
                 Categories = await _courseService.GetAllCategoriesAsync(),
@@ -77,7 +80,7 @@ namespace FUCommunityWeb.Controllers
                 SelectedSubjectCode = subjectCode,
                 SelectedRate = rate,
                 SelectedMinPrice = minPrice,
-                Courses = await _courseService.GetFilteredCoursesAsync(semester, category, subjectCode, rate, minPrice),
+                Courses = activeCourses,
                 IsMentor = isMentor,
                 IsStudent = isStudent
             };
@@ -101,8 +104,8 @@ namespace FUCommunityWeb.Controllers
                         Description = createCourseVM.Description,
                         Price = createCourseVM.Price,
                         CourseImage = createCourseVM.CourseImage,
-                        Status = createCourseVM.Status,
                         UserID = User.FindFirstValue(ClaimTypes.NameIdentifier),
+                        Status = "inactive",
                         CreatedDate = DateTime.Now,
                         Semester = createCourseVM.Semester,
                         CategoryID = createCourseVM.CategoryID
@@ -148,9 +151,8 @@ namespace FUCommunityWeb.Controllers
                 Description = course.Description,
                 Price = course.Price ?? 0,
                 CourseImage = course.CourseImage,
-                Status = course.Status,
                 Semester = course.Semester,
-                CategoryID = course.CategoryID
+                CategoryID = course.CategoryID 
             };
 
             var viewModel = await PrepareCourseViewModel(editCourseVM: editCourseVM, showEditModal: true, editCourseId: course.CourseID);
@@ -204,7 +206,6 @@ namespace FUCommunityWeb.Controllers
             courseToUpdate.Title = editCourseVM.Title;
             courseToUpdate.Description = editCourseVM.Description;
             courseToUpdate.Price = editCourseVM.Price;
-            courseToUpdate.Status = editCourseVM.Status;
             courseToUpdate.Semester = editCourseVM.Semester;
             courseToUpdate.CategoryID = editCourseVM.CategoryID;
 
