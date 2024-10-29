@@ -159,12 +159,6 @@
                             <input asp-for="CreateCourseVM.CourseImageFile" type="file" class="form-control" />
                             <span asp-validation-for="CreateCourseVM.CourseImageFile" class="text-danger"></span>
                         </div>
-                        <!-- Status -->
-                        <div class="mb-3">
-                            <label asp-for="CreateCourseVM.Status" class="form-label">Status</label>
-                            <input asp-for="CreateCourseVM.Status" class="form-control" required />
-                            <span asp-validation-for="CreateCourseVM.Status" class="text-danger"></span>
-                        </div>
                         <!-- Semester -->
                         <div class="mb-3">
                             <label asp-for="CreateCourseVM.Semester" class="form-label">Semester</label>
@@ -232,11 +226,6 @@
                             <input asp-for="EditCourseVM.CourseImageFile" type="file" class="form-control" />
                             <span asp-validation-for="EditCourseVM.CourseImageFile" class="text-danger"></span>
                             <img src="" alt="Current Course Image" id="currentCourseImage" class="img-fluid mt-2" style="max-height: 100px;" />
-                        </div>
-                        <div class="mb-3">
-                            <label asp-for="EditCourseVM.Status" class="form-label">Status</label>
-                            <input asp-for="EditCourseVM.Status" class="form-control" id="editStatus" required />
-                            <span asp-validation-for="EditCourseVM.Status" class="text-danger"></span>
                         </div>
                         <div class="mb-3">
                             <label asp-for="EditCourseVM.Semester" class="form-label">Semester</label>
