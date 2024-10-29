@@ -22,5 +22,7 @@ namespace FuCommunityWebModels.ViewModels
         public string SelectedRate { get; set; }
         public string SelectedMinPrice { get; set; }
         public int TotalLessons { get; set; }
+        public bool IsMentor { get; set; }
+        public bool IsStudent { get; set; }
     }
 }

@@ -18,7 +18,7 @@
 
             <h1 class="title"><span>All</span> Courses</h1>
 
-            @if (User.Identity.IsAuthenticated)
+            @if (Model.IsMentor)
             {
                 <div class="text-end mb-3">
                     <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#createCourseModal">

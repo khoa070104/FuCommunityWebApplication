@@ -3,6 +3,7 @@ using FuCommunityWebModels.Models;
 using FuCommunityWebModels.ViewModels;
 using FuCommunityWebModels.ViewModels.FuCommunityWebModels.ViewModels;
 using FuCommunityWebServices.Services;
+using FuCommunityWebUtility;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -63,6 +64,10 @@ namespace FUCommunityWeb.Controllers
 
         public async Task<IActionResult> Index(string semester, string category, string subjectCode, string rate, string minPrice)
         {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var isMentor = User.IsInRole(SD.Role_User_Mentor);
+            var isStudent = User.IsInRole(SD.Role_User_Student);
+
             var viewModel = new CourseVM
             {
                 Categories = await _courseService.GetAllCategoriesAsync(),
@@ -72,7 +77,9 @@ namespace FUCommunityWeb.Controllers
                 SelectedSubjectCode = subjectCode,
                 SelectedRate = rate,
                 SelectedMinPrice = minPrice,
-                Courses = await _courseService.GetFilteredCoursesAsync(semester, category, subjectCode, rate, minPrice)
+                Courses = await _courseService.GetFilteredCoursesAsync(semester, category, subjectCode, rate, minPrice),
+                IsMentor = isMentor,
+                IsStudent = isStudent
             };
 
             return View(viewModel);
