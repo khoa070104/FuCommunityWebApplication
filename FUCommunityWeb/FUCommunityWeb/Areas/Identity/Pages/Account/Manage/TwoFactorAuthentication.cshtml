@@ -7,7 +7,7 @@
 }
 
 <partial name="_StatusMessage" for="StatusMessage" />
-<h3>@ViewData["Title"]</h3>
+<h3 style="margin: 30px 0;">@ViewData["Title"]</h3>
 @{
     var consentFeature = HttpContext.Features.Get<ITrackingConsentFeature>();
     @if (consentFeature?.CanTrack ?? true)
@@ -38,23 +38,23 @@
 
             if (Model.IsMachineRemembered)
             {
-                <form method="post" style="display: inline-block">
-                    <button type="submit" class="btn btn-primary">Forget this browser</button>
+                <form method="post">
+                    <button type="submit" class="btn-del">Forget this browser</button>
                 </form>
             }
-            <a asp-page="./Disable2fa" class="btn-1">Disable 2FA</a>
-            <a asp-page="./GenerateRecoveryCodes" class="btn btn-primary">Reset recovery codes</a>
+            <a asp-page="./Disable2fa" class="btn-1" style="text-decoration:none;">Disable 2FA</a>
+            <a asp-page="./GenerateRecoveryCodes" class="btn-1" style="text-decoration:none;">Reset recovery codes</a>
         }
 
-        <h4>Authenticator app</h4>
+        <h4 style="margin: 30px 0;">Authenticator app</h4>
         @if (!Model.HasAuthenticator)
         {
-            <a id="enable-authenticator" asp-page="./EnableAuthenticator" class="btn">Add authenticator app</a>
+            <a id="enable-authenticator" asp-page="./EnableAuthenticator" class="btn-1" style="text-decoration:none;">Add authenticator app</a>
         }
         else
         {
-            <a id="enable-authenticator" asp-page="./EnableAuthenticator" class="btn">Set up authenticator app</a>
-            <a id="reset-authenticator" asp-page="./ResetAuthenticator" class="btn">Reset authenticator app</a>
+            <a id="enable-authenticator" asp-page="./EnableAuthenticator" class="btn-1" style="text-decoration:none;">Set up authenticator app</a>
+            <a id="reset-authenticator" asp-page="./ResetAuthenticator" class="btn-1" style="text-decoration:none;">Reset authenticator app</a>
         }
     }
     else
