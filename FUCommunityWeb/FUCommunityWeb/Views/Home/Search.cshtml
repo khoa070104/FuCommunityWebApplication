@@ -10,7 +10,7 @@
                         <h2 class="text-center mb-4" style="font-weight: bold;color:#20B486;">SEARCH PAGE</h2>
 
                         <!-- Updated Search Form -->
-                        <form id="search-form" asp-controller="Home" asp-action="Search" method="post">
+                        <form id="search-form" asp-controller="Home" asp-action="Search" method="get">
                             <label class="form-label">Find what you're looking for</label>
                             <div class="input-group mb-3">
                                 <input type="text" id="search-keyword" name="keyword" class="form-control" placeholder="Enter to search" />
@@ -108,15 +108,13 @@
 @section Scripts {
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <script>
-        document.getElementById("search-form").addEventListener("submit", function () {
-            const keyword = document.getElementById('search-keyword').value;
-            localStorage.setItem('searchKeyword', keyword);
-        });
-
         document.addEventListener("DOMContentLoaded", function () {
-            const keyword = localStorage.getItem('searchKeyword');
+            const urlParams = new URLSearchParams(window.location.search);
+            const keyword = urlParams.get('keyword');
 
             if (keyword) {
+                document.getElementById('search-keyword').value = keyword;
+
                 document.querySelectorAll('.search-title').forEach((element) => {
                     const originalTitle = element.innerHTML;
                     element.innerHTML = boldMe(originalTitle, keyword);

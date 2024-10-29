@@ -234,16 +234,16 @@ namespace FUCommunityWeb.Controllers
             }
             return RedirectToAction("ViewUserProfile", new { userId = followId });
         }
-        [HttpGet]
-        public IActionResult Search()
-        {
-            return View();
-        }
 
-        [HttpPost]
+        [HttpGet]
         public IActionResult Search(string keyword)
         {
             var homeVM = new SearchVM();
+
+            if(keyword == null)
+            {
+                return View();
+            }
 
             if (!string.IsNullOrEmpty(keyword))
             {

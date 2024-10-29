@@ -11,6 +11,7 @@ using FuCommunityWebDataAccess.Data;
 using System.Net;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
+using System.Drawing;
 
 namespace FUCommunityWeb.Controllers
 {
@@ -547,6 +548,7 @@ namespace FUCommunityWeb.Controllers
                 title = post.Title,
                 tag = post.Tag,
                 type = post.Type,
+                postImage = post.PostImage,
                 content = post.Content
             };
 
