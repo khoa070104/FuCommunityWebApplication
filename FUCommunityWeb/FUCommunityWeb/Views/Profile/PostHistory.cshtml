@@ -19,8 +19,13 @@
                                     <div class="d-flex align-items-center">
                                         <div class="forum-icon me-3"></div>
                                         <div>
-                                            <div>@post.Title</div>
-                                            <div class="text-muted">Comments <span>@(post.Comments?.Count ?? 0)</span> & Votes <span>@(post.Votes?.Count ?? 0)</span></div>
+                                            <a href="@Url.Action("PostDetail", "Forum", new { postId = post.PostID })" class="text-decoration-none">
+                                                <div class="post-title">@post.Title</div>
+                                                <div class="text-muted">
+                                                    Comments <span>@(post.Comments?.Count ?? 0)</span> & 
+                                                    Votes <span>@(post.Votes?.Count ?? 0)</span>
+                                                </div>
+                                            </a>
                                         </div>
                                     </div>
                                     <div class="d-flex align-items-center">
@@ -42,4 +47,24 @@
             </div>
         </div>
     </div>
+
+    <style>
+        .post-title {
+            color: #333;
+            font-weight: 500;
+        }
+
+        .post-title:hover {
+            color: #007bff;
+        }
+
+        .list-group-item:hover {
+            background-color: #f8f9fa;
+            transition: background-color 0.2s ease;
+        }
+
+        .text-decoration-none:hover {
+            text-decoration: none !important;
+        }
+    </style>
 </body>

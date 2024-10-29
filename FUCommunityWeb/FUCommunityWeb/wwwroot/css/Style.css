@@ -8,6 +8,15 @@
     z-index: 1000;
 }
 
+.remember-text {
+    font-size: 14px;
+}
+
+.form-check-input:checked {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+}
+
 .logo-header {
     width: 100%;
     max-width: 70px;
