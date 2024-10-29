@@ -34,12 +34,15 @@
 
                         <!-- Search Container -->
                         <div class="search-container me-lg-3 mb-3 mb-lg-0">
-                            <input type="text" id="searchInput" class="form-control" placeholder="Want to search something?"
-                                   style="width: 500px; height: 55px; padding-left: 20px; padding-right: 110px;">
-                            <button class="btn btn-explore dropdown-toggle" id="exploreBtn" type="button"
-                                    data-bs-toggle="dropdown">
-                                Explore
-                            </button>
+                            <form asp-action="Search" asp-controller="Home" method="get">
+                                <input type="text" id="searchInput" name="keyword" class="form-control" placeholder="Want to search something?"
+                                       style="width: 500px; height: 55px; padding-left: 20px; padding-right: 110px;">
+                                <input type="submit" hidden />
+                            </form>
+                                <button class="btn btn-explore dropdown-toggle" id="exploreBtn" type="button"
+                                        data-bs-toggle="dropdown">
+                                    Explore
+                                </button>
                             <ul class="dropdown-menu mega-dropdown" aria-labelledby="exploreDropdown">
                                 <div class="row">
                                     <div class="col-md-6">
