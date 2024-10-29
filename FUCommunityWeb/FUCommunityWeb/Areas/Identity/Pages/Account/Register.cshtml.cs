@@ -137,15 +137,20 @@ namespace FUCommunityWeb.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = CreateUser();
-                user.FullName = Input.FullName;
-                user.DOB = Input.DOB ?? DateTime.Now;
-                user.Gender = (Input.Gender == "Male") ? "M" : "F";
-                user.Ban = false;
-                user.CreatedDate = DateTime.Now; 
-
-                await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
-                await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
+                var user = new ApplicationUser
+                {
+                    UserName = Input.Email,
+                    Email = Input.Email,
+                    FullName = Input.FullName,
+                    Gender = Input.Gender,
+                    DOB = Input.DOB,
+                    Address = Input.Address,
+                    Description = Input.Description,
+                    AvatarImage = "/img/avt2.jpg",
+                    BannerImage = "/img/banner.jpg",
+                    Point = 0,
+                    CreatedDate = DateTime.Now
+                };
 
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
@@ -153,7 +158,7 @@ namespace FUCommunityWeb.Areas.Identity.Pages.Account
                 {
                     _logger.LogInformation("User created a new account with password.");
 
-                    await _userManager.AddToRoleAsync(user, SD.Role_User_Mentor);
+                    await _userManager.AddToRoleAsync(user, SD.Role_User_Student);
 
                     var userId = await _userManager.GetUserIdAsync(user);
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
@@ -185,20 +190,6 @@ namespace FUCommunityWeb.Areas.Identity.Pages.Account
 
             // If we got this far, something failed, redisplay form
             return Page();
-        }
-
-        private ApplicationUser CreateUser()
-        {
-            try
-            {
-                return Activator.CreateInstance<ApplicationUser>();
-            }
-            catch
-            {
-                throw new InvalidOperationException($"Can't create an instance of '{nameof(IdentityUser)}'. " +
-                    $"Ensure that '{nameof(IdentityUser)}' is not an abstract class and has a parameterless constructor, or alternatively " +
-                    $"override the register page in /Areas/Identity/Pages/Account/Register.cshtml");
-            }
         }
 
         private IUserEmailStore<IdentityUser> GetEmailStore()

@@ -88,6 +88,22 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
+    var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+    
+    // Seed Roles
+    if (!await roleManager.RoleExistsAsync(SD.Role_User_Student))
+    {
+        await roleManager.CreateAsync(new IdentityRole(SD.Role_User_Student));
+    }
+    if (!await roleManager.RoleExistsAsync(SD.Role_User_Mentor))
+    {
+        await roleManager.CreateAsync(new IdentityRole(SD.Role_User_Mentor));
+    }
+    if (!await roleManager.RoleExistsAsync(SD.Role_User_Admin))
+    {
+        await roleManager.CreateAsync(new IdentityRole(SD.Role_User_Admin));
+    }
+
     var userService = services.GetRequiredService<ApplicationUserService>();
     await userService.SeedAdminUser();
 }
