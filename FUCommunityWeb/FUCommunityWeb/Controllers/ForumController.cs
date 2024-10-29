@@ -2,6 +2,7 @@
 using FuCommunityWebModels.Models;
 using FuCommunityWebModels.ViewModels;
 using FuCommunityWebServices.Services;
+using FuCommunityWebUtility;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Net;
@@ -116,6 +117,19 @@ namespace FUCommunityWeb.Controllers
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
+            bool isMentor = User.IsInRole(SD.Role_User_Mentor);
+            bool isStudent = User.IsInRole(SD.Role_User_Student);
+
+            if (isStudent && postVM.CreatePostVM.Type == 1)
+            {
+                TempData["Error"] = "Students can only post questions.";
+                return RedirectToAction("Post", new
+                {
+                    CategoryName = postVM.CategoryVM.CategoryName,
+                    CategoryID = postVM.CategoryVM.CategoryID
+                });
+            }
+
             if (postVM.CreatePostVM.PostImageFile != null && postVM.CreatePostVM.PostImageFile.Length > 0)
             {
                 var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads");
@@ -162,8 +176,14 @@ namespace FUCommunityWeb.Controllers
             });
         }
 
-        public IActionResult Post(CategoryVM categoryVM)
+        [HttpGet]
+        public async Task<IActionResult> Post(CategoryVM categoryVM)
         {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToPage("/Account/Login", new { area = "Identity" });
+            }
+
             var modal = new PostVM
             {
                 CategoryVM = new CategoryVM
@@ -172,6 +192,10 @@ namespace FUCommunityWeb.Controllers
                     CategoryID = categoryVM.CategoryID
                 }
             };
+
+            ViewBag.IsMentor = User.IsInRole(SD.Role_User_Mentor);
+            ViewBag.IsStudent = User.IsInRole(SD.Role_User_Student);
+
             return View(modal);
         }
 

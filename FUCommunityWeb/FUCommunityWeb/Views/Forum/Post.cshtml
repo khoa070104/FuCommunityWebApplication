@@ -1,4 +1,5 @@
 ﻿@model FuCommunityWebModels.ViewModels.PostVM
+@using FuCommunityWebUtility
 
 <style>
     .post a {
@@ -61,14 +62,28 @@
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h1 class="display-6" style="font-weight: 500;">Topic: <span class="text-success">@Model.CategoryVM.CategoryName</span></h1>
         <div>
-            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#createPostModal"
-                    data-post-type="1">
-                Create New Blog
-            </button>
-            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#createPostModal"
-                    data-post-type="2">
-                Create New Question
-            </button>
+            @if (ViewBag.IsMentor)
+            {
+                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#createPostModal"
+                        data-post-type="1">
+                    Create New Blog
+                </button>
+                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#createPostModal"
+                        data-post-type="2">
+                    Create New Question
+                </button>
+            }
+            else if (ViewBag.IsStudent)
+            {
+                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#createPostModal"
+                        data-post-type="2">
+                    Create New Question
+                </button>
+            }
+            else
+            {
+                <a class="btn" href="/Identity/Account/Login">Login to Post</a>
+            }
         </div>
     </div>
 
@@ -191,6 +206,13 @@
         </div>
     </div>
 </div>
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["Error"]
+    </div>
+}
 
 @section Scripts {
     <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
@@ -396,18 +418,35 @@
                 const blogOption = document.getElementById('blogOption');
                 const questionOption = document.getElementById('questionOption');
 
-                if (postType === "1") {
-                    blogOption.checked = true;
-                    questionOption.disabled = true;
-                } else if (postType === "2") {
-                    questionOption.checked = true;
+                @if (ViewBag.IsStudent)
+                {
+                    <text>
                     blogOption.disabled = true;
+                    questionOption.checked = true;
+                    </text>
+                }
+                else
+                {
+                    <text>
+                    if (postType === "1") {
+                        blogOption.checked = true;
+                        questionOption.disabled = true;
+                    } else if (postType === "2") {
+                        questionOption.checked = true;
+                        blogOption.disabled = true;
+                    }
+                    </text>
                 }
             });
 
             createPostModal.addEventListener('hidden.bs.modal', function () {
-                document.getElementById('blogOption').disabled = false;
-                document.getElementById('questionOption').disabled = false;
+                @if (!ViewBag.IsStudent)
+                {
+                    <text>
+                    document.getElementById('blogOption').disabled = false;
+                    document.getElementById('questionOption').disabled = false;
+                    </text>
+                }
             });
         });
     </script>
