@@ -257,15 +257,11 @@ namespace FUCommunityWeb.Controllers
 
             try
             {
-                await _courseService.DeleteCourseAsync(course);
-
-                _logger.LogInformation("Course deleted successfully: {CourseTitle}", course.Title);
-                TempData["Success"] = "Course deleted successfully.";
+                course.Status = "inactive";
+                await _courseService.UpdateCourseAsync(course);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error deleting course");
-                TempData["Error"] = "An error occurred while deleting the course. Please try again.";
             }
 
             return RedirectToAction("Index");
