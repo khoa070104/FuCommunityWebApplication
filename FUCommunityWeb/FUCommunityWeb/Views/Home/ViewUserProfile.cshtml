@@ -104,34 +104,34 @@
                     <p><strong>Description:</strong> @Model.User.Description</p>
                 </div>
             </div>
+
             <div class="tab-pane fade" id="all-post" role="tabpanel" aria-labelledby="all-post-tab">
                 @if (Model.Post != null && Model.Post.Count > 0)
                 {
                     foreach (var post in Model.Post)
                     {
-                        <li class="list-group-item d-flex align-items-center justify-content-between">
-                            <div class="d-flex align-items-center">
-                                <div class="forum-icon me-3"></div>
-                                <div>
-                                    <div>@post.Title</div>
-                                    <div class="text-muted">Comments <span>@(post.Comments?.Count ?? 0)</span> & Votes <span>@(post.Votes?.Count ?? 0)</span></div>
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <h2 class="card-title mb-1">@post.Title</h2>
+                                        <p class="card-text text-muted mb-0">
+                                            Comments: <span>@(post.Comments?.Count ?? 0)</span> & Votes: <span>@(post.Votes?.Count ?? 0)</span>
+                                        </p>
+                                        <small class="text-muted">@((post.User?.FullName ?? "Unknown User") + " - " + post.CreatedDate?.ToString("dd/MM/yyyy"))</small>
+                                    </div>
+                                    <img class="user-avatar ms-3" style="width:80px;height:80px;border-radius:50%;" src="@(post.User?.AvatarImage ?? "/img/avt2.jpg")" alt="User Avatar" />
                                 </div>
                             </div>
-                            <div class="d-flex align-items-center">
-                                <div class="text-end me-3">
-                                    @(post.User?.FullName ?? "Unknown User")<br>
-                                    @post.CreatedDate?.ToString("dd/MM/yyyy")
-                                </div>
-                                <img class="user-avatar" src="@(post.User?.AvatarImage ?? "/img/avt2.jpg")" alt="User Avatar" />
-                            </div>
-                        </li>
+                        </div>
                     }
                 }
                 else
                 {
-                    <li class="list-group-item text-center">No posts found.</li>
+                    <div class="text-center">No posts found.</div>
                 }
             </div>
+
 
             <div class="tab-pane fade" id="all-course" role="tabpanel" aria-labelledby="all-course-tab">
                 @if (Model.Enrollments != null && Model.Enrollments.Any())
@@ -179,7 +179,7 @@
                                             </a>
                                             <div class="follower-info">
                                                 <a style="text-decoration: none;" href="@Url.Action("ViewUserProfile", "Home", new { userId = follower.Id })">
-                                                    <h5 class="card-title-1">@follower.FullName</h5>
+                                                    <h5 class="card-title-1" style="word-wrap: break-word; white-space: normal;">@follower.FullName</h5>
                                                 </a>
                                             </div>
                                         </div>
