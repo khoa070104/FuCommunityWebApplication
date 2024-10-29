@@ -34,7 +34,7 @@ namespace FuCommunityWebModels.Models
         public DateTime? UpdatedDate { get; set; }
 
         [MaxLength(50)]
-        public string Status { get; set; }
+        public string Status { get; set; } = PostStatus.Pending.ToString();
         public int Type { get; set; }
         public string Tag { get; set; }
         public int? DocumentID { get; set; }
@@ -51,5 +51,13 @@ namespace FuCommunityWebModels.Models
         public ICollection<Document> Documents { get; set; }  // Một Post có nhiều Documents
         public ICollection<Vote> Votes { get; set; }  // Một Post có nhiều Votes
         public virtual ICollection<IsVote> IsVotes { get; set; } // Mối quan hệ với IsVote
+    }
+
+    // Thêm enum cho trạng thái post
+    public enum PostStatus
+    {
+        Pending,    // Chờ duyệt
+        Approved,   // Đã duyệt
+        Rejected    // Từ chối
     }
 }

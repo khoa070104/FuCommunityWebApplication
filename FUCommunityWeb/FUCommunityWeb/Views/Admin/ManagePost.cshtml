@@ -49,6 +49,7 @@
                                     <th>Create Date</th>
                                     <th>Tags</th>
                                     <th>Type</th>
+                                    <th>Status</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -60,10 +61,24 @@
                                         <td>@post.CreatedDate?.ToString("yyyy-MM-dd")</td>
                                         <td>@post.Tag</td>
                                         <td>@(post.Type == 1 ? "Blog" : "Question")</td>
+                                        <td>@post.Status</td>
                                         <td>
                                             <a href="@Url.Action("ManagePostDetail", "Admin", new { postId = post.PostID })" class="btn btn-info btn-sm">View</a>
                                             <button class="btn btn-warning btn-sm editPostBtn" data-post-id="@post.PostID">Edit</button>
                                             <button class="btn btn-danger btn-sm deletePostBtn" data-post-id="@post.PostID">Delete</button>
+                                            @if (post.Status == PostStatus.Pending.ToString())
+                                            {
+                                                <form asp-action="ApprovePost" asp-controller="Admin" method="post" style="display: inline;">
+                                                    @Html.AntiForgeryToken()
+                                                    <input type="hidden" name="postId" value="@post.PostID" />
+                                                    <button type="submit" class="btn btn-success btn-sm">Approve</button>
+                                                </form>
+                                                <form asp-action="RejectPost" asp-controller="Admin" method="post" style="display: inline;">
+                                                    @Html.AntiForgeryToken()
+                                                    <input type="hidden" name="postId" value="@post.PostID" />
+                                                    <button type="submit" class="btn btn-danger btn-sm">Reject</button>
+                                                </form>
+                                            }
                                         </td>
                                     </tr>
                                 }

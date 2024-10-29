@@ -31,6 +31,7 @@ namespace FUCommunityWeb.Controllers
         public async Task<IActionResult> Index()
         {
             var posts = await _forumService.GetAllPostsAsync();
+            posts = posts.Where(p => p.Status == PostStatus.Approved.ToString()).ToList();
             var category = await _forumService.GetAllCategoryAsync();
 
             var forumViewModel = new ForumVM
@@ -160,7 +161,7 @@ namespace FUCommunityWeb.Controllers
                 CategoryID = postVM.CreatePostVM.CategoryID,
                 UserID = userId,
                 CreatedDate = DateTime.Now,
-                Status = "Published",
+                Status = PostStatus.Pending.ToString(),
                 Tag = WebUtility.HtmlEncode(postVM.CreatePostVM.Tag),
                 Type = postVM.CreatePostVM.Type,
                 PostImage = postVM.CreatePostVM.PostImage

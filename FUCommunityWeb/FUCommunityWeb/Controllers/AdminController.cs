@@ -938,5 +938,37 @@ namespace FUCommunityWeb.Controllers
 
             return RedirectToAction("ManageUser");
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ApprovePost(int postId)
+        {
+            var post = await _forumService.GetPostByID(postId);
+            if (post == null)
+            {
+                return NotFound();
+            }
+
+            post.Status = PostStatus.Approved.ToString();
+            await _forumService.UpdatePost(post);
+
+            return RedirectToAction("ManagePost", new { CategoryID = post.CategoryID });
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> RejectPost(int postId)
+        {
+            var post = await _forumService.GetPostByID(postId);
+            if (post == null)
+            {
+                return NotFound();
+            }
+
+            post.Status = PostStatus.Rejected.ToString();
+            await _forumService.UpdatePost(post);
+
+            return RedirectToAction("ManagePost", new { CategoryID = post.CategoryID });
+        }
     }
 }

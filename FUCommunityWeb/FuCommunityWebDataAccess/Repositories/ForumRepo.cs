@@ -61,9 +61,11 @@ namespace FuCommunityWebDataAccess.Repositories
 
         public async Task<(List<Post> posts, int totalItems)> GetPostsByCategory(int categoryID, int page, int pageSize, string searchString)
         {
-            var query = _context.Posts.AsQueryable(); 
+            var query = _context.Posts.AsQueryable();
 
             query = query.Where(post => post.CategoryID == categoryID);
+
+            query = query.Where(post => post.Status == PostStatus.Approved.ToString());
 
             if (!string.IsNullOrWhiteSpace(searchString))
             {
@@ -73,7 +75,7 @@ namespace FuCommunityWebDataAccess.Repositories
             var totalItems = await query.CountAsync();
 
             var posts = await query
-                .OrderBy(post => post.PostID) 
+                .OrderBy(post => post.PostID)
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
                 .ToListAsync();
@@ -116,6 +118,7 @@ namespace FuCommunityWebDataAccess.Repositories
                 .Include(p => p.User)
                 .Include(p => p.Comments)
                 .Include(p => p.Votes)
+                .Where(p => p.Status == PostStatus.Approved.ToString())
                 .OrderByDescending(p => p.CreatedDate)
                 .ToListAsync();
         }
