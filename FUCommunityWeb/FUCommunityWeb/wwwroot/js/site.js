@@ -5,29 +5,6 @@
 document.querySelector('.avatar-container').addEventListener('mouseout', function () {
     document.querySelector('.avatar-hover').classList.add('d-none');
 });
-function initBackToTopButton() {
-    const backToTopBtn = document.querySelector('.back-to-top');
-
-    // Show or hide the button based on scroll position
-    window.addEventListener('scroll', () => {
-        if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-            backToTopBtn.style.display = 'block'; // Show button
-        } else {
-            backToTopBtn.style.display = 'none'; // Hide button
-        }
-    });
-
-    // Smooth scroll to top on button click
-    backToTopBtn.addEventListener('click', () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    });
-}
-
-// Initialize the back-to-top button functionality when the DOM is fully loaded
-document.addEventListener('DOMContentLoaded', initBackToTopButton);
 
 function updateCustomAmount(value) {
     const customAmountGroup = document.getElementById('custom-amount-group');
