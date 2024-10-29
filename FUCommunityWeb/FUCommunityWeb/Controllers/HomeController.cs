@@ -285,5 +285,26 @@ namespace FUCommunityWeb.Controllers
         {
             return View();
         }
+
+        public IActionResult MentorHall()
+        {
+            var topMentors = _userService.GetAllUsersAsync().Result
+                .OrderByDescending(u => u.Point)
+                .Take(3)
+                .ToList();
+
+            var otherMentors = _userService.GetAllUsersAsync().Result
+                .OrderByDescending(u => u.Point)
+                .Skip(3)
+                .ToList();
+
+            var mentorViewModel = new MentorVM
+            {
+                TopMentors = topMentors,
+                OtherMentors = otherMentors
+            };
+
+            return View(mentorViewModel);
+        }
     }
 }
