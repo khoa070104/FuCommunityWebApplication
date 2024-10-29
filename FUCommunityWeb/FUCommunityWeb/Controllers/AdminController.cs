@@ -967,5 +967,37 @@ namespace FUCommunityWeb.Controllers
 
             return RedirectToAction("ManagePost", new { CategoryID = post.CategoryID });
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ActivateCourse(int courseId)
+        {
+            var course = await _courseService.GetCourseByIdAsync(courseId);
+            if (course == null)
+            {
+                return RedirectToAction("ManageCourse");
+            }
+
+            course.Status = "active";
+            await _courseService.UpdateCourseAsync(course);
+
+            return RedirectToAction("ManageCourse");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeactivateCourse(int courseId)
+        {
+            var course = await _courseService.GetCourseByIdAsync(courseId);
+            if (course == null)
+            {
+                return RedirectToAction("ManageCourse");
+            }
+
+            course.Status = "inactive";
+            await _courseService.UpdateCourseAsync(course);
+
+            return RedirectToAction("ManageCourse");
+        }
     }
 }
