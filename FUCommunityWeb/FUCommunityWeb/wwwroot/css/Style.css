@@ -678,7 +678,6 @@
 
 .home-container .courses {
     display: flex;
-    flex-wrap: wrap;
     gap: 20px;
     justify-content: space-between;
 }
@@ -696,9 +695,7 @@
     margin-bottom: 20px;
     transition: transform 0.3s ease;
     width: 100%;
-    max-width: 350px;
     box-sizing: border-box;
-    height: 100%;
 }
 
 .home-container .course-image {
@@ -935,6 +932,102 @@
         padding: 10px;
     }
 }
+/*-----------------------SEARCH-PAGE-----------------------*/
+.search-page .search-form {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+    .search-page .search-form h2 {
+        color: #333;
+    }
+
+.search-page .form-label {
+    font-weight: bold;
+    color: #555;
+}
+
+.search-page .input-group {
+    margin-bottom: 20px;
+}
+
+.search-page .nav-tabs {
+    border-bottom: 2px solid #007bff;
+}
+
+    .search-page .nav-tabs .nav-link {
+        color: #007bff;
+        border: none;
+        font-weight: bold;
+    }
+
+        .search-page .nav-tabs .nav-link.active {
+            background-color: #007bff;
+            color: #ffffff;
+            border-radius: 4px 4px 0 0;
+        }
+
+.search-page .tab-content {
+    border: 1px solid #e1e1e1;
+    border-radius: 0 0 4px 4px;
+    padding: 20px;
+    background-color: #ffffff;
+}
+
+.search-page .search-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #007bff;
+    text-decoration: none;
+}
+
+    .search-page .search-title:hover {
+        text-decoration: underline;
+    }
+
+.search-page .search-content {
+    font-size: 0.9rem;
+    color: #555;
+    margin-top: 5px;
+}
+
+.search-page .search-item {
+    list-style: none;
+    margin: 10px 0;
+}
+
+.search-page .search-link {
+    display: block;
+    padding: 15px;
+    text-decoration: none;
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+    .search-page .search-link:hover {
+        background-color: #e0e0e0;
+        transform: scale(1.02);
+    }
+
+.search-page .search-title {
+    font-weight: bold;
+    margin: 0;
+}
+
+.search-page .search-content {
+    margin: 5px 0 0;
+    color: #555;
+}
+
+.search-page .text-center {
+    text-align: center;
+    color: #888;
+    font-style: italic;
+}
+
 
 /*-----------------------About Us-----------------------*/
 .about-us {
@@ -2110,7 +2203,7 @@
 .view-profile .verification-badge {
     position: absolute;
     bottom: 0;
-    right: 10px;
+    right: 30px;
     width: 40px;
     height: 40px;
     background-color: #007bff;

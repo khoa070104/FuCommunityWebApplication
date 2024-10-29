@@ -163,12 +163,12 @@
                 <form asp-action="BanUser" asp-controller="Admin" method="post">
                     @Html.AntiForgeryToken()
                     <div class="modal-header">
-                        <h5 class="modal-title" id="banModalLabel">Xác Nhận Ban</h5>
+                        <h5 class="modal-title" id="banModalLabel">Confirm Ban</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <input type="hidden" name="userId" id="banUserID" />
-                        Bạn có chắc chắn muốn ban người dùng "<strong id="banUserFullName"></strong>"?
+                        Are you sure you want to ban the user "<strong id="banUserFullName"></strong>"?
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn-cancel-2" data-bs-dismiss="modal">Cancel</button>
@@ -186,12 +186,12 @@
                 <form asp-action="DeleteUser" asp-controller="Admin" method="post">
                     @Html.AntiForgeryToken()
                     <div class="modal-header">
-                        <h5 class="modal-title" id="deleteModalLabel">Xác Nhận Xóa</h5>
+                        <h5 class="modal-title" id="deleteModalLabel">Confirm Delete</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <input type="hidden" name="userId" id="deleteUserID" />
-                        Bạn có chắc chắn muốn xóa người dùng "<strong id="deleteUserFullName"></strong>"?
+                        Are you sure you want to delete the user "<strong id="deleteUserFullName"></strong>"?
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn-cancel-2" data-bs-dismiss="modal">Cancel</button>
@@ -214,7 +214,7 @@
                     </div>
                     <div class="modal-body">
                         <input type="hidden" name="userId" id="unbanUserID" />
-                        Bạn có chắc chắn muốn unban người dùng "<strong id="unbanUserFullName"></strong>"?
+                        Are you sure you want to unban the user "<strong id="unbanUserFullName"></strong>"?
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn-cancel-2" data-bs-dismiss="modal">Cancel</button>
@@ -232,16 +232,16 @@
                 <form asp-action="PromoteToMentor" asp-controller="Admin" method="post">
                     @Html.AntiForgeryToken()
                     <div class="modal-header">
-                        <h5 class="modal-title" id="promoteModalLabel">Xác Nhận Thăng Cấp</h5>
+                        <h5 class="modal-title" id="promoteModalLabel">Confirm Upgrade</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <input type="hidden" name="userId" id="promoteUserID" />
-                        Bạn có chắc chắn muốn thăng cấp người dùng "<strong id="promoteUserFullName"></strong>"?
+                        Are you sure you want to upgrade the user "<strong id="promoteUserFullName"></strong>"?
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn-cancel" data-bs-dismiss="modal">Hủy</button>
-                        <button type="submit" class="btn btn-primary">Thăng Cấp</button>
+                        <button type="button" class="btn-cancel-2" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn-blue">Upgrade</button>
                     </div>
                 </form>
             </div>
@@ -255,16 +255,16 @@
                 <form asp-action="DemoteToStudent" asp-controller="Admin" method="post">
                     @Html.AntiForgeryToken()
                     <div class="modal-header">
-                        <h5 class="modal-title" id="demoteModalLabel">Xác Nhận Hạ Cấp</h5>
+                        <h5 class="modal-title" id="demoteModalLabel">Confirm Downgrade</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <input type="hidden" name="userId" id="demoteUserID" />
-                        Bạn có chắc chắn muốn hạ cấp người dùng "<strong id="demoteUserFullName"></strong>"?
+                        Are you sure you want to downgrade the user "<strong id="demoteUserFullName"></strong>"?
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn-cancel" data-bs-dismiss="modal">Hủy</button>
-                        <button type="submit" class="btn btn-secondary">Hạ Cấp</button>
+                        <button type="button" class="btn-cancel-2" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn-del">Downgrade</button>
                     </div>
                 </form>
             </div>
