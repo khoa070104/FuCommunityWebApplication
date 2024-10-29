@@ -38,7 +38,7 @@
                         </div>
                         <div class="course-info">
                             <div class="category">
-                                <span class="badge">Mathematics</span>
+                                <span class="badge">@course.Category.CategoryName</span>
                             </div>
                             <h3>
                                 <a href="@Url.Action("Detail", "Course", new { id = course.CourseID })">@course.Title</a>
@@ -108,7 +108,7 @@
                         </div>
                         <div class="course-info">
                             <div class="category">
-                                <span class="badge">Mathematics</span>
+                                <span class="badge">@course.Category.CategoryName</span>
                             </div>
                             <h3>
                                 <a href="@Url.Action("Detail", "Course", new { id = course.CourseID })">@course.Title</a>
