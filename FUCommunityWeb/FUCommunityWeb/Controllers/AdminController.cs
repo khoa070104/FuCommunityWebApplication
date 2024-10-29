@@ -107,6 +107,7 @@ namespace FUCommunityWeb.Controllers
                 }
                 catch (Exception ex)
                 {
+                    
                 }
             }
             else

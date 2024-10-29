@@ -10,6 +10,19 @@
     .cke_notification {
         display: none !important; /* Ẩn tất cả thông báo CKEditor */
     }
+    .user-info a {
+        color: inherit;
+    }
+    
+    .user-info a:hover .user-name {
+        color: #007bff;
+        transition: color 0.2s ease;
+    }
+    
+    .user-info img:hover {
+        opacity: 0.9;
+        transition: opacity 0.2s ease;
+    }
 </style>
 <body>
     <div class="container mt-4 forum-detail">
@@ -129,9 +142,11 @@
             </div>
             <div class="col-md-4 text-center">
                 <div class="user-info">
-                    <img src="@Model.Post.User.AvatarImage" alt="Profile Picture" class="profile-pic mb-2" style="width: 150px; height: 150px; border-radius: 50%;">
-                    <p>@Model.Post.User.FullName</p>
-                    <p><i class="fas fa-trophy"></i> 125 [ 8 ]</p>
+                    <a href="@Url.Action("ViewUserProfile", "Home", new { userId = Model.Post.User.Id })" class="text-decoration-none">
+                        <img src="@Model.Post.User.AvatarImage" alt="Profile Picture" class="profile-pic mb-2" style="width: 150px; height: 150px; border-radius: 50%;">
+                        <p class="user-name">@Model.Post.User.FullName</p>
+                    </a>
+                    <p><i class="fas fa-trophy">@Model.Post.User.Point</i></p>
                     <div>
                         <a href="#"><i class="fab fa-github fa-lg me-2"></i></a>
                         <a href="#"><i class="fab fa-instagram fa-lg me-2"></i></a>
