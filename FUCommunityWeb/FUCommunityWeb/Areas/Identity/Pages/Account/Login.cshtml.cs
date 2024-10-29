@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using FuCommunityWebModels.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace FUCommunityWeb.Areas.Identity.Pages.Account
 {
@@ -101,20 +102,52 @@ namespace FUCommunityWeb.Areas.Identity.Pages.Account
 
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
 
+            // Đọc email từ cookie nếu có
+            var rememberedEmail = Request.Cookies["RememberedEmail"];
+            if (!string.IsNullOrEmpty(rememberedEmail))
+            {
+                Input = new InputModel
+                {
+                    Email = rememberedEmail,
+                    RememberMe = true
+                };
+            }
+
             ReturnUrl = returnUrl;
         }
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             returnUrl ??= Url.Content("~/");
-
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
 
             if (ModelState.IsValid)
             {
-                var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
+                var result = await _signInManager.PasswordSignInAsync(Input.Email, 
+                    Input.Password, 
+                    Input.RememberMe,
+                    lockoutOnFailure: false);
+
                 if (result.Succeeded)
                 {
+                    // Lưu email vào cookie nếu RememberMe được chọn
+                    if (Input.RememberMe)
+                    {
+                        var cookieOptions = new CookieOptions
+                        {
+                            Expires = DateTime.Now.AddDays(30),
+                            HttpOnly = true,
+                            Secure = true,
+                            SameSite = SameSiteMode.Lax
+                        };
+                        Response.Cookies.Append("RememberedEmail", Input.Email, cookieOptions);
+                    }
+                    else
+                    {
+                        // Xóa cookie nếu không chọn RememberMe
+                        Response.Cookies.Delete("RememberedEmail");
+                    }
+
                     var user = await _userManager.FindByEmailAsync(Input.Email) as ApplicationUser;
                     if (user != null)
                     {
