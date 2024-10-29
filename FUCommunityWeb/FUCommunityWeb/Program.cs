@@ -75,6 +75,15 @@ builder.Services.ConfigureApplicationCookie(options =>
 
 // Register Email Sender Service
 builder.Services.AddScoped<IEmailSender, EmailSender>();
+
+// Thêm vào phần ConfigureServices
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+
 var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
@@ -100,6 +109,9 @@ app.UseRouting();
 // Enable Authentication and Authorization
 app.UseAuthentication();
 app.UseAuthorization();
+
+// Thêm vào phần Configure, trước app.UseAuthentication()
+app.UseSession();
 
 // Map Razor Pages
 app.MapRazorPages();

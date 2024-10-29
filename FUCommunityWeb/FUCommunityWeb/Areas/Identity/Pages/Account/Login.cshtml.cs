@@ -123,67 +123,78 @@ namespace FUCommunityWeb.Areas.Identity.Pages.Account
 
             if (ModelState.IsValid)
             {
-                var result = await _signInManager.PasswordSignInAsync(Input.Email, 
-                    Input.Password, 
-                    Input.RememberMe,
-                    lockoutOnFailure: false);
-
-                if (result.Succeeded)
+                try
                 {
-                    // Lưu email vào cookie nếu RememberMe được chọn
-                    if (Input.RememberMe)
+                    // Tìm user
+                    var user = await _userManager.FindByEmailAsync(Input.Email);
+                    if (user == null)
                     {
-                        var cookieOptions = new CookieOptions
-                        {
-                            Expires = DateTime.Now.AddDays(30),
-                            HttpOnly = true,
-                            Secure = true,
-                            SameSite = SameSiteMode.Lax
-                        };
-                        Response.Cookies.Append("RememberedEmail", Input.Email, cookieOptions);
-                    }
-                    else
-                    {
-                        // Xóa cookie nếu không chọn RememberMe
-                        Response.Cookies.Delete("RememberedEmail");
+                        ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                        return Page();
                     }
 
-                    var user = await _userManager.FindByEmailAsync(Input.Email) as ApplicationUser;
-                    if (user != null)
+                    // Kiểm tra trạng thái ban
+                    if (user is ApplicationUser appUser && appUser.Ban)
                     {
-                        if (user.Ban)
+                        _logger.LogWarning("Banned user attempted to log in.");
+                        return LocalRedirect("/Home/Banned");
+                    }
+
+                    // Thực hiện đăng nhập
+                    var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: true);
+
+                    if (result.RequiresTwoFactor)
+                    {
+                        return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = Input.RememberMe });
+                    }
+
+                    if (result.IsLockedOut)
+                    {
+                        _logger.LogWarning("User account locked out.");
+                        return RedirectToPage("./Lockout");
+                    }
+
+                    if (result.Succeeded)
+                    {
+                        _logger.LogInformation("User logged in.");
+
+                        // Xử lý cookie remember me
+                        if (Input.RememberMe)
                         {
-                            _logger.LogWarning("Banned user attempted to log in.");
-                            return LocalRedirect("/Home/Banned");
+                            var cookieOptions = new CookieOptions
+                            {
+                                Expires = DateTime.Now.AddDays(30),
+                                HttpOnly = true,
+                                Secure = true,
+                                SameSite = SameSiteMode.Lax
+                            };
+                            Response.Cookies.Append("RememberedEmail", Input.Email, cookieOptions);
+                        }
+                        else
+                        {
+                            Response.Cookies.Delete("RememberedEmail");
                         }
 
+                        // Kiểm tra role và chuyển hướng
                         if (await _userManager.IsInRoleAsync(user, "Admin"))
                         {
-                            _logger.LogInformation("Admin user logged in.");
                             return LocalRedirect("/admin");
                         }
 
-                        _logger.LogInformation("User logged in.");
                         return LocalRedirect(returnUrl);
                     }
-                }
-                if (result.RequiresTwoFactor)
-                {
-                    return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = Input.RememberMe });
-                }
-                if (result.IsLockedOut)
-                {
-                    _logger.LogWarning("User account locked out.");
-                    return RedirectToPage("./Lockout");
-                }
-                else
-                {
+
                     ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    return Page();
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, "An error occurred during login.");
+                    ModelState.AddModelError(string.Empty, "An error occurred during login. Please try again.");
                     return Page();
                 }
             }
 
-            // If we got this far, something failed, redisplay form
             return Page();
         }
     }

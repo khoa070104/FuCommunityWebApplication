@@ -76,17 +76,29 @@ namespace FUCommunityWeb.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnGetAsync(bool rememberMe, string returnUrl = null)
         {
-            // Ensure the user has gone through the username & password screen first
+            // Kiểm tra xem user đã đăng nhập chưa
             var user = await _signInManager.GetTwoFactorAuthenticationUserAsync();
-
             if (user == null)
             {
-                throw new InvalidOperationException($"Unable to load two-factor authentication user.");
+                // Nếu không tìm thấy user trong session, thử lấy từ cookie
+                var userId = _userManager.GetUserId(User);
+                if (!string.IsNullOrEmpty(userId))
+                {
+                    user = await _userManager.FindByIdAsync(userId);
+                    if (user != null && await _userManager.GetTwoFactorEnabledAsync(user))
+                    {
+                        // Nếu user có bật 2FA, cho phép tiếp tục
+                        ReturnUrl = returnUrl;
+                        RememberMe = rememberMe;
+                        return Page();
+                    }
+                }
+                // Nếu không tìm thấy user hoặc user không bật 2FA, chuyển về trang login
+                return RedirectToPage("./Login");
             }
 
             ReturnUrl = returnUrl;
             RememberMe = rememberMe;
-
             return Page();
         }
 
@@ -98,22 +110,35 @@ namespace FUCommunityWeb.Areas.Identity.Pages.Account
             }
 
             returnUrl = returnUrl ?? Url.Content("~/");
-
             var user = await _signInManager.GetTwoFactorAuthenticationUserAsync();
             if (user == null)
             {
-                throw new InvalidOperationException($"Unable to load two-factor authentication user.");
+                // Thử lấy user từ cookie nếu không có trong session
+                var userId = _userManager.GetUserId(User);
+                if (!string.IsNullOrEmpty(userId))
+                {
+                    user = await _userManager.FindByIdAsync(userId);
+                }
+                
+                if (user == null)
+                {
+                    throw new InvalidOperationException($"Unable to load two-factor authentication user.");
+                }
             }
 
             var authenticatorCode = Input.TwoFactorCode.Replace(" ", string.Empty).Replace("-", string.Empty);
 
             var result = await _signInManager.TwoFactorAuthenticatorSignInAsync(authenticatorCode, rememberMe, Input.RememberMachine);
 
-            var userId = await _userManager.GetUserIdAsync(user);
-
             if (result.Succeeded)
             {
                 _logger.LogInformation("User with ID '{UserId}' logged in with 2fa.", user.Id);
+                
+                // Kiểm tra role và chuyển hướng
+                if (await _userManager.IsInRoleAsync(user, "Admin"))
+                {
+                    return LocalRedirect("/admin");
+                }
                 return LocalRedirect(returnUrl);
             }
             else if (result.IsLockedOut)
