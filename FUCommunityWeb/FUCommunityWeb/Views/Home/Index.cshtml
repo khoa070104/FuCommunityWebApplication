@@ -23,9 +23,9 @@
             </div>
         </div>
 
-        <!-- Most Purchased Courses Section -->
+        <!-- Most Enrolled Courses Section -->
         <div class="course-section">
-            <h2 class="title">The most <span class="highlight">purchased</span> courses</h2>
+            <h2 class="title">The most <span class="highlight">enrolled</span> courses</h2>
             <p>Let's join our famous class, the knowledge provided will definitely be useful for you.</p>
             <div class="courses">
                 @foreach (var course in Model.MostPurchasedCourses)
@@ -38,7 +38,7 @@
                         </div>
                         <div class="course-info">
                             <div class="category">
-                                <span class="badge">Mathematics</span>
+                                <span class="badge">@course.Category.CategoryName</span>
                             </div>
                             <h3>
                                 <a href="@Url.Action("Detail", "Course", new { id = course.CourseID })">@course.Title</a>
@@ -108,7 +108,7 @@
                         </div>
                         <div class="course-info">
                             <div class="category">
-                                <span class="badge">Mathematics</span>
+                                <span class="badge">@course.Category.CategoryName</span>
                             </div>
                             <h3>
                                 <a href="@Url.Action("Detail", "Course", new { id = course.CourseID })">@course.Title</a>
