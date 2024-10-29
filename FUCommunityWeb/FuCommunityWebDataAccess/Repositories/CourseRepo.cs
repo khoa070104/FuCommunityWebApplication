@@ -19,7 +19,8 @@ namespace FuCommunityWebDataAccess.Repositories
         public async Task<List<Course>> GetAllCoursesAsync()
         {
             return await _context.Courses
-                .Include(c => c.User) 
+                .Include(c => c.User)
+                .Include(c => c.Category)
                 .ToListAsync();
         }
 
@@ -28,6 +29,7 @@ namespace FuCommunityWebDataAccess.Repositories
             return await _context.Courses
                 .Include(c => c.User)
                 .Include(c => c.Lessons)
+                .Include(c => c.Category)
                 .FirstOrDefaultAsync(c => c.CourseID == courseId);
         }
 
@@ -85,6 +87,7 @@ namespace FuCommunityWebDataAccess.Repositories
         public async Task<List<Course>> GetMostPurchasedCoursesAsync(int count)
         {
             return await _context.Courses
+                .Include(c => c.Category)
                 .OrderByDescending(c => c.Enrollments.Count)
                 .Take(count)
                 .ToListAsync();
@@ -93,6 +96,7 @@ namespace FuCommunityWebDataAccess.Repositories
         public async Task<List<Course>> GetHighestQualityCoursesAsync(int count)
         {
             return await _context.Courses
+                .Include(c => c.Category)
                 .OrderByDescending(c => c.Price)
                 .Take(count)
                 .ToListAsync();
