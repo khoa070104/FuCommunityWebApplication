@@ -75,7 +75,7 @@ namespace FuCommunityWebDataAccess.Repositories
             var totalItems = await query.CountAsync();
 
             var posts = await query
-                .OrderBy(post => post.PostID)
+                .OrderByDescending(post => post.CreatedDate)
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
                 .ToListAsync();

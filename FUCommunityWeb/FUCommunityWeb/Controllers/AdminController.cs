@@ -466,7 +466,6 @@ namespace FUCommunityWeb.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreatePost(PostVM postVM)
         {
-
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             if (postVM.CreatePostVM.PostImageFile != null && postVM.CreatePostVM.PostImageFile.Length > 0)
@@ -499,7 +498,7 @@ namespace FUCommunityWeb.Controllers
                 CategoryID = postVM.CreatePostVM.CategoryID,
                 UserID = userId,
                 CreatedDate = DateTime.Now,
-                Status = "Published",
+                Status = PostStatus.Approved.ToString(),
                 Tag = WebUtility.HtmlEncode(postVM.CreatePostVM.Tag),
                 Type = postVM.CreatePostVM.Type,
                 PostImage = postVM.CreatePostVM.PostImage
