@@ -64,7 +64,7 @@
                                         </button>
                                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="settingsDropdown">
                                             <li>
-                                                <a class="dropdown-item edit-comment" href="#" data-bs-toggle="modal" data-bs-target="#editModal" data-comment-id="@comment.CommentID" data-post-id="@Model.Post.PostID" data-comment-content="@comment.Content">
+                                                <a class="dropdown-item edit-comment" href="#" data-bs-toggle="modal" data-bs-target="#editModal" data-comment-id="@comment.CommentID" data-post-id="@Model.Post.PostID" data-comment-content="@Html.Raw(System.Net.WebUtility.HtmlDecode(comment.Content))">
                                                     Edit
                                                 </a>
                                             </li>
@@ -133,7 +133,7 @@
                 <div class="user-info">
                     <img src="@Model.Post.User.AvatarImage" alt="Profile Picture" class="profile-pic mb-2" style="width: 150px; height: 150px; border-radius: 50%;">
                     <p style="font-weight:bold;font-size:20px;">@Model.Post.User.FullName</p>
-                    <p><i class="fas fa-trophy"></i> 125 [ 8 ]</p>
+                    <p><i class="fas fa-trophy"></i> @Model.Post.User.Point Points</p>
                     <div>
                         <a href="#"><i class="fab fa-github fa-lg me-2"></i></a>
                         <a href="#"><i class="fab fa-instagram fa-lg me-2"></i></a>
@@ -154,7 +154,7 @@
                     <form asp-controller="Forum" asp-action="EditComment" method="post" enctype="multipart/form-data">
                         <div class="mb-3">
                             <label for="editContent" class="form-label">Content</label>
-                            <textarea asp-for="Post.Content" class="form-control" id="editContent"></textarea>
+                            <textarea name="Comment.Content" class="form-control" id="editContent"></textarea>
                         </div>
                         <input type="hidden" name="Comment.CommentID" value="" />
                         <input type="hidden" name="Post.PostID" value="" />
@@ -310,5 +310,37 @@
             });
         });
 
+    </script>
+    <script>
+        $(document).ready(function() {
+            // Xử lý khi click vào nút edit comment
+            $('.edit-comment').click(function() {
+                var commentId = $(this).data('comment-id');
+                var postId = $(this).data('post-id');
+                var content = $(this).data('comment-content');
+
+                // Giải mã HTML content
+                var decodedContent = $('<div/>').html(content).text();
+
+                // Set giá trị cho form edit
+                $('input[name="Comment.CommentID"]').val(commentId);
+                $('input[name="Post.PostID"]').val(postId);
+                
+                // Khởi tạo CKEditor nếu chưa có
+                if (!CKEDITOR.instances['editContent']) {
+                    CKEDITOR.replace('editContent');
+                }
+                
+                // Set nội dung cho CKEditor
+                CKEDITOR.instances['editContent'].setData(decodedContent);
+            });
+
+            // Cleanup CKEditor khi đóng modal
+            $('#editModal').on('hidden.bs.modal', function () {
+                if (CKEDITOR.instances['editContent']) {
+                    CKEDITOR.instances['editContent'].destroy();
+                }
+            });
+        });
     </script>
 }

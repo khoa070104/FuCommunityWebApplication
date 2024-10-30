@@ -318,7 +318,7 @@ namespace FUCommunityWeb.Controllers
                 return Forbid();
             }
 
-            existingComment.Content = WebUtility.HtmlEncode(postVM.Post.Content);
+            existingComment.Content = WebUtility.HtmlEncode(postVM.Comment.Content);
 
             await _forumService.UpdateComment(existingComment);
 
