@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.WebUtilities;
 
 namespace FUCommunityWeb.Areas.Identity.Pages.Account
 {
+    [AllowAnonymous]
     public class ResetPasswordModel : PageModel
     {
         private readonly UserManager<IdentityUser> _userManager;
@@ -74,6 +75,11 @@ namespace FUCommunityWeb.Areas.Identity.Pages.Account
 
         public IActionResult OnGet(string code = null)
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return LocalRedirect("~/");
+            }
+
             if (code == null)
             {
                 return BadRequest("A code must be supplied for password reset.");

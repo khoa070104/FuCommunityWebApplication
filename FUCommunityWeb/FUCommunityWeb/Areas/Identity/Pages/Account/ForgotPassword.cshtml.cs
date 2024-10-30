@@ -17,6 +17,7 @@ using Microsoft.AspNetCore.WebUtilities;
 
 namespace FUCommunityWeb.Areas.Identity.Pages.Account
 {
+    [AllowAnonymous]
     public class ForgotPasswordModel : PageModel
     {
         private readonly UserManager<IdentityUser> _userManager;
@@ -48,6 +49,15 @@ namespace FUCommunityWeb.Areas.Identity.Pages.Account
             [Required]
             [EmailAddress]
             public string Email { get; set; }
+        }
+
+        public IActionResult OnGet()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                return LocalRedirect("~/");
+            }
+            return Page();
         }
 
         public async Task<IActionResult> OnPostAsync()
