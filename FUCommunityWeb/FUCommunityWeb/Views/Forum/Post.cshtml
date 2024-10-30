@@ -1,4 +1,5 @@
-﻿@model FuCommunityWebModels.ViewModels.PostVM
+﻿@using System.Security.Claims
+@model FuCommunityWebModels.ViewModels.PostVM
 @using FuCommunityWebUtility
 
 <style>
@@ -338,6 +339,7 @@
 
                 $.each(posts, function (index, post) {
                     const formattedDate = formatDate(post.createdDate);
+                    const currentUserId = '@User.FindFirst(ClaimTypes.NameIdentifier)?.Value';
 
                     tableContent += `
                                             <tr>
@@ -347,13 +349,19 @@
                                                 <td class="text-muted">${post.tag}</td>
                                                 <td>${post.type}</td>
                                                 <td>
-                                                    <i class="fas fa-edit table-settings me-2" data-bs-toggle="modal"
-                                                        data-bs-target="#editModal"></i>
-                                                    <i class="fas fa-trash table-settings" data-bs-toggle="modal"
-                                                        data-bs-target="#deleteModal"></i>
-                                                </td>
-                                            </tr>
-                                        `;
+        `;
+
+                    if (post.userId === currentUserId) {
+                        tableContent += `
+                                        <i class="fas fa-edit table-settings me-2" data-bs-toggle="modal" data-bs-target="#editModal"></i>
+                                        <i class="fas fa-trash table-settings" data-bs-toggle="modal" data-bs-target="#deleteModal"></i>
+                                    `;
+                    }
+
+                    tableContent += `
+                                    </td>
+                                </tr>
+                            `;
                 });
 
                 tableContent += `

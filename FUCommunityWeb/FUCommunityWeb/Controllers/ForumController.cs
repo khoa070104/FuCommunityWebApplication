@@ -99,7 +99,8 @@ namespace FUCommunityWeb.Controllers
                     content = post.Content,
                     tag = post.Tag,
                     type = post.Type == 1 ? "Blog" : "Question",
-                    userAvatar = user?.AvatarImage ?? "/img/default-avatar.png"
+                    userAvatar = user?.AvatarImage ?? "/img/default-avatar.png",
+                    userId = post.UserID
                 });
             }
 
