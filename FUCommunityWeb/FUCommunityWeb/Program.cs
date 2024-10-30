@@ -84,6 +84,22 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 
+builder.Services.Configure<IdentityOptions>(options =>
+{
+    options.Tokens.EmailConfirmationTokenProvider = TokenOptions.DefaultEmailProvider;
+    options.Tokens.PasswordResetTokenProvider = TokenOptions.DefaultProvider;
+
+    options.Tokens.AuthenticatorTokenProvider = TokenOptions.DefaultAuthenticatorProvider;
+    options.Tokens.ChangeEmailTokenProvider = TokenOptions.DefaultEmailProvider;
+    options.Tokens.EmailConfirmationTokenProvider = TokenOptions.DefaultEmailProvider;
+    options.Tokens.PasswordResetTokenProvider = TokenOptions.DefaultProvider;
+});
+
+builder.Services.Configure<DataProtectionTokenProviderOptions>(options =>
+{
+    options.TokenLifespan = TimeSpan.FromMinutes(15); 
+});
+
 var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {

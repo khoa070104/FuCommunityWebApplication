@@ -313,29 +313,23 @@
     </script>
     <script>
         $(document).ready(function() {
-            // Xử lý khi click vào nút edit comment
             $('.edit-comment').click(function() {
                 var commentId = $(this).data('comment-id');
                 var postId = $(this).data('post-id');
                 var content = $(this).data('comment-content');
 
-                // Giải mã HTML content
                 var decodedContent = $('<div/>').html(content).text();
 
-                // Set giá trị cho form edit
                 $('input[name="Comment.CommentID"]').val(commentId);
                 $('input[name="Post.PostID"]').val(postId);
                 
-                // Kh��i tạo CKEditor nếu chưa có
                 if (!CKEDITOR.instances['editContent']) {
                     CKEDITOR.replace('editContent');
                 }
                 
-                // Set nội dung cho CKEditor
                 CKEDITOR.instances['editContent'].setData(decodedContent);
             });
 
-            // Cleanup CKEditor khi đóng modal
             $('#editModal').on('hidden.bs.modal', function () {
                 if (CKEDITOR.instances['editContent']) {
                     CKEDITOR.instances['editContent'].destroy();

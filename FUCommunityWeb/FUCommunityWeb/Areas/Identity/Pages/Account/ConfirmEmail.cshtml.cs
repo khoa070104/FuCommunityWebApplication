@@ -47,17 +47,25 @@ namespace FUCommunityWeb.Areas.Identity.Pages.Account
 
             code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code));
             var result = await _userManager.ConfirmEmailAsync(user, code);
+            
+            if (!result.Succeeded)
+            {
+                // Kiểm tra nếu token hết hạn
+                if (result.Errors.Any(e => e.Code == "InvalidToken"))
+                {
+                    StatusMessage = "Error: The confirmation link has expired. Please request a new confirmation email.";
+                    return Page();
+                }
+            }
+
             StatusMessage = result.Succeeded ? "Thank you for confirming your email." : "Error confirming your email.";
             if (result.Succeeded)
             {
                 await _signInManager.SignInAsync(user, isPersistent: false);
                 return RedirectToPage("/Index");
             }
-            else
-            {
-                return Content("Fail");
-            }
-            //return Page();
+
+            return Page();
         }
     }
 }

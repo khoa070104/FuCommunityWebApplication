@@ -108,10 +108,25 @@ namespace FUCommunityWeb.Areas.Identity.Pages.Account
                 return RedirectToPage("./ResetPasswordConfirmation");
             }
 
+            // Kiểm tra password mới có trùng với password cũ không
+            var isCurrentPassword = await _userManager.CheckPasswordAsync(user, Input.Password);
+            if (isCurrentPassword)
+            {
+                ModelState.AddModelError(string.Empty, "The new password must not be the same as the old password.");
+                return Page();
+            }
+
             var result = await _userManager.ResetPasswordAsync(user, Input.Code, Input.Password);
             if (result.Succeeded)
             {
                 return RedirectToPage("./ResetPasswordConfirmation");
+            }
+
+            // Kiểm tra nếu token hết hạn
+            if (result.Errors.Any(e => e.Code == "InvalidToken"))
+            {
+                ModelState.AddModelError(string.Empty, "Password reset link has expired. Please request a new one.");
+                return Page();
             }
 
             foreach (var error in result.Errors)
