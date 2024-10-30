@@ -35,8 +35,10 @@ namespace FUCommunityWeb.Controllers
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var enrolledCourses = _courseService.GetEnrolledCoursesAsync(userId).Result;
-            var mostPurchasedCourses = _courseService.GetMostPurchasedCoursesAsync(3).Result;
-            var highestQualityCourse = _courseService.GetHighestQualityCoursesAsync(3).Result;
+            var mostPurchasedCourses = _courseService.GetMostPurchasedCoursesAsync(3).Result
+                .Where(c => c.Status == "active").ToList();
+            var highestQualityCourse = _courseService.GetHighestQualityCoursesAsync(3).Result
+                .Where(c => c.Status == "active").ToList();
 
             var homeViewModel = new HomeVM
             {
@@ -79,8 +81,10 @@ namespace FUCommunityWeb.Controllers
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var enrolledCourses = _courseService.GetEnrolledCoursesAsync(userId).Result;
-            var mostPurchasedCourses = _courseService.GetMostPurchasedCoursesAsync(3).Result;
-            var highestQualityCourse = _courseService.GetHighestQualityCoursesAsync(3).Result;
+            var mostPurchasedCourses = _courseService.GetMostPurchasedCoursesAsync(3).Result
+                .Where(c => c.Status == "active").ToList();
+            var highestQualityCourse = _courseService.GetHighestQualityCoursesAsync(3).Result
+                .Where(c => c.Status == "active").ToList();
 
             var homeViewModel = new HomeVM
             {
@@ -284,6 +288,27 @@ namespace FUCommunityWeb.Controllers
         public IActionResult Banned()
         {
             return View();
+        }
+
+        public IActionResult MentorHall()
+        {
+            var topMentors = _userService.GetAllUsersAsync().Result
+                .OrderByDescending(u => u.Point)
+                .Take(3)
+                .ToList();
+
+            var otherMentors = _userService.GetAllUsersAsync().Result
+                .OrderByDescending(u => u.Point)
+                .Skip(3)
+                .ToList();
+
+            var mentorViewModel = new MentorVM
+            {
+                TopMentors = topMentors,
+                OtherMentors = otherMentors
+            };
+
+            return View(mentorViewModel);
         }
     }
 }

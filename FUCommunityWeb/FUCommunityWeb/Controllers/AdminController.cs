@@ -95,7 +95,7 @@ namespace FUCommunityWeb.Controllers
                         Description = createCourseVM.Description,
                         Price = createCourseVM.Price,
                         CourseImage = createCourseVM.CourseImage,
-                        Status = createCourseVM.Status,
+                        Status = "active",
                         UserID = User.FindFirstValue(ClaimTypes.NameIdentifier),
                         Semester = createCourseVM.Semester,
                         CategoryID = createCourseVM.CategoryID,
@@ -133,7 +133,6 @@ namespace FUCommunityWeb.Controllers
                 Description = course.Description,
                 Price = course.Price ?? 0,
                 CourseImage = course.CourseImage,
-                Status = course.Status,
                 Semester = course.Semester,
                 CategoryID = course.CategoryID
             };
@@ -156,7 +155,6 @@ namespace FUCommunityWeb.Controllers
                 courseToUpdate.Title = editCourseVM.Title;
                 courseToUpdate.Description = editCourseVM.Description;
                 courseToUpdate.Price = editCourseVM.Price;
-                courseToUpdate.Status = editCourseVM.Status;
                 courseToUpdate.Semester = editCourseVM.Semester;
                 courseToUpdate.CategoryID = editCourseVM.CategoryID;
 
@@ -968,6 +966,38 @@ namespace FUCommunityWeb.Controllers
             await _forumService.UpdatePost(post);
 
             return RedirectToAction("ManagePost", new { CategoryID = post.CategoryID });
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ActivateCourse(int courseId)
+        {
+            var course = await _courseService.GetCourseByIdAsync(courseId);
+            if (course == null)
+            {
+                return RedirectToAction("ManageCourse");
+            }
+
+            course.Status = "active";
+            await _courseService.UpdateCourseAsync(course);
+
+            return RedirectToAction("ManageCourse");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeactivateCourse(int courseId)
+        {
+            var course = await _courseService.GetCourseByIdAsync(courseId);
+            if (course == null)
+            {
+                return RedirectToAction("ManageCourse");
+            }
+
+            course.Status = "inactive";
+            await _courseService.UpdateCourseAsync(course);
+
+            return RedirectToAction("ManageCourse");
         }
     }
 }

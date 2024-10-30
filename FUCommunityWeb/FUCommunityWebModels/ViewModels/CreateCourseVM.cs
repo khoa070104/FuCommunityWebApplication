@@ -19,9 +19,6 @@ namespace FuCommunityWebModels.ViewModels
         [StringLength(255)]
         public string? CourseImage { get; set; }
 
-        [StringLength(50)]
-        public string Status { get; set; }
-
         [NotMapped]
         [Display(Name = "Course Image")]
         public IFormFile? CourseImageFile { get; set; }

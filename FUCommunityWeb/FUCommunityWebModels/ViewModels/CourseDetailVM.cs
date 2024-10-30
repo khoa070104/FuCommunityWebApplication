@@ -20,5 +20,6 @@ namespace FuCommunityWebModels.ViewModels
         public bool ShowCreateLessonModal { get; set; }
         public bool ShowEditLessonModal { get; set; }
         public int? EditLessonID { get; set; } // Identifier for the lesson being edited
+        public string CategoryName => Course?.Category?.CategoryName;
     }
 }
