@@ -141,8 +141,23 @@ namespace FUCommunityWeb.Areas.Identity.Pages.Account
         {
             returnUrl ??= Url.Content("~/");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+
             if (ModelState.IsValid)
             {
+                // Kiểm tra tuổi người dùng
+                if (Input.DOB.HasValue)
+                {
+                    var today = DateTime.Today;
+                    var age = today.Year - Input.DOB.Value.Year;
+                    if (Input.DOB.Value.Date > today.AddYears(-age)) age--;
+
+                    if (age < 18)
+                    {
+                        ModelState.AddModelError("Input.DOB", "You are under 18 years old");
+                        return Page();
+                    }
+                }
+
                 var user = new ApplicationUser
                 {
                     UserName = Input.Email,

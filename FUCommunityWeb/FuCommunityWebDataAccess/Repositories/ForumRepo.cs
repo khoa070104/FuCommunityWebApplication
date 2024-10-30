@@ -207,8 +207,10 @@ namespace FuCommunityWebDataAccess.Repositories
         public async Task<List<Post>> GetUserPostsAsync(string userId)
         {
             return await _context.Posts
-                .Where(p => p.UserID == userId)
-                .ToListAsync();
+            .Where(p => p.UserID == userId)
+            .Include(p => p.Comments)
+            .Include(p => p.IsVotes)
+            .ToListAsync();
         }
 
         public async Task<int> GetUserPostCountAsync(string userId, int postType)

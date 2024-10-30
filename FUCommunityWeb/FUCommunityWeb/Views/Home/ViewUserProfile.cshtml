@@ -3,9 +3,9 @@
 <body>
     <!-- Profile Section -->
     <div class="container mt-4 view-profile">
-        <a href="@Url.Action("ViewUser", "Home")" class="btn-blue">
+        <button onclick="window.history.back()" class="btn-blue">
             <i class="fas fa-arrow-left"></i> Back
-        </a>
+        </button>
         <!-- Cover Image -->
         <div class="profile-cover">
             @if (!string.IsNullOrEmpty(Model.User.BannerImage))
@@ -81,7 +81,7 @@
             <li class="nav-item" role="presentation">
                 <button class="nav-link" id="all-post-tab" data-bs-toggle="tab" data-bs-target="#all-post" type="button"
                         role="tab" aria-controls="all-post" aria-selected="false">
-                    All Post
+                    All Post/ Question
                 </button>
             </li>
             <li class="nav-item" role="presentation">
@@ -108,15 +108,17 @@
             <div class="tab-pane fade" id="all-post" role="tabpanel" aria-labelledby="all-post-tab">
                 @if (Model.Post != null && Model.Post.Count > 0)
                 {
-                    foreach (var post in Model.Post)
+                    foreach (var post in Model.Post.Where(p => p.Status == PostStatus.Approved.ToString()).OrderByDescending(p => p.CreatedDate))
                     {
                         <div class="card mb-3">
                             <div class="card-body">
                                 <div class="d-flex align-items-center justify-content-between">
                                     <div>
-                                        <h2 class="card-title mb-1">@post.Title</h2>
+                                        <h2 class="card-title mb-1">
+                                            <a href="/Forum/PostDetail?postId=@post.PostID">@post.Title</a>
+                                        </h2>
                                         <p class="card-text text-muted mb-0">
-                                            Comments: <span>@(post.Comments?.Count ?? 0)</span> & Votes: <span>@(post.Votes?.Count ?? 0)</span>
+                                            Comments: <span>@(post.Comments?.Count ?? 0)</span> & Votes: <span>@(post.IsVotes?.Count ?? 0)</span>
                                         </p>
                                         <small class="text-muted">@((post.User?.FullName ?? "Unknown User") + " - " + post.CreatedDate?.ToString("dd/MM/yyyy"))</small>
                                     </div>
@@ -142,7 +144,9 @@
                         {
                             <div class="card mb-3">
                                 <div class="card-body">
-                                    <h5 class="card-title-1">@enrollment.Course.Title</h5>
+                                    <h5 class="card-title-1">
+                                        <a href="@Url.Action("Detail", "Course", new { id = enrollment.Course.CourseID })">@enrollment.Course.Title</a>
+                                    </h5>
                                     <p class="card-text">@enrollment.Course.Description</p>
                                 </div>
                             </div>
