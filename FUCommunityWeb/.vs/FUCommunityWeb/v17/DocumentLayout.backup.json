@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "D:\\Documents\\FuComunityVersionManager\\FuWebTest17\\FuCommunityWebApplication\\FUCommunityWeb\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|d:\\documents\\fucomunityversionmanager\\fuwebtest17\\fucommunitywebapplication\\fucommunityweb\\fucommunityweb\\areas\\identity\\pages\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|solutionrelative:fucommunityweb\\areas\\identity\\pages\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|d:\\documents\\fucomunityversionmanager\\fuwebtest17\\fucommunitywebapplication\\fucommunityweb\\fucommunityweb\\views\\forum\\postdetail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|solutionrelative:fucommunityweb\\views\\forum\\postdetail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|d:\\documents\\fucomunityversionmanager\\fuwebtest17\\fucommunitywebapplication\\fucommunityweb\\fucommunityweb\\areas\\identity\\pages\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|solutionrelative:fucommunityweb\\areas\\identity\\pages\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FF5A8B4D-2819-4021-939F-70BFD7D2CD68}|FUCommunityWeb\\FUCommunityWeb.csproj|d:\\documents\\fucomunityversionmanager\\fuwebtest17\\fucommunitywebapplication\\fucommunityweb\\fucommunityweb\\views\\forum\\post.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -101,7 +101,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -109,7 +109,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "PostDetail.cshtml",
               "DocumentMoniker": "D:\\Documents\\FuComunityVersionManager\\FuWebTest17\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Views\\Forum\\PostDetail.cshtml",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Views\\Forum\\PostDetail.cshtml",
@@ -146,7 +146,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "_ViewImports.cshtml",
               "DocumentMoniker": "D:\\Documents\\FuComunityVersionManager\\FuWebTest17\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWeb\\Areas\\Identity\\Pages\\_ViewImports.cshtml",
               "RelativeDocumentMoniker": "FUCommunityWeb\\Areas\\Identity\\Pages\\_ViewImports.cshtml",
