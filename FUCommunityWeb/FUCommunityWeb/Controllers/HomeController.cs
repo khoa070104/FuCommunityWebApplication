@@ -40,11 +40,15 @@ namespace FUCommunityWeb.Controllers
             var highestQualityCourse = _courseService.GetHighestQualityCoursesAsync(3).Result
                 .Where(c => c.Status == "active").ToList();
 
+            var user = _userService.GetUserByIdAsync(userId).Result;
+            var userPoints = user?.Point ?? 0;
+
             var homeViewModel = new HomeVM
             {
                 MostPurchasedCourses = mostPurchasedCourses,
                 HighestQualityCourse = highestQualityCourse,
-                EnrolledCourses = enrolledCourses
+                EnrolledCourses = enrolledCourses,
+                UserPoints = userPoints
             };
 
             return View(homeViewModel);
