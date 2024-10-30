@@ -109,11 +109,17 @@
                 <form asp-action="Create" asp-controller="Forum" enctype="multipart/form-data" id="createPostForm">
                     <div class="mb-3">
                         <label for="postTitle" class="form-label">Title</label>
-                        <input asp-for="@Model.CreatePostVM.Title" type="text" class="form-control" id="postTitle" placeholder="Enter post title">
+                        <input asp-for="@Model.CreatePostVM.Title" type="text" class="form-control" id="postTitle" placeholder="Enter post title" required>
+                        <div class="invalid-feedback">
+                            Title không được để trống
+                        </div>
                     </div>
                     <div class="mb-3">
                         <label for="tag" class="form-label">Tag</label>
-                        <input asp-for="@Model.CreatePostVM.Tag" type="text" class="form-control" id="postTitle" placeholder="What's tag?'">
+                        <input asp-for="@Model.CreatePostVM.Tag" type="text" class="form-control" id="postTag" placeholder="What's tag?" required>
+                        <div class="invalid-feedback">
+                            Tag không được để trống
+                        </div>
                     </div>
                     <div class="mb-3">
                         <label for="postContent" class="form-label">Content</label>
@@ -412,21 +418,38 @@
             $('#createPostForm').on('submit', function(e) {
                 e.preventDefault();
                 
-                // Lấy nội dung từ CKEditor
+                // Lấy các giá trị
+                var title = $('#postTitle').val().trim();
+                var tag = $('#postTag').val().trim();
                 var content = CKEDITOR.instances['editor'].getData().trim();
                 
+                // Kiểm tra từng trường
+                var errors = [];
+                
+                if (!title) {
+                    errors.push('Title không được để trống');
+                }
+                
+                if (!tag) {
+                    errors.push('Tag không được để trống');
+                }
+                
                 if (!content) {
-                    // Hiển thị thông báo lỗi
+                    errors.push('Content không được để trống');
+                }
+                
+                // Nếu có lỗi
+                if (errors.length > 0) {
                     Swal.fire({
                         icon: 'error',
                         title: 'Lỗi',
-                        text: 'Vui lòng nhập nội dung bài viết',
+                        html: errors.join('<br>'),
                         confirmButtonText: 'OK'
                     });
                     return false;
                 }
                 
-                // Nếu có content thì submit form
+                // Nếu không có lỗi thì submit form
                 this.submit();
             });
 
@@ -435,12 +458,19 @@
                 if (!CKEDITOR.instances['editor']) {
                     CKEDITOR.replace('editor');
                 }
+                // Reset form khi mở modal
+                $('#createPostForm')[0].reset();
+                if (CKEDITOR.instances['editor']) {
+                    CKEDITOR.instances['editor'].setData('');
+                }
             });
 
             $('#createPostModal').on('hidden.bs.modal', function () {
                 if (CKEDITOR.instances['editor']) {
                     CKEDITOR.instances['editor'].destroy(true);
                 }
+                // Reset form validation
+                $('#createPostForm').removeClass('was-validated');
             });
         });
     </script>
