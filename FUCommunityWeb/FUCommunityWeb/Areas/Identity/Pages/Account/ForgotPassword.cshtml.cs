@@ -17,6 +17,7 @@ using Microsoft.AspNetCore.WebUtilities;
 
 namespace FUCommunityWeb.Areas.Identity.Pages.Account
 {
+    [AllowAnonymous]
     public class ForgotPasswordModel : PageModel
     {
         private readonly UserManager<IdentityUser> _userManager;
@@ -50,19 +51,28 @@ namespace FUCommunityWeb.Areas.Identity.Pages.Account
             public string Email { get; set; }
         }
 
+        public IActionResult OnGet()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                return LocalRedirect("~/");
+            }
+            return Page();
+        }
+
         public async Task<IActionResult> OnPostAsync()
         {
             if (ModelState.IsValid)
             {
+                // Kiểm tra email có tồn tại trong hệ thống không
                 var user = await _userManager.FindByEmailAsync(Input.Email);
-                if (user == null || !(await _userManager.IsEmailConfirmedAsync(user)))
+                if (user == null)
                 {
-                    // Don't reveal that the user does not exist or is not confirmed
-                    return RedirectToPage("./ForgotPasswordConfirmation");
+                    ModelState.AddModelError(string.Empty, "Account không tồn tại.");
+                    return Page();
                 }
 
-                // For more information on how to enable account confirmation and password reset please
-                // visit https://go.microsoft.com/fwlink/?LinkID=532713
+                // Gửi email reset password
                 var code = await _userManager.GeneratePasswordResetTokenAsync(user);
                 code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
                 var callbackUrl = Url.Page(

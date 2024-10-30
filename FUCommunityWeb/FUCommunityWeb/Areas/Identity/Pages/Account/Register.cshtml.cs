@@ -24,6 +24,7 @@ using Microsoft.Extensions.Logging;
 
 namespace FUCommunityWeb.Areas.Identity.Pages.Account
 {
+    [AllowAnonymous]
     public class RegisterModel : PageModel
     {
         private readonly SignInManager<IdentityUser> _signInManager;
@@ -118,6 +119,11 @@ namespace FUCommunityWeb.Areas.Identity.Pages.Account
 
         public async Task OnGetAsync(string returnUrl = null)
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                Response.Redirect("/");
+                return;
+            }
 
             if (!_roleManager.RoleExistsAsync(SD.Role_User_Student).GetAwaiter().GetResult())
             {

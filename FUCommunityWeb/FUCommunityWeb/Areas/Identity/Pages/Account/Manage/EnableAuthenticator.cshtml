@@ -8,21 +8,15 @@
 <partial name="_StatusMessage" for="StatusMessage" />
 <h3>@ViewData["Title"]</h3>
 <div>
-    <p>To use an authenticator app go through the following steps:</p>
+    <p>To use an authenticator app follow these steps:</p>
     <ol class="list">
         <li>
             <p>
-                Download a two-factor authenticator app like Microsoft Authenticator for
-                <a href="https://go.microsoft.com/fwlink/?Linkid=825072">Android</a> and
-                <a href="https://go.microsoft.com/fwlink/?Linkid=825073">iOS</a> or
-                Google Authenticator for
-                <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&amp;hl=en">Android</a> and
-                <a href="https://itunes.apple.com/us/app/google-authenticator/id388497605?mt=8">iOS</a>.
+                Download a two-factor authenticator app like Microsoft Authenticator or Google Authenticator.
             </p>
         </li>
         <li>
-            <p>Scan the QR Code or enter this key <kbd>@Model.SharedKey</kbd> into your two factor authenticator app. Spaces and casing do not matter.</p>
-            <div class="alert alert-info">Learn how to <a href="https://go.microsoft.com/fwlink/?Linkid=852423">enable QR code generation</a>.</div>
+            <p>Scan the QR Code or enter this key <kbd>@Model.SharedKey</kbd> into your two factor authenticator app. Spaces and casing don't matter.</p>
             <div id="qrCode"></div>
             <div id="qrCodeData" data-url="@Model.AuthenticatorUri"></div>
         </li>
@@ -39,8 +33,8 @@
                             <label asp-for="Input.Code" class="control-label form-label">Verification Code</label>
                             <span asp-validation-for="Input.Code" class="text-danger"></span>
                         </div>
-                        <button type="submit" class="w-100 btn">Verify</button>
-                        <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+                        <button type="submit" class="btn-1">Verify</button>
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     </form>
                 </div>
             </div>
@@ -50,4 +44,16 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+    <script type="text/javascript" src="~/lib/qrcode.js"></script>
+    <script type="text/javascript">
+        window.addEventListener("load", () => {
+            const uri = document.getElementById("qrCodeData").getAttribute('data-url');
+            new QRCode(document.getElementById("qrCode"),
+                {
+                    text: uri,
+                    width: 150,
+                    height: 150
+                });
+        });
+    </script>
 }
