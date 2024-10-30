@@ -105,7 +105,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form asp-action="Create" asp-controller="Forum" enctype="multipart/form-data">
+                <form asp-action="Create" asp-controller="Forum" enctype="multipart/form-data" id="createPostForm">
                     <div class="mb-3">
                         <label for="postTitle" class="form-label">Title</label>
                         <input asp-for="@Model.CreatePostVM.Title" type="text" class="form-control" id="postTitle" placeholder="Enter post title">
@@ -116,7 +116,10 @@
                     </div>
                     <div class="mb-3">
                         <label for="postContent" class="form-label">Content</label>
-                        <textarea asp-for="@Model.CreatePostVM.Content" class="form-control" id="editor" rows="3"></textarea>
+                        <textarea asp-for="@Model.CreatePostVM.Content" class="form-control" id="editor" rows="3" required></textarea>
+                        <div class="invalid-feedback">
+                            Content không được để trống
+                        </div>
                     </div>
                     <div class="mb-3">
                         <label>Type</label>
@@ -134,8 +137,8 @@
                     <input type="hidden" asp-for="@Model.CategoryVM.CategoryID" value="@Model.CategoryVM.CategoryID" />
 
                     <div class="modal-footer">
-                        <button type="submit" class="btn">Create</button>
                         <button type="button" class="btn-cancel" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn" id="submitBtn">Create</button>
                     </div>
                 </form>
             </div>
@@ -397,14 +400,40 @@
         });
     </script>
     <script>
-        $(document).ready(function () {
-            $('#createPostModal').on('shown.bs.modal', function () {
-                CKEDITOR.replace('editor');
+        $(document).ready(function() {
+            $('#createPostForm').on('submit', function(e) {
+                e.preventDefault();
+                
+                // Lấy nội dung từ CKEditor
+                var content = CKEDITOR.instances['editor'].getData().trim();
+                
+                if (!content) {
+                    // Hiển thị thông báo lỗi
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Lỗi',
+                        text: 'Vui lòng nhập nội dung bài viết',
+                        confirmButtonText: 'OK'
+                    });
+                    return false;
+                }
+                
+                // Nếu có content thì submit form
+                this.submit();
             });
 
-            if (!$('#createPostModal').hasClass('show')) {
-                CKEDITOR.replace('editor');
-            }
+            // Khởi tạo CKEditor
+            $('#createPostModal').on('shown.bs.modal', function () {
+                if (!CKEDITOR.instances['editor']) {
+                    CKEDITOR.replace('editor');
+                }
+            });
+
+            $('#createPostModal').on('hidden.bs.modal', function () {
+                if (CKEDITOR.instances['editor']) {
+                    CKEDITOR.instances['editor'].destroy(true);
+                }
+            });
         });
     </script>
     <script>
@@ -450,6 +479,5 @@
             });
         });
     </script>
-
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 }
