@@ -108,6 +108,14 @@ namespace FUCommunityWeb.Areas.Identity.Pages.Account
                 return RedirectToPage("./ResetPasswordConfirmation");
             }
 
+            // Kiểm tra password mới có trùng với password cũ không
+            var isCurrentPassword = await _userManager.CheckPasswordAsync(user, Input.Password);
+            if (isCurrentPassword)
+            {
+                ModelState.AddModelError(string.Empty, "The new password must not be the same as the old password.");
+                return Page();
+            }
+
             var result = await _userManager.ResetPasswordAsync(user, Input.Code, Input.Password);
             if (result.Succeeded)
             {
