@@ -8,15 +8,6 @@
     z-index: 1000;
 }
 
-.remember-text {
-    font-size: 14px;
-}
-
-.form-check-input:checked {
-    background-color: #0d6efd;
-    border-color: #0d6efd;
-}
-
 .logo-header {
     width: 100%;
     max-width: 70px;
@@ -377,7 +368,6 @@
         }
 
 .header .mega-dropdown {
-    width: 1200px;
     padding: 20px;
     border-radius: 10px;
     background-color: #fff;
@@ -414,7 +404,11 @@
                     color: #20B486;
                 }
 
-
+.search-container .dropdown-menu {
+    top: 100%;
+    right: 0;
+    margin-top: .125rem;
+}
 
 /* Icon Styles */
 .header .icon {
@@ -609,7 +603,6 @@
     }
 
         .home-container .image-section img {
-            width: 25vw;
             animation: floatImage 4s ease-in-out infinite;
             border-radius: 50%;
             box-shadow: 0 0 50px rgb(32, 180, 134, 0.4);
@@ -1179,50 +1172,50 @@
 
 /*--------------------PAYMENT--------------------*/
 
-    .payment .container {
-        min-height: 100vh;
+.payment .container {
+    min-height: 100vh;
+}
+
+.payment .card {
+    background-color: white;
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    margin: auto;
+}
+
+.payment .card-title {
+    color: #20B486;
+    font-size: 4rem;
+    font-weight: bold;
+}
+
+.payment .form-control {
+    border: 2px solid #20B486;
+    border-radius: 5px;
+    padding: 10px;
+    transition: all 0.3s ease;
+}
+
+    .payment .form-control:focus {
+        border-color: #FFD3B6;
+        outline: none;
+        box-shadow: 0 0 8px rgba(255, 211, 182, 0.5);
     }
 
-    .payment .card {
-        background-color: white;
-        border: none;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        border-radius: 10px;
-        padding: 20px;
-        margin: auto;
-    }
+.payment .form-check-label {
+    font-size: 1rem;
+    color: #333;
+}
 
-    .payment .card-title {
-        color: #20B486;
-        font-size: 4rem;
-        font-weight: bold;
-    }
+.payment .form-check-input:checked ~ .form-check-label {
+    color: #20B486;
+}
 
-    .payment .form-control {
-        border: 2px solid #20B486;
-        border-radius: 5px;
-        padding: 10px;
-        transition: all 0.3s ease;
-    }
-
-        .payment .form-control:focus {
-            border-color: #FFD3B6;
-            outline: none;
-            box-shadow: 0 0 8px rgba(255, 211, 182, 0.5);
-        }
-
-    .payment .form-check-label {
-        font-size: 1rem;
-        color: #333;
-    }
-
-    .payment .form-check-input:checked ~ .form-check-label {
-        color: #20B486;
-    }
-
-    .payment input[type="radio"]:hover {
-        background-color: #E4F7F1;
-    }
+.payment input[type="radio"]:hover {
+    background-color: #E4F7F1;
+}
 
 
 /*--------------------CONTACT US--------------------*/
@@ -1376,10 +1369,10 @@
     }
 
     .course-container .course-section {
-        display: flex;
+        /*        display: flex;
         flex-wrap: nowrap;
         gap: 20px;
-        justify-content: space-between;
+        justify-content: space-between;*/
         padding: 10px 0;
     }
 
@@ -1393,7 +1386,7 @@
             transition: transform 0.3s ease;
             width: 350px;
             box-sizing: border-box;
-            height:100%;
+            height: 100%;
         }
 
         .course-container .course-section .course-image {
@@ -2126,7 +2119,6 @@
     object-fit: cover;
 }
 
-/* Adjustments to the surrounding content */
 .user-picture {
     display: flex;
     align-items: center;
@@ -2348,15 +2340,15 @@
 /*------------SIGN-IN------------*/
 .sign-in {
     background-color: #2F5361;
-    padding-top: 50px; /* Thêm khoảng cách với header */
-    padding-bottom: 200px; /* Thêm khoảng cách với footer */
-    min-height: calc(100vh - 200px); /* Đảm bảo form không bị dính vào header và footer */
+    padding-top: 50px;
+    padding-bottom: 200px;
+    min-height: calc(100vh - 200px);
 }
 
     .sign-in .background-image {
         width: 100%;
-        background-image: url('/img/Login-image.png'); /* Đặt URL cho ảnh nền */
-        background-size: cover; /* Ảnh nền sẽ thu nhỏ theo kích thước màn hình */
+        background-image: url('/img/Login-image.png');
+        background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
         display: flex;
@@ -2452,7 +2444,7 @@
         align-items: center;
         flex-wrap: wrap;
         height: 100vh;
-        padding: 20px; /* Thêm khoảng cách cho header và footer */
+        padding: 20px;
     }
 
 /* Responsive design */
@@ -2482,9 +2474,9 @@
 /*------------SIGN-UP------------*/
 .sign-up {
     background-color: #2F5361;
-    padding-top: 50px; /* Thêm khoảng cách với header */
-    padding-bottom: 200px; /* Thêm khoảng cách với footer */
-    min-height: calc(100vh - 200px); /* Đảm bảo form không bị dính vào header và footer */
+    padding-top: 50px;
+    padding-bottom: 200px;
+    min-height: calc(100vh - 200px);
 }
 
     .sign-up .background-image {
@@ -2801,7 +2793,7 @@
 
 /*------------FORGOT PASSWORD------------*/
 .forgot-password-container {
-    background-color: #2F5361; /* Màu nền xanh đậm */
+    background-color: #2F5361;
     padding-top: 50px;
     padding-bottom: 50px;
     display: flex;
@@ -2811,7 +2803,7 @@
 
     .forgot-password-container h1,
     .forgot-password-container h2 {
-        color: white; /* Tiêu đề màu trắng */
+        color: white;
         text-align: center;
     }
 
@@ -3010,7 +3002,6 @@
             transform: scale(1.05);
         }
 
-        /* Giảm kích thước của ảnh */
         .award-container .mentor-card img {
             width: 70%;
             border-radius: 50%;
@@ -3041,11 +3032,10 @@
         color: #5951A1 !important;
     }
 
-    /* Đổi màu nền của thẻ mentor ở giữa */
     .award-container .mentor-card.top-1 {
-        background-color: #FFD700; /* Màu vàng Gold */
-        border: 3px solid #DAA520; /* Đường viền vàng đậm hơn */
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Hiệu ứng bóng */
+        background-color: #FFD700;
+        border: 3px solid #DAA520;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
     }
 
     .award-container .badge {
@@ -3078,7 +3068,6 @@
             color: white;
         }
 
-    /* Di chuyển mentor card thứ hai lên cao hơn bằng top */
     .award-container .mentor-card.higher {
         position: relative;
         top: -20px;
@@ -3088,40 +3077,47 @@
 /*--------------------FOOTER--------------------*/
 footer .footer-content {
     display: flex;
-    flex-wrap: wrap; /* Cho phép các cột xuống dòng trên thiết bị nhỏ */
+    flex-wrap: wrap;
     justify-content: space-around;
-    padding: 40px 40px;
+    padding: 10px 0;
     background-color: #0a0e17;
     color: #c1c1c1;
 }
 
     footer .footer-content a {
-        text-decoration: none; /* Remove underline */
-        color: inherit; /* Use the current text color */
+        text-decoration: none;
+        color: inherit;
     }
 
         footer .footer-content a:hover {
-            text-decoration: underline; /* Add underline on hover */
-            color: #20B486; /* Change color on hover */
+            text-decoration: underline;
+            color: #20B486;
         }
 
-footer .social-icons a {
-    margin: 0 10px; /* Add spacing between icons */
-    color: inherit; /* Use current color */
+.footer-icons {
+    list-style: none;
+    padding: 0;
 }
 
-    footer .social-icons a:hover {
-        color: #20B486; /* Change color on hover for icons */
+    .footer-icons li {
+        margin: 10px 0;
+        font-size: 1rem;
+        color: inherit;
     }
 
+    .footer-icons i {
+        margin-right: 8px;
+        color: #20B486;
+    }
+
+
 footer .column {
-    flex: 1 1 200px; /* Đảm bảo các cột co lại khi cần thiết */
+    flex: 1 1 200px;
     text-align: center;
-    padding: 10px 20px; /* Khoảng cách giữa các cột */
+    padding: 10px 20px;
 }
 
     footer .column i {
-        font-size: 100px;
         color: #d3d3d3;
         margin-bottom: 20px;
     }
@@ -3144,13 +3140,6 @@ footer .column {
                 margin-right: 8px;
             }
 
-footer .new-badge {
-    background-color: #fff;
-    color: #000;
-    padding: 2px 5px;
-    border-radius: 5px;
-}
-
 footer .footer-bottom {
     text-align: center;
     padding: 20px 0;
@@ -3164,23 +3153,26 @@ footer .footer-bottom {
         margin: 0 5px;
     }
 
-footer .back-to-top {
+.back-to-top {
     position: fixed;
-    bottom: 20px; /* Adjust this value as needed */
-    right: 20px; /* Adjust this value as needed */
-    display: none; /* Initially hidden */
-    background-color: #20B486; /* Background color */
-    color: white; /* Text color */
-    border: none; /* Remove border */
-    border-radius: 50%; /* Circular button */
-    padding: 15px; /* Button padding */
-    z-index: 1000; /* Ensure it's on top */
-    cursor: pointer; /* Pointer cursor */
+    bottom: 20px;
+    right: 20px;
+    display: none;
+    background-color: #20B486;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 1000;
 }
 
-    footer .back-to-top:hover {
-        background-color: #1a9e72;
+    .back-to-top i {
+        font-size: 24px;
     }
+
+
+
 
 /* Responsive Footer */
 @media (max-width: 768px) {
@@ -3360,6 +3352,7 @@ footer .back-to-top {
         background-color: rgba(255, 87, 34, 0.2);
         color: #FF5733;
     }
+
 .responsive-logo {
     width: 100%;
     max-width: 200px;
@@ -3448,10 +3441,10 @@ footer .back-to-top {
 
 .menu-forum .dropdown-menu {
     position: absolute;
-    top: 0; /* Điều chỉnh khoảng cách từ nút Forum */
-    left: 100%; /* Đẩy dropdown sang phải */
-    margin-left: 10px; /* Khoảng cách giữa dropdown và nút Forum */
-    background-color: #343a40; /* Màu nền của dropdown */
+    top: 0;
+    left: 100%;
+    margin-left: 10px;
+    background-color: #343a40;
     border: none;
 }
 

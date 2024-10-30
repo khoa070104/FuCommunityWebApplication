@@ -24,9 +24,16 @@
                     <a asp-area="Identity" asp-page="/Account/Manage/Index">
                         <i class="fas fa-key"></i> Authenticator
                     </a>
+                    <a asp-controller="Payment" asp-action="Pay">
+                        <i class="fas fa-wallet"></i> Deposit
+                    </a>
+                    <a asp-controller="Home" asp-action="ContactUs">
+                        <i class="fas fa-envelope"></i> Contact Us
+                    </a>
                     <a asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
                         <i class="fas fa-sign-out-alt"></i> Log out
                     </a>
+
                 </div>
             </div>
         </div>

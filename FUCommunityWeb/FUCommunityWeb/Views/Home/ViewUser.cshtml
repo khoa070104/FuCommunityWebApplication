@@ -1,7 +1,7 @@
 ﻿@model List<FuCommunityWebModels.Models.ApplicationUser>
 
-<div class="container mt-4 view-user">
-    <h1 class="text-center mb-4">User List</h1>
+<div class="container mt-4 view-user" style="min-height: 100vh;">
+    <h1 class="text-center mb-4" style="font-weight: bold;color:#20B486;">Search User</h1>
     <form method="get" asp-action="ViewUser" class="user-search mb-3 d-flex" id="searchForm">
         <input type="text" id="searchInput" name="searchTerm" class="form-control me-2" placeholder="Enter username to search..." />
         <button class="input-group-text">

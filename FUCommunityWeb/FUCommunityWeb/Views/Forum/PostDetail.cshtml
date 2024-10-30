@@ -10,19 +10,6 @@
     .cke_notification {
         display: none !important; /* Ẩn tất cả thông báo CKEditor */
     }
-    .user-info a {
-        color: inherit;
-    }
-    
-    .user-info a:hover .user-name {
-        color: #007bff;
-        transition: color 0.2s ease;
-    }
-    
-    .user-info img:hover {
-        opacity: 0.9;
-        transition: opacity 0.2s ease;
-    }
 </style>
 <body>
     <div class="container mt-4 forum-detail">
@@ -49,7 +36,7 @@
                         <label for="commentContent" class="form-label">Share your idea:</label>
                         <textarea asp-for="@Model.Comment.Content" class="form-control" id="editorComment" rows="3" placeholder="" required></textarea>
                         <input type="hidden" asp-for="@Model.Comment.PostID" value="@Model.Post.PostID" />
-                        <button type="submit" class="btn btn-secondary mt-2">Comment</button>
+                        <button type="submit" class="btn-2 mt-2">Comment</button>
                     </form>
                 </div>
                 @if (Model.Comments != null && Model.Comments.Any())
@@ -90,7 +77,9 @@
                                     </div>
                                 </div>
                                 <p>@Html.Raw(System.Net.WebUtility.HtmlDecode(comment.Content))</p>
-                                <a href="#" class="text-decoration-none reply-btn">Reply</a>
+                                <div class="reply-btn">
+                                    <a href="#" class="text-decoration-none ">Reply</a>
+                                </div>
                                 <div class="reply-area mt-2" style="display: none;">
                                     <p>Write your reply</p>
                                     <form asp-action="Comment" asp-controller="Forum" method="post" enctype="multipart/form-data">
@@ -98,16 +87,16 @@
                                         <input type="hidden" asp-for="Comment.PostID" value="@Model.Post.PostID" />
                                         <!-- Thêm id duy nhất cho mỗi textarea -->
                                         <textarea asp-for="Comment.Content" class="form-control reply-textarea" id="replyEditor-@comment.CommentID" rows="3"></textarea>
-                                        <button type="submit" class="btn btn-secondary mt-2 submit-reply">Reply</button>
+                                        <button type="submit" class="btn-2 mt-2 submit-reply">Reply</button>
                                     </form>
                                 </div>
-                                <ul class="list-unstyled mt-2">
+                                <ul class="list-unstyled mt-2" style="margin-left: 50px;">
                                     <!-- Replies are displayed within the same <div> -->
                                     @foreach (var reply in Model.Comments.Where(r => r.ReplyID == comment.CommentID))
                                     {
                                         var replyUser = Model.Users.FirstOrDefault(u => u.User.Id == reply.UserID);
-                                        <li class="d-flex align-items-center mb-2">
-                                            <a href="#" class="user-picture me-2">
+                                        <li class="d-flex mb-4">
+                                            <a href="#" class="user-img me-2" style="display: flex;">
                                                 <img alt="@replyUser?.User.FullName's Picture" src="@replyUser?.User.AvatarImage" style="width: 40px; height: 40px; border-radius: 50%;">
                                             </a>
                                             <div>
@@ -124,7 +113,7 @@
                                                         <input type="hidden" asp-for="Comment.PostID" value="@Model.Post.PostID" />
                                                         <!-- Thêm id duy nhất cho mỗi textarea -->
                                                         <textarea asp-for="Comment.Content" class="form-control reply-textarea" id="replyEditor-@reply.CommentID" rows="3"></textarea>
-                                                        <button type="submit" class="btn btn-secondary mt-2 submit-reply">Reply</button>
+                                                        <button type="submit" class="btn-blue mt-2 submit-reply"><i class="fa-regular fa-paper-plane"></i></button>
                                                     </form>
                                                 </div>
                                             </div>
@@ -137,16 +126,14 @@
                 }
                 else
                 {
-                    <p class="text-muted mt-3">Chưa có bình luận nào.</p>
+                    <p class="text-muted mt-3">No comments yet.</p>
                 }
             </div>
             <div class="col-md-4 text-center">
                 <div class="user-info">
-                    <a href="@Url.Action("ViewUserProfile", "Home", new { userId = Model.Post.User.Id })" class="text-decoration-none">
-                        <img src="@Model.Post.User.AvatarImage" alt="Profile Picture" class="profile-pic mb-2" style="width: 150px; height: 150px; border-radius: 50%;">
-                        <p class="user-name">@Model.Post.User.FullName</p>
-                    </a>
-                    <p><i class="fas fa-trophy">@Model.Post.User.Point</i></p>
+                    <img src="@Model.Post.User.AvatarImage" alt="Profile Picture" class="profile-pic mb-2" style="width: 150px; height: 150px; border-radius: 50%;">
+                    <p style="font-weight:bold;font-size:20px;">@Model.Post.User.FullName</p>
+                    <p><i class="fas fa-trophy"></i> 125 [ 8 ]</p>
                     <div>
                         <a href="#"><i class="fab fa-github fa-lg me-2"></i></a>
                         <a href="#"><i class="fab fa-instagram fa-lg me-2"></i></a>

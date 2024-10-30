@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+
+@inject UserManager<IdentityUser> UserManager
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -36,29 +40,20 @@
                         <div class="search-container me-lg-3 mb-3 mb-lg-0">
                             <form asp-action="Search" asp-controller="Home" method="get">
                                 <input type="text" id="searchInput" name="keyword" class="form-control" placeholder="Want to search something?"
-                                       style="width: 500px; height: 55px; padding-left: 20px; padding-right: 110px;">
+                                       style="width: 400px; height: 55px; padding-left: 20px; padding-right: 110px;">
                                 <input type="submit" hidden />
                             </form>
-                                <button class="btn btn-explore dropdown-toggle" id="exploreBtn" type="button"
-                                        data-bs-toggle="dropdown">
-                                    Explore
-                                </button>
+                            <button class="btn btn-explore dropdown-toggle" id="exploreBtn" type="submit"
+                                    data-bs-toggle="dropdown">
+                                Explore
+                            </button>
                             <ul class="dropdown-menu mega-dropdown" aria-labelledby="exploreDropdown">
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <h6>Type</h6>
                                         <ul class="list-unstyled">
                                             <li><a class="dropdown-item" href="#">Posts</a></li>
-                                            <li><a class="dropdown-item" href="#">Questions</a></li>
-                                            <li><a class="dropdown-item" href="#">Courses</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h6>Category</h6>
-                                        <ul class="list-unstyled">
-                                            <li><a class="dropdown-item" href="#">Programming</a></li>
-                                            <li><a class="dropdown-item" href="#">Language</a></li>
-                                            <li><a class="dropdown-item" href="#">Mathematics</a></li>
+                                            <li><a class="dropdown-item" onclick="location.href='/Course/Index';">Courses</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -71,13 +66,13 @@
                                 <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" asp-controller="Home" asp-action="About">About</a>
-                            </li>
-                            <li class="nav-item">
                                 <a class="nav-link" asp-controller="Forum" asp-action="Index">Forum</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" asp-controller="Home" asp-action="ContactUs">Contact</a>
+                                <a class="nav-link" asp-controller="Home" asp-action="ViewUser">Find User</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Home" asp-action="MentorHall">Mentor Hall</a>
                             </li>
                         </ul>
 
@@ -105,49 +100,53 @@
                 <p>Top learning experiences that create more talent in the world.</p>
             </div>
             <div class="column">
-                <h4>All subjects</h4>
-                <ul>
-                    <li><a href="/courses/MAE101">MAE101</a></li>
-                    <li><a href="/courses/PRF192">PRF192</a></li>
-                    <li><a href="/courses/PRO192">PRO192</a></li>
-                    <li><a href="/courses/PRJ301">PRJ301</a></li>
-                    <li><a href="/courses/WED201c">WED201c</a></li>
+                <h4>Contact Us</h4>
+                <ul class="footer-icons">
+                    <li>
+                        <i class="fas fa-map-marker-alt"></i> Ngu Hanh Son, Da Nang
+                    </li>
+                    <li>
+                        <i class="fas fa-phone"></i> +84 886823142
+                    </li>
+                    <li>
+                        <i class="fas fa-envelope"></i> funnycode@gmail.com
+                    </li>
+                </ul>
+                <ul class="list-unstyled d-flex justify-content-center">
+                    <li class="me-3">
+                        <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+                    </li>
+                    <li class="me-3">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    </li>
+                    <li class="me-3">
+                        <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                    </li>
                 </ul>
             </div>
             <div class="column">
-                <h4>Team</h4>
+                <h4>Useful Links</h4>
                 <ul>
-                    <li><a asp-controller="Home" asp-action="About">About us</a></li>
-                    <li><a asp-controller="Home" asp-action="ContactUs">Contact us</a></li>
-                    <li><a href="/feedback">Feedbacks</a></li>
+                    <li><a class="footer-link" asp-controller="Forum" asp-action="Index">Forum</a></li>
+                    <li><a class="footer-link" asp-controller="Home" asp-action="ViewUser">Find User</a></li>
+                    <li><a class="footer-link" asp-controller="Home" asp-action="Search">Search</a></li>
+                    <li><a class="footer-link" asp-controller="Home" asp-action="MentorHall">Mentor Hall</a></li>
                 </ul>
             </div>
             <div class="column">
-                <h4>Social</h4>
+                <h4>Account</h4>
                 <ul>
-                    <li><a asp-controller="Forum" asp-action="Index">Our Forum <span class="new-badge">New</span></a></li>
-                    <li><a href="https://www.linkedin.com/" target="_blank">LinkedIn</a></li>
-                    <li><a href="https://github.com/" target="_blank">GitHub</a></li>
-                    <li><a href="https://twitter.com/" target="_blank">Twitter</a></li>
-                </ul>
-            </div>
-            <div class="column">
-                <h4>Settings</h4>
-                <ul>
-                    <li><a asp-controller="Profile" asp-action="Index">Profile</a></li>
-                    <li><a href="/notifications">Notification</a></li>
+                    <li><a href="@Url.Action("ViewUserProfile", "Home", new { userId = UserManager.GetUserId(User) })">My Profile</a></li>
+                    <li><a asp-controller="Profile" asp-action="Index">Settings</a></li>
+                    <li><a asp-area="Identity" asp-page="/Account/Manage/Index">Authenticator</a></li>
+                    <li><a asp-controller="Payment" asp-action="Pay">Deposit</a></li>
                 </ul>
             </div>
         </div>
         <div class="footer-bottom">
             <div class="footer-bottom-content">
+                <img src="/img/cutecat1.gif" style="width:80px;" alt="Send Heart" />
                 <p>© 2024 FUNNY CODE. All rights reserved.</p>
-                <div class="social-icons">
-                    <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
-                    <a href="https://www.linkedin.com/" target="_blank"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
-                    <a href="https://github.com/" target="_blank"><i class="fab fa-github"></i></a>
-                </div>
             </div>
             <button class="back-to-top"><i class="fas fa-chevron-up"></i></button>
         </div>
@@ -165,6 +164,23 @@
                 if (searchInput.value === '') {
                     exploreBtn.textContent = 'Explore';
                 }
+            });
+
+            const backToTopButton = document.querySelector('.back-to-top');
+
+            window.addEventListener('scroll', function () {
+                if (window.scrollY > 300) {
+                    backToTopButton.style.display = 'block';
+                } else {
+                    backToTopButton.style.display = 'none';
+                }
+            });
+
+            backToTopButton.addEventListener('click', function () {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
             });
         });
     </script>
