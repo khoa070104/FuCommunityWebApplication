@@ -114,6 +114,13 @@ namespace FUCommunityWeb.Areas.Identity.Pages.Account
                 return RedirectToPage("./ResetPasswordConfirmation");
             }
 
+            // Kiểm tra nếu token hết hạn
+            if (result.Errors.Any(e => e.Code == "InvalidToken"))
+            {
+                ModelState.AddModelError(string.Empty, "Password reset link has expired. Please request a new one.");
+                return Page();
+            }
+
             foreach (var error in result.Errors)
             {
                 ModelState.AddModelError(string.Empty, error.Description);
