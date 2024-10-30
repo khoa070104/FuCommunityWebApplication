@@ -126,7 +126,7 @@
             </div>
             <div class="column">
                 <h4>Useful Links</h4>
-                <ul> 
+                <ul>
                     <li><a class="footer-link" asp-controller="Forum" asp-action="Index">Forum</a></li>
                     <li><a class="footer-link" asp-controller="Home" asp-action="ViewUser">Find User</a></li>
                     <li><a class="footer-link" asp-controller="Home" asp-action="Search">Search</a></li>
@@ -166,23 +166,23 @@
                 }
             });
 
-                const backToTopButton = document.querySelector('.back-to-top');
+            const backToTopButton = document.querySelector('.back-to-top');
 
-                        window.addEventListener('scroll', function () {
-                            if (window.scrollY > 300) {
-                                backToTopButton.style.display = 'block';
-                            } else {
-                                backToTopButton.style.display = 'none';
-                            }
-                        });
+            window.addEventListener('scroll', function () {
+                if (window.scrollY > 300) {
+                    backToTopButton.style.display = 'block';
+                } else {
+                    backToTopButton.style.display = 'none';
+                }
+            });
 
-                        backToTopButton.addEventListener('click', function () {
-                            window.scrollTo({
-                                top: 0,
-                                behavior: 'smooth'
-                            });
-                        });
+            backToTopButton.addEventListener('click', function () {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
                 });
+            });
+        });
     </script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
