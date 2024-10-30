@@ -12,6 +12,7 @@ namespace FuCommunityWebModels.ViewModels
     {
         public Course Course { get; set; } // Course information
         public List<int> EnrolledCourses { get; set; } // List of enrolled course IDs
+        public decimal UserPoints { get; set; }
 
         // Lesson Management
         public List<Lesson> Lessons { get; set; } = new List<Lesson>();

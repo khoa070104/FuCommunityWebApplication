@@ -47,7 +47,7 @@
                 <li class="nav-item">
                     <a class="nav-link active" href="#">Curriculum</a>
                 </li>
-                
+
                 @if (User.Identity.IsAuthenticated && Model.Course.UserID == User.FindFirstValue(ClaimTypes.NameIdentifier))
                 {
                     <li class="nav-item ms-auto">
@@ -96,18 +96,23 @@
                 {
                     <span class="text-success">Owner</span>
                 }
-
                 else if (!Model.EnrolledCourses.Contains(@Model.Course.CourseID)) // Check if the user is not enrolled
                 {
-                    @if (User.Identity.IsAuthenticated)
+                    @if (!User.Identity.IsAuthenticated)
                     {
-                        <button class="btn buy-now" data-course-id="@Model.Course.CourseID" data-bs-toggle="modal" data-bs-target="#buyNowModal">
+                        <button class="btn" data-course-id="@Model.Course.CourseID" data-bs-toggle="modal" data-bs-target="#loginPromptModal">
+                            Buy Now
+                        </button>
+                    }
+                    else if (@Model.UserPoints < @Model.Course.Price)
+                    {
+                        <button class="btn" data-course-id="@Model.Course.CourseID" data-bs-toggle="modal" data-bs-target="#notEnoughPointsModal">
                             Buy Now
                         </button>
                     }
                     else
                     {
-                        <button class="btn buy-now" data-course-id="@Model.Course.CourseID" data-bs-toggle="modal" data-bs-target="#loginPromptModal">
+                        <button class="btn buy-now" data-course-id="@Model.Course.CourseID" data-return-url="@Url.Action("Detail", "Course", new { id = @Model.Course.CourseID })" data-bs-toggle="modal" data-bs-target="#buyNowModal">
                             Buy Now
                         </button>
                     }
@@ -116,7 +121,7 @@
                 {
                     <span class="text-success">Enrolled</span> <!-- Indicate the user is enrolled -->
                 }
-            </div>            
+            </div>
         </div>
     </div>
 </div>
@@ -138,7 +143,7 @@
                     @Html.AntiForgeryToken()
                     <input type="hidden" name="courseId" id="enrollCourseId" />
                     <input type="hidden" name="returnUrl" id="returnUrl" />
-                    <button type="submit" class="btn" id="confirmEnrollBtn">Confirm</button>
+                    <button type="submit" class="btn btn-primary" id="confirmEnrollBtn">Confirm</button>
                 </form>
             </div>
         </div>
@@ -157,8 +162,27 @@
                 Please login to enroll in this course.
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn-cancel" data-bs-dismiss="modal">Cancel</button>
-                <a href="@Url.Action("SignIn", "Home")" class="btn">Login</a>
+                <button type="button" class="btn-cancel btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <a href="/Identity/Account/Login" class="btn btn-primary">Login</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for Not Enough Points -->
+<div class="modal fade" id="notEnoughPointsModal" tabindex="-1" aria-labelledby="notEnoughPointsModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Insufficient Points</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                You do not have enough points to purchase this course.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-cancel btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <a href="/payment/pay" class="btn btn-primary">Payment</a>
             </div>
         </div>
     </div>
@@ -208,8 +232,8 @@
                     <!-- Removed Lesson Image File Upload -->
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn-cancel-2" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn-blue">Add Lesson</button>
+                    <button type="button" class="btn-cancel-2 btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn-blue btn btn-primary">Add Lesson</button>
                 </div>
             </form>
         </div>
@@ -260,15 +284,13 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn-cancel-2" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn-blue">Save Changes</button>
+                    <button type="button" class="btn-cancel-2 btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn-blue btn btn-primary">Save Changes</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
-
-
 
 <!-- Delete Lesson Modal -->
 <div class="modal fade" id="deleteLessonModal" tabindex="-1" aria-labelledby="deleteLessonModalLabel" aria-hidden="true">
@@ -285,8 +307,8 @@
                 </div>
                 <div class="modal-footer">
                     <input type="hidden" name="lessonId" id="deleteLessonId" />
-                    <button type="button" class="btn-cancel-2" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn-del">Delete</button>
+                    <button type="button" class="btn-cancel-2 btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn-del btn btn-danger">Delete</button>
                 </div>
             </form>
         </div>
@@ -296,41 +318,18 @@
 <!-- Scripts for Lesson Modals -->
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        // Buy Now Modal Handling
-        const buyNowButtons = document.querySelectorAll(".buy-now");
-
-        buyNowButtons.forEach(function (button) {
-            button.addEventListener("click", function () {
-                const courseId = this.getAttribute("data-course-id");
-                const coursePriceElement = this.closest('.course-card').querySelector('.new-price');
-                const coursePrice = coursePriceElement ? coursePriceElement.textContent : '';
-                const currentUrl = window.location.pathname + window.location.search;
-
-                // Kiểm tra xem nút này mở modal nào
-                const targetModal = this.getAttribute("data-bs-target");
-
-                if (targetModal === "#buyNowModal") {
-                    // Đặt giá trị cho form enroll
-                    document.getElementById("enrollCourseId").value = courseId;
-                    document.getElementById("coursePrice").textContent = coursePrice;
-                    document.getElementById("returnUrl").value = currentUrl; // Sử dụng URL tương đối
-                }
-                // Nếu modal là loginPromptModal thì không cần đặt giá trị
-            });
-        });
-        // Edit Lesson Modal Handling
+        // Xử lý các nút "Edit Lesson"
         const editLessonButtons = document.querySelectorAll(".edit-lesson-btn");
 
         editLessonButtons.forEach(function (button) {
             button.addEventListener("click", function () {
                 const lessonId = this.getAttribute("data-lesson-id");
-                // Gửi yêu cầu AJAX để lấy thông tin bài học nếu cần, hoặc lấy từ DOM
                 const lessonItem = this.closest('.lesson-item');
                 const title = lessonItem.querySelector('.lesson-info strong').textContent.trim();
                 const content = lessonItem.querySelector('.lesson-content').innerHTML.trim();
                 const status = "Active"; // Hoặc lấy trạng thái thực tế nếu có
 
-                // Populate the edit modal with lesson data
+                // Điền thông tin vào modal chỉnh sửa
                 const editModal = document.getElementById("editLessonModal");
                 editModal.querySelector("#editLessonId").value = lessonId;
                 editModal.querySelector("#editLessonVM_LessonID").value = lessonId;
@@ -345,7 +344,7 @@
             });
         });
 
-        // Delete Lesson Modal Handling
+        // Xử lý các nút "Delete Lesson"
         const deleteLessonButtons = document.querySelectorAll(".delete-lesson-btn");
 
         deleteLessonButtons.forEach(function (button) {
@@ -362,6 +361,31 @@
                 const bootstrapModal = new bootstrap.Modal(deleteModal);
                 bootstrapModal.show();
             });
+        });
+    });
+</script>
+
+<!-- Script để đặt giá trị cho các trường ẩn trong BuyNowModal -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var buyNowModal = document.getElementById('buyNowModal');
+        buyNowModal.addEventListener('show.bs.modal', function (event) {
+            var button = event.relatedTarget; // Nút "Buy Now" đã kích hoạt modal
+            var courseId = button.getAttribute('data-course-id');
+            var returnUrl = button.getAttribute('data-return-url') || window.location.href;
+
+            var enrollCourseId = buyNowModal.querySelector('#enrollCourseId');
+            var returnUrlInput = buyNowModal.querySelector('#returnUrl');
+            var coursePriceElement = buyNowModal.querySelector('#coursePrice');
+
+            enrollCourseId.value = courseId;
+            returnUrlInput.value = returnUrl;
+
+            // Lấy giá khóa học từ phần tử .new-price trong card khóa học
+            var courseCard = button.closest('.course-card');
+            var newPriceElement = courseCard.querySelector('.new-price');
+            var coursePrice = newPriceElement ? newPriceElement.textContent : '0';
+            coursePriceElement.textContent = coursePrice;
         });
     });
 </script>

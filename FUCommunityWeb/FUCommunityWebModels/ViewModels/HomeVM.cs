@@ -12,5 +12,6 @@ namespace FuCommunityWebModels.ViewModels
         public List<Course> MostPurchasedCourses { get; set; }
         public List<Course> HighestQualityCourse { get; set; }
         public List<int> EnrolledCourses { get; set; }
+        public decimal UserPoints { get; set; }
     }
 }
