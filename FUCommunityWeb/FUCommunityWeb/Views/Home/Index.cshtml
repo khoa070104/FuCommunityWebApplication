@@ -25,7 +25,7 @@
 
         <!-- Most Purchased Courses Section -->
         <div class="course-section">
-            <h2 class="title">The most <span class="highlight">purchased</span> courses</h2>
+            <h2 class="title">The most <span class="highlight">enrolled</span> courses</h2>
             <p>Let's join our famous class, the knowledge provided will definitely be useful for you.</p>
             <div class="courses">
                 @foreach (var course in Model.MostPurchasedCourses)
@@ -258,7 +258,7 @@
                             @Html.AntiForgeryToken() <!-- Anti-Forgery Token Added -->
                             <input type="hidden" name="courseId" id="formEnrollCourseId" />
                             <input type="hidden" name="returnUrl" id="returnUrl" />
-                            <button type="submit" class="btn" id="confirmEnrollBtn">Confirm</button>
+                            <button type="submit" class="btn-blue" id="confirmEnrollBtn">Confirm</button>
                         </form>
                     </div>
                 </div>
@@ -277,8 +277,8 @@
                         Please login to register for this course.
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        <a href="@Url.Action("SignIn", "Home")" class="btn btn-primary">Sign In</a>
+                        <button type="button" class="btn-cancel-2" data-bs-dismiss="modal">Cancel</button>
+                        <a href="@Url.Action("SignIn", "Home")" class="btn-blue" style="text-decoration:none;">Sign In</a>
                     </div>
                 </div>
             </div>
