@@ -66,24 +66,30 @@
                                 {
                                     <span class="text-success">Owner</span>
                                 }
-                                else if (!Model.EnrolledCourses.Contains(course.CourseID))
+                                else if (Model.EnrolledCourses.Contains(course.CourseID))
                                 {
-                                    @if (User.Identity.IsAuthenticated)
+                                    <span class="text-success">Enrolled</span>
+                                }
+                                else
+                                {
+                                    @if (!User.Identity.IsAuthenticated)
                                     {
-                                        <button class="btn buy-now" data-course-id="@course.CourseID" data-bs-toggle="modal" data-bs-target="#buyNowModal">
+                                        <button class="btn buy-now" data-course-id="@course.CourseID">
+                                            Buy Now
+                                        </button>
+                                    }
+                                    else if (Model.UserPoints < course.Price)
+                                    {
+                                        <button class="btn buy-now" data-course-id="@course.CourseID">
                                             Buy Now
                                         </button>
                                     }
                                     else
                                     {
-                                        <button class="btn buy-now" data-course-id="@course.CourseID" data-bs-toggle="modal" data-bs-target="#loginPromptModal">
+                                        <button class="btn buy-now" data-course-id="@course.CourseID">
                                             Buy Now
                                         </button>
                                     }
-                                }
-                                else
-                                {
-                                    <span class="text-success">Enrolled</span>
                                 }
                             </div>
 
@@ -136,24 +142,30 @@
                                 {
                                     <span class="text-success">Owner</span>
                                 }
-                                else if (!Model.EnrolledCourses.Contains(course.CourseID))
+                                else if (Model.EnrolledCourses.Contains(course.CourseID))
                                 {
-                                    @if (User.Identity.IsAuthenticated)
+                                    <span class="text-success">Enrolled</span>
+                                }
+                                else
+                                {
+                                    @if (!User.Identity.IsAuthenticated)
                                     {
-                                        <button class="btn buy-now" data-course-id="@course.CourseID" data-bs-toggle="modal" data-bs-target="#buyNowModal">
+                                        <button class="btn buy-now" data-course-id="@course.CourseID">
+                                            Buy Now
+                                        </button>
+                                    }
+                                    else if (Model.UserPoints < course.Price)
+                                    {
+                                        <button class="btn buy-now" data-course-id="@course.CourseID">
                                             Buy Now
                                         </button>
                                     }
                                     else
                                     {
-                                        <button class="btn buy-now" data-course-id="@course.CourseID" data-bs-toggle="modal" data-bs-target="#loginPromptModal">
+                                        <button class="btn buy-now" data-course-id="@course.CourseID">
                                             Buy Now
                                         </button>
                                     }
-                                }
-                                else
-                                {
-                                    <span class="text-success">Enrolled</span>
                                 }
                             </div>
 
@@ -278,7 +290,26 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        <a href="@Url.Action("SignIn", "Home")" class="btn btn-primary">Sign In</a>
+                        <a href="/Identity/Account/Login" class="btn btn-primary">Sign In</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal for not enough points -->
+        <div class="modal fade" id="notEnoughPointsModal" tabindex="-1" aria-labelledby="notEnoughPointsModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Insufficient Points</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        You do not have enough points to purchase this course.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn-cancel" data-bs-dismiss="modal">Cancel</button>
+                        <a href="/payment/pay" class="btn">Payment</a>
                     </div>
                 </div>
             </div>
@@ -292,19 +323,29 @@
             const buyNowButtons = document.querySelectorAll(".buy-now");
 
             buyNowButtons.forEach(function (button) {
-                button.addEventListener("click", function () {
+                button.addEventListener("click", function (event) {
                     const courseId = this.getAttribute("data-course-id");
-                    const coursePriceElement = this.closest('.course-card').querySelector('.new-price');
-                    const coursePrice = coursePriceElement ? coursePriceElement.textContent : '';
-                    const currentUrl = window.location.href;
+                    const courseCard = this.closest('.course-card');
+                    const coursePriceElement = courseCard.querySelector('.new-price');
+                    const coursePrice = parseInt(coursePriceElement ? coursePriceElement.textContent : '0', 10);
+                    const userPoints = parseInt('@Model.UserPoints', 10);
+                    const isAuthenticated = '@User.Identity.IsAuthenticated' === 'True';
 
-                    const targetModal = this.getAttribute("data-bs-target");
-
-                    if (targetModal === "#buyNowModal") {
+                    if (!isAuthenticated) {
+                        const loginPromptModal = new bootstrap.Modal(document.getElementById('loginPromptModal'));
+                        loginPromptModal.show();
+                    } else if (userPoints < coursePrice) {
+                        const notEnoughModal = new bootstrap.Modal(document.getElementById('notEnoughPointsModal'));
+                        notEnoughModal.show();
+                    } else {
+                        const buyNowModal = new bootstrap.Modal(document.getElementById('buyNowModal'));
                         document.getElementById("formEnrollCourseId").value = courseId;
                         document.getElementById("coursePrice").textContent = coursePrice;
-                        document.getElementById("returnUrl").value = currentUrl;
+                        document.getElementById("returnUrl").value = window.location.pathname;
+                        buyNowModal.show();
                     }
+
+                    event.preventDefault();
                 });
             });
         });

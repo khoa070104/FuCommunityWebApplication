@@ -69,7 +69,11 @@ namespace FUCommunityWeb.Controllers
             var isStudent = User.IsInRole(SD.Role_User_Student);
 
             var allCourses = await _courseService.GetFilteredCoursesAsync(semester, category, subjectCode, rate, minPrice);
-            var activeCourses = allCourses.Where(c => c.Status == "active").ToList(); 
+            var activeCourses = allCourses.Where(c => c.Status == "active").ToList();
+
+            var user = await _courseService.GetUserByIdAsync(userId);
+            var userPoints = user?.Point ?? 0;
+            var enrolledCourses = await _courseService.GetEnrolledCoursesAsync(userId);
 
             var viewModel = new CourseVM
             {
@@ -82,7 +86,9 @@ namespace FUCommunityWeb.Controllers
                 SelectedMinPrice = minPrice,
                 Courses = activeCourses,
                 IsMentor = isMentor,
-                IsStudent = isStudent
+                IsStudent = isStudent,
+                UserPoints = userPoints,
+                EnrolledCourses = enrolledCourses
             };
 
             return View(viewModel);
@@ -243,7 +249,6 @@ namespace FUCommunityWeb.Controllers
 
             if (course == null)
             {
-                TempData["Error"] = "Course not found.";
                 return RedirectToAction("Index");
             }
 
@@ -251,7 +256,6 @@ namespace FUCommunityWeb.Controllers
 
             if (course.UserID != currentUserId)
             {
-                TempData["Error"] = "You are not authorized to delete this course.";
                 return Forbid();
             }
 
@@ -279,10 +283,14 @@ namespace FUCommunityWeb.Controllers
                 return NotFound();
             }
 
+            var user = await _courseService.GetUserByIdAsync(userId);
+            var userPoints = user?.Point ?? 0;
+
             var viewModel = new CourseDetailVM
             {
                 Course = courseDetail,
                 EnrolledCourses = enrolledCourses,
+                UserPoints = userPoints,
                 Lessons = courseDetail.Lessons?.OrderBy(l => l.LessonID).ToList() ?? new List<Lesson>(),
                 CreateLessonVM = new CreateLessonVM
                 {
@@ -478,13 +486,11 @@ namespace FUCommunityWeb.Controllers
 
             if (lesson == null)
             {
-                TempData["Error"] = "Lesson not found.";
                 return RedirectToAction("Detail", new { id = lesson.CourseID });
             }
 
             if (lesson.Course.UserID != userId)
             {
-                TempData["Error"] = "You are not authorized to delete this lesson.";
                 return Forbid();
             }
 
@@ -492,13 +498,10 @@ namespace FUCommunityWeb.Controllers
             {
                 await _courseService.DeleteLessonAsync(lesson);
 
-                _logger.LogInformation("Lesson deleted successfully: {LessonTitle}", lesson.Title);
-                TempData["Success"] = "Lesson deleted successfully.";
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error deleting lesson");
-                TempData["Error"] = "An error occurred while deleting the lesson. Please try again.";
             }
 
             return RedirectToAction("Detail", new { id = lesson.CourseID });
@@ -514,7 +517,6 @@ namespace FUCommunityWeb.Controllers
 
             if (course == null)
             {
-                TempData["Error"] = "Course not found.";
                 return RedirectToAction("Index");
             }
 
@@ -522,20 +524,17 @@ namespace FUCommunityWeb.Controllers
 
             if (alreadyEnrolled)
             {
-                TempData["Error"] = "You are already enrolled in this course.";
                 return RedirectToAction("Index");
             }
 
             var user = await _courseService.GetUserByIdAsync(userId);
             if (user == null)
             {
-                TempData["Error"] = "User not found.";
                 return RedirectToAction("Index");
             }
 
             if (user.Point < course.Price)
             {
-                TempData["Error"] = "You do not have enough points to purchase this course.";
                 if (Url.IsLocalUrl(returnUrl))
                 {
                     return Redirect(returnUrl);
@@ -559,8 +558,6 @@ namespace FUCommunityWeb.Controllers
             await _courseService.EnrollUserInCourseAsync(enrollment);
             await _courseService.UpdateUserAsync(user);
 
-            TempData["Success"] = "Enrollment successful!";
-
             if (Url.IsLocalUrl(returnUrl))
             {
                 return Redirect(returnUrl);
@@ -568,6 +565,61 @@ namespace FUCommunityWeb.Controllers
             else
             {
                 return RedirectToAction("Index");
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> BuyCourseDetail(int courseId, string returnUrl)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var course = await _courseService.GetCourseByIdAsync(courseId);
+
+            if (course == null)
+            {
+                return RedirectToAction("Detail", new { id = courseId });
+            }
+
+            var alreadyEnrolled = await _courseService.IsUserEnrolledInCourseAsync(userId, courseId);
+
+            if (alreadyEnrolled)
+            {
+                return RedirectToAction("Detail", new { id = courseId });
+            }
+
+            var user = await _courseService.GetUserByIdAsync(userId);
+            if (user == null)
+            {
+                return RedirectToAction("Detail", new { id = courseId });
+            }
+
+            if (user.Point < course.Price)
+            {
+                return RedirectToAction("Detail", new { id = courseId });
+            }
+
+            user.Point -= course.Price.Value;
+
+            var enrollment = new Enrollment
+            {
+                UserID = userId,
+                CourseID = courseId,
+                EnrollmentDate = DateTime.Now,
+                Status = "Active"
+            };
+
+            await _courseService.EnrollUserInCourseAsync(enrollment);
+            await _courseService.UpdateUserAsync(user);
+
+
+            if (Url.IsLocalUrl(returnUrl))
+            {
+                return Redirect(returnUrl);
+            }
+            else
+            {
+                return RedirectToAction("Detail", new { id = courseId });
             }
         }
     }

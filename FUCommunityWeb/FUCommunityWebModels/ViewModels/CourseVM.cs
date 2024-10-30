@@ -24,5 +24,6 @@ namespace FuCommunityWebModels.ViewModels
         public int TotalLessons { get; set; }
         public bool IsMentor { get; set; }
         public bool IsStudent { get; set; }
+        public decimal UserPoints { get; set; }
     }
 }
