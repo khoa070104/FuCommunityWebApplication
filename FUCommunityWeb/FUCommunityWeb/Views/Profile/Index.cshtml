@@ -98,7 +98,7 @@
                                     <textarea asp-for="User.Description" class="form-control" id="description" readonly></textarea>
                                 </td>
                             </tr>
-                            
+
                             <tr>
                                 <td colspan="2" class="text-center">
                                     <a href="#" class="btn-2" data-bs-toggle="modal" data-bs-target="#editProfileModal"
@@ -211,7 +211,7 @@
         $(document).ready(function () {
             $("#editProfileForm").on("submit", function (e) {
                 e.preventDefault();
-                
+
                 $.ajax({
                     url: '@Url.Action("EditProfile", "Profile")',
                     type: 'POST',
