@@ -97,7 +97,7 @@ builder.Services.Configure<IdentityOptions>(options =>
 
 builder.Services.Configure<DataProtectionTokenProviderOptions>(options =>
 {
-    options.TokenLifespan = TimeSpan.FromMinutes(1); 
+    options.TokenLifespan = TimeSpan.FromMinutes(15); 
 });
 
 var app = builder.Build();
