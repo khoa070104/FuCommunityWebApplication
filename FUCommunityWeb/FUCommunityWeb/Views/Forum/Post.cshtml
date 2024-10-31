@@ -253,10 +253,18 @@
             const decodedContent = decodeHTML(post.content);
             $("#editor2").val(decodedContent);
 
+            // Xóa thẻ div không mong muốn trước khi khởi tạo CKEditor
+            function cleanUpContent(content) {
+                return content.replace(/<div[^>]*id=["']mttContainer["'][^>]*>.*?<\/div>/g, '');
+            }
+
+            // Làm sạch nội dung và khởi tạo CKEditor
+            const cleanedContent = cleanUpContent(decodedContent);
             if (CKEDITOR.instances['editor2']) {
                 CKEDITOR.instances['editor2'].destroy(true);
             }
             CKEDITOR.replace('editor2');
+            CKEDITOR.instances['editor2'].setData(cleanedContent);
 
             $("input[name='CategoryVM.CategoryID']").val(categoryID);
             $("input[name='CategoryVM.CategoryName']").val(categoryName);
@@ -265,8 +273,6 @@
             $("#editModal").modal("show");
         });
     </script>
-
-
     <script>
         $(document).on("click", ".fa-trash", function () {
             const urlParams = new URLSearchParams(window.location.search);
@@ -414,30 +420,30 @@
         });
     </script>
     <script>
-        $(document).ready(function() {
-            $('#createPostForm').on('submit', function(e) {
+        $(document).ready(function () {
+            $('#createPostForm').on('submit', function (e) {
                 e.preventDefault();
-                
+
                 // Lấy các giá trị
                 var title = $('#postTitle').val().trim();
                 var tag = $('#postTag').val().trim();
                 var content = CKEDITOR.instances['editor'].getData().trim();
-                
+
                 // Kiểm tra từng trường
                 var errors = [];
-                
+
                 if (!title) {
                     errors.push('Title không được để trống');
                 }
-                
+
                 if (!tag) {
                     errors.push('Tag không được để trống');
                 }
-                
+
                 if (!content) {
                     errors.push('Content không được để trống');
                 }
-                
+
                 // Nếu có lỗi
                 if (errors.length > 0) {
                     Swal.fire({
@@ -448,8 +454,12 @@
                     });
                     return false;
                 }
-                
-                // Nếu không có lỗi thì submit form
+
+                // Nếu không có lỗi thì làm sạch nội dung
+                var cleanedContent = cleanUpContent(content);
+                CKEDITOR.instances['editor'].setData(cleanedContent);
+
+                // Submit form
                 this.submit();
             });
 
@@ -472,8 +482,15 @@
                 // Reset form validation
                 $('#createPostForm').removeClass('was-validated');
             });
+
+            // Gọi hàm xóa thẻ div không mong muốn
+            function cleanUpContent(content) {
+                // Sử dụng regex để xóa tất cả các thẻ div với id="mttContainer"
+                return content.replace(/<div[^>]*id=["']mttContainer["'][^>]*>.*?<\/div>/g, '');
+            }
         });
     </script>
+
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const createPostModal = document.getElementById('createPostModal');

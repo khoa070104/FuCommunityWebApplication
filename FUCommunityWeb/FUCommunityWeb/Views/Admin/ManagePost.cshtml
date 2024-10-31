@@ -57,9 +57,9 @@
                                 @foreach (var post in Model.Posts)
                                 {
                                     <tr>
-                                        <td>@post.Title</td>
+                                        <td>@Html.Raw(System.Net.WebUtility.HtmlDecode(post.Title))</td>
                                         <td>@post.CreatedDate?.ToString("yyyy-MM-dd")</td>
-                                        <td>@post.Tag</td>
+                                        <td>@Html.Raw(System.Net.WebUtility.HtmlDecode(post.Tag))</td>
                                         <td>@(post.Type == 1 ? "Blog" : "Question")</td>
                                         <td>@post.Status</td>
                                         <td>

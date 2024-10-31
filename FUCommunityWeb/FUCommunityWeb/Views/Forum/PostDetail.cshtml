@@ -32,7 +32,7 @@
                     </div>
                 </div>
                 <div class="suggestions mt-3">
-                    <form asp-action="Comment" asp-controller="Forum">
+                    <form asp-action="Comment" asp-controller="Forum" method="post" id="commentForm">
                         <label for="commentContent" class="form-label">Share your idea:</label>
                         <textarea asp-for="@Model.Comment.Content" class="form-control" id="editorComment" rows="3" placeholder="" required></textarea>
                         <input type="hidden" asp-for="@Model.Comment.PostID" value="@Model.Post.PostID" />
@@ -64,19 +64,27 @@
                                         </button>
                                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="settingsDropdown">
                                             <li>
-                                                <a class="dropdown-item edit-comment" href="#" data-bs-toggle="modal" data-bs-target="#editModal" data-comment-id="@comment.CommentID" data-post-id="@Model.Post.PostID" data-comment-content="@Html.Raw(System.Net.WebUtility.HtmlDecode(comment.Content))">
+                                                <a class="dropdown-item edit-comment" href="#"
+                                                   data-bs-toggle="modal"
+                                                   data-bs-target="#editModal"
+                                                   data-comment-id="@comment.CommentID"
+                                                   data-post-id="@Model.Post.PostID"
+                                                   data-comment-content="@Html.Raw(System.Net.WebUtility.HtmlDecode(comment.Content))">
                                                     Edit
                                                 </a>
                                             </li>
                                             <li>
-                                                <a class="dropdown-item delete-comment" href="#" data-bs-toggle="modal" data-bs-target="#deleteModal" data-comment-id="@comment.CommentID">
+                                                <a class="dropdown-item delete-comment" href="#" 
+                                                    data-bs-toggle="modal" 
+                                                    data-bs-target="#deleteModal" 
+                                                    data-comment-id="@comment.CommentID">
                                                     Delete
                                                 </a>
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
-                                <p>@Html.Raw(System.Net.WebUtility.HtmlDecode(comment.Content))</p>
+                                <p class="card">@Html.Raw(System.Net.WebUtility.HtmlDecode(comment.Content))</p>
                                 <div class="reply-btn">
                                     <a href="#" class="text-decoration-none ">Reply</a>
                                 </div>
@@ -91,35 +99,60 @@
                                     </form>
                                 </div>
                                 <ul class="list-unstyled mt-2" style="margin-left: 50px;">
-                                    <!-- Replies are displayed within the same <div> -->
                                     @foreach (var reply in Model.Comments.Where(r => r.ReplyID == comment.CommentID))
                                     {
                                         var replyUser = Model.Users.FirstOrDefault(u => u.User.Id == reply.UserID);
-                                        <li class="d-flex mb-4">
+                                        <li class="d-flex mb-4 position-relative align-items-start">
                                             <a href="#" class="user-img me-2" style="display: flex;">
-                                                <img alt="@replyUser?.User.FullName's Picture" src="@replyUser?.User.AvatarImage" style="width: 40px; height: 40px; border-radius: 50%;">
+                                                <img alt="@replyUser?.User.FullName's Picture" src="@replyUser?.User.AvatarImage" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;">
                                             </a>
-                                            <div>
-                                                <strong>@replyUser?.User.FullName</strong>
-                                                <p class="mb-0 text-muted" style="font-size: 0.8rem;">
-                                                    @Html.Raw(System.Net.WebUtility.HtmlDecode(reply.CreatedDate.ToString("g")))
-                                                </p>
-                                                <p>@Html.Raw(System.Net.WebUtility.HtmlDecode(reply.Content))</p>
-                                                <a href="#" class="text-decoration-none reply-btn">Reply</a>
-                                                <div class="reply-area mt-2" style="display: none;">
-                                                    <p>Write your reply</p>
-                                                    <form asp-action="Comment" asp-controller="Forum" method="post" enctype="multipart/form-data">
+                                            <div class="flex-grow-1">
+                                                <strong class="d-block">@replyUser?.User.FullName</strong>
+                                                <p class="mb-0 text-muted small" style="font-size: 0.8rem;">@Html.Raw(System.Net.WebUtility.HtmlDecode(reply.CreatedDate.ToString("g")))</p>
+                                                <p class="mt-1">@Html.Raw(System.Net.WebUtility.HtmlDecode(reply.Content))</p>
+                                                <a href="#" class="text-decoration-none reply-btn" data-reply-id="@reply.CommentID">Reply</a>
+                                                <!-- Đảm bảo khu vực trả lời ban đầu bị ẩn -->
+                                                <div class="reply-area" style="display: none;">
+                                                    <form asp-action="Comment" asp-controller="Forum" method="post" enctype="multipart/form-data" id="replyForm">
                                                         <input type="hidden" asp-for="Comment.ReplyID" value="@comment.CommentID" />
                                                         <input type="hidden" asp-for="Comment.PostID" value="@Model.Post.PostID" />
-                                                        <!-- Thêm id duy nhất cho mỗi textarea -->
                                                         <textarea asp-for="Comment.Content" class="form-control reply-textarea" id="replyEditor-@reply.CommentID" rows="3"></textarea>
-                                                        <button type="submit" class="btn-blue mt-2 submit-reply"><i class="fa-regular fa-paper-plane"></i></button>
+                                                        <button type="submit" class="btn btn-primary mt-2 submit-reply">
+                                                            <i class="fa-regular fa-paper-plane"></i> Submit
+                                                        </button>
                                                     </form>
                                                 </div>
+                                            </div>
+
+                                            <div class="dropdown ms-auto">
+                                                <button class="btn-link text-muted p-0 settings-dropdown" data-bs-toggle="dropdown" aria-expanded="false" style="background: none; border: none; box-shadow: none;">
+                                                    <i class="fas fa-ellipsis-v"></i>
+                                                </button>
+                                                <ul class="dropdown-menu dropdown-menu-end">
+                                                    <li>
+                                                        <a class="dropdown-item edit-comment" href="#"
+                                                           data-bs-toggle="modal"
+                                                           data-bs-target="#editModal"
+                                                           data-comment-id="@reply.CommentID"
+                                                           data-post-id="@Model.Post.PostID"
+                                                           data-comment-content="@Html.Raw(System.Net.WebUtility.HtmlDecode(reply.Content))">
+                                                            Edit
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="dropdown-item delete-comment" href="#"
+                                                           data-bs-toggle="modal"
+                                                           data-bs-target="#deleteModal"
+                                                           data-comment-id="@reply.CommentID">
+                                                            Delete
+                                                        </a>
+                                                    </li>
+                                                </ul>
                                             </div>
                                         </li>
                                     }
                                 </ul>
+
                             </div>
                         }
                     }
@@ -133,7 +166,7 @@
                 <div class="user-info">
                     <img src="@Model.Post.User.AvatarImage" alt="Profile Picture" class="profile-pic mb-2" style="width: 150px; height: 150px; border-radius: 50%;">
                     <p style="font-weight:bold;font-size:20px;">@Model.Post.User.FullName</p>
-                    <p><i class="fas fa-trophy"></i> @Model.Post.User.Point Points</p>
+                    <p><i class="fas fa-trophy"></i>@Model.Post.User.Point Points</p>
                     <div>
                         <a href="#"><i class="fab fa-github fa-lg me-2"></i></a>
                         <a href="#"><i class="fab fa-instagram fa-lg me-2"></i></a>
@@ -143,6 +176,7 @@
             </div>
         </div>
     </div>
+    @* Edit modal *@
     <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -151,10 +185,10 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form asp-controller="Forum" asp-action="EditComment" method="post" enctype="multipart/form-data">
+                    <form asp-controller="Forum" asp-action="EditComment" method="post" enctype="multipart/form-data" id="editCommentForm">
                         <div class="mb-3">
                             <label for="editContent" class="form-label">Content</label>
-                            <textarea name="Comment.Content" class="form-control" id="editContent"></textarea>
+                            <textarea asp-for="Comment.Content" class="form-control" id="editContent"></textarea>
                         </div>
                         <input type="hidden" name="Comment.CommentID" value="" />
                         <input type="hidden" name="Post.PostID" value="" />
@@ -195,39 +229,70 @@
     <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
     <script>
         $(document).ready(function () {
-            if ($('.suggestions #editorComment').length) {
-                CKEDITOR.replace('editorComment');
-            }
+            // Xử lý khi nhấp vào nút chỉnh sửa bình luận
+            $('.edit-comment').on('click', function () {
+                var commentContent = $(this).data('comment-content');
+                $('#editContent').val(commentContent);
+                $('input[name="Comment.CommentID"]').val($(this).data('comment-id'));
+                $('input[name="Post.PostID"]').val($(this).data('post-id'));
+            });
 
+            // Cấu hình CKEditor cho textarea bình luận
+            var editor = CKEDITOR.replace('editorComment');
+
+            // Xóa thẻ div khi gửi form bình luận
+            $('#commentForm').on('submit', function () {
+                var content = editor.getData();
+                var cleanedContent = cleanUpContent(content);
+                editor.setData(cleanedContent);
+            });
+
+            // Cấu hình CKEditor cho modal chỉnh sửa
+            $('#editModal').on('shown.bs.modal', function () {
+                var editEditor = CKEDITOR.replace('editContent');
+
+                $('#editCommentForm').on('submit', function () {
+                    var editContent = editEditor.getData();
+                    var cleanedEditContent = cleanUpContent(editContent);
+                    editEditor.setData(cleanedEditContent);
+                });
+            });
+
+            // Hiển thị khu vực trả lời khi nhấn vào nút Reply
             $('.reply-btn').on('click', function (e) {
                 e.preventDefault();
+                $('.reply-area').hide(); // Ẩn tất cả khu vực trả lời trước đó
+                var replyArea = $(this).next('.reply-area'); // Lấy khu vực trả lời gần nhất với nút Reply đã nhấn
+                replyArea.slideDown(); // Hiển thị khu vực trả lời
 
-                $('.reply-area').hide();
-                var replyArea = $(this).next('.reply-area');
-                replyArea.slideDown();
-
-                var textareaId = replyArea.find('textarea').attr('id');
-                if (textareaId && !CKEDITOR.instances[textareaId]) {
-                    CKEDITOR.replace(textareaId);
+                var textareaId = replyArea.find('textarea').attr('id'); // Lấy id của textarea
+                if (textareaId && !CKEDITOR.instances[textareaId]) { // Kiểm tra nếu CKEditor chưa được khởi tạo cho textarea này
+                    CKEDITOR.replace(textareaId); // Khởi tạo CKEditor cho textarea
                 }
             });
 
+
+            // Xóa thẻ div khi gửi form reply
+            $('#replyForm').on('submit', function (e) {
+                var textareaId = $(this).find('textarea').attr('id');
+                var replyEditor = CKEDITOR.instances[textareaId]; // Lấy instance CKEditor từ ID
+
+                if (replyEditor) {
+                    var content = replyEditor.getData(); // Lấy dữ liệu từ CKEditor
+                    var cleanedContent = cleanUpContent(content); // Dọn dẹp nội dung
+                    replyEditor.setData(cleanedContent); // Cập nhật nội dung đã dọn dẹp vào CKEditor
+                }
+            });
+
+            // Đóng khu vực trả lời khi nhấp ra ngoài
             $(document).on('click', function (e) {
-                if (!$(e.target).closest('.reply-area, .reply-btn, .suggestions').length) {
-                    for (var instanceName in CKEDITOR.instances) {
-                        if (instanceName !== 'editorComment') {
-                            CKEDITOR.instances[instanceName].destroy(true);
-                        }
-                    }
-                    $('.reply-area').slideUp();
+                if (!$(e.target).closest('.reply-area, .reply-btn').length) { // Kiểm tra nếu nhấp ra ngoài khu vực trả lời hoặc nút Reply
+                    $('.reply-area').slideUp(); // Ẩn tất cả khu vực trả lời
                 }
             });
-        });
-    </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const deleteModal = document.getElementById('deleteModal');
 
+            // Cập nhật modal xóa bình luận
+            const deleteModal = document.getElementById('deleteModal');
             deleteModal.addEventListener('show.bs.modal', function (event) {
                 const button = event.relatedTarget;
                 if (!button) return;
@@ -243,7 +308,6 @@
                 if (postIdInput) postIdInput.value = postId;
             });
         });
-
     </script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -311,30 +375,5 @@
         });
 
     </script>
-    <script>
-        $(document).ready(function() {
-            $('.edit-comment').click(function() {
-                var commentId = $(this).data('comment-id');
-                var postId = $(this).data('post-id');
-                var content = $(this).data('comment-content');
 
-                var decodedContent = $('<div/>').html(content).text();
-
-                $('input[name="Comment.CommentID"]').val(commentId);
-                $('input[name="Post.PostID"]').val(postId);
-                
-                if (!CKEDITOR.instances['editContent']) {
-                    CKEDITOR.replace('editContent');
-                }
-                
-                CKEDITOR.instances['editContent'].setData(decodedContent);
-            });
-
-            $('#editModal').on('hidden.bs.modal', function () {
-                if (CKEDITOR.instances['editContent']) {
-                    CKEDITOR.instances['editContent'].destroy();
-                }
-            });
-        });
-    </script>
 }
