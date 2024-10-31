@@ -50,7 +50,7 @@
                         @foreach (var comment in Model.Comments)
                         {
                             <div class="list-group-item">
-                                <strong>@comment.UserID</strong>: @comment.Content
+                                <strong>@comment.User.FullName</strong>: @Html.Raw(System.Net.WebUtility.HtmlDecode(comment.Content))
                                 <button class="btn btn-danger btn-sm deleteCommentBtn" data-comment-id="@comment.CommentID">Delete</button>
                             </div>
                         }

@@ -111,6 +111,7 @@
                     foreach (var post in Model.Post)
                     {
                         <div class="card mb-3">
+                            <a href="@Url.Action("PostDetail", "Forum", new { postId = post.PostID })" style="text-decoration:none;" class="stretched-link">
                             <div class="card-body">
                                 <div class="d-flex align-items-center justify-content-between">
                                     <div>
@@ -123,6 +124,7 @@
                                     <img class="user-avatar ms-3" style="width:80px;height:80px;border-radius:50%;" src="@(post.User?.AvatarImage ?? "/img/avt2.jpg")" alt="User Avatar" />
                                 </div>
                             </div>
+                            </a>
                         </div>
                     }
                 }
