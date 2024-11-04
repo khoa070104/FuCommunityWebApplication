@@ -202,5 +202,72 @@ namespace FuCommunityWebDataAccess.Repositories
                 .Include(e => e.Course)
                 .ToListAsync();
         }
+
+        public async Task AddReviewAsync(Review review)
+        {
+            _context.Reviews.Add(review);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<Dictionary<int, double>> GetAverageRatingsAsync()
+        {
+            return await _context.Reviews
+                .GroupBy(r => r.CourseID)
+                .Select(g => new { CourseID = g.Key, AverageRating = g.Average(r => r.Rating) })
+                .ToDictionaryAsync(g => g.CourseID, g => g.AverageRating);
+        }
+
+        public async Task<Dictionary<int, int>> GetReviewCountsAsync()
+        {
+            return await _context.Reviews
+                .GroupBy(r => r.CourseID)
+                .Select(g => new { CourseID = g.Key, Count = g.Count() })
+                .ToDictionaryAsync(g => g.CourseID, g => g.Count);
+        }
+
+        public async Task<Review> GetUserReviewForCourseAsync(string userId, int courseId)
+        {
+            return await _context.Reviews
+                .FirstOrDefaultAsync(r => r.UserID == userId && r.CourseID == courseId);
+        }
+
+        public async Task<Review> GetReviewByIdAsync(int reviewId)
+        {
+            return await _context.Reviews.FindAsync(reviewId);
+        }
+
+        public async Task UpdateReviewAsync(Review review)
+        {
+            _context.Reviews.Update(review);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<List<Review>> GetReviewsByCourseIdAsync(int courseId)
+        {
+            return await _context.Reviews
+                .Include(r => r.User)
+                .Where(r => r.CourseID == courseId)
+                .OrderByDescending(r => r.CreateDate)
+                .ToListAsync();
+        }
+
+        public async Task DeleteReviewAsync(Review review)
+        {
+            _context.Reviews.Remove(review);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<List<Enrollment>> GetEnrollmentsByCourseIdAsync(int courseId)
+        {
+            return await _context.Enrollment
+                .Where(e => e.CourseID == courseId)
+                .ToListAsync();
+        }
+
+        public async Task DeleteEnrollmentAsync(Enrollment enrollment)
+        {
+            _context.Enrollment.Remove(enrollment);
+            await _context.SaveChangesAsync();
+        }
     }
 }

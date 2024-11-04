@@ -188,14 +188,21 @@
                                 </h3>
                                 <p>@course.Description</p>
                                 <div class="rating">
-                                    <span>3.9</span>
+                                    <span>@(Model.AverageRatings.ContainsKey(course.CourseID) ? Model.AverageRatings[course.CourseID].ToString("0.0") : "0.0")</span>
                                     <span class="stars">
-                                        @for (int i = 0; i < 4; i++)
+                                        @for (int i = 0; i < 5; i++)
                                         {
-                                            <i class="fas fa-star text-warning"></i>
+                                            if (i < (Model.AverageRatings.ContainsKey(course.CourseID) ? (int)Math.Round(Model.AverageRatings[course.CourseID]) : 0))
+                                            {
+                                                <i class="fas fa-star" style="color: gold;"></i>
+                                            }
+                                            else
+                                            {
+                                                <i class="fas fa-star" style="color: black;"></i>
+                                            }
                                         }
                                     </span>
-                                    <span>(832)</span>
+                                    <span>(@(Model.ReviewCounts.ContainsKey(course.CourseID) ? Model.ReviewCounts[course.CourseID] : 0))</span>
                                 </div>
                                 <div class="price text-center">
                                     <div>

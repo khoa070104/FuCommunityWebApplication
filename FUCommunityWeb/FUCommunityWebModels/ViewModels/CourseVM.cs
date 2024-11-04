@@ -25,5 +25,8 @@ namespace FuCommunityWebModels.ViewModels
         public bool IsMentor { get; set; }
         public bool IsStudent { get; set; }
         public decimal UserPoints { get; set; }
+
+        public Dictionary<int, double> AverageRatings { get; set; } = new Dictionary<int, double>();
+        public Dictionary<int, int> ReviewCounts { get; set; } = new Dictionary<int, int>();
     }
 }
