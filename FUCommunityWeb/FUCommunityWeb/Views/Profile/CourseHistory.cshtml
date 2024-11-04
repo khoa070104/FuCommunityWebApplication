@@ -29,7 +29,11 @@
                                     @foreach (var enrollment in Model.Enrollments)
                                     {
                                         <tr class="custom-row-bg">
-                                            <td class="table-name">@enrollment.Course.Title</td>
+                                            <td class="table-name">
+                                                <a href="@Url.Action("Detail", "Course", new { id = enrollment.Course.CourseID })">
+                                                    @enrollment.Course.Title
+                                                </a>
+                                            </td>
                                             <td>@enrollment.EnrollmentDate.ToString("dd/MM/yyyy")</td>
                                             <td>@enrollment.Status</td>
                                             <td><span class="custom-badge">@enrollment.Course.Price</span></td>

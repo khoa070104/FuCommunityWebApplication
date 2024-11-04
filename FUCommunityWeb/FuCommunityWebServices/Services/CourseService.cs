@@ -128,5 +128,55 @@ namespace FuCommunityWebServices.Services
         {
             return await _courseRepo.GetUserEnrollmentsAsync(userId);
         }
+
+        public async Task AddReviewAsync(Review review)
+        {
+            await _courseRepo.AddReviewAsync(review);
+        }
+
+        public async Task<Dictionary<int, double>> GetAverageRatingsAsync()
+        {
+            return await _courseRepo.GetAverageRatingsAsync();
+        }
+
+        public async Task<Dictionary<int, int>> GetReviewCountsAsync()
+        {
+            return await _courseRepo.GetReviewCountsAsync();
+        }
+
+        public async Task<Review> GetUserReviewForCourseAsync(string userId, int courseId)
+        {
+            return await _courseRepo.GetUserReviewForCourseAsync(userId, courseId);
+        }
+
+        public async Task<Review> GetReviewByIdAsync(int reviewId)
+        {
+            return await _courseRepo.GetReviewByIdAsync(reviewId);
+        }
+
+        public async Task UpdateReviewAsync(Review review)
+        {
+            await _courseRepo.UpdateReviewAsync(review);
+        }
+
+        public async Task<List<Review>> GetReviewsByCourseIdAsync(int courseId)
+        {
+            return await _courseRepo.GetReviewsByCourseIdAsync(courseId);
+        }
+
+        public async Task DeleteReviewAsync(Review review)
+        {
+            await _courseRepo.DeleteReviewAsync(review);
+        }
+
+        public async Task<List<Enrollment>> GetEnrollmentsByCourseIdAsync(int courseId)
+        {
+            return await _courseRepo.GetEnrollmentsByCourseIdAsync(courseId);
+        }
+
+        public async Task DeleteEnrollmentAsync(Enrollment enrollment)
+        {
+            await _courseRepo.DeleteEnrollmentAsync(enrollment);
+        }
     }
 }

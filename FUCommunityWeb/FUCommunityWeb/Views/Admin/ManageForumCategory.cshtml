@@ -42,7 +42,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var category in Model.Categories)
+                            @foreach (var category in Model.Categories.OrderByDescending(c => c.CategoryID))
                             {
                                 <tr>
                                     <td>@category.CategoryName</td>

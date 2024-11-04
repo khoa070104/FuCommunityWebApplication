@@ -43,12 +43,17 @@ namespace FUCommunityWeb.Controllers
             var user = _userService.GetUserByIdAsync(userId).Result;
             var userPoints = user?.Point ?? 0;
 
+            var averageRatings = _courseService.GetAverageRatingsAsync().Result;
+            var reviewCounts = _courseService.GetReviewCountsAsync().Result;
+
             var homeViewModel = new HomeVM
             {
                 MostPurchasedCourses = mostPurchasedCourses,
                 HighestQualityCourse = highestQualityCourse,
                 EnrolledCourses = enrolledCourses,
-                UserPoints = userPoints
+                UserPoints = userPoints,
+                AverageRatings = averageRatings,
+                ReviewCounts = reviewCounts
             };
 
             return View(homeViewModel);

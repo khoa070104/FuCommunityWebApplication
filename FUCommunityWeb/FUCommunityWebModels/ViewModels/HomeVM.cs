@@ -13,5 +13,7 @@ namespace FuCommunityWebModels.ViewModels
         public List<Course> HighestQualityCourse { get; set; }
         public List<int> EnrolledCourses { get; set; }
         public decimal UserPoints { get; set; }
+        public Dictionary<int, double> AverageRatings { get; set; } = new Dictionary<int, double>();
+        public Dictionary<int, int> ReviewCounts { get; set; } = new Dictionary<int, int>();
     }
 }

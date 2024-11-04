@@ -20,7 +20,10 @@ namespace FuCommunityWebModels.ViewModels
         public EditLessonVM EditLessonVM { get; set; } = new EditLessonVM();
         public bool ShowCreateLessonModal { get; set; }
         public bool ShowEditLessonModal { get; set; }
-        public int? EditLessonID { get; set; } // Identifier for the lesson being edited
+        public int? EditLessonID { get; set; } 
         public string CategoryName => Course?.Category?.CategoryName;
+        public List<Review> Reviews { get; set; } = new List<Review>(); 
+        public bool HasReviewed { get; set; }
+        public bool IsEnrolled { get; set; }
     }
 }

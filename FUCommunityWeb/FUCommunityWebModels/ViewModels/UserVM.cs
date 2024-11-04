@@ -14,6 +14,7 @@ namespace FuCommunityWebModels.ViewModels
         public ApplicationUser User { get; set; }
         public List<Enrollment> Enrollments { get; set; }
         public List<Post> Post { get; set; }
+        public List<OrderInfo> Orders { get; set; }
         //public string FullName { get; set; }
         //public string Bio { get; set; }
         //public string Address { get; set; }

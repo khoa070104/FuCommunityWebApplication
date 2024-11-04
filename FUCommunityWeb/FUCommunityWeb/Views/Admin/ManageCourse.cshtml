@@ -75,13 +75,13 @@
                                 <th>Course Image</th>
                                 <th>Status</th>
                                 <th>Semester</th>
-                                <th>CategoryID</th>
+                                <th>Category</th>
                                 <th>Action</th>
                                 <th>Settings</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var course in Model.Courses)
+                            @foreach (var course in Model.Courses.OrderByDescending(c => c.CourseID))
                             {
                                 <tr>
                                     <!--
@@ -100,7 +100,7 @@
                                     </td>
                                     <td>@course.Status</td>
                                     <td>@course.Semester</td>
-                                    <td>@course.CategoryID</td>
+                                    <td>@course.Category.CategoryName</td>
                                     <td>
                                         @if (course.Status == "active")
                                         {
@@ -402,7 +402,6 @@
             document.getElementById('editTitle').value = title;
             document.getElementById('editDescription').value = description;
             document.getElementById('editPrice').value = price;
-            document.getElementById('editStatus').value = status;
             document.getElementById('editSemester').value = semester;
             document.getElementById('editCategoryID').value = categoryId;
 

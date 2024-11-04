@@ -15,12 +15,14 @@ namespace FUCommunityWeb.Controllers
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly UserService _userService;
+        private readonly OrderService _orderService;
         private UserVM userVM;
 
-        public ProfileController(UserManager<IdentityUser> userManager, UserService userService, ApplicationDbContext context)
+        public ProfileController(UserManager<IdentityUser> userManager, UserService userService, OrderService orderService, ApplicationDbContext context)
         {
             _userManager = userManager;
             _userService = userService;
+            _orderService = orderService;
         }
 
         public async Task<IActionResult> Index()
@@ -180,6 +182,21 @@ namespace FUCommunityWeb.Controllers
             };
 
             ViewData["CurrentPage"] = Url.Action("CourseHistory");
+            return View(userVM);
+        }
+
+        public async Task<IActionResult> PaymentHistory()
+        {
+            string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var user = await _userService.GetUserByIdAsync(userId);
+            var orders = await _orderService.GetAllOrdersAsync();
+
+            var userVM = new UserVM
+            {
+                User = user,
+                Orders = orders.Where(o => o.UserID == userId).ToList()
+            };
+
             return View(userVM);
         }
     }

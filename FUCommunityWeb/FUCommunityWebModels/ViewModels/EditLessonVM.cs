@@ -24,9 +24,6 @@ namespace FuCommunityWebModels.ViewModels
             public string Title { get; set; }
 
             public string Content { get; set; }
-
-            [StringLength(50)]
-            public string Status { get; set; }
         }
     }
 
