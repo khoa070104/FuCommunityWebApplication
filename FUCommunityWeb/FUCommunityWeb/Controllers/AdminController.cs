@@ -191,6 +191,18 @@ namespace FUCommunityWeb.Controllers
 
             try
             {
+                var enrollments = await _courseService.GetEnrollmentsByCourseIdAsync(courseId);
+                foreach (var enrollment in enrollments)
+                {
+                    await _courseService.DeleteEnrollmentAsync(enrollment);
+                }
+
+                var reviews = await _courseService.GetReviewsByCourseIdAsync(courseId);
+                foreach (var review in reviews)
+                {
+                    await _courseService.DeleteReviewAsync(review);
+                }
+
                 await _courseService.DeleteCourseAsync(course);
             }
             catch (Exception)
@@ -261,10 +273,13 @@ namespace FUCommunityWeb.Controllers
                 return NotFound();
             }
 
+            var reviews = await _courseService.GetReviewsByCourseIdAsync(courseId);
+
             var viewModel = new CourseDetailVM
             {
                 Course = course,
                 Lessons = lessons,
+                Reviews = reviews,
                 CreateLessonVM = new CreateLessonVM { CourseID = courseId }, 
                 ShowCreateLessonModal = false,
                 ShowEditLessonModal = false
@@ -293,7 +308,7 @@ namespace FUCommunityWeb.Controllers
                     {
                         Title = createLessonVM.Title,
                         Content = createLessonVM.Content,
-                        Status = createLessonVM.Status,
+                        Status = "Active",
                         CourseID = createLessonVM.CourseID, 
                         UserID = User.FindFirstValue(ClaimTypes.NameIdentifier),
                         CreatedDate = DateTime.Now
@@ -305,9 +320,6 @@ namespace FUCommunityWeb.Controllers
                 catch (Exception ex)
                 {
                 }
-            }
-            else
-            {
             }
 
             return RedirectToAction("ManageLesson", "Admin", new { courseId = createLessonVM.CourseID });
@@ -326,8 +338,7 @@ namespace FUCommunityWeb.Controllers
                 LessonID = lesson.LessonID,
                 CourseID = lesson.CourseID,
                 Title = lesson.Title,
-                Content = lesson.Content,
-                Status = lesson.Status
+                Content = lesson.Content
             };
 
             var viewModel = new CourseDetailVM
@@ -354,7 +365,7 @@ namespace FUCommunityWeb.Controllers
                 {
                     lessonToUpdate.Title = editLessonVM.Title;
                     lessonToUpdate.Content = editLessonVM.Content;
-                    lessonToUpdate.Status = editLessonVM.Status;
+                    lessonToUpdate.Status = "Active";
                     lessonToUpdate.UpdatedDate = DateTime.Now;
 
                     await _courseService.UpdateLessonAsync(lessonToUpdate);
@@ -362,10 +373,8 @@ namespace FUCommunityWeb.Controllers
                 }
                 catch (Exception ex)
                 {
+                    // Log error
                 }
-            }
-            else
-            {
             }
 
             return RedirectToAction("ManageLesson", new { courseId = lessonToUpdate.CourseID });
@@ -998,6 +1007,28 @@ namespace FUCommunityWeb.Controllers
             await _courseService.UpdateCourseAsync(course);
 
             return RedirectToAction("ManageCourse");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteReview(int reviewId)
+        {
+            var review = await _courseService.GetReviewByIdAsync(reviewId);
+            if (review == null)
+            {
+                return NotFound();
+            }
+
+            try
+            {
+                await _courseService.DeleteReviewAsync(review);
+            }
+            catch (Exception ex)
+            {
+                // Log error
+            }
+
+            return RedirectToAction("ManageLesson", new { courseId = review.CourseID });
         }
     }
 }

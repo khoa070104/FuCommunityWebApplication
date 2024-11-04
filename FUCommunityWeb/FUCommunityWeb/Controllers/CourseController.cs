@@ -75,6 +75,9 @@ namespace FUCommunityWeb.Controllers
             var userPoints = user?.Point ?? 0;
             var enrolledCourses = await _courseService.GetEnrolledCoursesAsync(userId);
 
+            var averageRatings = await _courseService.GetAverageRatingsAsync();
+            var reviewCounts = await _courseService.GetReviewCountsAsync();
+
             var viewModel = new CourseVM
             {
                 Categories = await _courseService.GetAllCategoriesAsync(),
@@ -88,7 +91,9 @@ namespace FUCommunityWeb.Controllers
                 IsMentor = isMentor,
                 IsStudent = isStudent,
                 UserPoints = userPoints,
-                EnrolledCourses = enrolledCourses
+                EnrolledCourses = enrolledCourses,
+                AverageRatings = averageRatings,
+                ReviewCounts = reviewCounts
             };
 
             return View(viewModel);
@@ -261,7 +266,7 @@ namespace FUCommunityWeb.Controllers
 
             try
             {
-                course.Status = "inactive";
+                course.Status = "Inactive";
                 await _courseService.UpdateCourseAsync(course);
             }
             catch (Exception ex)
@@ -275,6 +280,7 @@ namespace FUCommunityWeb.Controllers
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var enrolledCourses = await _courseService.GetEnrolledCoursesAsync(userId);
+            var course = await _courseService.GetCourseByIdAsync(id);
 
             var courseDetail = await _courseService.GetCourseByIdAsync(id);
 
@@ -285,17 +291,24 @@ namespace FUCommunityWeb.Controllers
 
             var user = await _courseService.GetUserByIdAsync(userId);
             var userPoints = user?.Point ?? 0;
+            var reviews = await _courseService.GetReviewsByCourseIdAsync(id);
+
+            var hasReviewed = reviews.Any(r => r.UserID == userId);
+            var isEnrolled = enrolledCourses.Contains(id);
 
             var viewModel = new CourseDetailVM
             {
                 Course = courseDetail,
+                Reviews = reviews,
                 EnrolledCourses = enrolledCourses,
                 UserPoints = userPoints,
                 Lessons = courseDetail.Lessons?.OrderBy(l => l.LessonID).ToList() ?? new List<Lesson>(),
                 CreateLessonVM = new CreateLessonVM
                 {
                     CourseID = id
-                }
+                },
+                HasReviewed = hasReviewed,
+                IsEnrolled = isEnrolled
             };
 
             return View(viewModel);
@@ -321,13 +334,15 @@ namespace FUCommunityWeb.Controllers
 
             if (ModelState.IsValid)
             {
-                Lesson lesson = new();
-                lesson.CourseID = createLessonVM.CourseID;
-                lesson.UserID = userId;
-                lesson.Title = createLessonVM.Title;
-                lesson.Content = createLessonVM.Content;
-                lesson.Status = createLessonVM.Status;
-                lesson.CreatedDate = DateTime.Now;
+                Lesson lesson = new()
+                {
+                    CourseID = createLessonVM.CourseID,
+                    UserID = userId,
+                    Title = createLessonVM.Title,
+                    Content = createLessonVM.Content,
+                    Status = "Active",
+                    CreatedDate = DateTime.Now
+                };
 
                 try
                 {
@@ -339,16 +354,6 @@ namespace FUCommunityWeb.Controllers
                 {
                     _logger.LogError(ex, "Error creating lesson");
                     ModelState.AddModelError(string.Empty, "An error occurred while creating the lesson. Please try again.");
-                }
-            }
-            else
-            {
-                foreach (var state in ModelState)
-                {
-                    foreach (var error in state.Value.Errors)
-                    {
-                        _logger.LogError("Property: {Property}, Error: {ErrorMessage}", state.Key, error.ErrorMessage);
-                    }
                 }
             }
 
@@ -387,8 +392,7 @@ namespace FUCommunityWeb.Controllers
                 LessonID = lesson.LessonID,
                 CourseID = lesson.CourseID,
                 Title = lesson.Title,
-                Content = lesson.Content,
-                Status = lesson.Status
+                Content = lesson.Content
             };
 
             var viewModel = new CourseDetailVM
@@ -433,32 +437,18 @@ namespace FUCommunityWeb.Controllers
                 {
                     lessonToUpdate.Title = editLessonVM.Title;
                     lessonToUpdate.Content = editLessonVM.Content;
-                    lessonToUpdate.Status = editLessonVM.Status;
+                    lessonToUpdate.Status = "Active";
                     lessonToUpdate.UpdatedDate = DateTime.Now;
 
                     await _courseService.UpdateLessonAsync(lessonToUpdate);
 
-                    _logger.LogInformation("Lesson edited successfully: {LessonTitle}", lessonToUpdate.Title);
 
                     return RedirectToAction("Detail", new { id = lessonToUpdate.CourseID });
                 }
                 catch (Exception ex)
                 {
-                    _logger.LogError(ex, "Error editing lesson");
                     ModelState.AddModelError(string.Empty, "An error occurred while editing the lesson. Please try again.");
                 }
-            }
-            else
-            {
-                foreach (var state in ModelState)
-                {
-                    foreach (var error in state.Value.Errors)
-                    {
-                        _logger.LogError("Property: {Property}, Error: {ErrorMessage}", state.Key, error.ErrorMessage);
-                    }
-                }
-
-                _logger.LogWarning("EditLesson called with invalid ModelState.");
             }
 
             var courseDetail = await _courseService.GetCourseByIdAsync(lessonToUpdate.CourseID);
@@ -621,6 +611,55 @@ namespace FUCommunityWeb.Controllers
             {
                 return RedirectToAction("Detail", new { id = courseId });
             }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> SubmitReview(Review review)
+        {
+            review.UserID = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            review.CreateDate = DateTime.Now;
+            await _courseService.AddReviewAsync(review);
+            return RedirectToAction("Detail", new { id = review.CourseID });
+        }
+
+        [HttpGet]
+        [Authorize]
+        public async Task<IActionResult> EditReview(int reviewId)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var review = await _courseService.GetReviewByIdAsync(reviewId);
+
+            var courseDetail = await _courseService.GetCourseByIdAsync(review.CourseID);
+            var reviews = await _courseService.GetReviewsByCourseIdAsync(review.CourseID);
+
+            var viewModel = new CourseDetailVM
+            {
+                Course = courseDetail,
+                Reviews = reviews,
+                EnrolledCourses = await _courseService.GetEnrolledCourseIdsAsync(userId),
+                ShowEditLessonModal = true,
+                EditLessonID = review.ReviewID
+            };
+
+            return View("Detail", viewModel);
+        }
+
+        [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditReview(int reviewId, Review review)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var existingReview = await _courseService.GetReviewByIdAsync(reviewId);
+
+            existingReview.Rating = review.Rating;
+            existingReview.Content = review.Content;
+            existingReview.CreateDate = DateTime.Now;
+
+            await _courseService.UpdateReviewAsync(existingReview);
+
+            return RedirectToAction("Detail", new { id = review.CourseID });
         }
     }
 }
