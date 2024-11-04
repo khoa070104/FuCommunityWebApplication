@@ -15,7 +15,7 @@
             @foreach (var login in Model.CurrentLogins)
             {
                 <tr>
-                    <td class="btn" id="@($"login-provider-{login.LoginProvider}")"><i class="fab fa-google"></i> @login.ProviderDisplayName</td>
+                    <td class="btn-1" id="@($"login-provider-{login.LoginProvider}")"><i class="fab fa-google"></i> @login.ProviderDisplayName</td>
                     <td style="border: none;">
                         @if (Model.ShowRemoveButton)
                         {
@@ -46,7 +46,7 @@
             <p class="btn-logo">
                 @foreach (var provider in Model.OtherLogins)
                 {
-                    <button id="@($"link-login-button-{provider.Name}")" type="submit" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                    <button id="@($"link-login-button-{provider.Name}")" type="submit" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account" class="btn-1">@provider.DisplayName</button>
                 }
             </p>
         </div>
