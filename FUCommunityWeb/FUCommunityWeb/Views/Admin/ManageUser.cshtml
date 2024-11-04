@@ -100,11 +100,12 @@
                                     @Html.ActionLink("Point", "ManageUser", new { sortOrder = ViewData["PointSortParm"] })
                                 </th>
                                 <th>DOB</th>
+                                <th>Role</th>
                                 <th>Settings</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var user in Model.Users)
+                            @foreach (var user in Model.Users.OrderByDescending(u => u.CreatedDate))
                             {
                                 <tr>
                                     <!--
@@ -114,6 +115,13 @@
                                     <td>@user.Email</td>
                                     <td>@user.Point</td>
                                     <td>@user.DOB.ToString("dd/MM/yyyy")</td>
+                                    <td>
+                                        @{
+                                            var roles = await _userService.GetUserRolesAsync(user.Id);
+                                            var roleDisplay = string.Join(", ", roles);
+                                        }
+                                        @roleDisplay
+                                    </td>
                                     <td>
                                         @if (user.Ban)
                                         {

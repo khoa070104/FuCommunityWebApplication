@@ -29,7 +29,7 @@
                     <h2 class="dashboard-header mb-0">Manage Posts</h2>
 
                     <div class="d-flex justify-content-between mb-3">
-                        <a href="/admin/ManageForumCategory" class="btn-cancel-2" style="text-decoration: none;">Quay lại</a>
+                        <a href="/admin/ManageForumCategory" class="btn-cancel-2" style="text-decoration: none;">Back</a>
                         <button class="btn-1" data-bs-toggle="modal" data-bs-target="#createPostModal">Create New Post</button>
                     </div>
 
@@ -54,7 +54,7 @@
                                 </tr>
                             </thead>
                             <tbody id="postList">
-                                @foreach (var post in Model.Posts)
+                                @foreach (var post in Model.Posts.OrderByDescending(p => p.CreatedDate))
                                 {
                                     <tr>
                                         <td>@Html.Raw(System.Net.WebUtility.HtmlDecode(post.Title))</td>
