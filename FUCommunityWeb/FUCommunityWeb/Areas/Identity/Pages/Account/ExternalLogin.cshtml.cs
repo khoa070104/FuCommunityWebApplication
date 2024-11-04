@@ -165,7 +165,6 @@ namespace FUCommunityWeb.Areas.Identity.Pages.Account
         {
             await EnsureRolesExistAsync();
             returnUrl = returnUrl ?? Url.Content("~/");
-            // Get the information about the user from the external login provider
             var info = await _signInManager.GetExternalLoginInfoAsync();
             if (info == null)
             {
@@ -175,6 +174,14 @@ namespace FUCommunityWeb.Areas.Identity.Pages.Account
 
             if (ModelState.IsValid)
             {
+                if (Input.DOB.HasValue && (DateTime.Now.Year - Input.DOB.Value.Year) < 18)
+                {
+                    ModelState.AddModelError(string.Empty, "You must be at least 18 years old to register.");
+                    ProviderDisplayName = info.ProviderDisplayName;
+                    ReturnUrl = returnUrl;
+                    return Page();
+                }
+
                 var user = new ApplicationUser
                 {
                     UserName = Input.Email,
@@ -213,7 +220,6 @@ namespace FUCommunityWeb.Areas.Identity.Pages.Account
                         await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
                             $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
-                        // If account confirmation is required, we need to show the link if we don't have a real email sender
                         if (_userManager.Options.SignIn.RequireConfirmedAccount)
                         {
                             return RedirectToPage("./RegisterConfirmation", new { Email = Input.Email });
