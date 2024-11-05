@@ -139,6 +139,10 @@
                             <label for="postImage" class="form-label">Image</label>
                             <input asp-for="@Model.CreatePostVM.PostImageFile" name="PostImageFile" type="file" class="form-control" id="postImage" />
                         </div>
+                        <div class="mb-3">
+                            <label for="documentFile" class="form-label">Upload Document</label>
+                            <input asp-for="@Model.CreatePostVM.DocumentFile" type="file" class="form-control" id="documentFile" />
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn-cancel-2" data-bs-dismiss="modal">Cancel</button>
@@ -191,6 +195,24 @@
                         <div class="mb-3">
                             <label for="editPostImage" class="form-label">Image</label>
                             <input asp-for="CreatePostVM.PostImageFile" type="file" id="editPostImage" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="editDocumentFile" class="form-label">Upload Document</label>
+                            <input asp-for="CreatePostVM.DocumentFile" type="file" class="form-control" id="editDocumentFile" />
+                            <div id="currentDocument">
+                                @if (Model.Post.DocumentID.HasValue)
+                                {
+                                    var document = Model.Post.Document;
+                                    if (document != null)
+                                    {
+                                        <p>Current Document: <a href="@document.FileUrl" download>@document.Name</a></p>
+                                    }
+                                }
+                                else
+                                {
+                                    <p>No document uploaded.</p>
+                                }
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -287,6 +309,12 @@
                         } else {
                             imgElement.hide();
                             noImageLabel.show();
+                        }
+                                                
+                        if (data.document && data.document.fileUrl) {
+                            $("#currentDocument").html(`<p>Current Document: <a href="${data.document.fileUrl}" download>${data.document.name}</a></p>`);
+                        } else {
+                            $("#currentDocument").html('<p>No document uploaded.</p>');
                         }
 
                         $('#editPostModal').modal('show');

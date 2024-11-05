@@ -108,8 +108,8 @@ namespace FuCommunityWebDataAccess.Data
                 .HasForeignKey(r => r.UserID);
 
             modelBuilder.Entity<Review>()
-                .HasOne<Course>()
-                .WithMany()
+                .HasOne(r => r.Course)
+                .WithMany(c => c.Reviews)
                 .HasForeignKey(r => r.CourseID);
 
             modelBuilder.Entity<Course>()

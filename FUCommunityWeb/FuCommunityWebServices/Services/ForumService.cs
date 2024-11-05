@@ -156,5 +156,15 @@ namespace FuCommunityWebServices.Services
         {
             await _forumRepo.DeletePostsAsync(posts);
         }
+
+        public async Task<Document> GetDocumentByIdAsync(int documentId)
+        {
+            return await _forumRepo.GetDocumentByIdAsync(documentId);
+        }
+
+        public async Task<int?> AddDocumentAsync(Document document)
+        {
+            return await _forumRepo.AddDocumentAsync(document);
+        }
     }
 }

@@ -138,6 +138,10 @@
                     <div class="mb-3">
                         <input asp-for="@Model.CreatePostVM.PostImageFile" type="file" />
                     </div>
+                    <div class="mb-3">
+                        <label for="documentFile" class="form-label">Upload Document</label>
+                        <input asp-for="@Model.CreatePostVM.DocumentFile" type="file" class="form-control" id="documentFile" />
+                    </div>
 
                     <input type="hidden" asp-for="@Model.CreatePostVM.CategoryID" value="@Model.CategoryVM.CategoryID" />
                     <input type="hidden" asp-for="@Model.CategoryVM.CategoryName" value="@Model.CategoryVM.CategoryName" />
@@ -178,6 +182,24 @@
                     <div class="mb-3">
                         <label for="editImg" class="form-label">Your Image Post</label>
                         <input asp-for="CreatePostVM.PostImageFile" type="file" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="editDocumentFile" class="form-label">Upload Document</label>
+                        <input asp-for="CreatePostVM.DocumentFile" type="file" class="form-control" id="editDocumentFile" />
+                        <div id="currentDocument">
+                            @if (Model.Post.DocumentID.HasValue)
+                            {
+                                var document = Model.Post.Document;
+                                if (document != null)
+                                {
+                                    <p>Current Document: <a href="@document.FileUrl" download>@document.Name</a></p>
+                                }
+                            }
+                            else
+                            {
+                                <p>No document uploaded.</p>
+                            }
+                        </div>
                     </div>
 
                     <input type="hidden" asp-for="@Model.Post.PostID" value="" />
@@ -269,6 +291,12 @@
             $("input[name='CategoryVM.CategoryID']").val(categoryID);
             $("input[name='CategoryVM.CategoryName']").val(categoryName);
             $("input[name='Post.PostID']").val(postID);
+
+            if (post.document && post.document.fileUrl) {
+                $("#currentDocument").html(`<p>Current Document: <a href="${post.document.fileUrl}" download>${post.document.name}</a></p>`);
+            } else {
+                $("#currentDocument").html('<p>No document uploaded.</p>');
+            }
 
             $("#editModal").modal("show");
         });
