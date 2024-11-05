@@ -100,7 +100,8 @@ namespace FUCommunityWeb.Controllers
                     tag = post.Tag,
                     type = post.Type == 1 ? "Blog" : "Question",
                     userAvatar = user?.AvatarImage ?? "/img/default-avatar.png",
-                    userId = post.UserID
+                    userId = post.UserID,
+                    document = post.Document != null ? new { post.Document.FileUrl, post.Document.Name } : null // Thêm thông tin tài liệu
                 });
             }
 
@@ -151,8 +152,37 @@ namespace FUCommunityWeb.Controllers
             }
             else
             {
-                postVM.CreatePostVM.PostImage = "/uploads/gay.png";
+                postVM.CreatePostVM.PostImage = "/img/Logo_FunnyCode.jpg";
             }
+
+            int? documentId = null;
+            if (postVM.CreatePostVM.DocumentFile != null && postVM.CreatePostVM.DocumentFile.Length > 0)
+            {
+                var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/documents");
+                if (!Directory.Exists(uploadsFolder))
+                {
+                    Directory.CreateDirectory(uploadsFolder);
+                }
+
+                var uniqueFileName = Guid.NewGuid().ToString() + "_" + Path.GetFileName(postVM.CreatePostVM.DocumentFile.FileName);
+                var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    await postVM.CreatePostVM.DocumentFile.CopyToAsync(fileStream);
+                }
+
+                var document = new Document
+                {
+                    Name = postVM.CreatePostVM.DocumentFile.FileName,
+                    FileUrl = "/documents/" + uniqueFileName,
+                    UserID = userId,
+                    UploadedAt = DateTime.Now
+                };
+
+                documentId = await _forumService.AddDocumentAsync(document);
+            }
+
             var encodedContent = WebUtility.HtmlEncode(postVM.CreatePostVM.Content);
 
             var post = new Post
@@ -165,7 +195,8 @@ namespace FUCommunityWeb.Controllers
                 Status = PostStatus.Pending.ToString(),
                 Tag = WebUtility.HtmlEncode(postVM.CreatePostVM.Tag),
                 Type = postVM.CreatePostVM.Type,
-                PostImage = postVM.CreatePostVM.PostImage
+                PostImage = postVM.CreatePostVM.PostImage,
+                DocumentID = documentId
             };
 
             _context.Posts.Add(post);
@@ -241,6 +272,33 @@ namespace FUCommunityWeb.Controllers
                     await postVM.CreatePostVM.PostImageFile.CopyToAsync(fileStream);
                 }
                 existingPost.PostImage = "/uploads/" + uniqueFileName;
+            }
+
+            if (postVM.CreatePostVM.DocumentFile != null && postVM.CreatePostVM.DocumentFile.Length > 0)
+            {
+                var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/documents");
+                if (!Directory.Exists(uploadsFolder))
+                {
+                    Directory.CreateDirectory(uploadsFolder);
+                }
+
+                var uniqueFileName = Guid.NewGuid().ToString() + "_" + Path.GetFileName(postVM.CreatePostVM.DocumentFile.FileName);
+                var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    await postVM.CreatePostVM.DocumentFile.CopyToAsync(fileStream);
+                }
+
+                var document = new Document
+                {
+                    Name = postVM.CreatePostVM.DocumentFile.FileName,
+                    FileUrl = "/documents/" + uniqueFileName,
+                    UserID = currentUserId,
+                    UploadedAt = DateTime.Now
+                };
+
+                existingPost.DocumentID = await _forumService.AddDocumentAsync(document);
             }
 
             existingPost.Title = postVM.Post.Title;

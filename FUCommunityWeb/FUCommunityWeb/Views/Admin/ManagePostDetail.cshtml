@@ -34,17 +34,25 @@
 
                     <!-- Back Button -->
                     <div style="display: flex; justify-content: flex-start;">
-                        <a href="/Admin/ManagePost?CategoryID=@Model.Post.CategoryID" class="btn-cancel-2 mb-3" style="text-decoration:none;">Quay lại</a>
+                        <a href="/Admin/ManagePost?CategoryID=@Model.Post.CategoryID" class="btn-cancel-2 mb-3" style="text-decoration:none;">Back</a>
                     </div>
 
 
-                    <div class="card" style="transition: none; transform: none;">
-                        <div class="card-body">
-                            <h4 class="card-title">@Model.Post.Title</h4>
-                            <p class="card-text">@Html.Raw(System.Net.WebUtility.HtmlDecode(Model.Post.Content))</p>
-                            <img src="@Model.Post.PostImage" alt="Post Image" class="img-fluid" />
-                        </div>
-                    </div>
+                       <div class="card" style="transition: none; transform: none;">
+                           <div class="card-body">
+                               <h4 class="card-title">@Model.Post.Title</h4>
+                               <p class="card-text">@Html.Raw(System.Net.WebUtility.HtmlDecode(Model.Post.Content))</p>
+                               <img src="@Model.Post.PostImage" alt="Post Image" class="img-fluid" />
+                               @if (Model.Post.DocumentID.HasValue)
+                               {
+                                   var document = Model.Post.Document;
+                                   if (document != null)
+                                   {
+                                       <p>Document: <a href="@document.FileUrl" download>@document.Name</a></p>
+                                   }
+                               }
+                           </div>
+                       </div>
                     <h2 style="margin-top:20px;">Comments</h2>
                     <div class="list-group">
                         @foreach (var comment in Model.Comments)

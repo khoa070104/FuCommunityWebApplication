@@ -28,6 +28,9 @@ namespace FuCommunityWebModels.ViewModels
         [NotMapped]
         [Display(Name = "Post Image")]
         public IFormFile PostImageFile { get; set; }
+        [NotMapped]
+        [Display(Name = "Document File")]
+        public IFormFile DocumentFile { get; set; }
         public List<Category> Categories { get; set; }
     }
 }

@@ -20,7 +20,9 @@ namespace FuCommunityWebDataAccess.Repositories
 
         public async Task<PostVM> GetPostDetailsAsync(int postId)
         {
-            var post = await _context.Posts.FindAsync(postId);
+            var post = await _context.Posts
+                .Include(p => p.Document)
+                .FirstOrDefaultAsync(p => p.PostID == postId);
 
             var comments = await _context.Comments
                 .Where(c => c.PostID == postId)
@@ -61,7 +63,9 @@ namespace FuCommunityWebDataAccess.Repositories
 
         public async Task<(List<Post> posts, int totalItems)> GetPostsByCategory(int categoryID, int page, int pageSize, string searchString)
         {
-            var query = _context.Posts.AsQueryable();
+            var query = _context.Posts
+                .Include(p => p.Document)
+                .AsQueryable();
 
             query = query.Where(post => post.CategoryID == categoryID);
 
@@ -125,7 +129,8 @@ namespace FuCommunityWebDataAccess.Repositories
         public async Task<Post> GetPostByID(int postId)
         {
             return await _context.Posts
-                .FirstOrDefaultAsync(post => post.PostID == postId);
+                .Include(p => p.Document)
+                .FirstOrDefaultAsync(p => p.PostID == postId);
         }
 
         public async Task UpdatePost(Post post)
@@ -252,6 +257,18 @@ namespace FuCommunityWebDataAccess.Repositories
         {
             _context.Posts.RemoveRange(posts);
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<Document> GetDocumentByIdAsync(int documentId)
+        {
+            return await _context.Documents.FindAsync(documentId);
+        }
+
+        public async Task<int?> AddDocumentAsync(Document document)
+        {
+            _context.Documents.Add(document);
+            await _context.SaveChangesAsync();
+            return document.DocumentID;
         }
     }
 }

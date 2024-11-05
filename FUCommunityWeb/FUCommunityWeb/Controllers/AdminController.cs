@@ -496,6 +496,35 @@ namespace FUCommunityWeb.Controllers
             {
                 postVM.CreatePostVM.PostImage = "/uploads/default-image.png";
             }
+
+            int? documentId = null;
+            if (postVM.CreatePostVM.DocumentFile != null && postVM.CreatePostVM.DocumentFile.Length > 0)
+            {
+                var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/documents");
+                if (!Directory.Exists(uploadsFolder))
+                {
+                    Directory.CreateDirectory(uploadsFolder);
+                }
+
+                var uniqueFileName = Guid.NewGuid().ToString() + "_" + Path.GetFileName(postVM.CreatePostVM.DocumentFile.FileName);
+                var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    await postVM.CreatePostVM.DocumentFile.CopyToAsync(fileStream);
+                }
+
+                var document = new Document
+                {
+                    Name = postVM.CreatePostVM.DocumentFile.FileName,
+                    FileUrl = "/documents/" + uniqueFileName,
+                    UserID = userId,
+                    UploadedAt = DateTime.Now
+                };
+
+                documentId = await _forumService.AddDocumentAsync(document);
+            }
+
             var encodedContent = WebUtility.HtmlEncode(postVM.CreatePostVM.Content);
 
             var post = new Post
@@ -508,7 +537,8 @@ namespace FUCommunityWeb.Controllers
                 Status = PostStatus.Approved.ToString(),
                 Tag = WebUtility.HtmlEncode(postVM.CreatePostVM.Tag),
                 Type = postVM.CreatePostVM.Type,
-                PostImage = postVM.CreatePostVM.PostImage
+                PostImage = postVM.CreatePostVM.PostImage,
+                DocumentID = documentId
             };
 
             await _forumService.AddPostAsync(post);
@@ -556,7 +586,8 @@ namespace FUCommunityWeb.Controllers
                 tag = post.Tag,
                 type = post.Type,
                 postImage = post.PostImage,
-                content = post.Content
+                content = post.Content,
+                document = post.Document != null ? new { post.Document.FileUrl, post.Document.Name } : null
             };
 
             return Json(postData);
@@ -589,11 +620,37 @@ namespace FUCommunityWeb.Controllers
                 existingPost.PostImage = "/uploads/" + uniqueFileName;
             }
 
+            if (postVM.CreatePostVM.DocumentFile != null && postVM.CreatePostVM.DocumentFile.Length > 0)
+            {
+                var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/documents");
+                if (!Directory.Exists(uploadsFolder))
+                {
+                    Directory.CreateDirectory(uploadsFolder);
+                }
+
+                var uniqueFileName = Guid.NewGuid().ToString() + "_" + Path.GetFileName(postVM.CreatePostVM.DocumentFile.FileName);
+                var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    await postVM.CreatePostVM.DocumentFile.CopyToAsync(fileStream);
+                }
+
+                var document = new Document
+                {
+                    Name = postVM.CreatePostVM.DocumentFile.FileName,
+                    FileUrl = "/documents/" + uniqueFileName,
+                    UserID = User.FindFirstValue(ClaimTypes.NameIdentifier),
+                    UploadedAt = DateTime.Now
+                };
+
+                existingPost.DocumentID = await _forumService.AddDocumentAsync(document);
+            }
+
             existingPost.Title = postVM.Post.Title;
             existingPost.Content = WebUtility.HtmlEncode(postVM.Post.Content);
             existingPost.Tag = postVM.Post.Tag;
             existingPost.Type = postVM.CreatePostVM.Type;
-
 
             await _forumService.UpdatePost(existingPost);
 
@@ -791,11 +848,11 @@ namespace FUCommunityWeb.Controllers
                 return NotFound();
             }
 
-            var comments = await _forumService.GetCommentsByPostID(postId); 
+            var comments = await _forumService.GetCommentsByPostID(postId);
             var viewModel = new PostVM
             {
                 Post = post,
-                Comments = comments 
+                Comments = comments
             };
             return View(viewModel);
         }
