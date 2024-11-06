@@ -148,6 +148,11 @@ namespace FuCommunityWebDataAccess.Data
                 .HasForeignKey(p => p.CategoryID)
                 .OnDelete(DeleteBehavior.Cascade);
 
+            modelBuilder.Entity<Course>()
+                .HasOne(c => c.Document)
+                .WithMany()
+                .HasForeignKey(c => c.DocumentID);
+
             // Default Data
             modelBuilder.Entity<Category>().HasData(
                 new Category

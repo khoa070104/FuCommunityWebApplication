@@ -173,7 +173,8 @@
                 @foreach (var course in Model.Courses)
                 {
                     <div class="col-md-4 mb-4">
-                        <div class="course-card" data-semester="@course.Semester" data-category-id="@course.CategoryID">
+                        <div class="course-card" data-semester="@course.Semester" data-category-id="@course.CategoryID"
+                             data-document-name="@course.Document?.Name" data-document-url="@course.Document?.FileUrl">
                             <div class="course-image">
                                 <a href="@Url.Action("Detail", "Course", new { id = course.CourseID })">
                                     <img src="@course.CourseImage" alt="Course Image" class="img-fluid" />
@@ -359,6 +360,12 @@
                                 <span asp-validation-for="CreateCourseVM.CourseImageFile" class="text-danger"></span>
                                 <small class="form-text text-muted">Upload an image for the course (optional).</small>
                             </div>
+
+                            <div class="mb-3">
+                                <label asp-for="CreateCourseVM.DocumentFile" class="form-label">Upload Document</label>
+                                <input asp-for="CreateCourseVM.DocumentFile" type="file" class="form-control" />
+                                <span asp-validation-for="CreateCourseVM.DocumentFile" class="text-danger"></span>
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn-cancel" data-bs-dismiss="modal">Cancel</button>
@@ -435,6 +442,21 @@
                                 <input asp-for="EditCourseVM.CourseImageFile" type="file" class="form-control" />
                                 <span asp-validation-for="EditCourseVM.CourseImageFile" class="text-danger"></span>
                                 <small class="form-text text-muted">Leave empty to keep the current image.</small>
+                            </div>
+                            <div class="mb-3">
+                                <label asp-for="EditCourseVM.DocumentFile" class="form-label">Upload Document</label>
+                                <input asp-for="EditCourseVM.DocumentFile" type="file" class="form-control" />
+                                <span asp-validation-for="EditCourseVM.DocumentFile" class="text-danger"></span>
+                                <div id="currentDocument">
+                                    @if (Model.EditCourseVM.Document != null)
+                                    {
+                                        <p>Current Document: <a href="@Model.EditCourseVM.Document.FileUrl" download>@Model.EditCourseVM.Document.Name</a></p>
+                                    }
+                                    else
+                                    {
+                                        <p>No document uploaded.</p>
+                                    }
+                                </div>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -526,6 +548,8 @@
             editCourseButtons.forEach(function (button) {
                 button.addEventListener("click", function () {
                     const courseId = this.getAttribute("data-course-id");
+                    console.log("Course ID:", courseId);
+
                     const courseCard = this.closest('.course-card');
                     const title = courseCard.querySelector('h3 a').textContent.trim();
                     const description = courseCard.querySelector('p').textContent.trim();
@@ -535,6 +559,13 @@
                     const semester = courseCard.getAttribute('data-semester');
                     const categoryId = courseCard.getAttribute('data-category-id');
                     const editModal = document.getElementById("editCourseModal");
+
+                    console.log("Title:", title);
+                    console.log("Description:", description);
+                    console.log("Price:", price);
+                    console.log("Course Image:", courseImage);
+                    console.log("Semester:", semester);
+                    console.log("Category ID:", categoryId);
 
                     editModal.querySelector("input[name='id']").value = courseId;
                     editModal.querySelector("input[name='EditCourseVM.CourseID']").value = courseId;
@@ -551,6 +582,17 @@
                     }
 
                     editModal.querySelector("input[name='EditCourseVM.CourseImage']").value = courseImage;
+
+                    const documentElement = editModal.querySelector("#currentDocument");
+                    if (documentElement) {
+                        const documentName = courseCard.getAttribute('data-document-name');
+                        const documentUrl = courseCard.getAttribute('data-document-url');
+                        if (documentName && documentUrl) {
+                            documentElement.innerHTML = `<p>Current Document: <a href="${documentUrl}" download>${documentName}</a></p>`;
+                        } else {
+                            documentElement.innerHTML = '<p>No document uploaded.</p>';
+                        }
+                    }   
 
                     const bootstrapModal = new bootstrap.Modal(editModal);
                     bootstrapModal.show();
