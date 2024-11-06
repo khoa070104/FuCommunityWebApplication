@@ -64,6 +64,22 @@
                     </div>
                 }
 
+                <!-- Document Section -->
+                <div class="document-section mb-4">
+                    @if (Model.Course.DocumentID.HasValue)
+                    {
+                        var document = Model.Course.Document;
+                        if (document != null)
+                        {
+                            <p><strong>Document:</strong> <a href="@document.FileUrl" download>@document.Name</a></p>
+                        }
+                    }
+                    else
+                    {
+                        <p><strong>Document: </strong>No Document</p>
+                    }
+                </div>
+
                 <!-- Lessons Table -->
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped align-middle">

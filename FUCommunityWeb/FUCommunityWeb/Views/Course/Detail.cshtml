@@ -36,6 +36,33 @@
                 <p><strong>Last update:</strong> @(Model.Course.UpdatedDate?.ToString("dd/MM/yyyy") ?? Model.Course.CreatedDate.ToString("dd/MM/yyyy"))</p>
                 <p><strong>Course Overview:</strong> @Model.Course.Description</p>
                 <p><strong>Instructor:</strong> @Model.Course.User.FullName</p>
+
+                @if (Model.Course.DocumentID.HasValue)
+
+                {
+                    var document = Model.Course.Document;
+                    if (document != null)
+                    {
+                        <p>
+                            <strong>Document:</strong>
+                            @if (Model.Course.UserID == User.FindFirstValue(ClaimTypes.NameIdentifier) || Model.EnrolledCourses.Contains(Model.Course.CourseID))
+                            {
+                                <a href="@document.FileUrl" download>@document.Name</a>
+                            }
+                            else
+                            {
+                                @document.Name
+                            }
+                        </p>
+                    }
+
+                }
+
+                else
+
+                {
+                    <p><strong>Document: </strong>No Document</p>
+                }
             </div>
         </div>
     </div>

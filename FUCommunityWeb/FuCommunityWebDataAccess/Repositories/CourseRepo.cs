@@ -21,6 +21,7 @@ namespace FuCommunityWebDataAccess.Repositories
             return await _context.Courses
                 .Include(c => c.User)
                 .Include(c => c.Category)
+                .Include(c => c.Document)
                 .ToListAsync();
         }
 
@@ -30,6 +31,7 @@ namespace FuCommunityWebDataAccess.Repositories
                 .Include(c => c.User)
                 .Include(c => c.Lessons)
                 .Include(c => c.Category)
+                .Include(c => c.Document)
                 .FirstOrDefaultAsync(c => c.CourseID == courseId);
         }
 
@@ -118,7 +120,9 @@ namespace FuCommunityWebDataAccess.Repositories
 
         public async Task<List<Course>> GetFilteredCoursesAsync(string semester, string category, string subjectCode, string rate, string minPrice)
         {
-            var filteredCourses = _context.Courses.AsQueryable();
+            var filteredCourses = _context.Courses
+           .Include(c => c.Document) 
+           .AsQueryable();
 
             if (!string.IsNullOrEmpty(semester) && int.TryParse(semester, out int semesterInt))
             {
@@ -267,6 +271,12 @@ namespace FuCommunityWebDataAccess.Repositories
         public async Task DeleteEnrollmentAsync(Enrollment enrollment)
         {
             _context.Enrollment.Remove(enrollment);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task AddDocumentAsync(Document document)
+        {
+            _context.Documents.Add(document);
             await _context.SaveChangesAsync();
         }
     }
