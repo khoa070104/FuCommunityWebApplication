@@ -43,9 +43,14 @@ namespace FUCommunityWeb.Areas.Identity.Pages.Account.Manage
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
         ///     directly from your code. This API may change or be removed in future releases.
         /// </summary>
+        public bool HasPassword { get; set; }
+
+        /// <summary>
+        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
+        ///     directly from your code. This API may change or be removed in future releases.
+        /// </summary>
         public class InputModel
         {
-            [Required]
             [DataType(DataType.Password)]
             [Display(Name = "Current password")]
             public string CurrentPassword { get; set; }
@@ -70,9 +75,9 @@ namespace FUCommunityWeb.Areas.Identity.Pages.Account.Manage
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
 
-            var hasPassword = await _userManager.HasPasswordAsync(user);
+            HasPassword = await _userManager.HasPasswordAsync(user);
 
-            if (hasPassword)
+            if (HasPassword)
             {
                 return RedirectToPage("./ChangePassword");
             }
@@ -93,12 +98,17 @@ namespace FUCommunityWeb.Areas.Identity.Pages.Account.Manage
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
 
-            // Verify current password
-            var isCurrentPasswordValid = await _userManager.CheckPasswordAsync(user, Input.CurrentPassword);
-            if (!isCurrentPasswordValid)
+            HasPassword = await _userManager.HasPasswordAsync(user);
+
+            if (HasPassword)
             {
-                ModelState.AddModelError(string.Empty, "Current password is incorrect.");
-                return Page();
+                // Verify current password
+                var isCurrentPasswordValid = await _userManager.CheckPasswordAsync(user, Input.CurrentPassword);
+                if (!isCurrentPasswordValid)
+                {
+                    ModelState.AddModelError(string.Empty, "Current password is incorrect.");
+                    return Page();
+                }
             }
 
             var addPasswordResult = await _userManager.AddPasswordAsync(user, Input.NewPassword);
