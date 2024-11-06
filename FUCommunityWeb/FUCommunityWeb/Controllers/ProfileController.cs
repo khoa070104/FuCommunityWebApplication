@@ -27,6 +27,10 @@ namespace FUCommunityWeb.Controllers
 
         public async Task<IActionResult> Index()
         {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToPage("/Account/Login", new { area = "Identity" });
+            }
             string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var user = await _userService.GetUserByIdAsync(userId);
             userVM = new()

@@ -35,6 +35,10 @@ namespace FUCommunityWeb.Controllers
         [HttpGet]
         public IActionResult Pay()
         {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToPage("/Account/Login", new { area = "Identity" });
+            }
             return View();
         }
 

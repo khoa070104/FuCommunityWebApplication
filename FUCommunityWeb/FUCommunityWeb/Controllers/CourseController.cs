@@ -278,6 +278,10 @@ namespace FUCommunityWeb.Controllers
 
         public async Task<IActionResult> Detail(int id)
         {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToPage("/Account/Login", new { area = "Identity" });
+            }
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var enrolledCourses = await _courseService.GetEnrolledCoursesAsync(userId);
             var course = await _courseService.GetCourseByIdAsync(id);

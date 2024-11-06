@@ -110,6 +110,10 @@ namespace FUCommunityWeb.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> BuyCourse(int courseId, string returnUrl)
         {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToPage("/Account/Login", new { area = "Identity" });
+            }
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             var course = await _courseService.GetCourseByIdAsync(courseId);
@@ -166,14 +170,7 @@ namespace FUCommunityWeb.Controllers
             }
         }
 
-        public IActionResult SignIn()
-        {
-            return View();
-        }
-        public IActionResult SignUp()
-        {
-            return View();
-        }
+        
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
@@ -182,6 +179,10 @@ namespace FUCommunityWeb.Controllers
         }
         public IActionResult ViewUser(string searchTerm = "")
         {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToPage("/Account/Login", new { area = "Identity" });
+            }
             List<ApplicationUser> users = new List<ApplicationUser>();
 
             if (!string.IsNullOrEmpty(searchTerm))
@@ -196,6 +197,10 @@ namespace FUCommunityWeb.Controllers
         }
         public async Task<IActionResult> ViewUserProfile(string userId)
         {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToPage("/Account/Login", new { area = "Identity" });
+            }
             if (string.IsNullOrEmpty(userId))
             {
                 return RedirectToAction("ViewUser");
@@ -231,6 +236,10 @@ namespace FUCommunityWeb.Controllers
 
         public async Task<IActionResult> ToggleFollow(string followId)
         {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToPage("/Account/Login", new { area = "Identity" });
+            }
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (string.IsNullOrEmpty(userId) || string.IsNullOrEmpty(followId))
             {
@@ -251,6 +260,10 @@ namespace FUCommunityWeb.Controllers
         [HttpGet]
         public IActionResult Search(string keyword)
         {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToPage("/Account/Login", new { area = "Identity" });
+            }
             var homeVM = new SearchVM();
 
             if(keyword == null)
