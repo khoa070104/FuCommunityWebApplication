@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using FuCommunityWebDataAccess.Repositories;
 using FuCommunityWebServices.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -59,6 +60,7 @@ builder.Services.AddAuthentication()
     {
         option.ClientId = googleClientId;
         option.ClientSecret = googleClientSecret;
+        option.CallbackPath = "/signin-google";
     });
 
 // Register Razor Pages
@@ -123,7 +125,23 @@ using (var scope = app.Services.CreateScope())
     var userService = services.GetRequiredService<ApplicationUserService>();
     await userService.SeedAdminUser();
 }
-
+//----
+app.Map("/signin-google", builder =>
+{
+    builder.Run(async context =>
+    {
+        var error = context.Request.Query["error"];
+        if (!string.IsNullOrEmpty(error) && error == "access_denied")
+        {
+            context.Response.Redirect("Identity/Account/Login?error=access_denied");
+        }
+        else
+        {
+            // Đang test và sẽ thêm nếu có!
+        }
+    });
+});
+// ----
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {

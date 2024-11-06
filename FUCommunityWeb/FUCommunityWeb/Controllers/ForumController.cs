@@ -235,6 +235,11 @@ namespace FUCommunityWeb.Controllers
         [HttpGet]
         public async Task<IActionResult> PostDetail(int postId)
         {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToPage("/Account/Login", new { area = "Identity" });
+            }
+
             var modal = new PostVM();
             modal = await _forumService.GetComments(postId);
             modal.Post.User = await _userService.GetUserById(modal.Post.UserID);

@@ -133,7 +133,6 @@ namespace FUCommunityWeb.Areas.Identity.Pages.Account
             {
                 try
                 {
-                    // Tìm user
                     var user = await _userManager.FindByEmailAsync(Input.Email);
                     if (user == null)
                     {
@@ -141,14 +140,12 @@ namespace FUCommunityWeb.Areas.Identity.Pages.Account
                         return Page();
                     }
 
-                    // Kiểm tra trạng thái ban
                     if (user is ApplicationUser appUser && appUser.Ban)
                     {
                         _logger.LogWarning("Banned user attempted to log in.");
                         return LocalRedirect("/Home/Banned");
                     }
 
-                    // Thực hiện đăng nhập
                     var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: true);
 
                     if (result.RequiresTwoFactor)
@@ -166,7 +163,6 @@ namespace FUCommunityWeb.Areas.Identity.Pages.Account
                     {
                         _logger.LogInformation("User logged in.");
 
-                        // Xử lý cookie remember me
                         if (Input.RememberMe)
                         {
                             var cookieOptions = new CookieOptions
@@ -183,7 +179,6 @@ namespace FUCommunityWeb.Areas.Identity.Pages.Account
                             Response.Cookies.Delete("RememberedEmail");
                         }
 
-                        // Kiểm tra role và chuyển hướng
                         if (await _userManager.IsInRoleAsync(user, "Admin"))
                         {
                             return LocalRedirect("/admin");
