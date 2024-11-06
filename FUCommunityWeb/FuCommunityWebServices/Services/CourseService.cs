@@ -178,5 +178,11 @@ namespace FuCommunityWebServices.Services
         {
             await _courseRepo.DeleteEnrollmentAsync(enrollment);
         }
+
+        public async Task<int> AddDocumentAsync(Document document)
+        {
+            await _courseRepo.AddDocumentAsync(document);
+            return document.DocumentID;
+        }
     }
 }

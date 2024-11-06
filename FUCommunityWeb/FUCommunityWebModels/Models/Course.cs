@@ -34,11 +34,15 @@ namespace FuCommunityWebModels.Models
         public int Semester { get; set; }
 
         public int CategoryID { get; set; }
+        public int? DocumentID { get; set; }
         [ForeignKey("CategoryID")]
         public Category Category { get; set; }
 
         [ForeignKey("UserID")]
         public ApplicationUser User { get; set; }
+        
+        [ForeignKey("DocumentID")]
+        public virtual Document Document { get; set; }
 
         public virtual ICollection<Lesson> Lessons { get; set; }
         public virtual ICollection<Enrollment> Enrollments { get; set; }

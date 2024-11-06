@@ -107,6 +107,13 @@ namespace FUCommunityWeb.Controllers
             {
                 createCourseVM.CourseImage = await UploadCourseImage(createCourseVM.CourseImageFile);
 
+                int? documentId = null;
+                if (createCourseVM.DocumentFile != null && createCourseVM.DocumentFile.Length > 0)
+                {
+                    var document = await UploadDocument(createCourseVM.DocumentFile);
+                    documentId = await _courseService.AddDocumentAsync(document);
+                }
+
                 try
                 {
                     var course = new Course
@@ -119,7 +126,8 @@ namespace FUCommunityWeb.Controllers
                         Status = "inactive",
                         CreatedDate = DateTime.Now,
                         Semester = createCourseVM.Semester,
-                        CategoryID = createCourseVM.CategoryID
+                        CategoryID = createCourseVM.CategoryID,
+                        DocumentID = documentId
                     };
 
                     await _courseService.AddCourseAsync(course);
@@ -163,7 +171,8 @@ namespace FUCommunityWeb.Controllers
                 Price = course.Price ?? 0,
                 CourseImage = course.CourseImage,
                 Semester = course.Semester,
-                CategoryID = course.CategoryID 
+                CategoryID = course.CategoryID,
+                Document = course.Document
             };
 
             var viewModel = await PrepareCourseViewModel(editCourseVM: editCourseVM, showEditModal: true, editCourseId: course.CourseID);
@@ -223,6 +232,12 @@ namespace FUCommunityWeb.Controllers
             if (editCourseVM.CourseImageFile != null && editCourseVM.CourseImageFile.Length > 0)
             {
                 courseToUpdate.CourseImage = await UploadCourseImage(editCourseVM.CourseImageFile);
+            }
+
+            if (editCourseVM.DocumentFile != null && editCourseVM.DocumentFile.Length > 0)
+            {
+                var document = await UploadDocument(editCourseVM.DocumentFile);
+                courseToUpdate.DocumentID = await _courseService.AddDocumentAsync(document);
             }
 
             courseToUpdate.UpdatedDate = DateTime.Now;
@@ -660,6 +675,31 @@ namespace FUCommunityWeb.Controllers
             await _courseService.UpdateReviewAsync(existingReview);
 
             return RedirectToAction("Detail", new { id = review.CourseID });
+        }
+
+        private async Task<Document> UploadDocument(IFormFile documentFile)
+        {
+            var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/documents");
+            if (!Directory.Exists(uploadsFolder))
+            {
+                Directory.CreateDirectory(uploadsFolder);
+            }
+
+            var uniqueFileName = Guid.NewGuid().ToString() + "_" + Path.GetFileName(documentFile.FileName);
+            var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+            using (var fileStream = new FileStream(filePath, FileMode.Create))
+            {
+                await documentFile.CopyToAsync(fileStream);
+            }
+
+            return new Document
+            {
+                Name = documentFile.FileName,
+                FileUrl = "/documents/" + uniqueFileName,
+                UserID = User.FindFirstValue(ClaimTypes.NameIdentifier),
+                UploadedAt = DateTime.Now
+            };
         }
     }
 }

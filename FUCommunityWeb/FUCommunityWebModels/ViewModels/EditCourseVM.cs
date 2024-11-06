@@ -30,5 +30,11 @@ namespace FuCommunityWebModels.ViewModels
 
         [Required(ErrorMessage = "Please select a category.")]
         public int CategoryID { get; set; }
+
+        [NotMapped]
+        [Display(Name = "Document File")]
+        public IFormFile? DocumentFile { get; set; }
+
+        public Document Document { get; set; }
     }
 }

@@ -121,7 +121,9 @@
                                            data-course-image="@course.CourseImage"
                                            data-status="@course.Status"
                                            data-semester="@course.Semester"
-                                           data-category-id="@course.CategoryID"></i>
+                                           data-category-id="@course.CategoryID"
+                                           data-document-name="@course.Document?.Name"
+                                           data-document-url="@course.Document?.FileUrl"></i>
                                         <i class="fas fa-trash table-settings" data-bs-toggle="modal"
                                            data-bs-target="#deleteModal" data-course-id="@course.CourseID"
                                            data-title="@course.Title"></i>
@@ -194,6 +196,11 @@
                             </select>
                             <span asp-validation-for="CreateCourseVM.CategoryID" class="text-danger"></span>
                         </div>
+                        <div class="mb-3">
+                            <label asp-for="CreateCourseVM.DocumentFile" class="form-label">Upload Document</label>
+                            <input asp-for="CreateCourseVM.DocumentFile" type="file" class="form-control" />
+                            <span asp-validation-for="CreateCourseVM.DocumentFile" class="text-danger"></span>
+                        </div>
                     </div>
                     <div class="modal-footer buttons">
                         <button type="button" class="btn-cancel-2" data-bs-dismiss="modal">Cancel</button>
@@ -259,6 +266,21 @@
                                 }
                             </select>
                             <span asp-validation-for="EditCourseVM.CategoryID" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="EditCourseVM.DocumentFile" class="form-label">Upload Document</label>
+                            <input asp-for="EditCourseVM.DocumentFile" type="file" class="form-control" />
+                            <span asp-validation-for="EditCourseVM.DocumentFile" class="text-danger"></span>
+                            <div id="currentDocument">
+                                @if (Model.EditCourseVM.Document != null)
+                                {
+                                    <p>Current Document: <a href="@Model.EditCourseVM.Document.FileUrl" download>@Model.EditCourseVM.Document.Name</a></p>
+                                }
+                                else
+                                {
+                                    <p>No document uploaded.</p>
+                                }
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer buttons">
@@ -384,29 +406,40 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-        const editModal = document.getElementById('editModal');
+            const editModal = document.getElementById('editModal');
 
-        editModal.addEventListener('show.bs.modal', function (event) {
-            const button = event.relatedTarget;
+            editModal.addEventListener('show.bs.modal', function (event) {
+                const button = event.relatedTarget;
 
-            const courseId = button.getAttribute('data-course-id');
-            const title = button.getAttribute('data-title');
-            const description = button.getAttribute('data-description');
-            const price = button.getAttribute('data-price');
-            const courseImage = button.getAttribute('data-course-image');
-            const status = button.getAttribute('data-status');
-            const semester = button.getAttribute('data-semester');
-            const categoryId = button.getAttribute('data-category-id');
+                const courseId = button.getAttribute('data-course-id');
+                const title = button.getAttribute('data-title');
+                const description = button.getAttribute('data-description');
+                const price = button.getAttribute('data-price');
+                const courseImage = button.getAttribute('data-course-image');
+                const semester = button.getAttribute('data-semester');
+                const categoryId = button.getAttribute('data-category-id');
+                const documentName = button.getAttribute('data-document-name');
+                const documentUrl = button.getAttribute('data-document-url');
 
-            document.getElementById('editCourseID').value = courseId;
-            document.getElementById('editTitle').value = title;
-            document.getElementById('editDescription').value = description;
-            document.getElementById('editPrice').value = price;
-            document.getElementById('editSemester').value = semester;
-            document.getElementById('editCategoryID').value = categoryId;
+                document.getElementById('editCourseID').value = courseId;
+                document.getElementById('editTitle').value = title;
+                document.getElementById('editDescription').value = description;
+                document.getElementById('editPrice').value = price;
+                document.getElementById('editSemester').value = semester;
+                document.getElementById('editCategoryID').value = categoryId;
 
-            const currentCourseImage = document.getElementById('currentCourseImage');
-            currentCourseImage.src = courseImage;
+                const currentCourseImage = document.getElementById('currentCourseImage');
+                currentCourseImage.src = courseImage;
+
+                const documentElement = editModal.querySelector("#currentDocument");
+                if (documentElement) {
+                    if (documentName && documentUrl) {
+                        documentElement.innerHTML = `<p>Current Document: <a href="${documentUrl}" download>${documentName}</a></p>`;
+                    } else {
+                        console.log("No document uploaded.");
+                        documentElement.innerHTML = '<p>No document uploaded.</p>';
+                    }
+                }
         });
     });
     </script>
