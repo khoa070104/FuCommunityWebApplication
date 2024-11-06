@@ -56,11 +56,19 @@ var googleClientId = builder.Configuration["Authentication:Google:ClientId"];
 var googleClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
 
 builder.Services.AddAuthentication()
-    .AddGoogle(option =>
+    .AddGoogle(options =>
     {
-        option.ClientId = googleClientId;
-        option.ClientSecret = googleClientSecret;
-        option.CallbackPath = "/signin-google";
+        options.ClientId = googleClientId;
+        options.ClientSecret = googleClientSecret;
+        options.CallbackPath = "/signin-google";
+        options.AccessType = "offline";
+        options.SaveTokens = true;
+        options.Events.OnRemoteFailure = context =>
+        {
+            context.Response.Redirect("/Identity/Account/Login");
+            context.HandleResponse();
+            return Task.CompletedTask;
+        };
     });
 
 // Register Razor Pages
@@ -126,22 +134,6 @@ using (var scope = app.Services.CreateScope())
     await userService.SeedAdminUser();
 }
 //----
-app.Map("/signin-google", builder =>
-{
-    builder.Run(async context =>
-    {
-        var error = context.Request.Query["error"];
-        if (!string.IsNullOrEmpty(error) && error == "access_denied")
-        {
-            context.Response.Redirect("Identity/Account/Login?error=access_denied");
-        }
-        else
-        {
-            // Đang test và sẽ thêm nếu có!
-        }
-    });
-});
-// ----
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {

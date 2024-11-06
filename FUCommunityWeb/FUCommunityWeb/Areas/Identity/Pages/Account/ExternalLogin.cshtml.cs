@@ -124,56 +124,48 @@ namespace FUCommunityWeb.Areas.Identity.Pages.Account
         public async Task<IActionResult> OnGetCallbackAsync(string returnUrl = null, string remoteError = null)
         {
             returnUrl = returnUrl ?? Url.Content("~/");
-            if (remoteError != null)
+            
+            if (!string.IsNullOrEmpty(remoteError))
             {
-                // Nếu có lỗi "access_denied", hiển thị thông báo hoặc xử lý phù hợp
-                if (remoteError.Equals("access_denied", StringComparison.OrdinalIgnoreCase))
-                {
-                    ErrorMessage = "Bạn đã hủy đăng nhập từ Google.";
-                }
-                else
-                {
-                    ErrorMessage = $"Lỗi từ nhà cung cấp dịch vụ ngoài: {remoteError}";
-                }
-
-                return RedirectToPage("./Login", new { ReturnUrl = returnUrl });
+                string errorMessage = remoteError.Equals("access_denied", StringComparison.OrdinalIgnoreCase) 
+                    ? "Bạn đã hủy đăng nhập từ Google." 
+                    : $"Đã xảy ra lỗi từ nhà cung cấp dịch vụ: {remoteError}";
+                
+                return RedirectToPage("./Login", new { ReturnUrl = returnUrl, ErrorMessage = errorMessage });
             }
-            //if (remoteError != null)
-            //{
-            //    ErrorMessage = $"Error from external provider: {remoteError}";
-            //    return RedirectToPage("./Login", new { ReturnUrl = returnUrl });
-            //}
+
             var info = await _signInManager.GetExternalLoginInfoAsync();
             if (info == null)
             {
-                ErrorMessage = "Error loading external login information.";
-                return RedirectToPage("./Login", new { ReturnUrl = returnUrl });
+                return RedirectToPage("./Login", new 
+                { 
+                    ReturnUrl = returnUrl,
+                    ErrorMessage = "Không thể tải thông tin đăng nhập từ Google."
+                });
             }
 
-            var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false, bypassTwoFactor: true);
-            if (result.Succeeded)
+            var user = await _userManager.FindByEmailAsync(info.Principal.FindFirstValue(ClaimTypes.Email));
+            if (user != null)
             {
-                _logger.LogInformation("{Name} logged in with {LoginProvider} provider.", info.Principal.Identity.Name, info.LoginProvider);
-                return LocalRedirect(returnUrl);
-            }
-            if (result.IsLockedOut)
-            {
-                return RedirectToPage("./Lockout");
-            }
-            else
-            {
-                ReturnUrl = returnUrl;
-                ProviderDisplayName = info.ProviderDisplayName;
-                if (info.Principal.HasClaim(c => c.Type == ClaimTypes.Email))
+                var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false);
+                if (result.Succeeded)
                 {
-                    Input = new InputModel
-                    {
-                        Email = info.Principal.FindFirstValue(ClaimTypes.Email),
-                        FullName = info.Principal.FindFirstValue(ClaimTypes.Name)
-                    };
+                    _logger.LogInformation("{Name} đã đăng nhập với {LoginProvider}.", info.Principal.Identity.Name, info.LoginProvider);
+                    return LocalRedirect(returnUrl);
                 }
-                return Page();
             }
+
+            ReturnUrl = returnUrl;
+            ProviderDisplayName = info.ProviderDisplayName;
+            if (info.Principal.HasClaim(c => c.Type == ClaimTypes.Email))
+            {
+                Input = new InputModel
+                {
+                    Email = info.Principal.FindFirstValue(ClaimTypes.Email),
+                    FullName = info.Principal.FindFirstValue(ClaimTypes.Name)
+                };
+            }
+            return Page();
         }
         private async Task EnsureRolesExistAsync()
         {
