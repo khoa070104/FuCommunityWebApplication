@@ -107,9 +107,18 @@ namespace FUCommunityWeb.Areas.Identity.Pages.Account
 
         public IActionResult OnPost(string provider, string returnUrl = null)
         {
-            var redirectUrl = Url.Page("./ExternalLogin", pageHandler: "Callback", values: new { returnUrl });
-            var properties = _signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl);
-            return new ChallengeResult(provider, properties);
+            try
+            {
+                var redirectUrl = Url.Page("./ExternalLogin", pageHandler: "Callback", values: new { returnUrl });
+                var properties = _signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl);
+                return new ChallengeResult(provider, properties);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToPage("./Home");
+            }
+
+            
         }
 
         public async Task<IActionResult> OnGetCallbackAsync(string returnUrl = null, string remoteError = null)
@@ -117,9 +126,23 @@ namespace FUCommunityWeb.Areas.Identity.Pages.Account
             returnUrl = returnUrl ?? Url.Content("~/");
             if (remoteError != null)
             {
-                ErrorMessage = $"Error from external provider: {remoteError}";
+                // Nếu có lỗi "access_denied", hiển thị thông báo hoặc xử lý phù hợp
+                if (remoteError.Equals("access_denied", StringComparison.OrdinalIgnoreCase))
+                {
+                    ErrorMessage = "Bạn đã hủy đăng nhập từ Google.";
+                }
+                else
+                {
+                    ErrorMessage = $"Lỗi từ nhà cung cấp dịch vụ ngoài: {remoteError}";
+                }
+
                 return RedirectToPage("./Login", new { ReturnUrl = returnUrl });
             }
+            //if (remoteError != null)
+            //{
+            //    ErrorMessage = $"Error from external provider: {remoteError}";
+            //    return RedirectToPage("./Login", new { ReturnUrl = returnUrl });
+            //}
             var info = await _signInManager.GetExternalLoginInfoAsync();
             if (info == null)
             {
