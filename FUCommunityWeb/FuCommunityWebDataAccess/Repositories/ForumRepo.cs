@@ -158,10 +158,18 @@ namespace FuCommunityWebDataAccess.Repositories
 
         public async Task DeleteComment(int commentId)
         {
+            var childComments = _context.Comments.Where(c => c.ReplyID == commentId);
+
+            _context.Comments.RemoveRange(childComments);
+
             var comment = await _context.Comments.FindAsync(commentId);
-            _context.Comments.Remove(comment);
-            await _context.SaveChangesAsync();
+            if (comment != null)
+            {
+                _context.Comments.Remove(comment);
+                await _context.SaveChangesAsync();
+            }
         }
+
 
         public async Task<Comment> GetCommentByID(int commentId)
         {
