@@ -186,6 +186,8 @@ namespace FUCommunityWeb.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, EditCourseVM editCourseVM)
         {
+            ModelState.Remove("editCourseVM.Document");
+
             if (!ModelState.IsValid)
             {
                 var course = await _courseService.GetCourseByIdAsync(id);
