@@ -34,7 +34,7 @@
                 </div>
                 <div>
                     <p class="user-profile-link">
-                        <h1 class="mb-0" style="font-weight: bold;">@Model.User.FullName</h1>
+                        <h1 class="mb-0" style="font-weight: bold; word-break: break-all;">@Model.User.FullName</h1>
                     </p>
 
                     <p class="text-muted">@Model.User.Bio</p>
@@ -110,22 +110,22 @@
                 {
                     foreach (var post in Model.Post.Where(p => p.Status == PostStatus.Approved.ToString()).OrderByDescending(p => p.CreatedDate))
                     {
-                        <div class="card mb-3">
-                            <a href="@Url.Action("PostDetail", "Forum", new { postId = post.PostID })" style="text-decoration:none;" class="stretched-link">
-                            <div class="card-body">
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <div>
-                                        <h2 class="card-title mb-1">
-                                            <a href="/Forum/PostDetail?postId=@post.PostID">@post.Title</a>
-                                        </h2>
-                                        <p class="card-text text-muted mb-0">
-                                            Comments: <span>@(post.Comments?.Count ?? 0)</span> & Votes: <span>@(post.IsVotes?.Count ?? 0)</span>
-                                        </p>
-                                        <small class="text-muted">@((post.User?.FullName ?? "Unknown User") + " - " + post.CreatedDate?.ToString("dd/MM/yyyy"))</small>
+                        <div class="card mb-3" onclick="window.location='@Url.Action("PostDetail", "Forum", new { postId = post.PostID })';" style="cursor: pointer;">
+                            <a style="text-decoration:none; display:none;" class="stretched-link">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <div>
+                                            <h2 class="card-title mb-1" style="font-style:italic; font-weight:bold;">
+                                                <a style="text-decoration:none;color:#20B486; word-break:break-all;" href="/Forum/PostDetail?postId=@post.PostID">@post.Title</a>
+                                            </h2>
+                                            <p class="card-text text-muted mb-0">
+                                                Comments: <span>@(post.Comments?.Count ?? 0)</span> & Votes: <span>@(post.IsVotes?.Count ?? 0)</span>
+                                            </p>
+                                            <small class="text-muted">@((post.User?.FullName ?? "Unknown User") + " - " + post.CreatedDate?.ToString("dd/MM/yyyy"))</small>
+                                        </div>
+                                        <img class="user-avatar ms-3" style="width:80px;height:80px;border-radius:50%;" src="@(post.User?.AvatarImage ?? "/img/avt2.jpg")" alt="User Avatar" />
                                     </div>
-                                    <img class="user-avatar ms-3" style="width:80px;height:80px;border-radius:50%;" src="@(post.User?.AvatarImage ?? "/img/avt2.jpg")" alt="User Avatar" />
                                 </div>
-                            </div>
                             </a>
                         </div>
                     }

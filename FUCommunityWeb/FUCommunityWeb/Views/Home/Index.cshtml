@@ -29,19 +29,19 @@
             <div class="courses">
                 @foreach (var course in Model.MostPurchasedCourses)
                 {
-                    <div class="course-card" data-course-id="@course.CourseID">
+                    <div class="course-card" onclick="window.location='@Url.Action("Detail", "Course", new { id = course.CourseID })';" style="cursor: pointer;" data-course-id="@course.CourseID">
                         <div class="course-image">
                             <a href="@Url.Action("Detail", "Course", new { id = course.CourseID })">
-                                <img src="@course.CourseImage" alt="Course Image" class="img-fluid">
+                                <img style="width:200px;height:200px;" src="@course.CourseImage" alt="Course Image" class="img-fluid">
                             </a>
                         </div>
                         <div class="course-info">
                             <div class="category">
                                 <span class="badge">@course.Category.CategoryName</span>
                             </div>
-                            <h3>
-                                <a href="@Url.Action("Detail", "Course", new { id = course.CourseID })">@course.Title</a>
-                            </h3>
+                            <h2>
+                                <a style="font-style:italic; font-weight:bold; color:#20B486; word-break:break-all; text-decoration:none;" href="@Url.Action("Detail", "Course", new { id = course.CourseID })">@course.Title</a>
+                            </h2>
                             <p>@course.Description</p>
                             <div class="rating">
                                 <span>@(Model.AverageRatings.ContainsKey(course.CourseID) ? Model.AverageRatings[course.CourseID].ToString("0.0") : "0.0")</span>
@@ -54,7 +54,7 @@
                                         }
                                         else
                                         {
-                                            <i class="fas fa-star" style="color: black;"></i>
+                                            <i class="fa-regular fa-star"></i>
                                         }
                                     }
                                 </span>
@@ -62,7 +62,7 @@
                             </div>
                             <div class="price text-center">
                                 <div>
-                                    <span class="old-price">500 points</span>
+                                    @* <span class="old-price">500 points</span> *@
                                     <span class="new-price">@course.Price points</span>
                                 </div>
                             </div>
@@ -80,19 +80,19 @@
                                 {
                                     @if (!User.Identity.IsAuthenticated)
                                     {
-                                        <button class="btn buy-now" data-course-id="@course.CourseID">
+                                        <button class="btn buy-now" data-course-id="@course.CourseID" onclick="event.stopPropagation();">
                                             Buy Now
                                         </button>
                                     }
                                     else if (Model.UserPoints < course.Price)
                                     {
-                                        <button class="btn buy-now" data-course-id="@course.CourseID">
+                                        <button class="btn buy-now" data-course-id="@course.CourseID" onclick="event.stopPropagation();">
                                             Buy Now
                                         </button>
                                     }
                                     else
                                     {
-                                        <button class="btn buy-now" data-course-id="@course.CourseID">
+                                        <button class="btn buy-now" data-course-id="@course.CourseID" onclick="event.stopPropagation();">
                                             Buy Now
                                         </button>
                                     }
@@ -112,19 +112,19 @@
             <div class="courses">
                 @foreach (var course in Model.HighestQualityCourse)
                 {
-                    <div class="course-card" data-course-id="@course.CourseID">
+                    <div class="course-card" onclick="window.location='@Url.Action("Detail", "Course", new { id = course.CourseID })';" style="cursor: pointer;" data-course-id="@course.CourseID">
                         <div class="course-image">
                             <a href="@Url.Action("Detail", "Course", new { id = course.CourseID })">
-                                <img src="@course.CourseImage" alt="Course Image" class="img-fluid">
+                                <img style="width:200px;height:200px;" src="@course.CourseImage" alt="Course Image" class="img-fluid">
                             </a>
                         </div>
                         <div class="course-info">
                             <div class="category">
                                 <span class="badge">@course.Category.CategoryName</span>
                             </div>
-                            <h3>
-                                <a href="@Url.Action("Detail", "Course", new { id = course.CourseID })">@course.Title</a>
-                            </h3>
+                            <h2>
+                                <a style="font-style:italic; font-weight:bold; color:#20B486; word-break:break-all; text-decoration:none;" href="@Url.Action("Detail", "Course", new { id = course.CourseID })">@course.Title</a>
+                            </h2>
                             <p>@course.Description</p>
                             <div class="rating">
                                 <span>@(Model.AverageRatings.ContainsKey(course.CourseID) ? Model.AverageRatings[course.CourseID].ToString("0.0") : "0.0")</span>
@@ -137,7 +137,7 @@
                                         }
                                         else
                                         {
-                                            <i class="fas fa-star" style="color: black;"></i>
+                                            <i class="fa-regular fa-star"></i>
                                         }
                                     }
                                 </span>
@@ -145,7 +145,7 @@
                             </div>
                             <div class="price text-center">
                                 <div>
-                                    <span class="old-price">500 points</span>
+                                    @* <span class="old-price">500 points</span> *@
                                     <span class="new-price">@course.Price points</span>
                                 </div>
                             </div>

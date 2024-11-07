@@ -10,7 +10,7 @@
             </div>
             <input type="file" name="file" id="file" accept="image/*" style="display: none;" onchange="this.form.submit()">
         </div>
-        <h4 class="username mb-1">@Model.User.FullName</h4>
+        <h4 class="username mb-1" style="word-break: break-all;">@Model.User.FullName</h4>
         <p class="points">Points of week: <span>@Model.User.Point</span></p>
     </form>
     <ul class="list-group">

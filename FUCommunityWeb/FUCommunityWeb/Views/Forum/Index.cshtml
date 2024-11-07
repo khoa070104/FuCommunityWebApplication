@@ -1,7 +1,7 @@
 ﻿@model ForumVM
 
 <body>
-    <div class="container forum">
+    <div class="container forum min-vh-100">
         <h1 class="forum-title">Forum</h1>
         <div class="row">
             <div class="col-md-8">
@@ -14,7 +14,7 @@
                         {
                             <li class="list-group-item d-flex align-items-center justify-content-between">
                                 <div class="d-flex align-items-center">
-                                    <div class="me-3"><img class="category-img" src="/img/avt2.jpg" alt="Alternate Text" style="width:50px;height:50px;border-radius:50%;" /></div>
+                                    <div class="me-3"><img class="category-img" src="/img/default-avt3.gif" alt="Alternate Text" style="width:50px;height:50px;border-radius:50%;" /></div>
                                     <a asp-controller="Forum" asp-action="Post"
                                        asp-route-CategoryName="@category.CategoryName"
                                        asp-route-CategoryID="@category.CategoryID"

@@ -5,9 +5,25 @@
 @{
     var currentUserId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
 }
+<style>
+    .course-card {
+        display: flex;
+        flex-direction: column;
+        height: 100%; /* Đảm bảo chiều cao đầy đủ */
+    }
 
+        .course-card .course-info {
+            flex-grow: 1; /* Chiếm không gian còn lại để đẩy card-footer xuống dưới */
+        }
+
+        .course-card .card-footer {
+            margin-top: auto;
+            background: white;
+        }
+
+</style>
 <body>
-    <div class="course-container">
+    <div class="course-container min-vh-100">
         <div class="container">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
@@ -173,22 +189,24 @@
                 @foreach (var course in Model.Courses)
                 {
                     <div class="col-md-4 mb-4">
-                        <div class="course-card" data-semester="@course.Semester" data-category-id="@course.CategoryID"
+                        <div class="course-card" onclick="window.location='@Url.Action("Detail", "Course", new { id = course.CourseID })';" style="cursor: pointer;" data-semester="@course.Semester" data-category-id="@course.CategoryID"
                              data-document-name="@course.Document?.Name" data-document-url="@course.Document?.FileUrl">
                             <div class="course-image">
                                 <a href="@Url.Action("Detail", "Course", new { id = course.CourseID })">
-                                    <img src="@course.CourseImage" alt="Course Image" class="img-fluid" />
+                                    <img style="width:200px;height:200px;" src="@course.CourseImage" alt="Course Image" class="img-fluid" />
                                 </a>
                             </div>
                             <div class="course-info">
                                 <div class="category">
                                     <span class="badge">@course.Category.CategoryName</span>
                                 </div>
-                                <h3>
-                                    <a href="@Url.Action("Detail", "Course", new { id = course.CourseID })">@course.Title</a>
-                                </h3>
+                                <h2 style="font-style:italic; font-weight:bold; color:#20B486;">
+                                    @course.Title
+                                </h2>
                                 <p>@course.Description</p>
-                                <div class="rating">
+                            </div>
+                            <div class="card-footer">
+                                <div class="rating text-center">
                                     <span>@(Model.AverageRatings.ContainsKey(course.CourseID) ? Model.AverageRatings[course.CourseID].ToString("0.0") : "0.0")</span>
                                     <span class="stars">
                                         @for (int i = 0; i < 5; i++)
@@ -199,45 +217,44 @@
                                             }
                                             else
                                             {
-                                                <i class="fas fa-star" style="color: black;"></i>
+                                                <i class="fa-regular fa-star"></i>
                                             }
                                         }
                                     </span>
                                     <span>(@(Model.ReviewCounts.ContainsKey(course.CourseID) ? Model.ReviewCounts[course.CourseID] : 0))</span>
                                 </div>
-                                <div class="price text-center">
+                                <div class="price text-center mb-3">
                                     <div>
-                                        <span class="old-price text-muted">500 points</span>
+                                        @* <span class="old-price text-muted">500 points</span> *@
                                         <span class="new-price fw-bold">@course.Price points</span>
                                     </div>
                                 </div>
-                                <hr>
                                 <div class="text-center">
                                     @if (currentUserId == course.UserID)
                                     {
-                                        <span class="text-success">Owner</span>
+                                       @*  <span class="text-success">Owner</span> *@
                                     }
                                     else if (Model.EnrolledCourses.Contains(course.CourseID))
                                     {
-                                        <span class="text-success">Enrolled</span>
+                                        <button disabled class="btn-blue">Enrolled</button>
                                     }
                                     else
                                     {
                                         @if (!User.Identity.IsAuthenticated)
                                         {
-                                            <button class="btn buy-now" data-course-id="@course.CourseID">
+                                            <button class="btn-green buy-now" data-course-id="@course.CourseID" onclick="event.stopPropagation();">
                                                 Buy Now
                                             </button>
                                         }
                                         else if (Model.UserPoints < course.Price)
                                         {
-                                            <button class="btn buy-now" data-course-id="@course.CourseID">
+                                            <button class="btn-green buy-now" data-course-id="@course.CourseID" onclick="event.stopPropagation();">
                                                 Buy Now
                                             </button>
                                         }
                                         else
                                         {
-                                            <button class="btn buy-now" data-course-id="@course.CourseID">
+                                            <button class="btn-green buy-now" data-course-id="@course.CourseID" onclick="event.stopPropagation();">
                                                 Buy Now
                                             </button>
                                         }
@@ -248,10 +265,28 @@
                                     @if (User.Identity.IsAuthenticated && course.UserID == User.FindFirstValue(ClaimTypes.NameIdentifier))
                                     {
                                         <div class="mt-2">
-                                            <button type="button" class="btn-sm btn-edit me-2 edit-course-btn" data-course-id="@course.CourseID">
+                                            <i class="fas fa-user-tie me-3"></i>
+                                            <button type="button" class="btn-sm btn-edit me-2 edit-course-btn"
+                                                    data-course-id="@course.CourseID"
+                                                    data-course-title="@course.Title"
+                                                    data-course-description="@course.Description"
+                                                    data-course-price="@course.Price"
+                                                    data-course-image="@course.CourseImage"
+                                                    data-course-semester="@course.Semester"
+                                                    data-course-category-id="@course.CategoryID"
+                                                    data-document-name="@course.Document?.Name"
+                                                    data-document-url="@course.Document?.FileUrl"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#editCourseModal"
+                                                    onclick="event.stopPropagation();">
                                                 Edit
                                             </button>
-                                            <button type="button" class="btn-sm btn-del delete-course-btn" data-course-id="@course.CourseID" data-course-title="@course.Title" data-bs-toggle="modal" data-bs-target="#deleteCourseModal">
+                                            <button type="button" class="btn-sm btn-del delete-course-btn"
+                                                    data-course-id="@course.CourseID"
+                                                    data-course-title="@course.Title"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#deleteCourseModal"
+                                                    onclick="event.stopPropagation();">
                                                 Delete
                                             </button>
                                         </div>
@@ -263,6 +298,7 @@
                 }
             </div>
         </div>
+
         <div class="modal fade" id="buyNowModal" tabindex="-1" aria-labelledby="buyNowModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -543,60 +579,50 @@
                 });
             });
 
-            const editCourseButtons = document.querySelectorAll(".edit-course-btn");
+            const editCourseModal = document.getElementById('editCourseModal');
 
-            editCourseButtons.forEach(function (button) {
-                button.addEventListener("click", function () {
-                    const courseId = this.getAttribute("data-course-id");
-                    console.log("Course ID:", courseId);
+            editCourseModal.addEventListener('show.bs.modal', function (event) {
+                const button = event.relatedTarget;
+                const courseId = button.getAttribute('data-course-id');
+                const title = button.getAttribute('data-course-title');
+                const description = button.getAttribute('data-course-description');
+                const price = button.getAttribute('data-course-price');
+                const courseImage = button.getAttribute('data-course-image');
+                const semester = button.getAttribute('data-course-semester');
+                const categoryId = button.getAttribute('data-course-category-id');
+                const documentName = button.getAttribute('data-document-name');
+                const documentUrl = button.getAttribute('data-document-url');
 
-                    const courseCard = this.closest('.course-card');
-                    const title = courseCard.querySelector('h3 a').textContent.trim();
-                    const description = courseCard.querySelector('p').textContent.trim();
-                    const priceText = courseCard.querySelector('.new-price').textContent.trim();
-                    const price = priceText.split(' ')[0];
-                    const courseImage = courseCard.querySelector('.course-image img').getAttribute('src');
-                    const semester = courseCard.getAttribute('data-semester');
-                    const categoryId = courseCard.getAttribute('data-category-id');
-                    const editModal = document.getElementById("editCourseModal");
+                editCourseModal.querySelector("input[name='id']").value = courseId;
+                editCourseModal.querySelector("input[name='EditCourseVM.CourseID']").value = courseId;
+                editCourseModal.querySelector("input[name='EditCourseVM.Title']").value = title;
+                editCourseModal.querySelector("textarea[name='EditCourseVM.Description']").value = description;
+                editCourseModal.querySelector("input[name='EditCourseVM.Price']").value = price;
+                editCourseModal.querySelector("select[name='EditCourseVM.Semester']").value = semester;
+                editCourseModal.querySelector("select[name='EditCourseVM.CategoryID']").value = categoryId;
 
-                    console.log("Title:", title);
-                    console.log("Description:", description);
-                    console.log("Price:", price);
-                    console.log("Course Image:", courseImage);
-                    console.log("Semester:", semester);
-                    console.log("Category ID:", categoryId);
+                const currentImage = editCourseModal.querySelector("#currentCourseImage");
+                if (currentImage) {
+                    currentImage.src = courseImage;
+                }
 
-                    editModal.querySelector("input[name='id']").value = courseId;
-                    editModal.querySelector("input[name='EditCourseVM.CourseID']").value = courseId;
-                    editModal.querySelector("input[name='EditCourseVM.Title']").value = title;
-                    editModal.querySelector("textarea[name='EditCourseVM.Description']").value = description;
-                    editModal.querySelector("input[name='EditCourseVM.Price']").value = price;
+                editCourseModal.querySelector("input[name='EditCourseVM.CourseImage']").value = courseImage;
 
-                    editModal.querySelector("select[name='EditCourseVM.Semester']").value = semester;
-                    editModal.querySelector("select[name='EditCourseVM.CategoryID']").value = categoryId;
-
-                    const currentImage = editModal.querySelector("#currentCourseImage");
-                    if (currentImage) {
-                        currentImage.src = courseImage;
+                const documentElement = editCourseModal.querySelector("#currentDocument");
+                if (documentElement) {
+                    if (documentName && documentUrl) {
+                        documentElement.innerHTML = `<p>Current Document: <a href="${documentUrl}" download>${documentName}</a></p>`;
+                    } else {
+                        documentElement.innerHTML = '<p>No document uploaded.</p>';
                     }
+                }
+            });
 
-                    editModal.querySelector("input[name='EditCourseVM.CourseImage']").value = courseImage;
-
-                    const documentElement = editModal.querySelector("#currentDocument");
-                    if (documentElement) {
-                        const documentName = courseCard.getAttribute('data-document-name');
-                        const documentUrl = courseCard.getAttribute('data-document-url');
-                        if (documentName && documentUrl) {
-                            documentElement.innerHTML = `<p>Current Document: <a href="${documentUrl}" download>${documentName}</a></p>`;
-                        } else {
-                            documentElement.innerHTML = '<p>No document uploaded.</p>';
-                        }
-                    }   
-
-                    const bootstrapModal = new bootstrap.Modal(editModal);
-                    bootstrapModal.show();
-                });
+            editCourseModal.addEventListener('hidden.bs.modal', function () {
+                const currentImage = editCourseModal.querySelector("#currentCourseImage");
+                if (currentImage) {
+                    currentImage.src = '';
+                }
             });
 
 
