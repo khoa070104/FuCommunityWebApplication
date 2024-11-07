@@ -22,8 +22,8 @@
         <div class="d-flex flex-column flex-md-row justify-content-between align-items-start mt-4 profile-info">
             <div class="profile-details d-flex align-items-start gap-3">
                 <div class="position-relative">
-                    <a href="@Url.Action("ViewUserProfile", "Home", new { userId = Model.User.Id })">
-                        <img src="@(Model.User.AvatarImage ?? "/img/avt2.jpg")" alt="Profile Picture" class="profile-avatar me-3">
+                    <a class="text-center d-flex align-items-center justify-content-center" href="@Url.Action("ViewUserProfile", "Home", new { userId = Model.User.Id })">
+                        <img src="@(Model.User.AvatarImage ?? "/img/avt2.jpg")" alt="Avatar" class="profile-avatar me-3">
                     </a>
                     @if (Model.PrimaryRole == "Admin" || Model.PrimaryRole == "Mentor")
                     {
@@ -34,7 +34,7 @@
                 </div>
                 <div>
                     <p class="user-profile-link">
-                        <h1 class="mb-0" style="font-weight: bold;">@Model.User.FullName</h1>
+                        <h1 class="mb-0" style="font-weight: bold; word-break: break-all;">@Model.User.FullName</h1>
                     </p>
 
                     <p class="text-muted">@Model.User.Bio</p>
@@ -111,21 +111,21 @@
                     foreach (var post in Model.Post.Where(p => p.Status == PostStatus.Approved.ToString()).OrderByDescending(p => p.CreatedDate))
                     {
                         <div class="card mb-3">
-                            <a href="@Url.Action("PostDetail", "Forum", new { postId = post.PostID })" style="text-decoration:none;" class="stretched-link">
-                            <div class="card-body">
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <div>
-                                        <h2 class="card-title mb-1">
-                                            <a href="/Forum/PostDetail?postId=@post.PostID">@post.Title</a>
-                                        </h2>
-                                        <p class="card-text text-muted mb-0">
-                                            Comments: <span>@(post.Comments?.Count ?? 0)</span> & Votes: <span>@(post.IsVotes?.Count ?? 0)</span>
-                                        </p>
-                                        <small class="text-muted">@((post.User?.FullName ?? "Unknown User") + " - " + post.CreatedDate?.ToString("dd/MM/yyyy"))</small>
+                            <a href="@Url.Action("PostDetail", "Forum", new { postId = post.PostID })" style="text-decoration:none;display: none;" class="stretched-link">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <div>
+                                            <h2 class="card-title mb-1">
+                                                <a href="/Forum/PostDetail?postId=@post.PostID" style="text-decoration:none;">@post.Title</a>
+                                            </h2>
+                                            <p class="card-text text-muted mb-0">
+                                                Comments: <span>@(post.Comments?.Count ?? 0)</span> & Votes: <span>@(post.IsVotes?.Count ?? 0)</span>
+                                            </p>
+                                            <small class="text-muted">@((post.User?.FullName ?? "Unknown User") + " - " + post.CreatedDate?.ToString("dd/MM/yyyy"))</small>
+                                        </div>
+                                        <img class="user-avatar ms-3" style="width:80px;height:80px;border-radius:50%;" src="@(post.User?.AvatarImage ?? "/img/avt2.jpg")" alt="User Avatar" />
                                     </div>
-                                    <img class="user-avatar ms-3" style="width:80px;height:80px;border-radius:50%;" src="@(post.User?.AvatarImage ?? "/img/avt2.jpg")" alt="User Avatar" />
                                 </div>
-                            </div>
                             </a>
                         </div>
                     }
@@ -185,7 +185,7 @@
                                             </a>
                                             <div class="follower-info">
                                                 <a style="text-decoration: none;" href="@Url.Action("ViewUserProfile", "Home", new { userId = follower.Id })">
-                                                    <h5 class="card-title-1" style="word-wrap: break-word; white-space: normal;">@follower.FullName</h5>
+                                                    <h5 class="card-title-1" style="word-break: break-all;">@follower.FullName</h5>
                                                 </a>
                                             </div>
                                         </div>
