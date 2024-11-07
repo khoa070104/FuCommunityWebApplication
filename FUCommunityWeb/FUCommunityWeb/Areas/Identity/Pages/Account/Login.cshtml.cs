@@ -143,6 +143,7 @@ namespace FUCommunityWeb.Areas.Identity.Pages.Account
                     if (user is ApplicationUser appUser && appUser.Ban)
                     {
                         _logger.LogWarning("Banned user attempted to log in.");
+                        await _signInManager.SignOutAsync();
                         return LocalRedirect("/Home/Banned");
                     }
 
