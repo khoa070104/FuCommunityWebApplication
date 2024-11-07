@@ -25,7 +25,7 @@
                 <div class="avatar-container position-relative">
                     <img src="@(user.AvatarImage ?? "/img/avt2.jpg")" class="avatar mb-3 rounded-circle" alt="Avatar">
                 </div>
-                <h4 class="username mb-1">@user.FullName</h4>
+                <h4 class="username mb-1" style="word-break: break-all;">@user.FullName</h4>
                 <p class="points">Points of week: <span>@user.Point</span></p>
                 <ul class="list-group">
                     <partial name="_ManageNav"/>
