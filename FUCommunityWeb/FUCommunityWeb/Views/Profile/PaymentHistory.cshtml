@@ -7,27 +7,36 @@
             <div class="col-md-3">
                 @Html.Partial("Sidebar", Model)
             </div>
-            <div class="col-md-9 posthis">
-                <div class="card mb-4">
-                    <div class="card-header">Your Payment History</div>
+            <div class="col-md-9">
+                <div class="history">
+                    <h2 class="text-center custom-header mb-4">Payment History</h2>
                     <div class="table-responsive">
-                        <table class="table table-bordered table-striped">
-                            <thead>
+                        <table class="custom-table table-hover">
+                            <thead class="custom-table-header">
                                 <tr>
-                                    <th>UserName</th>
-                                    <th>Amount</th>
-                                    <th>BankCode</th>
-                                    <th>Status</th>
+                                    <th scope="col">UserName</th>
+                                    <th scope="col">Amount</th>
+                                    <th scope="col">BankCode</th>
+                                    <th scope="col">Status</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (var order in Model.Orders)
+                                @if (Model.Orders != null && Model.Orders.Any())
+                                {
+                                    @foreach (var order in Model.Orders)
+                                    {
+                                        <tr class="custom-row-bg">
+                                            <td>@(order.User != null ? order.User.UserName : "Unknown User")</td>
+                                            <td>@order.Amount</td>
+                                            <td>@order.BankCode</td>
+                                            <td>@order.Status</td>
+                                        </tr>
+                                    }
+                                }
+                                else
                                 {
                                     <tr>
-                                        <td>@(order.User != null ? order.User.UserName : "Unknown User")</td>
-                                        <td>@order.Amount</td>
-                                        <td>@order.BankCode</td>
-                                        <td>@order.Status</td>
+                                        <td colspan="5" class="text-center">No data.</td>
                                     </tr>
                                 }
                             </tbody>
