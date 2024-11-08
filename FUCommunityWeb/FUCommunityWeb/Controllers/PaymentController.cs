@@ -56,14 +56,14 @@ namespace FUCommunityWeb.Controllers
             if (string.IsNullOrEmpty(paymentMethod))
             {
                 _logger.LogWarning("Payment method is null or empty.");
-                ModelState.AddModelError("paymentMethod", "Vui lòng chọn phương thức thanh toán.");
+                ModelState.AddModelError("paymentMethod", "Please select payment method.");
                 return View(order);
             }
 
             if (Amount <= 0)
             {
                 _logger.LogWarning("Invalid amount entered.");
-                ModelState.AddModelError("Amount", "Vui lòng nhập số tiền hợp lệ.");
+                ModelState.AddModelError("Amount", "Please enter a valid amount.");
                 return View(order);
             }
 
@@ -77,7 +77,7 @@ namespace FUCommunityWeb.Controllers
                 "VNPAYQR" => "VNPAYQR",
                 "VNBANK" => "VNBANK",
                 "INTCARD" => "INTCARD",
-                _ => throw new ArgumentException("Phương thức thanh toán không hợp lệ."),
+                _ => throw new ArgumentException("Invalid payment method."),
             };
 
             order.BankCode = bankCode;
@@ -165,13 +165,13 @@ namespace FUCommunityWeb.Controllers
                             {
                                 _logger.LogInformation($"Payment successful, OrderId={orderId}, VNPAY TranId={vnpayTranId}");
                                 order.Status = "1";
-                                ViewBag.Message = "Giao dịch thành công";
+                                ViewBag.Message = "Transaction successful";
                             }
                             else
                             {
                                 _logger.LogInformation($"Payment failed, OrderId={orderId}, VNPAY TranId={vnpayTranId}, ResponseCode={responseCode}");
                                 order.Status = "2";
-                                ViewBag.Message = $"Có lỗi xảy ra. Mã lỗi: {responseCode}";
+                                ViewBag.Message = $"An error occurred. Error code: {responseCode}";
                             }
 
                             await _orderRepository.UpdateOrderAsync(order);
@@ -224,7 +224,7 @@ namespace FUCommunityWeb.Controllers
                 string responseCode = sortedVnpayData["vnp_ResponseCode"];
                 if (responseCode == "00")
                 {
-                    ViewBag.Message = "Giao dịch được thực hiện thành công. Cảm ơn quý khách đã sử dụng dịch vụ";
+                    ViewBag.Message = "Transaction was successful. Thank you for using our service.";
 
                     var orderId = Convert.ToInt64(sortedVnpayData["vnp_TxnRef"]);
                     var amount = Convert.ToInt64(sortedVnpayData["vnp_Amount"]) / 100;
@@ -245,7 +245,7 @@ namespace FUCommunityWeb.Controllers
 
                             await _userService.UpdateUserAsync(user);
 
-                            _logger.LogInformation($"User {user.UserName} đã được cộng {amount} điểm.");
+                            _logger.LogInformation($"User {user.UserName} has been awarded {amount} points.");
                         }
                     }
                 }
@@ -255,12 +255,12 @@ namespace FUCommunityWeb.Controllers
                 }
                 else
                 {
-                    ViewBag.Message = $"Có lỗi xảy ra trong quá trình xử lý. Mã lỗi: {responseCode}";
+                    ViewBag.Message = $"An error occurred during processing. Error code: {responseCode}";
                 }
             }
             else
             {
-                ViewBag.Message = "Có lỗi xảy ra trong quá trình xử lý";
+                ViewBag.Message = "An error occurred during processing.";
             }
 
             return View();
