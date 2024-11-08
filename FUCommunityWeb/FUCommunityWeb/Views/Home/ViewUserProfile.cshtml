@@ -102,6 +102,28 @@
                 <div class="bio-box">
                     <p><strong>Address:</strong> @Model.User.Address</p>
                     <p><strong>Description:</strong> @Model.User.Description</p>
+                    
+                    <!-- Thêm phần social media -->
+                    <div class="social-links mt-3">
+                        @if (!string.IsNullOrEmpty(Model.User.Facebook))
+                        {
+                            <a href="@Model.User.Facebook" target="_blank" class="me-3 text-primary">
+                                <i class="fab fa-facebook fa-2x"></i>
+                            </a>
+                        }
+                        @if (!string.IsNullOrEmpty(Model.User.Instagram))
+                        {
+                            <a href="@Model.User.Instagram" target="_blank" class="me-3 text-danger">
+                                <i class="fab fa-instagram fa-2x"></i>
+                            </a>
+                        }
+                        @if (!string.IsNullOrEmpty(Model.User.Github))
+                        {
+                            <a href="@Model.User.Github" target="_blank" class="me-3 text-dark">
+                                <i class="fab fa-github fa-2x"></i>
+                            </a>
+                        }
+                    </div>
                 </div>
             </div>
 

@@ -3476,6 +3476,23 @@ footer .footer-bottom i {
     border: none;
 }
 
+/*--- Test */
+.social-links a {
+    text-decoration: none;
+    transition: transform 0.2s;
+}
+
+    .social-links a:hover {
+        transform: scale(1.1);
+    }
+
+.bio-box {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+}
+/*---- End Test*/
+
 /* Style cho các item trong dropdown */
 .menu-forum .dropdown-item {
     color: #ffffff; /* Màu chữ của các item */
