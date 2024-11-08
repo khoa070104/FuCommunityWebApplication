@@ -48,16 +48,16 @@
                     {
                         <div class="col-md-4 mb-4">
                             <div class="course-card" onclick="window.location='@Url.Action("Detail", "Course", new { id = course.CourseID })';" style="cursor: pointer;" data-course-id="@course.CourseID">
+                                <div class="category">
+                                    <span class="badge">@course.Category.CategoryName</span>
+                                </div>
                                 <div class="course-image">
                                     <a href="@Url.Action("Detail", "Course", new { id = course.CourseID })">
                                         <img style="width:200px;height:200px;" src="@course.CourseImage" alt="Course Image" class="img-fluid">
                                     </a>
                                 </div>
                                 <div class="course-info">
-                                    <div class="category">
-                                        <span class="badge">@course.Category.CategoryName</span>
-                                    </div>
-                                    <h2>
+                                    <h2 class="text-center">
                                         <a style="font-style:italic; font-weight:bold; color:#20B486; word-break:break-all; text-decoration:none;" href="@Url.Action("Detail", "Course", new { id = course.CourseID })">@course.Title</a>
                                     </h2>
                                     <p>@course.Description</p>
@@ -135,20 +135,20 @@
                     {
                         <div class="col-md-4 mb-4">
                             <div class="course-card" onclick="window.location='@Url.Action("Detail", "Course", new { id = course.CourseID })';" style="cursor: pointer;" data-course-id="@course.CourseID">
+                                <div class="category">
+                                    <span class="badge">@course.Category.CategoryName</span>
+                                </div>
                                 <div class="course-image">
                                     <a href="@Url.Action("Detail", "Course", new { id = course.CourseID })">
                                         <img style="width:200px;height:200px;" src="@course.CourseImage" alt="Course Image" class="img-fluid">
                                     </a>
                                 </div>
                                 <div class="course-info">
-                                    <div class="category">
-                                        <span class="badge">@course.Category.CategoryName</span>
-                                    </div>
-                                    <h2>
+                                    <h2 class="text-center">
                                         <a style="font-style:italic; font-weight:bold; color:#20B486; word-break:break-all; text-decoration:none;" href="@Url.Action("Detail", "Course", new { id = course.CourseID })">@course.Title</a>
                                     </h2>
                                     <p>@course.Description</p>
-                                    
+
                                 </div>
                                 <div class="card-footer">
                                     <div class="rating text-center">
