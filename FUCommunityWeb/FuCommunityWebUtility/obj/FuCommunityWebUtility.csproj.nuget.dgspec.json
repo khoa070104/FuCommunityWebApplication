@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Documents\\FuComunityVersionManager\\FuWebTest17\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebUtility\\FuCommunityWebUtility.csproj": {}
+    "E:\\Documents\\FuWebTest\\Test\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebUtility\\FuCommunityWebUtility.csproj": {}
   },
   "projects": {
-    "D:\\Documents\\FuComunityVersionManager\\FuWebTest17\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebUtility\\FuCommunityWebUtility.csproj": {
+    "E:\\Documents\\FuWebTest\\Test\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebUtility\\FuCommunityWebUtility.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Documents\\FuComunityVersionManager\\FuWebTest17\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebUtility\\FuCommunityWebUtility.csproj",
+        "projectUniqueName": "E:\\Documents\\FuWebTest\\Test\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebUtility\\FuCommunityWebUtility.csproj",
         "projectName": "FuCommunityWebUtility",
-        "projectPath": "D:\\Documents\\FuComunityVersionManager\\FuWebTest17\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebUtility\\FuCommunityWebUtility.csproj",
-        "packagesPath": "C:\\Users\\NCPC\\.nuget\\packages\\",
-        "outputPath": "D:\\Documents\\FuComunityVersionManager\\FuWebTest17\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebUtility\\obj\\",
+        "projectPath": "E:\\Documents\\FuWebTest\\Test\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebUtility\\FuCommunityWebUtility.csproj",
+        "packagesPath": "C:\\Users\\Khoa Bug\\.nuget\\packages\\",
+        "outputPath": "E:\\Documents\\FuWebTest\\Test\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebUtility\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\NCPC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Khoa Bug\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

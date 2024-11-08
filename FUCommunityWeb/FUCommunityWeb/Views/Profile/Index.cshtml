@@ -100,6 +100,32 @@
                             </tr>
 
                             <tr>
+                                <th scope="row">Social Media:</th>
+                                <td>
+                                    <div class="social-links">
+                                        @if (!string.IsNullOrEmpty(Model.User.Instagram))
+                                        {
+                                            <a style="text-decoration:none" href="@Model.User.Instagram" target="_blank" class="me-2">
+                                                <i class="fab fa-instagram" style="font-size: 20px; color: #E1306C;"></i>
+                                            </a>
+                                        }
+                                        @if (!string.IsNullOrEmpty(Model.User.Facebook))
+                                        {
+                                            <a style="text-decoration:none" href="@Model.User.Facebook" target="_blank" class="me-2">
+                                                <i class="fab fa-facebook" style="font-size: 20px; color: #4267B2;"></i>
+                                            </a>
+                                        }
+                                        @if (!string.IsNullOrEmpty(Model.User.Github))
+                                        {
+                                            <a style="text-decoration:none" href="@Model.User.Github" target="_blank">
+                                                <i class="fab fa-github" style="font-size: 20px; color: #333;"></i>
+                                            </a>
+                                        }
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
                                 <td colspan="2" class="text-center">
                                     <a href="#" class="btn-2" data-bs-toggle="modal" data-bs-target="#editProfileModal"
                                        style="text-decoration: none; padding: 10px 20px; display: inline-block;">
@@ -172,6 +198,21 @@
                     <div class="mb-3">
                         <label for="usernameEdit" class="form-label">Username</label>
                         <input asp-for="User.UserName" class="form-control" id="usernameEdit" />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Social Media Links</label>
+                        <div class="input-group mb-2">
+                            <span class="input-group-text"><i class="fab fa-instagram"></i></span>
+                            <input asp-for="User.Instagram" class="form-control" id="instagramEdit" placeholder="Instagram profile URL" />
+                        </div>
+                        <div class="input-group mb-2">
+                            <span class="input-group-text"><i class="fab fa-facebook"></i></span>
+                            <input asp-for="User.Facebook" class="form-control" id="facebookEdit" placeholder="Facebook profile URL" />
+                        </div>
+                        <div class="input-group mb-2">
+                            <span class="input-group-text"><i class="fab fa-github"></i></span>
+                            <input asp-for="User.Github" class="form-control" id="githubEdit" placeholder="Github profile URL" />
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn-cancel" data-bs-dismiss="modal">Cancel</button>

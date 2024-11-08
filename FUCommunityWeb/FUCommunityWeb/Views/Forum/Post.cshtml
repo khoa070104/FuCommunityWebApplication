@@ -47,6 +47,115 @@
     .cke_notification {
         display: none !important; /* Ẩn tất cả thông báo CKEditor */
     }
+
+.table {
+    background-color: #F2FFFB; /* Soft minty background */
+    margin-top: 20px;
+    border-collapse: collapse;
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.table td, .table th {
+    padding: 12px 20px;
+    color: #333333;
+    text-align: left;
+    font-size: 0.95em;
+    vertical-align: middle;
+    border: 1px solid #E0E0E0; /* Add border to td and th */
+}
+
+.profile-pic {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin: 5px;
+    border: 2px solid #ddd;
+}
+
+.type-1 {
+    background-color: #20B486; /* Teal background for type */
+    color: #ffffff;
+    padding: 5px 12px;
+    border-radius: 10px;
+    font-size: 0.85em;
+    font-weight: bold;
+}
+
+.type-2 {
+    background-color: #007bff; /* Blue background for type */
+    color: #ffffff;
+    padding: 5px 12px;
+    border-radius: 10px;
+    font-size: 0.85em;
+    font-weight: bold;
+}
+
+.title {
+    color: #20B486; /* Teal color for title */
+    padding: 6px 12px;
+    border-radius: 20px;
+    margin-right: 10px;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.username {
+    color: #20B486; /* Vibrant teal for username */
+    font-weight: bold;
+    font-size: 1em;
+}
+
+.date, .stats, .settings {
+    color: #808080;
+    font-size: 0.85em;
+}
+
+.settings {
+    width: 100px;
+}
+
+.settings a {
+    color: #20B486;
+    margin-right: 12px;
+    text-decoration: none;
+    font-size: 0.9em;
+    transition: color 0.3s ease;
+}
+
+.settings a:hover {
+    color: #16a085; /* Darker teal for hover effect */
+}
+
+.table tbody tr {
+    cursor: pointer;
+    background-color: #F2FFFB; /* Keeping the same minty background */
+    border-bottom: 1px solid #E0E0E0; /* Add border to the bottom of each row */
+}
+
+.table tbody tr:hover {
+    background-color: #D0F4E6; /* Pastel green on hover */
+}
+
+.table tbody tr:active {
+    background-color: #A5E5D6; /* Slightly darker minty green on click */
+}
+
+.table {
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.table td, .table th {
+    border: none; /* Remove borders between td and th */
+}
+
+.table td:last-child, .table th:last-child {
+    border-right: none;
+}
+
+
 </style>
 
 <div class="container post">
@@ -83,7 +192,7 @@
             }
             else
             {
-                <a class="btn" href="/Identity/Account/Login">Login to Post</a>
+                <a class="btn-2" href="/Identity/Account/Login">Login to Post</a>
             }
         </div>
     </div>
@@ -111,21 +220,21 @@
                         <label for="postTitle" class="form-label">Title</label>
                         <input asp-for="@Model.CreatePostVM.Title" type="text" class="form-control" id="postTitle" placeholder="Enter post title" required>
                         <div class="invalid-feedback">
-                            Title không được để trống
+                            Title not allow empty
                         </div>
                     </div>
                     <div class="mb-3">
                         <label for="tag" class="form-label">Tag</label>
                         <input asp-for="@Model.CreatePostVM.Tag" type="text" class="form-control" id="postTag" placeholder="What's tag?" required>
                         <div class="invalid-feedback">
-                            Tag không được để trống
+                            Tag not allow empty
                         </div>
                     </div>
                     <div class="mb-3">
                         <label for="postContent" class="form-label">Content</label>
                         <textarea asp-for="@Model.CreatePostVM.Content" class="form-control" id="editor" rows="3" required></textarea>
                         <div class="invalid-feedback">
-                            Content không được để trống
+                            Content not allow empty
                         </div>
                     </div>
                     <div class="mb-3">
@@ -364,16 +473,7 @@
                                         <div class="row">
                                             <div class="col-12">
                                                 <table class="table">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Title</th>
-                                                            <th>Avatar</th>
-                                                            <th>Create Date</th>
-                                                            <th>Tags</th>
-                                                            <th>Type</th>
-                                                            <th></th>
-                                                        </tr>
-                                                    </thead>
+                                                    
                                                     <tbody>
                                     `;
 
@@ -382,19 +482,35 @@
                     const currentUserId = '@User.FindFirst(ClaimTypes.NameIdentifier)?.Value';
 
                     tableContent += `
+
                                             <tr>
-                                                <td><a href="/Forum/PostDetail?postId=${post.postID}">${post.title}</a></td>
-                                                <td><img src="${post.userAvatar}" alt="Avatar" class="avatar-img" style="width:50px;height:50px;border-radius:50%;"/></td>
-                                                <td>${formattedDate}</td>
-                                                <td class="text-muted">${post.tag}</td>
-                                                <td>${post.type}</td>
-                                                <td>
+                                            <td class="d-flex align-items-center">
+                                                <img src="${post.userAvatar}" alt="Avatar" class="profile-pic mr-3">
+                                                <div>
+                                                    <span class="${post.type === 'Blog' ? 'type-1' : 'type-2'}">${post.type}</span>
+                                                    <a class="title" href="/Forum/PostDetail?postId=${post.postID}">${post.title}</a>
+                                                    <div class="mt-2">
+                                                        <span class="date">${formattedDate}</span>
+                                                    </div>
+                                                </div>
+                                            </td>
+
         `;
 
                     if (post.userId === currentUserId) {
                         tableContent += `
-                                        <i class="fas fa-edit table-settings me-2" data-bs-toggle="modal" data-bs-target="#editModal"></i>
-                                        <i class="fas fa-trash table-settings" data-bs-toggle="modal" data-bs-target="#deleteModal"></i>
+                                    <td class="settings text-right">
+                                        <i class="fas fa-edit table-settings me-2 edit" data-bs-toggle="modal" data-bs-target="#editModal"></i>
+                                        <i class="fas fa-trash table-settings delete" data-bs-toggle="modal" data-bs-target="#deleteModal"></i>
+                                    </td>
+                                        
+                                    `;
+                    }
+                    else{
+                        tableContent += `
+                                    <td class="settings text-right">
+                                    </td>
+                                        
                                     `;
                     }
 

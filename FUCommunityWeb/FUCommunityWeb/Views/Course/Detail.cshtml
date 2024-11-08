@@ -129,7 +129,7 @@
             else if (!Model.EnrolledCourses.Contains(@Model.Course.CourseID))
             {
                 <div class="price">
-                    <span class="old-price">500 points</span>
+                    @* <span class="old-price">500 points</span> *@
                     <span class="new-price">@Model.Course.Price points</span>
                 </div>
             }
@@ -167,6 +167,44 @@
             </div>
         </div>
     </div>
+    <div class="course-review">
+        <!-- Nút Đánh Giá -->
+        @if (!Model.HasReviewed && Model.IsEnrolled)
+        {
+            <div class="mt-4">
+                <button class="btn-blue" data-bs-toggle="modal" data-bs-target="#reviewCourseModal">Review Course</button>
+            </div>
+        }
+        <!-- Danh sách đánh giá -->
+        <div class="reviews mt-4">
+            <h4>Review</h4>
+            @foreach (var review in Model.Reviews)
+            {
+                <div class="review-item mb-3 p-3 border rounded" data-rating="@review.Rating">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <strong>@review.User.UserName</strong> - @review.CreateDate.ToString("dd/MM/yyyy")
+                            <div>
+                                @for (int i = 0; i < review.Rating; i++)
+                                {
+                                    <i class="fas fa-star text-warning"></i>
+                                }
+                                @for (int i = review.Rating; i < 5; i++)
+                                {
+                                    <i class="far fa-star text-warning"></i>
+                                }
+                            </div>
+                        </div>
+                        @if (review.UserID == User.FindFirstValue(ClaimTypes.NameIdentifier))
+                        {
+                            <button class="btn-edit btn-sm edit-review-btn" data-review-id="@review.ReviewID">Edit</button>
+                        }
+                    </div>
+                    <p>@review.Content</p>
+                </div>
+            }
+        </div>
+    </div>
 </div>
 
 <!-- Existing Buy Now Modal -->
@@ -181,12 +219,12 @@
                 Are you sure you want to purchase this course for <span id="coursePrice"></span> points?
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn-cancel btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn-cancel-2" data-bs-dismiss="modal">Cancel</button>
                 <form id="enrollForm" method="post" action="@Url.Action("BuyCourse", "Course")">
                     @Html.AntiForgeryToken()
                     <input type="hidden" name="courseId" id="enrollCourseId" />
                     <input type="hidden" name="returnUrl" id="returnUrl" />
-                    <button type="submit" class="btn btn-primary" id="confirmEnrollBtn">Confirm</button>
+                    <button type="submit" class="btn-blue" id="confirmEnrollBtn">Confirm</button>
                 </form>
             </div>
         </div>
@@ -224,8 +262,8 @@
                 You do not have enough points to purchase this course.
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn-cancel btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <a href="/payment/pay" class="btn btn-primary">Payment</a>
+                <button type="button" class="btn-cancel-2" data-bs-dismiss="modal">Cancel</button>
+                <a href="/payment/pay" class="btn-blue" style="text-decoration:none;">Payment</a>
             </div>
         </div>
     </div>
@@ -336,42 +374,7 @@
     </div>
 </div>
 
-<!-- Nút Đánh Giá -->
-@if (!Model.HasReviewed && Model.IsEnrolled)
-{
-    <div class="mt-4">
-        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reviewCourseModal">Review Course</button>
-    </div>
-}
-<!-- Danh sách đánh giá -->
-<div class="reviews mt-4">
-    <h4>Review</h4>
-    @foreach (var review in Model.Reviews)
-    {
-        <div class="review-item mb-3 p-3 border rounded" data-rating="@review.Rating">
-            <div class="d-flex justify-content-between">
-                <div>
-                    <strong>@review.User.UserName</strong> - @review.CreateDate.ToString("dd/MM/yyyy")
-                    <div>
-                        @for (int i = 0; i < review.Rating; i++)
-                        {
-                            <i class="fas fa-star text-warning"></i> 
-                        }
-                        @for (int i = review.Rating; i < 5; i++)
-                        {
-                            <i class="far fa-star text-warning"></i> 
-                        }
-                    </div>
-                </div>
-                @if (review.UserID == User.FindFirstValue(ClaimTypes.NameIdentifier))
-                {
-                    <button class="btn btn-warning btn-sm edit-review-btn" data-review-id="@review.ReviewID">Edit</button>
-                }
-            </div>
-            <p>@review.Content</p>
-        </div>
-    }
-</div>
+
 
 <!-- Modal Đánh Giá Khóa Học -->
 <div class="modal fade" id="reviewCourseModal" tabindex="-1" aria-labelledby="reviewCourseModalLabel" aria-hidden="true">
@@ -402,8 +405,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Submit Review</button>
+                    <button type="button" class="btn-cancel-2" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn-blue">Submit Review</button>
                 </div>
             </form>
         </div>
@@ -439,8 +442,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                    <button type="button" class="btn-cancel-2" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn-blue">Save Changes</button>
                 </div>
             </form>
         </div>

@@ -510,7 +510,7 @@ namespace FUCommunityWeb.Controllers
             }
             else
             {
-                postVM.CreatePostVM.PostImage = "/uploads/default-image.png";
+                postVM.CreatePostVM.PostImage = "/img/Logo_FunnyCode.jpg";
             }
 
             int? documentId = null;

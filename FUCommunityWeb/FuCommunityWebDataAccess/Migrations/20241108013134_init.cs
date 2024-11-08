@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace FuCommunityWebDataAccess.Migrations
 {
     /// <inheritdoc />
@@ -42,6 +44,9 @@ namespace FuCommunityWebDataAccess.Migrations
                     BannerImage = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Ban = table.Column<bool>(type: "bit", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Instagram = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    Facebook = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    Github = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -303,6 +308,37 @@ namespace FuCommunityWebDataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Comments",
+                columns: table => new
+                {
+                    CommentID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PostID = table.Column<int>(type: "int", nullable: true),
+                    QuestionID = table.Column<int>(type: "int", nullable: true),
+                    UserID = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Content = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ReplyID = table.Column<int>(type: "int", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LessonID = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Comments", x => x.CommentID);
+                    table.ForeignKey(
+                        name: "FK_Comments_AspNetUsers_UserID",
+                        column: x => x.UserID,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Comments_Question_QuestionID",
+                        column: x => x.QuestionID,
+                        principalTable: "Question",
+                        principalColumn: "QuestionID");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Courses",
                 columns: table => new
                 {
@@ -317,7 +353,8 @@ namespace FuCommunityWebDataAccess.Migrations
                     CourseImage = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     Status = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Semester = table.Column<int>(type: "int", nullable: false),
-                    CategoryID = table.Column<int>(type: "int", nullable: false)
+                    CategoryID = table.Column<int>(type: "int", nullable: false),
+                    DocumentID = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -375,7 +412,6 @@ namespace FuCommunityWebDataAccess.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserID = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     CourseID = table.Column<int>(type: "int", nullable: false),
-                    CourseID1 = table.Column<int>(type: "int", nullable: false),
                     Content = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Rating = table.Column<int>(type: "int", nullable: false),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false)
@@ -395,48 +431,6 @@ namespace FuCommunityWebDataAccess.Migrations
                         principalTable: "Courses",
                         principalColumn: "CourseID",
                         onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Reviews_Courses_CourseID1",
-                        column: x => x.CourseID1,
-                        principalTable: "Courses",
-                        principalColumn: "CourseID",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Comments",
-                columns: table => new
-                {
-                    CommentID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    PostID = table.Column<int>(type: "int", nullable: true),
-                    QuestionID = table.Column<int>(type: "int", nullable: true),
-                    UserID = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Content = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ReplyID = table.Column<int>(type: "int", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    LessonID = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Comments", x => x.CommentID);
-                    table.ForeignKey(
-                        name: "FK_Comments_AspNetUsers_UserID",
-                        column: x => x.UserID,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Comments_Lesson_LessonID",
-                        column: x => x.LessonID,
-                        principalTable: "Lesson",
-                        principalColumn: "LessonID");
-                    table.ForeignKey(
-                        name: "FK_Comments_Question_QuestionID",
-                        column: x => x.QuestionID,
-                        principalTable: "Question",
-                        principalColumn: "QuestionID");
                 });
 
             migrationBuilder.CreateTable(
@@ -602,6 +596,17 @@ namespace FuCommunityWebDataAccess.Migrations
                         principalColumn: "PostID");
                 });
 
+            migrationBuilder.InsertData(
+                table: "Category",
+                columns: new[] { "CategoryID", "CategoryName", "Description" },
+                values: new object[,]
+                {
+                    { 1, "Programming", "All about programming languages and software development." },
+                    { 2, "Web Development", "Resources and articles on web development technologies and frameworks." },
+                    { 3, "Data Science", "Insights and techniques in data analysis, machine learning, and statistics." },
+                    { 4, "Mobile Development", "Content focused on mobile app development for Android and iOS." }
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -665,6 +670,11 @@ namespace FuCommunityWebDataAccess.Migrations
                 name: "IX_Courses_CategoryID",
                 table: "Courses",
                 column: "CategoryID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Courses_DocumentID",
+                table: "Courses",
+                column: "DocumentID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Courses_UserID",
@@ -777,11 +787,6 @@ namespace FuCommunityWebDataAccess.Migrations
                 column: "CourseID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Reviews_CourseID1",
-                table: "Reviews",
-                column: "CourseID1");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Reviews_UserID",
                 table: "Reviews",
                 column: "UserID");
@@ -797,11 +802,25 @@ namespace FuCommunityWebDataAccess.Migrations
                 column: "UserID");
 
             migrationBuilder.AddForeignKey(
+                name: "FK_Comments_Lesson_LessonID",
+                table: "Comments",
+                column: "LessonID",
+                principalTable: "Lesson",
+                principalColumn: "LessonID");
+
+            migrationBuilder.AddForeignKey(
                 name: "FK_Comments_Post_PostID",
                 table: "Comments",
                 column: "PostID",
                 principalTable: "Post",
                 principalColumn: "PostID");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Courses_Documents_DocumentID",
+                table: "Courses",
+                column: "DocumentID",
+                principalTable: "Documents",
+                principalColumn: "DocumentID");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Documents_Post_PostID",
@@ -829,6 +848,14 @@ namespace FuCommunityWebDataAccess.Migrations
             migrationBuilder.DropForeignKey(
                 name: "FK_Documents_Post_PostID",
                 table: "Documents");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_Courses_Category_CategoryID",
+                table: "Courses");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_Courses_Documents_DocumentID",
+                table: "Courses");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
@@ -888,13 +915,13 @@ namespace FuCommunityWebDataAccess.Migrations
                 name: "Post");
 
             migrationBuilder.DropTable(
+                name: "Category");
+
+            migrationBuilder.DropTable(
                 name: "Documents");
 
             migrationBuilder.DropTable(
                 name: "Courses");
-
-            migrationBuilder.DropTable(
-                name: "Category");
         }
     }
 }

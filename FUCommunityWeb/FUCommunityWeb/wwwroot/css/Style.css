@@ -202,6 +202,29 @@
         outline: none;
     }
 
+.btn-green {
+    background-color: #20B486;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+    .btn-green:hover {
+        background-color: #c3e6cb;
+        color: #20B486;
+        transform: scale(1.05);
+        box-shadow: 0 4px 15px rgba(40, 167, 69, 0.2);
+    }
+
+    .btn-green:focus {
+        outline: none;
+    }
+
+
 .btn-del {
     background-color: #dc3545;
     color: #FFFFFF;
@@ -689,15 +712,15 @@
 }
 
 .home-container .course-section .course-card {
-    flex-direction: row;
+    flex: 0 0 auto;
     background-color: #ffffff;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     padding: 20px;
     margin-bottom: 20px;
     transition: transform 0.3s ease;
-    width: 100%;
     box-sizing: border-box;
+    height: 100%;
 }
 
 .home-container .course-image {
@@ -744,10 +767,8 @@
 }
 
 .home-container .rating {
-    display: flex;
     align-items: center;
     gap: 5px;
-    margin-bottom: 10px;
 }
 
 .home-container .stars i {
@@ -755,11 +776,9 @@
 }
 
 .home-container .price {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 20px;
+    font-size: 30px;
     font-weight: bold;
+    color: #20B486;
 }
 
 .home-container .old-price {
@@ -1170,52 +1189,37 @@
     }
 }
 
-/*--------------------PAYMENT--------------------*/
-
-.payment .container {
-    min-height: 100vh;
+/*------------PAYMENT-FORM------------*/
+.payment {
+    max-width: 600px;
+    margin: 80px auto;
+    padding: 30px;
+    background: linear-gradient(145deg, #E0FFF7, #E8F9F1);
+    border-radius: 16px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
 }
 
-.payment .card {
-    background-color: white;
-    border: none;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    padding: 20px;
-    margin: auto;
-}
-
-.payment .card-title {
-    color: #20B486;
-    font-size: 4rem;
-    font-weight: bold;
-}
-
-.payment .form-control {
-    border: 2px solid #20B486;
-    border-radius: 5px;
-    padding: 10px;
-    transition: all 0.3s ease;
-}
-
-    .payment .form-control:focus {
-        border-color: #FFD3B6;
-        outline: none;
-        box-shadow: 0 0 8px rgba(255, 211, 182, 0.5);
+    .payment:hover {
+        transform: scale(1.02);
     }
 
-.payment .form-check-label {
-    font-size: 1rem;
-    color: #333;
-}
+    .payment h1 {
+        font-size: 3rem;
+        text-align: center;
+        color: #20B486;
+        margin-bottom: 30px;
+        letter-spacing: 2px;
+        font-weight: bold;
+    }
 
-.payment .form-check-input:checked ~ .form-check-label {
-    color: #20B486;
-}
-
-.payment input[type="radio"]:hover {
-    background-color: #E4F7F1;
-}
+    .payment h2 {
+        font-size: 1.75rem;
+        color: #333333;
+        text-align: center;
+        margin-bottom: 20px;
+        font-style: italic;
+    }
 
 
 /*--------------------CONTACT US--------------------*/
@@ -1432,10 +1436,8 @@
         }
 
         .course-container .course-section .rating {
-            display: flex;
             align-items: center;
             gap: 5px;
-            margin-bottom: 10px;
         }
 
         .course-container .course-section .stars i {
@@ -1443,20 +1445,10 @@
         }
 
         .course-container .course-section .price {
-            display: flex;
-            justify-content: space-between;
             align-items: center;
-            font-size: 20px;
+            font-size: 30px;
             font-weight: bold;
-        }
-
-        .course-container .course-section .old-price {
-            text-decoration: line-through;
-            color: gray;
-        }
-
-        .course-container .course-section .new-price {
-            color: #00a86b;
+            color: #20B486;
         }
 
         .course-container .course-section .cart-icon {
@@ -1682,6 +1674,53 @@
     border-bottom: none;
 }
 
+.course-review {
+    margin-top: 40px;
+    background-color: #F9F9F9;
+    padding: 30px;
+    border-radius: 8px;
+}
+
+    .course-review h4 {
+        font-size: 24px;
+        color: #2D3748;
+        margin-bottom: 20px;
+    }
+
+    .course-review .review-item {
+        background-color: #fff;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        margin-bottom: 20px;
+        display: flex;
+        flex-direction: column;
+    }
+
+        .course-review .review-item .d-flex {
+            justify-content: space-between;
+        }
+
+        .course-review .review-item strong {
+            font-size: 18px;
+            color: #2D3748;
+        }
+
+        .course-review .review-item .text-warning {
+            color: gold;
+        }
+
+        .course-review .review-item .fas, .course-review .far {
+            font-size: 16px;
+        }
+
+        .course-review .review-item p {
+            font-size: 16px;
+            color: #4A5568;
+            margin-top: 10px;
+        }
+
+
 /* -------------------PROFILE------------------- */
 .profile {
     padding: 30px;
@@ -1898,10 +1937,6 @@
 .posthis .list-group {
     padding: 0;
     margin: 0;
-}
-
-.posthis .list-group-item > div {
-    flex-grow: 1;
 }
 
 @media (max-width: 768px) {
@@ -3079,7 +3114,7 @@ footer .footer-content {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    padding: 10px 0;
+    align-items: center;
     background-color: #0a0e17;
     color: #c1c1c1;
 }
@@ -3100,8 +3135,8 @@ footer .footer-content {
 }
 
     .footer-icons li {
-        margin: 10px 0;
-        font-size: 1rem;
+        margin: 5px 0; /* Reduce margin */
+        font-size: 0.9rem; /* Slightly smaller font */
         color: inherit;
     }
 
@@ -3110,20 +3145,13 @@ footer .footer-content {
         color: #20B486;
     }
 
-
 footer .column {
-    flex: 1 1 200px;
     text-align: center;
-    padding: 10px 20px;
+    margin: 0 10px; /* Narrower columns */
 }
 
-    footer .column i {
-        color: #d3d3d3;
-        margin-bottom: 20px;
-    }
-
     footer .column h4 {
-        margin-bottom: 10px;
+        margin-bottom: 5px; /* Reduce space */
         color: #98A2B3;
     }
 
@@ -3133,86 +3161,86 @@ footer .column {
     }
 
         footer .column ul li {
-            margin: 5px 0;
+            margin: 3px 0;
         }
 
-            footer .column ul li i {
-                margin-right: 8px;
-            }
-
 footer .footer-bottom {
-    text-align: center;
-    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0;
     font-size: 12px;
     background-color: #0a0e17;
     color: #98A2B3;
 }
 
-    footer .footer-bottom i {
-        font-size: 20px;
-        margin: 0 5px;
-    }
+footer .footer-bottom-content {
+    text-align: center;
+}
+
+
+footer .footer-bottom i {
+    font-size: 18px;
+    margin: 0 3px;
+}
 
 .back-to-top {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
+    bottom: 15px;
+    right: 15px;
     display: none;
     background-color: #20B486;
     color: white;
     border: none;
     border-radius: 5px;
-    padding: 10px;
+    padding: 8px;
     cursor: pointer;
     z-index: 1000;
 }
 
     .back-to-top i {
-        font-size: 24px;
+        font-size: 20px;
     }
-
-
-
 
 /* Responsive Footer */
 @media (max-width: 768px) {
     footer .footer-content {
-        flex-direction: column; /* Chuyển sang chiều dọc khi màn hình nhỏ */
-        padding: 20px;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
     }
 
     footer .column {
-        margin-bottom: 20px; /* Thêm khoảng cách giữa các cột */
+        margin-bottom: 15px;
     }
 
-    footer .back-to-top {
-        bottom: 15px;
-        right: 15px;
-        padding: 10px;
+    footer .footer-bottom-content {
+        flex-direction: column;
+        text-align: center;
     }
 }
 
 @media (max-width: 480px) {
     footer .footer-content {
-        padding: 10px;
+        padding: 5px;
     }
 
     footer .column {
-        padding: 10px 0;
+        padding: 5px 0;
     }
 
     footer .footer-bottom {
         font-size: 10px;
+        padding: 5px;
     }
 
     footer .back-to-top {
         bottom: 10px;
         right: 10px;
-        padding: 8px;
+        padding: 6px;
     }
 }
-
-
 
 /* ------------------ ADMIN ------------------ */
 .admin .sidebar {

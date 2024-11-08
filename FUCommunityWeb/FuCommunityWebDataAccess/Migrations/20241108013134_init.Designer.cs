@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FuCommunityWebDataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241029052841_init")]
+    [Migration("20241108013134_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -87,6 +87,32 @@ namespace FuCommunityWebDataAccess.Migrations
                     b.HasKey("CategoryID");
 
                     b.ToTable("Category");
+
+                    b.HasData(
+                        new
+                        {
+                            CategoryID = 1,
+                            CategoryName = "Programming",
+                            Description = "All about programming languages and software development."
+                        },
+                        new
+                        {
+                            CategoryID = 2,
+                            CategoryName = "Web Development",
+                            Description = "Resources and articles on web development technologies and frameworks."
+                        },
+                        new
+                        {
+                            CategoryID = 3,
+                            CategoryName = "Data Science",
+                            Description = "Insights and techniques in data analysis, machine learning, and statistics."
+                        },
+                        new
+                        {
+                            CategoryID = 4,
+                            CategoryName = "Mobile Development",
+                            Description = "Content focused on mobile app development for Android and iOS."
+                        });
                 });
 
             modelBuilder.Entity("FuCommunityWebModels.Models.Comment", b =>
@@ -159,6 +185,9 @@ namespace FuCommunityWebDataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("DocumentID")
+                        .HasColumnType("int");
+
                     b.Property<decimal?>("Price")
                         .HasColumnType("decimal(18,2)");
 
@@ -185,6 +214,8 @@ namespace FuCommunityWebDataAccess.Migrations
                     b.HasKey("CourseID");
 
                     b.HasIndex("CategoryID");
+
+                    b.HasIndex("DocumentID");
 
                     b.HasIndex("UserID");
 
@@ -541,9 +572,6 @@ namespace FuCommunityWebDataAccess.Migrations
                     b.Property<int>("CourseID")
                         .HasColumnType("int");
 
-                    b.Property<int>("CourseID1")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
 
@@ -557,8 +585,6 @@ namespace FuCommunityWebDataAccess.Migrations
                     b.HasKey("ReviewID");
 
                     b.HasIndex("CourseID");
-
-                    b.HasIndex("CourseID1");
 
                     b.HasIndex("UserID");
 
@@ -840,6 +866,10 @@ namespace FuCommunityWebDataAccess.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
+                    b.Property<string>("Facebook")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
                     b.Property<string>("FullName")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -849,6 +879,14 @@ namespace FuCommunityWebDataAccess.Migrations
                         .IsRequired()
                         .HasMaxLength(1)
                         .HasColumnType("nvarchar(1)");
+
+                    b.Property<string>("Github")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("Instagram")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<decimal>("Point")
                         .HasColumnType("decimal(18,2)");
@@ -914,6 +952,10 @@ namespace FuCommunityWebDataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Document", "Document")
+                        .WithMany()
+                        .HasForeignKey("DocumentID");
+
                     b.HasOne("FuCommunityWebModels.Models.ApplicationUser", "User")
                         .WithMany()
                         .HasForeignKey("UserID")
@@ -921,6 +963,8 @@ namespace FuCommunityWebDataAccess.Migrations
                         .IsRequired();
 
                     b.Navigation("Category");
+
+                    b.Navigation("Document");
 
                     b.Navigation("User");
                 });
@@ -1081,15 +1125,9 @@ namespace FuCommunityWebDataAccess.Migrations
 
             modelBuilder.Entity("FuCommunityWebModels.Models.Review", b =>
                 {
-                    b.HasOne("FuCommunityWebModels.Models.Course", null)
-                        .WithMany()
-                        .HasForeignKey("CourseID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("FuCommunityWebModels.Models.Course", "Course")
                         .WithMany("Reviews")
-                        .HasForeignKey("CourseID1")
+                        .HasForeignKey("CourseID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

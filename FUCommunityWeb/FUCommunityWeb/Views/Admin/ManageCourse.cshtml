@@ -98,7 +98,16 @@
                                     <td>
                                         <img src="@course.CourseImage" alt="Course Image" width="50" height="50" />
                                     </td>
-                                    <td>@course.Status</td>
+                                    <td class="text-center">
+                                        @if (course.Status == "active")
+                                        {
+                                            <span class="btn btn-success">Active</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="btn btn-danger">Inactive</span>
+                                        }
+                                    </td>
                                     <td>@course.Semester</td>
                                     <td>@course.Category.CategoryName</td>
                                     <td>

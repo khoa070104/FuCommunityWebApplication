@@ -2,7 +2,23 @@
 @{
     var currentUserId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
 }
+<style>
+    .course-card {
+        display: flex;
+        flex-direction: column;
+        height: 100%; /* Đảm bảo chiều cao đầy đủ */
+    }
 
+        .course-card .course-info {
+            flex-grow: 1; /* Chiếm không gian còn lại để đẩy card-footer xuống dưới */
+        }
+
+        .course-card .card-footer {
+            margin-top: auto;
+            background: white;
+        }
+
+</style>
 <body>
     <div class="home-container">
         <!-- Hero Section -->
@@ -27,81 +43,85 @@
             <h2 class="title">The most <span class="highlight">enrolled</span> courses</h2>
             <p>Let's join our famous class, the knowledge provided will definitely be useful for you.</p>
             <div class="courses">
-                @foreach (var course in Model.MostPurchasedCourses)
-                {
-                    <div class="course-card" data-course-id="@course.CourseID">
-                        <div class="course-image">
-                            <a href="@Url.Action("Detail", "Course", new { id = course.CourseID })">
-                                <img src="@course.CourseImage" alt="Course Image" class="img-fluid">
-                            </a>
-                        </div>
-                        <div class="course-info">
-                            <div class="category">
-                                <span class="badge">@course.Category.CategoryName</span>
-                            </div>
-                            <h3>
-                                <a href="@Url.Action("Detail", "Course", new { id = course.CourseID })">@course.Title</a>
-                            </h3>
-                            <p>@course.Description</p>
-                            <div class="rating">
-                                <span>@(Model.AverageRatings.ContainsKey(course.CourseID) ? Model.AverageRatings[course.CourseID].ToString("0.0") : "0.0")</span>
-                                <span class="stars">
-                                    @for (int i = 0; i < 5; i++)
-                                    {
-                                        if (i < (Model.AverageRatings.ContainsKey(course.CourseID) ? (int)Math.Round(Model.AverageRatings[course.CourseID]) : 0))
+                <div class="row">
+                    @foreach (var course in Model.MostPurchasedCourses)
+                    {
+                        <div class="col-md-4 mb-4">
+                            <div class="course-card" onclick="window.location='@Url.Action("Detail", "Course", new { id = course.CourseID })';" style="cursor: pointer;" data-course-id="@course.CourseID">
+                                <div class="course-image">
+                                    <a href="@Url.Action("Detail", "Course", new { id = course.CourseID })">
+                                        <img style="width:200px;height:200px;" src="@course.CourseImage" alt="Course Image" class="img-fluid">
+                                    </a>
+                                </div>
+                                <div class="course-info">
+                                    <div class="category">
+                                        <span class="badge">@course.Category.CategoryName</span>
+                                    </div>
+                                    <h2>
+                                        <a style="font-style:italic; font-weight:bold; color:#20B486; word-break:break-all; text-decoration:none;" href="@Url.Action("Detail", "Course", new { id = course.CourseID })">@course.Title</a>
+                                    </h2>
+                                    <p>@course.Description</p>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="rating text-center">
+                                        <span>@(Model.AverageRatings.ContainsKey(course.CourseID) ? Model.AverageRatings[course.CourseID].ToString("0.0") : "0.0")</span>
+                                        <span class="stars">
+                                            @for (int i = 0; i < 5; i++)
+                                            {
+                                                if (i < (Model.AverageRatings.ContainsKey(course.CourseID) ? (int)Math.Round(Model.AverageRatings[course.CourseID]) : 0))
+                                                {
+                                                    <i class="fas fa-star" style="color: gold;"></i>
+                                                }
+                                                else
+                                                {
+                                                    <i class="fa-regular fa-star"></i>
+                                                }
+                                            }
+                                        </span>
+                                        <span>(@(Model.ReviewCounts.ContainsKey(course.CourseID) ? Model.ReviewCounts[course.CourseID] : 0))</span>
+                                    </div>
+                                    <div class="price text-center mb-3">
+                                        <div>
+                                            @* <span class="old-price">500 points</span> *@
+                                            <span class="new-price fw-bold">@course.Price points</span>
+                                        </div>
+                                    </div>
+                                    <div class="text-center">
+                                        @if (currentUserId == course.UserID)
                                         {
-                                            <i class="fas fa-star" style="color: gold;"></i>
+                                            <button class="btn-edit">Owner</button>
+                                        }
+                                        else if (Model.EnrolledCourses.Contains(course.CourseID))
+                                        {
+                                            <button class="btn-blue">Enrolled</button>
                                         }
                                         else
                                         {
-                                            <i class="fas fa-star" style="color: black;"></i>
+                                            @if (!User.Identity.IsAuthenticated)
+                                            {
+                                                <button class="btn-green buy-now" data-course-id="@course.CourseID" onclick="event.stopPropagation();">
+                                                    Buy Now
+                                                </button>
+                                            }
+                                            else if (Model.UserPoints < course.Price)
+                                            {
+                                                <button class="btn-green buy-now" data-course-id="@course.CourseID" onclick="event.stopPropagation();">
+                                                    Buy Now
+                                                </button>
+                                            }
+                                            else
+                                            {
+                                                <button class="btn-green buy-now" data-course-id="@course.CourseID" onclick="event.stopPropagation();">
+                                                    Buy Now
+                                                </button>
+                                            }
                                         }
-                                    }
-                                </span>
-                                <span>(@(Model.ReviewCounts.ContainsKey(course.CourseID) ? Model.ReviewCounts[course.CourseID] : 0))</span>
-                            </div>
-                            <div class="price text-center">
-                                <div>
-                                    <span class="old-price">500 points</span>
-                                    <span class="new-price">@course.Price points</span>
+                                    </div>
                                 </div>
                             </div>
-                            <hr>
-                            <div class="text-center">
-                                @if (currentUserId == course.UserID)
-                                {
-                                    <span class="text-success">Owner</span>
-                                }
-                                else if (Model.EnrolledCourses.Contains(course.CourseID))
-                                {
-                                    <span class="text-success">Enrolled</span>
-                                }
-                                else
-                                {
-                                    @if (!User.Identity.IsAuthenticated)
-                                    {
-                                        <button class="btn buy-now" data-course-id="@course.CourseID">
-                                            Buy Now
-                                        </button>
-                                    }
-                                    else if (Model.UserPoints < course.Price)
-                                    {
-                                        <button class="btn buy-now" data-course-id="@course.CourseID">
-                                            Buy Now
-                                        </button>
-                                    }
-                                    else
-                                    {
-                                        <button class="btn buy-now" data-course-id="@course.CourseID">
-                                            Buy Now
-                                        </button>
-                                    }
-                                }
-                            </div>
-
                         </div>
-                    </div>
-                }
+                    }
+                </div>
             </div>
         </div>
 
@@ -110,81 +130,86 @@
             <h2 class="title"><span class="highlight">High-quality</span> courses</h2>
             <p>To enhance your skills and knowledge.</p>
             <div class="courses">
-                @foreach (var course in Model.HighestQualityCourse)
-                {
-                    <div class="course-card" data-course-id="@course.CourseID">
-                        <div class="course-image">
-                            <a href="@Url.Action("Detail", "Course", new { id = course.CourseID })">
-                                <img src="@course.CourseImage" alt="Course Image" class="img-fluid">
-                            </a>
-                        </div>
-                        <div class="course-info">
-                            <div class="category">
-                                <span class="badge">@course.Category.CategoryName</span>
-                            </div>
-                            <h3>
-                                <a href="@Url.Action("Detail", "Course", new { id = course.CourseID })">@course.Title</a>
-                            </h3>
-                            <p>@course.Description</p>
-                            <div class="rating">
-                                <span>@(Model.AverageRatings.ContainsKey(course.CourseID) ? Model.AverageRatings[course.CourseID].ToString("0.0") : "0.0")</span>
-                                <span class="stars">
-                                    @for (int i = 0; i < 5; i++)
-                                    {
-                                        if (i < (Model.AverageRatings.ContainsKey(course.CourseID) ? (int)Math.Round(Model.AverageRatings[course.CourseID]) : 0))
+                <div class="row">
+                    @foreach (var course in Model.HighestQualityCourse)
+                    {
+                        <div class="col-md-4 mb-4">
+                            <div class="course-card" onclick="window.location='@Url.Action("Detail", "Course", new { id = course.CourseID })';" style="cursor: pointer;" data-course-id="@course.CourseID">
+                                <div class="course-image">
+                                    <a href="@Url.Action("Detail", "Course", new { id = course.CourseID })">
+                                        <img style="width:200px;height:200px;" src="@course.CourseImage" alt="Course Image" class="img-fluid">
+                                    </a>
+                                </div>
+                                <div class="course-info">
+                                    <div class="category">
+                                        <span class="badge">@course.Category.CategoryName</span>
+                                    </div>
+                                    <h2>
+                                        <a style="font-style:italic; font-weight:bold; color:#20B486; word-break:break-all; text-decoration:none;" href="@Url.Action("Detail", "Course", new { id = course.CourseID })">@course.Title</a>
+                                    </h2>
+                                    <p>@course.Description</p>
+                                    
+                                </div>
+                                <div class="card-footer">
+                                    <div class="rating text-center">
+                                        <span>@(Model.AverageRatings.ContainsKey(course.CourseID) ? Model.AverageRatings[course.CourseID].ToString("0.0") : "0.0")</span>
+                                        <span class="stars">
+                                            @for (int i = 0; i < 5; i++)
+                                            {
+                                                if (i < (Model.AverageRatings.ContainsKey(course.CourseID) ? (int)Math.Round(Model.AverageRatings[course.CourseID]) : 0))
+                                                {
+                                                    <i class="fas fa-star" style="color: gold;"></i>
+                                                }
+                                                else
+                                                {
+                                                    <i class="fa-regular fa-star"></i>
+                                                }
+                                            }
+                                        </span>
+                                        <span>(@(Model.ReviewCounts.ContainsKey(course.CourseID) ? Model.ReviewCounts[course.CourseID] : 0))</span>
+                                    </div>
+                                    <div class="price text-center mb-3">
+                                        <div>
+                                            @* <span class="old-price">500 points</span> *@
+                                            <span class="new-price fw-bold">@course.Price points</span>
+                                        </div>
+                                    </div>
+                                    <div class="text-center">
+                                        @if (currentUserId == course.UserID)
                                         {
-                                            <i class="fas fa-star" style="color: gold;"></i>
+                                            <button class="btn-edit">Owner</button>
+                                        }
+                                        else if (Model.EnrolledCourses.Contains(course.CourseID))
+                                        {
+                                            <button class="btn-blue">Enrolled</button>
                                         }
                                         else
                                         {
-                                            <i class="fas fa-star" style="color: black;"></i>
+                                            @if (!User.Identity.IsAuthenticated)
+                                            {
+                                                <button class="btn-green buy-now" data-course-id="@course.CourseID">
+                                                    Buy Now
+                                                </button>
+                                            }
+                                            else if (Model.UserPoints < course.Price)
+                                            {
+                                                <button class="btn-green buy-now" data-course-id="@course.CourseID">
+                                                    Buy Now
+                                                </button>
+                                            }
+                                            else
+                                            {
+                                                <button class="btn-green buy-now" data-course-id="@course.CourseID">
+                                                    Buy Now
+                                                </button>
+                                            }
                                         }
-                                    }
-                                </span>
-                                <span>(@(Model.ReviewCounts.ContainsKey(course.CourseID) ? Model.ReviewCounts[course.CourseID] : 0))</span>
-                            </div>
-                            <div class="price text-center">
-                                <div>
-                                    <span class="old-price">500 points</span>
-                                    <span class="new-price">@course.Price points</span>
+                                    </div>
                                 </div>
                             </div>
-                            <hr>
-                            <div class="text-center">
-                                @if (currentUserId == course.UserID)
-                                {
-                                    <span class="text-success">Owner</span>
-                                }
-                                else if (Model.EnrolledCourses.Contains(course.CourseID))
-                                {
-                                    <span class="text-success">Enrolled</span>
-                                }
-                                else
-                                {
-                                    @if (!User.Identity.IsAuthenticated)
-                                    {
-                                        <button class="btn buy-now" data-course-id="@course.CourseID">
-                                            Buy Now
-                                        </button>
-                                    }
-                                    else if (Model.UserPoints < course.Price)
-                                    {
-                                        <button class="btn buy-now" data-course-id="@course.CourseID">
-                                            Buy Now
-                                        </button>
-                                    }
-                                    else
-                                    {
-                                        <button class="btn buy-now" data-course-id="@course.CourseID">
-                                            Buy Now
-                                        </button>
-                                    }
-                                }
-                            </div>
-
                         </div>
-                    </div>
-                }
+                    }
+                </div>
             </div>
         </div>
 

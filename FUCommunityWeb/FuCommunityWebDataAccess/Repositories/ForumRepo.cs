@@ -142,9 +142,14 @@ namespace FuCommunityWebDataAccess.Repositories
         public async Task DeletePost(int postId)
         {
             var post = await _context.Posts.FindAsync(postId);
+
             if (post != null)
             {
+                var comments = _context.Comments.Where(c => c.PostID == postId).ToList();
+                _context.Comments.RemoveRange(comments);
+
                 _context.Posts.Remove(post);
+
                 await _context.SaveChangesAsync();
             }
         }
@@ -158,10 +163,18 @@ namespace FuCommunityWebDataAccess.Repositories
 
         public async Task DeleteComment(int commentId)
         {
+            var childComments = _context.Comments.Where(c => c.ReplyID == commentId);
+
+            _context.Comments.RemoveRange(childComments);
+
             var comment = await _context.Comments.FindAsync(commentId);
-            _context.Comments.Remove(comment);
-            await _context.SaveChangesAsync();
+            if (comment != null)
+            {
+                _context.Comments.Remove(comment);
+                await _context.SaveChangesAsync();
+            }
         }
+
 
         public async Task<Comment> GetCommentByID(int commentId)
         {

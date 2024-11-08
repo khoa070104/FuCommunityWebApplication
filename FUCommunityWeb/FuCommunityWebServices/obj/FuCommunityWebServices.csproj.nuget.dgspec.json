@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Documents\\FuComunityVersionManager\\FuWebTest17\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebServices\\FuCommunityWebServices.csproj": {}
+    "E:\\Documents\\FuWebTest\\Test\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebServices\\FuCommunityWebServices.csproj": {}
   },
   "projects": {
-    "D:\\Documents\\FuComunityVersionManager\\FuWebTest17\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\FuCommunityWebDataAccess.csproj": {
+    "E:\\Documents\\FuWebTest\\Test\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\FuCommunityWebDataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Documents\\FuComunityVersionManager\\FuWebTest17\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\FuCommunityWebDataAccess.csproj",
+        "projectUniqueName": "E:\\Documents\\FuWebTest\\Test\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\FuCommunityWebDataAccess.csproj",
         "projectName": "FuCommunityWebDataAccess",
-        "projectPath": "D:\\Documents\\FuComunityVersionManager\\FuWebTest17\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\FuCommunityWebDataAccess.csproj",
-        "packagesPath": "C:\\Users\\NCPC\\.nuget\\packages\\",
-        "outputPath": "D:\\Documents\\FuComunityVersionManager\\FuWebTest17\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\obj\\",
+        "projectPath": "E:\\Documents\\FuWebTest\\Test\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\FuCommunityWebDataAccess.csproj",
+        "packagesPath": "C:\\Users\\Khoa Bug\\.nuget\\packages\\",
+        "outputPath": "E:\\Documents\\FuWebTest\\Test\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\NCPC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Khoa Bug\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -29,8 +29,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\Documents\\FuComunityVersionManager\\FuWebTest17\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\FuCommunityWebModels.csproj": {
-                "projectPath": "D:\\Documents\\FuComunityVersionManager\\FuWebTest17\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\FuCommunityWebModels.csproj"
+              "E:\\Documents\\FuWebTest\\Test\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\FuCommunityWebModels.csproj": {
+                "projectPath": "E:\\Documents\\FuWebTest\\Test\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\FuCommunityWebModels.csproj"
               }
             }
           }
@@ -93,17 +93,17 @@
         }
       }
     },
-    "D:\\Documents\\FuComunityVersionManager\\FuWebTest17\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\FuCommunityWebModels.csproj": {
+    "E:\\Documents\\FuWebTest\\Test\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\FuCommunityWebModels.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Documents\\FuComunityVersionManager\\FuWebTest17\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\FuCommunityWebModels.csproj",
+        "projectUniqueName": "E:\\Documents\\FuWebTest\\Test\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\FuCommunityWebModels.csproj",
         "projectName": "FuCommunityWebModels",
-        "projectPath": "D:\\Documents\\FuComunityVersionManager\\FuWebTest17\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\FuCommunityWebModels.csproj",
-        "packagesPath": "C:\\Users\\NCPC\\.nuget\\packages\\",
-        "outputPath": "D:\\Documents\\FuComunityVersionManager\\FuWebTest17\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\obj\\",
+        "projectPath": "E:\\Documents\\FuWebTest\\Test\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\FuCommunityWebModels.csproj",
+        "packagesPath": "C:\\Users\\Khoa Bug\\.nuget\\packages\\",
+        "outputPath": "E:\\Documents\\FuWebTest\\Test\\FuCommunityWebApplication\\FUCommunityWeb\\FUCommunityWebModels\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\NCPC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Khoa Bug\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -164,17 +164,17 @@
         }
       }
     },
-    "D:\\Documents\\FuComunityVersionManager\\FuWebTest17\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebServices\\FuCommunityWebServices.csproj": {
+    "E:\\Documents\\FuWebTest\\Test\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebServices\\FuCommunityWebServices.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Documents\\FuComunityVersionManager\\FuWebTest17\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebServices\\FuCommunityWebServices.csproj",
+        "projectUniqueName": "E:\\Documents\\FuWebTest\\Test\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebServices\\FuCommunityWebServices.csproj",
         "projectName": "FuCommunityWebServices",
-        "projectPath": "D:\\Documents\\FuComunityVersionManager\\FuWebTest17\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebServices\\FuCommunityWebServices.csproj",
-        "packagesPath": "C:\\Users\\NCPC\\.nuget\\packages\\",
-        "outputPath": "D:\\Documents\\FuComunityVersionManager\\FuWebTest17\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebServices\\obj\\",
+        "projectPath": "E:\\Documents\\FuWebTest\\Test\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebServices\\FuCommunityWebServices.csproj",
+        "packagesPath": "C:\\Users\\Khoa Bug\\.nuget\\packages\\",
+        "outputPath": "E:\\Documents\\FuWebTest\\Test\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebServices\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\NCPC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Khoa Bug\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -189,8 +189,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\Documents\\FuComunityVersionManager\\FuWebTest17\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\FuCommunityWebDataAccess.csproj": {
-                "projectPath": "D:\\Documents\\FuComunityVersionManager\\FuWebTest17\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\FuCommunityWebDataAccess.csproj"
+              "E:\\Documents\\FuWebTest\\Test\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\FuCommunityWebDataAccess.csproj": {
+                "projectPath": "E:\\Documents\\FuWebTest\\Test\\FuCommunityWebApplication\\FUCommunityWeb\\FuCommunityWebDataAccess\\FuCommunityWebDataAccess.csproj"
               }
             }
           }

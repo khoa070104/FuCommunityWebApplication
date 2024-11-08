@@ -1,55 +1,49 @@
-﻿
-@model FuCommunityWebModels.Models.OrderInfo
+﻿@model FuCommunityWebModels.Models.OrderInfo
 
 @{
-    ViewData["Title"] = "VNPAY DEMO PAY";
+    ViewData["Title"] = "DEPOSIT";
 }
 
-<div class="payment">
-    <div class="container my-5">
-        <div class="card text-center">
-            <div class="card-body">
-                <h1 class="card-title">VNPAY DEMO</h1>
-                <p class="card-text">Nhập số tiền thanh toán và chọn phương thức thanh toán</p>
-            </div>
-        </div>
-
+<div>
+    <div class="container min-vh-100">
         <div class="row">
             <div class="col-md-8 mx-auto">
-                <div class="card mt-4" style="max-width: 500px;">
+                <div class="payment card mt-4">
                     <div class="card-body">
-                        <h4 class="text-center">Nhập số tiền thanh toán</h4>
+                        <h2 class="text-center" style="color: #20B486; font-weight: bold; font-style: italic; font-size:40px;">Enter Payment Amount</h2>
                         <form asp-action="Pay" method="post">
                             <div class="form-group mb-3">
-                                <label for="Amount">Số tiền (VND):</label>
+                                <label for="Amount">Amount (VND):</label>
                                 <input type="number" class="form-control" id="Amount" name="Amount"
-                                    placeholder="Nhập số tiền cần thanh toán" required />
+                                       placeholder="Enter the amount to pay" required />
                             </div>
 
-                            <h4>Chọn phương thức thanh toán:</h4>
+
                             <div class="d-block my-3">
+                                <h5>Select Payment Method:</h5>
                                 <div class="form-check">
                                     <input type="radio" id="bankcode_Vnbank" name="paymentMethod" value="VNBANK"
-                                        class="form-check-input" />
-                                    <label class="form-check-label" for="bankcode_Vnbank">ATM-Tài khoản ngân hàng nội địa</label>
+                                           class="form-check-input" />
+                                    <label class="form-check-label" for="bankcode_Vnbank">ATM - Domestic Bank Account</label>
                                 </div>
                                 <div class="form-check">
                                     <input type="radio" id="bankcode_Intcard" name="paymentMethod" value="INTCARD"
-                                        class="form-check-input" />
-                                    <label class="form-check-label" for="bankcode_Intcard">Thanh toán qua thẻ quốc tế</label>
+                                           class="form-check-input" />
+                                    <label class="form-check-label" for="bankcode_Intcard">International Card</label>
                                 </div>
-
-                                <h4>Chọn ngôn ngữ thanh toán:</h4>
+                            </div>
+                            <div class="d-block my-3">
+                                <h5>Select Language:</h5>
                                 <div class="form-check">
                                     <input type="radio" id="locale_Vn" name="locale" value="vn" checked class="form-check-input" />
-                                    <label class="form-check-label" for="locale_Vn">Tiếng Việt</label>
+                                    <label class="form-check-label" for="locale_Vn">Vietnamese</label>
                                 </div>
                                 <div class="form-check">
                                     <input type="radio" id="locale_En" name="locale" value="en" class="form-check-input" />
-                                    <label class="form-check-label" for="locale_En">Tiếng Anh</label>
+                                    <label class="form-check-label" for="locale_En">English</label>
                                 </div>
 
-                                <button type="submit" class="btn-1 w-100 mt-3">Thanh toán (Redirect)</button>
+                                <button type="submit" class="btn-2 w-100 mt-3">Pay (Redirect)</button>
                             </div>
                         </form>
                     </div>

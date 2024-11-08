@@ -10,6 +10,7 @@
     .cke_notification {
         display: none !important; /* Ẩn tất cả thông báo CKEditor */
     }
+
 </style>
 <body>
     <div class="container mt-4 forum-detail">
@@ -17,11 +18,11 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">@Model.Post.Title</h5>
-                        <div class="card-text">
+                        <h5 class="card-title" style="word-break:break-all;">@Model.Post.Title</h5>
+                        <div class="card-text" style="word-break:break-all;">
                             @Html.Raw(System.Net.WebUtility.HtmlDecode(Model.Post.Content))
                         </div>
-                        <img src="@Model.Post.PostImage" class="img-fluid fixed-size-img" alt="Post Image" />
+                        <imgx src="@Model.Post.PostImage" class="img-fluid fixed-size-img" alt="Post Image" />
                         <p>Votes:<strong>@Model.VoteCount</strong> </p>
                         @if (!isPostOwner)
                         {
@@ -34,7 +35,7 @@
                             var document = Model.Post.Document;
                             if (document != null)
                             {
-                                <p>Document: <a href="@document.FileUrl" download>@document.Name</a></p>
+                                <p><i class="fa-solid fa-link"></i> <a href="@document.FileUrl" download>@document.Name</a></p>
                             }
                         }
                     </div>
@@ -42,8 +43,11 @@
                 <div class="suggestions mt-3">
                     <form asp-action="Comment" asp-controller="Forum" method="post" id="commentForm">
                         <label for="commentContent" class="form-label">Share your idea:</label>
-                        <textarea asp-for="@Model.Comment.Content" class="form-control" id="editorComment" rows="3" placeholder="" required></textarea>
+                        <textarea asp-for="@Model.Comment.Content" class="form-control" id="editorComment" rows="3" placeholder=""></textarea>
                         <input type="hidden" asp-for="@Model.Comment.PostID" value="@Model.Post.PostID" />
+                        <div class="invalid-feedback d-none" id="commentError">
+                            Content not allow empty
+                        </div>
                         <button type="submit" class="btn-2 mt-2">Comment</button>
                     </form>
                 </div>
@@ -61,11 +65,13 @@
                                         <img alt="@user?.User.FullName's Picture" src="@user?.User.AvatarImage" style="width: 50px; height: 50px; border-radius: 50%;">
                                     </a>
                                     <div>
-                                        <strong>@user?.User.FullName</strong>
+                                        <strong style="word-break:break-all;">@user?.User.FullName</strong>
                                         <p class="mb-0 text-muted" style="font-size: 0.9rem;">
                                             @Html.Raw(System.Net.WebUtility.HtmlDecode(comment.CreatedDate.ToString("g")))
                                         </p>
                                     </div>
+                                    @if (comment.UserID == currentUserId)
+                                    {
                                     <div class="ms-auto dropdown">
                                         <button class="btn-link text-muted" id="settingsDropdown" data-bs-toggle="dropdown" aria-expanded="false" style="background: none; border: none; box-shadow: none;">
                                             <i class="fas fa-ellipsis-v"></i>
@@ -91,19 +97,24 @@
                                             </li>
                                         </ul>
                                     </div>
+                                    }
                                 </div>
                                 <p class="card">@Html.Raw(System.Net.WebUtility.HtmlDecode(comment.Content))</p>
-                                <div class="reply-btn">
-                                    <a href="#" class="text-decoration-none ">Reply</a>
+                                <div class="reply-btn text-end">
+                                    <a href="#" class="text-decoration-none" style="color:#20B486;"><i class="fa-solid fa-reply"></i></a>
                                 </div>
                                 <div class="reply-area mt-2" style="display: none;">
                                     <p>Write your reply</p>
-                                    <form asp-action="Comment" asp-controller="Forum" method="post" enctype="multipart/form-data">
+                                    <form asp-action="Comment" asp-controller="Forum" method="post" enctype="multipart/form-data" id="replyForm">
                                         <input type="hidden" asp-for="Comment.ReplyID" value="@comment.CommentID" />
                                         <input type="hidden" asp-for="Comment.PostID" value="@Model.Post.PostID" />
-                                        <!-- Thêm id duy nhất cho mỗi textarea -->
                                         <textarea asp-for="Comment.Content" class="form-control reply-textarea" id="replyEditor-@comment.CommentID" rows="3"></textarea>
-                                        <button type="submit" class="btn-2 mt-2 submit-reply">Reply</button>
+                                        <div class="invalid-feedback d-none" id="commentError-@comment.CommentID">
+                                            Content not allow empty
+                                        </div>
+                                        <button type="submit" class="btn mt-2 submit-reply">
+                                            <i class="fa-regular fa-paper-plane"></i> Submit
+                                        </button>
                                     </form>
                                 </div>
                                 <ul class="list-unstyled mt-2" style="margin-left: 50px;">
@@ -115,23 +126,30 @@
                                                 <img alt="@replyUser?.User.FullName's Picture" src="@replyUser?.User.AvatarImage" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;">
                                             </a>
                                             <div class="flex-grow-1">
-                                                <strong class="d-block">@replyUser?.User.FullName</strong>
+                                                <strong class="d-block" style="word-break:break-all;">@replyUser?.User.FullName</strong>
                                                 <p class="mb-0 text-muted small" style="font-size: 0.8rem;">@Html.Raw(System.Net.WebUtility.HtmlDecode(reply.CreatedDate.ToString("g")))</p>
                                                 <p class="mt-1">@Html.Raw(System.Net.WebUtility.HtmlDecode(reply.Content))</p>
-                                                <a href="#" class="text-decoration-none reply-btn" data-reply-id="@reply.CommentID">Reply</a>
+                                                <div class="reply-btn text-end">
+                                                    <a href="#" class="text-decoration-none" style="color:#20B486;" data-reply-id="@reply.CommentID"><i class="fa-solid fa-reply"></i></a>
+                                                </div>
+
                                                 <!-- Đảm bảo khu vực trả lời ban đầu bị ẩn -->
                                                 <div class="reply-area" style="display: none;">
                                                     <form asp-action="Comment" asp-controller="Forum" method="post" enctype="multipart/form-data" id="replyForm">
                                                         <input type="hidden" asp-for="Comment.ReplyID" value="@comment.CommentID" />
                                                         <input type="hidden" asp-for="Comment.PostID" value="@Model.Post.PostID" />
                                                         <textarea asp-for="Comment.Content" class="form-control reply-textarea" id="replyEditor-@reply.CommentID" rows="3"></textarea>
-                                                        <button type="submit" class="btn btn-primary mt-2 submit-reply">
+                                                        <div class="invalid-feedback d-none" id="commentError-@reply.CommentID">
+                                                            Content not allow empty
+                                                        </div>
+                                                        <button type="submit" class="btn mt-2 submit-reply">
                                                             <i class="fa-regular fa-paper-plane"></i> Submit
                                                         </button>
                                                     </form>
                                                 </div>
                                             </div>
-
+                                            @if (reply  .UserID == currentUserId)
+                                            {
                                             <div class="dropdown ms-auto">
                                                 <button class="btn-link text-muted p-0 settings-dropdown" data-bs-toggle="dropdown" aria-expanded="false" style="background: none; border: none; box-shadow: none;">
                                                     <i class="fas fa-ellipsis-v"></i>
@@ -157,6 +175,7 @@
                                                     </li>
                                                 </ul>
                                             </div>
+                                            }
                                         </li>
                                     }
                                 </ul>
@@ -173,12 +192,27 @@
             <div class="col-md-4 text-center">
                 <div class="user-info">
                     <img src="@Model.Post.User.AvatarImage" alt="Profile Picture" class="profile-pic mb-2" style="width: 150px; height: 150px; border-radius: 50%;">
-                    <p style="font-weight:bold;font-size:20px;">@Model.Post.User.FullName</p>
+                    <p style="font-weight:bold;font-size:20px;word-break:break-all;">@Model.Post.User.FullName</p>
                     <p><i class="fas fa-trophy"></i>@Model.Post.User.Point Points</p>
                     <div>
-                        <a href="#"><i class="fab fa-github fa-lg me-2"></i></a>
-                        <a href="#"><i class="fab fa-instagram fa-lg me-2"></i></a>
-                        <a href="#"><i class="fab fa-facebook fa-lg"></i></a>
+                        @if (!string.IsNullOrEmpty(Model.Post.User.Instagram))
+                        {
+                            <a href="@Model.Post.User.Instagram" target="_blank" style="text-decoration:none">
+                                <i class="fab fa-instagram fa-lg me-2" style="color: #E1306C;"></i>
+                            </a>
+                        }
+                        @if (!string.IsNullOrEmpty(Model.Post.User.Facebook))
+                        {
+                            <a href="@Model.Post.User.Facebook" target="_blank" style="text-decoration:none">
+                                <i class="fab fa-facebook fa-lg me-2" style="color: #4267B2;"></i>
+                            </a>
+                        }
+                        @if (!string.IsNullOrEmpty(Model.Post.User.Github))
+                        {
+                            <a href="@Model.Post.User.Github" target="_blank" style="text-decoration:none">
+                                <i class="fab fa-github fa-lg" style="color: #333;"></i>
+                            </a>
+                        }
                     </div>
                 </div>
             </div>
@@ -197,14 +231,18 @@
                         <div class="mb-3">
                             <label for="editContent" class="form-label">Content</label>
                             <textarea asp-for="Comment.Content" class="form-control" id="editContent"></textarea>
+                            <div class="invalid-feedback d-none" id="editError">
+                                Content not allow empty
+                            </div>
                         </div>
-                        <input type="hidden" name="Comment.CommentID" value="" />
-                        <input type="hidden" name="Post.PostID" value="" />
+                        <input type="hidden" name="Comment.CommentID" value="@Model.Comment.CommentID" />
+                        <input type="hidden" name="Post.PostID" value="@Model.Post.PostID" />
                         <div class="modal-footer">
                             <button type="button" class="btn-cancel" data-bs-dismiss="modal">Close</button>
                             <button type="submit" class="btn">Save changes</button>
                         </div>
                     </form>
+
                 </div>
             </div>
         </div>
@@ -245,61 +283,82 @@
                 $('input[name="Post.PostID"]').val($(this).data('post-id'));
             });
 
-            // Cấu hình CKEditor cho textarea bình luận
             var editor = CKEDITOR.replace('editorComment');
 
-            // Xóa thẻ div khi gửi form bình luận
-            $('#commentForm').on('submit', function () {
+            $('#commentForm').on('submit', function (e) {
                 var content = editor.getData();
+                if (content === '') {
+                    e.preventDefault(); 
+                    $('#commentError').removeClass('d-none'); 
+                    $('#editorComment').addClass('is-invalid'); 
+                    return;
+                }
                 var cleanedContent = cleanUpContent(content);
                 editor.setData(cleanedContent);
             });
 
-            // Cấu hình CKEditor cho modal chỉnh sửa
             $('#editModal').on('shown.bs.modal', function () {
-                var editEditor = CKEDITOR.replace('editContent');
+                var textareaId = 'editContent';
 
-                $('#editCommentForm').on('submit', function () {
+                if (!CKEDITOR.instances[textareaId]) {
+                    CKEDITOR.replace(textareaId);
+                }
+
+                var editEditor = CKEDITOR.instances[textareaId];
+
+                $('#editCommentForm').on('submit', function (e) {
+                    e.preventDefault();
                     var editContent = editEditor.getData();
-                    var cleanedEditContent = cleanUpContent(editContent);
-                    editEditor.setData(cleanedEditContent);
+                    if (editContent === '') {
+                        $('#editError').removeClass('d-none');  
+                        $('#editContent').addClass('is-invalid');  
+                    } else {
+                        $('#editError').addClass('d-none');  
+                        $('#editContent').removeClass('is-invalid');  
+                        var cleanedEditContent = cleanUpContent(editContent); 
+                        editEditor.setData(cleanedEditContent); 
+
+                        $(this).off('submit').submit(); 
+                    }
                 });
             });
 
-            // Hiển thị khu vực trả lời khi nhấn vào nút Reply
             $('.reply-btn').on('click', function (e) {
                 e.preventDefault();
-                $('.reply-area').hide(); // Ẩn tất cả khu vực trả lời trước đó
-                var replyArea = $(this).next('.reply-area'); // Lấy khu vực trả lời gần nhất với nút Reply đã nhấn
-                replyArea.slideDown(); // Hiển thị khu vực trả lời
+                $('.reply-area').hide();
+                var replyArea = $(this).next('.reply-area');
+                replyArea.slideDown();
 
-                var textareaId = replyArea.find('textarea').attr('id'); // Lấy id của textarea
-                if (textareaId && !CKEDITOR.instances[textareaId]) { // Kiểm tra nếu CKEditor chưa được khởi tạo cho textarea này
-                    CKEDITOR.replace(textareaId); // Khởi tạo CKEditor cho textarea
+                var textareaId = replyArea.find('textarea').attr('id');
+                if (textareaId && !CKEDITOR.instances[textareaId]) {
+                    CKEDITOR.replace(textareaId);
                 }
             });
 
+            $(document).on('click', function (e) {
+                if (!$(e.target).closest('.reply-area, .reply-btn').length) {
+                    $('.reply-area').slideUp();
+                }
+            });
 
-            // Xóa thẻ div khi gửi form reply
-            $('#replyForm').on('submit', function (e) {
-                var textareaId = $(this).find('textarea').attr('id');
-                var replyEditor = CKEDITOR.instances[textareaId]; // Lấy instance CKEditor từ ID
+            $(document).on('submit', '#replyForm', function (e) {
+                var textarea = $(this).find('textarea');
+                var textareaId = textarea.attr('id');
+                var replyEditor = CKEDITOR.instances[textareaId];
 
                 if (replyEditor) {
-                    var content = replyEditor.getData(); // Lấy dữ liệu từ CKEditor
-                    var cleanedContent = cleanUpContent(content); // Dọn dẹp nội dung
-                    replyEditor.setData(cleanedContent); // Cập nhật nội dung đã dọn dẹp vào CKEditor
+                    var content = replyEditor.getData();
+                    if (content === '') {
+                        e.preventDefault();
+                        $('#commentError-' + textareaId.split('-')[1]).removeClass('d-none');
+                        $('#' + textareaId).addClass('is-invalid');
+                        return;
+                    }
+                    var cleanedContent = cleanUpContent(content);
+                    replyEditor.setData(cleanedContent);
                 }
             });
 
-            // Đóng khu vực trả lời khi nhấp ra ngoài
-            $(document).on('click', function (e) {
-                if (!$(e.target).closest('.reply-area, .reply-btn').length) { // Kiểm tra nếu nhấp ra ngoài khu vực trả lời hoặc nút Reply
-                    $('.reply-area').slideUp(); // Ẩn tất cả khu vực trả lời
-                }
-            });
-
-            // Cập nhật modal xóa bình luận
             const deleteModal = document.getElementById('deleteModal');
             deleteModal.addEventListener('show.bs.modal', function (event) {
                 const button = event.relatedTarget;
@@ -316,6 +375,11 @@
                 if (postIdInput) postIdInput.value = postId;
             });
         });
+    </script>
+    <script>
+        function cleanUpContent(content) {
+            return content.replace(/<div[^>]*id=["']mttContainer["'][^>]*>.*?<\/div>/g, '');
+        }
     </script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {

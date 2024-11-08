@@ -16,11 +16,10 @@
                         <table class="custom-table table-hover">
                             <thead class="custom-table-header">
                                 <tr>
-                                    <th scope="col">Name</th>
+                                    <th scope="col">Course Name</th>
                                     <th scope="col">Enrollment Date</th>
                                     <th scope="col">Status</th>
                                     <th scope="col">Score</th>
-                                    <th scope="col"></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -28,18 +27,13 @@
                                 {
                                     @foreach (var enrollment in Model.Enrollments)
                                     {
-                                        <tr class="custom-row-bg">
-                                            <td class="table-name">
-                                                <a href="@Url.Action("Detail", "Course", new { id = enrollment.Course.CourseID })">
-                                                    @enrollment.Course.Title
-                                                </a>
+                                        <tr class="custom-row-bg" onclick="window.location='@Url.Action("Detail", "Course", new { id = enrollment.Course.CourseID })';" style="cursor: pointer;">
+                                            <td class="table-name" style="font-weight:bold;word-break:break-all;">
+                                                @enrollment.Course.Title
                                             </td>
                                             <td>@enrollment.EnrollmentDate.ToString("dd/MM/yyyy")</td>
                                             <td>@enrollment.Status</td>
                                             <td><span class="custom-badge">@enrollment.Course.Price</span></td>
-                                            <th scope="col">
-                                                <i class="fa fa-arrow-right"></i>
-                                            </th>
                                         </tr>
                                     }
                                 }
@@ -49,7 +43,7 @@
                                         <td colspan="5" class="text-center">No data.</td>
                                     </tr>
                                 }
-                                
+
                             </tbody>
                         </table>
                     </div>
