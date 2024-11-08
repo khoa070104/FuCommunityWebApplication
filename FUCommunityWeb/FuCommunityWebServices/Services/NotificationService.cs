@@ -1,6 +1,7 @@
 using FuCommunityWebDataAccess.Data;
 using FuCommunityWebModels.Models;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -13,10 +14,18 @@ public class NotificationService
         _context = context;
     }
 
-    public async Task CreateNotification(Notification notification)
+    public async Task<Notification> CreateNotification(Notification notification)
     {
+        notification.Content = notification.Content ?? notification.Message ?? "Bạn có thông báo mới";
+        notification.Message = notification.Message ?? notification.Content;
+        notification.NotificationType = notification.NotificationType ?? notification.Type ?? "General";
+        notification.Type = notification.Type ?? notification.NotificationType ?? "General";
+        notification.CreatedDate = DateTime.Now;
+        notification.IsRead = false;
+
         _context.Notifications.Add(notification);
         await _context.SaveChangesAsync();
+        return notification;
     }
 
     public async Task CreateCommentNotification(string fromUserId, string toUserId, int postId, string message)
@@ -27,7 +36,11 @@ public class NotificationService
             FromUserID = fromUserId,
             PostID = postId,
             Message = message,
-            NotificationType = "Comment"
+            Content = message,
+            NotificationType = "Comment",
+            Type = "Comment",
+            CreatedDate = DateTime.Now,
+            IsRead = false
         };
 
         _context.Notifications.Add(notification);
@@ -42,7 +55,11 @@ public class NotificationService
             FromUserID = fromUserId,
             PostID = postId,
             Message = message,
-            NotificationType = "Reply"
+            Content = message,
+            NotificationType = "Reply",
+            Type = "Reply",
+            CreatedDate = DateTime.Now,
+            IsRead = false
         };
 
         _context.Notifications.Add(notification);
