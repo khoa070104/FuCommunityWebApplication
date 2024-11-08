@@ -59,13 +59,15 @@ namespace FuCommunityWebServices.Services
             {
                 UserID = receiverId,
                 FromUserID = senderId,
-                Content = $"{sender.FullName} đã gửi cho bạn một tin nhắn",
+                Content = content,
+                Message = $"{sender.FullName} đã gửi cho bạn một tin nhắn",
+                NotificationType = "Message",
+                Type = "Message",
                 CreatedDate = DateTime.Now,
-                IsRead = false,
-                Type = "Message"
+                IsRead = false
             };
 
-            _notificationService.CreateNotification(notification);
+            await _notificationService.CreateNotification(notification);
 
             return savedMessage;
         }
