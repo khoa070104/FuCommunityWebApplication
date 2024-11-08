@@ -8,6 +8,7 @@ using FuCommunityWebDataAccess.Repositories;
 using FuCommunityWebServices.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.SignalR;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -110,6 +111,14 @@ builder.Services.Configure<DataProtectionTokenProviderOptions>(options =>
     options.TokenLifespan = TimeSpan.FromMinutes(15); 
 });
 
+builder.Services.AddScoped<NotificationService>();
+
+builder.Services.AddSignalR();
+
+builder.Services.AddScoped<MessageRepository>();
+builder.Services.AddScoped<ChatService>();
+builder.Services.AddScoped<MessageRepository>();
+builder.Services.AddScoped<ChatService>();
 builder.Services.AddScoped<NotificationService>();
 
 var app = builder.Build();

@@ -65,6 +65,12 @@
                             <li class="nav-item">
                                 <a class="nav-link" asp-controller="Course" asp-action="Index">All Course</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Chat" asp-action="Index">
+                                    <i class="fas fa-comments"></i> Tin nhắn
+                                    <span id="layoutMessageBadge" class="badge bg-danger" style="display: none;"></span>
+                                </a>
+                            </li>
                         </ul>
 
                         <!-- Right Aligned Buttons -->
@@ -209,6 +215,33 @@
                     console.error("loadNotifications function not found!"); // Thêm log để debug
                 }
             });
+        </script>
+    }
+
+    @section Scripts {
+        <script>
+            // Update unread message count every 30 seconds
+            async function updateLayoutUnreadCount() {
+                try {
+                    const response = await fetch('/Chat/GetUnreadCount');
+                    const unreadCount = await response.json();
+                    const badge = $('#layoutMessageBadge');
+                    
+                    if (unreadCount > 0) {
+                        badge.text(unreadCount).show();
+                    } else {
+                        badge.hide();
+                    }
+                } catch (error) {
+                    console.error('Error updating unread count:', error);
+                }
+            }
+
+            // Initial update
+            updateLayoutUnreadCount();
+
+            // Update every 30 seconds
+            setInterval(updateLayoutUnreadCount, 30000);
         </script>
     }
 

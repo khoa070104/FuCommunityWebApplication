@@ -18,4 +18,6 @@ public class Notification
     public DateTime CreatedDate { get; set; } = DateTime.Now;
     public bool IsRead { get; set; } = false;
     public string NotificationType { get; set; } // Loại thông báo (comment, like, etc)
+    public string Content { get; set; }
+    public string Type { get; set; }
 } 

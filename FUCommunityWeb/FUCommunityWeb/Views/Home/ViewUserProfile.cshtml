@@ -1,4 +1,5 @@
-﻿@model FuCommunityWebModels.ViewModels.UserVM
+﻿@using System.Security.Claims
+@model FuCommunityWebModels.ViewModels.UserVM
 
 <body>
     <!-- Profile Section -->
@@ -66,6 +67,14 @@
                 <div>
                     <h5>Followers</h5>
                     <p>@(Model.Followers?.Count ?? 0)</p>
+                </div>
+                <div>
+                    @if (Model.User.Id != User.FindFirstValue(ClaimTypes.NameIdentifier))
+                    {
+                        <a href="@Url.Action("Index", "Chat", new { userId = Model.User.Id })">
+                            <i class="fas fa-comment"></i> Nhắn tin
+                        </a>
+                    }
                 </div>
             </div>
         </div>
@@ -224,4 +233,89 @@
             </div>
         </div>
     </div>
+
+    
+
+    <!-- Chat Modal -->
+    <div class="modal fade" id="chatModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="chatUserName"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="chat-messages" id="chatMessages">
+                        <!-- Messages will be loaded here -->
+                    </div>
+                    <div class="chat-input mt-3">
+                        <div class="input-group">
+                            <input type="text" id="messageInput" class="form-control" placeholder="Nhập tin nhắn...">
+                            <button class="btn btn-primary" id="sendMessage">Gửi</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @section Scripts {
+        <script src="~/lib/microsoft/signalr/dist/browser/signalr.js"></script>
+        <script>
+            let connection = new signalR.HubConnectionBuilder()
+                .withUrl("/chatHub")
+                .build();
+
+            let currentChatUserId = '';
+
+            async function openChat(userId, userName) {
+                currentChatUserId = userId;
+                $('#chatUserName').text(userName);
+                $('#chatModal').modal('show');
+
+                // Load previous messages
+                const response = await fetch(`/Chat/GetMessages?userId=${userId}`);
+                const messages = await response.json();
+                displayMessages(messages);
+            }
+
+            function displayMessages(messages) {
+                const chatMessages = $('#chatMessages');
+                chatMessages.empty();
+                
+                messages.forEach(msg => {
+                    const isOwn = msg.senderId === '@User.FindFirstValue(ClaimTypes.NameIdentifier)';
+                    const messageHtml = `
+                        <div class="message ${isOwn ? 'own' : 'other'}">
+                            <img src="${msg.senderAvatar}" class="avatar">
+                            <div class="message-content">
+                                <div class="message-text">${msg.content}</div>
+                                <div class="message-time">${new Date(msg.createdDate).toLocaleString()}</div>
+                            </div>
+                        </div>
+                    `;
+                    chatMessages.append(messageHtml);
+                });
+                
+                chatMessages.scrollTop(chatMessages[0].scrollHeight);
+            }
+
+            $('#sendMessage').click(async () => {
+                const message = $('#messageInput').val();
+                if (message && currentChatUserId) {
+                    await connection.invoke("SendMessage", currentChatUserId, message);
+                    $('#messageInput').val('');
+                }
+            });
+
+            connection.on("ReceiveMessage", message => {
+                if ($('#chatModal').is(':visible') && 
+                    message.senderId === currentChatUserId) {
+                    displayMessages([message]);
+                }
+            });
+
+            connection.start();
+        </script>
+    }
 </body>

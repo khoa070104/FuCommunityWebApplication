@@ -34,6 +34,7 @@ namespace FuCommunityWebDataAccess.Data
         public DbSet<OrderInfo> Orders { get; set; }
         public DbSet<Follower> Followers { get; set; }
         public DbSet<Notification> Notifications { get; set; }
+        public DbSet<Message> Messages { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -171,6 +172,19 @@ namespace FuCommunityWebDataAccess.Data
                 .HasOne(n => n.Post)
                 .WithMany()
                 .HasForeignKey(n => n.PostID)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // Thêm relationship cho Message
+            modelBuilder.Entity<Message>()
+                .HasOne(m => m.Sender)
+                .WithMany()
+                .HasForeignKey(m => m.SenderId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Message>()
+                .HasOne(m => m.Receiver) 
+                .WithMany()
+                .HasForeignKey(m => m.ReceiverId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             // Default Data

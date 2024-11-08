@@ -13,6 +13,12 @@ public class NotificationService
         _context = context;
     }
 
+    public async Task CreateNotification(Notification notification)
+    {
+        _context.Notifications.Add(notification);
+        await _context.SaveChangesAsync();
+    }
+
     public async Task CreateCommentNotification(string fromUserId, string toUserId, int postId, string message)
     {
         var notification = new Notification
