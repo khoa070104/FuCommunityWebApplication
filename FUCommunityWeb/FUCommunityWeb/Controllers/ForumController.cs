@@ -231,7 +231,7 @@ namespace FUCommunityWeb.Controllers
 
             ViewBag.IsMentor = User.IsInRole(SD.Role_User_Mentor);
             ViewBag.IsStudent = User.IsInRole(SD.Role_User_Student);
-
+            ViewBag.IsAdmin = User.IsInRole(SD.Role_User_Admin);
             return View(modal);
         }
 

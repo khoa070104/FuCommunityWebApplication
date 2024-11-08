@@ -172,7 +172,7 @@
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h1 class="display-6" style="font-weight: 500;">Topic: <span class="text-success">@Model.CategoryVM.CategoryName</span></h1>
         <div>
-            @if (ViewBag.IsMentor)
+            @if (ViewBag.IsMentor )
             {
                 <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#createPostModal"
                         data-post-type="1">
@@ -185,6 +185,17 @@
             }
             else if (ViewBag.IsStudent)
             {
+                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#createPostModal"
+                        data-post-type="2">
+                    Create New Question
+                </button>
+            }
+            else if(ViewBag.IsAdmin)
+            {
+                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#createPostModal"
+                        data-post-type="1">
+                    Create New Blog
+                </button>
                 <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#createPostModal"
                         data-post-type="2">
                     Create New Question
