@@ -63,6 +63,7 @@
     flex-grow: 1;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .header .navbar-mid .nav-link {
@@ -702,7 +703,6 @@
 }
 
 .home-container .courses {
-    display: flex;
     gap: 20px;
     justify-content: space-between;
 }
@@ -1388,7 +1388,7 @@
             padding: 20px;
             margin-bottom: 20px;
             transition: transform 0.3s ease;
-            width: 350px;
+/*            width: 350px;*/
             box-sizing: border-box;
             height: 100%;
         }
