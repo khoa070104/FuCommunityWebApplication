@@ -1,13 +1,13 @@
 @using System.Security.Claims
 @model List<Message>
 
-<div class="container mt-4">
+<div class="container mt-4 user-chat">
     <div class="row">
         <!-- Danh sách chat -->
         <div class="col-md-4">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="mb-0">Tin nhắn</h5>
+                    <h5 class="mb-0">Select a conversation</h5>
                 </div>
                 <div class="list-group list-group-flush" id="chatList">
                     @foreach (var chat in ViewBag.ChatList)
@@ -19,8 +19,8 @@
                             <div class="d-flex align-items-center">
                                 <img src="@chat.AvatarImage" class="rounded-circle" width="40" height="40">
                                 <div class="ms-3">
-                                    <h6 class="mb-0">@chat.FullName</h6>
-                                    <small class="text-muted">@chat.LastMessage</small>
+                                    <h6 class="mb-0" style="word-break:break-all;">@chat.FullName</h6>
+                                    <small class="text-muted small-text">@chat.LastMessage</small>
                                 </div>
                                 @if (chat.UnreadCount > 0)
                                 {
@@ -37,7 +37,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="mb-0" id="currentChatName">Chọn một cuộc trò chuyện</h5>
+                    <h5 class="mb-0" id="currentChatName">Chat</h5>
                 </div>
                 <div class="card-body">
                     <div class="chat-messages" id="chatMessages">
@@ -53,51 +53,6 @@
         </div>
     </div>
 </div>
-
-<style>
-.chat-messages {
-    height: 400px;
-    overflow-y: auto;
-    padding: 15px;
-}
-
-.message {
-    display: flex;
-    margin-bottom: 15px;
-}
-
-.message.own {
-    flex-direction: row-reverse;
-}
-
-.message .avatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    margin: 0 10px;
-}
-
-.message-content {
-    max-width: 70%;
-}
-
-.message-text {
-    padding: 10px;
-    border-radius: 15px;
-    background: #f0f0f0;
-}
-
-.message.own .message-text {
-    background: #007bff;
-    color: white;
-}
-
-.message-time {
-    font-size: 12px;
-    color: #666;
-    margin-top: 5px;
-}
-</style>
 
 @section Scripts {
     <script>
