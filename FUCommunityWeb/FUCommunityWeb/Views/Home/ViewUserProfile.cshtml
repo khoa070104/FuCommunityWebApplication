@@ -70,10 +70,10 @@
                 </div>
                 @if (Model.User.Id != User.FindFirstValue(ClaimTypes.NameIdentifier))
                     {
-                    <div>
+                    <div style="display: flex; justify-content: center; align-items: center;">
                     
-                            <a href="@Url.Action("Index", "Chat", new { userId = Model.User.Id })">
-                                <i class="fas fa-comment"></i> Nhắn tin
+                            <a class="btn-blue" style="text-decoration:none;" href="@Url.Action("Index", "Chat", new { userId = Model.User.Id })">
+                                <i class="fas fa-comment"></i> Chat
                             </a>
                     
                     </div>
@@ -92,7 +92,7 @@
             <li class="nav-item" role="presentation">
                 <button class="nav-link" id="all-post-tab" data-bs-toggle="tab" data-bs-target="#all-post" type="button"
                         role="tab" aria-controls="all-post" aria-selected="false">
-                    All Post/ Question
+                    All Post/Question
                 </button>
             </li>
             <li class="nav-item" role="presentation">

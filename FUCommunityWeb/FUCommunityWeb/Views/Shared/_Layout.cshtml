@@ -65,20 +65,23 @@
                             <li class="nav-item">
                                 <a class="nav-link" asp-controller="Course" asp-action="Index">All Course</a>
                             </li>
-                            @if (User.Identity.IsAuthenticated)
-                            {
-                                    <li class="nav-item">
-                                        <a class="nav-link" asp-controller="Chat" asp-action="Index">
-                                            <i class="fas fa-comments"></i> Message
-                                            <span id="layoutMessageBadge" class="badge bg-danger" style="display: none;"></span>
-                                        </a>
-                                    </li>
-                              
-                            }
+                            
                         </ul>
 
                         <!-- Right Aligned Buttons -->
                         <div class="d-flex align-items-center ms-lg-auto btn-right notify">
+
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <li class="nav-item dropdown" style="list-style: none;">
+                                    <a style="color:#20B486;display: flex;" class="nav-link text-end" asp-controller="Chat" asp-action="Index">
+                                        <i class="fas fa-comments me-2"></i>
+                                        <span id="layoutMessageBadge" class="badge bg-danger" style="display: none;"></span>
+                                    </a>
+                                </li>
+
+                            }
+
                             @if (User.Identity.IsAuthenticated)
                             {
                                 <li class="nav-item dropdown" style="list-style: none;">
