@@ -65,12 +65,15 @@
                             <li class="nav-item">
                                 <a class="nav-link" asp-controller="Course" asp-action="Index">All Course</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" asp-controller="Chat" asp-action="Index">
-                                    <i class="fas fa-comments"></i> Tin nhắn
-                                    <span id="layoutMessageBadge" class="badge bg-danger" style="display: none;"></span>
-                                </a>
-                            </li>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-controller="Chat" asp-action="Index">
+                                        <i class="fas fa-comments"></i> Message
+                                        <span id="layoutMessageBadge" class="badge bg-danger" style="display: none;"></span>
+                                    </a>
+                                </li>
+                            }
                         </ul>
 
                         <!-- Right Aligned Buttons -->
@@ -84,7 +87,7 @@
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-end notification-menu" aria-labelledby="notificationDropdown" style="width: 300px; max-height: 400px; overflow-y: auto;">
                                         <div class="notifications-container">
-                                            <!-- Notifications will be loaded here -->
+                                            
                                         </div>
                                     </div>
                                 </li>
