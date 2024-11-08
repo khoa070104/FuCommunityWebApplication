@@ -134,7 +134,7 @@ namespace FUCommunityWeb.Controllers
             var user = await _userService.GetUserByIdAsync(userId);
 
             // Kiểm tra username đã tồn tại chưa
-            if (user.UserName != userVM.User.UserName) // Chỉ kiểm tra nếu username thay đổi
+            if (user.UserName != userVM.User.UserName)
             {
                 var existingUser = await _userService.GetUserByUsernameAsync(userVM.User.UserName);
                 if (existingUser != null)
@@ -150,6 +150,9 @@ namespace FUCommunityWeb.Controllers
             user.Gender = userVM.User.Gender;
             user.Description = userVM.User.Description;
             user.UserName = userVM.User.UserName;
+            user.Instagram = userVM.User.Instagram;
+            user.Facebook = userVM.User.Facebook;
+            user.Github = userVM.User.Github;
 
             await _userService.UpdateUserAsync(user);
             return Json(new { success = true, message = "Profile updated successfully!" });

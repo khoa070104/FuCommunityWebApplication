@@ -195,9 +195,24 @@
                     <p style="font-weight:bold;font-size:20px;word-break:break-all;">@Model.Post.User.FullName</p>
                     <p><i class="fas fa-trophy"></i>@Model.Post.User.Point Points</p>
                     <div>
-                        <a href="#"><i class="fab fa-github fa-lg me-2"></i></a>
-                        <a href="#"><i class="fab fa-instagram fa-lg me-2"></i></a>
-                        <a href="#"><i class="fab fa-facebook fa-lg"></i></a>
+                        @if (!string.IsNullOrEmpty(Model.Post.User.Instagram))
+                        {
+                            <a href="@Model.Post.User.Instagram" target="_blank" style="text-decoration:none">
+                                <i class="fab fa-instagram fa-lg me-2" style="color: #E1306C;"></i>
+                            </a>
+                        }
+                        @if (!string.IsNullOrEmpty(Model.Post.User.Facebook))
+                        {
+                            <a href="@Model.Post.User.Facebook" target="_blank" style="text-decoration:none">
+                                <i class="fab fa-facebook fa-lg me-2" style="color: #4267B2;"></i>
+                            </a>
+                        }
+                        @if (!string.IsNullOrEmpty(Model.Post.User.Github))
+                        {
+                            <a href="@Model.Post.User.Github" target="_blank" style="text-decoration:none">
+                                <i class="fab fa-github fa-lg" style="color: #333;"></i>
+                            </a>
+                        }
                     </div>
                 </div>
             </div>

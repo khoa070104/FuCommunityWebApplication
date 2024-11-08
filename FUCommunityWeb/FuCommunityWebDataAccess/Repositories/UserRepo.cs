@@ -248,5 +248,18 @@ namespace FuCommunityWebDataAccess.Repositories
 
             return "User";
         }
+
+        public async Task UpdateSocialMediaLinksAsync(string userId, string instagram, string facebook, string github)
+        {
+            var user = await _context.Users.FindAsync(userId);
+            if (user != null)
+            {
+                user.Instagram = instagram;
+                user.Facebook = facebook;
+                user.Github = github;
+                _context.Users.Update(user);
+                await _context.SaveChangesAsync();
+            }
+        }
     }
 }

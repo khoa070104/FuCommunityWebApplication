@@ -122,5 +122,10 @@ namespace FuCommunityWebServices.Services
         {
             return await _userRepo.GetPrimaryUserRoleAsync(userId);
         }
+
+        public async Task UpdateSocialMediaLinksAsync(string userId, string instagram, string facebook, string github)
+        {
+            await _userRepo.UpdateSocialMediaLinksAsync(userId, instagram, facebook, github);
+        }
     }
 }

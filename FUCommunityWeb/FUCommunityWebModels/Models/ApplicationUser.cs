@@ -47,5 +47,14 @@ namespace FuCommunityWebModels.Models
         public virtual ICollection<Follower> Followers { get; set; } // Những người theo dõi
         public virtual ICollection<Follower> Following { get; set; } // Những người mà người dùng này theo dõi
 
+        [MaxLength(255)]
+        public string? Instagram { get; set; }
+        
+        [MaxLength(255)]
+        public string? Facebook { get; set; }
+        
+        [MaxLength(255)]
+        public string? Github { get; set; }
+
     }
 }
