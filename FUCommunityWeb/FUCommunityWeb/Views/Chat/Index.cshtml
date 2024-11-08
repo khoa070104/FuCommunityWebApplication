@@ -97,7 +97,8 @@
                 const isOwn = msg.senderId === '@User.FindFirstValue(ClaimTypes.NameIdentifier)';
                 const messageHtml = `
                     <div class="message ${isOwn ? 'own' : 'other'}">
-                        <img src="${msg.senderAvatar}" class="avatar">
+                        <img src="${msg.sender.avatarImage || '/images/default-avatar.png'}" class="avatar" 
+                             onerror="this.src='/images/default-avatar.png'">
                         <div class="message-content">
                             <div class="message-text">${msg.content}</div>
                             <div class="message-time">${new Date(msg.createdDate).toLocaleString()}</div>
