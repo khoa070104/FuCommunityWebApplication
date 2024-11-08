@@ -56,5 +56,7 @@ namespace FuCommunityWebModels.Models
         [MaxLength(255)]
         public string? Github { get; set; }
 
+        public virtual ICollection<Notification> ReceivedNotifications { get; set; }
+        public virtual ICollection<Notification> SentNotifications { get; set; }
     }
 }

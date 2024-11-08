@@ -110,6 +110,8 @@ builder.Services.Configure<DataProtectionTokenProviderOptions>(options =>
     options.TokenLifespan = TimeSpan.FromMinutes(15); 
 });
 
+builder.Services.AddScoped<NotificationService>();
+
 var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {

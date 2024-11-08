@@ -283,5 +283,13 @@ namespace FuCommunityWebDataAccess.Repositories
             await _context.SaveChangesAsync();
             return document.DocumentID;
         }
+
+        public async Task<Post> GetPostByIdAsync(int? postId)
+        {
+            return await _context.Posts
+                .Include(p => p.User)
+                .Include(p => p.Comments)
+                .FirstOrDefaultAsync(p => p.PostID == postId);
+        }
     }
 }
