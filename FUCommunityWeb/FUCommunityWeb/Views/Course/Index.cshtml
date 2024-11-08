@@ -191,16 +191,17 @@
                     <div class="col-md-4 mb-4">
                         <div class="course-card" onclick="window.location='@Url.Action("Detail", "Course", new { id = course.CourseID })';" style="cursor: pointer;" data-semester="@course.Semester" data-category-id="@course.CategoryID"
                              data-document-name="@course.Document?.Name" data-document-url="@course.Document?.FileUrl">
-                            <div class="course-image">
+                            <div class="category">
+                                <span class="badge">@course.Category.CategoryName</span>
+                            </div>
+                             <div class="course-image">
                                 <a href="@Url.Action("Detail", "Course", new { id = course.CourseID })">
                                     <img style="width:200px;height:200px;" src="@course.CourseImage" alt="Course Image" class="img-fluid" />
                                 </a>
                             </div>
                             <div class="course-info">
-                                <div class="category">
-                                    <span class="badge">@course.Category.CategoryName</span>
-                                </div>
-                                <h2 style="font-style:italic; font-weight:bold; color:#20B486;">
+
+                                <h2 class="text-center" style="font-style:italic; font-weight:bold; color:#20B486;">
                                     @course.Title
                                 </h2>
                                 <p>@course.Description</p>
