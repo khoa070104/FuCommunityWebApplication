@@ -1,36 +1,69 @@
 ﻿@{
-    ViewData["Title"] = "Kết quả thanh toán";
+    ViewData["Title"] = "Payment results";
 }
+<style>
+    .container {
+        max-width: 700px;
+    }
 
-<div class="container">
-    <div class="header clearfix">
-        <h3 class="text-muted">Kết quả thanh toán</h3>
-    </div>
-    <div class="table-responsive">
-        <p>@ViewBag.Message</p>
+    .header h3 {
+        color: #343a40; /* Dark gray */
+    }
+
+    .table-responsive {
+        background-color: #f8f9fa; /* Light gray background */
+    }
+
+    .custom-card {
+        border-color: #007bff; /* Primary color border */
+        box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2); /* Subtle blue shadow */
+    }
+
+    .table-responsive p {
+        margin-bottom: 10px;
+    }
+
+        .table-responsive p span {
+            font-weight: bold;
+        }
+
+    .footer {
+        color: #6c757d;
+        font-size: 0.9rem;
+    }
+
+    .lead {
+        color: #007bff; /* Primary color */
+        font-weight: bold;
+    }
+
+</style>
+<div class="container my-4 min-vh-100">
+    <button onclick="window.location='@Url.Action("Index", "Home")';" style="cursor: pointer;" class="btn-blue mb-3">
+        <i class="fas fa-arrow-left"></i> Back to Homepage
+    </button>
+    <div class="table-responsive p-4 border rounded bg-white shadow-sm custom-card">
+        <p class="lead text-primary">@ViewBag.Message</p>
         @if (ViewBag.TerminalID != null)
         {
-            <p>Mã Website (Terminal ID): @ViewBag.TerminalID</p>
+            <p>Website Code (Terminal ID): @ViewBag.TerminalID</p>
         }
         @if (ViewBag.OrderId != null)
         {
-            <p>Mã giao dịch thanh toán: @ViewBag.OrderId</p>
+            <p>Payment transaction code: @ViewBag.OrderId</p>
         }
         @if (ViewBag.VnpayTranNo != null)
         {
-            <p>Mã giao dịch tại VNPAY: @ViewBag.VnpayTranNo</p>
+            <p>Transaction code at VNPAY: @ViewBag.VnpayTranNo</p>
         }
         @if (ViewBag.Amount != null)
         {
-            <p>Số tiền thanh toán (VND): @ViewBag.Amount</p>
+            <p>Payment amount (VND): @ViewBag.Amount</p>
         }
         @if (ViewBag.BankCode != null)
         {
-            <p>Ngân hàng thanh toán: @ViewBag.BankCode</p>
+            <p>Payment Bank: @ViewBag.BankCode</p>
         }
     </div>
-    <footer class="footer">
-        <p>&copy; VNPAY 2020</p>
-    </footer>
 </div>
 <script src="~/js/bootstrap.min.js"></script>
