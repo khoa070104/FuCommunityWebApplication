@@ -18,14 +18,16 @@ namespace FUCommunityWeb.Controllers
         private readonly ForumService _forumService;
         private readonly HomeService _homeService;
         private readonly UserService _userService;
+        private readonly NotificationService _notificationService;
 
-        public ForumController(ILogger<HomeController> logger, ApplicationDbContext context, ForumService forumService, HomeService homeService, UserService userService)
+        public ForumController(ILogger<HomeController> logger, ApplicationDbContext context, ForumService forumService, HomeService homeService, UserService userService, NotificationService notificationService)
         {
             _logger = logger;
             _context = context;
             _forumService = forumService;
             _homeService = homeService;
             _userService = userService;
+            _notificationService = notificationService;
         }
 
         public async Task<IActionResult> Index()
@@ -49,32 +51,33 @@ namespace FUCommunityWeb.Controllers
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var replyID = postVM.Comment.ReplyID;
 
-            var post = new PostVM();
-
-            if (replyID == null)
+            var comment = new Comment
             {
-                post.Comment = new Comment
-                {
-                    Content = WebUtility.HtmlEncode(postVM.Comment.Content),
-                    PostID = postVM.Comment.PostID,
-                    UserID = userId,
-                    CreatedDate = DateTime.Now
-                };
-            }
-            else
-            {
-                post.Comment = new Comment
-                {
-                    Content = WebUtility.HtmlEncode(postVM.Comment.Content),
-                    PostID = postVM.Comment.PostID,
-                    ReplyID = postVM.Comment.ReplyID,
-                    UserID = userId,
-                    CreatedDate = DateTime.Now
-                };
-            }
+                Content = WebUtility.HtmlEncode(postVM.Comment.Content),
+                PostID = postVM.Comment.PostID,
+                ReplyID = replyID,
+                UserID = userId,
+                CreatedDate = DateTime.Now
+            };
 
-            _context.Comments.Add(post.Comment);
+            _context.Comments.Add(comment);
             await _context.SaveChangesAsync();
+
+            var existingPost = await _forumService.GetPostByIdAsync(postVM.Comment.PostID);
+            
+            if (existingPost != null && existingPost.UserID != userId)
+            {
+                var currentUser = await _userService.GetUserByIdAsync(userId);
+                if (currentUser != null)
+                {
+                    await _notificationService.CreateCommentNotification(
+                        fromUserId: userId,
+                        toUserId: existingPost.UserID,
+                        postId: existingPost.PostID,
+                        message: $"{currentUser.FullName} commented on your post \"{existingPost.Title}\"."
+                    );
+                }
+            }
 
             return RedirectToAction("PostDetail", new { postId = postVM.Comment.PostID });
         }
@@ -240,10 +243,42 @@ namespace FUCommunityWeb.Controllers
                 return RedirectToPage("/Account/Login", new { area = "Identity" });
             }
 
-            var modal = new PostVM();
-            modal = await _forumService.GetComments(postId);
-            modal.Post.User = await _userService.GetUserById(modal.Post.UserID);
-            return View(modal);
+            try
+            {
+                var modal = await _forumService.GetComments(postId);
+                if (modal == null || modal.Post == null)
+                {
+                    TempData["Error"] = "Post not found";
+                    return RedirectToAction("Index");
+                }
+                
+                var postUser = await _userService.GetUserById(modal.Post.UserID);
+                if (postUser != null)
+                {
+                    modal.Post.User = postUser;
+                }
+
+                // Lấy thông tin user cho mỗi comment
+                if (modal.Comments != null)
+                {
+                    foreach (var comment in modal.Comments)
+                    {
+                        var commentUser = await _userService.GetUserById(comment.UserID);
+                        if (commentUser != null)
+                        {
+                            comment.User = commentUser;
+                        }
+                    }
+                }
+
+                return View(modal);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error loading post details for postId: {PostId}", postId);
+                TempData["Error"] = "An error occurred while loading the post";
+                return RedirectToAction("Index");
+            }
         }
 
         [HttpPost]
@@ -434,6 +469,71 @@ namespace FUCommunityWeb.Controllers
             .AnyAsync(v => v.PostID == postId && v.UserID == userId);
 
             return Ok(new { hasVoted });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddComment(CommentVM model)
+        {
+            try
+            {
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+                var comment = new Comment
+                {
+                    Content = WebUtility.HtmlEncode(model.Content),
+                    PostID = model.PostID,
+                    ReplyID = model.ReplyID,
+                    UserID = userId,
+                    CreatedDate = DateTime.Now
+                };
+
+                _context.Comments.Add(comment);
+                await _context.SaveChangesAsync();
+
+                var currentUser = await _userService.GetUserByIdAsync(userId);
+                
+                if (model.ReplyID != null && model.ReplyID > 0)
+                {
+                    var originalComment = await _context.Comments
+                        .Include(c => c.User)
+                        .Include(c => c.Post)
+                        .FirstOrDefaultAsync(c => c.CommentID == model.ReplyID);
+
+                    if (originalComment != null)
+                    {
+                        if (originalComment.UserID != userId) 
+                        {
+                            await _notificationService.CreateReplyNotification(
+                                fromUserId: userId,
+                                toUserId: originalComment.UserID,
+                                postId: model.PostID,
+                                message: $"{currentUser.FullName} đã trả lời bình luận của bạn trong bài viết \"{originalComment.Post?.Title}\""
+                            );
+                        }
+                    }
+                }
+                else
+                {
+                    var existingPost = await _forumService.GetPostByIdAsync(model.PostID);
+                    if (existingPost != null && existingPost.UserID != userId)
+                    {
+                        await _notificationService.CreateCommentNotification(
+                            fromUserId: userId,
+                            toUserId: existingPost.UserID,
+                            postId: existingPost.PostID,
+                            message: $"{currentUser.FullName} đã bình luận về bài viết của bạn: {existingPost.Title}"
+                        );
+                    }
+                }
+
+                return RedirectToAction("PostDetail", new { postId = model.PostID });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error adding comment: {Error}", ex.Message);
+                TempData["Error"] = "Có lỗi xảy ra khi thêm bình luận";
+                return RedirectToAction("PostDetail", new { postId = model.PostID });
+            }
         }
     }
 }

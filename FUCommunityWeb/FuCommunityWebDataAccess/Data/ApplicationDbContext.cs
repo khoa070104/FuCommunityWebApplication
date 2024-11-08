@@ -33,6 +33,7 @@ namespace FuCommunityWebDataAccess.Data
         public DbSet<Category> Categories { get; set; }
         public DbSet<OrderInfo> Orders { get; set; }
         public DbSet<Follower> Followers { get; set; }
+        public DbSet<Notification> Notifications { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -152,6 +153,25 @@ namespace FuCommunityWebDataAccess.Data
                 .HasOne(c => c.Document)
                 .WithMany()
                 .HasForeignKey(c => c.DocumentID);
+
+            // Configure Notification relationships
+            modelBuilder.Entity<Notification>()
+                .HasOne(n => n.User)
+                .WithMany(u => u.ReceivedNotifications)
+                .HasForeignKey(n => n.UserID)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Notification>()
+                .HasOne(n => n.FromUser)
+                .WithMany(u => u.SentNotifications)
+                .HasForeignKey(n => n.FromUserID)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Notification>()
+                .HasOne(n => n.Post)
+                .WithMany()
+                .HasForeignKey(n => n.PostID)
+                .OnDelete(DeleteBehavior.Restrict);
 
             // Default Data
             modelBuilder.Entity<Category>().HasData(

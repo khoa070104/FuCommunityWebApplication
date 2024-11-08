@@ -16,6 +16,47 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .notification-item {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+        }
+
+        .notification-item:hover {
+            background-color: #f8f9fa;
+        }
+
+        .notification-text {
+            font-size: 14px;
+            margin-bottom: 2px;
+        }
+
+        .notification-count {
+            position: absolute;
+            top: 0;
+            right: 0;
+            transform: translate(50%, -50%);
+            font-size: 0.75rem;
+            padding: 0.25rem 0.5rem;
+        }
+
+        .notification-menu {
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        }
+
+        .notification-item img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .notification-time {
+            font-size: 12px;
+            color: #6c757d;
+        }
+    </style>
 </head>
 <body>
     <header class="header">
@@ -66,6 +107,20 @@
 
                         <!-- Right Aligned Buttons -->
                         <div class="d-flex align-items-center ms-lg-auto btn-right">
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <li class="nav-item dropdown" style="list-style: none;">
+                                    <a class="nav-link dropdown-toggle position-relative" href="#" id="notificationDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="fas fa-bell"></i>
+                                        <span class="badge bg-danger notification-count" style="display:none;">0</span>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-end notification-menu" aria-labelledby="notificationDropdown" style="width: 300px; max-height: 400px; overflow-y: auto;">
+                                        <div class="notifications-container">
+                                            <!-- Notifications will be loaded here -->
+                                        </div>
+                                    </div>
+                                </li>
+                            }
                             @await Html.PartialAsync("_LoginPartial")
                         </div>
                     </div>
@@ -177,6 +232,24 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.4.0/purify.min.js"></script>
+
+    @if (User.Identity.IsAuthenticated)
+    {
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+        <script src="~/js/notification.js" asp-append-version="true"></script>
+        <script>
+            $(document).ready(function() {
+                console.log("Layout ready, initializing notifications..."); // Thêm log để debug
+                if (typeof loadNotifications === 'function') {
+                    loadNotifications();
+                    setInterval(loadNotifications, 10000);
+                } else {
+                    console.error("loadNotifications function not found!"); // Thêm log để debug
+                }
+            });
+        </script>
+    }
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

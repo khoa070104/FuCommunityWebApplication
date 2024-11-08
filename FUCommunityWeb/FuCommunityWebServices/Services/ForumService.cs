@@ -166,5 +166,10 @@ namespace FuCommunityWebServices.Services
         {
             return await _forumRepo.AddDocumentAsync(document);
         }
+
+        public async Task<Post> GetPostByIdAsync(int? postId)
+        {
+            return await _forumRepo.GetPostByIdAsync(postId);
+        }
     }
 }
