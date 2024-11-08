@@ -67,12 +67,13 @@
                             </li>
                             @if (User.Identity.IsAuthenticated)
                             {
-                                <li class="nav-item">
-                                    <a class="nav-link" asp-controller="Chat" asp-action="Index">
-                                        <i class="fas fa-comments"></i> Message
-                                        <span id="layoutMessageBadge" class="badge bg-danger" style="display: none;"></span>
-                                    </a>
-                                </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" asp-controller="Chat" asp-action="Index">
+                                            <i class="fas fa-comments"></i> Message
+                                            <span id="layoutMessageBadge" class="badge bg-danger" style="display: none;"></span>
+                                        </a>
+                                    </li>
+                              
                             }
                         </ul>
 

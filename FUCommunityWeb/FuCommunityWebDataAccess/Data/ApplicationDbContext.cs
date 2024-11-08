@@ -223,13 +223,11 @@ namespace FuCommunityWebDataAccess.Data
             var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
             var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
-            // Check if the admin role exists, if not, create it
             if (!await roleManager.RoleExistsAsync("Admin"))
             {
                 await roleManager.CreateAsync(new IdentityRole("Admin"));
             }
 
-            // Check if the admin user exists, if not, create it
             var adminUser = await userManager.FindByNameAsync("admin");
             if (adminUser == null)
             {
@@ -240,7 +238,9 @@ namespace FuCommunityWebDataAccess.Data
                     FullName = "Admin User",
                     Gender = "M",
                     DOB = new DateTime(1990, 1, 1),
-                    EmailConfirmed = true
+                    EmailConfirmed = true,
+                    AvatarImage="/img/admin.gif",
+                    BannerImage="/img/banner.jpg"
                 };
 
                 var result = await userManager.CreateAsync(adminUser, "Anhyeuem123123#");

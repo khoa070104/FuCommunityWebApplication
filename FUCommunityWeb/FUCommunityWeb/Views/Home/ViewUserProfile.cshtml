@@ -68,14 +68,16 @@
                     <h5>Followers</h5>
                     <p>@(Model.Followers?.Count ?? 0)</p>
                 </div>
-                <div>
-                    @if (Model.User.Id != User.FindFirstValue(ClaimTypes.NameIdentifier))
+                @if (Model.User.Id != User.FindFirstValue(ClaimTypes.NameIdentifier))
                     {
-                        <a href="@Url.Action("Index", "Chat", new { userId = Model.User.Id })">
-                            <i class="fas fa-comment"></i> Nhắn tin
-                        </a>
+                    <div>
+                    
+                            <a href="@Url.Action("Index", "Chat", new { userId = Model.User.Id })">
+                                <i class="fas fa-comment"></i> Nhắn tin
+                            </a>
+                    
+                    </div>
                     }
-                </div>
             </div>
         </div>
 

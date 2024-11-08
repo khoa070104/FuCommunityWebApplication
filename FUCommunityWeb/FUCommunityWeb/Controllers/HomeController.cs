@@ -59,32 +59,32 @@ namespace FUCommunityWeb.Controllers
             return View(homeViewModel);
         }
 
-        public IActionResult About()
-        {
-            return View();
-        }
+        //public IActionResult About()
+        //{
+        //    return View();
+        //}
 
-        public IActionResult Cart()
-        {
-            return View();
-        }
-        public IActionResult ContactUs()
-        {
-            return View();
-        }
+        //public IActionResult Cart()
+        //{
+        //    return View();
+        //}
+        //public IActionResult ContactUs()
+        //{
+        //    return View();
+        //}
 
-        public IActionResult CourseHistory()
-        {
-            return View();
-        }
-        public IActionResult Deposit()
-        {
-            return View();
-        }
-        public IActionResult EditProfile()
-        {
-            return View();
-        }
+        //public IActionResult CourseHistory()
+        //{
+        //    return View();
+        //}
+        //public IActionResult Deposit()
+        //{
+        //    return View();
+        //}
+        //public IActionResult EditProfile()
+        //{
+        //    return View();
+        //}
 
         public IActionResult Home()
         {
@@ -260,10 +260,10 @@ namespace FUCommunityWeb.Controllers
         [HttpGet]
         public IActionResult Search(string keyword)
         {
-            if (!User.Identity.IsAuthenticated)
-            {
-                return RedirectToPage("/Account/Login", new { area = "Identity" });
-            }
+            //if (!User.Identity.IsAuthenticated)
+            //{
+            //    return RedirectToPage("/Account/Login", new { area = "Identity" });
+            //}
             var homeVM = new SearchVM();
 
             if(keyword == null)
