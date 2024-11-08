@@ -712,15 +712,15 @@
 }
 
 .home-container .course-section .course-card {
-    flex-direction: row;
+    flex: 0 0 auto;
     background-color: #ffffff;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     padding: 20px;
     margin-bottom: 20px;
     transition: transform 0.3s ease;
-    width: 100%;
     box-sizing: border-box;
+    height: 100%;
 }
 
 .home-container .course-image {
@@ -767,10 +767,8 @@
 }
 
 .home-container .rating {
-    display: flex;
     align-items: center;
     gap: 5px;
-    margin-bottom: 10px;
 }
 
 .home-container .stars i {
@@ -778,11 +776,9 @@
 }
 
 .home-container .price {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 20px;
+    font-size: 30px;
     font-weight: bold;
+    color: #20B486;
 }
 
 .home-container .old-price {
