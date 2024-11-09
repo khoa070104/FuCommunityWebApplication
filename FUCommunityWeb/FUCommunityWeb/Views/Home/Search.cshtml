@@ -83,7 +83,7 @@
                                         @foreach (var course in Model.Courses)
                                         {
                                             <li class="search-item">
-                                                <a href="/Course/Detail?courseID=@course.CourseID" class="search-link">
+                                                <a href="/Course/Detail/@course.CourseID" class="search-link">
                                                     <h4 class="search-title">@Html.Raw(System.Net.WebUtility.HtmlDecode(course.Title))</h4>
                                                     <p class="search-content">@Html.Raw(System.Net.WebUtility.HtmlDecode(course.Description))</p>
                                                 </a>
