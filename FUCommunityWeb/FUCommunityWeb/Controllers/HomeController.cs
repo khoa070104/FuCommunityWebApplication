@@ -68,10 +68,10 @@ namespace FUCommunityWeb.Controllers
         //{
         //    return View();
         //}
-        //public IActionResult ContactUs()
-        //{
-        //    return View();
-        //}
+        public IActionResult ContactUs()
+        {
+            return View();
+        }
 
         //public IActionResult CourseHistory()
         //{
