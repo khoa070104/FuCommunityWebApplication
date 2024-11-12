@@ -67,7 +67,7 @@
                             <tr>
                                 <th for="dob" scope="row">Date of Birth:</th>
                                 <td>
-                                    <input asp-for="User.DOB" class="form-control" id="dob" readonly />
+                                    <input asp-for="@Model.User.DOB" type="date" class="form-control" id="dob"  readonly />
                                 </td>
                             </tr>
                             <tr>
@@ -189,7 +189,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="dobEdit" class="form-label">Date of Birth</label>
-                        <input asp-for="User.DOB" class="form-control" id="dobEdit" />
+                        <input asp-for="User.DOB" type="date" class="form-control" id="dobEdit" />
                     </div>
                     <div class="mb-3">
                         <label for="descriptionEdit" class="form-label">Description</label>
