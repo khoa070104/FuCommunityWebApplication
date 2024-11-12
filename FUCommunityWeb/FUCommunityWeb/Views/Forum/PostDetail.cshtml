@@ -18,11 +18,11 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title" style="word-break:break-all;">@Model.Post.Title</h5>
+                        <h5 class="card-title" style="word-break:break-all;">@Html.Raw(System.Net.WebUtility.HtmlDecode(Model.Post.Title))</h5>
                         <div class="card-text" style="word-break:break-all;">
                             @Html.Raw(System.Net.WebUtility.HtmlDecode(Model.Post.Content))
                         </div>
-                        <imgx src="@Model.Post.PostImage" class="img-fluid fixed-size-img" alt="Post Image" />
+                        <img src="@Model.Post.PostImage" class="img-fluid fixed-size-img" alt="Post Image" />
                         <p>Votes:<strong>@Model.VoteCount</strong> </p>
                         @if (!isPostOwner)
                         {

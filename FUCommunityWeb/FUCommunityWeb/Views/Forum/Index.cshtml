@@ -20,9 +20,9 @@
                                        asp-route-CategoryID="@category.CategoryID"
                                        class="text-decoration-none">
                                         <div>
-                                            <div>@category.CategoryName</div>
+                                            <div>@Html.Raw(System.Net.WebUtility.HtmlDecode(category.CategoryName))</div>
                                             <div class="text-muted">
-                                                @category.Description
+                                                @Html.Raw(System.Net.WebUtility.HtmlDecode(category.Description))
                                             </div>
                                         </div>
                                     </a>
