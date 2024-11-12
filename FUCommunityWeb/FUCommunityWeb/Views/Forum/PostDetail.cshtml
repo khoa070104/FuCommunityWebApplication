@@ -18,7 +18,7 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title" style="word-break:break-all;">@Model.Post.Title</h5>
+                        <h5 class="card-title" style="word-break:break-all;">@Html.Raw(System.Net.WebUtility.HtmlDecode(Model.Post.Title))</h5>
                         <div class="card-text" style="word-break:break-all;">
                             @Html.Raw(System.Net.WebUtility.HtmlDecode(Model.Post.Content))
                         </div>
