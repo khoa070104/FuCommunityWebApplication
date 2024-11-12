@@ -41,7 +41,7 @@
                                             <li class="search-item">
                                                 <a href="/Forum/PostDetail?postID=@post.PostID" class="search-link">
                                                     <h4 class="search-title">@Html.Raw(System.Net.WebUtility.HtmlDecode(post.Title))</h4>
-                                                    <p class="search-content">@Html.Raw(post.Content)</p>
+                                                    <p class="search-content">@Html.Raw(System.Net.WebUtility.HtmlDecode(post.Content))</p>
                                                 </a>
                                             </li>
                                         }
