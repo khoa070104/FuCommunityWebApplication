@@ -22,7 +22,7 @@
                         <div class="card-text" style="word-break:break-all;">
                             @Html.Raw(System.Net.WebUtility.HtmlDecode(Model.Post.Content))
                         </div>
-                        <imgx src="@Model.Post.PostImage" class="img-fluid fixed-size-img" alt="Post Image" />
+                        <img src="@Model.Post.PostImage" class="img-fluid fixed-size-img" alt="Post Image" />
                         <p>Votes:<strong>@Model.VoteCount</strong> </p>
                         @if (!isPostOwner)
                         {
