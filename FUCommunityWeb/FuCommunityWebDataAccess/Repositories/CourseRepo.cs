@@ -121,7 +121,7 @@ namespace FuCommunityWebDataAccess.Repositories
         public async Task<List<Course>> GetFilteredCoursesAsync(string semester, string category, string subjectCode, string rate, string minPrice)
         {
             var filteredCourses = _context.Courses
-           .Include(c => c.Document) 
+           .Include(c => c.Document)
            .AsQueryable();
 
             if (!string.IsNullOrEmpty(semester) && int.TryParse(semester, out int semesterInt))
@@ -278,6 +278,102 @@ namespace FuCommunityWebDataAccess.Repositories
         {
             _context.Documents.Add(document);
             await _context.SaveChangesAsync();
+        }
+
+        // Lesson Progress methods
+        public async Task<LessonProgress> GetLessonProgressAsync(string userId, int lessonId)
+        {
+            return await _context.LessonProgresses
+                .FirstOrDefaultAsync(lp => lp.UserID == userId && lp.LessonID == lessonId);
+        }
+
+        public async Task<List<LessonProgress>> GetUserLessonProgressByCourseAsync(string userId, int courseId)
+        {
+            return await _context.LessonProgresses
+                .Where(lp => lp.UserID == userId && lp.CourseID == courseId)
+                .Include(lp => lp.Lesson)
+                .ToListAsync();
+        }
+
+        public async Task MarkLessonAsCompletedAsync(string userId, int lessonId, int courseId)
+        {
+            var existingProgress = await GetLessonProgressAsync(userId, lessonId);
+
+            if (existingProgress == null)
+            {
+                var newProgress = new LessonProgress
+                {
+                    UserID = userId,
+                    LessonID = lessonId,
+                    CourseID = courseId,
+                    IsCompleted = true,
+                    CompletedDate = DateTime.Now,
+                    CreatedDate = DateTime.Now
+                };
+                _context.LessonProgresses.Add(newProgress);
+            }
+            else if (!existingProgress.IsCompleted)
+            {
+                existingProgress.IsCompleted = true;
+                existingProgress.CompletedDate = DateTime.Now;
+                _context.LessonProgresses.Update(existingProgress);
+            }
+
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task MarkLessonAsIncompleteAsync(string userId, int lessonId)
+        {
+            var existingProgress = await GetLessonProgressAsync(userId, lessonId);
+
+            if (existingProgress != null && existingProgress.IsCompleted)
+            {
+                existingProgress.IsCompleted = false;
+                existingProgress.CompletedDate = null;
+                _context.LessonProgresses.Update(existingProgress);
+                await _context.SaveChangesAsync();
+            }
+        }
+
+        public async Task<int> GetCompletedLessonsCountAsync(string userId, int courseId)
+        {
+            return await _context.LessonProgresses
+                .CountAsync(lp => lp.UserID == userId && lp.CourseID == courseId && lp.IsCompleted);
+        }
+
+        public async Task<int> GetTotalLessonsCountAsync(int courseId)
+        {
+            return await _context.Lessons
+                .CountAsync(l => l.CourseID == courseId && l.Status == "Active");
+        }
+
+        public async Task<List<Lesson>> GetIncompleteLessonsAsync(string userId)
+        {
+            // Lấy tất cả khóa học đã đăng ký
+            var enrolledCourseIds = await _context.Enrollment
+                .Where(e => e.UserID == userId)
+                .Select(e => e.CourseID)
+                .ToListAsync();
+
+            if (!enrolledCourseIds.Any())
+                return new List<Lesson>();
+
+            // Lấy tất cả lesson của các khóa học đã đăng ký
+            var allLessons = await _context.Lessons
+                .Where(l => enrolledCourseIds.Contains(l.CourseID) && l.Status == "Active")
+                .Include(l => l.Course)
+                .OrderBy(l => l.CourseID)
+                .ThenBy(l => l.LessonID)
+                .ToListAsync();
+
+            // Lấy tất cả lesson đã hoàn thành của user
+            var completedLessonIds = await _context.LessonProgresses
+                .Where(lp => lp.UserID == userId && lp.IsCompleted)
+                .Select(lp => lp.LessonID)
+                .ToListAsync();
+
+            // Trả về các lesson chưa hoàn thành
+            return allLessons.Where(l => !completedLessonIds.Contains(l.LessonID)).ToList();
         }
     }
 }

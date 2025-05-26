@@ -109,4 +109,42 @@ public class NotificationService
         return await _context.Notifications
             .CountAsync(n => n.UserID == userId && !n.IsRead);
     }
-} 
+
+    // Thêm phương thức để lấy tất cả thông báo của user (bao gồm cả đã đọc và chưa đọc)
+    public async Task<List<Notification>> GetUserNotificationsAsync(string userId)
+    {
+        return await _context.Notifications
+            .Include(n => n.FromUser)
+            .Include(n => n.Post)
+            .Where(n => n.UserID == userId)
+            .OrderByDescending(n => n.CreatedDate)
+            .Take(20)
+            .Select(n => new Notification
+            {
+                NotificationID = n.NotificationID,
+                Message = n.Message,
+                Content = n.Content,
+                NotificationType = n.NotificationType,
+                Type = n.Type,
+                CreatedDate = n.CreatedDate,
+                IsRead = n.IsRead,
+                PostID = n.PostID,
+                FromUser = new ApplicationUser
+                {
+                    FullName = n.FromUser.FullName,
+                    AvatarImage = n.FromUser.AvatarImage
+                },
+                Post = n.Post != null ? new Post
+                {
+                    Title = n.Post.Title
+                } : null
+            })
+            .ToListAsync();
+    }
+
+    // Thêm phương thức MarkAsReadAsync để tương thích với Blazor component
+    public async Task MarkAsReadAsync(int notificationId)
+    {
+        await MarkAsRead(notificationId);
+    }
+}

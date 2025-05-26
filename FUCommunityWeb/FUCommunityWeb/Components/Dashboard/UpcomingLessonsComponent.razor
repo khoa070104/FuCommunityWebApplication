@@ -1,0 +1,245 @@
+@using System.Linq
+@using FuCommunityWebServices.Services
+@inject DashboardService DashboardService
+@inject IJSRuntime JSRuntime
+@inject NavigationManager Navigation
+
+<div class="card shadow-sm border-0 h-100">
+    <div class="card-header bg-gradient-info text-white border-0">
+        <h5 class="card-title mb-0 d-flex align-items-center">
+            <i class="fas fa-calendar-alt me-2"></i>
+            Bài học sắp tới
+        </h5>
+    </div>
+    <div class="card-body p-4">
+        @if (isLoading)
+        {
+            <div class="text-center py-4">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Đang tải...</span>
+                </div>
+                <p class="mt-2 text-muted">Đang tải bài học...</p>
+            </div>
+        }
+        else if (upcomingLessons?.Any() == true)
+        {
+            @foreach (var lesson in upcomingLessons.Take(4))
+            {
+                <div class="lesson-item mb-3 p-3 rounded-3 border-0 shadow-sm"
+                     style="background: linear-gradient(135deg, #f8f9ff 0%, #fff 100%); border-left: 4px solid #17a2b8 !important;">
+                    <div class="d-flex align-items-center">
+                        <div class="flex-shrink-0 me-3">
+                            <div class="lesson-icon bg-gradient-info text-white rounded-circle d-flex align-items-center justify-content-center"
+                                 style="width: 45px; height: 45px;">
+                                <i class="fas fa-play" style="font-size: 1.1rem;"></i>
+                            </div>
+                        </div>
+                        <div class="flex-grow-1">
+                            <h6 class="mb-1 fw-bold text-dark">@lesson.Title</h6>
+                            <p class="mb-1 text-primary small fw-semibold">
+                                <i class="fas fa-book me-1"></i>
+                                @lesson.Course.Title
+                            </p>
+
+                        </div>
+                        <div class="flex-shrink-0">
+                            <a href="/Course/Detail/@lesson.Course.CourseID"
+                               target="_blank"
+                               class="btn btn-info btn-sm px-3 py-2 rounded-pill shadow-sm text-decoration-none">
+                                <i class="fas fa-play me-1"></i>
+                                Bắt đầu
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <div class="text-center mt-4">
+                <a href="/Course" class="btn btn-info btn-sm px-4 py-2 rounded-pill">
+                    <i class="fas fa-list me-2"></i>
+                    Xem tất cả bài học
+                </a>
+            </div>
+        }
+        else
+        {
+            <div class="text-center py-4">
+                <div class="empty-state mb-3">
+                    <i class="fas fa-calendar-check text-info" style="font-size: 3rem; opacity: 0.5;"></i>
+                </div>
+                <h6 class="text-muted mb-2">Chưa có bài học nào</h6>
+                <p class="text-muted small mb-3">Hãy đăng ký khóa học để bắt đầu học tập</p>
+                <a href="/Course" class="btn btn-info btn-sm px-4 py-2 rounded-pill">
+                    <i class="fas fa-search me-2"></i>
+                    Khám phá khóa học
+                </a>
+            </div>
+        }
+    </div>
+</div>
+
+
+
+@code {
+    [Parameter] public string UserId { get; set; } = string.Empty;
+
+    private bool isLoading = false;
+    private List<Lesson>? upcomingLessons = new List<Lesson>();
+
+    protected override async Task OnParametersSetAsync()
+    {
+        System.Diagnostics.Debug.WriteLine($"DEBUG UpcomingLessons: OnParametersSetAsync called with UserId: '{UserId}'");
+        Console.WriteLine($"CONSOLE UpcomingLessons: OnParametersSetAsync called with UserId: '{UserId}'");
+
+        if (!string.IsNullOrEmpty(UserId))
+        {
+            await LoadUpcomingLessons();
+        }
+        else
+        {
+            System.Diagnostics.Debug.WriteLine("DEBUG UpcomingLessons: UserId is empty");
+            Console.WriteLine("CONSOLE UpcomingLessons: UserId is empty");
+            upcomingLessons = new List<Lesson>();
+            isLoading = false;
+            StateHasChanged();
+        }
+    }
+
+    private async Task LoadUpcomingLessons()
+    {
+        try
+        {
+            // Tránh load nhiều lần cùng lúc
+            if (isLoading) return;
+
+            isLoading = true;
+            StateHasChanged();
+
+            System.Diagnostics.Debug.WriteLine($"DEBUG UpcomingLessons: Loading for UserId: {UserId}");
+            Console.WriteLine($"CONSOLE UpcomingLessons: Loading for UserId: {UserId}");
+
+            // Sử dụng DashboardService để lấy dữ liệu thread-safe
+            var dashboardData = await DashboardService.GetDashboardDataAsync(UserId);
+
+            System.Diagnostics.Debug.WriteLine($"DEBUG UpcomingLessons: Found {dashboardData.UpcomingLessons.Count} upcoming lessons");
+            Console.WriteLine($"CONSOLE UpcomingLessons: Found {dashboardData.UpcomingLessons.Count} upcoming lessons");
+
+            upcomingLessons = dashboardData.UpcomingLessons;
+
+            System.Diagnostics.Debug.WriteLine($"DEBUG UpcomingLessons: Final result - {upcomingLessons?.Count ?? 0} lessons found");
+            Console.WriteLine($"CONSOLE UpcomingLessons: Final result - {upcomingLessons?.Count ?? 0} lessons found");
+
+            if (upcomingLessons?.Any() == true)
+            {
+                foreach (var lesson in upcomingLessons)
+                {
+                    System.Diagnostics.Debug.WriteLine($"DEBUG UpcomingLessons: Lesson {lesson.LessonID}: {lesson.Title} (Course: {lesson.Course?.Title})");
+                    Console.WriteLine($"CONSOLE UpcomingLessons: Lesson {lesson.LessonID}: {lesson.Title} (Course: {lesson.Course?.Title})");
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine($"DEBUG UpcomingLessons: Error loading lessons: {ex.Message}");
+            Console.WriteLine($"CONSOLE UpcomingLessons: Error loading lessons: {ex.Message}");
+            upcomingLessons = new List<Lesson>();
+        }
+        finally
+        {
+            isLoading = false;
+            StateHasChanged();
+        }
+    }
+
+    private static List<Lesson> CreateSampleLessons()
+    {
+        return new List<Lesson>
+        {
+            new Lesson
+            {
+                LessonID = 1,
+                CourseID = 1,
+                Title = "Giới thiệu về C#",
+                Content = "Tìm hiểu về ngôn ngữ lập trình C#",
+                Course = new Course
+                {
+                    CourseID = 1,
+                    Title = "Lập trình C# cơ bản"
+                }
+            },
+            new Lesson
+            {
+                LessonID = 2,
+                CourseID = 1,
+                Title = "Biến và kiểu dữ liệu",
+                Content = "Học về các kiểu dữ liệu trong C#",
+                Course = new Course
+                {
+                    CourseID = 1,
+                    Title = "Lập trình C# cơ bản"
+                }
+            },
+            new Lesson
+            {
+                LessonID = 3,
+                CourseID = 2,
+                Title = "Tạo Controller đầu tiên",
+                Content = "Xây dựng Controller trong ASP.NET Core",
+                Course = new Course
+                {
+                    CourseID = 2,
+                    Title = "ASP.NET Core MVC"
+                }
+            },
+            new Lesson
+            {
+                LessonID = 4,
+                CourseID = 2,
+                Title = "Làm việc với View",
+                Content = "Tạo và quản lý View trong MVC",
+                Course = new Course
+                {
+                    CourseID = 2,
+                    Title = "ASP.NET Core MVC"
+                }
+            }
+        };
+    }
+
+    private void StartLesson(int lessonId)
+    {
+        try
+        {
+            // Debug đơn giản để kiểm tra method có được gọi không
+            System.Diagnostics.Debug.WriteLine($"DEBUG UpcomingLessons: StartLesson called with lessonId: {lessonId}");
+            Console.WriteLine($"CONSOLE UpcomingLessons: StartLesson called with lessonId: {lessonId}");
+
+            // Tìm lesson để lấy CourseID
+            var lesson = upcomingLessons?.FirstOrDefault(l => l.LessonID == lessonId);
+
+            System.Diagnostics.Debug.WriteLine($"DEBUG UpcomingLessons: Found lesson: {lesson?.Title}, Course: {lesson?.Course?.Title}");
+            Console.WriteLine($"CONSOLE UpcomingLessons: Found lesson: {lesson?.Title}, Course: {lesson?.Course?.Title}");
+
+            if (lesson?.Course != null)
+            {
+                // Sử dụng NavigationManager thay vì JSRuntime
+                var url = $"/Course/Detail/{lesson.Course.CourseID}";
+                System.Diagnostics.Debug.WriteLine($"DEBUG UpcomingLessons: Navigating to: {url}");
+                Console.WriteLine($"CONSOLE UpcomingLessons: Navigating to: {url}");
+
+                Navigation.NavigateTo(url, forceLoad: true);
+            }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine($"DEBUG UpcomingLessons: Could not find lesson or course for lessonId: {lessonId}");
+                Console.WriteLine($"CONSOLE UpcomingLessons: Could not find lesson or course for lessonId: {lessonId}");
+            }
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine($"DEBUG UpcomingLessons: Error starting lesson: {ex.Message}");
+            Console.WriteLine($"CONSOLE UpcomingLessons: Error starting lesson: {ex.Message}");
+        }
+    }
+
+}

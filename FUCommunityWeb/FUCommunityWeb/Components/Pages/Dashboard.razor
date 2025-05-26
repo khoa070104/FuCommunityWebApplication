@@ -1,0 +1,241 @@
+@page "/dashboard"
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Identity
+@using System.Security.Claims
+@using Microsoft.AspNetCore.Components.Authorization
+@attribute [Authorize]
+@inject UserManager<ApplicationUser> UserManager
+@inject CourseService CourseService
+@inject NotificationService NotificationService
+@inject UserService UserService
+@inject IJSRuntime JSRuntime
+@inject AuthenticationStateProvider AuthenticationStateProvider
+
+<PageTitle>Dashboard - FU Community</PageTitle>
+
+<div class="container-fluid dashboard-container">
+    @if (isLoading)
+    {
+        <div class="text-center">
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Đang tải...</span>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            <!-- Thống kê tổng quan -->
+            <div class="col-md-3 mb-4">
+                <div class="card border-0 shadow-sm h-100 stat-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                    <div class="card-body text-white p-4">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h3 class="mb-1 fw-bold">@enrolledCoursesCount</h3>
+                                <p class="mb-0 opacity-75">Khóa học đã đăng ký</p>
+                                <small class="opacity-50">
+                                    <i class="fas fa-arrow-up me-1"></i>
+                                    +2 từ tháng trước
+                                </small>
+                            </div>
+                            <div class="stat-icon">
+                                <i class="fas fa-book fa-2x opacity-75"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 mb-4">
+                <div class="card border-0 shadow-sm h-100 stat-card" style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);">
+                    <div class="card-body text-white p-4">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h3 class="mb-1 fw-bold">@completedCoursesCount</h3>
+                                <p class="mb-0 opacity-75">Khóa học hoàn thành</p>
+                                <small class="opacity-50">
+                                    <i class="fas fa-trophy me-1"></i>
+                                    Tuyệt vời!
+                                </small>
+                            </div>
+                            <div class="stat-icon">
+                                <i class="fas fa-check-circle fa-2x opacity-75"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 mb-4">
+                <div class="card border-0 shadow-sm h-100 stat-card" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                    <div class="card-body text-white p-4">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h3 class="mb-1 fw-bold">@userPoints</h3>
+                                <p class="mb-0 opacity-75">Điểm tích lũy</p>
+                                <small class="opacity-50">
+                                    <i class="fas fa-gem me-1"></i>
+                                    Hạng Bạc
+                                </small>
+                            </div>
+                            <div class="stat-icon">
+                                <i class="fas fa-star fa-2x opacity-75"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 mb-4">
+                <div class="card border-0 shadow-sm h-100 stat-card" style="background: linear-gradient(135deg, #36d1dc 0%, #5b86e5 100%);">
+                    <div class="card-body text-white p-4">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h3 class="mb-1 fw-bold">@unreadNotificationsCount</h3>
+                                <p class="mb-0 opacity-75">Thông báo mới</p>
+                                <small class="opacity-50">
+                                    <i class="fas fa-clock me-1"></i>
+                                    Hôm nay
+                                </small>
+                            </div>
+                            <div class="stat-icon">
+                                <i class="fas fa-bell fa-2x opacity-75"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Khóa học đang học -->
+            <div class="col-lg-8 mb-4">
+                <CourseProgressComponent UserId="@currentUserId" />
+            </div>
+
+            <!-- Bài học sắp tới -->
+            <div class="col-lg-4 mb-4">
+                <UpcomingLessonsComponent UserId="@currentUserId" />
+            </div>
+        </div>
+    }
+</div>
+
+@code {
+    private bool isLoading = true;
+    private string currentUserId = string.Empty;
+    private int enrolledCoursesCount = 0;
+    private int completedCoursesCount = 0;
+    private int userPoints = 0;
+    private int unreadNotificationsCount = 0;
+
+    [Parameter]
+    public string UserId { get; set; } = string.Empty;
+
+    protected override async Task OnInitializedAsync()
+    {
+        System.Diagnostics.Debug.WriteLine($"DEBUG Dashboard: OnInitializedAsync called with UserId parameter: '{UserId}'");
+        Console.WriteLine($"CONSOLE Dashboard: OnInitializedAsync called with UserId parameter: '{UserId}'");
+
+        await InitializeData();
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        System.Diagnostics.Debug.WriteLine($"DEBUG: OnParametersSetAsync called with UserId parameter: '{UserId}'");
+        Console.WriteLine($"CONSOLE: OnParametersSetAsync called with UserId parameter: '{UserId}'");
+
+        await InitializeData();
+    }
+
+    private async Task InitializeData()
+    {
+        try
+        {
+            // Ưu tiên sử dụng UserId parameter nếu có
+            if (!string.IsNullOrEmpty(UserId))
+            {
+                currentUserId = UserId;
+                Console.WriteLine($"CONSOLE Dashboard: Using UserId parameter: '{currentUserId}'");
+            }
+            else
+            {
+                // Fallback: lấy từ AuthenticationStateProvider
+                var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+                var user = authState.User;
+
+                if (user.Identity?.IsAuthenticated == true)
+                {
+                    currentUserId = user.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? string.Empty;
+                    Console.WriteLine($"CONSOLE Dashboard: Using AuthenticationStateProvider UserId: '{currentUserId}'");
+                }
+                else
+                {
+                    Console.WriteLine($"CONSOLE Dashboard: User is not authenticated");
+                }
+            }
+
+            if (!string.IsNullOrEmpty(currentUserId))
+            {
+                await LoadDashboardData();
+            }
+            else
+            {
+                Console.WriteLine($"CONSOLE Dashboard: No valid UserId found");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"CONSOLE Dashboard: Error in InitializeData: {ex.Message}");
+        }
+        finally
+        {
+            isLoading = false;
+            StateHasChanged();
+        }
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JSRuntime.InvokeVoidAsync("console.log", $"Dashboard currentUserId: {currentUserId}");
+            StateHasChanged();
+        }
+    }
+
+    private async Task LoadDashboardData()
+    {
+        try
+        {
+            System.Diagnostics.Debug.WriteLine($"DEBUG Dashboard: LoadDashboardData called with userId: '{currentUserId}'");
+            Console.WriteLine($"CONSOLE Dashboard: LoadDashboardData called with userId: '{currentUserId}'");
+
+            // Lấy thông tin khóa học đã đăng ký bằng UserService (giống ProfileController)
+            var enrollments = await UserService.GetUserEnrollmentsAsync(currentUserId);
+            enrolledCoursesCount = enrollments?.Count ?? 0;
+
+            System.Diagnostics.Debug.WriteLine($"DEBUG Dashboard: Found {enrolledCoursesCount} enrollments");
+            Console.WriteLine($"CONSOLE Dashboard: Found {enrolledCoursesCount} enrollments");
+
+            // Đếm khóa học hoàn thành
+            completedCoursesCount = enrollments?.Count(e => e.Status == "completed") ?? 0;
+
+            // Lấy điểm của user
+            var user = await UserManager.FindByIdAsync(currentUserId);
+            userPoints = (int)(user?.Point ?? 0);
+
+            // Lấy số thông báo chưa đọc
+            unreadNotificationsCount = await NotificationService.GetUnreadCount(currentUserId);
+
+            System.Diagnostics.Debug.WriteLine($"DEBUG Dashboard: enrolledCoursesCount={enrolledCoursesCount}, completedCoursesCount={completedCoursesCount}, userPoints={userPoints}");
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine($"DEBUG Dashboard: Error in LoadDashboardData: {ex.Message}");
+            await JSRuntime.InvokeVoidAsync("console.error", $"Error loading dashboard data: {ex.Message}");
+        }
+    }
+}
+
+

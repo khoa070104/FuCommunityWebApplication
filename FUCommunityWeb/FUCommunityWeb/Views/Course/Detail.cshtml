@@ -103,7 +103,9 @@
                                 }
                                 @if (Model.EnrolledCourses.Contains(Model.Course.CourseID) || Model.Course.UserID == currentUserId)
                         {
-                                    <button class="btn-toggle-content btn-sm ms-2" data-lesson-id="@lesson.LessonID">+</button>
+                                    <button class="btn-toggle-content btn-sm ms-2 collapsed" data-lesson-id="@lesson.LessonID">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </button>
                                 }
                             </div>
                         </div>
@@ -111,6 +113,26 @@
                         {
                             <div class="lesson-content mt-2" id="lesson-content-@lesson.LessonID" style="display: none;">
                                 @Html.Raw(lesson.Content)
+                                @if (Model.EnrolledCourses.Contains(Model.Course.CourseID))
+                                {
+                                    <div class="mt-3 text-end">
+                                        <button class="btn btn-success btn-sm mark-complete-btn"
+                                                data-lesson-id="@lesson.LessonID"
+                                                data-course-id="@Model.Course.CourseID"
+                                                id="complete-btn-@lesson.LessonID">
+                                            <i class="fas fa-check me-1"></i>
+                                            Đánh dấu hoàn thành
+                                        </button>
+                                        <button class="btn btn-outline-secondary btn-sm mark-incomplete-btn"
+                                                data-lesson-id="@lesson.LessonID"
+                                                data-course-id="@Model.Course.CourseID"
+                                                id="incomplete-btn-@lesson.LessonID"
+                                                style="display: none;">
+                                            <i class="fas fa-undo me-1"></i>
+                                            Bỏ đánh dấu
+                                        </button>
+                                    </div>
+                                }
                             </div>
                         }
                     </div>
@@ -600,15 +622,178 @@
             button.addEventListener("click", function () {
                 const lessonId = this.getAttribute("data-lesson-id");
                 const contentDiv = document.getElementById(`lesson-content-${lessonId}`);
+                const icon = this.querySelector('i');
 
-                if (contentDiv.style.display === "none") {
+                if (contentDiv.style.display === "none" || contentDiv.style.display === "") {
                     contentDiv.style.display = "block";
-                    this.textContent = "-";
+                    this.classList.remove("collapsed");
+                    this.classList.add("expanded");
+                    // Change icon to down arrow
+                    icon.classList.remove("fa-chevron-right");
+                    icon.classList.add("fa-chevron-down");
+                    // Load lesson completion status when opening
+                    loadLessonCompletionStatus(lessonId);
                 } else {
                     contentDiv.style.display = "none";
-                    this.textContent = "+";
+                    this.classList.remove("expanded");
+                    this.classList.add("collapsed");
+                    // Change icon to right arrow
+                    icon.classList.remove("fa-chevron-down");
+                    icon.classList.add("fa-chevron-right");
                 }
             });
         });
+
+        // Handle lesson completion buttons
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('mark-complete-btn') || e.target.closest('.mark-complete-btn')) {
+                const button = e.target.classList.contains('mark-complete-btn') ? e.target : e.target.closest('.mark-complete-btn');
+                const lessonId = button.getAttribute('data-lesson-id');
+                const courseId = button.getAttribute('data-course-id');
+                markLessonAsCompleted(lessonId, courseId);
+            }
+
+            if (e.target.classList.contains('mark-incomplete-btn') || e.target.closest('.mark-incomplete-btn')) {
+                const button = e.target.classList.contains('mark-incomplete-btn') ? e.target : e.target.closest('.mark-incomplete-btn');
+                const lessonId = button.getAttribute('data-lesson-id');
+                const courseId = button.getAttribute('data-course-id');
+                markLessonAsIncomplete(lessonId, courseId);
+            }
+        });
+
+        // Load initial completion status for all lessons
+        loadAllLessonCompletionStatus();
     });
+
+    async function markLessonAsCompleted(lessonId, courseId) {
+        try {
+            const response = await fetch(`/api/LessonProgress/complete/${lessonId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]')?.value || ''
+                },
+                body: JSON.stringify(parseInt(courseId))
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                // Update button visibility
+                document.getElementById(`complete-btn-${lessonId}`).style.display = 'none';
+                document.getElementById(`incomplete-btn-${lessonId}`).style.display = 'inline-block';
+
+                // Show success message
+                showToast('success', result.message);
+
+                // Update progress display if exists
+                updateProgressDisplay(result.completedCount, result.totalCount, result.progressPercentage);
+            } else {
+                showToast('error', result.message);
+            }
+        } catch (error) {
+            console.error('Error marking lesson as completed:', error);
+            showToast('error', 'Có lỗi xảy ra khi đánh dấu lesson hoàn thành');
+        }
+    }
+
+    async function markLessonAsIncomplete(lessonId, courseId) {
+        try {
+            const response = await fetch(`/api/LessonProgress/incomplete/${lessonId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]')?.value || ''
+                },
+                body: JSON.stringify(parseInt(courseId))
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                // Update button visibility
+                document.getElementById(`complete-btn-${lessonId}`).style.display = 'inline-block';
+                document.getElementById(`incomplete-btn-${lessonId}`).style.display = 'none';
+
+                // Show success message
+                showToast('success', result.message);
+
+                // Update progress display if exists
+                updateProgressDisplay(result.completedCount, result.totalCount, result.progressPercentage);
+            } else {
+                showToast('error', result.message);
+            }
+        } catch (error) {
+            console.error('Error marking lesson as incomplete:', error);
+            showToast('error', 'Có lỗi xảy ra khi bỏ đánh dấu lesson');
+        }
+    }
+
+    async function loadLessonCompletionStatus(lessonId) {
+        try {
+            const courseId = @Model.Course.CourseID;
+            const response = await fetch(`/api/LessonProgress/course/${courseId}`);
+            const result = await response.json();
+
+            if (result.lessonProgresses) {
+                const lessonProgress = result.lessonProgresses.find(lp => lp.lessonId == lessonId);
+                if (lessonProgress && lessonProgress.isCompleted) {
+                    document.getElementById(`complete-btn-${lessonId}`).style.display = 'none';
+                    document.getElementById(`incomplete-btn-${lessonId}`).style.display = 'inline-block';
+                }
+            }
+        } catch (error) {
+            console.error('Error loading lesson completion status:', error);
+        }
+    }
+
+    async function loadAllLessonCompletionStatus() {
+        try {
+            const courseId = @Model.Course.CourseID;
+            const response = await fetch(`/api/LessonProgress/course/${courseId}`);
+            const result = await response.json();
+
+            if (result.lessonProgresses) {
+                result.lessonProgresses.forEach(lp => {
+                    if (lp.isCompleted) {
+                        const completeBtn = document.getElementById(`complete-btn-${lp.lessonId}`);
+                        const incompleteBtn = document.getElementById(`incomplete-btn-${lp.lessonId}`);
+                        if (completeBtn && incompleteBtn) {
+                            completeBtn.style.display = 'none';
+                            incompleteBtn.style.display = 'inline-block';
+                        }
+                    }
+                });
+            }
+        } catch (error) {
+            console.error('Error loading all lesson completion status:', error);
+        }
+    }
+
+    function updateProgressDisplay(completedCount, totalCount, progressPercentage) {
+        // Update any progress display elements on the page
+        console.log(`Progress: ${completedCount}/${totalCount} lessons (${progressPercentage}%)`);
+    }
+
+    function showToast(type, message) {
+        // Simple toast notification - you can replace with your preferred notification library
+        const toast = document.createElement('div');
+        toast.className = `alert alert-${type === 'success' ? 'success' : 'danger'} position-fixed`;
+        toast.style.cssText = 'top: 20px; right: 20px; z-index: 9999; min-width: 300px;';
+        toast.innerHTML = `
+            <div class="d-flex align-items-center">
+                <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'} me-2"></i>
+                ${message}
+                <button type="button" class="btn-close ms-auto" onclick="this.parentElement.parentElement.remove()"></button>
+            </div>
+        `;
+        document.body.appendChild(toast);
+
+        // Auto remove after 3 seconds
+        setTimeout(() => {
+            if (toast.parentElement) {
+                toast.remove();
+            }
+        }, 3000);
+    }
 </script>

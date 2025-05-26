@@ -32,7 +32,7 @@ namespace FuCommunityWebModels.Models
         public string Status { get; set; }
 
         [ForeignKey("UserID")]
-        public virtual ApplicationUser User { get; set; } 
+        public virtual ApplicationUser User { get; set; }
 
         public ICollection<Comment> Comments { get; set; }
         public ICollection<IsVote> Votes { get; set; }

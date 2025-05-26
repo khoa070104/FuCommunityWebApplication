@@ -35,6 +35,7 @@ namespace FuCommunityWebDataAccess.Data
         public DbSet<Follower> Followers { get; set; }
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<Message> Messages { get; set; }
+        public DbSet<LessonProgress> LessonProgresses { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -182,10 +183,34 @@ namespace FuCommunityWebDataAccess.Data
                 .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Message>()
-                .HasOne(m => m.Receiver) 
+                .HasOne(m => m.Receiver)
                 .WithMany()
                 .HasForeignKey(m => m.ReceiverId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            // Configure LessonProgress relationships
+            modelBuilder.Entity<LessonProgress>()
+                .HasOne(lp => lp.User)
+                .WithMany()
+                .HasForeignKey(lp => lp.UserID)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<LessonProgress>()
+                .HasOne(lp => lp.Lesson)
+                .WithMany()
+                .HasForeignKey(lp => lp.LessonID)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<LessonProgress>()
+                .HasOne(lp => lp.Course)
+                .WithMany()
+                .HasForeignKey(lp => lp.CourseID)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // Unique constraint để đảm bảo mỗi user chỉ có 1 progress record cho mỗi lesson
+            modelBuilder.Entity<LessonProgress>()
+                .HasIndex(lp => new { lp.UserID, lp.LessonID })
+                .IsUnique();
 
             // Default Data
             modelBuilder.Entity<Category>().HasData(
@@ -216,7 +241,7 @@ namespace FuCommunityWebDataAccess.Data
             );
         }
 
-        
+
 
         public static async Task SeedAdminUser(IServiceProvider serviceProvider)
         {

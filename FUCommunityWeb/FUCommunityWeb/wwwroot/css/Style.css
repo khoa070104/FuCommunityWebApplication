@@ -1797,6 +1797,50 @@
     border-bottom: none;
 }
 
+/* Toggle Button Styling */
+.btn-toggle-content {
+    background-color: #20B486 !important;
+    color: #FFFFFF !important;
+    border: none !important;
+    border-radius: 50% !important;
+    width: 30px !important;
+    height: 30px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 12px !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    position: relative !important;
+    padding: 0 !important;
+    min-width: 30px !important;
+}
+
+.btn-toggle-content:hover {
+    background-color: #1a9874 !important;
+    transform: scale(1.1) !important;
+    box-shadow: 0 2px 8px rgba(32, 180, 134, 0.3) !important;
+    color: #FFFFFF !important;
+}
+
+.btn-toggle-content:focus {
+    outline: none !important;
+    box-shadow: 0 0 0 2px rgba(32, 180, 134, 0.5) !important;
+    background-color: #20B486 !important;
+    color: #FFFFFF !important;
+}
+
+/* Icon styling */
+.btn-toggle-content i {
+    color: #FFFFFF !important;
+    font-size: 12px !important;
+    transition: transform 0.3s ease !important;
+}
+
+.btn-toggle-content:hover i {
+    color: #FFFFFF !important;
+}
+
 .course-review {
     margin-top: 40px;
     background-color: #F9F9F9;
@@ -3758,8 +3802,8 @@ footer .footer-bottom i {
 }
 
     .user-chat .list-group-item .small-text {
-        max-width: 250px; 
-        overflow: hidden; 
+        max-width: 250px;
+        overflow: hidden;
         text-overflow: ellipsis;
         display: inline-block;
     }

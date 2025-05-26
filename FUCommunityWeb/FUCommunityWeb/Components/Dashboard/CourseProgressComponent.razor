@@ -1,0 +1,242 @@
+<div class="card shadow-sm border-0 h-100">
+    <div class="card-header bg-gradient-primary text-white border-0">
+        <div class="d-flex justify-content-between align-items-center">
+            <h5 class="card-title mb-0 d-flex align-items-center">
+                <i class="fas fa-chart-line me-2"></i>
+                Tiến độ khóa học
+            </h5>
+            <span class="badge bg-light text-primary rounded-pill">@courseProgressList.Count khóa học</span>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        @if (isLoading)
+        {
+            <div class="text-center py-4">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Đang tải...</span>
+                </div>
+                <p class="mt-2 text-muted">Đang tải tiến độ khóa học...</p>
+            </div>
+        }
+        else if (courseProgressList.Any())
+        {
+            @foreach (var course in courseProgressList)
+            {
+                <div class="course-item mb-4 p-3 rounded-3"
+                     style="background: @GetBackgroundGradient(course.ProgressPercentage); border-left: 4px solid @GetBorderColor(course.ProgressPercentage);">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <div class="d-flex align-items-center">
+                            <div class="course-icon me-3">
+                                <i class="@GetCourseIcon(course.CourseTitle) @GetStatusColor(course.ProgressPercentage, course.Status)" style="font-size: 1.5rem;"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-0 fw-bold text-dark">@course.CourseTitle</h6>
+                                <small class="text-muted">
+                                    <i class="fas fa-calendar-alt me-1"></i>
+                                    Đăng ký: @((DateTime.Now - course.EnrollmentDate).Days) ngày trước
+                                </small>
+                            </div>
+                        </div>
+                        <div class="text-end">
+                            <span class="badge px-3 py-2 rounded-pill @(GetProgressBarColor(course.ProgressPercentage).Replace("bg-gradient-", "bg-"))">
+                                @if (course.ProgressPercentage >= 100)
+                                {
+                                    <i class="fas fa-check me-1"></i>
+                                }
+                                @course.ProgressPercentage.ToString("F0")%
+                            </span>
+                        </div>
+                    </div>
+                    <div class="progress mb-2" style="height: 10px; border-radius: 10px;">
+                        <div class="progress-bar @GetProgressBarColor(course.ProgressPercentage)"
+                             role="progressbar"
+                             style="width: @(course.ProgressPercentage)%; border-radius: 10px;"
+                             aria-valuenow="@course.ProgressPercentage"
+                             aria-valuemin="0"
+                             aria-valuemax="100">
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <small class="text-muted">
+                            @if (course.ProgressPercentage >= 100)
+                            {
+                                <i class="fas fa-trophy me-1"></i>
+                            }
+                            else
+                            {
+                                <i class="fas fa-book-open me-1"></i>
+                            }
+                            @course.CompletedLessons/@course.TotalLessons bài học hoàn thành
+                        </small>
+                        <small class="fw-bold @GetStatusColor(course.ProgressPercentage, course.Status)">
+                            @if (course.ProgressPercentage >= 100)
+                            {
+                                <i class="fas fa-medal me-1"></i>
+                                <text>Hoàn thành</text>
+                            }
+                            else
+                            {
+                                <text>@GetStatusText(course.ProgressPercentage, course.Status)</text>
+                            }
+                        </small>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="text-center py-4">
+                <i class="fas fa-graduation-cap fa-3x text-muted mb-3"></i>
+                <h6 class="text-muted">Chưa có khóa học nào</h6>
+                <p class="text-muted small">Hãy đăng ký khóa học đầu tiên của bạn!</p>
+            </div>
+        }
+
+
+        <div class="text-center mt-4">
+            <a href="/Course" class="btn btn-primary btn-lg px-4 py-2 rounded-pill shadow-sm">
+                <i class="fas fa-graduation-cap me-2"></i>
+                Khám phá thêm khóa học
+            </a>
+        </div>
+    </div>
+</div>
+
+
+
+@using Microsoft.AspNetCore.Identity
+@using FuCommunityWebServices.Services
+@inject DashboardService DashboardService
+
+@code {
+    [Parameter] public string UserId { get; set; } = string.Empty;
+
+    private List<CourseProgressData> courseProgressList = new();
+    private bool isLoading = true;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        System.Diagnostics.Debug.WriteLine($"DEBUG CourseProgress: OnParametersSetAsync called with UserId: '{UserId}'");
+        Console.WriteLine($"CONSOLE CourseProgress: OnParametersSetAsync called with UserId: '{UserId}'");
+
+        if (!string.IsNullOrEmpty(UserId))
+        {
+            await LoadCourseProgress();
+        }
+        else
+        {
+            System.Diagnostics.Debug.WriteLine("DEBUG CourseProgress: UserId is null or empty in OnParametersSetAsync");
+            Console.WriteLine("CONSOLE CourseProgress: UserId is null or empty in OnParametersSetAsync");
+            isLoading = false;
+        }
+    }
+
+    // protected override async Task OnAfterRenderAsync(bool firstRender)
+    // {
+    //     if (firstRender)
+    //     {
+    //         System.Diagnostics.Debug.WriteLine($"CourseProgressComponent - Rendered with UserId: {UserId}");
+    //         System.Diagnostics.Debug.WriteLine($"CourseProgressComponent - Course count: {courseProgressList.Count}");
+
+    //         // Chỉ gọi JavaScript sau khi render hoàn tất
+    //         try
+    //         {
+    //             await JSRuntime.InvokeVoidAsync("console.log", $"CourseProgressComponent - Rendered with UserId: {UserId}");
+    //             await JSRuntime.InvokeVoidAsync("console.log", $"CourseProgressComponent - Course count: {courseProgressList.Count}");
+    //         }
+    //         catch (Exception ex)
+    //         {
+    //             System.Diagnostics.Debug.WriteLine($"CourseProgressComponent - JS Error: {ex.Message}");
+    //         }
+    //     }
+    // }
+
+    private async Task LoadCourseProgress()
+    {
+        try
+        {
+            isLoading = true;
+            courseProgressList.Clear();
+
+            // Kiểm tra UserId có hợp lệ không
+            if (string.IsNullOrEmpty(UserId))
+            {
+                System.Diagnostics.Debug.WriteLine("DEBUG CourseProgress: UserId is null or empty");
+                return;
+            }
+
+            System.Diagnostics.Debug.WriteLine($"DEBUG CourseProgress: Loading progress for UserId: {UserId}");
+            Console.WriteLine($"CONSOLE CourseProgress: Loading progress for UserId: {UserId}");
+
+            // Sử dụng DashboardService để lấy dữ liệu thread-safe
+            var dashboardData = await DashboardService.GetDashboardDataAsync(UserId);
+
+            System.Diagnostics.Debug.WriteLine($"DEBUG CourseProgress: Found {dashboardData.CourseProgress.Count} course progress items");
+            Console.WriteLine($"CONSOLE CourseProgress: Found {dashboardData.CourseProgress.Count} course progress items");
+
+            courseProgressList = dashboardData.CourseProgress;
+
+            System.Diagnostics.Debug.WriteLine($"DEBUG CourseProgress: Final course count: {courseProgressList.Count}");
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine($"DEBUG CourseProgress: Error: {ex.Message}");
+            System.Diagnostics.Debug.WriteLine($"DEBUG CourseProgress: StackTrace: {ex.StackTrace}");
+            Console.WriteLine($"CONSOLE CourseProgress: Error: {ex.Message}");
+        }
+        finally
+        {
+            isLoading = false;
+            StateHasChanged();
+        }
+    }
+
+
+
+    private string GetProgressBarColor(double percentage)
+    {
+        if (percentage >= 80) return "bg-gradient-success";
+        if (percentage >= 40) return "bg-gradient-warning";
+        return "bg-gradient-danger";
+    }
+
+    private string GetStatusText(double percentage, string status)
+    {
+        if (percentage >= 100 || status == "Completed") return "Hoàn thành";
+        if (percentage >= 40) return "Đang học";
+        return "Mới bắt đầu";
+    }
+
+    private string GetStatusColor(double percentage, string status)
+    {
+        if (percentage >= 100 || status == "Completed") return "text-success";
+        if (percentage >= 40) return "text-primary";
+        return "text-warning";
+    }
+
+    private string GetCourseIcon(string courseTitle)
+    {
+        if (courseTitle.Contains("C#")) return "fab fa-microsoft";
+        if (courseTitle.Contains("ASP.NET") || courseTitle.Contains("MVC")) return "fas fa-code";
+        if (courseTitle.Contains("HTML") || courseTitle.Contains("CSS")) return "fab fa-html5";
+        if (courseTitle.Contains("JavaScript") || courseTitle.Contains("JS")) return "fab fa-js-square";
+        if (courseTitle.Contains("Python")) return "fab fa-python";
+        return "fas fa-book";
+    }
+
+    private string GetBorderColor(double percentage)
+    {
+        if (percentage >= 80) return "#28a745";
+        if (percentage >= 40) return "#ff9500";
+        return "#dc3545";
+    }
+
+    private string GetBackgroundGradient(double percentage)
+    {
+        if (percentage >= 80) return "linear-gradient(135deg, #e6f7e6 0%, #fff 100%)";
+        if (percentage >= 40) return "linear-gradient(135deg, #fff5e6 0%, #fff 100%)";
+        return "linear-gradient(135deg, #ffe6e6 0%, #fff 100%)";
+    }
+
+
+}

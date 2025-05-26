@@ -1,0 +1,145 @@
+@inject NotificationService NotificationService
+@inject IJSRuntime JSRuntime
+
+<div class="card">
+    <div class="card-header">
+        <h5 class="card-title mb-0">
+            <i class="fas fa-bell me-2"></i>
+            Thông báo gần đây
+        </h5>
+    </div>
+    <div class="card-body">
+        @if (isLoading)
+        {
+            <div class="text-center">
+                <div class="spinner-border spinner-border-sm" role="status">
+                    <span class="visually-hidden">Đang tải...</span>
+                </div>
+            </div>
+        }
+        else if (notifications?.Any() == true)
+        {
+            <div class="list-group list-group-flush">
+                @foreach (var notification in notifications.Take(5))
+                {
+                    <div class="list-group-item @(notification.IsRead ? "" : "bg-light border-start border-primary border-3")">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h6 class="mb-1 @(notification.IsRead ? "text-muted" : "")">
+                                @GetNotificationIcon(notification.NotificationType)
+                                @notification.Message
+                            </h6>
+                            <small class="text-muted">@GetTimeAgo(notification.CreatedDate)</small>
+                        </div>
+                        @if (!string.IsNullOrEmpty(notification.Content))
+                        {
+                            <p class="mb-1 small @(notification.IsRead ? "text-muted" : "")">
+                                @notification.Content
+                            </p>
+                        }
+                        @if (!notification.IsRead)
+                        {
+                            <button class="btn btn-sm btn-outline-primary mt-1"
+                                    @onclick="() => MarkAsRead(notification.NotificationID)">
+                                Đánh dấu đã đọc
+                            </button>
+                        }
+                    </div>
+                }
+            </div>
+
+            <div class="text-center mt-3">
+                <a href="/dashboard/notifications" class="btn btn-outline-primary btn-sm">
+                    Xem tất cả thông báo
+                </a>
+            </div>
+        }
+        else
+        {
+            <div class="text-center text-muted">
+                <i class="fas fa-bell-slash fa-3x mb-3"></i>
+                <p>Không có thông báo nào.</p>
+            </div>
+        }
+    </div>
+</div>
+
+@code {
+    [Parameter] public string UserId { get; set; } = string.Empty;
+
+    private bool isLoading = true;
+    private List<Notification>? notifications;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (!string.IsNullOrEmpty(UserId))
+        {
+            await LoadNotifications();
+        }
+    }
+
+    private async Task LoadNotifications()
+    {
+        try
+        {
+            isLoading = true;
+            notifications = await NotificationService.GetUserNotificationsAsync(UserId);
+            notifications = notifications?.OrderByDescending(n => n.CreatedDate).ToList();
+        }
+        catch (Exception ex)
+        {
+            await JSRuntime.InvokeVoidAsync("console.error", $"Error loading notifications: {ex.Message}");
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    private async Task MarkAsRead(int notificationId)
+    {
+        try
+        {
+            await NotificationService.MarkAsReadAsync(notificationId);
+
+            // Cập nhật trạng thái local
+            var notification = notifications?.FirstOrDefault(n => n.NotificationID == notificationId);
+            if (notification != null)
+            {
+                notification.IsRead = true;
+                StateHasChanged();
+            }
+        }
+        catch (Exception ex)
+        {
+            await JSRuntime.InvokeVoidAsync("console.error", $"Error marking notification as read: {ex.Message}");
+        }
+    }
+
+    private string GetNotificationIcon(string? notificationType)
+    {
+        return notificationType switch
+        {
+            "Message" => "<i class='fas fa-envelope me-1'></i>",
+            "Course" => "<i class='fas fa-book me-1'></i>",
+            "System" => "<i class='fas fa-cog me-1'></i>",
+            "Achievement" => "<i class='fas fa-trophy me-1'></i>",
+            _ => "<i class='fas fa-info-circle me-1'></i>"
+        };
+    }
+
+    private string GetTimeAgo(DateTime createdDate)
+    {
+        var timeSpan = DateTime.Now - createdDate;
+
+        if (timeSpan.TotalMinutes < 1)
+            return "Vừa xong";
+        if (timeSpan.TotalMinutes < 60)
+            return $"{(int)timeSpan.TotalMinutes} phút trước";
+        if (timeSpan.TotalHours < 24)
+            return $"{(int)timeSpan.TotalHours} giờ trước";
+        if (timeSpan.TotalDays < 7)
+            return $"{(int)timeSpan.TotalDays} ngày trước";
+
+        return createdDate.ToString("dd/MM/yyyy");
+    }
+}
