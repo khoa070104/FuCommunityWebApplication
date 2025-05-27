@@ -1,0 +1,18 @@
+@{
+    ViewData["Title"] = "Dashboard - FU Community";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    var userId = ViewBag.UserId?.ToString() ?? string.Empty;
+}
+
+<div class="container-fluid">
+    <component type="typeof(FUCommunityWeb.Components.Pages.Dashboard)"
+               render-mode="ServerPrerendered"
+               param-UserId="@userId" />
+</div>
+
+@section Scripts {
+    <script src="_framework/blazor.server.js"></script>
+}

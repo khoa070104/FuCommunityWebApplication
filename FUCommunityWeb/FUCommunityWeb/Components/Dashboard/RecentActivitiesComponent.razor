@@ -1,0 +1,208 @@
+@inject CourseService CourseService
+@inject ForumService ForumService
+@inject IJSRuntime JSRuntime
+
+<div class="card">
+    <div class="card-header">
+        <h5 class="card-title mb-0">
+            <i class="fas fa-history me-2"></i>
+            Hoạt động gần đây
+        </h5>
+    </div>
+    <div class="card-body">
+        @if (isLoading)
+        {
+            <div class="text-center">
+                <div class="spinner-border spinner-border-sm" role="status">
+                    <span class="visually-hidden">Đang tải...</span>
+                </div>
+            </div>
+        }
+        else if (activities?.Any() == true)
+        {
+            <div class="timeline">
+                @foreach (var activity in activities.Take(5))
+                {
+                    <div class="timeline-item">
+                        <div class="timeline-marker @GetActivityColor(activity.Type)">
+                            @((MarkupString)GetActivityIcon(activity.Type))
+                        </div>
+                        <div class="timeline-content">
+                            <h6 class="mb-1">@activity.Title</h6>
+                            <p class="mb-1 text-muted small">@activity.Description</p>
+                            <small class="text-muted">@GetTimeAgo(activity.Date)</small>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+        else
+        {
+            <div class="text-center text-muted">
+                <i class="fas fa-clock fa-3x mb-3"></i>
+                <p>Chưa có hoạt động nào gần đây.</p>
+            </div>
+        }
+    </div>
+</div>
+
+<style>
+    .timeline {
+        position: relative;
+        padding-left: 30px;
+    }
+
+    .timeline::before {
+        content: '';
+        position: absolute;
+        left: 15px;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: #dee2e6;
+    }
+
+    .timeline-item {
+        position: relative;
+        margin-bottom: 20px;
+    }
+
+    .timeline-marker {
+        position: absolute;
+        left: -22px;
+        top: 0;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        color: white;
+    }
+
+    .timeline-content {
+        background: #f8f9fa;
+        padding: 15px;
+        border-radius: 8px;
+        border-left: 3px solid #dee2e6;
+    }
+
+    .bg-course { background-color: #007bff !important; }
+    .bg-forum { background-color: #28a745 !important; }
+    .bg-achievement { background-color: #ffc107 !important; }
+    .bg-system { background-color: #6c757d !important; }
+</style>
+
+@code {
+    [Parameter] public string UserId { get; set; } = string.Empty;
+
+    private bool isLoading = true;
+    private List<ActivityItem>? activities;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (!string.IsNullOrEmpty(UserId))
+        {
+            await LoadRecentActivities();
+        }
+    }
+
+    private async Task LoadRecentActivities()
+    {
+        try
+        {
+            isLoading = true;
+            activities = new List<ActivityItem>();
+
+            // Lấy các khóa học đã đăng ký gần đây
+            var enrollments = await CourseService.GetEnrolledCoursesWithDetailsAsync(UserId);
+            if (enrollments?.Any() == true)
+            {
+                foreach (var enrollment in enrollments.OrderByDescending(e => e.EnrollmentDate).Take(3))
+                {
+                    activities.Add(new ActivityItem
+                    {
+                        Type = "course",
+                        Title = "Đăng ký khóa học",
+                        Description = $"Bạn đã đăng ký khóa học: {enrollment.Course.Title}",
+                        Date = enrollment.EnrollmentDate
+                    });
+                }
+            }
+
+            // Lấy các bài viết gần đây
+            var posts = await ForumService.GetUserPostsAsync(UserId);
+            if (posts?.Any() == true)
+            {
+                foreach (var post in posts.OrderByDescending(p => p.CreatedDate).Take(3))
+                {
+                    activities.Add(new ActivityItem
+                    {
+                        Type = "forum",
+                        Title = "Đăng bài viết",
+                        Description = $"Bạn đã đăng bài: {post.Title}",
+                        Date = post.CreatedDate ?? DateTime.Now
+                    });
+                }
+            }
+
+            // Sắp xếp theo thời gian
+            activities = activities.OrderByDescending(a => a.Date).ToList();
+        }
+        catch (Exception ex)
+        {
+            await JSRuntime.InvokeVoidAsync("console.error", $"Error loading recent activities: {ex.Message}");
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    private string GetActivityIcon(string type)
+    {
+        return type switch
+        {
+            "course" => "<i class='fas fa-book'></i>",
+            "forum" => "<i class='fas fa-comments'></i>",
+            "achievement" => "<i class='fas fa-trophy'></i>",
+            _ => "<i class='fas fa-info-circle'></i>"
+        };
+    }
+
+    private string GetActivityColor(string type)
+    {
+        return type switch
+        {
+            "course" => "bg-course",
+            "forum" => "bg-forum",
+            "achievement" => "bg-achievement",
+            _ => "bg-system"
+        };
+    }
+
+    private string GetTimeAgo(DateTime date)
+    {
+        var timeSpan = DateTime.Now - date;
+
+        if (timeSpan.TotalMinutes < 1)
+            return "Vừa xong";
+        if (timeSpan.TotalMinutes < 60)
+            return $"{(int)timeSpan.TotalMinutes} phút trước";
+        if (timeSpan.TotalHours < 24)
+            return $"{(int)timeSpan.TotalHours} giờ trước";
+        if (timeSpan.TotalDays < 7)
+            return $"{(int)timeSpan.TotalDays} ngày trước";
+
+        return date.ToString("dd/MM/yyyy");
+    }
+
+    private class ActivityItem
+    {
+        public string Type { get; set; } = string.Empty;
+        public string Title { get; set; } = string.Empty;
+        public string Description { get; set; } = string.Empty;
+        public DateTime Date { get; set; }
+    }
+}

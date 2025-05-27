@@ -19,6 +19,11 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+// Add DbContextFactory for Blazor components to avoid concurrency issues
+builder.Services.AddDbContextFactory<ApplicationDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")),
+    ServiceLifetime.Scoped);
+
 // Configure Identity for IdentityUser
 builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
     options.SignIn.RequireConfirmedAccount = true)
@@ -49,6 +54,9 @@ builder.Services.AddScoped<OrderService>();
 builder.Services.AddScoped<AdminService>();
 builder.Services.AddScoped<AdminRepo>();
 
+// Register DashboardService as Scoped to work with DbContextFactory
+builder.Services.AddScoped<DashboardService>();
+
 // Register VnPayService for VNPAY integration
 builder.Services.AddScoped<VnPayService>();
 
@@ -74,6 +82,9 @@ builder.Services.AddAuthentication()
 
 // Register Razor Pages
 builder.Services.AddRazorPages();
+
+// Add Blazor Server
+builder.Services.AddServerSideBlazor();
 
 builder.Services.ConfigureApplicationCookie(options =>
 {
@@ -108,7 +119,7 @@ builder.Services.Configure<IdentityOptions>(options =>
 
 builder.Services.Configure<DataProtectionTokenProviderOptions>(options =>
 {
-    options.TokenLifespan = TimeSpan.FromMinutes(15); 
+    options.TokenLifespan = TimeSpan.FromMinutes(15);
 });
 
 builder.Services.AddScoped<NotificationService>();
@@ -126,7 +137,7 @@ using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
     var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
-    
+
     // Seed Roles
     if (!await roleManager.RoleExistsAsync(SD.Role_User_Student))
     {
@@ -169,10 +180,19 @@ app.UseSession();
 // Map Razor Pages
 app.MapRazorPages();
 
+// Map Blazor Hub
+app.MapBlazorHub();
+
 // Update the default controller route to VnPayController
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+// Map SignalR Hub
+app.MapHub<ChatHub>("/chatHub");
+
+// Map Blazor fallback page (phải đặt cuối cùng)
+app.MapFallbackToPage("/_Host");
 
 // Run the application
 app.Run();

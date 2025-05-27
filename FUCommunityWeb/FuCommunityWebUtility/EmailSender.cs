@@ -9,8 +9,8 @@ namespace FuCommunityWebUtility
 	{
 		public async Task SendEmailAsync(string email, string subject, string htmlMessage)
 		{
-			var fromEmail = "funnycode.softwareengineering@gmail.com";
-			var appPassword = "cnlkxdiskpbszqsy"; 
+			var fromEmail = "qqnutnut7@gmail.com";
+			var appPassword = "uvhq nwfk tjun mhuw"; 
 
 			var client = new SmtpClient("smtp.gmail.com", 587)
 			{

@@ -101,7 +101,9 @@
                                     <td>@lesson.LessonID</td>
                                     <td class="lesson-info">@lesson.Title</td>
                                     <td>
-                                        <button class="btn-toggle-content btn-sm" data-lesson-id="@lesson.LessonID">+</button>
+                                        <button class="btn-toggle-content btn-sm collapsed" data-lesson-id="@lesson.LessonID">
+                                            <i class="fas fa-chevron-right"></i>
+                                        </button>
                                         <div class="lesson-content mt-2" id="lesson-content-@lesson.LessonID" style="display: none;">
                                             @Html.Raw(lesson.Content)
                                         </div>
@@ -321,13 +323,22 @@
                 button.addEventListener("click", function () {
                     const lessonId = this.getAttribute("data-lesson-id");
                     const contentDiv = document.getElementById(`lesson-content-${lessonId}`);
+                    const icon = this.querySelector('i');
 
-                    if (contentDiv.style.display === "none") {
+                    if (contentDiv.style.display === "none" || contentDiv.style.display === "") {
                         contentDiv.style.display = "block";
-                        this.textContent = "-";
+                        this.classList.remove("collapsed");
+                        this.classList.add("expanded");
+                        // Change icon to down arrow
+                        icon.classList.remove("fa-chevron-right");
+                        icon.classList.add("fa-chevron-down");
                     } else {
                         contentDiv.style.display = "none";
-                        this.textContent = "+";
+                        this.classList.remove("expanded");
+                        this.classList.add("collapsed");
+                        // Change icon to right arrow
+                        icon.classList.remove("fa-chevron-down");
+                        icon.classList.add("fa-chevron-right");
                     }
                 });
             });

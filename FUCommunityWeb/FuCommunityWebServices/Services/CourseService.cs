@@ -149,6 +149,18 @@ namespace FuCommunityWebServices.Services
             return await _courseRepo.GetUserReviewForCourseAsync(userId, courseId);
         }
 
+        // Thêm phương thức để lấy danh sách Enrollment thay vì chỉ ID
+        public async Task<List<Enrollment>> GetEnrolledCoursesWithDetailsAsync(string userId)
+        {
+            return await _courseRepo.GetUserEnrollmentsAsync(userId);
+        }
+
+        // Thêm phương thức để lấy lessons của một course
+        public async Task<List<Lesson>> GetCourseLessonsAsync(int courseId)
+        {
+            return await _courseRepo.GetLessonsByCourseIdAsync(courseId);
+        }
+
         public async Task<Review> GetReviewByIdAsync(int reviewId)
         {
             return await _courseRepo.GetReviewByIdAsync(reviewId);
@@ -162,6 +174,47 @@ namespace FuCommunityWebServices.Services
         public async Task<List<Review>> GetReviewsByCourseIdAsync(int courseId)
         {
             return await _courseRepo.GetReviewsByCourseIdAsync(courseId);
+        }
+
+        // Lesson Progress methods
+        public async Task<LessonProgress> GetLessonProgressAsync(string userId, int lessonId)
+        {
+            return await _courseRepo.GetLessonProgressAsync(userId, lessonId);
+        }
+
+        public async Task<List<LessonProgress>> GetUserLessonProgressByCourseAsync(string userId, int courseId)
+        {
+            return await _courseRepo.GetUserLessonProgressByCourseAsync(userId, courseId);
+        }
+
+        public async Task MarkLessonAsCompletedAsync(string userId, int lessonId, int courseId)
+        {
+            await _courseRepo.MarkLessonAsCompletedAsync(userId, lessonId, courseId);
+        }
+
+        public async Task MarkLessonAsIncompleteAsync(string userId, int lessonId)
+        {
+            await _courseRepo.MarkLessonAsIncompleteAsync(userId, lessonId);
+        }
+
+        public async Task<int> GetCompletedLessonsCountAsync(string userId, int courseId)
+        {
+            return await _courseRepo.GetCompletedLessonsCountAsync(userId, courseId);
+        }
+
+        public async Task<int> GetTotalLessonsCountAsync(int courseId)
+        {
+            return await _courseRepo.GetTotalLessonsCountAsync(courseId);
+        }
+
+        public async Task<double> GetCourseProgressPercentageAsync(string userId, int courseId)
+        {
+            var completedCount = await GetCompletedLessonsCountAsync(userId, courseId);
+            var totalCount = await GetTotalLessonsCountAsync(courseId);
+
+            if (totalCount == 0) return 0;
+
+            return Math.Round((double)completedCount / totalCount * 100, 1);
         }
 
         public async Task DeleteReviewAsync(Review review)
@@ -183,6 +236,11 @@ namespace FuCommunityWebServices.Services
         {
             await _courseRepo.AddDocumentAsync(document);
             return document.DocumentID;
+        }
+
+        public async Task<List<Lesson>> GetIncompleteLessonsAsync(string userId)
+        {
+            return await _courseRepo.GetIncompleteLessonsAsync(userId);
         }
     }
 }

@@ -1,0 +1,54 @@
+<div class="top-row ps-3 navbar navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="">FU Community Dashboard</a>
+        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</div>
+
+<div class="@NavMenuCssClass nav-scrollable" @onclick="CollapseNavMenu">
+    <nav class="flex-column">
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="dashboard" Match="NavLinkMatch.All">
+                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Dashboard
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="dashboard/courses">
+                <span class="bi bi-book-fill-nav-menu" aria-hidden="true"></span> Khóa học của tôi
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="dashboard/progress">
+                <span class="bi bi-graph-up-nav-menu" aria-hidden="true"></span> Tiến độ học tập
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="dashboard/notifications">
+                <span class="bi bi-bell-fill-nav-menu" aria-hidden="true"></span> Thông báo
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <a class="nav-link" href="/">
+                <span class="bi bi-arrow-left-nav-menu" aria-hidden="true"></span> Quay lại trang chính
+            </a>
+        </div>
+    </nav>
+</div>
+
+@code {
+    private bool collapseNavMenu = true;
+
+    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+
+    private void CollapseNavMenu()
+    {
+        collapseNavMenu = true;
+    }
+}
