@@ -1,0 +1,47 @@
+@using Microsoft.AspNetCore.Identity
+@using System.Security.Claims
+@inject UserManager<ApplicationUser> UserManager
+@inject AuthenticationStateProvider AuthenticationStateProvider
+
+<div class="col-md-2 sidebar">
+    <div class="profile-section text-center">
+        <img src="/img/Logo.png" alt="Profile Picture" class="profile-img">
+        <h5 class="profile-name">@currentUserEmail</h5>
+        <p class="profile-role">Admin</p>
+    </div>
+
+    <hr>
+    <div class="nav flex-column">
+        <a href="/admin" class="btn-nav mb-2">
+            <i class="fas fa-home me-2"></i>Dashboard
+        </a>
+        <a href="/admin/ManageCourse" class="btn-nav mb-2">
+            <i class="fas fa-book me-2"></i>Course
+        </a>
+        <a href="/admin/ManageCategory" class="btn-nav mb-2">
+            <i class="fas fa-folder me-2"></i>Category
+        </a>
+        <a href="/admin/ManageForumCategory" class="btn-nav mb-2">
+            <i class="fas fa-comments me-2"></i>Forum
+        </a>
+        <a href="/admin/ManageUser" class="btn-nav mb-2">
+            <i class="fas fa-user me-2"></i>User
+        </a>
+        <a href="/admin/ManagePayment" class="btn-nav mb-2">
+            <i class="fas fa-wallet me-2"></i>Payment
+        </a>
+    </div>
+</div>
+
+@code {
+    private string currentUserEmail = "admin@example.com";
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        if (authState.User.Identity?.IsAuthenticated == true)
+        {
+            currentUserEmail = authState.User.Identity.Name ?? "admin@example.com";
+        }
+    }
+}

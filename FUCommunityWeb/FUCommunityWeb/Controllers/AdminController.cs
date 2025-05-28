@@ -282,7 +282,7 @@ namespace FUCommunityWeb.Controllers
                     break;
             }
 
-            var course = await _courseService.GetCourseByIdAsync(courseId); 
+            var course = await _courseService.GetCourseByIdAsync(courseId);
 
             if (course == null)
             {
@@ -296,7 +296,7 @@ namespace FUCommunityWeb.Controllers
                 Course = course,
                 Lessons = lessons,
                 Reviews = reviews,
-                CreateLessonVM = new CreateLessonVM { CourseID = courseId }, 
+                CreateLessonVM = new CreateLessonVM { CourseID = courseId },
                 ShowCreateLessonModal = false,
                 ShowEditLessonModal = false
             };
@@ -309,7 +309,7 @@ namespace FUCommunityWeb.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateLesson(CreateLessonVM createLessonVM)
         {
-            var course = await _courseService.GetCourseByIdAsync(createLessonVM.CourseID); 
+            var course = await _courseService.GetCourseByIdAsync(createLessonVM.CourseID);
 
             if (course == null)
             {
@@ -325,7 +325,7 @@ namespace FUCommunityWeb.Controllers
                         Title = createLessonVM.Title,
                         Content = createLessonVM.Content,
                         Status = "Active",
-                        CourseID = createLessonVM.CourseID, 
+                        CourseID = createLessonVM.CourseID,
                         UserID = User.FindFirstValue(ClaimTypes.NameIdentifier),
                         CreatedDate = DateTime.Now
                     };
@@ -450,7 +450,7 @@ namespace FUCommunityWeb.Controllers
                 MonthlyUserRegistrations = monthlyRegistrations
             };
 
-            return View(dashboardVM);
+            return View("BlazorDashboard", dashboardVM);
         }
 
         public IActionResult ManageForumGroup()
@@ -709,7 +709,7 @@ namespace FUCommunityWeb.Controllers
         }
         public async Task<IActionResult> ManagePayment()
         {
-            var orders = await _orderService.GetAllOrdersAsync(); 
+            var orders = await _orderService.GetAllOrdersAsync();
             return View(orders);
         }
         public IActionResult ManageStudent()
@@ -793,7 +793,7 @@ namespace FUCommunityWeb.Controllers
         {
             try
             {
-                await _orderService.DeleteOrderAsync(orderId); 
+                await _orderService.DeleteOrderAsync(orderId);
             }
             catch (Exception ex)
             {
