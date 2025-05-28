@@ -1,0 +1,15 @@
+@model DashboardVM
+@{
+    ViewData["Title"] = "Admin Dashboard - FU Community";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <component type="typeof(FUCommunityWeb.Components.Pages.Admin.AdminDashboard)"
+               render-mode="ServerPrerendered"
+               param-DashboardData="@Model" />
+</div>
+
+@section Scripts {
+    <script src="_framework/blazor.server.js"></script>
+}
