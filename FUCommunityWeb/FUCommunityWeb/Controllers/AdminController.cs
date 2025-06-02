@@ -453,6 +453,20 @@ namespace FUCommunityWeb.Controllers
             return View("BlazorDashboard", dashboardVM);
         }
 
+        // Blazor Course Management
+        [Authorize(Roles = "Admin")]
+        public IActionResult BlazorManageCourse()
+        {
+            return View();
+        }
+
+        // Blazor Category Management
+        [Authorize(Roles = "Admin")]
+        public IActionResult BlazorManageCategory()
+        {
+            return View();
+        }
+
         public IActionResult ManageForumGroup()
         {
             return View();

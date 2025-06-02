@@ -1,0 +1,1105 @@
+@page "/admin/BlazorManageCourse"
+@using FuCommunityWebModels.ViewModels
+@using FuCommunityWebModels.Models
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Identity
+@using System.Security.Claims
+@using Microsoft.AspNetCore.Components.Authorization
+@using FuCommunityWebServices.Services
+@using FUCommunityWeb.Components.Shared
+@attribute [Authorize(Roles = "Admin")]
+@inject CourseService CourseService
+@inject IJSRuntime JSRuntime
+@inject AuthenticationStateProvider AuthenticationStateProvider
+
+<PageTitle>Course Management - FU Community</PageTitle>
+
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-ODn27RD6nA2R1Gz5glBa6kLtvCxFfUMaNf1oZVVobKq6yEJNXI9py/tFyR3/f+W" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+<!-- Font Awesome for Icons -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="/src/webapp/css/style.css">
+
+<style>
+    
+
+    /* Fix main content positioning */
+    .admin-manage {
+        position: relative !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        min-height: calc(100vh - 70px) !important;
+    }
+
+    .admin-manage .row {
+        margin: 0 !important;
+        position: relative !important;
+    }
+
+    .admin-manage .content {
+        margin-left: 250px !important;
+        padding: 20px !important;
+        width: calc(100% - 250px) !important;
+        min-height: calc(100vh - 70px) !important;
+        background-color: #f8f9fa !important;
+        position: relative !important;
+        left: 0 !important;
+        transform: none !important;
+    }
+
+    /* Prevent footer overlap */
+    body {
+        margin-bottom: 0 !important;
+    }
+
+    footer {
+        position: relative !important;
+        z-index: 1001 !important;
+        margin-left: 0 !important;
+    }
+</style>
+
+<div class="container-fluid admin admin-manage">
+    <div class="row">
+        <!-- Sidebar -->
+        <AdminSidebar ActivePage="course" />
+
+        <!-- Main Content -->
+        <div class="content" style="margin-left: 250px !important; padding: 20px; width: calc(100% - 250px) !important; min-height: calc(100vh - 70px); background-color: #f8f9fa;">
+            <div class="d-flex flex-column">
+                <!-- Tiêu đề Dashboard và các nút -->
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h2 class="dashboard-header mb-0">Manage Courses</h2>
+                    <button class="btn-1" @onclick="ShowCreateModal">
+                        Create New Course
+                    </button>
+                </div>
+            </div>
+
+            @if (isLoading)
+            {
+                <div class="d-flex justify-content-center align-items-center" style="height: 200px;">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <!-- Bảng danh sách khóa học -->
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th @onclick="() => SortBy(nameof(Course.CourseID))" style="cursor: pointer;">
+                                    ID @GetSortIcon(nameof(Course.CourseID))
+                                </th>
+                                <th>Username</th>
+                                <th @onclick="() => SortBy(nameof(Course.Title))" style="cursor: pointer;">
+                                    Title @GetSortIcon(nameof(Course.Title))
+                                </th>
+                                <th>Description</th>
+                                <th>Price</th>
+                                <th>Course Image</th>
+                                <th>Status</th>
+                                <th>Semester</th>
+                                <th>Category</th>
+                                <th>Action</th>
+                                <th>Settings</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (paginatedCourses.Any())
+                            {
+                                @foreach (var course in paginatedCourses.OrderByDescending(c => c.CourseID))
+                                {
+                                    <tr>
+                                        <td>@course.CourseID</td>
+                                        <td>@course.User?.UserName</td>
+                                        <td>
+                                            <!-- Thêm liên kết để chuyển đến trang ManageLesson -->
+                                            <a href="/admin/ManageLesson?courseId=@course.CourseID">@course.Title</a>
+                                        </td>
+                                        <td>@course.Description</td>
+                                        <td>@course.Price</td>
+                                        <td>
+                                            @if (!string.IsNullOrEmpty(course.CourseImage))
+                                            {
+                                                <img src="@course.CourseImage" alt="Course Image" width="50" height="50" />
+                                            }
+                                        </td>
+                                        <td class="text-center">
+                                            @if (course.Status == "active")
+                                            {
+                                                <span class="btn btn-success">Active</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="btn btn-danger">Inactive</span>
+                                            }
+                                        </td>
+                                        <td>@course.Semester</td>
+                                        <td>@course.Category?.CategoryName</td>
+                                        <td>
+                                            @if (course.Status == "active")
+                                            {
+                                                <button class="btn btn-warning" @onclick="() => ShowDeactivateModal(course)">Deactivate</button>
+                                            }
+                                            else
+                                            {
+                                                <button class="btn btn-success" @onclick="() => ShowActivateModal(course)">Activate</button>
+                                            }
+                                        </td>
+                                        <td>
+                                            <i class="fas fa-edit table-settings me-2" @onclick="() => ShowEditModal(course)" style="cursor: pointer;"></i>
+                                            <i class="fas fa-trash table-settings" @onclick="() => ShowDeleteModal(course)" style="cursor: pointer;"></i>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="11" class="text-center py-4">
+                                        <p class="text-muted">No courses found</p>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<!-- Create Course Modal -->
+@if (showCreateModal)
+{
+    <div class="modal fade show" style="display: block;" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Create New Course</h5>
+                    <button type="button" class="btn-close" @onclick="HideCreateModal"></button>
+                </div>
+                <EditForm Model="createCourseVM" OnValidSubmit="CreateCourse">
+                    <DataAnnotationsValidator />
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Title</label>
+                                    <InputText class="form-control" @bind-Value="createCourseVM.Title" />
+                                    <ValidationMessage For="@(() => createCourseVM.Title)" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Price</label>
+                                    <InputNumber class="form-control" @bind-Value="createCourseVM.Price" />
+                                    <ValidationMessage For="@(() => createCourseVM.Price)" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Description</label>
+                            <InputTextArea class="form-control" rows="3" @bind-Value="createCourseVM.Description" />
+                            <ValidationMessage For="@(() => createCourseVM.Description)" />
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Semester</label>
+                                    <InputSelect class="form-select" @bind-Value="createCourseVM.Semester">
+                                        <option value="0">Select Semester</option>
+                                        @for (int i = 1; i <= 9; i++)
+                                        {
+                                            <option value="@i">Semester @i</option>
+                                        }
+                                    </InputSelect>
+                                    <ValidationMessage For="@(() => createCourseVM.Semester)" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Category</label>
+                                    <InputSelect class="form-select" @bind-Value="createCourseVM.CategoryID">
+                                        <option value="0">Select Category</option>
+                                        @foreach (var category in categories)
+                                        {
+                                            <option value="@category.CategoryID">@category.CategoryName</option>
+                                        }
+                                    </InputSelect>
+                                    <ValidationMessage For="@(() => createCourseVM.CategoryID)" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Course Image</label>
+                            <InputFile class="form-control" OnChange="HandleCourseImageUpload" accept="image/*" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Document</label>
+                            <InputFile class="form-control" OnChange="HandleDocumentUpload" />
+                        </div>
+                    </div>
+                    <div class="modal-footer buttons">
+                        <button type="button" class="btn-cancel-2" @onclick="HideCreateModal">Cancel</button>
+                        <button type="submit" class="btn-blue" disabled="@isSubmitting">
+                            @if (isSubmitting)
+                            {
+                                <span class="spinner-border spinner-border-sm me-2"></span>
+                            }
+                            Save Changes
+                        </button>
+                    </div>
+                </EditForm>
+            </div>
+        </div>
+    </div>
+    <div class="modal-backdrop fade show"></div>
+}
+
+<!-- Edit Course Modal -->
+@if (showEditModal && editCourseVM != null)
+{
+    <div class="modal fade show" style="display: block;" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Course</h5>
+                    <button type="button" class="btn-close" @onclick="HideEditModal"></button>
+                </div>
+                <EditForm Model="editCourseVM" OnValidSubmit="UpdateCourse">
+                    <DataAnnotationsValidator />
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Title</label>
+                                    <InputText class="form-control" @bind-Value="editCourseVM.Title" />
+                                    <ValidationMessage For="@(() => editCourseVM.Title)" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Price</label>
+                                    <InputNumber class="form-control" @bind-Value="editCourseVM.Price" />
+                                    <ValidationMessage For="@(() => editCourseVM.Price)" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Description</label>
+                            <InputTextArea class="form-control" rows="3" @bind-Value="editCourseVM.Description" />
+                            <ValidationMessage For="@(() => editCourseVM.Description)" />
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Semester</label>
+                                    <InputSelect class="form-select" @bind-Value="editCourseVM.Semester">
+                                        <option value="0">Select Semester</option>
+                                        @for (int i = 1; i <= 9; i++)
+                                        {
+                                            <option value="@i">Semester @i</option>
+                                        }
+                                    </InputSelect>
+                                    <ValidationMessage For="@(() => editCourseVM.Semester)" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Category</label>
+                                    <InputSelect class="form-select" @bind-Value="editCourseVM.CategoryID">
+                                        <option value="0">Select Category</option>
+                                        @foreach (var category in categories)
+                                        {
+                                            <option value="@category.CategoryID">@category.CategoryName</option>
+                                        }
+                                    </InputSelect>
+                                    <ValidationMessage For="@(() => editCourseVM.CategoryID)" />
+                                </div>
+                            </div>
+                        </div>
+                        @if (!string.IsNullOrEmpty(editCourseVM.CourseImage))
+                        {
+                            <div class="mb-3">
+                                <label class="form-label">Current Image</label>
+                                <div>
+                                    <img src="@editCourseVM.CourseImage" alt="Current Course Image" style="max-width: 200px; max-height: 150px;" class="img-thumbnail">
+                                </div>
+                            </div>
+                        }
+                        <div class="mb-3">
+                            <label class="form-label">New Course Image (optional)</label>
+                            <InputFile class="form-control" OnChange="HandleEditCourseImageUpload" accept="image/*" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">New Document (optional)</label>
+                            <InputFile class="form-control" OnChange="HandleEditDocumentUpload" />
+                        </div>
+                    </div>
+                    <div class="modal-footer buttons">
+                        <button type="button" class="btn-cancel-2" @onclick="HideEditModal">Cancel</button>
+                        <button type="submit" class="btn-blue" disabled="@isSubmitting">
+                            @if (isSubmitting)
+                            {
+                                <span class="spinner-border spinner-border-sm me-2"></span>
+                            }
+                            Save Changes
+                        </button>
+                    </div>
+                </EditForm>
+            </div>
+        </div>
+    </div>
+    <div class="modal-backdrop fade show"></div>
+}
+
+<!-- Modal xác nhận hủy kích hoạt -->
+@if (showDeactivateModal && courseToDeactivate != null)
+{
+    <div class="modal fade show" style="display: block;" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Confirm Deactivation</h5>
+                    <button type="button" class="btn-close" @onclick="HideDeactivateModal"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to deactivate this course?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-cancel-2" @onclick="HideDeactivateModal">Cancel</button>
+                    <button type="button" class="btn-del" @onclick="ConfirmDeactivate" disabled="@isSubmitting">
+                        @if (isSubmitting)
+                        {
+                            <span class="spinner-border spinner-border-sm me-2"></span>
+                        }
+                        Deactivate
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-backdrop fade show"></div>
+}
+
+<!-- Modal xác nhận kích hoạt -->
+@if (showActivateModal && courseToActivate != null)
+{
+    <div class="modal fade show" style="display: block;" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Confirm Activation</h5>
+                    <button type="button" class="btn-close" @onclick="HideActivateModal"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to activate this course?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-cancel-2" @onclick="HideActivateModal">Cancel</button>
+                    <button type="button" class="btn-blue" @onclick="ConfirmActivate" disabled="@isSubmitting">
+                        @if (isSubmitting)
+                        {
+                            <span class="spinner-border spinner-border-sm me-2"></span>
+                        }
+                        Activate
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-backdrop fade show"></div>
+}
+
+<!-- Modal Xác Nhận Xóa -->
+@if (showDeleteModal && courseToDelete != null)
+{
+    <div class="modal fade show" style="display: block;" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Confirm Delete</h5>
+                    <button type="button" class="btn-close" @onclick="HideDeleteModal"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete "<strong>@courseToDelete.Title</strong>"?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-cancel-2" @onclick="HideDeleteModal">Cancel</button>
+                    <button type="button" class="btn-del" @onclick="ConfirmDelete" disabled="@isSubmitting">
+                        @if (isSubmitting)
+                        {
+                            <span class="spinner-border spinner-border-sm me-2"></span>
+                        }
+                        Delete
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-backdrop fade show"></div>
+}
+
+@code {
+    // Properties
+    private List<Course> allCourses = new();
+    private List<Course> filteredCourses = new();
+    private List<Course> paginatedCourses = new();
+    private List<Category> categories = new();
+
+    private string currentUserEmail = "";
+    private string searchTerm = "";
+    private string selectedSemester = "";
+    private string selectedCategoryId = "";
+    private string selectedStatus = "";
+    private string sortColumn = "";
+    private bool sortAscending = true;
+
+    // Pagination
+    private int currentPage = 1;
+    private int pageSize = 10;
+    private int totalPages = 1;
+
+    // Modal states
+    private bool showCreateModal = false;
+    private bool showEditModal = false;
+    private bool showDeactivateModal = false;
+    private bool showActivateModal = false;
+    private bool showDeleteModal = false;
+    private bool isLoading = true;
+    private bool isSubmitting = false;
+
+    // ViewModels
+    private CreateCourseVM createCourseVM = new();
+    private EditCourseVM editCourseVM = new();
+    private Course? courseToDeactivate;
+    private Course? courseToActivate;
+    private Course? courseToDelete;
+
+    // File uploads
+    private IBrowserFile? courseImageFile;
+    private IBrowserFile? documentFile;
+    private IBrowserFile? editCourseImageFile;
+    private IBrowserFile? editDocumentFile;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadCurrentUser();
+        await LoadData();
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            // Chỉ gọi JavaScript sau khi component đã render lần đầu
+            try
+            {
+                await JSRuntime.InvokeVoidAsync("console.log", $"Component rendered with {allCourses?.Count ?? 0} courses and {categories?.Count ?? 0} categories");
+            }
+            catch (Exception ex)
+            {
+                // Ignore JS errors during initial render
+                System.Diagnostics.Debug.WriteLine($"JS Error: {ex.Message}");
+            }
+        }
+    }
+
+    private async Task LoadCurrentUser()
+    {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        currentUserEmail = authState.User?.Identity?.Name ?? "Admin";
+    }
+
+    private async Task LoadData()
+    {
+        try
+        {
+            isLoading = true;
+            StateHasChanged();
+
+            allCourses = await CourseService.GetAllCoursesAsync();
+            categories = await CourseService.GetAllCategoriesAsync();
+
+            ApplyFilters();
+        }
+        catch (Exception ex)
+        {
+            // Log to console instead of using JS during initialization
+            System.Diagnostics.Debug.WriteLine($"Error loading data: {ex.Message}");
+            System.Diagnostics.Debug.WriteLine($"Stack trace: {ex.StackTrace}");
+            allCourses = new List<Course>(); // Initialize empty list to prevent null reference
+            categories = new List<Category>(); // Initialize empty list to prevent null reference
+            filteredCourses = new List<Course>();
+            paginatedCourses = new List<Course>();
+        }
+        finally
+        {
+            isLoading = false;
+            StateHasChanged();
+        }
+    }
+
+    private void ApplyFilters()
+    {
+        filteredCourses = allCourses.ToList();
+
+        // Apply search filter
+        if (!string.IsNullOrWhiteSpace(searchTerm))
+        {
+            filteredCourses = filteredCourses.Where(c =>
+                c.Title.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
+                c.Description.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
+                c.User?.UserName.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) == true).ToList();
+        }
+
+        // Apply semester filter
+        if (!string.IsNullOrWhiteSpace(selectedSemester) && int.TryParse(selectedSemester, out int semester))
+        {
+            filteredCourses = filteredCourses.Where(c => c.Semester == semester).ToList();
+        }
+
+        // Apply category filter
+        if (!string.IsNullOrWhiteSpace(selectedCategoryId) && int.TryParse(selectedCategoryId, out int categoryId))
+        {
+            filteredCourses = filteredCourses.Where(c => c.CategoryID == categoryId).ToList();
+        }
+
+        // Apply status filter
+        if (!string.IsNullOrWhiteSpace(selectedStatus))
+        {
+            filteredCourses = filteredCourses.Where(c => c.Status == selectedStatus).ToList();
+        }
+
+        // Apply sorting
+        if (!string.IsNullOrWhiteSpace(sortColumn))
+        {
+            filteredCourses = sortColumn switch
+            {
+                nameof(Course.CourseID) => sortAscending
+                    ? filteredCourses.OrderBy(c => c.CourseID).ToList()
+                    : filteredCourses.OrderByDescending(c => c.CourseID).ToList(),
+                nameof(Course.Title) => sortAscending
+                    ? filteredCourses.OrderBy(c => c.Title).ToList()
+                    : filteredCourses.OrderByDescending(c => c.Title).ToList(),
+                nameof(Course.Price) => sortAscending
+                    ? filteredCourses.OrderBy(c => c.Price ?? 0).ToList()
+                    : filteredCourses.OrderByDescending(c => c.Price ?? 0).ToList(),
+                nameof(Course.CreatedDate) => sortAscending
+                    ? filteredCourses.OrderBy(c => c.CreatedDate).ToList()
+                    : filteredCourses.OrderByDescending(c => c.CreatedDate).ToList(),
+                _ => filteredCourses
+            };
+        }
+
+        // Calculate pagination
+        totalPages = (int)Math.Ceiling((double)filteredCourses.Count / pageSize);
+        currentPage = Math.Min(currentPage, Math.Max(1, totalPages));
+
+        var skip = (currentPage - 1) * pageSize;
+        paginatedCourses = filteredCourses.Skip(skip).Take(pageSize).ToList();
+
+        StateHasChanged();
+    }
+
+    private async Task SearchCourses()
+    {
+        currentPage = 1;
+        ApplyFilters();
+    }
+
+    private async Task HandleKeyPress(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter")
+        {
+            await SearchCourses();
+        }
+    }
+
+    private void ClearFilters()
+    {
+        searchTerm = "";
+        selectedSemester = "";
+        selectedCategoryId = "";
+        selectedStatus = "";
+        sortColumn = "";
+        currentPage = 1;
+        ApplyFilters();
+    }
+
+    private void SortBy(string column)
+    {
+        if (sortColumn == column)
+        {
+            sortAscending = !sortAscending;
+        }
+        else
+        {
+            sortColumn = column;
+            sortAscending = true;
+        }
+        ApplyFilters();
+    }
+
+    private void ChangePage(int page)
+    {
+        if (page >= 1 && page <= totalPages)
+        {
+            currentPage = page;
+            ApplyFilters();
+        }
+    }
+
+    // Modal methods
+    private void ShowCreateModal()
+    {
+        createCourseVM = new CreateCourseVM();
+        courseImageFile = null;
+        documentFile = null;
+        showCreateModal = true;
+    }
+
+    private void HideCreateModal()
+    {
+        showCreateModal = false;
+        createCourseVM = new CreateCourseVM();
+        courseImageFile = null;
+        documentFile = null;
+    }
+
+    private void ShowEditModal(Course course)
+    {
+        editCourseVM = new EditCourseVM
+        {
+            CourseID = course.CourseID,
+            Title = course.Title,
+            Description = course.Description,
+            Price = course.Price ?? 0,
+            CourseImage = course.CourseImage,
+            Semester = course.Semester,
+            CategoryID = course.CategoryID
+        };
+        editCourseImageFile = null;
+        editDocumentFile = null;
+        showEditModal = true;
+    }
+
+    private void HideEditModal()
+    {
+        showEditModal = false;
+        editCourseVM = new EditCourseVM();
+        editCourseImageFile = null;
+        editDocumentFile = null;
+    }
+
+    private void ShowDeactivateModal(Course course)
+    {
+        courseToDeactivate = course;
+        showDeactivateModal = true;
+    }
+
+    private void HideDeactivateModal()
+    {
+        showDeactivateModal = false;
+        courseToDeactivate = null;
+    }
+
+    // File upload handlers
+    private async Task HandleCourseImageUpload(InputFileChangeEventArgs e)
+    {
+        courseImageFile = e.File;
+    }
+
+    private async Task HandleDocumentUpload(InputFileChangeEventArgs e)
+    {
+        documentFile = e.File;
+    }
+
+    private async Task HandleEditCourseImageUpload(InputFileChangeEventArgs e)
+    {
+        editCourseImageFile = e.File;
+    }
+
+    private async Task HandleEditDocumentUpload(InputFileChangeEventArgs e)
+    {
+        editDocumentFile = e.File;
+    }
+
+    // CRUD Operations
+    private async Task CreateCourse()
+    {
+        try
+        {
+            isSubmitting = true;
+            StateHasChanged();
+
+            // Handle file uploads
+            if (courseImageFile != null)
+            {
+                createCourseVM.CourseImage = await UploadCourseImage(courseImageFile);
+            }
+
+            int? documentId = null;
+            if (documentFile != null)
+            {
+                var document = await UploadDocument(documentFile);
+                documentId = await CourseService.AddDocumentAsync(document);
+            }
+
+            var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+            var userId = authState.User?.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+
+            var course = new Course
+            {
+                Title = createCourseVM.Title,
+                Description = createCourseVM.Description,
+                Price = createCourseVM.Price,
+                CourseImage = createCourseVM.CourseImage,
+                Status = "active",
+                UserID = userId,
+                Semester = createCourseVM.Semester,
+                CategoryID = createCourseVM.CategoryID,
+                CreatedDate = DateTime.Now,
+                DocumentID = documentId
+            };
+
+            await CourseService.AddCourseAsync(course);
+
+            try
+            {
+                await JSRuntime.InvokeVoidAsync("alert", "Course created successfully!");
+            }
+            catch (Exception jsEx)
+            {
+                System.Diagnostics.Debug.WriteLine($"JS Alert Error: {jsEx.Message}");
+            }
+
+            HideCreateModal();
+            await LoadData();
+        }
+        catch (Exception ex)
+        {
+            try
+            {
+                await JSRuntime.InvokeVoidAsync("alert", $"Error creating course: {ex.Message}");
+            }
+            catch (Exception jsEx)
+            {
+                System.Diagnostics.Debug.WriteLine($"JS Alert Error: {jsEx.Message}");
+            }
+        }
+        finally
+        {
+            isSubmitting = false;
+            StateHasChanged();
+        }
+    }
+
+    private async Task UpdateCourse()
+    {
+        try
+        {
+            isSubmitting = true;
+            StateHasChanged();
+
+            var courseToUpdate = await CourseService.GetCourseByIdAsync(editCourseVM.CourseID);
+            if (courseToUpdate == null)
+            {
+                try
+                {
+                    await JSRuntime.InvokeVoidAsync("alert", "Course not found!");
+                }
+                catch (Exception jsEx)
+                {
+                    System.Diagnostics.Debug.WriteLine($"JS Alert Error: {jsEx.Message}");
+                }
+                return;
+            }
+
+            courseToUpdate.Title = editCourseVM.Title;
+            courseToUpdate.Description = editCourseVM.Description;
+            courseToUpdate.Price = editCourseVM.Price;
+            courseToUpdate.Semester = editCourseVM.Semester;
+            courseToUpdate.CategoryID = editCourseVM.CategoryID;
+
+            // Handle file uploads
+            if (editCourseImageFile != null)
+            {
+                courseToUpdate.CourseImage = await UploadCourseImage(editCourseImageFile);
+            }
+
+            if (editDocumentFile != null)
+            {
+                var document = await UploadDocument(editDocumentFile);
+                courseToUpdate.DocumentID = await CourseService.AddDocumentAsync(document);
+            }
+
+            await CourseService.UpdateCourseAsync(courseToUpdate);
+
+            try
+            {
+                await JSRuntime.InvokeVoidAsync("alert", "Course updated successfully!");
+            }
+            catch (Exception jsEx)
+            {
+                System.Diagnostics.Debug.WriteLine($"JS Alert Error: {jsEx.Message}");
+            }
+
+            HideEditModal();
+            await LoadData();
+        }
+        catch (Exception ex)
+        {
+            try
+            {
+                await JSRuntime.InvokeVoidAsync("alert", $"Error updating course: {ex.Message}");
+            }
+            catch (Exception jsEx)
+            {
+                System.Diagnostics.Debug.WriteLine($"JS Alert Error: {jsEx.Message}");
+            }
+        }
+        finally
+        {
+            isSubmitting = false;
+            StateHasChanged();
+        }
+    }
+
+    private async Task ConfirmDeactivate()
+    {
+        if (courseToDeactivate == null) return;
+
+        try
+        {
+            isSubmitting = true;
+            StateHasChanged();
+
+            courseToDeactivate.Status = "inactive";
+            await CourseService.UpdateCourseAsync(courseToDeactivate);
+
+            try
+            {
+                await JSRuntime.InvokeVoidAsync("alert", "Course deactivated successfully!");
+            }
+            catch (Exception jsEx)
+            {
+                System.Diagnostics.Debug.WriteLine($"JS Alert Error: {jsEx.Message}");
+            }
+
+            HideDeactivateModal();
+            await LoadData();
+        }
+        catch (Exception ex)
+        {
+            try
+            {
+                await JSRuntime.InvokeVoidAsync("alert", $"Error deactivating course: {ex.Message}");
+            }
+            catch (Exception jsEx)
+            {
+                System.Diagnostics.Debug.WriteLine($"JS Alert Error: {jsEx.Message}");
+            }
+        }
+        finally
+        {
+            isSubmitting = false;
+            StateHasChanged();
+        }
+    }
+
+    // Modal methods
+    private void ShowActivateModal(Course course)
+    {
+        courseToActivate = course;
+        showActivateModal = true;
+    }
+
+    private void HideActivateModal()
+    {
+        showActivateModal = false;
+        courseToActivate = null;
+    }
+
+    private void ShowDeleteModal(Course course)
+    {
+        courseToDelete = course;
+        showDeleteModal = true;
+    }
+
+    private void HideDeleteModal()
+    {
+        showDeleteModal = false;
+        courseToDelete = null;
+    }
+
+    private async Task ConfirmActivate()
+    {
+        if (courseToActivate == null) return;
+
+        try
+        {
+            isSubmitting = true;
+            StateHasChanged();
+
+            courseToActivate.Status = "active";
+            await CourseService.UpdateCourseAsync(courseToActivate);
+
+            try
+            {
+                await JSRuntime.InvokeVoidAsync("alert", "Course activated successfully!");
+            }
+            catch (Exception jsEx)
+            {
+                System.Diagnostics.Debug.WriteLine($"JS Alert Error: {jsEx.Message}");
+            }
+
+            HideActivateModal();
+            await LoadData();
+        }
+        catch (Exception ex)
+        {
+            try
+            {
+                await JSRuntime.InvokeVoidAsync("alert", $"Error activating course: {ex.Message}");
+            }
+            catch (Exception jsEx)
+            {
+                System.Diagnostics.Debug.WriteLine($"JS Alert Error: {jsEx.Message}");
+            }
+        }
+        finally
+        {
+            isSubmitting = false;
+            StateHasChanged();
+        }
+    }
+
+    private async Task ConfirmDelete()
+    {
+        if (courseToDelete == null) return;
+
+        try
+        {
+            isSubmitting = true;
+            StateHasChanged();
+
+            await CourseService.DeleteCourseAsync(courseToDelete);
+
+            try
+            {
+                await JSRuntime.InvokeVoidAsync("alert", "Course deleted successfully!");
+            }
+            catch (Exception jsEx)
+            {
+                System.Diagnostics.Debug.WriteLine($"JS Alert Error: {jsEx.Message}");
+            }
+
+            HideDeleteModal();
+            await LoadData();
+        }
+        catch (Exception ex)
+        {
+            try
+            {
+                await JSRuntime.InvokeVoidAsync("alert", $"Error deleting course: {ex.Message}");
+            }
+            catch (Exception jsEx)
+            {
+                System.Diagnostics.Debug.WriteLine($"JS Alert Error: {jsEx.Message}");
+            }
+        }
+        finally
+        {
+            isSubmitting = false;
+            StateHasChanged();
+        }
+    }
+
+    // Helper method for sorting icons
+    private string GetSortIcon(string columnName)
+    {
+        if (sortColumn != columnName)
+            return "";
+
+        return sortAscending ? "↑" : "↓";
+    }
+
+
+
+    // File upload helper methods
+    private async Task<string> UploadCourseImage(IBrowserFile file)
+    {
+        try
+        {
+            var uploadsFolder = Path.Combine("wwwroot", "uploads", "courses");
+            Directory.CreateDirectory(uploadsFolder);
+
+            var fileName = $"{Guid.NewGuid()}_{file.Name}";
+            var filePath = Path.Combine(uploadsFolder, fileName);
+
+            using var stream = new FileStream(filePath, FileMode.Create);
+            await file.OpenReadStream(maxAllowedSize: 5 * 1024 * 1024).CopyToAsync(stream); // 5MB limit
+
+            return $"/uploads/courses/{fileName}";
+        }
+        catch (Exception ex)
+        {
+            try
+            {
+                await JSRuntime.InvokeVoidAsync("alert", $"Error uploading image: {ex.Message}");
+            }
+            catch (Exception jsEx)
+            {
+                System.Diagnostics.Debug.WriteLine($"JS Alert Error: {jsEx.Message}");
+            }
+            return "";
+        }
+    }
+
+    private async Task<Document> UploadDocument(IBrowserFile file)
+    {
+        try
+        {
+            var uploadsFolder = Path.Combine("wwwroot", "uploads", "documents");
+            Directory.CreateDirectory(uploadsFolder);
+
+            var fileName = $"{Guid.NewGuid()}_{file.Name}";
+            var filePath = Path.Combine(uploadsFolder, fileName);
+
+            using var stream = new FileStream(filePath, FileMode.Create);
+            await file.OpenReadStream(maxAllowedSize: 50 * 1024 * 1024).CopyToAsync(stream); // 50MB limit
+
+            return new Document
+            {
+                Name = file.Name,
+                FileUrl = $"/uploads/documents/{fileName}",
+                UploadedAt = DateTime.Now
+            };
+        }
+        catch (Exception ex)
+        {
+            try
+            {
+                await JSRuntime.InvokeVoidAsync("alert", $"Error uploading document: {ex.Message}");
+            }
+            catch (Exception jsEx)
+            {
+                System.Diagnostics.Debug.WriteLine($"JS Alert Error: {jsEx.Message}");
+            }
+            return new Document();
+        }
+    }
+}

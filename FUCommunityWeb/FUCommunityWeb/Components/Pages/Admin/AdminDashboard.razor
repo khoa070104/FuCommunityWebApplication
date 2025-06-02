@@ -3,6 +3,7 @@
 @using Microsoft.AspNetCore.Identity
 @using System.Security.Claims
 @using Microsoft.AspNetCore.Components.Authorization
+@using FUCommunityWeb.Components.Shared
 @attribute [Authorize(Roles = "Admin")]
 @inject IJSRuntime JSRuntime
 @inject AuthenticationStateProvider AuthenticationStateProvider
@@ -28,7 +29,7 @@
 <link rel="stylesheet" href="/src/webapp/css/style.css">
 
 <style>
-    /* Admin Dashboard Cards CSS từ Style.css */
+    /* CSS cũ từ Style.css - khôi phục thiết kế ban đầu */
     .admin .card {
         border: none;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -43,7 +44,7 @@
 
     .admin .card-body {
         padding: 20px;
-        text-align: center;
+        text-align: left; /* Khôi phục text-align: left từ CSS cũ */
     }
 
     .admin .card-header-value {
@@ -61,126 +62,47 @@
         color: #1A9B73;
     }
 
-    /* Sử dụng CSS từ Style.css cho admin sidebar - giống hệt Razor */
+    /* Layout cũ */
     .admin-layout {
         position: relative;
-        min-height: calc(100vh - 200px);
+        display: flex;
+        min-height: calc(100vh - 140px);
+        background-color: #f8f9fa;
     }
 
-    .admin-sidebar-absolute {
-        position: absolute;
-        top: 0;
-        left: -15px; /* Negative left để loại bỏ khoảng trắng */
-        width: 265px; /* Tăng width để bù trừ */
-        height: 100%;
-        background-color: #20B486;
-        color: white;
-        padding: 20px;
-        padding-left: 35px; /* Tăng padding-left để nội dung không bị sát mép */
-        z-index: 10;
-    }
-
-    .admin-content-with-sidebar {
+    .admin-content {
         margin-left: 250px;
         padding: 20px;
-        min-height: calc(100vh - 200px);
+        width: calc(100% - 250px);
     }
 
-    .profile-section {
-        text-align: center;
-        margin-bottom: 30px;
-    }
-
-    .profile-img {
-        width: 80px;
-        height: 80px;
-        border-radius: 50%;
-        margin-bottom: 10px;
-    }
-
-    .profile-name {
-        font-size: 16px;
+    /* Khôi phục dashboard header cũ */
+    .admin .dashboard-header {
         font-weight: bold;
-        margin-bottom: 5px;
+        color: #20B486;
+        margin-bottom: 30px;
+        font-style: italic;
+        font-size: 2.5rem;
+        padding-bottom: 30px;
     }
 
-    .profile-role {
-        font-size: 14px;
-        opacity: 0.8;
-    }
-
-    .btn-nav {
-        display: block;
-        color: white;
-        text-decoration: none;
-        padding: 12px 20px;
-        border-radius: 25px; /* Bo tròn nhiều hơn */
-        margin-bottom: 8px;
-        transition: all 0.3s ease;
-        font-weight: 500;
-    }
-
-    .btn-nav:hover {
-        background-color: white !important; /* Nền trắng khi hover */
-        color: #20B486 !important; /* Chữ màu xanh khi hover */
-        text-decoration: none;
-        transform: translateX(5px); /* Hiệu ứng trượt nhẹ */
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Đổ bóng nhẹ */
-    }
-
-    .btn-nav.active {
-        background-color: rgba(255, 255, 255, 0.2);
-        color: white;
+    /* Khôi phục revenue chart styling cũ */
+    .admin .revenue-chart {
+        margin-top: 40px;
     }
 </style>
 
-<div class="admin-layout admin">
+<div class="admin admin-layout">
     <!-- Sidebar -->
-    <div class="admin-sidebar-absolute">
-        <div class="d-flex flex-column align-items-center">
-            <img src="/img/Logo.png" alt="Profile Picture" class="avatar-img rounded-circle mb-3" style="width: 50px; height: 50px; border: 2px solid white;">
-            <div class="d-flex align-items-center mb-4">
-                <div class="me-2 text-center">
-                    <h5 class="mb-0" style="color: white;">@currentUserEmail</h5>
-                    <p class="mb-0" style="color: white; opacity: 0.8;">Admin</p>
-                </div>
-            </div>
-        </div>
-
-        <hr style="border-color: rgba(255,255,255,0.3);">
-        <div class="nav flex-column">
-            <a href="/admin" class="btn-nav">
-                <i class="fas fa-home me-2"></i>Dashboard
-            </a>
-            <a href="/admin/ManageCourse" class="btn-nav">
-                <i class="fas fa-book me-2"></i>Course
-            </a>
-            <a href="/admin/ManageCategory" class="btn-nav">
-                <i class="fas fa-folder me-2"></i>Category
-            </a>
-            <a href="/admin/ManageForumCategory" class="btn-nav">
-                <i class="fas fa-comments me-2"></i>Forum
-            </a>
-            <a href="/admin/ManageUser" class="btn-nav">
-                <i class="fas fa-user me-2"></i>User
-            </a>
-            <a href="/admin/ManagePayment" class="btn-nav">
-                <i class="fas fa-wallet me-2"></i>Payment
-            </a>
-        </div>
-    </div>
+    <AdminSidebar ActivePage="dashboard" />
 
     <!-- Main Content -->
-    <div class="admin-content-with-sidebar">
-        <div class="d-flex flex-column">
-            <!-- Tiêu đề Dashboard -->
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <h2 class="dashboard-header mb-0">Dashboard</h2>
-            </div>
-        </div>
+    <div class="admin-content">
+        <!-- Dashboard Header với style cũ -->
+        <h1 class="dashboard-header">Dashboard</h1>
 
-        <!-- Cards Row -->
-        <div class="row text-center g-4 mb-4">
+        <!-- Cards Row với style cũ -->
+        <div class="row g-4 mb-4">
             <div class="col-md-3">
                 <div class="card">
                     <div class="card-body">
@@ -197,7 +119,7 @@
                     <div class="card-body">
                         <p class="text-muted">Total Courses</p>
                         <h2 class="card-header-value">
-                            <a href="/admin/ManageCourse">@DashboardData.TotalCourses</a>
+                            <a href="/admin/BlazorManageCourse">@DashboardData.TotalCourses</a>
                         </h2>
                         <p class="text-muted">Courses</p>
                     </div>
@@ -227,7 +149,7 @@
             </div>
         </div>
 
-        <!-- Statistics Section -->
+        <!-- Statistics Section với style cũ -->
         <div class="revenue-chart">
             <div class="d-flex justify-content-between align-items-center">
                 <h4>Statistics of User Registrations</h4>

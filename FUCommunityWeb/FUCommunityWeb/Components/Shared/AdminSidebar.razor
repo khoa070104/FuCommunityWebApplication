@@ -3,37 +3,92 @@
 @inject UserManager<ApplicationUser> UserManager
 @inject AuthenticationStateProvider AuthenticationStateProvider
 
-<div class="col-md-2 sidebar">
-    <div class="profile-section text-center">
-        <img src="/img/Logo.png" alt="Profile Picture" class="profile-img">
-        <h5 class="profile-name">@currentUserEmail</h5>
-        <p class="profile-role">Admin</p>
+<style>
+    .admin-sidebar-absolute {
+        position: absolute;
+        top: 0;
+        left: -12px;
+        margin-left: 0 !important;
+        width: 250px;
+        height: 100%;
+        background-color: #20B486;
+        color: white;
+        padding: 15px;
+        z-index: 999;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .btn-nav {
+        display: block;
+        width: 100%;
+        padding: 10px 15px; /* Giảm padding */
+        margin-bottom: 8px; /* Giảm margin */
+        color: white;
+        text-decoration: none;
+        border-radius: 20px; /* Giảm border-radius */
+        transition: all 0.3s ease;
+        border: none;
+        background: transparent;
+        font-weight: 500;
+        font-size: 14px; /* Giảm font-size */
+    }
+
+    .btn-nav:hover {
+        background-color: white !important;
+        color: #20B486 !important;
+        text-decoration: none;
+        transform: translateX(5px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .btn-nav.active {
+        background-color: rgba(255, 255, 255, 0.2);
+        color: white;
+        text-decoration: none;
+    }
+</style>
+
+<div class="admin-sidebar-absolute">
+    <!-- User Info Section -->
+    <div class="d-flex flex-column align-items-center">
+        <img src="/img/Logo.png" alt="Profile Picture" class="avatar-img rounded-circle mb-2" style="width: 40px; height: 40px; border: 2px solid white;">
+        <div class="d-flex align-items-center mb-2">
+            <div class="me-2 text-center">
+                <h6 class="mb-0" style="color: white; font-size: 12px;">@currentUserEmail</h6>
+                <p class="mb-0" style="color: white; opacity: 0.8; font-size: 10px;">Admin</p>
+            </div>
+        </div>
+        <hr style="border-color: rgba(255,255,255,0.3); width: 100%; margin: 10px 0;">
     </div>
 
-    <hr>
-    <div class="nav flex-column">
-        <a href="/admin" class="btn-nav mb-2">
+    <!-- Navigation Section -->
+    <div class="nav flex-column flex-grow-1">
+        <a href="/admin" class="btn-nav @(ActivePage == "dashboard" ? "active" : "")">
             <i class="fas fa-home me-2"></i>Dashboard
         </a>
-        <a href="/admin/ManageCourse" class="btn-nav mb-2">
+        <a href="/admin/BlazorManageCourse" class="btn-nav @(ActivePage == "course" ? "active" : "")">
             <i class="fas fa-book me-2"></i>Course
         </a>
-        <a href="/admin/ManageCategory" class="btn-nav mb-2">
+        <a href="/admin/BlazorManageCategory" class="btn-nav @(ActivePage == "category" ? "active" : "")">
             <i class="fas fa-folder me-2"></i>Category
         </a>
-        <a href="/admin/ManageForumCategory" class="btn-nav mb-2">
+        <a href="/admin/ManageForumCategory" class="btn-nav @(ActivePage == "forum" ? "active" : "")">
             <i class="fas fa-comments me-2"></i>Forum
         </a>
-        <a href="/admin/ManageUser" class="btn-nav mb-2">
+        <a href="/admin/ManageUser" class="btn-nav @(ActivePage == "user" ? "active" : "")">
             <i class="fas fa-user me-2"></i>User
         </a>
-        <a href="/admin/ManagePayment" class="btn-nav mb-2">
+        <a href="/admin/ManagePayment" class="btn-nav @(ActivePage == "payment" ? "active" : "")">
             <i class="fas fa-wallet me-2"></i>Payment
         </a>
     </div>
 </div>
 
 @code {
+    [Parameter] public string ActivePage { get; set; } = "";
     private string currentUserEmail = "admin@example.com";
 
     protected override async Task OnInitializedAsync()

@@ -1,0 +1,550 @@
+@page "/admin/BlazorManageCategory"
+@using FuCommunityWebModels.ViewModels
+@using FuCommunityWebModels.Models
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Identity
+@using System.Security.Claims
+@using Microsoft.AspNetCore.Components.Authorization
+@using FuCommunityWebServices.Services
+@using FUCommunityWeb.Components.Shared
+@attribute [Authorize(Roles = "Admin")]
+@inject ForumService ForumService
+@inject IJSRuntime JSRuntime
+@inject AuthenticationStateProvider AuthenticationStateProvider
+
+<PageTitle>Manage Categories - FU Community</PageTitle>
+
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous">
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<!-- Custom CSS -->
+<link href="~/css/admin.css" rel="stylesheet" />
+
+<style>
+    .admin-layout {
+        display: flex;
+        min-height: 100vh;
+        background-color: #f8f9fa;
+    }
+
+    .admin-content {
+        margin-left: 250px;
+        padding: 20px;
+        width: calc(100% - 250px);
+    }
+
+    .card {
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+    }
+
+    .table th {
+        background-color: #f8f9fa;
+        border-top: none;
+        font-weight: 600;
+        color: #495057;
+    }
+
+    .btn-primary {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border: none;
+        border-radius: 8px;
+        padding: 10px 20px;
+        font-weight: 500;
+    }
+
+    .btn-success {
+        background: linear-gradient(135deg, #56ab2f 0%, #a8e6cf 100%);
+        border: none;
+        border-radius: 8px;
+    }
+
+    .btn-warning {
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        border: none;
+        border-radius: 8px;
+    }
+
+    .btn-danger {
+        background: linear-gradient(135deg, #ff416c 0%, #ff4b2b 100%);
+        border: none;
+        border-radius: 8px;
+    }
+
+    .loading-spinner {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 200px;
+    }
+
+    .admin-layout {
+        position: relative;
+        display: flex;
+        min-height: calc(100vh - 140px);
+        background-color: #f8f9fa;
+    }
+
+    .admin-content {
+        margin-left: 250px;
+        padding: 20px;
+        width: calc(100% - 250px);
+    }
+</style>
+
+<div class="admin-layout">
+    <!-- Sidebar -->
+    <AdminSidebar ActivePage="category" />
+
+    <!-- Main Content -->
+    <div class="admin-content">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="mb-0">Manage Categories</h2>
+            <button class="btn btn-primary" @onclick="ShowCreateModal">
+                <i class="fas fa-plus me-2"></i>Create New Category
+            </button>
+        </div>
+
+        <!-- Categories Table -->
+        <div class="card">
+            <div class="card-body">
+                @if (isLoading)
+                {
+                    <div class="loading-spinner">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Category Name</th>
+                                    <th>Description</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var category in categories.OrderByDescending(c => c.CategoryID))
+                                {
+                                    <tr>
+                                        <td>@category.CategoryID</td>
+                                        <td><strong>@category.CategoryName</strong></td>
+                                        <td>
+                                            @if (category.Description?.Length > 100)
+                                            {
+                                                @(category.Description.Substring(0, 100) + "...")
+                                            }
+                                            else
+                                            {
+                                                @category.Description
+                                            }
+                                        </td>
+                                        <td>
+                                            <div class="btn-group" role="group">
+                                                <button class="btn btn-sm btn-warning" @onclick="() => ShowEditModal(category)">
+                                                    <i class="fas fa-edit"></i> Edit
+                                                </button>
+                                                <button class="btn btn-sm btn-danger" @onclick="() => ShowDeleteModal(category)">
+                                                    <i class="fas fa-trash"></i> Delete
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
+                    @if (!categories.Any())
+                    {
+                        <div class="text-center py-4">
+                            <i class="fas fa-folder-open fa-3x text-muted mb-3"></i>
+                            <h5 class="text-muted">No categories found</h5>
+                            <p class="text-muted">Create your first category to get started.</p>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Create Category Modal -->
+@if (showCreateModal)
+{
+    <div class="modal fade show" style="display: block;" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Create New Category</h5>
+                    <button type="button" class="btn-close" @onclick="HideCreateModal"></button>
+                </div>
+                <EditForm Model="createCategoryVM" OnValidSubmit="CreateCategory">
+                    <DataAnnotationsValidator />
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="form-label">Category Name</label>
+                            <InputText class="form-control" @bind-Value="createCategoryVM.CategoryName" />
+                            <ValidationMessage For="@(() => createCategoryVM.CategoryName)" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Description</label>
+                            <InputTextArea class="form-control" rows="3" @bind-Value="createCategoryVM.Description" />
+                            <ValidationMessage For="@(() => createCategoryVM.Description)" />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" @onclick="HideCreateModal">Cancel</button>
+                        <button type="submit" class="btn btn-primary" disabled="@isSubmitting">
+                            @if (isSubmitting)
+                            {
+                                <span class="spinner-border spinner-border-sm me-2"></span>
+                            }
+                            Create Category
+                        </button>
+                    </div>
+                </EditForm>
+            </div>
+        </div>
+    </div>
+    <div class="modal-backdrop fade show"></div>
+}
+
+<!-- Edit Category Modal -->
+@if (showEditModal && editCategoryVM != null)
+{
+    <div class="modal fade show" style="display: block;" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Category</h5>
+                    <button type="button" class="btn-close" @onclick="HideEditModal"></button>
+                </div>
+                <EditForm Model="editCategoryVM" OnValidSubmit="UpdateCategory">
+                    <DataAnnotationsValidator />
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="form-label">Category Name</label>
+                            <InputText class="form-control" @bind-Value="editCategoryVM.CategoryName" />
+                            <ValidationMessage For="@(() => editCategoryVM.CategoryName)" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Description</label>
+                            <InputTextArea class="form-control" rows="3" @bind-Value="editCategoryVM.Description" />
+                            <ValidationMessage For="@(() => editCategoryVM.Description)" />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" @onclick="HideEditModal">Cancel</button>
+                        <button type="submit" class="btn btn-primary" disabled="@isSubmitting">
+                            @if (isSubmitting)
+                            {
+                                <span class="spinner-border spinner-border-sm me-2"></span>
+                            }
+                            Update Category
+                        </button>
+                    </div>
+                </EditForm>
+            </div>
+        </div>
+    </div>
+    <div class="modal-backdrop fade show"></div>
+}
+
+<!-- Delete Confirmation Modal -->
+@if (showDeleteModal && categoryToDelete != null)
+{
+    <div class="modal fade show" style="display: block;" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Confirm Deletion</h5>
+                    <button type="button" class="btn-close" @onclick="HideDeleteModal"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to delete the category "<strong>@categoryToDelete.CategoryName</strong>"?</p>
+                    <p class="text-muted">This action cannot be undone and may affect related courses.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" @onclick="HideDeleteModal">Cancel</button>
+                    <button type="button" class="btn btn-danger" @onclick="ConfirmDelete" disabled="@isSubmitting">
+                        @if (isSubmitting)
+                        {
+                            <span class="spinner-border spinner-border-sm me-2"></span>
+                        }
+                        Delete
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-backdrop fade show"></div>
+}
+
+@code {
+    // Properties
+    private List<Category> categories = new();
+    private string currentUserEmail = "";
+
+    // Modal states
+    private bool showCreateModal = false;
+    private bool showEditModal = false;
+    private bool showDeleteModal = false;
+    private bool isLoading = true;
+    private bool isSubmitting = false;
+
+    // ViewModels
+    private CreateCategoryVM createCategoryVM = new();
+    private EditCategoryVM editCategoryVM = new();
+    private Category? categoryToDelete;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadCurrentUser();
+        await LoadData();
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            // Chỉ gọi JavaScript sau khi component đã render lần đầu
+            try
+            {
+                await JSRuntime.InvokeVoidAsync("console.log", $"Component rendered with {categories?.Count ?? 0} categories");
+            }
+            catch (Exception ex)
+            {
+                // Ignore JS errors during initial render
+                System.Diagnostics.Debug.WriteLine($"JS Error: {ex.Message}");
+            }
+        }
+    }
+
+    private async Task LoadCurrentUser()
+    {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        currentUserEmail = authState.User?.Identity?.Name ?? "Admin";
+    }
+
+    private async Task LoadData()
+    {
+        try
+        {
+            isLoading = true;
+            StateHasChanged();
+
+            categories = await ForumService.GetAllCategoryAsync();
+        }
+        catch (Exception ex)
+        {
+            // Log to console instead of using JS during initialization
+            System.Diagnostics.Debug.WriteLine($"Error loading data: {ex.Message}");
+            System.Diagnostics.Debug.WriteLine($"Stack trace: {ex.StackTrace}");
+            categories = new List<Category>(); // Initialize empty list to prevent null reference
+        }
+        finally
+        {
+            isLoading = false;
+            StateHasChanged();
+        }
+    }
+
+    // Modal methods
+    private void ShowCreateModal()
+    {
+        createCategoryVM = new CreateCategoryVM();
+        showCreateModal = true;
+    }
+
+    private void HideCreateModal()
+    {
+        showCreateModal = false;
+        createCategoryVM = new CreateCategoryVM();
+    }
+
+    private void ShowEditModal(Category category)
+    {
+        editCategoryVM = new EditCategoryVM
+        {
+            CategoryID = category.CategoryID,
+            CategoryName = category.CategoryName,
+            Description = category.Description
+        };
+        showEditModal = true;
+    }
+
+    private void HideEditModal()
+    {
+        showEditModal = false;
+        editCategoryVM = new EditCategoryVM();
+    }
+
+    private void ShowDeleteModal(Category category)
+    {
+        categoryToDelete = category;
+        showDeleteModal = true;
+    }
+
+    private void HideDeleteModal()
+    {
+        showDeleteModal = false;
+        categoryToDelete = null;
+    }
+
+    // CRUD Operations
+    private async Task CreateCategory()
+    {
+        try
+        {
+            isSubmitting = true;
+            StateHasChanged();
+
+            var category = new Category
+            {
+                CategoryName = createCategoryVM.CategoryName,
+                Description = createCategoryVM.Description
+            };
+
+            await ForumService.AddCategoryAsync(category);
+
+            try
+            {
+                await JSRuntime.InvokeVoidAsync("alert", "Category created successfully!");
+            }
+            catch (Exception jsEx)
+            {
+                System.Diagnostics.Debug.WriteLine($"JS Alert Error: {jsEx.Message}");
+            }
+
+            HideCreateModal();
+            await LoadData();
+        }
+        catch (Exception ex)
+        {
+            try
+            {
+                await JSRuntime.InvokeVoidAsync("alert", $"Error creating category: {ex.Message}");
+            }
+            catch (Exception jsEx)
+            {
+                System.Diagnostics.Debug.WriteLine($"JS Alert Error: {jsEx.Message}");
+            }
+        }
+        finally
+        {
+            isSubmitting = false;
+            StateHasChanged();
+        }
+    }
+
+    private async Task UpdateCategory()
+    {
+        try
+        {
+            isSubmitting = true;
+            StateHasChanged();
+
+            var categoryToUpdate = await ForumService.GetCategoryByIdAsync(editCategoryVM.CategoryID);
+            if (categoryToUpdate == null)
+            {
+                try
+                {
+                    await JSRuntime.InvokeVoidAsync("alert", "Category not found!");
+                }
+                catch (Exception jsEx)
+                {
+                    System.Diagnostics.Debug.WriteLine($"JS Alert Error: {jsEx.Message}");
+                }
+                return;
+            }
+
+            categoryToUpdate.CategoryName = editCategoryVM.CategoryName;
+            categoryToUpdate.Description = editCategoryVM.Description;
+
+            await ForumService.UpdateCategoryAsync(categoryToUpdate);
+
+            try
+            {
+                await JSRuntime.InvokeVoidAsync("alert", "Category updated successfully!");
+            }
+            catch (Exception jsEx)
+            {
+                System.Diagnostics.Debug.WriteLine($"JS Alert Error: {jsEx.Message}");
+            }
+
+            HideEditModal();
+            await LoadData();
+        }
+        catch (Exception ex)
+        {
+            try
+            {
+                await JSRuntime.InvokeVoidAsync("alert", $"Error updating category: {ex.Message}");
+            }
+            catch (Exception jsEx)
+            {
+                System.Diagnostics.Debug.WriteLine($"JS Alert Error: {jsEx.Message}");
+            }
+        }
+        finally
+        {
+            isSubmitting = false;
+            StateHasChanged();
+        }
+    }
+
+    private async Task ConfirmDelete()
+    {
+        if (categoryToDelete == null) return;
+
+        try
+        {
+            isSubmitting = true;
+            StateHasChanged();
+
+            await ForumService.DeleteCategoryAsync(categoryToDelete);
+
+            try
+            {
+                await JSRuntime.InvokeVoidAsync("alert", "Category deleted successfully!");
+            }
+            catch (Exception jsEx)
+            {
+                System.Diagnostics.Debug.WriteLine($"JS Alert Error: {jsEx.Message}");
+            }
+
+            HideDeleteModal();
+            await LoadData();
+        }
+        catch (Exception ex)
+        {
+            try
+            {
+                await JSRuntime.InvokeVoidAsync("alert", $"Error deleting category: {ex.Message}");
+            }
+            catch (Exception jsEx)
+            {
+                System.Diagnostics.Debug.WriteLine($"JS Alert Error: {jsEx.Message}");
+            }
+        }
+        finally
+        {
+            isSubmitting = false;
+            StateHasChanged();
+        }
+    }
+}

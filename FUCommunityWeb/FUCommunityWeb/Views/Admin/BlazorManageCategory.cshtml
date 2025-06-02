@@ -1,0 +1,13 @@
+@{
+    ViewData["Title"] = "Manage Categories - FU Community";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <component type="typeof(FUCommunityWeb.Components.Pages.Admin.AdminCategoryManagement)"
+               render-mode="ServerPrerendered" />
+</div>
+
+@section Scripts {
+    <script src="_framework/blazor.server.js"></script>
+}
